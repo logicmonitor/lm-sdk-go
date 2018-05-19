@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **MajorVersion** | **int32** |  | [optional] [default to null]
 **MinorVersion** | **int32** |  | [optional] [default to null]
 **Mandatory** | **bool** |  | [optional] [default to null]
+**UpgradeTimeEpoch** | **int64** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
