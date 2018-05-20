@@ -73,19 +73,6 @@ func (a *DefaultApiService) AckAlertById(ctx context.Context, body AlertAck, id 
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -178,19 +165,6 @@ func (a *DefaultApiService) AckCollectorDownAlertById(ctx context.Context, id in
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -280,19 +254,6 @@ func (a *DefaultApiService) Add(ctx context.Context, body DeviceDatasourceInstan
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -383,19 +344,6 @@ func (a *DefaultApiService) AddAdmin(ctx context.Context, body Admin) (AdminResp
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -488,19 +436,6 @@ func (a *DefaultApiService) AddAlertNoteById(ctx context.Context, body AlertAck,
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -591,19 +526,6 @@ func (a *DefaultApiService) AddAlertRule(ctx context.Context, body AlertRule) (A
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -696,19 +618,6 @@ func (a *DefaultApiService) AddApiTokenByAdminId(ctx context.Context, adminId in
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -799,19 +708,6 @@ func (a *DefaultApiService) AddCollector(ctx context.Context, body Collector) (C
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -902,19 +798,6 @@ func (a *DefaultApiService) AddCollectorGroup(ctx context.Context, body Collecto
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1005,19 +888,6 @@ func (a *DefaultApiService) AddDashboard(ctx context.Context, body Dashboard) (D
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1108,19 +978,6 @@ func (a *DefaultApiService) AddDashboardGroup(ctx context.Context, body Dashboar
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1236,19 +1093,6 @@ func (a *DefaultApiService) AddDevice(ctx context.Context, body Device, localVar
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1343,19 +1187,6 @@ func (a *DefaultApiService) AddDeviceDatasourceInstance(ctx context.Context, dev
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1450,19 +1281,6 @@ func (a *DefaultApiService) AddDeviceDatasourceInstanceGroup(ctx context.Context
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1553,19 +1371,6 @@ func (a *DefaultApiService) AddDeviceGroup(ctx context.Context, body DeviceGroup
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1658,19 +1463,6 @@ func (a *DefaultApiService) AddDeviceGroupProperty(ctx context.Context, gid int3
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1763,19 +1555,6 @@ func (a *DefaultApiService) AddDeviceProperty(ctx context.Context, deviceId int3
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1866,19 +1645,6 @@ func (a *DefaultApiService) AddEscalationChain(ctx context.Context, body Escalat
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1969,19 +1735,6 @@ func (a *DefaultApiService) AddOpsNote(ctx context.Context, body RestOpsNoteV1) 
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2072,19 +1825,6 @@ func (a *DefaultApiService) AddReport(ctx context.Context, body ReportBase) (Rep
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2175,19 +1915,6 @@ func (a *DefaultApiService) AddRole(ctx context.Context, body Role) (RoleRespons
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2278,19 +2005,6 @@ func (a *DefaultApiService) AddSDT(ctx context.Context, body SdtBase) (SdtRespon
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2381,19 +2095,6 @@ func (a *DefaultApiService) AddService(ctx context.Context, body ServiceBaseVers
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2484,19 +2185,6 @@ func (a *DefaultApiService) AddServiceGroup(ctx context.Context, body ServiceGro
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2587,19 +2275,6 @@ func (a *DefaultApiService) AddWidget(ctx context.Context, body WidgetBaseVersio
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2708,19 +2383,6 @@ func (a *DefaultApiService) AsyncClone(ctx context.Context, id int32, localVarOp
 				return localVarReturnValue, nil, reportError("body should be DashboardGroup")
 		}
 		localVarPostBody = &localVarOptionalBody
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -2831,19 +2493,6 @@ func (a *DefaultApiService) Clone(ctx context.Context, id int32, localVarOptiona
 		}
 		localVarPostBody = &localVarOptionalBody
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2946,19 +2595,6 @@ func (a *DefaultApiService) CreateAutoReports(ctx context.Context, localVarOptio
 		}
 		localVarPostBody = &localVarOptionalBody
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3048,19 +2684,6 @@ func (a *DefaultApiService) DeleteAdminById(ctx context.Context, id int32) (Null
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3149,19 +2772,6 @@ func (a *DefaultApiService) DeleteAlertRuleById(ctx context.Context, id int32) (
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3254,19 +2864,6 @@ func (a *DefaultApiService) DeleteApiTokenById(ctx context.Context, adminId int3
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3355,19 +2952,6 @@ func (a *DefaultApiService) DeleteCollectorById(ctx context.Context, id int32) (
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3458,19 +3042,6 @@ func (a *DefaultApiService) DeleteCollectorGroupById(ctx context.Context, id int
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3559,19 +3130,6 @@ func (a *DefaultApiService) DeleteDashboardById(ctx context.Context, id int32) (
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3671,19 +3229,6 @@ func (a *DefaultApiService) DeleteDashboardGroupById(ctx context.Context, id int
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3799,19 +3344,6 @@ func (a *DefaultApiService) DeleteDevice(ctx context.Context, id int32, localVar
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3916,19 +3448,6 @@ func (a *DefaultApiService) DeleteDeviceGroupById(ctx context.Context, id int32,
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4019,19 +3538,6 @@ func (a *DefaultApiService) DeleteDeviceGroupPropertyByName(ctx context.Context,
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -4124,19 +3630,6 @@ func (a *DefaultApiService) DeleteDevicePropertyByName(ctx context.Context, devi
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4225,19 +3718,6 @@ func (a *DefaultApiService) DeleteEscalationChainById(ctx context.Context, id in
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -4328,19 +3808,6 @@ func (a *DefaultApiService) DeleteOpsNoteById(ctx context.Context, id string) (S
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4429,19 +3896,6 @@ func (a *DefaultApiService) DeleteRoleById(ctx context.Context, id int32) (RoleR
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -4532,19 +3986,6 @@ func (a *DefaultApiService) DeleteSDTById(ctx context.Context, id string) (SdtRe
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4633,19 +4074,6 @@ func (a *DefaultApiService) DeleteServiceById(ctx context.Context, id int32) (Nu
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -4746,19 +4174,6 @@ func (a *DefaultApiService) DeleteServiceGroupById(ctx context.Context, id int32
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4850,19 +4265,6 @@ func (a *DefaultApiService) DeleteToken(ctx context.Context, tokenname string, b
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4951,19 +4353,6 @@ func (a *DefaultApiService) DeleteWidgetById(ctx context.Context, id int32) (Nul
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -5062,19 +4451,6 @@ func (a *DefaultApiService) EditTimezoneInUsing(ctx context.Context, id int32, l
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -5180,19 +4556,6 @@ func (a *DefaultApiService) ExecuteReport(ctx context.Context, id int32, localVa
 		}
 		localVarPostBody = &localVarOptionalBody
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -5283,19 +4646,6 @@ func (a *DefaultApiService) FetchReport(ctx context.Context, id int32, taskId st
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -5383,19 +4733,6 @@ func (a *DefaultApiService) FinishWizard(ctx context.Context, id int32) (Respons
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -5495,19 +4832,6 @@ func (a *DefaultApiService) GetAdminById(ctx context.Context, id int32, localVar
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -5621,19 +4945,6 @@ func (a *DefaultApiService) GetAdminList(ctx context.Context, localVarOptionals 
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -5742,19 +5053,6 @@ func (a *DefaultApiService) GetAlertById(ctx context.Context, id string, localVa
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -5882,19 +5180,6 @@ func (a *DefaultApiService) GetAlertList(ctx context.Context, localVarOptionals 
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -6024,19 +5309,6 @@ func (a *DefaultApiService) GetAlertListByDeviceGroupId(ctx context.Context, id 
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -6182,19 +5454,6 @@ func (a *DefaultApiService) GetAlertListByDeviceId(ctx context.Context, id int32
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -6293,19 +5552,6 @@ func (a *DefaultApiService) GetAlertRuleById(ctx context.Context, id int32, loca
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -6418,19 +5664,6 @@ func (a *DefaultApiService) GetAlertRuleList(ctx context.Context, localVarOption
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -6561,19 +5794,6 @@ func (a *DefaultApiService) GetAllSDTListByDeviceId(ctx context.Context, id int3
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -6687,19 +5907,6 @@ func (a *DefaultApiService) GetAllSDTListByServiceGroupId(ctx context.Context, i
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -6815,19 +6022,6 @@ func (a *DefaultApiService) GetApiTokenListByAdminId(ctx context.Context, adminI
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -6935,19 +6129,6 @@ func (a *DefaultApiService) GetApplications(ctx context.Context, id int32, local
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -7067,19 +6248,6 @@ func (a *DefaultApiService) GetBandwidthGraphData(ctx context.Context, id int32,
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -7160,19 +6328,6 @@ func (a *DefaultApiService) GetCollectorById(ctx context.Context, id int32, loca
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -7272,19 +6427,6 @@ func (a *DefaultApiService) GetCollectorGroupById(ctx context.Context, id int32,
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -7398,19 +6540,6 @@ func (a *DefaultApiService) GetCollectorGroupList(ctx context.Context, localVarO
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -7523,19 +6652,6 @@ func (a *DefaultApiService) GetCollectorList(ctx context.Context, localVarOption
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -7634,19 +6750,6 @@ func (a *DefaultApiService) GetDashboardById(ctx context.Context, id int32, loca
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -7751,19 +6854,6 @@ func (a *DefaultApiService) GetDashboardGroupById(ctx context.Context, id int32,
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -7877,19 +6967,6 @@ func (a *DefaultApiService) GetDashboardGroupList(ctx context.Context, localVarO
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -7976,19 +7053,6 @@ func (a *DefaultApiService) GetDashboardGroupListForAutocomplete(ctx context.Con
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -8102,19 +7166,6 @@ func (a *DefaultApiService) GetDashboardList(ctx context.Context, localVarOption
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -8218,19 +7269,6 @@ func (a *DefaultApiService) GetDatasourceById(ctx context.Context, id int32, loc
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -8349,19 +7387,6 @@ func (a *DefaultApiService) GetDatasourceList(ctx context.Context, localVarOptio
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -8475,19 +7500,6 @@ func (a *DefaultApiService) GetDeviceById(ctx context.Context, id int32, localVa
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -8603,19 +7615,6 @@ func (a *DefaultApiService) GetDeviceConfigSourceConfigById(ctx context.Context,
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -8735,19 +7734,6 @@ func (a *DefaultApiService) GetDeviceConfigSourceConfigList(ctx context.Context,
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -8848,19 +7834,6 @@ func (a *DefaultApiService) GetDeviceDatasourceById(ctx context.Context, deviceI
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -8983,19 +7956,6 @@ func (a *DefaultApiService) GetDeviceDatasourceDataById(ctx context.Context, dev
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -9101,19 +8061,6 @@ func (a *DefaultApiService) GetDeviceDatasourceInstanceAlertSettingById(ctx cont
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -9216,19 +8163,6 @@ func (a *DefaultApiService) GetDeviceDatasourceInstanceById(ctx context.Context,
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -9353,19 +8287,6 @@ func (a *DefaultApiService) GetDeviceDatasourceInstanceData(ctx context.Context,
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -9481,19 +8402,6 @@ func (a *DefaultApiService) GetDeviceDatasourceInstanceGraphData(ctx context.Con
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -9596,19 +8504,6 @@ func (a *DefaultApiService) GetDeviceDatasourceInstanceGroupById(ctx context.Con
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -9725,19 +8620,6 @@ func (a *DefaultApiService) GetDeviceDatasourceInstanceGroupOverviewGraphData(ct
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -9852,19 +8734,6 @@ func (a *DefaultApiService) GetDeviceDatasourceList(ctx context.Context, deviceI
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -9963,19 +8832,6 @@ func (a *DefaultApiService) GetDeviceGroupById(ctx context.Context, id int32, lo
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -10078,19 +8934,6 @@ func (a *DefaultApiService) GetDeviceGroupDatasourceAlertSetting(ctx context.Con
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -10191,19 +9034,6 @@ func (a *DefaultApiService) GetDeviceGroupDatasourceById(ctx context.Context, de
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -10324,19 +9154,6 @@ func (a *DefaultApiService) GetDeviceGroupDatasourceList(ctx context.Context, de
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -10448,19 +9265,6 @@ func (a *DefaultApiService) GetDeviceGroupList(ctx context.Context, localVarOpti
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -10576,19 +9380,6 @@ func (a *DefaultApiService) GetDeviceGroupProperties(ctx context.Context, gid in
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -10689,19 +9480,6 @@ func (a *DefaultApiService) GetDeviceGroupPropertyByName(ctx context.Context, gi
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -10813,19 +9591,6 @@ func (a *DefaultApiService) GetDeviceInstanceGraphDataOnlyByInstanceId(ctx conte
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -10954,19 +9719,6 @@ func (a *DefaultApiService) GetDeviceList(ctx context.Context, localVarOptionals
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -11081,19 +9833,6 @@ func (a *DefaultApiService) GetDevicePropertiesList(ctx context.Context, deviceI
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -11194,19 +9933,6 @@ func (a *DefaultApiService) GetDevicePropertyByName(ctx context.Context, deviceI
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -11321,19 +10047,6 @@ func (a *DefaultApiService) GetEndpoints(ctx context.Context, id int32, localVar
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -11432,19 +10145,6 @@ func (a *DefaultApiService) GetEscalationChainById(ctx context.Context, id int32
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -11558,19 +10258,6 @@ func (a *DefaultApiService) GetEscalationChainList(ctx context.Context, localVar
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -11678,19 +10365,6 @@ func (a *DefaultApiService) GetFlows(ctx context.Context, id int32, localVarOpti
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -11806,19 +10480,6 @@ func (a *DefaultApiService) GetImmediateDeviceListByDeviceGroupId(ctx context.Co
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -11933,19 +10594,6 @@ func (a *DefaultApiService) GetImmediateServiceListByServiceGroupId(ctx context.
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -12034,19 +10682,6 @@ func (a *DefaultApiService) GetListForDataSource(ctx context.Context, id int32) 
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -12146,19 +10781,6 @@ func (a *DefaultApiService) GetOpsNoteById(ctx context.Context, id string, local
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -12271,19 +10893,6 @@ func (a *DefaultApiService) GetOpsNoteList(ctx context.Context, localVarOptional
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -12398,19 +11007,6 @@ func (a *DefaultApiService) GetPorts(ctx context.Context, id int32, localVarOpti
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -12519,19 +11115,6 @@ func (a *DefaultApiService) GetQoSTable(ctx context.Context, id int32, localVarO
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -12630,19 +11213,6 @@ func (a *DefaultApiService) GetReportById(ctx context.Context, id int32, localVa
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -12756,19 +11326,6 @@ func (a *DefaultApiService) GetReportList(ctx context.Context, localVarOptionals
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -12867,19 +11424,6 @@ func (a *DefaultApiService) GetRoleById(ctx context.Context, id int32, localVarO
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -12993,19 +11537,6 @@ func (a *DefaultApiService) GetRoleList(ctx context.Context, localVarOptionals *
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -13104,19 +11635,6 @@ func (a *DefaultApiService) GetSDTById(ctx context.Context, id string, localVarO
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -13229,19 +11747,6 @@ func (a *DefaultApiService) GetSDTList(ctx context.Context, localVarOptionals *G
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -13367,19 +11872,6 @@ func (a *DefaultApiService) GetServiceAlertListByServiceId(ctx context.Context, 
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -13478,19 +11970,6 @@ func (a *DefaultApiService) GetServiceById(ctx context.Context, id int32, localV
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -13613,19 +12092,6 @@ func (a *DefaultApiService) GetServiceCheckpointDataById(ctx context.Context, sr
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -13736,19 +12202,6 @@ func (a *DefaultApiService) GetServiceDataByGraphName(ctx context.Context, id in
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -13863,19 +12316,6 @@ func (a *DefaultApiService) GetServiceGraphData(ctx context.Context, serviceId i
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -13974,19 +12414,6 @@ func (a *DefaultApiService) GetServiceGroupById(ctx context.Context, id int32, l
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -14099,19 +12526,6 @@ func (a *DefaultApiService) GetServiceGroupList(ctx context.Context, localVarOpt
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -14230,19 +12644,6 @@ func (a *DefaultApiService) GetServiceList(ctx context.Context, localVarOptional
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -14356,19 +12757,6 @@ func (a *DefaultApiService) GetServicePropertyListByServiceId(ctx context.Contex
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -14484,19 +12872,6 @@ func (a *DefaultApiService) GetServiceSDTListByServiceId(ctx context.Context, id
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -14608,19 +12983,6 @@ func (a *DefaultApiService) GetSiteMonitorCheckPointList(ctx context.Context, lo
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -14734,19 +13096,6 @@ func (a *DefaultApiService) GetUnmonitoredDeviceList(ctx context.Context, localV
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -14836,19 +13185,6 @@ func (a *DefaultApiService) GetValuesOfToken(ctx context.Context, id int32, toke
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -14948,19 +13284,6 @@ func (a *DefaultApiService) GetWidgetById(ctx context.Context, id int32, localVa
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -15070,19 +13393,6 @@ func (a *DefaultApiService) GetWidgetDataById(ctx context.Context, id int32, loc
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -15195,19 +13505,6 @@ func (a *DefaultApiService) GetWidgetList(ctx context.Context, localVarOptionals
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -15323,19 +13620,6 @@ func (a *DefaultApiService) GetWidgetListByDashboardId(ctx context.Context, id i
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -15443,19 +13727,6 @@ func (a *DefaultApiService) ImportDatasourceWithXML(ctx context.Context, localVa
 		localVarFileBytes = fbs
 		localVarFileName = localVarFile.Name()
 		localVarFile.Close()
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -15577,19 +13848,6 @@ func (a *DefaultApiService) InstallCollector(ctx context.Context, collectorId in
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -15713,19 +13971,6 @@ func (a *DefaultApiService) PatchDeviceById(ctx context.Context, body Device, id
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -15833,19 +14078,6 @@ func (a *DefaultApiService) PatchDeviceGroupById(ctx context.Context, id int32, 
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -15948,19 +14180,6 @@ func (a *DefaultApiService) PatchServiceById(ctx context.Context, id int32, body
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -16068,19 +14287,6 @@ func (a *DefaultApiService) PatchServiceGroupById(ctx context.Context, id int32,
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -16168,19 +14374,6 @@ func (a *DefaultApiService) QueryCloneStatus(ctx context.Context, jobId int32) (
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -16291,19 +14484,6 @@ func (a *DefaultApiService) ScheduleAutoDiscoveryByDeviceId(ctx context.Context,
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -16406,19 +14586,6 @@ func (a *DefaultApiService) UpdateAdminById(ctx context.Context, id int32, body 
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -16511,19 +14678,6 @@ func (a *DefaultApiService) UpdateAlertRuleById(ctx context.Context, body AlertR
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -16618,19 +14772,6 @@ func (a *DefaultApiService) UpdateApiTokenByAdminId(ctx context.Context, adminId
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -16723,19 +14864,6 @@ func (a *DefaultApiService) UpdateCollectorById(ctx context.Context, id int32, b
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -16828,19 +14956,6 @@ func (a *DefaultApiService) UpdateCollectorGroupById(ctx context.Context, id int
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -16943,19 +15058,6 @@ func (a *DefaultApiService) UpdateDashboardById(ctx context.Context, id int32, b
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -17048,19 +15150,6 @@ func (a *DefaultApiService) UpdateDashboardGroupById(ctx context.Context, id int
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -17178,19 +15267,6 @@ func (a *DefaultApiService) UpdateDevice(ctx context.Context, body Device, id in
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -17289,19 +15365,6 @@ func (a *DefaultApiService) UpdateDeviceDatasourceInstanceAlertSettingById(ctx c
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -17408,19 +15471,6 @@ func (a *DefaultApiService) UpdateDeviceDatasourceInstanceById(ctx context.Conte
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -17517,19 +15567,6 @@ func (a *DefaultApiService) UpdateDeviceDatasourceInstanceGroupById(ctx context.
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -17622,19 +15659,6 @@ func (a *DefaultApiService) UpdateDeviceGroupById(ctx context.Context, id int32,
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -17729,19 +15753,6 @@ func (a *DefaultApiService) UpdateDeviceGroupDatasourceAlertSetting(ctx context.
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -17836,19 +15847,6 @@ func (a *DefaultApiService) UpdateDeviceGroupPropertyByName(ctx context.Context,
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -17943,19 +15941,6 @@ func (a *DefaultApiService) UpdateDevicePropertyByName(ctx context.Context, devi
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -18061,19 +16046,6 @@ func (a *DefaultApiService) UpdateEscalationChainById(ctx context.Context, id in
 		}
 		localVarPostBody = &localVarOptionalBody
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -18166,19 +16138,6 @@ func (a *DefaultApiService) UpdateOpsNoteById(ctx context.Context, id string, bo
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -18284,19 +16243,6 @@ func (a *DefaultApiService) UpdateReportById(ctx context.Context, id int32, loca
 		}
 		localVarPostBody = &localVarOptionalBody
 	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -18389,19 +16335,6 @@ func (a *DefaultApiService) UpdateRoleById(ctx context.Context, id int32, body R
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -18494,19 +16427,6 @@ func (a *DefaultApiService) UpdateSDTById(ctx context.Context, id string, body S
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -18599,19 +16519,6 @@ func (a *DefaultApiService) UpdateServiceById(ctx context.Context, body ServiceB
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -18704,19 +16611,6 @@ func (a *DefaultApiService) UpdateServiceGroupById(ctx context.Context, id int32
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -18809,19 +16703,6 @@ func (a *DefaultApiService) UpdateWidgetById(ctx context.Context, id int32, body
 	}
 	// body params
 	localVarPostBody = &body
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			} else {
-				key = a.client.cfg.GetHmac(ctx, auth, localVarPath, localVarHttpMethod, localVarPostBody)
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

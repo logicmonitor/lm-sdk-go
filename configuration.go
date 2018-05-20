@@ -11,17 +11,7 @@
 package logicmonitor
 
 import (
-"context"
-"crypto/hmac"
-"crypto/sha256"
-"encoding/base64"
-"encoding/hex"
-"encoding/json"
-"fmt"
 "net/http"
-"strconv"
-"strings"
-"time"
 )
 
 // contextKeys are used to identify the type of value in the context.
@@ -77,43 +67,4 @@ func NewConfiguration() *Configuration {
 		UserAgent:     "Swagger-Codegen/1.0.0/go",
 	}
 	return cfg
-}
-
-func (c *Configuration) GetHmac(ctx context.Context, keys APIKey, ResourcePath string, Method string, Body interface{}) string {
-	return c.GetAuthHash(keys, ResourcePath, Method, Body)
-}
-
-func (c *Configuration) GetAuthHash(keys APIKey, ResourcePath string, Method string, Body interface{}) string {
-	data, err := json.Marshal(Body)
-	if err != nil {
-		return ""
-	}
-
-	if string(data) == "null" {
-		data = []byte{}
-	}
-
-	authHash := buildAuthHash(keys, Method, string(data), ResourcePath)
-
-	return authHash
-}
-
-func buildAuthHash(keys APIKey, method, data, resource string) string {
-	now := time.Now()
-	nanos := now.UnixNano()
-	epoch := strconv.FormatInt(nanos/1000000, 10)
-
-	signature := buildSignature(keys.Key, strings.ToUpper(method), epoch, data, resource)
-	auth := fmt.Sprintf("LMv1 %s:%s:%s", keys.ID, signature, epoch)
-
-	return auth
-}
-
-func buildSignature(accessKey, method, epoch, data, resource string) string {
-	h := hmac.New(sha256.New, []byte(accessKey))
-	h.Write([]byte(method + epoch + data + resource))
-	hexDigest := hex.EncodeToString(h.Sum(nil))
-	signature := base64.StdEncoding.EncodeToString([]byte(hexDigest))
-
-	return signature
 }

@@ -11,6 +11,10 @@
 package logicmonitor
 
 import (
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
+	"encoding/hex"
 	"bytes"
 	"context"
 	"encoding/json"
@@ -291,6 +295,18 @@ func (c *APIClient) prepareRequest(
 		if auth, ok := ctx.Value(ContextAccessToken).(string); ok {
 			localVarRequest.Header.Add("Authorization", "Bearer "+auth)
 		}
+
+		// APIKey Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			localVarResourcePath := path[strings.Index(path, c.cfg.BasePath)+len(c.cfg.BasePath):]
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + c.GetHmac(ctx, auth, localVarResourcePath, method, localVarRequest.Body)
+			} else {
+				key = c.GetHmac(ctx, auth, localVarResourcePath, method, localVarRequest.Body)
+			}
+			localVarRequest.Header.Add("Authorization", key)
+		}
 	}
 
 	for header, value := range c.cfg.DefaultHeader {
@@ -462,4 +478,28 @@ func (e GenericSwaggerError) Body() []byte {
 // Model returns the unpacked model of the error
 func (e GenericSwaggerError) Model() interface{} {
 	return e.model
+}
+
+func (c *APIClient) GetHmac(ctx context.Context, keys APIKey, resource string, method string, body io.ReadCloser) string {
+	now := time.Now()
+	nanos := now.UnixNano()
+	epoch := strconv.FormatInt(nanos/1000000, 10)
+
+	signature := buildSignature(keys.Key, strings.ToUpper(method), epoch, body, resource)
+	auth := fmt.Sprintf("LMv1 %s:%s:%s", keys.ID, signature, epoch)
+
+	return auth
+}
+
+func buildSignature(accessKey string, method string, epoch string, body io.ReadCloser, resource string) string {
+	h := hmac.New(sha256.New, []byte(accessKey))
+	h.Write([]byte(method + epoch))
+	if body != nil {
+		io.Copy(h, body)
+	}
+	h.Write([]byte(resource))
+	hexDigest := hex.EncodeToString(h.Sum(nil))
+	signature := base64.StdEncoding.EncodeToString([]byte(hexDigest))
+
+	return signature
 }
