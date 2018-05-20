@@ -298,12 +298,11 @@ func (c *APIClient) prepareRequest(
 
 		// APIKey Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			localVarResourcePath := path[strings.Index(path, c.cfg.BasePath)+len(c.cfg.BasePath):]
 			var key string
 			if auth.Prefix != "" {
-				key = auth.Prefix + " " + c.GetHmac(ctx, auth, localVarResourcePath, method, localVarRequest.Body)
+				key = auth.Prefix + " " + c.getHmac(ctx, auth, localVarRequest)
 			} else {
-				key = c.GetHmac(ctx, auth, localVarResourcePath, method, localVarRequest.Body)
+				key = c.getHmac(ctx, auth, localVarRequest)
 			}
 			localVarRequest.Header.Add("Authorization", key)
 		}
@@ -480,26 +479,28 @@ func (e GenericSwaggerError) Model() interface{} {
 	return e.model
 }
 
-func (c *APIClient) GetHmac(ctx context.Context, keys APIKey, resource string, method string, body io.ReadCloser) string {
+func (c *APIClient) getHmac(ctx context.Context, keys APIKey, request *http.Request) string {
+	// strip the basepath from the URL
+	resource := request.URL.String()[strings.Index(request.URL.String(), c.cfg.BasePath)+len(c.cfg.BasePath):]
+	// strip query params from the URL
+	if strings.Contains(resource, "?") {
+		resource = resource[:strings.Index(resource, "?")]
+	}
+
+	// get epoch
 	now := time.Now()
 	nanos := now.UnixNano()
 	epoch := strconv.FormatInt(nanos/1000000, 10)
 
-	signature := buildSignature(keys.Key, strings.ToUpper(method), epoch, body, resource)
-	auth := fmt.Sprintf("LMv1 %s:%s:%s", keys.ID, signature, epoch)
-
-	return auth
-}
-
-func buildSignature(accessKey string, method string, epoch string, body io.ReadCloser, resource string) string {
-	h := hmac.New(sha256.New, []byte(accessKey))
-	h.Write([]byte(method + epoch))
-	if body != nil {
-		io.Copy(h, body)
+	// build the signature
+	h := hmac.New(sha256.New, []byte(keys.Key))
+	h.Write([]byte(request.Method + epoch))
+	if request.Body != nil {
+		io.Copy(h, request.Body)
 	}
 	h.Write([]byte(resource))
 	hexDigest := hex.EncodeToString(h.Sum(nil))
 	signature := base64.StdEncoding.EncodeToString([]byte(hexDigest))
 
-	return signature
+	return fmt.Sprintf("LMv1 %s:%s:%s", keys.ID, signature, epoch)
 }
