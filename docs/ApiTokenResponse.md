@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [***DeviceDatasourceInstanceConfigPaginationResponse**](DeviceDatasourceInstanceConfigPaginationResponse.md) |  | [optional] [default to null]
+**Data** | [***ApiToken**](ApiToken.md) |  | [optional] [default to null]
 **Errmsg** | **string** |  | [optional] [default to null]
 **Status** | **int32** |  | [optional] [default to null]
 

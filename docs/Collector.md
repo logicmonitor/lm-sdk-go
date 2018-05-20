@@ -60,7 +60,7 @@ Name | Type | Description | Notes
 **PreviousVersion** | **string** |  | [optional] [default to null]
 **CollectorGroupId** | **int32** |  | [optional] [default to null]
 **CreatedOnLocal** | **string** |  | [optional] [default to null]
-**EnableFailBack** | **bool** |  | [optional] [default to null]
+**EnableFailBack** | **bool** |  | [default to null]
 **ResendIval** | **int32** |  | [optional] [default to null]
 **Arch** | **string** |  | [optional] [default to null]
 **EnableFailOverOnCollectorDevice** | **bool** |  | [optional] [default to null]

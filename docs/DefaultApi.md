@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **adminId** | **int32**|  | 
-  **body** | [**DeviceDatasourceInstanceConfigPaginationResponse**](DeviceDatasourceInstanceConfigPaginationResponse.md)|  | 
+  **body** | [**ApiToken**](ApiToken.md)|  | 
 
 ### Return type
 
@@ -2188,11 +2188,9 @@ Optional parameters are passed through a pointer to a GetBandwidthGraphDataOpts 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **netflowFilter** | **optional.String**|  | 
  **start** | **optional.Int64**|  | 
  **end** | **optional.Int64**|  | 
- **netflowFilter** | **optional.String**|  | 
- **start2** | **optional.Int64**|  | 
- **end2** | **optional.Int64**|  | 
  **format** | **optional.String**|  | 
  **keyword** | **optional.String**|  | 
 
