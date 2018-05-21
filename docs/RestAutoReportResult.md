@@ -1,0 +1,12 @@
+# RestAutoReportResult
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**CreatedReports** | [**[]ReportBase**](ReportBase.md) |  | [optional] [default to null]
+**ErrMsg** | **string** |  | [optional] [default to null]
+**CreatedReportGroup** | [***RestReportGroup**](RestReportGroup.md) |  | [optional] [default to null]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
