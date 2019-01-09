@@ -7,26 +7,32 @@ Getting Started
 ```go
 package main
 
-import lmv1 "github.com/logicmonitor/lm-sdk-go"
-
-func NewLMClient(id, key, company string) *lmv1.DefaultApi {
-	config := lmv1.NewConfiguration()
-	config.APIKey = map[string]map[string]string{
-		"Authorization": map[string]string{
-			"AccessID":  id,
-			"AccessKey": key,
-		},
-	}
-	config.BasePath = "https://" + company + ".logicmonitor.com/santaba/rest"
-
-	api := lmv1.NewDefaultApi()
-	api.Configuration = config
-
-	return api
-}
-
+import (
+    "fmt"
+    "github.com/logicmonitor/lm-sdk-go/client"
+    "github.com/logicmonitor/lm-sdk-go/client/lm"
+)
 func main() {
-  client := NewLMClient("foo", "bar", "baz")
+    // Configure API key authorization: LMv1
+    domain := "YOUR_COMPANY.logicmonitor.com"
+    accessID := "YOUR_ACCESS_ID"
+    accessKey := "YOUR_ACCESS_KEY"
+
+    config := client.NewConfig()
+    config.SetAccountDomain(&domain)
+    config.SetAccessID(&accessID)
+    config.SetAccessKey(&accessKey)
+    
+    // create an instance of the API class
+    lmSdk := client.New(config)
+    params := lm.NewGetDeviceListParams()
+
+    // ack alert by id
+    resp, err := lmSdk.LM.GetDeviceList(params)
+    if err != nil {
+        fmt.Printf("Exception when calling client.LM.AckAlertByID: %v",err.Error())
+    }
+    fmt.Print(resp)
 }
 ```
 
