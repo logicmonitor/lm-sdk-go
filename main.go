@@ -1,4 +1,6 @@
+package main
 
-type a struct {
-  int b
+import "fmt"
+func main() {
+	fmt.Println("go sdk of logicmonitor")
 }
