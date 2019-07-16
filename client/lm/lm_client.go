@@ -2845,23 +2845,23 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingByID(params *GetDeviceDa
 }
 
 /*
-GetDeviceDatasourceInstanceAlertSettingList gets a list of alert settings for a device
+GetDeviceDatasourceInstanceAlertSettingListOfDSI gets a list of alert settings for a device datasource instance
 */
-func (a *Client) GetDeviceDatasourceInstanceAlertSettingList(params *GetDeviceDatasourceInstanceAlertSettingListParams) (*GetDeviceDatasourceInstanceAlertSettingListOK, error) {
+func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDSI(params *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) (*GetDeviceDatasourceInstanceAlertSettingListOfDSIOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetDeviceDatasourceInstanceAlertSettingListParams()
+		params = NewGetDeviceDatasourceInstanceAlertSettingListOfDSIParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getDeviceDatasourceInstanceAlertSettingList",
+		ID:                 "getDeviceDatasourceInstanceAlertSettingListOfDSI",
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{""},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetDeviceDatasourceInstanceAlertSettingListReader{formats: a.formats},
+		Reader:             &GetDeviceDatasourceInstanceAlertSettingListOfDSIReader{formats: a.formats},
 		AuthInfo:           a.authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -2869,7 +2869,36 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingList(params *GetDeviceDa
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetDeviceDatasourceInstanceAlertSettingListOK), nil
+	return result.(*GetDeviceDatasourceInstanceAlertSettingListOfDSIOK), nil
+
+}
+
+/*
+GetDeviceDatasourceInstanceAlertSettingListOfDevice gets a list of alert settings for a device
+*/
+func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDevice(params *GetDeviceDatasourceInstanceAlertSettingListOfDeviceParams) (*GetDeviceDatasourceInstanceAlertSettingListOfDeviceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeviceDatasourceInstanceAlertSettingListOfDeviceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDeviceDatasourceInstanceAlertSettingListOfDevice",
+		Method:             "GET",
+		PathPattern:        "/device/devices/{deviceId}/alertsettings",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeviceDatasourceInstanceAlertSettingListOfDeviceReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDeviceDatasourceInstanceAlertSettingListOfDeviceOK), nil
 
 }
 
@@ -3454,6 +3483,35 @@ func (a *Client) GetDeviceInstanceGraphDataOnlyByInstanceID(params *GetDeviceIns
 }
 
 /*
+GetDeviceInstanceList gets device instance list
+*/
+func (a *Client) GetDeviceInstanceList(params *GetDeviceInstanceListParams) (*GetDeviceInstanceListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeviceInstanceListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDeviceInstanceList",
+		Method:             "GET",
+		PathPattern:        "/device/devices/{id}/instances",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeviceInstanceListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDeviceInstanceListOK), nil
+
+}
+
+/*
 GetDeviceList gets device list
 */
 func (a *Client) GetDeviceList(params *GetDeviceListParams) (*GetDeviceListOK, error) {
@@ -3711,6 +3769,35 @@ func (a *Client) GetLogicModuleMetadata(params *GetLogicModuleMetadataParams) (*
 		return nil, err
 	}
 	return result.(*GetLogicModuleMetadataOK), nil
+
+}
+
+/*
+GetMetricsUsage gets metrics usage
+*/
+func (a *Client) GetMetricsUsage(params *GetMetricsUsageParams) (*GetMetricsUsageOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMetricsUsageParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMetricsUsage",
+		Method:             "GET",
+		PathPattern:        "/metrics/usage",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMetricsUsageReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetMetricsUsageOK), nil
 
 }
 

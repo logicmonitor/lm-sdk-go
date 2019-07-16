@@ -23,16 +23,18 @@ import (
 // with the default values initialized.
 func NewGetDeviceDatasourceDataByIDParams() *GetDeviceDatasourceDataByIDParams {
 	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
+		aggregateDefault = string("none")
+		endDefault       = int64(0)
+		formatDefault    = string("json")
+		periodDefault    = float64(1)
+		startDefault     = int64(0)
 	)
 	return &GetDeviceDatasourceDataByIDParams{
-		End:    &endDefault,
-		Format: &formatDefault,
-		Period: &periodDefault,
-		Start:  &startDefault,
+		Aggregate: &aggregateDefault,
+		End:       &endDefault,
+		Format:    &formatDefault,
+		Period:    &periodDefault,
+		Start:     &startDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -42,16 +44,18 @@ func NewGetDeviceDatasourceDataByIDParams() *GetDeviceDatasourceDataByIDParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetDeviceDatasourceDataByIDParamsWithTimeout(timeout time.Duration) *GetDeviceDatasourceDataByIDParams {
 	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
+		aggregateDefault = string("none")
+		endDefault       = int64(0)
+		formatDefault    = string("json")
+		periodDefault    = float64(1)
+		startDefault     = int64(0)
 	)
 	return &GetDeviceDatasourceDataByIDParams{
-		End:    &endDefault,
-		Format: &formatDefault,
-		Period: &periodDefault,
-		Start:  &startDefault,
+		Aggregate: &aggregateDefault,
+		End:       &endDefault,
+		Format:    &formatDefault,
+		Period:    &periodDefault,
+		Start:     &startDefault,
 
 		timeout: timeout,
 	}
@@ -61,16 +65,18 @@ func NewGetDeviceDatasourceDataByIDParamsWithTimeout(timeout time.Duration) *Get
 // with the default values initialized, and the ability to set a context for a request
 func NewGetDeviceDatasourceDataByIDParamsWithContext(ctx context.Context) *GetDeviceDatasourceDataByIDParams {
 	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
+		aggregateDefault = string("none")
+		endDefault       = int64(0)
+		formatDefault    = string("json")
+		periodDefault    = float64(1)
+		startDefault     = int64(0)
 	)
 	return &GetDeviceDatasourceDataByIDParams{
-		End:    &endDefault,
-		Format: &formatDefault,
-		Period: &periodDefault,
-		Start:  &startDefault,
+		Aggregate: &aggregateDefault,
+		End:       &endDefault,
+		Format:    &formatDefault,
+		Period:    &periodDefault,
+		Start:     &startDefault,
 
 		Context: ctx,
 	}
@@ -80,12 +86,14 @@ func NewGetDeviceDatasourceDataByIDParamsWithContext(ctx context.Context) *GetDe
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetDeviceDatasourceDataByIDParamsWithHTTPClient(client *http.Client) *GetDeviceDatasourceDataByIDParams {
 	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
+		aggregateDefault = string("none")
+		endDefault       = int64(0)
+		formatDefault    = string("json")
+		periodDefault    = float64(1)
+		startDefault     = int64(0)
 	)
 	return &GetDeviceDatasourceDataByIDParams{
+		Aggregate:  &aggregateDefault,
 		End:        &endDefault,
 		Format:     &formatDefault,
 		Period:     &periodDefault,
@@ -99,6 +107,11 @@ for the get device datasource data by Id operation typically these are written t
 */
 type GetDeviceDatasourceDataByIDParams struct {
 
+	/*Aggregate
+	  the aggregate option
+
+	*/
+	Aggregate *string
 	/*Datapoints*/
 	Datapoints *string
 	/*DeviceID*/
@@ -150,6 +163,17 @@ func (o *GetDeviceDatasourceDataByIDParams) WithHTTPClient(client *http.Client) 
 // SetHTTPClient adds the HTTPClient to the get device datasource data by Id params
 func (o *GetDeviceDatasourceDataByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithAggregate adds the aggregate to the get device datasource data by Id params
+func (o *GetDeviceDatasourceDataByIDParams) WithAggregate(aggregate *string) *GetDeviceDatasourceDataByIDParams {
+	o.SetAggregate(aggregate)
+	return o
+}
+
+// SetAggregate adds the aggregate to the get device datasource data by Id params
+func (o *GetDeviceDatasourceDataByIDParams) SetAggregate(aggregate *string) {
+	o.Aggregate = aggregate
 }
 
 // WithDatapoints adds the datapoints to the get device datasource data by Id params
@@ -236,6 +260,22 @@ func (o *GetDeviceDatasourceDataByIDParams) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
+
+	if o.Aggregate != nil {
+
+		// query param aggregate
+		var qrAggregate string
+		if o.Aggregate != nil {
+			qrAggregate = *o.Aggregate
+		}
+		qAggregate := qrAggregate
+		if qAggregate != "" {
+			if err := r.SetQueryParam("aggregate", qAggregate); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Datapoints != nil {
 

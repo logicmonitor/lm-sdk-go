@@ -23,16 +23,18 @@ import (
 // with the default values initialized.
 func NewGetWebsiteCheckpointDataByIDParams() *GetWebsiteCheckpointDataByIDParams {
 	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
+		aggregateDefault = string("none")
+		endDefault       = int64(0)
+		formatDefault    = string("json")
+		periodDefault    = float64(1)
+		startDefault     = int64(0)
 	)
 	return &GetWebsiteCheckpointDataByIDParams{
-		End:    &endDefault,
-		Format: &formatDefault,
-		Period: &periodDefault,
-		Start:  &startDefault,
+		Aggregate: &aggregateDefault,
+		End:       &endDefault,
+		Format:    &formatDefault,
+		Period:    &periodDefault,
+		Start:     &startDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -42,16 +44,18 @@ func NewGetWebsiteCheckpointDataByIDParams() *GetWebsiteCheckpointDataByIDParams
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetWebsiteCheckpointDataByIDParamsWithTimeout(timeout time.Duration) *GetWebsiteCheckpointDataByIDParams {
 	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
+		aggregateDefault = string("none")
+		endDefault       = int64(0)
+		formatDefault    = string("json")
+		periodDefault    = float64(1)
+		startDefault     = int64(0)
 	)
 	return &GetWebsiteCheckpointDataByIDParams{
-		End:    &endDefault,
-		Format: &formatDefault,
-		Period: &periodDefault,
-		Start:  &startDefault,
+		Aggregate: &aggregateDefault,
+		End:       &endDefault,
+		Format:    &formatDefault,
+		Period:    &periodDefault,
+		Start:     &startDefault,
 
 		timeout: timeout,
 	}
@@ -61,16 +65,18 @@ func NewGetWebsiteCheckpointDataByIDParamsWithTimeout(timeout time.Duration) *Ge
 // with the default values initialized, and the ability to set a context for a request
 func NewGetWebsiteCheckpointDataByIDParamsWithContext(ctx context.Context) *GetWebsiteCheckpointDataByIDParams {
 	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
+		aggregateDefault = string("none")
+		endDefault       = int64(0)
+		formatDefault    = string("json")
+		periodDefault    = float64(1)
+		startDefault     = int64(0)
 	)
 	return &GetWebsiteCheckpointDataByIDParams{
-		End:    &endDefault,
-		Format: &formatDefault,
-		Period: &periodDefault,
-		Start:  &startDefault,
+		Aggregate: &aggregateDefault,
+		End:       &endDefault,
+		Format:    &formatDefault,
+		Period:    &periodDefault,
+		Start:     &startDefault,
 
 		Context: ctx,
 	}
@@ -80,12 +86,14 @@ func NewGetWebsiteCheckpointDataByIDParamsWithContext(ctx context.Context) *GetW
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetWebsiteCheckpointDataByIDParamsWithHTTPClient(client *http.Client) *GetWebsiteCheckpointDataByIDParams {
 	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
+		aggregateDefault = string("none")
+		endDefault       = int64(0)
+		formatDefault    = string("json")
+		periodDefault    = float64(1)
+		startDefault     = int64(0)
 	)
 	return &GetWebsiteCheckpointDataByIDParams{
+		Aggregate:  &aggregateDefault,
 		End:        &endDefault,
 		Format:     &formatDefault,
 		Period:     &periodDefault,
@@ -99,6 +107,11 @@ for the get website checkpoint data by Id operation typically these are written 
 */
 type GetWebsiteCheckpointDataByIDParams struct {
 
+	/*Aggregate
+	  the aggregate option
+
+	*/
+	Aggregate *string
 	/*CheckID*/
 	CheckID int32
 	/*Datapoints*/
@@ -150,6 +163,17 @@ func (o *GetWebsiteCheckpointDataByIDParams) WithHTTPClient(client *http.Client)
 // SetHTTPClient adds the HTTPClient to the get website checkpoint data by Id params
 func (o *GetWebsiteCheckpointDataByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithAggregate adds the aggregate to the get website checkpoint data by Id params
+func (o *GetWebsiteCheckpointDataByIDParams) WithAggregate(aggregate *string) *GetWebsiteCheckpointDataByIDParams {
+	o.SetAggregate(aggregate)
+	return o
+}
+
+// SetAggregate adds the aggregate to the get website checkpoint data by Id params
+func (o *GetWebsiteCheckpointDataByIDParams) SetAggregate(aggregate *string) {
+	o.Aggregate = aggregate
 }
 
 // WithCheckID adds the checkID to the get website checkpoint data by Id params
@@ -236,6 +260,22 @@ func (o *GetWebsiteCheckpointDataByIDParams) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
+
+	if o.Aggregate != nil {
+
+		// query param aggregate
+		var qrAggregate string
+		if o.Aggregate != nil {
+			qrAggregate = *o.Aggregate
+		}
+		qAggregate := qrAggregate
+		if qAggregate != "" {
+			if err := r.SetQueryParam("aggregate", qAggregate); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	// path param checkId
 	if err := r.SetPathParam("checkId", swag.FormatInt32(o.CheckID)); err != nil {
