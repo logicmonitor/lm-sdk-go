@@ -24,8 +24,11 @@ import (
 // NewUpdateWebsiteByIDParams creates a new UpdateWebsiteByIDParams object
 // with the default values initialized.
 func NewUpdateWebsiteByIDParams() *UpdateWebsiteByIDParams {
-	var ()
+	var (
+		opTypeDefault = string("refresh")
+	)
 	return &UpdateWebsiteByIDParams{
+		OpType: &opTypeDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -34,8 +37,11 @@ func NewUpdateWebsiteByIDParams() *UpdateWebsiteByIDParams {
 // NewUpdateWebsiteByIDParamsWithTimeout creates a new UpdateWebsiteByIDParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewUpdateWebsiteByIDParamsWithTimeout(timeout time.Duration) *UpdateWebsiteByIDParams {
-	var ()
+	var (
+		opTypeDefault = string("refresh")
+	)
 	return &UpdateWebsiteByIDParams{
+		OpType: &opTypeDefault,
 
 		timeout: timeout,
 	}
@@ -44,8 +50,11 @@ func NewUpdateWebsiteByIDParamsWithTimeout(timeout time.Duration) *UpdateWebsite
 // NewUpdateWebsiteByIDParamsWithContext creates a new UpdateWebsiteByIDParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewUpdateWebsiteByIDParamsWithContext(ctx context.Context) *UpdateWebsiteByIDParams {
-	var ()
+	var (
+		opTypeDefault = string("refresh")
+	)
 	return &UpdateWebsiteByIDParams{
+		OpType: &opTypeDefault,
 
 		Context: ctx,
 	}
@@ -54,8 +63,11 @@ func NewUpdateWebsiteByIDParamsWithContext(ctx context.Context) *UpdateWebsiteBy
 // NewUpdateWebsiteByIDParamsWithHTTPClient creates a new UpdateWebsiteByIDParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewUpdateWebsiteByIDParamsWithHTTPClient(client *http.Client) *UpdateWebsiteByIDParams {
-	var ()
+	var (
+		opTypeDefault = string("refresh")
+	)
 	return &UpdateWebsiteByIDParams{
+		OpType:     &opTypeDefault,
 		HTTPClient: client,
 	}
 }
@@ -69,6 +81,8 @@ type UpdateWebsiteByIDParams struct {
 	Body models.Website
 	/*ID*/
 	ID int32
+	/*OpType*/
+	OpType *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -130,6 +144,17 @@ func (o *UpdateWebsiteByIDParams) SetID(id int32) {
 	o.ID = id
 }
 
+// WithOpType adds the opType to the update website by Id params
+func (o *UpdateWebsiteByIDParams) WithOpType(opType *string) *UpdateWebsiteByIDParams {
+	o.SetOpType(opType)
+	return o
+}
+
+// SetOpType adds the opType to the update website by Id params
+func (o *UpdateWebsiteByIDParams) SetOpType(opType *string) {
+	o.OpType = opType
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *UpdateWebsiteByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -145,6 +170,22 @@ func (o *UpdateWebsiteByIDParams) WriteToRequest(r runtime.ClientRequest, reg st
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {
 		return err
+	}
+
+	if o.OpType != nil {
+
+		// query param opType
+		var qrOpType string
+		if o.OpType != nil {
+			qrOpType = *o.OpType
+		}
+		qOpType := qrOpType
+		if qOpType != "" {
+			if err := r.SetQueryParam("opType", qOpType); err != nil {
+				return err
+			}
+		}
+
 	}
 
 	if len(res) > 0 {

@@ -45,7 +45,7 @@ type ScriptNetscan struct {
 
 	nsgIdField int32
 
-	scheduleField *NetScanSchedule
+	scheduleField *RestSchedule
 
 	versionField int32
 
@@ -225,12 +225,12 @@ func (m *ScriptNetscan) SetNsgID(val int32) {
 }
 
 // Schedule gets the schedule of this subtype
-func (m *ScriptNetscan) Schedule() *NetScanSchedule {
+func (m *ScriptNetscan) Schedule() *RestSchedule {
 	return m.scheduleField
 }
 
 // SetSchedule sets the schedule of this subtype
-func (m *ScriptNetscan) SetSchedule(val *NetScanSchedule) {
+func (m *ScriptNetscan) SetSchedule(val *RestSchedule) {
 	m.scheduleField = val
 }
 
@@ -343,7 +343,7 @@ func (m *ScriptNetscan) UnmarshalJSON(raw []byte) error {
 
 		NsgID int32 `json:"nsgId,omitempty"`
 
-		Schedule *NetScanSchedule `json:"schedule,omitempty"`
+		Schedule *RestSchedule `json:"schedule,omitempty"`
 
 		Version int32 `json:"version,omitempty"`
 	}
@@ -515,7 +515,7 @@ func (m ScriptNetscan) MarshalJSON() ([]byte, error) {
 
 		NsgID int32 `json:"nsgId,omitempty"`
 
-		Schedule *NetScanSchedule `json:"schedule,omitempty"`
+		Schedule *RestSchedule `json:"schedule,omitempty"`
 
 		Version int32 `json:"version,omitempty"`
 	}{

@@ -39,10 +39,10 @@ type WebCheckStep struct {
 	Description string `json:"description,omitempty"`
 
 	// enable
-	Enable bool `json:"enable,omitempty"`
+	Enable interface{} `json:"enable,omitempty"`
 
 	// follow redirection
-	FollowRedirection bool `json:"followRedirection,omitempty"`
+	FollowRedirection interface{} `json:"followRedirection,omitempty"`
 
 	// fullpage load
 	FullpageLoad bool `json:"fullpageLoad,omitempty"`
@@ -100,7 +100,7 @@ type WebCheckStep struct {
 	URL string `json:"url,omitempty"`
 
 	// use default root
-	UseDefaultRoot bool `json:"useDefaultRoot,omitempty"`
+	UseDefaultRoot interface{} `json:"useDefaultRoot,omitempty"`
 }
 
 // Auth gets the auth of this base type
@@ -128,9 +128,9 @@ func (m *WebCheckStep) UnmarshalJSON(raw []byte) error {
 
 		Description string `json:"description,omitempty"`
 
-		Enable bool `json:"enable,omitempty"`
+		Enable interface{} `json:"enable,omitempty"`
 
-		FollowRedirection bool `json:"followRedirection,omitempty"`
+		FollowRedirection interface{} `json:"followRedirection,omitempty"`
 
 		FullpageLoad bool `json:"fullpageLoad,omitempty"`
 
@@ -168,7 +168,7 @@ func (m *WebCheckStep) UnmarshalJSON(raw []byte) error {
 
 		URL string `json:"url,omitempty"`
 
-		UseDefaultRoot bool `json:"useDefaultRoot,omitempty"`
+		UseDefaultRoot interface{} `json:"useDefaultRoot,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -290,9 +290,9 @@ func (m WebCheckStep) MarshalJSON() ([]byte, error) {
 
 		Description string `json:"description,omitempty"`
 
-		Enable bool `json:"enable,omitempty"`
+		Enable interface{} `json:"enable,omitempty"`
 
-		FollowRedirection bool `json:"followRedirection,omitempty"`
+		FollowRedirection interface{} `json:"followRedirection,omitempty"`
 
 		FullpageLoad bool `json:"fullpageLoad,omitempty"`
 
@@ -330,7 +330,7 @@ func (m WebCheckStep) MarshalJSON() ([]byte, error) {
 
 		URL string `json:"url,omitempty"`
 
-		UseDefaultRoot bool `json:"useDefaultRoot,omitempty"`
+		UseDefaultRoot interface{} `json:"useDefaultRoot,omitempty"`
 	}{
 
 		HTTPBody: m.HTTPBody,

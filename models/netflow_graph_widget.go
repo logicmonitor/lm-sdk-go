@@ -40,10 +40,11 @@ type NetflowGraphWidget struct {
 	userPermissionField string
 
 	// device display name
-	// Read Only: true
-	DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
+	// Required: true
+	DeviceDisplayName *string `json:"deviceDisplayName"`
 
 	// device Id
+	// Read Only: true
 	DeviceID int32 `json:"deviceId,omitempty"`
 
 	// graph
@@ -176,10 +177,11 @@ func (m *NetflowGraphWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// device display name
-		// Read Only: true
-		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
+		// Required: true
+		DeviceDisplayName *string `json:"deviceDisplayName"`
 
 		// device Id
+		// Read Only: true
 		DeviceID int32 `json:"deviceId,omitempty"`
 
 		// graph
@@ -276,10 +278,11 @@ func (m NetflowGraphWidget) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// device display name
-		// Read Only: true
-		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
+		// Required: true
+		DeviceDisplayName *string `json:"deviceDisplayName"`
 
 		// device Id
+		// Read Only: true
 		DeviceID int32 `json:"deviceId,omitempty"`
 
 		// graph
@@ -367,6 +370,10 @@ func (m *NetflowGraphWidget) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDeviceDisplayName(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateNetflowFilter(formats); err != nil {
 		res = append(res, err)
 	}
@@ -389,6 +396,15 @@ func (m *NetflowGraphWidget) validateDashboardID(formats strfmt.Registry) error 
 func (m *NetflowGraphWidget) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowGraphWidget) validateDeviceDisplayName(formats strfmt.Registry) error {
+
+	if err := validate.Required("deviceDisplayName", "body", m.DeviceDisplayName); err != nil {
 		return err
 	}
 

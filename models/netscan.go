@@ -85,8 +85,8 @@ type Netscan interface {
 	SetNsgID(int32)
 
 	// Information related to the recurring execution schedule for the Netscan Policy
-	Schedule() *NetScanSchedule
-	SetSchedule(*NetScanSchedule)
+	Schedule() *RestSchedule
+	SetSchedule(*RestSchedule)
 
 	// The Id of the device
 	Version() int32
@@ -122,7 +122,7 @@ type netscan struct {
 
 	nsgIdField int32
 
-	scheduleField *NetScanSchedule
+	scheduleField *RestSchedule
 
 	versionField int32
 }
@@ -268,12 +268,12 @@ func (m *netscan) SetNsgID(val int32) {
 }
 
 // Schedule gets the schedule of this polymorphic type
-func (m *netscan) Schedule() *NetScanSchedule {
+func (m *netscan) Schedule() *RestSchedule {
 	return m.scheduleField
 }
 
 // SetSchedule sets the schedule of this polymorphic type
-func (m *netscan) SetSchedule(val *NetScanSchedule) {
+func (m *netscan) SetSchedule(val *RestSchedule) {
 	m.scheduleField = val
 }
 

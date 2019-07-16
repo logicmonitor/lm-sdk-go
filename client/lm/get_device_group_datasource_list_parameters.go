@@ -29,8 +29,8 @@ func NewGetDeviceGroupDatasourceListParams() *GetDeviceGroupDatasourceListParams
 	)
 	return &GetDeviceGroupDatasourceListParams{
 		IncludeDisabledDataSourceWithoutInstance: &includeDisabledDataSourceWithoutInstanceDefault,
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		Offset:                                   &offsetDefault,
+		Size:                                     &sizeDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -46,8 +46,8 @@ func NewGetDeviceGroupDatasourceListParamsWithTimeout(timeout time.Duration) *Ge
 	)
 	return &GetDeviceGroupDatasourceListParams{
 		IncludeDisabledDataSourceWithoutInstance: &includeDisabledDataSourceWithoutInstanceDefault,
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		Offset:                                   &offsetDefault,
+		Size:                                     &sizeDefault,
 
 		timeout: timeout,
 	}
@@ -63,8 +63,8 @@ func NewGetDeviceGroupDatasourceListParamsWithContext(ctx context.Context) *GetD
 	)
 	return &GetDeviceGroupDatasourceListParams{
 		IncludeDisabledDataSourceWithoutInstance: &includeDisabledDataSourceWithoutInstanceDefault,
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		Offset:                                   &offsetDefault,
+		Size:                                     &sizeDefault,
 
 		Context: ctx,
 	}
@@ -80,9 +80,9 @@ func NewGetDeviceGroupDatasourceListParamsWithHTTPClient(client *http.Client) *G
 	)
 	return &GetDeviceGroupDatasourceListParams{
 		IncludeDisabledDataSourceWithoutInstance: &includeDisabledDataSourceWithoutInstanceDefault,
-		Offset:     &offsetDefault,
-		Size:       &sizeDefault,
-		HTTPClient: client,
+		Offset:                                   &offsetDefault,
+		Size:                                     &sizeDefault,
+		HTTPClient:                               client,
 	}
 }
 

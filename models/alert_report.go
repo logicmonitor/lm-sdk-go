@@ -94,7 +94,8 @@ type AlertReport struct {
 
 	// true: alerts that started prior to the specified dateRange but that meet all other criteria will be displayed in the report
 	// false: only alerts that started during the specified dateRange will be displayed in the report
-	IncludePreexist bool `json:"includePreexist,omitempty"`
+	// the default value is true
+	IncludePreexist interface{} `json:"includePreexist,omitempty"`
 
 	// all | error | critical
 	// all: alerts of all severity levels will be displayed if they match the filter criteria
@@ -396,7 +397,8 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 
 		// true: alerts that started prior to the specified dateRange but that meet all other criteria will be displayed in the report
 		// false: only alerts that started during the specified dateRange will be displayed in the report
-		IncludePreexist bool `json:"includePreexist,omitempty"`
+		// the default value is true
+		IncludePreexist interface{} `json:"includePreexist,omitempty"`
 
 		// all | error | critical
 		// all: alerts of all severity levels will be displayed if they match the filter criteria
@@ -608,7 +610,8 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 
 		// true: alerts that started prior to the specified dateRange but that meet all other criteria will be displayed in the report
 		// false: only alerts that started during the specified dateRange will be displayed in the report
-		IncludePreexist bool `json:"includePreexist,omitempty"`
+		// the default value is true
+		IncludePreexist interface{} `json:"includePreexist,omitempty"`
 
 		// all | error | critical
 		// all: alerts of all severity levels will be displayed if they match the filter criteria

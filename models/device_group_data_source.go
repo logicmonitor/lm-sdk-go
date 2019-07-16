@@ -15,34 +15,35 @@ import (
 // swagger:model DeviceGroupDataSource
 type DeviceGroupDataSource struct {
 
-	// data source display name
+	// The Display Name of the DataSource
 	// Read Only: true
 	DataSourceDisplayName string `json:"dataSourceDisplayName,omitempty"`
 
-	// data source group name
+	// The DataSource Group name
 	// Read Only: true
 	DataSourceGroupName string `json:"dataSourceGroupName,omitempty"`
 
-	// data source Id
+	// The ID of the DataSource
 	// Read Only: true
 	DataSourceID int32 `json:"dataSourceId,omitempty"`
 
-	// data source name
+	// The Name of the DataSource
 	// Read Only: true
 	DataSourceName string `json:"dataSourceName,omitempty"`
 
-	// data source type
+	// The Type of the DataSource
 	// Read Only: true
 	DataSourceType string `json:"dataSourceType,omitempty"`
 
-	// device group Id
+	// The ID of the Device Group for the DataSource
 	// Read Only: true
 	DeviceGroupID int32 `json:"deviceGroupId,omitempty"`
 
-	// disable alerting
-	DisableAlerting bool `json:"disableAlerting,omitempty"`
+	// Boolean flag for enabling/disabling alerting for DataSource
+	// Read Only: true
+	DisableAlerting *bool `json:"disableAlerting,omitempty"`
 
-	// stop monitoring
+	// Boolean flag for enabling/disabling monitoring of DataSource
 	StopMonitoring bool `json:"stopMonitoring,omitempty"`
 }
 

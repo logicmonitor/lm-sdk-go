@@ -23,7 +23,7 @@ import (
 // swagger:model DataSource
 type DataSource struct {
 
-	// applies to
+	// The Applies To for the LMModule
 	AppliesTo string `json:"appliesTo,omitempty"`
 
 	// audit version
@@ -46,7 +46,7 @@ type DataSource struct {
 	// data points
 	DataPoints []*DataPoint `json:"dataPoints,omitempty"`
 
-	// description
+	// The description for the LMModule
 	Description string `json:"description,omitempty"`
 
 	// display name
@@ -64,24 +64,26 @@ type DataSource struct {
 	// eri discovery interval
 	EriDiscoveryInterval int32 `json:"eriDiscoveryInterval,omitempty"`
 
-	// group
+	// The group the LMModule is in
 	Group string `json:"group,omitempty"`
 
 	// has multi instances
 	// Read Only: true
 	HasMultiInstances *bool `json:"hasMultiInstances,omitempty"`
 
-	// id
-	ID int32 `json:"id,omitempty"`
+	// The ID of the LMModule
+	// Required: true
+	// Read Only: true
+	ID int32 `json:"id"`
 
 	// name
 	// Required: true
 	Name *string `json:"name"`
 
-	// tags
+	// The Tags for the LMModule
 	Tags string `json:"tags,omitempty"`
 
-	// technology
+	// The Technical Notes for the LMModule
 	Technology string `json:"technology,omitempty"`
 
 	// version
@@ -132,7 +134,7 @@ func (m *DataSource) UnmarshalJSON(raw []byte) error {
 
 		HasMultiInstances *bool `json:"hasMultiInstances,omitempty"`
 
-		ID int32 `json:"id,omitempty"`
+		ID int32 `json:"id"`
 
 		Name *string `json:"name"`
 
@@ -255,7 +257,7 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 
 		HasMultiInstances *bool `json:"hasMultiInstances,omitempty"`
 
-		ID int32 `json:"id,omitempty"`
+		ID int32 `json:"id"`
 
 		Name *string `json:"name"`
 
@@ -347,6 +349,10 @@ func (m *DataSource) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateEriDiscoveryConfig(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -446,6 +452,15 @@ func (m *DataSource) validateEriDiscoveryConfig(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *DataSource) validateID(formats strfmt.Registry) error {
+
+	if err := validate.Required("id", "body", int32(m.ID)); err != nil {
+		return err
 	}
 
 	return nil

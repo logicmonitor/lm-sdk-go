@@ -42,25 +42,25 @@ type NOCWidget struct {
 
 	userPermissionField string
 
-	// Whether or not acknowledgements are displayed in the NOC widget
-	AckChecked bool `json:"ackChecked,omitempty"`
+	// Whether or not acknowledgements are displayed in the NOC widget, the default value is true
+	AckChecked interface{} `json:"ackChecked,omitempty"`
 
 	// The maximum number columns displayed in the NOC widget
 	DisplayColumn int32 `json:"displayColumn,omitempty"`
 
-	// Whether or not critical alerts are displayed in the NOC widget
-	DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
+	// Whether or not critical alerts are displayed in the NOC widget, the default value is true
+	DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
 
-	// Whether or not error alerts are displayed in the NOC widget
-	DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
+	// Whether or not error alerts are displayed in the NOC widget, the default value is true
+	DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
 
-	// Whether or not warning alerts are displayed in the NOC widget
-	DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
+	// Whether or not warning alerts are displayed in the NOC widget, the default value is true
+	DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
 
 	itemsField []NOCItemBase
 
-	// Whether or not SDTs are displayed in the NOC widget
-	SDTChecked bool `json:"sdtChecked,omitempty"`
+	// Whether or not SDTs are displayed in the NOC widget, the default value is true
+	SDTChecked interface{} `json:"sdtChecked,omitempty"`
 
 	// How NOC items are sorted
 	SortBy string `json:"sortBy,omitempty"`
@@ -204,25 +204,25 @@ func (m *NOCWidget) SetItems(val []NOCItemBase) {
 func (m *NOCWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// Whether or not acknowledgements are displayed in the NOC widget
-		AckChecked bool `json:"ackChecked,omitempty"`
+		// Whether or not acknowledgements are displayed in the NOC widget, the default value is true
+		AckChecked interface{} `json:"ackChecked,omitempty"`
 
 		// The maximum number columns displayed in the NOC widget
 		DisplayColumn int32 `json:"displayColumn,omitempty"`
 
-		// Whether or not critical alerts are displayed in the NOC widget
-		DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
+		// Whether or not critical alerts are displayed in the NOC widget, the default value is true
+		DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
 
-		// Whether or not error alerts are displayed in the NOC widget
-		DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
+		// Whether or not error alerts are displayed in the NOC widget, the default value is true
+		DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
 
-		// Whether or not warning alerts are displayed in the NOC widget
-		DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
+		// Whether or not warning alerts are displayed in the NOC widget, the default value is true
+		DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
 
 		Items json.RawMessage `json:"items"`
 
-		// Whether or not SDTs are displayed in the NOC widget
-		SDTChecked bool `json:"sdtChecked,omitempty"`
+		// Whether or not SDTs are displayed in the NOC widget, the default value is true
+		SDTChecked interface{} `json:"sdtChecked,omitempty"`
 
 		// How NOC items are sorted
 		SortBy string `json:"sortBy,omitempty"`
@@ -327,23 +327,23 @@ func (m NOCWidget) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// Whether or not acknowledgements are displayed in the NOC widget
-		AckChecked bool `json:"ackChecked,omitempty"`
+		// Whether or not acknowledgements are displayed in the NOC widget, the default value is true
+		AckChecked interface{} `json:"ackChecked,omitempty"`
 
 		// The maximum number columns displayed in the NOC widget
 		DisplayColumn int32 `json:"displayColumn,omitempty"`
 
-		// Whether or not critical alerts are displayed in the NOC widget
-		DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
+		// Whether or not critical alerts are displayed in the NOC widget, the default value is true
+		DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
 
-		// Whether or not error alerts are displayed in the NOC widget
-		DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
+		// Whether or not error alerts are displayed in the NOC widget, the default value is true
+		DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
 
-		// Whether or not warning alerts are displayed in the NOC widget
-		DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
+		// Whether or not warning alerts are displayed in the NOC widget, the default value is true
+		DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
 
-		// Whether or not SDTs are displayed in the NOC widget
-		SDTChecked bool `json:"sdtChecked,omitempty"`
+		// Whether or not SDTs are displayed in the NOC widget, the default value is true
+		SDTChecked interface{} `json:"sdtChecked,omitempty"`
 
 		// How NOC items are sorted
 		SortBy string `json:"sortBy,omitempty"`

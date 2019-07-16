@@ -45,7 +45,7 @@ type Ec2Netscan struct {
 
 	nsgIdField int32
 
-	scheduleField *NetScanSchedule
+	scheduleField *RestSchedule
 
 	versionField int32
 
@@ -208,12 +208,12 @@ func (m *Ec2Netscan) SetNsgID(val int32) {
 }
 
 // Schedule gets the schedule of this subtype
-func (m *Ec2Netscan) Schedule() *NetScanSchedule {
+func (m *Ec2Netscan) Schedule() *RestSchedule {
 	return m.scheduleField
 }
 
 // SetSchedule sets the schedule of this subtype
-func (m *Ec2Netscan) SetSchedule(val *NetScanSchedule) {
+func (m *Ec2Netscan) SetSchedule(val *RestSchedule) {
 	m.scheduleField = val
 }
 
@@ -297,7 +297,7 @@ func (m *Ec2Netscan) UnmarshalJSON(raw []byte) error {
 
 		NsgID int32 `json:"nsgId,omitempty"`
 
-		Schedule *NetScanSchedule `json:"schedule,omitempty"`
+		Schedule *RestSchedule `json:"schedule,omitempty"`
 
 		Version int32 `json:"version,omitempty"`
 	}
@@ -428,7 +428,7 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 
 		NsgID int32 `json:"nsgId,omitempty"`
 
-		Schedule *NetScanSchedule `json:"schedule,omitempty"`
+		Schedule *RestSchedule `json:"schedule,omitempty"`
 
 		Version int32 `json:"version,omitempty"`
 	}{

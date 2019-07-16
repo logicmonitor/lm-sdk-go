@@ -40,6 +40,8 @@ type PingCheck struct {
 
 	isInternalField bool
 
+	lastUpdatedField int64
+
 	nameField *string
 
 	overallAlertLevelField string
@@ -179,6 +181,16 @@ func (m *PingCheck) IsInternal() bool {
 // SetIsInternal sets the is internal of this subtype
 func (m *PingCheck) SetIsInternal(val bool) {
 	m.isInternalField = val
+}
+
+// LastUpdated gets the last updated of this subtype
+func (m *PingCheck) LastUpdated() int64 {
+	return m.lastUpdatedField
+}
+
+// SetLastUpdated sets the last updated of this subtype
+func (m *PingCheck) SetLastUpdated(val int64) {
+	m.lastUpdatedField = val
 }
 
 // Name gets the name of this subtype
@@ -378,6 +390,8 @@ func (m *PingCheck) UnmarshalJSON(raw []byte) error {
 
 		IsInternal bool `json:"isInternal,omitempty"`
 
+		LastUpdated int64 `json:"lastUpdated,omitempty"`
+
 		Name *string `json:"name"`
 
 		OverallAlertLevel string `json:"overallAlertLevel,omitempty"`
@@ -435,6 +449,8 @@ func (m *PingCheck) UnmarshalJSON(raw []byte) error {
 	result.individualSmAlertEnableField = base.IndividualSmAlertEnable
 
 	result.isInternalField = base.IsInternal
+
+	result.lastUpdatedField = base.LastUpdated
 
 	result.nameField = base.Name
 
@@ -534,6 +550,8 @@ func (m PingCheck) MarshalJSON() ([]byte, error) {
 
 		IsInternal bool `json:"isInternal,omitempty"`
 
+		LastUpdated int64 `json:"lastUpdated,omitempty"`
+
 		Name *string `json:"name"`
 
 		OverallAlertLevel string `json:"overallAlertLevel,omitempty"`
@@ -582,6 +600,8 @@ func (m PingCheck) MarshalJSON() ([]byte, error) {
 		IndividualSmAlertEnable: m.IndividualSmAlertEnable(),
 
 		IsInternal: m.IsInternal(),
+
+		LastUpdated: m.LastUpdated(),
 
 		Name: m.Name(),
 

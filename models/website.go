@@ -76,6 +76,11 @@ type Website interface {
 	IsInternal() bool
 	SetIsInternal(bool)
 
+	// The time (in epoch format) that the website was updated
+	// Read Only: true
+	LastUpdated() int64
+	SetLastUpdated(int64)
+
 	// The name of the website
 	// Required: true
 	Name() *string
@@ -176,6 +181,8 @@ type website struct {
 	individualSmAlertEnableField bool
 
 	isInternalField bool
+
+	lastUpdatedField int64
 
 	nameField *string
 
@@ -304,6 +311,16 @@ func (m *website) IsInternal() bool {
 // SetIsInternal sets the is internal of this polymorphic type
 func (m *website) SetIsInternal(val bool) {
 	m.isInternalField = val
+}
+
+// LastUpdated gets the last updated of this polymorphic type
+func (m *website) LastUpdated() int64 {
+	return m.lastUpdatedField
+}
+
+// SetLastUpdated sets the last updated of this polymorphic type
+func (m *website) SetLastUpdated(val int64) {
+	m.lastUpdatedField = val
 }
 
 // Name gets the name of this polymorphic type

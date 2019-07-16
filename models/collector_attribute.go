@@ -89,6 +89,13 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 
 	// The value of name is used to determine which type to create and unmarshal the data into
 	switch getType.Name {
+	case "AggregateCollectorAttribute":
+		var result AggregateCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+
 	case "CollectorAttribute":
 		var result collectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -112,13 +119,6 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 
 	case "GcpStackDriverCollectorAttributeV2":
 		var result GcpStackDriverCollectorAttributeV2
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-
-	case "aggregate":
-		var result AggragateCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

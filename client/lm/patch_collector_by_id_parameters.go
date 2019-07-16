@@ -25,11 +25,9 @@ import (
 // with the default values initialized.
 func NewPatchCollectorByIDParams() *PatchCollectorByIDParams {
 	var (
-		collectorLoadBalancedDefault        = bool(false)
 		forceUpdateFailedOverDevicesDefault = bool(false)
 	)
 	return &PatchCollectorByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
 		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
 
 		timeout: cr.DefaultTimeout,
@@ -40,11 +38,9 @@ func NewPatchCollectorByIDParams() *PatchCollectorByIDParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewPatchCollectorByIDParamsWithTimeout(timeout time.Duration) *PatchCollectorByIDParams {
 	var (
-		collectorLoadBalancedDefault        = bool(false)
 		forceUpdateFailedOverDevicesDefault = bool(false)
 	)
 	return &PatchCollectorByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
 		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
 
 		timeout: timeout,
@@ -55,11 +51,9 @@ func NewPatchCollectorByIDParamsWithTimeout(timeout time.Duration) *PatchCollect
 // with the default values initialized, and the ability to set a context for a request
 func NewPatchCollectorByIDParamsWithContext(ctx context.Context) *PatchCollectorByIDParams {
 	var (
-		collectorLoadBalancedDefault        = bool(false)
 		forceUpdateFailedOverDevicesDefault = bool(false)
 	)
 	return &PatchCollectorByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
 		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
 
 		Context: ctx,
@@ -70,11 +64,9 @@ func NewPatchCollectorByIDParamsWithContext(ctx context.Context) *PatchCollector
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewPatchCollectorByIDParamsWithHTTPClient(client *http.Client) *PatchCollectorByIDParams {
 	var (
-		collectorLoadBalancedDefault        = bool(false)
 		forceUpdateFailedOverDevicesDefault = bool(false)
 	)
 	return &PatchCollectorByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
 		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
 		HTTPClient:                   client,
 	}
@@ -87,8 +79,6 @@ type PatchCollectorByIDParams struct {
 
 	/*Body*/
 	Body *models.Collector
-	/*CollectorLoadBalanced*/
-	CollectorLoadBalanced *bool
 	/*ForceUpdateFailedOverDevices*/
 	ForceUpdateFailedOverDevices *bool
 	/*ID*/
@@ -143,17 +133,6 @@ func (o *PatchCollectorByIDParams) SetBody(body *models.Collector) {
 	o.Body = body
 }
 
-// WithCollectorLoadBalanced adds the collectorLoadBalanced to the patch collector by Id params
-func (o *PatchCollectorByIDParams) WithCollectorLoadBalanced(collectorLoadBalanced *bool) *PatchCollectorByIDParams {
-	o.SetCollectorLoadBalanced(collectorLoadBalanced)
-	return o
-}
-
-// SetCollectorLoadBalanced adds the collectorLoadBalanced to the patch collector by Id params
-func (o *PatchCollectorByIDParams) SetCollectorLoadBalanced(collectorLoadBalanced *bool) {
-	o.CollectorLoadBalanced = collectorLoadBalanced
-}
-
 // WithForceUpdateFailedOverDevices adds the forceUpdateFailedOverDevices to the patch collector by Id params
 func (o *PatchCollectorByIDParams) WithForceUpdateFailedOverDevices(forceUpdateFailedOverDevices *bool) *PatchCollectorByIDParams {
 	o.SetForceUpdateFailedOverDevices(forceUpdateFailedOverDevices)
@@ -188,22 +167,6 @@ func (o *PatchCollectorByIDParams) WriteToRequest(r runtime.ClientRequest, reg s
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
 		}
-	}
-
-	if o.CollectorLoadBalanced != nil {
-
-		// query param collectorLoadBalanced
-		var qrCollectorLoadBalanced bool
-		if o.CollectorLoadBalanced != nil {
-			qrCollectorLoadBalanced = *o.CollectorLoadBalanced
-		}
-		qCollectorLoadBalanced := swag.FormatBool(qrCollectorLoadBalanced)
-		if qCollectorLoadBalanced != "" {
-			if err := r.SetQueryParam("collectorLoadBalanced", qCollectorLoadBalanced); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	if o.ForceUpdateFailedOverDevices != nil {

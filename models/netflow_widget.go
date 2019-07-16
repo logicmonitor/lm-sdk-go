@@ -43,12 +43,12 @@ type NetflowWidget struct {
 	DataType string `json:"dataType,omitempty"`
 
 	// device display name
-	// Read Only: true
-	DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
+	// Required: true
+	DeviceDisplayName *string `json:"deviceDisplayName"`
 
 	// device Id
-	// Required: true
-	DeviceID *int32 `json:"deviceId"`
+	// Read Only: true
+	DeviceID int32 `json:"deviceId,omitempty"`
 
 	// filter
 	Filter string `json:"filter,omitempty"`
@@ -185,12 +185,12 @@ func (m *NetflowWidget) UnmarshalJSON(raw []byte) error {
 		DataType string `json:"dataType,omitempty"`
 
 		// device display name
-		// Read Only: true
-		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
+		// Required: true
+		DeviceDisplayName *string `json:"deviceDisplayName"`
 
 		// device Id
-		// Required: true
-		DeviceID *int32 `json:"deviceId"`
+		// Read Only: true
+		DeviceID int32 `json:"deviceId,omitempty"`
 
 		// filter
 		Filter string `json:"filter,omitempty"`
@@ -291,12 +291,12 @@ func (m NetflowWidget) MarshalJSON() ([]byte, error) {
 		DataType string `json:"dataType,omitempty"`
 
 		// device display name
-		// Read Only: true
-		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
+		// Required: true
+		DeviceDisplayName *string `json:"deviceDisplayName"`
 
 		// device Id
-		// Required: true
-		DeviceID *int32 `json:"deviceId"`
+		// Read Only: true
+		DeviceID int32 `json:"deviceId,omitempty"`
 
 		// filter
 		Filter string `json:"filter,omitempty"`
@@ -385,7 +385,7 @@ func (m *NetflowWidget) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateDeviceID(formats); err != nil {
+	if err := m.validateDeviceDisplayName(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -417,9 +417,9 @@ func (m *NetflowWidget) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *NetflowWidget) validateDeviceID(formats strfmt.Registry) error {
+func (m *NetflowWidget) validateDeviceDisplayName(formats strfmt.Registry) error {
 
-	if err := validate.Required("deviceId", "body", m.DeviceID); err != nil {
+	if err := validate.Required("deviceDisplayName", "body", m.DeviceDisplayName); err != nil {
 		return err
 	}
 

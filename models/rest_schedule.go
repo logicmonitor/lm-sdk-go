@@ -11,9 +11,9 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NetScanSchedule net scan schedule
-// swagger:model NetScanSchedule
-type NetScanSchedule struct {
+// RestSchedule rest schedule
+// swagger:model RestSchedule
+type RestSchedule struct {
 
 	// The cron schedule for when the scan should be run
 	Cron string `json:"cron,omitempty"`
@@ -31,13 +31,13 @@ type NetScanSchedule struct {
 	Type string `json:"type,omitempty"`
 }
 
-// Validate validates this net scan schedule
-func (m *NetScanSchedule) Validate(formats strfmt.Registry) error {
+// Validate validates this rest schedule
+func (m *RestSchedule) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *NetScanSchedule) MarshalBinary() ([]byte, error) {
+func (m *RestSchedule) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -45,8 +45,8 @@ func (m *NetScanSchedule) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *NetScanSchedule) UnmarshalBinary(b []byte) error {
-	var res NetScanSchedule
+func (m *RestSchedule) UnmarshalBinary(b []byte) error {
+	var res RestSchedule
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

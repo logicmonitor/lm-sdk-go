@@ -40,24 +40,24 @@ type GoogleMapWidget struct {
 
 	userPermissionField string
 
-	// Whether ACKed alerts should be displayed
-	AckChecked bool `json:"ackChecked,omitempty"`
+	// Whether ACKed alerts should be displayed, the default value is true
+	AckChecked interface{} `json:"ackChecked,omitempty"`
 
-	// Whether critical alerts should be displayed
-	DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
+	// Whether critical alerts should be displayed, the default value is true
+	DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
 
-	// Whether error alerts should be displayed
-	DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
+	// Whether error alerts should be displayed, the default value is true
+	DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
 
-	// Whether warning alerts should be displayed
-	DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
+	// Whether warning alerts should be displayed, the default value is true
+	DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
 
 	// The points info
 	// Required: true
 	MapPoints []*PointSource `json:"mapPoints"`
 
-	// Whether alerts occuring during an SDT period should be displayed
-	SDTChecked bool `json:"sdtChecked,omitempty"`
+	// Whether alerts occuring during an SDT period should be displayed, the default value is true
+	SDTChecked interface{} `json:"sdtChecked,omitempty"`
 }
 
 // DashboardID gets the dashboard Id of this subtype
@@ -186,24 +186,24 @@ func (m *GoogleMapWidget) SetUserPermission(val string) {
 func (m *GoogleMapWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// Whether ACKed alerts should be displayed
-		AckChecked bool `json:"ackChecked,omitempty"`
+		// Whether ACKed alerts should be displayed, the default value is true
+		AckChecked interface{} `json:"ackChecked,omitempty"`
 
-		// Whether critical alerts should be displayed
-		DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
+		// Whether critical alerts should be displayed, the default value is true
+		DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
 
-		// Whether error alerts should be displayed
-		DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
+		// Whether error alerts should be displayed, the default value is true
+		DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
 
-		// Whether warning alerts should be displayed
-		DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
+		// Whether warning alerts should be displayed, the default value is true
+		DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
 
 		// The points info
 		// Required: true
 		MapPoints []*PointSource `json:"mapPoints"`
 
-		// Whether alerts occuring during an SDT period should be displayed
-		SDTChecked bool `json:"sdtChecked,omitempty"`
+		// Whether alerts occuring during an SDT period should be displayed, the default value is true
+		SDTChecked interface{} `json:"sdtChecked,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -296,24 +296,24 @@ func (m GoogleMapWidget) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// Whether ACKed alerts should be displayed
-		AckChecked bool `json:"ackChecked,omitempty"`
+		// Whether ACKed alerts should be displayed, the default value is true
+		AckChecked interface{} `json:"ackChecked,omitempty"`
 
-		// Whether critical alerts should be displayed
-		DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
+		// Whether critical alerts should be displayed, the default value is true
+		DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
 
-		// Whether error alerts should be displayed
-		DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
+		// Whether error alerts should be displayed, the default value is true
+		DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
 
-		// Whether warning alerts should be displayed
-		DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
+		// Whether warning alerts should be displayed, the default value is true
+		DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
 
 		// The points info
 		// Required: true
 		MapPoints []*PointSource `json:"mapPoints"`
 
-		// Whether alerts occuring during an SDT period should be displayed
-		SDTChecked bool `json:"sdtChecked,omitempty"`
+		// Whether alerts occuring during an SDT period should be displayed, the default value is true
+		SDTChecked interface{} `json:"sdtChecked,omitempty"`
 	}{
 
 		AckChecked: m.AckChecked,

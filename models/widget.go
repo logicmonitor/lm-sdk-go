@@ -290,7 +290,7 @@ func unmarshalWidget(data []byte, consumer runtime.Consumer) (Widget, error) {
 		return &result, nil
 
 	case "cgraph":
-		var result CustomerGraphWidget
+		var result CustomGraphWidget
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

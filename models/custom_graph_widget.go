@@ -16,9 +16,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// CustomerGraphWidget customer graph widget
-// swagger:model CustomerGraphWidget
-type CustomerGraphWidget struct {
+// CustomGraphWidget custom graph widget
+// swagger:model CustomGraphWidget
+type CustomGraphWidget struct {
 	dashboardIdField *int32
 
 	descriptionField string
@@ -44,119 +44,119 @@ type CustomerGraphWidget struct {
 }
 
 // DashboardID gets the dashboard Id of this subtype
-func (m *CustomerGraphWidget) DashboardID() *int32 {
+func (m *CustomGraphWidget) DashboardID() *int32 {
 	return m.dashboardIdField
 }
 
 // SetDashboardID sets the dashboard Id of this subtype
-func (m *CustomerGraphWidget) SetDashboardID(val *int32) {
+func (m *CustomGraphWidget) SetDashboardID(val *int32) {
 	m.dashboardIdField = val
 }
 
 // Description gets the description of this subtype
-func (m *CustomerGraphWidget) Description() string {
+func (m *CustomGraphWidget) Description() string {
 	return m.descriptionField
 }
 
 // SetDescription sets the description of this subtype
-func (m *CustomerGraphWidget) SetDescription(val string) {
+func (m *CustomGraphWidget) SetDescription(val string) {
 	m.descriptionField = val
 }
 
 // ID gets the id of this subtype
-func (m *CustomerGraphWidget) ID() int32 {
+func (m *CustomGraphWidget) ID() int32 {
 	return m.idField
 }
 
 // SetID sets the id of this subtype
-func (m *CustomerGraphWidget) SetID(val int32) {
+func (m *CustomGraphWidget) SetID(val int32) {
 	m.idField = val
 }
 
 // Interval gets the interval of this subtype
-func (m *CustomerGraphWidget) Interval() int32 {
+func (m *CustomGraphWidget) Interval() int32 {
 	return m.intervalField
 }
 
 // SetInterval sets the interval of this subtype
-func (m *CustomerGraphWidget) SetInterval(val int32) {
+func (m *CustomGraphWidget) SetInterval(val int32) {
 	m.intervalField = val
 }
 
 // LastUpdatedBy gets the last updated by of this subtype
-func (m *CustomerGraphWidget) LastUpdatedBy() string {
+func (m *CustomGraphWidget) LastUpdatedBy() string {
 	return m.lastUpdatedByField
 }
 
 // SetLastUpdatedBy sets the last updated by of this subtype
-func (m *CustomerGraphWidget) SetLastUpdatedBy(val string) {
+func (m *CustomGraphWidget) SetLastUpdatedBy(val string) {
 	m.lastUpdatedByField = val
 }
 
 // LastUpdatedOn gets the last updated on of this subtype
-func (m *CustomerGraphWidget) LastUpdatedOn() int64 {
+func (m *CustomGraphWidget) LastUpdatedOn() int64 {
 	return m.lastUpdatedOnField
 }
 
 // SetLastUpdatedOn sets the last updated on of this subtype
-func (m *CustomerGraphWidget) SetLastUpdatedOn(val int64) {
+func (m *CustomGraphWidget) SetLastUpdatedOn(val int64) {
 	m.lastUpdatedOnField = val
 }
 
 // Name gets the name of this subtype
-func (m *CustomerGraphWidget) Name() *string {
+func (m *CustomGraphWidget) Name() *string {
 	return m.nameField
 }
 
 // SetName sets the name of this subtype
-func (m *CustomerGraphWidget) SetName(val *string) {
+func (m *CustomGraphWidget) SetName(val *string) {
 	m.nameField = val
 }
 
 // Theme gets the theme of this subtype
-func (m *CustomerGraphWidget) Theme() string {
+func (m *CustomGraphWidget) Theme() string {
 	return m.themeField
 }
 
 // SetTheme sets the theme of this subtype
-func (m *CustomerGraphWidget) SetTheme(val string) {
+func (m *CustomGraphWidget) SetTheme(val string) {
 	m.themeField = val
 }
 
 // Timescale gets the timescale of this subtype
-func (m *CustomerGraphWidget) Timescale() string {
+func (m *CustomGraphWidget) Timescale() string {
 	return m.timescaleField
 }
 
 // SetTimescale sets the timescale of this subtype
-func (m *CustomerGraphWidget) SetTimescale(val string) {
+func (m *CustomGraphWidget) SetTimescale(val string) {
 	m.timescaleField = val
 }
 
 // Type gets the type of this subtype
-func (m *CustomerGraphWidget) Type() string {
+func (m *CustomGraphWidget) Type() string {
 	return "cgraph"
 }
 
 // SetType sets the type of this subtype
-func (m *CustomerGraphWidget) SetType(val string) {
+func (m *CustomGraphWidget) SetType(val string) {
 
 }
 
 // UserPermission gets the user permission of this subtype
-func (m *CustomerGraphWidget) UserPermission() string {
+func (m *CustomGraphWidget) UserPermission() string {
 	return m.userPermissionField
 }
 
 // SetUserPermission sets the user permission of this subtype
-func (m *CustomerGraphWidget) SetUserPermission(val string) {
+func (m *CustomGraphWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
 
 // GraphInfo gets the graph info of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
-func (m *CustomerGraphWidget) UnmarshalJSON(raw []byte) error {
+func (m *CustomGraphWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// graph info
@@ -203,7 +203,7 @@ func (m *CustomerGraphWidget) UnmarshalJSON(raw []byte) error {
 		return err
 	}
 
-	var result CustomerGraphWidget
+	var result CustomGraphWidget
 
 	result.dashboardIdField = base.DashboardID
 
@@ -238,7 +238,7 @@ func (m *CustomerGraphWidget) UnmarshalJSON(raw []byte) error {
 }
 
 // MarshalJSON marshals this object with a polymorphic type to a JSON structure
-func (m CustomerGraphWidget) MarshalJSON() ([]byte, error) {
+func (m CustomGraphWidget) MarshalJSON() ([]byte, error) {
 	var b1, b2, b3 []byte
 	var err error
 	b1, err = json.Marshal(struct {
@@ -307,8 +307,8 @@ func (m CustomerGraphWidget) MarshalJSON() ([]byte, error) {
 	return swag.ConcatJSON(b1, b2, b3), nil
 }
 
-// Validate validates this customer graph widget
-func (m *CustomerGraphWidget) Validate(formats strfmt.Registry) error {
+// Validate validates this custom graph widget
+func (m *CustomGraphWidget) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDashboardID(formats); err != nil {
@@ -329,7 +329,7 @@ func (m *CustomerGraphWidget) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CustomerGraphWidget) validateDashboardID(formats strfmt.Registry) error {
+func (m *CustomGraphWidget) validateDashboardID(formats strfmt.Registry) error {
 
 	if err := validate.Required("dashboardId", "body", m.DashboardID()); err != nil {
 		return err
@@ -338,7 +338,7 @@ func (m *CustomerGraphWidget) validateDashboardID(formats strfmt.Registry) error
 	return nil
 }
 
-func (m *CustomerGraphWidget) validateName(formats strfmt.Registry) error {
+func (m *CustomGraphWidget) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name()); err != nil {
 		return err
@@ -347,7 +347,7 @@ func (m *CustomerGraphWidget) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *CustomerGraphWidget) validateGraphInfo(formats strfmt.Registry) error {
+func (m *CustomGraphWidget) validateGraphInfo(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.GraphInfo) { // not required
 		return nil
@@ -366,7 +366,7 @@ func (m *CustomerGraphWidget) validateGraphInfo(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *CustomerGraphWidget) MarshalBinary() ([]byte, error) {
+func (m *CustomGraphWidget) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -374,8 +374,8 @@ func (m *CustomerGraphWidget) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *CustomerGraphWidget) UnmarshalBinary(b []byte) error {
-	var res CustomerGraphWidget
+func (m *CustomGraphWidget) UnmarshalBinary(b []byte) error {
+	var res CustomGraphWidget
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

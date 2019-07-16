@@ -25,11 +25,9 @@ import (
 // with the default values initialized.
 func NewUpdateCollectorByIDParams() *UpdateCollectorByIDParams {
 	var (
-		collectorLoadBalancedDefault        = bool(false)
 		forceUpdateFailedOverDevicesDefault = bool(false)
 	)
 	return &UpdateCollectorByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
 		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
 
 		timeout: cr.DefaultTimeout,
@@ -40,11 +38,9 @@ func NewUpdateCollectorByIDParams() *UpdateCollectorByIDParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewUpdateCollectorByIDParamsWithTimeout(timeout time.Duration) *UpdateCollectorByIDParams {
 	var (
-		collectorLoadBalancedDefault        = bool(false)
 		forceUpdateFailedOverDevicesDefault = bool(false)
 	)
 	return &UpdateCollectorByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
 		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
 
 		timeout: timeout,
@@ -55,11 +51,9 @@ func NewUpdateCollectorByIDParamsWithTimeout(timeout time.Duration) *UpdateColle
 // with the default values initialized, and the ability to set a context for a request
 func NewUpdateCollectorByIDParamsWithContext(ctx context.Context) *UpdateCollectorByIDParams {
 	var (
-		collectorLoadBalancedDefault        = bool(false)
 		forceUpdateFailedOverDevicesDefault = bool(false)
 	)
 	return &UpdateCollectorByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
 		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
 
 		Context: ctx,
@@ -70,11 +64,9 @@ func NewUpdateCollectorByIDParamsWithContext(ctx context.Context) *UpdateCollect
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewUpdateCollectorByIDParamsWithHTTPClient(client *http.Client) *UpdateCollectorByIDParams {
 	var (
-		collectorLoadBalancedDefault        = bool(false)
 		forceUpdateFailedOverDevicesDefault = bool(false)
 	)
 	return &UpdateCollectorByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
 		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
 		HTTPClient:                   client,
 	}
@@ -87,8 +79,6 @@ type UpdateCollectorByIDParams struct {
 
 	/*Body*/
 	Body *models.Collector
-	/*CollectorLoadBalanced*/
-	CollectorLoadBalanced *bool
 	/*ForceUpdateFailedOverDevices*/
 	ForceUpdateFailedOverDevices *bool
 	/*ID*/
@@ -143,17 +133,6 @@ func (o *UpdateCollectorByIDParams) SetBody(body *models.Collector) {
 	o.Body = body
 }
 
-// WithCollectorLoadBalanced adds the collectorLoadBalanced to the update collector by Id params
-func (o *UpdateCollectorByIDParams) WithCollectorLoadBalanced(collectorLoadBalanced *bool) *UpdateCollectorByIDParams {
-	o.SetCollectorLoadBalanced(collectorLoadBalanced)
-	return o
-}
-
-// SetCollectorLoadBalanced adds the collectorLoadBalanced to the update collector by Id params
-func (o *UpdateCollectorByIDParams) SetCollectorLoadBalanced(collectorLoadBalanced *bool) {
-	o.CollectorLoadBalanced = collectorLoadBalanced
-}
-
 // WithForceUpdateFailedOverDevices adds the forceUpdateFailedOverDevices to the update collector by Id params
 func (o *UpdateCollectorByIDParams) WithForceUpdateFailedOverDevices(forceUpdateFailedOverDevices *bool) *UpdateCollectorByIDParams {
 	o.SetForceUpdateFailedOverDevices(forceUpdateFailedOverDevices)
@@ -188,22 +167,6 @@ func (o *UpdateCollectorByIDParams) WriteToRequest(r runtime.ClientRequest, reg 
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
 		}
-	}
-
-	if o.CollectorLoadBalanced != nil {
-
-		// query param collectorLoadBalanced
-		var qrCollectorLoadBalanced bool
-		if o.CollectorLoadBalanced != nil {
-			qrCollectorLoadBalanced = *o.CollectorLoadBalanced
-		}
-		qCollectorLoadBalanced := swag.FormatBool(qrCollectorLoadBalanced)
-		if qCollectorLoadBalanced != "" {
-			if err := r.SetQueryParam("collectorLoadBalanced", qCollectorLoadBalanced); err != nil {
-				return err
-			}
-		}
-
 	}
 
 	if o.ForceUpdateFailedOverDevices != nil {

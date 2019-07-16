@@ -21,7 +21,7 @@ type AlertFilters struct {
 	// Displayed alerts must be routed to an escalation chain that satisfies this filter. Glob is accepted, and * and an empty string both match all escalation chains
 	Chain string `json:"chain,omitempty"`
 
-	// Displayed alerts must be active if cleared=no, and must have cleared in the past 7 days if cleared=all
+	// Displayed alerts must be active if cleared=no,  display alerts must be closed if cleared=yes, and must have cleared in the past 7 days if cleared=all
 	Cleared string `json:"cleared,omitempty"`
 
 	// Displayed alerts must be associated with datapoints that meet this filter criteria. Glob is accepted, and * and an empty string both match all datapoints

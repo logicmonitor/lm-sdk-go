@@ -19,7 +19,7 @@ import (
 type WebsiteLocation struct {
 
 	// all
-	All bool `json:"all,omitempty"`
+	All interface{} `json:"all,omitempty"`
 
 	// collector ids
 	CollectorIds []int32 `json:"collectorIds,omitempty"`

@@ -49,8 +49,8 @@ type DeviceClusterAlertConfig struct {
 	// The alert level that must be present for the devices or instances to trigger the cluster alert. Acceptable values are: 2, 3, 4
 	MinAlertLevel int32 `json:"minAlertLevel,omitempty"`
 
-	// Whether or not alerting will be suppressed for individual alerts
-	SuppressIndAlert bool `json:"suppressIndAlert,omitempty"`
+	// Whether or not alerting will be suppressed for individual alerts, the default value is true
+	SuppressIndAlert interface{} `json:"suppressIndAlert,omitempty"`
 
 	// whether the alert expression should be evaluated as a total number of devices or instances (absolute) or as a percentage of devices or instances (percentage). Acceptable values are: absolute, percentage
 	ThresholdType string `json:"thresholdType,omitempty"`

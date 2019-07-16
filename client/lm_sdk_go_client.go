@@ -148,11 +148,10 @@ func LMv1Auth(accessId, accessKey string) runtime.ClientAuthInfoWriter {
 		h.Write([]byte(r.GetMethod() + epoch))
 
 		if r.GetBodyParam() != nil {
-			buf := new(bytes.Buffer)
-			enc := json.NewEncoder(buf)
-			enc.SetEscapeHTML(false)
-			_ = enc.Encode(r.GetBodyParam())
-			h.Write(buf.Bytes())
+			b, _ := json.Marshal(r.GetBodyParam())
+			h.Write(b)
+			//Please see function Encode in stream.go
+			h.Write([]byte("\n"))
 		}
 
 		if r.GetFileParam() != nil {

@@ -14,6 +14,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/swag"
 
 	strfmt "github.com/go-openapi/strfmt"
 )
@@ -21,8 +22,13 @@ import (
 // NewGetAPITokenListParams creates a new GetAPITokenListParams object
 // with the default values initialized.
 func NewGetAPITokenListParams() *GetAPITokenListParams {
-
+	var (
+		offsetDefault = int32(0)
+		sizeDefault   = int32(50)
+	)
 	return &GetAPITokenListParams{
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 
 		timeout: cr.DefaultTimeout,
 	}
@@ -31,8 +37,13 @@ func NewGetAPITokenListParams() *GetAPITokenListParams {
 // NewGetAPITokenListParamsWithTimeout creates a new GetAPITokenListParams object
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetAPITokenListParamsWithTimeout(timeout time.Duration) *GetAPITokenListParams {
-
+	var (
+		offsetDefault = int32(0)
+		sizeDefault   = int32(50)
+	)
 	return &GetAPITokenListParams{
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 
 		timeout: timeout,
 	}
@@ -41,8 +52,13 @@ func NewGetAPITokenListParamsWithTimeout(timeout time.Duration) *GetAPITokenList
 // NewGetAPITokenListParamsWithContext creates a new GetAPITokenListParams object
 // with the default values initialized, and the ability to set a context for a request
 func NewGetAPITokenListParamsWithContext(ctx context.Context) *GetAPITokenListParams {
-
+	var (
+		offsetDefault = int32(0)
+		sizeDefault   = int32(50)
+	)
 	return &GetAPITokenListParams{
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 
 		Context: ctx,
 	}
@@ -51,8 +67,13 @@ func NewGetAPITokenListParamsWithContext(ctx context.Context) *GetAPITokenListPa
 // NewGetAPITokenListParamsWithHTTPClient creates a new GetAPITokenListParams object
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetAPITokenListParamsWithHTTPClient(client *http.Client) *GetAPITokenListParams {
-
+	var (
+		offsetDefault = int32(0)
+		sizeDefault   = int32(50)
+	)
 	return &GetAPITokenListParams{
+		Offset:     &offsetDefault,
+		Size:       &sizeDefault,
 		HTTPClient: client,
 	}
 }
@@ -61,6 +82,16 @@ func NewGetAPITokenListParamsWithHTTPClient(client *http.Client) *GetAPITokenLis
 for the get Api token list operation typically these are written to a http.Request
 */
 type GetAPITokenListParams struct {
+
+	/*Fields*/
+	Fields *string
+	/*Filter*/
+	Filter *string
+	/*Offset*/
+	Offset *int32
+	/*Size*/
+	Size *int32
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -99,6 +130,50 @@ func (o *GetAPITokenListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithFields adds the fields to the get Api token list params
+func (o *GetAPITokenListParams) WithFields(fields *string) *GetAPITokenListParams {
+	o.SetFields(fields)
+	return o
+}
+
+// SetFields adds the fields to the get Api token list params
+func (o *GetAPITokenListParams) SetFields(fields *string) {
+	o.Fields = fields
+}
+
+// WithFilter adds the filter to the get Api token list params
+func (o *GetAPITokenListParams) WithFilter(filter *string) *GetAPITokenListParams {
+	o.SetFilter(filter)
+	return o
+}
+
+// SetFilter adds the filter to the get Api token list params
+func (o *GetAPITokenListParams) SetFilter(filter *string) {
+	o.Filter = filter
+}
+
+// WithOffset adds the offset to the get Api token list params
+func (o *GetAPITokenListParams) WithOffset(offset *int32) *GetAPITokenListParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the get Api token list params
+func (o *GetAPITokenListParams) SetOffset(offset *int32) {
+	o.Offset = offset
+}
+
+// WithSize adds the size to the get Api token list params
+func (o *GetAPITokenListParams) WithSize(size *int32) *GetAPITokenListParams {
+	o.SetSize(size)
+	return o
+}
+
+// SetSize adds the size to the get Api token list params
+func (o *GetAPITokenListParams) SetSize(size *int32) {
+	o.Size = size
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetAPITokenListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -106,6 +181,70 @@ func (o *GetAPITokenListParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.Fields != nil {
+
+		// query param fields
+		var qrFields string
+		if o.Fields != nil {
+			qrFields = *o.Fields
+		}
+		qFields := qrFields
+		if qFields != "" {
+			if err := r.SetQueryParam("fields", qFields); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Filter != nil {
+
+		// query param filter
+		var qrFilter string
+		if o.Filter != nil {
+			qrFilter = *o.Filter
+		}
+		qFilter := qrFilter
+		if qFilter != "" {
+			if err := r.SetQueryParam("filter", qFilter); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int32
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt32(qrOffset)
+		if qOffset != "" {
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Size != nil {
+
+		// query param size
+		var qrSize int32
+		if o.Size != nil {
+			qrSize = *o.Size
+		}
+		qSize := swag.FormatInt32(qrSize)
+		if qSize != "" {
+			if err := r.SetQueryParam("size", qSize); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

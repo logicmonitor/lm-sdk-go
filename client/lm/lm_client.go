@@ -206,6 +206,35 @@ func (a *Client) AddAPITokenByAdminID(params *AddAPITokenByAdminIDParams) (*AddA
 }
 
 /*
+AddAppliesToFunction adds applies to function
+*/
+func (a *Client) AddAppliesToFunction(params *AddAppliesToFunctionParams) (*AddAppliesToFunctionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddAppliesToFunctionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addAppliesToFunction",
+		Method:             "POST",
+		PathPattern:        "/setting/functions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddAppliesToFunctionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddAppliesToFunctionOK), nil
+
+}
+
+/*
 AddCollector adds collector
 */
 func (a *Client) AddCollector(params *AddCollectorParams) (*AddCollectorOK, error) {
@@ -956,6 +985,35 @@ func (a *Client) DeleteAPITokenByID(params *DeleteAPITokenByIDParams) (*DeleteAP
 		return nil, err
 	}
 	return result.(*DeleteAPITokenByIDOK), nil
+
+}
+
+/*
+DeleteAppliesToFunctionByID deletes applies to function
+*/
+func (a *Client) DeleteAppliesToFunctionByID(params *DeleteAppliesToFunctionByIDParams) (*DeleteAppliesToFunctionByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteAppliesToFunctionByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteAppliesToFunctionById",
+		Method:             "DELETE",
+		PathPattern:        "/setting/functions/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteAppliesToFunctionByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteAppliesToFunctionByIDOK), nil
 
 }
 
@@ -2004,6 +2062,64 @@ func (a *Client) GetAPITokenListByAdminID(params *GetAPITokenListByAdminIDParams
 }
 
 /*
+GetAppliesToFunctionByID gets applies to function
+*/
+func (a *Client) GetAppliesToFunctionByID(params *GetAppliesToFunctionByIDParams) (*GetAppliesToFunctionByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAppliesToFunctionByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAppliesToFunctionById",
+		Method:             "GET",
+		PathPattern:        "/setting/functions/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAppliesToFunctionByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAppliesToFunctionByIDOK), nil
+
+}
+
+/*
+GetAppliesToFunctionList gets applies to function list
+*/
+func (a *Client) GetAppliesToFunctionList(params *GetAppliesToFunctionListParams) (*GetAppliesToFunctionListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAppliesToFunctionListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAppliesToFunctionList",
+		Method:             "GET",
+		PathPattern:        "/setting/functions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAppliesToFunctionListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAppliesToFunctionListOK), nil
+
+}
+
+/*
 GetAssociatedDeviceListByDataSourceID gets devices associated with a datasource
 */
 func (a *Client) GetAssociatedDeviceListByDataSourceID(params *GetAssociatedDeviceListByDataSourceIDParams) (*GetAssociatedDeviceListByDataSourceIDOK, error) {
@@ -2261,6 +2377,35 @@ func (a *Client) GetCollectorList(params *GetCollectorListParams) (*GetCollector
 		return nil, err
 	}
 	return result.(*GetCollectorListOK), nil
+
+}
+
+/*
+GetCollectorVersionList gets collector version list
+*/
+func (a *Client) GetCollectorVersionList(params *GetCollectorVersionListParams) (*GetCollectorVersionListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCollectorVersionListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCollectorVersionList",
+		Method:             "GET",
+		PathPattern:        "/setting/collector/collectors/versions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCollectorVersionListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetCollectorVersionListOK), nil
 
 }
 
@@ -2584,7 +2729,7 @@ func (a *Client) GetDeviceConfigSourceConfigByID(params *GetDeviceConfigSourceCo
 }
 
 /*
-GetDeviceConfigSourceConfigList gets config instances for a configsource
+GetDeviceConfigSourceConfigList gets detailed config information for the instance
 */
 func (a *Client) GetDeviceConfigSourceConfigList(params *GetDeviceConfigSourceConfigListParams) (*GetDeviceConfigSourceConfigListOK, error) {
 	// TODO: Validate the params before sending
@@ -3454,6 +3599,35 @@ func (a *Client) GetEscalationChainList(params *GetEscalationChainListParams) (*
 }
 
 /*
+GetEventSourceList gets event source list
+*/
+func (a *Client) GetEventSourceList(params *GetEventSourceListParams) (*GetEventSourceListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetEventSourceListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getEventSourceList",
+		Method:             "GET",
+		PathPattern:        "/setting/eventsources",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetEventSourceListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetEventSourceListOK), nil
+
+}
+
+/*
 GetImmediateDeviceListByDeviceGroupID gets immediate devices under group
 */
 func (a *Client) GetImmediateDeviceListByDeviceGroupID(params *GetImmediateDeviceListByDeviceGroupIDParams) (*GetImmediateDeviceListByDeviceGroupIDOK, error) {
@@ -3508,6 +3682,35 @@ func (a *Client) GetImmediateWebsiteListByWebsiteGroupID(params *GetImmediateWeb
 		return nil, err
 	}
 	return result.(*GetImmediateWebsiteListByWebsiteGroupIDOK), nil
+
+}
+
+/*
+GetLogicModuleMetadata gets logic module metadata
+*/
+func (a *Client) GetLogicModuleMetadata(params *GetLogicModuleMetadataParams) (*GetLogicModuleMetadataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLogicModuleMetadataParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLogicModuleMetadata",
+		Method:             "GET",
+		PathPattern:        "/setting/registry/metadata/{lmType}/{lmId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLogicModuleMetadataReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetLogicModuleMetadataOK), nil
 
 }
 
@@ -4730,6 +4933,35 @@ func (a *Client) ImportConfigSource(params *ImportConfigSourceParams) (*ImportCo
 }
 
 /*
+ImportDNSMapping imports DNS mapping via c s v
+*/
+func (a *Client) ImportDNSMapping(params *ImportDNSMappingParams) (*ImportDNSMappingOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportDNSMappingParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importDNSMapping",
+		Method:             "POST",
+		PathPattern:        "/setting/dnsmappings",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportDNSMappingReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportDNSMappingOK), nil
+
+}
+
+/*
 ImportDataSource imports datasource via xml
 */
 func (a *Client) ImportDataSource(params *ImportDataSourceParams) (*ImportDataSourceOK, error) {
@@ -4871,6 +5103,35 @@ func (a *Client) PatchAPITokenByAdminID(params *PatchAPITokenByAdminIDParams) (*
 		return nil, err
 	}
 	return result.(*PatchAPITokenByAdminIDOK), nil
+
+}
+
+/*
+PatchAppliesToFunction updates applies to function
+*/
+func (a *Client) PatchAppliesToFunction(params *PatchAppliesToFunctionParams) (*PatchAppliesToFunctionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchAppliesToFunctionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchAppliesToFunction",
+		Method:             "PATCH",
+		PathPattern:        "/setting/functions/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchAppliesToFunctionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchAppliesToFunctionOK), nil
 
 }
 
@@ -5190,6 +5451,35 @@ func (a *Client) PatchDeviceGroupDatasourceAlertSetting(params *PatchDeviceGroup
 		return nil, err
 	}
 	return result.(*PatchDeviceGroupDatasourceAlertSettingOK), nil
+
+}
+
+/*
+PatchDeviceGroupDatasourceByID updates device group datasource
+*/
+func (a *Client) PatchDeviceGroupDatasourceByID(params *PatchDeviceGroupDatasourceByIDParams) (*PatchDeviceGroupDatasourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchDeviceGroupDatasourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchDeviceGroupDatasourceById",
+		Method:             "PATCH",
+		PathPattern:        "/device/groups/{deviceGroupId}/datasources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchDeviceGroupDatasourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchDeviceGroupDatasourceByIDOK), nil
 
 }
 
@@ -5687,6 +5977,35 @@ func (a *Client) UpdateAPITokenByAdminID(params *UpdateAPITokenByAdminIDParams) 
 }
 
 /*
+UpdateAppliesToFunction updates applies to function
+*/
+func (a *Client) UpdateAppliesToFunction(params *UpdateAppliesToFunctionParams) (*UpdateAppliesToFunctionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAppliesToFunctionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateAppliesToFunction",
+		Method:             "PUT",
+		PathPattern:        "/setting/functions/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAppliesToFunctionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateAppliesToFunctionOK), nil
+
+}
+
+/*
 UpdateCollectorByID updates collector
 */
 func (a *Client) UpdateCollectorByID(params *UpdateCollectorByIDParams) (*UpdateCollectorByIDOK, error) {
@@ -6002,6 +6321,35 @@ func (a *Client) UpdateDeviceGroupDatasourceAlertSetting(params *UpdateDeviceGro
 		return nil, err
 	}
 	return result.(*UpdateDeviceGroupDatasourceAlertSettingOK), nil
+
+}
+
+/*
+UpdateDeviceGroupDatasourceByID updates device group datasource
+*/
+func (a *Client) UpdateDeviceGroupDatasourceByID(params *UpdateDeviceGroupDatasourceByIDParams) (*UpdateDeviceGroupDatasourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateDeviceGroupDatasourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateDeviceGroupDatasourceById",
+		Method:             "PUT",
+		PathPattern:        "/device/groups/{deviceGroupId}/datasources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateDeviceGroupDatasourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateDeviceGroupDatasourceByIDOK), nil
 
 }
 

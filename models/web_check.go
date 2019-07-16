@@ -40,6 +40,8 @@ type WebCheck struct {
 
 	isInternalField bool
 
+	lastUpdatedField int64
+
 	nameField *string
 
 	overallAlertLevelField string
@@ -73,8 +75,8 @@ type WebCheck struct {
 	// Required: true
 	Domain *string `json:"domain"`
 
-	// Whether or not SSL should be ignored
-	IgnoreSSL bool `json:"ignoreSSL,omitempty"`
+	// Whether or not SSL should be ignored, the default value is true
+	IgnoreSSL interface{} `json:"ignoreSSL,omitempty"`
 
 	// The time in milliseconds that the page must load within for each step to avoid triggering an alert
 	PageLoadAlertTimeInMS int64 `json:"pageLoadAlertTimeInMS,omitempty"`
@@ -190,6 +192,16 @@ func (m *WebCheck) IsInternal() bool {
 // SetIsInternal sets the is internal of this subtype
 func (m *WebCheck) SetIsInternal(val bool) {
 	m.isInternalField = val
+}
+
+// LastUpdated gets the last updated of this subtype
+func (m *WebCheck) LastUpdated() int64 {
+	return m.lastUpdatedField
+}
+
+// SetLastUpdated sets the last updated of this subtype
+func (m *WebCheck) SetLastUpdated(val int64) {
+	m.lastUpdatedField = val
 }
 
 // Name gets the name of this subtype
@@ -359,8 +371,8 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 		// Required: true
 		Domain *string `json:"domain"`
 
-		// Whether or not SSL should be ignored
-		IgnoreSSL bool `json:"ignoreSSL,omitempty"`
+		// Whether or not SSL should be ignored, the default value is true
+		IgnoreSSL interface{} `json:"ignoreSSL,omitempty"`
 
 		// The time in milliseconds that the page must load within for each step to avoid triggering an alert
 		PageLoadAlertTimeInMS int64 `json:"pageLoadAlertTimeInMS,omitempty"`
@@ -407,6 +419,8 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 		IndividualSmAlertEnable bool `json:"individualSmAlertEnable,omitempty"`
 
 		IsInternal bool `json:"isInternal,omitempty"`
+
+		LastUpdated int64 `json:"lastUpdated,omitempty"`
 
 		Name *string `json:"name"`
 
@@ -465,6 +479,8 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 	result.individualSmAlertEnableField = base.IndividualSmAlertEnable
 
 	result.isInternalField = base.IsInternal
+
+	result.lastUpdatedField = base.LastUpdated
 
 	result.nameField = base.Name
 
@@ -531,8 +547,8 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 		// Required: true
 		Domain *string `json:"domain"`
 
-		// Whether or not SSL should be ignored
-		IgnoreSSL bool `json:"ignoreSSL,omitempty"`
+		// Whether or not SSL should be ignored, the default value is true
+		IgnoreSSL interface{} `json:"ignoreSSL,omitempty"`
 
 		// The time in milliseconds that the page must load within for each step to avoid triggering an alert
 		PageLoadAlertTimeInMS int64 `json:"pageLoadAlertTimeInMS,omitempty"`
@@ -591,6 +607,8 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 
 		IsInternal bool `json:"isInternal,omitempty"`
 
+		LastUpdated int64 `json:"lastUpdated,omitempty"`
+
 		Name *string `json:"name"`
 
 		OverallAlertLevel string `json:"overallAlertLevel,omitempty"`
@@ -639,6 +657,8 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 		IndividualSmAlertEnable: m.IndividualSmAlertEnable(),
 
 		IsInternal: m.IsInternal(),
+
+		LastUpdated: m.LastUpdated(),
 
 		Name: m.Name(),
 

@@ -105,8 +105,8 @@ type CollectorBase struct {
 	// Read Only: true
 	Ea *bool `json:"ea,omitempty"`
 
-	// Whether or not automatic failback is enabled for the Collector
-	EnableFailBack bool `json:"enableFailBack,omitempty"`
+	// Whether or not automatic failback is enabled for the Collector, the default value is true
+	EnableFailBack interface{} `json:"enableFailBack,omitempty"`
 
 	// Whether or not the device the Collector is installed on is enabled for fail over
 	EnableFailOverOnCollectorDevice bool `json:"enableFailOverOnCollectorDevice,omitempty"`

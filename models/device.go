@@ -78,8 +78,7 @@ type Device struct {
 	GcpState int32 `json:"gcpState,omitempty"`
 
 	// The Id(s) of the groups the device is in, where multiple group ids are comma separated
-	// Required: true
-	HostGroupIds *string `json:"hostGroupIds"`
+	HostGroupIds string `json:"hostGroupIds,omitempty"`
 
 	// The status of this device, where possible statuses are normal, dead and dead-collector
 	// Read Only: true
@@ -184,10 +183,6 @@ func (m *Device) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateHostGroupIds(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateInheritedProperties(formats); err != nil {
 		res = append(res, err)
 	}
@@ -263,15 +258,6 @@ func (m *Device) validateCustomProperties(formats strfmt.Registry) error {
 func (m *Device) validateDisplayName(formats strfmt.Registry) error {
 
 	if err := validate.Required("displayName", "body", m.DisplayName); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Device) validateHostGroupIds(formats strfmt.Registry) error {
-
-	if err := validate.Required("hostGroupIds", "body", m.HostGroupIds); err != nil {
 		return err
 	}
 

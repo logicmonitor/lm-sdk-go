@@ -21,14 +21,15 @@ type CustomGraph struct {
 
 	// true: You can set this field to true to aggregate results into one line.
 	// false: Results will not be aggregated
-	Aggregate bool `json:"aggregate,omitempty"`
+	// the default value is true
+	Aggregate interface{} `json:"aggregate,omitempty"`
 
 	// The datapoints added to the widget (note that a datapoint must be referenced in a graph line to be displayed)
 	// Required: true
 	DataPoints []*CustomFlexibleVirtualDataSourceEx `json:"dataPoints"`
 
-	// Whether the top X are displayed (false) or the bottom X are displayed (true)
-	Desc bool `json:"desc,omitempty"`
+	// Whether the top X are displayed (false) or the bottom X are displayed (true), the default value is true
+	Desc interface{} `json:"desc,omitempty"`
 
 	// The function for global consolidate
 	GlobalConsolidateFunction string `json:"globalConsolidateFunction,omitempty"`

@@ -23,9 +23,11 @@ import (
 // with the default values initialized.
 func NewGetDashboardGroupByIDParams() *GetDashboardGroupByIDParams {
 	var (
+		formatDefault   = string("json")
 		templateDefault = bool(false)
 	)
 	return &GetDashboardGroupByIDParams{
+		Format:   &formatDefault,
 		Template: &templateDefault,
 
 		timeout: cr.DefaultTimeout,
@@ -36,9 +38,11 @@ func NewGetDashboardGroupByIDParams() *GetDashboardGroupByIDParams {
 // with the default values initialized, and the ability to set a timeout on a request
 func NewGetDashboardGroupByIDParamsWithTimeout(timeout time.Duration) *GetDashboardGroupByIDParams {
 	var (
+		formatDefault   = string("json")
 		templateDefault = bool(false)
 	)
 	return &GetDashboardGroupByIDParams{
+		Format:   &formatDefault,
 		Template: &templateDefault,
 
 		timeout: timeout,
@@ -49,9 +53,11 @@ func NewGetDashboardGroupByIDParamsWithTimeout(timeout time.Duration) *GetDashbo
 // with the default values initialized, and the ability to set a context for a request
 func NewGetDashboardGroupByIDParamsWithContext(ctx context.Context) *GetDashboardGroupByIDParams {
 	var (
+		formatDefault   = string("json")
 		templateDefault = bool(false)
 	)
 	return &GetDashboardGroupByIDParams{
+		Format:   &formatDefault,
 		Template: &templateDefault,
 
 		Context: ctx,
@@ -62,9 +68,11 @@ func NewGetDashboardGroupByIDParamsWithContext(ctx context.Context) *GetDashboar
 // with the default values initialized, and the ability to set a custom HTTPClient for a request
 func NewGetDashboardGroupByIDParamsWithHTTPClient(client *http.Client) *GetDashboardGroupByIDParams {
 	var (
+		formatDefault   = string("json")
 		templateDefault = bool(false)
 	)
 	return &GetDashboardGroupByIDParams{
+		Format:     &formatDefault,
 		Template:   &templateDefault,
 		HTTPClient: client,
 	}
@@ -77,6 +85,8 @@ type GetDashboardGroupByIDParams struct {
 
 	/*Fields*/
 	Fields *string
+	/*Format*/
+	Format *string
 	/*ID*/
 	ID int32
 	/*Template*/
@@ -131,6 +141,17 @@ func (o *GetDashboardGroupByIDParams) SetFields(fields *string) {
 	o.Fields = fields
 }
 
+// WithFormat adds the format to the get dashboard group by Id params
+func (o *GetDashboardGroupByIDParams) WithFormat(format *string) *GetDashboardGroupByIDParams {
+	o.SetFormat(format)
+	return o
+}
+
+// SetFormat adds the format to the get dashboard group by Id params
+func (o *GetDashboardGroupByIDParams) SetFormat(format *string) {
+	o.Format = format
+}
+
 // WithID adds the id to the get dashboard group by Id params
 func (o *GetDashboardGroupByIDParams) WithID(id int32) *GetDashboardGroupByIDParams {
 	o.SetID(id)
@@ -171,6 +192,22 @@ func (o *GetDashboardGroupByIDParams) WriteToRequest(r runtime.ClientRequest, re
 		qFields := qrFields
 		if qFields != "" {
 			if err := r.SetQueryParam("fields", qFields); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Format != nil {
+
+		// query param format
+		var qrFormat string
+		if o.Format != nil {
+			qrFormat = *o.Format
+		}
+		qFormat := qrFormat
+		if qFormat != "" {
+			if err := r.SetQueryParam("format", qFormat); err != nil {
 				return err
 			}
 		}

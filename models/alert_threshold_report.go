@@ -72,7 +72,8 @@ type AlertThresholdReport struct {
 
 	// true: only variations from the global thresholds will be displayed
 	// false: all thresholds will be displayed, including global thresholds an custom group and instance level thresholds
-	ExcludeGlobal bool `json:"excludeGlobal,omitempty"`
+	// the default value is true
+	ExcludeGlobal interface{} `json:"excludeGlobal,omitempty"`
 
 	// The full path of the group whose member devices you are going to include in the report. Glob expressions supported
 	GroupFullPath string `json:"groupFullPath,omitempty"`
@@ -316,7 +317,8 @@ func (m *AlertThresholdReport) UnmarshalJSON(raw []byte) error {
 
 		// true: only variations from the global thresholds will be displayed
 		// false: all thresholds will be displayed, including global thresholds an custom group and instance level thresholds
-		ExcludeGlobal bool `json:"excludeGlobal,omitempty"`
+		// the default value is true
+		ExcludeGlobal interface{} `json:"excludeGlobal,omitempty"`
 
 		// The full path of the group whose member devices you are going to include in the report. Glob expressions supported
 		GroupFullPath string `json:"groupFullPath,omitempty"`
@@ -470,7 +472,8 @@ func (m AlertThresholdReport) MarshalJSON() ([]byte, error) {
 
 		// true: only variations from the global thresholds will be displayed
 		// false: all thresholds will be displayed, including global thresholds an custom group and instance level thresholds
-		ExcludeGlobal bool `json:"excludeGlobal,omitempty"`
+		// the default value is true
+		ExcludeGlobal interface{} `json:"excludeGlobal,omitempty"`
 
 		// The full path of the group whose member devices you are going to include in the report. Glob expressions supported
 		GroupFullPath string `json:"groupFullPath,omitempty"`
