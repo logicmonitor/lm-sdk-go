@@ -2932,6 +2932,35 @@ func (a *Client) GetDeviceDatasourceInstanceList(params *GetDeviceDatasourceInst
 }
 
 /*
+GetDeviceInstanceList gets device instance list
+*/
+func (a *Client) GetDeviceInstanceList(params *GetDeviceInstanceListParams) (*GetDeviceInstanceListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeviceInstanceListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDeviceInstanceList",
+		Method:             "GET",
+		PathPattern:        "/device/devices/{deviceId}/instances",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{""},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeviceInstanceListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDeviceInstanceListOK), nil
+
+}
+
+/*
 GetDeviceDatasourceInstanceSDTHistory gets device instance SDT history
 */
 func (a *Client) GetDeviceDatasourceInstanceSDTHistory(params *GetDeviceDatasourceInstanceSDTHistoryParams) (*GetDeviceDatasourceInstanceSDTHistoryOK, error) {
