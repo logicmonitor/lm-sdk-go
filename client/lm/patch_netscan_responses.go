@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchNetscanReader is a Reader for the PatchNetscan structure.
@@ -24,14 +23,12 @@ type PatchNetscanReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchNetscanReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchNetscanOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchNetscanDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchNetscanOK() *PatchNetscanOK {
 	return &PatchNetscanOK{}
 }
 
-/*PatchNetscanOK handles this case with default header values.
+/* PatchNetscanOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchNetscanOK struct {
 
 func (o *PatchNetscanOK) Error() string {
 	return fmt.Sprintf("[PATCH /setting/netscans/{id}][%d] patchNetscanOK  %+v", 200, o.Payload)
+}
+func (o *PatchNetscanOK) GetPayload() models.Netscan {
+	return o.Payload
 }
 
 func (o *PatchNetscanOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchNetscanDefault(code int) *PatchNetscanDefault {
 	}
 }
 
-/*PatchNetscanDefault handles this case with default header values.
+/* PatchNetscanDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchNetscanDefault) Code() int {
 
 func (o *PatchNetscanDefault) Error() string {
 	return fmt.Sprintf("[PATCH /setting/netscans/{id}][%d] patchNetscan default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchNetscanDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchNetscanDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDashboardGroupByIDReader is a Reader for the GetDashboardGroupByID structure.
@@ -24,14 +23,12 @@ type GetDashboardGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDashboardGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDashboardGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDashboardGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDashboardGroupByIDOK() *GetDashboardGroupByIDOK {
 	return &GetDashboardGroupByIDOK{}
 }
 
-/*GetDashboardGroupByIDOK handles this case with default header values.
+/* GetDashboardGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDashboardGroupByIDOK struct {
 
 func (o *GetDashboardGroupByIDOK) Error() string {
 	return fmt.Sprintf("[GET /dashboard/groups/{id}][%d] getDashboardGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetDashboardGroupByIDOK) GetPayload() *models.DashboardGroup {
+	return o.Payload
 }
 
 func (o *GetDashboardGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDashboardGroupByIDDefault(code int) *GetDashboardGroupByIDDefault {
 	}
 }
 
-/*GetDashboardGroupByIDDefault handles this case with default header values.
+/* GetDashboardGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDashboardGroupByIDDefault) Code() int {
 
 func (o *GetDashboardGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /dashboard/groups/{id}][%d] getDashboardGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDashboardGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDashboardGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

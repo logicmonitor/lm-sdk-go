@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // XENAutoDiscoveryMethod x e n auto discovery method
+//
 // swagger:model XENAutoDiscoveryMethod
 type XENAutoDiscoveryMethod struct {
 
@@ -32,10 +33,7 @@ func (m *XENAutoDiscoveryMethod) Name() string {
 
 // SetName sets the name of this subtype
 func (m *XENAutoDiscoveryMethod) SetName(val string) {
-
 }
-
-// Entity gets the entity of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *XENAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
@@ -92,8 +90,7 @@ func (m XENAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		Entity: m.Entity,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -102,8 +99,7 @@ func (m XENAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -131,6 +127,16 @@ func (m *XENAutoDiscoveryMethod) validateEntity(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validate this x e n auto discovery method based on the context it is used
+func (m *XENAutoDiscoveryMethod) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

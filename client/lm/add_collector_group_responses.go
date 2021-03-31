@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddCollectorGroupReader is a Reader for the AddCollectorGroup structure.
@@ -24,14 +23,12 @@ type AddCollectorGroupReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddCollectorGroupReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddCollectorGroupOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddCollectorGroupDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddCollectorGroupOK() *AddCollectorGroupOK {
 	return &AddCollectorGroupOK{}
 }
 
-/*AddCollectorGroupOK handles this case with default header values.
+/* AddCollectorGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddCollectorGroupOK struct {
 
 func (o *AddCollectorGroupOK) Error() string {
 	return fmt.Sprintf("[POST /setting/collector/groups][%d] addCollectorGroupOK  %+v", 200, o.Payload)
+}
+func (o *AddCollectorGroupOK) GetPayload() *models.CollectorGroup {
+	return o.Payload
 }
 
 func (o *AddCollectorGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddCollectorGroupDefault(code int) *AddCollectorGroupDefault {
 	}
 }
 
-/*AddCollectorGroupDefault handles this case with default header values.
+/* AddCollectorGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddCollectorGroupDefault) Code() int {
 
 func (o *AddCollectorGroupDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/collector/groups][%d] addCollectorGroup default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddCollectorGroupDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddCollectorGroupDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

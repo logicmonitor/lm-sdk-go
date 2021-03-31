@@ -6,16 +6,17 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // BigNumberItem big number item
+//
 // swagger:model BigNumberItem
 type BigNumberItem struct {
 
@@ -66,7 +67,6 @@ func (m *BigNumberItem) Validate(formats strfmt.Registry) error {
 }
 
 func (m *BigNumberItem) validateColorThresholds(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.ColorThresholds) { // not required
 		return nil
 	}
@@ -103,6 +103,38 @@ func (m *BigNumberItem) validateUseCommaSeparators(formats strfmt.Registry) erro
 
 	if err := validate.Required("useCommaSeparators", "body", m.UseCommaSeparators); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this big number item based on the context it is used
+func (m *BigNumberItem) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateColorThresholds(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *BigNumberItem) contextValidateColorThresholds(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ColorThresholds); i++ {
+
+		if m.ColorThresholds[i] != nil {
+			if err := m.ColorThresholds[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

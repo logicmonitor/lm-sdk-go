@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AckAlertByIDReader is a Reader for the AckAlertByID structure.
@@ -24,14 +23,12 @@ type AckAlertByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AckAlertByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAckAlertByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAckAlertByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAckAlertByIDOK() *AckAlertByIDOK {
 	return &AckAlertByIDOK{}
 }
 
-/*AckAlertByIDOK handles this case with default header values.
+/* AckAlertByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AckAlertByIDOK struct {
 
 func (o *AckAlertByIDOK) Error() string {
 	return fmt.Sprintf("[POST /alert/alerts/{id}/ack][%d] ackAlertByIdOK  %+v", 200, o.Payload)
+}
+func (o *AckAlertByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *AckAlertByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewAckAlertByIDDefault(code int) *AckAlertByIDDefault {
 	}
 }
 
-/*AckAlertByIDDefault handles this case with default header values.
+/* AckAlertByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *AckAlertByIDDefault) Code() int {
 
 func (o *AckAlertByIDDefault) Error() string {
 	return fmt.Sprintf("[POST /alert/alerts/{id}/ack][%d] ackAlertById default  %+v", o._statusCode, o.Payload)
+}
+func (o *AckAlertByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AckAlertByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

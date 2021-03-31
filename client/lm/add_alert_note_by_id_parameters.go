@@ -6,72 +6,85 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewAddAlertNoteByIDParams creates a new AddAlertNoteByIDParams object
-// with the default values initialized.
+// NewAddAlertNoteByIDParams creates a new AddAlertNoteByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAddAlertNoteByIDParams() *AddAlertNoteByIDParams {
-	var ()
 	return &AddAlertNoteByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAddAlertNoteByIDParamsWithTimeout creates a new AddAlertNoteByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAddAlertNoteByIDParamsWithTimeout(timeout time.Duration) *AddAlertNoteByIDParams {
-	var ()
 	return &AddAlertNoteByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAddAlertNoteByIDParamsWithContext creates a new AddAlertNoteByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAddAlertNoteByIDParamsWithContext(ctx context.Context) *AddAlertNoteByIDParams {
-	var ()
 	return &AddAlertNoteByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAddAlertNoteByIDParamsWithHTTPClient creates a new AddAlertNoteByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAddAlertNoteByIDParamsWithHTTPClient(client *http.Client) *AddAlertNoteByIDParams {
-	var ()
 	return &AddAlertNoteByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*AddAlertNoteByIDParams contains all the parameters to send to the API endpoint
-for the add alert note by Id operation typically these are written to a http.Request
+/* AddAlertNoteByIDParams contains all the parameters to send to the API endpoint
+   for the add alert note by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type AddAlertNoteByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.AlertAck
-	/*ID*/
+
+	// ID.
 	ID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the add alert note by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddAlertNoteByIDParams) WithDefaults() *AddAlertNoteByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the add alert note by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddAlertNoteByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add alert note by Id params
@@ -136,7 +149,6 @@ func (o *AddAlertNoteByIDParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

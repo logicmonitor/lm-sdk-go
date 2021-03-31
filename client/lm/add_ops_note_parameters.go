@@ -6,70 +6,82 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewAddOpsNoteParams creates a new AddOpsNoteParams object
-// with the default values initialized.
+// NewAddOpsNoteParams creates a new AddOpsNoteParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAddOpsNoteParams() *AddOpsNoteParams {
-	var ()
 	return &AddOpsNoteParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAddOpsNoteParamsWithTimeout creates a new AddOpsNoteParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAddOpsNoteParamsWithTimeout(timeout time.Duration) *AddOpsNoteParams {
-	var ()
 	return &AddOpsNoteParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAddOpsNoteParamsWithContext creates a new AddOpsNoteParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAddOpsNoteParamsWithContext(ctx context.Context) *AddOpsNoteParams {
-	var ()
 	return &AddOpsNoteParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAddOpsNoteParamsWithHTTPClient creates a new AddOpsNoteParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAddOpsNoteParamsWithHTTPClient(client *http.Client) *AddOpsNoteParams {
-	var ()
 	return &AddOpsNoteParams{
 		HTTPClient: client,
 	}
 }
 
-/*AddOpsNoteParams contains all the parameters to send to the API endpoint
-for the add ops note operation typically these are written to a http.Request
+/* AddOpsNoteParams contains all the parameters to send to the API endpoint
+   for the add ops note operation.
+
+   Typically these are written to a http.Request.
 */
 type AddOpsNoteParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.OpsNote
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the add ops note params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddOpsNoteParams) WithDefaults() *AddOpsNoteParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the add ops note params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddOpsNoteParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add ops note params
@@ -123,7 +135,6 @@ func (o *AddOpsNoteParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddDevicePropertyReader is a Reader for the AddDeviceProperty structure.
@@ -24,14 +23,12 @@ type AddDevicePropertyReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddDevicePropertyReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddDevicePropertyOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddDevicePropertyDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddDevicePropertyOK() *AddDevicePropertyOK {
 	return &AddDevicePropertyOK{}
 }
 
-/*AddDevicePropertyOK handles this case with default header values.
+/* AddDevicePropertyOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddDevicePropertyOK struct {
 
 func (o *AddDevicePropertyOK) Error() string {
 	return fmt.Sprintf("[POST /device/devices/{deviceId}/properties][%d] addDevicePropertyOK  %+v", 200, o.Payload)
+}
+func (o *AddDevicePropertyOK) GetPayload() *models.EntityProperty {
+	return o.Payload
 }
 
 func (o *AddDevicePropertyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddDevicePropertyDefault(code int) *AddDevicePropertyDefault {
 	}
 }
 
-/*AddDevicePropertyDefault handles this case with default header values.
+/* AddDevicePropertyDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddDevicePropertyDefault) Code() int {
 
 func (o *AddDevicePropertyDefault) Error() string {
 	return fmt.Sprintf("[POST /device/devices/{deviceId}/properties][%d] addDeviceProperty default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddDevicePropertyDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddDevicePropertyDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

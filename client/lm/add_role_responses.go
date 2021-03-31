@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddRoleReader is a Reader for the AddRole structure.
@@ -24,14 +23,12 @@ type AddRoleReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddRoleReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddRoleOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddRoleDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddRoleOK() *AddRoleOK {
 	return &AddRoleOK{}
 }
 
-/*AddRoleOK handles this case with default header values.
+/* AddRoleOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddRoleOK struct {
 
 func (o *AddRoleOK) Error() string {
 	return fmt.Sprintf("[POST /setting/roles][%d] addRoleOK  %+v", 200, o.Payload)
+}
+func (o *AddRoleOK) GetPayload() *models.Role {
+	return o.Payload
 }
 
 func (o *AddRoleOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddRoleDefault(code int) *AddRoleDefault {
 	}
 }
 
-/*AddRoleDefault handles this case with default header values.
+/* AddRoleDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddRoleDefault) Code() int {
 
 func (o *AddRoleDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/roles][%d] addRole default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddRoleDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddRoleDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

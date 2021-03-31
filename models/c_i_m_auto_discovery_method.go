@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // CIMAutoDiscoveryMethod c i m auto discovery method
+//
 // swagger:model CIMAutoDiscoveryMethod
 type CIMAutoDiscoveryMethod struct {
 
@@ -40,14 +41,7 @@ func (m *CIMAutoDiscoveryMethod) Name() string {
 
 // SetName sets the name of this subtype
 func (m *CIMAutoDiscoveryMethod) SetName(val string) {
-
 }
-
-// CimClass gets the cim class of this subtype
-
-// Namespace gets the namespace of this subtype
-
-// Property gets the property of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *CIMAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
@@ -94,9 +88,7 @@ func (m *CIMAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.CimClass = data.CimClass
-
 	result.Namespace = data.Namespace
-
 	result.Property = data.Property
 
 	*m = result
@@ -128,8 +120,7 @@ func (m CIMAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 		Namespace: m.Namespace,
 
 		Property: m.Property,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -138,8 +129,7 @@ func (m CIMAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -193,6 +183,16 @@ func (m *CIMAutoDiscoveryMethod) validateProperty(formats strfmt.Registry) error
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validate this c i m auto discovery method based on the context it is used
+func (m *CIMAutoDiscoveryMethod) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

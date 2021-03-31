@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateWebsiteGroupByIDReader is a Reader for the UpdateWebsiteGroupByID structure.
@@ -24,14 +23,12 @@ type UpdateWebsiteGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateWebsiteGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateWebsiteGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateWebsiteGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateWebsiteGroupByIDOK() *UpdateWebsiteGroupByIDOK {
 	return &UpdateWebsiteGroupByIDOK{}
 }
 
-/*UpdateWebsiteGroupByIDOK handles this case with default header values.
+/* UpdateWebsiteGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateWebsiteGroupByIDOK struct {
 
 func (o *UpdateWebsiteGroupByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /website/groups/{id}][%d] updateWebsiteGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateWebsiteGroupByIDOK) GetPayload() *models.WebsiteGroup {
+	return o.Payload
 }
 
 func (o *UpdateWebsiteGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateWebsiteGroupByIDDefault(code int) *UpdateWebsiteGroupByIDDefault {
 	}
 }
 
-/*UpdateWebsiteGroupByIDDefault handles this case with default header values.
+/* UpdateWebsiteGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateWebsiteGroupByIDDefault) Code() int {
 
 func (o *UpdateWebsiteGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /website/groups/{id}][%d] updateWebsiteGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateWebsiteGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateWebsiteGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDatasourceListReader is a Reader for the GetDatasourceList structure.
@@ -24,14 +23,12 @@ type GetDatasourceListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDatasourceListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDatasourceListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDatasourceListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDatasourceListOK() *GetDatasourceListOK {
 	return &GetDatasourceListOK{}
 }
 
-/*GetDatasourceListOK handles this case with default header values.
+/* GetDatasourceListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDatasourceListOK struct {
 
 func (o *GetDatasourceListOK) Error() string {
 	return fmt.Sprintf("[GET /setting/datasources][%d] getDatasourceListOK  %+v", 200, o.Payload)
+}
+func (o *GetDatasourceListOK) GetPayload() *models.DatasourcePaginationResponse {
+	return o.Payload
 }
 
 func (o *GetDatasourceListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDatasourceListDefault(code int) *GetDatasourceListDefault {
 	}
 }
 
-/*GetDatasourceListDefault handles this case with default header values.
+/* GetDatasourceListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDatasourceListDefault) Code() int {
 
 func (o *GetDatasourceListDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/datasources][%d] getDatasourceList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDatasourceListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDatasourceListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

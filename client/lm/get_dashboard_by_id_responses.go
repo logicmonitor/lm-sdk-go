@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDashboardByIDReader is a Reader for the GetDashboardByID structure.
@@ -24,14 +23,12 @@ type GetDashboardByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDashboardByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDashboardByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDashboardByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDashboardByIDOK() *GetDashboardByIDOK {
 	return &GetDashboardByIDOK{}
 }
 
-/*GetDashboardByIDOK handles this case with default header values.
+/* GetDashboardByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDashboardByIDOK struct {
 
 func (o *GetDashboardByIDOK) Error() string {
 	return fmt.Sprintf("[GET /dashboard/dashboards/{id}][%d] getDashboardByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetDashboardByIDOK) GetPayload() *models.Dashboard {
+	return o.Payload
 }
 
 func (o *GetDashboardByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDashboardByIDDefault(code int) *GetDashboardByIDDefault {
 	}
 }
 
-/*GetDashboardByIDDefault handles this case with default header values.
+/* GetDashboardByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDashboardByIDDefault) Code() int {
 
 func (o *GetDashboardByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /dashboard/dashboards/{id}][%d] getDashboardById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDashboardByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDashboardByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

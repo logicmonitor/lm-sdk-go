@@ -7,17 +7,18 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // WebsiteOverallStatusWidget website overall status widget
+//
 // swagger:model WebsiteOverallStatusWidget
 type WebsiteOverallStatusWidget struct {
 	dashboardIdField *int32
@@ -142,7 +143,6 @@ func (m *WebsiteOverallStatusWidget) Type() string {
 
 // SetType sets the type of this subtype
 func (m *WebsiteOverallStatusWidget) SetType(val string) {
-
 }
 
 // UserPermission gets the user permission of this subtype
@@ -154,8 +154,6 @@ func (m *WebsiteOverallStatusWidget) UserPermission() string {
 func (m *WebsiteOverallStatusWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
-
-// Items gets the items of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *WebsiteOverallStatusWidget) UnmarshalJSON(raw []byte) error {
@@ -230,7 +228,6 @@ func (m *WebsiteOverallStatusWidget) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.userPermissionField = base.UserPermission
 
 	result.Items = data.Items
@@ -252,8 +249,7 @@ func (m WebsiteOverallStatusWidget) MarshalJSON() ([]byte, error) {
 	}{
 
 		Items: m.Items,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -302,8 +298,7 @@ func (m WebsiteOverallStatusWidget) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserPermission: m.UserPermission(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -364,6 +359,77 @@ func (m *WebsiteOverallStatusWidget) validateItems(formats strfmt.Registry) erro
 
 		if m.Items[i] != nil {
 			if err := m.Items[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this website overall status widget based on the context it is used
+func (m *WebsiteOverallStatusWidget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLastUpdatedBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastUpdatedOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateItems(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *WebsiteOverallStatusWidget) contextValidateLastUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedBy", "body", string(m.LastUpdatedBy())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebsiteOverallStatusWidget) contextValidateLastUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedOn", "body", int64(m.LastUpdatedOn())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebsiteOverallStatusWidget) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebsiteOverallStatusWidget) contextValidateItems(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Items); i++ {
+
+		if m.Items[i] != nil {
+			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
 				}

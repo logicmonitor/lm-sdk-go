@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // ImportDataSourceReader is a Reader for the ImportDataSource structure.
@@ -24,14 +23,12 @@ type ImportDataSourceReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ImportDataSourceReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewImportDataSourceOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewImportDataSourceDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewImportDataSourceOK() *ImportDataSourceOK {
 	return &ImportDataSourceOK{}
 }
 
-/*ImportDataSourceOK handles this case with default header values.
+/* ImportDataSourceOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type ImportDataSourceOK struct {
 
 func (o *ImportDataSourceOK) Error() string {
 	return fmt.Sprintf("[POST /setting/datasources/importxml][%d] importDataSourceOK  %+v", 200, o.Payload)
+}
+func (o *ImportDataSourceOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *ImportDataSourceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewImportDataSourceDefault(code int) *ImportDataSourceDefault {
 	}
 }
 
-/*ImportDataSourceDefault handles this case with default header values.
+/* ImportDataSourceDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *ImportDataSourceDefault) Code() int {
 
 func (o *ImportDataSourceDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/datasources/importxml][%d] importDataSource default  %+v", o._statusCode, o.Payload)
+}
+func (o *ImportDataSourceDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *ImportDataSourceDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

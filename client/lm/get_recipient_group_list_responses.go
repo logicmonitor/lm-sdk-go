@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetRecipientGroupListReader is a Reader for the GetRecipientGroupList structure.
@@ -24,14 +23,12 @@ type GetRecipientGroupListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRecipientGroupListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRecipientGroupListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetRecipientGroupListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetRecipientGroupListOK() *GetRecipientGroupListOK {
 	return &GetRecipientGroupListOK{}
 }
 
-/*GetRecipientGroupListOK handles this case with default header values.
+/* GetRecipientGroupListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetRecipientGroupListOK struct {
 
 func (o *GetRecipientGroupListOK) Error() string {
 	return fmt.Sprintf("[GET /setting/recipientgroups][%d] getRecipientGroupListOK  %+v", 200, o.Payload)
+}
+func (o *GetRecipientGroupListOK) GetPayload() *models.RecipientGroupPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetRecipientGroupListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetRecipientGroupListDefault(code int) *GetRecipientGroupListDefault {
 	}
 }
 
-/*GetRecipientGroupListDefault handles this case with default header values.
+/* GetRecipientGroupListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetRecipientGroupListDefault) Code() int {
 
 func (o *GetRecipientGroupListDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/recipientgroups][%d] getRecipientGroupList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetRecipientGroupListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetRecipientGroupListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -7,17 +7,18 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // GoogleMapWidget google map widget
+//
 // swagger:model GoogleMapWidget
 type GoogleMapWidget struct {
 	dashboardIdField *int32
@@ -40,24 +41,24 @@ type GoogleMapWidget struct {
 
 	userPermissionField string
 
-	// Whether ACKed alerts should be displayed
-	AckChecked bool `json:"ackChecked,omitempty"`
+	// Whether ACKed alerts should be displayed, the default value is true
+	AckChecked interface{} `json:"ackChecked,omitempty"`
 
-	// Whether critical alerts should be displayed
-	DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
+	// Whether critical alerts should be displayed, the default value is true
+	DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
 
-	// Whether error alerts should be displayed
-	DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
+	// Whether error alerts should be displayed, the default value is true
+	DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
 
-	// Whether warning alerts should be displayed
-	DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
+	// Whether warning alerts should be displayed, the default value is true
+	DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
 
 	// The points info
 	// Required: true
 	MapPoints []*PointSource `json:"mapPoints"`
 
-	// Whether alerts occuring during an SDT period should be displayed
-	SDTChecked bool `json:"sdtChecked,omitempty"`
+	// Whether alerts occuring during an SDT period should be displayed, the default value is true
+	SDTChecked interface{} `json:"sdtChecked,omitempty"`
 }
 
 // DashboardID gets the dashboard Id of this subtype
@@ -157,7 +158,6 @@ func (m *GoogleMapWidget) Type() string {
 
 // SetType sets the type of this subtype
 func (m *GoogleMapWidget) SetType(val string) {
-
 }
 
 // UserPermission gets the user permission of this subtype
@@ -170,40 +170,28 @@ func (m *GoogleMapWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
 
-// AckChecked gets the ack checked of this subtype
-
-// DisplayCriticalAlert gets the display critical alert of this subtype
-
-// DisplayErrorAlert gets the display error alert of this subtype
-
-// DisplayWarnAlert gets the display warn alert of this subtype
-
-// MapPoints gets the map points of this subtype
-
-// SDTChecked gets the sdt checked of this subtype
-
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *GoogleMapWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// Whether ACKed alerts should be displayed
-		AckChecked bool `json:"ackChecked,omitempty"`
+		// Whether ACKed alerts should be displayed, the default value is true
+		AckChecked interface{} `json:"ackChecked,omitempty"`
 
-		// Whether critical alerts should be displayed
-		DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
+		// Whether critical alerts should be displayed, the default value is true
+		DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
 
-		// Whether error alerts should be displayed
-		DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
+		// Whether error alerts should be displayed, the default value is true
+		DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
 
-		// Whether warning alerts should be displayed
-		DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
+		// Whether warning alerts should be displayed, the default value is true
+		DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
 
 		// The points info
 		// Required: true
 		MapPoints []*PointSource `json:"mapPoints"`
 
-		// Whether alerts occuring during an SDT period should be displayed
-		SDTChecked bool `json:"sdtChecked,omitempty"`
+		// Whether alerts occuring during an SDT period should be displayed, the default value is true
+		SDTChecked interface{} `json:"sdtChecked,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -270,19 +258,13 @@ func (m *GoogleMapWidget) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.userPermissionField = base.UserPermission
 
 	result.AckChecked = data.AckChecked
-
 	result.DisplayCriticalAlert = data.DisplayCriticalAlert
-
 	result.DisplayErrorAlert = data.DisplayErrorAlert
-
 	result.DisplayWarnAlert = data.DisplayWarnAlert
-
 	result.MapPoints = data.MapPoints
-
 	result.SDTChecked = data.SDTChecked
 
 	*m = result
@@ -296,24 +278,24 @@ func (m GoogleMapWidget) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// Whether ACKed alerts should be displayed
-		AckChecked bool `json:"ackChecked,omitempty"`
+		// Whether ACKed alerts should be displayed, the default value is true
+		AckChecked interface{} `json:"ackChecked,omitempty"`
 
-		// Whether critical alerts should be displayed
-		DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
+		// Whether critical alerts should be displayed, the default value is true
+		DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
 
-		// Whether error alerts should be displayed
-		DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
+		// Whether error alerts should be displayed, the default value is true
+		DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
 
-		// Whether warning alerts should be displayed
-		DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
+		// Whether warning alerts should be displayed, the default value is true
+		DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
 
 		// The points info
 		// Required: true
 		MapPoints []*PointSource `json:"mapPoints"`
 
-		// Whether alerts occuring during an SDT period should be displayed
-		SDTChecked bool `json:"sdtChecked,omitempty"`
+		// Whether alerts occuring during an SDT period should be displayed, the default value is true
+		SDTChecked interface{} `json:"sdtChecked,omitempty"`
 	}{
 
 		AckChecked: m.AckChecked,
@@ -327,8 +309,7 @@ func (m GoogleMapWidget) MarshalJSON() ([]byte, error) {
 		MapPoints: m.MapPoints,
 
 		SDTChecked: m.SDTChecked,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -377,8 +358,7 @@ func (m GoogleMapWidget) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserPermission: m.UserPermission(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -439,6 +419,77 @@ func (m *GoogleMapWidget) validateMapPoints(formats strfmt.Registry) error {
 
 		if m.MapPoints[i] != nil {
 			if err := m.MapPoints[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("mapPoints" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this google map widget based on the context it is used
+func (m *GoogleMapWidget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLastUpdatedBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastUpdatedOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMapPoints(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GoogleMapWidget) contextValidateLastUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedBy", "body", string(m.LastUpdatedBy())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GoogleMapWidget) contextValidateLastUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedOn", "body", int64(m.LastUpdatedOn())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GoogleMapWidget) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *GoogleMapWidget) contextValidateMapPoints(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.MapPoints); i++ {
+
+		if m.MapPoints[i] != nil {
+			if err := m.MapPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mapPoints" + "." + strconv.Itoa(i))
 				}

@@ -6,76 +6,96 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewDeleteDeviceDatasourceInstanceByIDParams creates a new DeleteDeviceDatasourceInstanceByIDParams object
-// with the default values initialized.
+// NewDeleteDeviceDatasourceInstanceByIDParams creates a new DeleteDeviceDatasourceInstanceByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteDeviceDatasourceInstanceByIDParams() *DeleteDeviceDatasourceInstanceByIDParams {
-	var ()
 	return &DeleteDeviceDatasourceInstanceByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteDeviceDatasourceInstanceByIDParamsWithTimeout creates a new DeleteDeviceDatasourceInstanceByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteDeviceDatasourceInstanceByIDParamsWithTimeout(timeout time.Duration) *DeleteDeviceDatasourceInstanceByIDParams {
-	var ()
 	return &DeleteDeviceDatasourceInstanceByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteDeviceDatasourceInstanceByIDParamsWithContext creates a new DeleteDeviceDatasourceInstanceByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteDeviceDatasourceInstanceByIDParamsWithContext(ctx context.Context) *DeleteDeviceDatasourceInstanceByIDParams {
-	var ()
 	return &DeleteDeviceDatasourceInstanceByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteDeviceDatasourceInstanceByIDParamsWithHTTPClient creates a new DeleteDeviceDatasourceInstanceByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteDeviceDatasourceInstanceByIDParamsWithHTTPClient(client *http.Client) *DeleteDeviceDatasourceInstanceByIDParams {
-	var ()
 	return &DeleteDeviceDatasourceInstanceByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
-for the delete device datasource instance by Id operation typically these are written to a http.Request
+/* DeleteDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
+   for the delete device datasource instance by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteDeviceDatasourceInstanceByIDParams struct {
 
-	/*DeviceID*/
+	// DeviceID.
+	//
+	// Format: int32
 	DeviceID int32
-	/*HdsID
-	  The device-datasource ID
 
+	/* HdsID.
+
+	   The device-datasource ID
+
+	   Format: int32
 	*/
 	HdsID int32
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete device datasource instance by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteDeviceDatasourceInstanceByIDParams) WithDefaults() *DeleteDeviceDatasourceInstanceByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete device datasource instance by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteDeviceDatasourceInstanceByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete device datasource instance by Id params

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteDevicePropertyByNameReader is a Reader for the DeleteDevicePropertyByName structure.
@@ -24,14 +23,12 @@ type DeleteDevicePropertyByNameReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteDevicePropertyByNameReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteDevicePropertyByNameOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteDevicePropertyByNameDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteDevicePropertyByNameOK() *DeleteDevicePropertyByNameOK {
 	return &DeleteDevicePropertyByNameOK{}
 }
 
-/*DeleteDevicePropertyByNameOK handles this case with default header values.
+/* DeleteDevicePropertyByNameOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteDevicePropertyByNameOK struct {
 
 func (o *DeleteDevicePropertyByNameOK) Error() string {
 	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/properties/{name}][%d] deleteDevicePropertyByNameOK  %+v", 200, o.Payload)
+}
+func (o *DeleteDevicePropertyByNameOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteDevicePropertyByNameOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteDevicePropertyByNameDefault(code int) *DeleteDevicePropertyByNameD
 	}
 }
 
-/*DeleteDevicePropertyByNameDefault handles this case with default header values.
+/* DeleteDevicePropertyByNameDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteDevicePropertyByNameDefault) Code() int {
 
 func (o *DeleteDevicePropertyByNameDefault) Error() string {
 	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/properties/{name}][%d] deleteDevicePropertyByName default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteDevicePropertyByNameDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteDevicePropertyByNameDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

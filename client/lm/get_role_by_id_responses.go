@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetRoleByIDReader is a Reader for the GetRoleByID structure.
@@ -24,14 +23,12 @@ type GetRoleByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRoleByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRoleByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetRoleByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetRoleByIDOK() *GetRoleByIDOK {
 	return &GetRoleByIDOK{}
 }
 
-/*GetRoleByIDOK handles this case with default header values.
+/* GetRoleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetRoleByIDOK struct {
 
 func (o *GetRoleByIDOK) Error() string {
 	return fmt.Sprintf("[GET /setting/roles/{id}][%d] getRoleByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetRoleByIDOK) GetPayload() *models.Role {
+	return o.Payload
 }
 
 func (o *GetRoleByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetRoleByIDDefault(code int) *GetRoleByIDDefault {
 	}
 }
 
-/*GetRoleByIDDefault handles this case with default header values.
+/* GetRoleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetRoleByIDDefault) Code() int {
 
 func (o *GetRoleByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/roles/{id}][%d] getRoleById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetRoleByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetRoleByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

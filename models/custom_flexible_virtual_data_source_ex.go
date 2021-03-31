@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // CustomFlexibleVirtualDataSourceEx custom flexible virtual data source ex
+//
 // swagger:model CustomFlexibleVirtualDataSourceEx
 type CustomFlexibleVirtualDataSourceEx struct {
 
@@ -170,6 +172,114 @@ func (m *CustomFlexibleVirtualDataSourceEx) validateName(formats strfmt.Registry
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this custom flexible virtual data source ex based on the context it is used
+func (m *CustomFlexibleVirtualDataSourceEx) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCustomGraphID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeviceDisplayName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeviceGroupFullPath(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDisplay(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInstanceName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *CustomFlexibleVirtualDataSourceEx) contextValidateCustomGraphID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "customGraphId", "body", int32(m.CustomGraphID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CustomFlexibleVirtualDataSourceEx) contextValidateDeviceDisplayName(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DeviceDisplayName != nil {
+		if err := m.DeviceDisplayName.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("deviceDisplayName")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CustomFlexibleVirtualDataSourceEx) contextValidateDeviceGroupFullPath(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.DeviceGroupFullPath != nil {
+		if err := m.DeviceGroupFullPath.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("deviceGroupFullPath")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CustomFlexibleVirtualDataSourceEx) contextValidateDisplay(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Display != nil {
+		if err := m.Display.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("display")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *CustomFlexibleVirtualDataSourceEx) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CustomFlexibleVirtualDataSourceEx) contextValidateInstanceName(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InstanceName != nil {
+		if err := m.InstanceName.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("instanceName")
+			}
+			return err
+		}
 	}
 
 	return nil

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetReportGroupListReader is a Reader for the GetReportGroupList structure.
@@ -24,14 +23,12 @@ type GetReportGroupListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetReportGroupListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetReportGroupListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetReportGroupListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetReportGroupListOK() *GetReportGroupListOK {
 	return &GetReportGroupListOK{}
 }
 
-/*GetReportGroupListOK handles this case with default header values.
+/* GetReportGroupListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetReportGroupListOK struct {
 
 func (o *GetReportGroupListOK) Error() string {
 	return fmt.Sprintf("[GET /report/groups][%d] getReportGroupListOK  %+v", 200, o.Payload)
+}
+func (o *GetReportGroupListOK) GetPayload() *models.ReportGroupPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetReportGroupListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetReportGroupListDefault(code int) *GetReportGroupListDefault {
 	}
 }
 
-/*GetReportGroupListDefault handles this case with default header values.
+/* GetReportGroupListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetReportGroupListDefault) Code() int {
 
 func (o *GetReportGroupListDefault) Error() string {
 	return fmt.Sprintf("[GET /report/groups][%d] getReportGroupList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetReportGroupListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetReportGroupListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

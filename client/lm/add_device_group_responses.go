@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddDeviceGroupReader is a Reader for the AddDeviceGroup structure.
@@ -24,14 +23,12 @@ type AddDeviceGroupReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddDeviceGroupReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddDeviceGroupOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddDeviceGroupDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddDeviceGroupOK() *AddDeviceGroupOK {
 	return &AddDeviceGroupOK{}
 }
 
-/*AddDeviceGroupOK handles this case with default header values.
+/* AddDeviceGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddDeviceGroupOK struct {
 
 func (o *AddDeviceGroupOK) Error() string {
 	return fmt.Sprintf("[POST /device/groups][%d] addDeviceGroupOK  %+v", 200, o.Payload)
+}
+func (o *AddDeviceGroupOK) GetPayload() *models.DeviceGroup {
+	return o.Payload
 }
 
 func (o *AddDeviceGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddDeviceGroupDefault(code int) *AddDeviceGroupDefault {
 	}
 }
 
-/*AddDeviceGroupDefault handles this case with default header values.
+/* AddDeviceGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddDeviceGroupDefault) Code() int {
 
 func (o *AddDeviceGroupDefault) Error() string {
 	return fmt.Sprintf("[POST /device/groups][%d] addDeviceGroup default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddDeviceGroupDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddDeviceGroupDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

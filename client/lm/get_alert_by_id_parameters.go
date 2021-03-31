@@ -6,87 +6,101 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetAlertByIDParams creates a new GetAlertByIDParams object
-// with the default values initialized.
+// NewGetAlertByIDParams creates a new GetAlertByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAlertByIDParams() *GetAlertByIDParams {
-	var (
-		needMessageDefault = bool(false)
-	)
 	return &GetAlertByIDParams{
-		NeedMessage: &needMessageDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAlertByIDParamsWithTimeout creates a new GetAlertByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAlertByIDParamsWithTimeout(timeout time.Duration) *GetAlertByIDParams {
-	var (
-		needMessageDefault = bool(false)
-	)
 	return &GetAlertByIDParams{
-		NeedMessage: &needMessageDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAlertByIDParamsWithContext creates a new GetAlertByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAlertByIDParamsWithContext(ctx context.Context) *GetAlertByIDParams {
-	var (
-		needMessageDefault = bool(false)
-	)
 	return &GetAlertByIDParams{
-		NeedMessage: &needMessageDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetAlertByIDParamsWithHTTPClient creates a new GetAlertByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAlertByIDParamsWithHTTPClient(client *http.Client) *GetAlertByIDParams {
-	var (
-		needMessageDefault = bool(false)
-	)
 	return &GetAlertByIDParams{
-		NeedMessage: &needMessageDefault,
-		HTTPClient:  client,
+		HTTPClient: client,
 	}
 }
 
-/*GetAlertByIDParams contains all the parameters to send to the API endpoint
-for the get alert by Id operation typically these are written to a http.Request
+/* GetAlertByIDParams contains all the parameters to send to the API endpoint
+   for the get alert by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAlertByIDParams struct {
 
-	/*CustomColumns*/
+	// CustomColumns.
 	CustomColumns *string
-	/*Fields*/
+
+	// Fields.
 	Fields *string
-	/*ID*/
+
+	// ID.
 	ID string
-	/*NeedMessage*/
+
+	// NeedMessage.
 	NeedMessage *bool
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get alert by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAlertByIDParams) WithDefaults() *GetAlertByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get alert by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAlertByIDParams) SetDefaults() {
+	var (
+		needMessageDefault = bool(false)
+	)
+
+	val := GetAlertByIDParams{
+		NeedMessage: &needMessageDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get alert by Id params
@@ -178,32 +192,34 @@ func (o *GetAlertByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 		// query param customColumns
 		var qrCustomColumns string
+
 		if o.CustomColumns != nil {
 			qrCustomColumns = *o.CustomColumns
 		}
 		qCustomColumns := qrCustomColumns
 		if qCustomColumns != "" {
+
 			if err := r.SetQueryParam("customColumns", qCustomColumns); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Fields != nil {
 
 		// query param fields
 		var qrFields string
+
 		if o.Fields != nil {
 			qrFields = *o.Fields
 		}
 		qFields := qrFields
 		if qFields != "" {
+
 			if err := r.SetQueryParam("fields", qFields); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id
@@ -215,16 +231,17 @@ func (o *GetAlertByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 		// query param needMessage
 		var qrNeedMessage bool
+
 		if o.NeedMessage != nil {
 			qrNeedMessage = *o.NeedMessage
 		}
 		qNeedMessage := swag.FormatBool(qrNeedMessage)
 		if qNeedMessage != "" {
+
 			if err := r.SetQueryParam("needMessage", qNeedMessage); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

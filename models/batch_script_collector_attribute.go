@@ -7,15 +7,16 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // BatchScriptCollectorAttribute batch script collector attribute
+//
 // swagger:model BatchScriptCollectorAttribute
 type BatchScriptCollectorAttribute struct {
 
@@ -45,20 +46,7 @@ func (m *BatchScriptCollectorAttribute) Name() string {
 
 // SetName sets the name of this subtype
 func (m *BatchScriptCollectorAttribute) SetName(val string) {
-
 }
-
-// GroovyScript gets the groovy script of this subtype
-
-// LinuxCmdline gets the linux cmdline of this subtype
-
-// LinuxScript gets the linux script of this subtype
-
-// ScriptType gets the script type of this subtype
-
-// WindowsCmdline gets the windows cmdline of this subtype
-
-// WindowsScript gets the windows script of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *BatchScriptCollectorAttribute) UnmarshalJSON(raw []byte) error {
@@ -111,15 +99,10 @@ func (m *BatchScriptCollectorAttribute) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.GroovyScript = data.GroovyScript
-
 	result.LinuxCmdline = data.LinuxCmdline
-
 	result.LinuxScript = data.LinuxScript
-
 	result.ScriptType = data.ScriptType
-
 	result.WindowsCmdline = data.WindowsCmdline
-
 	result.WindowsScript = data.WindowsScript
 
 	*m = result
@@ -163,8 +146,7 @@ func (m BatchScriptCollectorAttribute) MarshalJSON() ([]byte, error) {
 		WindowsCmdline: m.WindowsCmdline,
 
 		WindowsScript: m.WindowsScript,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -173,8 +155,7 @@ func (m BatchScriptCollectorAttribute) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -184,6 +165,16 @@ func (m BatchScriptCollectorAttribute) MarshalJSON() ([]byte, error) {
 
 // Validate validates this batch script collector attribute
 func (m *BatchScriptCollectorAttribute) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+// ContextValidate validate this batch script collector attribute based on the context it is used
+func (m *BatchScriptCollectorAttribute) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if len(res) > 0 {

@@ -6,71 +6,86 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetRoleByIDParams creates a new GetRoleByIDParams object
-// with the default values initialized.
+// NewGetRoleByIDParams creates a new GetRoleByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetRoleByIDParams() *GetRoleByIDParams {
-	var ()
 	return &GetRoleByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetRoleByIDParamsWithTimeout creates a new GetRoleByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetRoleByIDParamsWithTimeout(timeout time.Duration) *GetRoleByIDParams {
-	var ()
 	return &GetRoleByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetRoleByIDParamsWithContext creates a new GetRoleByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetRoleByIDParamsWithContext(ctx context.Context) *GetRoleByIDParams {
-	var ()
 	return &GetRoleByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetRoleByIDParamsWithHTTPClient creates a new GetRoleByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetRoleByIDParamsWithHTTPClient(client *http.Client) *GetRoleByIDParams {
-	var ()
 	return &GetRoleByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetRoleByIDParams contains all the parameters to send to the API endpoint
-for the get role by Id operation typically these are written to a http.Request
+/* GetRoleByIDParams contains all the parameters to send to the API endpoint
+   for the get role by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type GetRoleByIDParams struct {
 
-	/*Fields*/
+	// Fields.
 	Fields *string
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get role by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetRoleByIDParams) WithDefaults() *GetRoleByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get role by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetRoleByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get role by Id params
@@ -140,16 +155,17 @@ func (o *GetRoleByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 
 		// query param fields
 		var qrFields string
+
 		if o.Fields != nil {
 			qrFields = *o.Fields
 		}
 		qFields := qrFields
 		if qFields != "" {
+
 			if err := r.SetQueryParam("fields", qFields); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id

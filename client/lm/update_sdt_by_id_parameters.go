@@ -6,72 +6,85 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewUpdateSDTByIDParams creates a new UpdateSDTByIDParams object
-// with the default values initialized.
+// NewUpdateSDTByIDParams creates a new UpdateSDTByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateSDTByIDParams() *UpdateSDTByIDParams {
-	var ()
 	return &UpdateSDTByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateSDTByIDParamsWithTimeout creates a new UpdateSDTByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateSDTByIDParamsWithTimeout(timeout time.Duration) *UpdateSDTByIDParams {
-	var ()
 	return &UpdateSDTByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateSDTByIDParamsWithContext creates a new UpdateSDTByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateSDTByIDParamsWithContext(ctx context.Context) *UpdateSDTByIDParams {
-	var ()
 	return &UpdateSDTByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateSDTByIDParamsWithHTTPClient creates a new UpdateSDTByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateSDTByIDParamsWithHTTPClient(client *http.Client) *UpdateSDTByIDParams {
-	var ()
 	return &UpdateSDTByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateSDTByIDParams contains all the parameters to send to the API endpoint
-for the update SDT by Id operation typically these are written to a http.Request
+/* UpdateSDTByIDParams contains all the parameters to send to the API endpoint
+   for the update SDT by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateSDTByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body models.SDT
-	/*ID*/
+
+	// ID.
 	ID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update SDT by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateSDTByIDParams) WithDefaults() *UpdateSDTByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update SDT by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateSDTByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update SDT by Id params
@@ -136,7 +149,6 @@ func (o *UpdateSDTByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

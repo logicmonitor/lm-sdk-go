@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // TextWidget text widget
+//
 // swagger:model TextWidget
 type TextWidget struct {
 	dashboardIdField *int32
@@ -141,7 +142,6 @@ func (m *TextWidget) Type() string {
 
 // SetType sets the type of this subtype
 func (m *TextWidget) SetType(val string) {
-
 }
 
 // UserPermission gets the user permission of this subtype
@@ -153,8 +153,6 @@ func (m *TextWidget) UserPermission() string {
 func (m *TextWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
-
-// Content gets the content of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *TextWidget) UnmarshalJSON(raw []byte) error {
@@ -229,7 +227,6 @@ func (m *TextWidget) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.userPermissionField = base.UserPermission
 
 	result.Content = data.Content
@@ -251,8 +248,7 @@ func (m TextWidget) MarshalJSON() ([]byte, error) {
 	}{
 
 		Content: m.Content,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -301,8 +297,7 @@ func (m TextWidget) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserPermission: m.UserPermission(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -353,6 +348,55 @@ func (m *TextWidget) validateName(formats strfmt.Registry) error {
 func (m *TextWidget) validateContent(formats strfmt.Registry) error {
 
 	if err := validate.Required("content", "body", m.Content); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this text widget based on the context it is used
+func (m *TextWidget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLastUpdatedBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastUpdatedOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TextWidget) contextValidateLastUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedBy", "body", string(m.LastUpdatedBy())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *TextWidget) contextValidateLastUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedOn", "body", int64(m.LastUpdatedOn())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *TextWidget) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
 		return err
 	}
 

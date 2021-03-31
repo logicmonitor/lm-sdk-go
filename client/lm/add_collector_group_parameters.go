@@ -6,70 +6,82 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewAddCollectorGroupParams creates a new AddCollectorGroupParams object
-// with the default values initialized.
+// NewAddCollectorGroupParams creates a new AddCollectorGroupParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAddCollectorGroupParams() *AddCollectorGroupParams {
-	var ()
 	return &AddCollectorGroupParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAddCollectorGroupParamsWithTimeout creates a new AddCollectorGroupParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAddCollectorGroupParamsWithTimeout(timeout time.Duration) *AddCollectorGroupParams {
-	var ()
 	return &AddCollectorGroupParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAddCollectorGroupParamsWithContext creates a new AddCollectorGroupParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAddCollectorGroupParamsWithContext(ctx context.Context) *AddCollectorGroupParams {
-	var ()
 	return &AddCollectorGroupParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAddCollectorGroupParamsWithHTTPClient creates a new AddCollectorGroupParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAddCollectorGroupParamsWithHTTPClient(client *http.Client) *AddCollectorGroupParams {
-	var ()
 	return &AddCollectorGroupParams{
 		HTTPClient: client,
 	}
 }
 
-/*AddCollectorGroupParams contains all the parameters to send to the API endpoint
-for the add collector group operation typically these are written to a http.Request
+/* AddCollectorGroupParams contains all the parameters to send to the API endpoint
+   for the add collector group operation.
+
+   Typically these are written to a http.Request.
 */
 type AddCollectorGroupParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.CollectorGroup
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the add collector group params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddCollectorGroupParams) WithDefaults() *AddCollectorGroupParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the add collector group params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddCollectorGroupParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add collector group params
@@ -123,7 +135,6 @@ func (o *AddCollectorGroupParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

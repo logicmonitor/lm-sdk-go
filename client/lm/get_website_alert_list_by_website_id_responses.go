@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetWebsiteAlertListByWebsiteIDReader is a Reader for the GetWebsiteAlertListByWebsiteID structure.
@@ -24,14 +23,12 @@ type GetWebsiteAlertListByWebsiteIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetWebsiteAlertListByWebsiteIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetWebsiteAlertListByWebsiteIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetWebsiteAlertListByWebsiteIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetWebsiteAlertListByWebsiteIDOK() *GetWebsiteAlertListByWebsiteIDOK {
 	return &GetWebsiteAlertListByWebsiteIDOK{}
 }
 
-/*GetWebsiteAlertListByWebsiteIDOK handles this case with default header values.
+/* GetWebsiteAlertListByWebsiteIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetWebsiteAlertListByWebsiteIDOK struct {
 
 func (o *GetWebsiteAlertListByWebsiteIDOK) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{id}/alerts][%d] getWebsiteAlertListByWebsiteIdOK  %+v", 200, o.Payload)
+}
+func (o *GetWebsiteAlertListByWebsiteIDOK) GetPayload() *models.AlertPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetWebsiteAlertListByWebsiteIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetWebsiteAlertListByWebsiteIDDefault(code int) *GetWebsiteAlertListByWe
 	}
 }
 
-/*GetWebsiteAlertListByWebsiteIDDefault handles this case with default header values.
+/* GetWebsiteAlertListByWebsiteIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetWebsiteAlertListByWebsiteIDDefault) Code() int {
 
 func (o *GetWebsiteAlertListByWebsiteIDDefault) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{id}/alerts][%d] getWebsiteAlertListByWebsiteId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetWebsiteAlertListByWebsiteIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetWebsiteAlertListByWebsiteIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

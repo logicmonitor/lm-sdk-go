@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateDeviceGroupByIDReader is a Reader for the UpdateDeviceGroupByID structure.
@@ -24,14 +23,12 @@ type UpdateDeviceGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateDeviceGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateDeviceGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateDeviceGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateDeviceGroupByIDOK() *UpdateDeviceGroupByIDOK {
 	return &UpdateDeviceGroupByIDOK{}
 }
 
-/*UpdateDeviceGroupByIDOK handles this case with default header values.
+/* UpdateDeviceGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateDeviceGroupByIDOK struct {
 
 func (o *UpdateDeviceGroupByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /device/groups/{id}][%d] updateDeviceGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateDeviceGroupByIDOK) GetPayload() *models.DeviceGroup {
+	return o.Payload
 }
 
 func (o *UpdateDeviceGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateDeviceGroupByIDDefault(code int) *UpdateDeviceGroupByIDDefault {
 	}
 }
 
-/*UpdateDeviceGroupByIDDefault handles this case with default header values.
+/* UpdateDeviceGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateDeviceGroupByIDDefault) Code() int {
 
 func (o *UpdateDeviceGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /device/groups/{id}][%d] updateDeviceGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateDeviceGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateDeviceGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -7,18 +7,20 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"io"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // SDTPaginationResponse SDT pagination response
+//
 // swagger:model SDTPaginationResponse
 type SDTPaginationResponse struct {
 	itemsField []SDT
@@ -97,8 +99,7 @@ func (m SDTPaginationResponse) MarshalJSON() ([]byte, error) {
 		SearchID: m.SearchID,
 
 		Total: m.Total,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -107,8 +108,7 @@ func (m SDTPaginationResponse) MarshalJSON() ([]byte, error) {
 	}{
 
 		Items: m.itemsField,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -131,7 +131,6 @@ func (m *SDTPaginationResponse) Validate(formats strfmt.Registry) error {
 }
 
 func (m *SDTPaginationResponse) validateItems(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Items()) { // not required
 		return nil
 	}
@@ -145,6 +144,62 @@ func (m *SDTPaginationResponse) validateItems(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+// ContextValidate validate this SDT pagination response based on the context it is used
+func (m *SDTPaginationResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateItems(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSearchID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTotal(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SDTPaginationResponse) contextValidateItems(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Items()); i++ {
+
+		if err := m.itemsField[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("items" + "." + strconv.Itoa(i))
+			}
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *SDTPaginationResponse) contextValidateSearchID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "searchId", "body", string(m.SearchID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SDTPaginationResponse) contextValidateTotal(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "total", "body", int32(m.Total)); err != nil {
+		return err
 	}
 
 	return nil

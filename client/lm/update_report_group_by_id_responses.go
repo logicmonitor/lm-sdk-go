@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateReportGroupByIDReader is a Reader for the UpdateReportGroupByID structure.
@@ -24,14 +23,12 @@ type UpdateReportGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateReportGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateReportGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateReportGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateReportGroupByIDOK() *UpdateReportGroupByIDOK {
 	return &UpdateReportGroupByIDOK{}
 }
 
-/*UpdateReportGroupByIDOK handles this case with default header values.
+/* UpdateReportGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateReportGroupByIDOK struct {
 
 func (o *UpdateReportGroupByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /report/groups/{id}][%d] updateReportGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateReportGroupByIDOK) GetPayload() *models.ReportGroup {
+	return o.Payload
 }
 
 func (o *UpdateReportGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateReportGroupByIDDefault(code int) *UpdateReportGroupByIDDefault {
 	}
 }
 
-/*UpdateReportGroupByIDDefault handles this case with default header values.
+/* UpdateReportGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateReportGroupByIDDefault) Code() int {
 
 func (o *UpdateReportGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /report/groups/{id}][%d] updateReportGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateReportGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateReportGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

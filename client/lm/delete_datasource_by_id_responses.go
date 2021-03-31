@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteDatasourceByIDReader is a Reader for the DeleteDatasourceByID structure.
@@ -24,14 +23,12 @@ type DeleteDatasourceByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteDatasourceByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteDatasourceByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteDatasourceByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteDatasourceByIDOK() *DeleteDatasourceByIDOK {
 	return &DeleteDatasourceByIDOK{}
 }
 
-/*DeleteDatasourceByIDOK handles this case with default header values.
+/* DeleteDatasourceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteDatasourceByIDOK struct {
 
 func (o *DeleteDatasourceByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /setting/datasources/{id}][%d] deleteDatasourceByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteDatasourceByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteDatasourceByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteDatasourceByIDDefault(code int) *DeleteDatasourceByIDDefault {
 	}
 }
 
-/*DeleteDatasourceByIDDefault handles this case with default header values.
+/* DeleteDatasourceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteDatasourceByIDDefault) Code() int {
 
 func (o *DeleteDatasourceByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /setting/datasources/{id}][%d] deleteDatasourceById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteDatasourceByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteDatasourceByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

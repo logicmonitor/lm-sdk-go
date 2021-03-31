@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteReportGroupByIDReader is a Reader for the DeleteReportGroupByID structure.
@@ -24,14 +23,12 @@ type DeleteReportGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteReportGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteReportGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteReportGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteReportGroupByIDOK() *DeleteReportGroupByIDOK {
 	return &DeleteReportGroupByIDOK{}
 }
 
-/*DeleteReportGroupByIDOK handles this case with default header values.
+/* DeleteReportGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteReportGroupByIDOK struct {
 
 func (o *DeleteReportGroupByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /report/groups/{id}][%d] deleteReportGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteReportGroupByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteReportGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteReportGroupByIDDefault(code int) *DeleteReportGroupByIDDefault {
 	}
 }
 
-/*DeleteReportGroupByIDDefault handles this case with default header values.
+/* DeleteReportGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteReportGroupByIDDefault) Code() int {
 
 func (o *DeleteReportGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /report/groups/{id}][%d] deleteReportGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteReportGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteReportGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

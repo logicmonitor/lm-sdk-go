@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // ImportConfigSourceReader is a Reader for the ImportConfigSource structure.
@@ -24,14 +23,12 @@ type ImportConfigSourceReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ImportConfigSourceReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewImportConfigSourceOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewImportConfigSourceDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewImportConfigSourceOK() *ImportConfigSourceOK {
 	return &ImportConfigSourceOK{}
 }
 
-/*ImportConfigSourceOK handles this case with default header values.
+/* ImportConfigSourceOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type ImportConfigSourceOK struct {
 
 func (o *ImportConfigSourceOK) Error() string {
 	return fmt.Sprintf("[POST /setting/configsources/importxml][%d] importConfigSourceOK  %+v", 200, o.Payload)
+}
+func (o *ImportConfigSourceOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *ImportConfigSourceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewImportConfigSourceDefault(code int) *ImportConfigSourceDefault {
 	}
 }
 
-/*ImportConfigSourceDefault handles this case with default header values.
+/* ImportConfigSourceDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *ImportConfigSourceDefault) Code() int {
 
 func (o *ImportConfigSourceDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/configsources/importxml][%d] importConfigSource default  %+v", o._statusCode, o.Payload)
+}
+func (o *ImportConfigSourceDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *ImportConfigSourceDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

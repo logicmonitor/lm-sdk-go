@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateDashboardGroupByIDReader is a Reader for the UpdateDashboardGroupByID structure.
@@ -24,14 +23,12 @@ type UpdateDashboardGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateDashboardGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateDashboardGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateDashboardGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateDashboardGroupByIDOK() *UpdateDashboardGroupByIDOK {
 	return &UpdateDashboardGroupByIDOK{}
 }
 
-/*UpdateDashboardGroupByIDOK handles this case with default header values.
+/* UpdateDashboardGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateDashboardGroupByIDOK struct {
 
 func (o *UpdateDashboardGroupByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /dashboard/groups/{id}][%d] updateDashboardGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateDashboardGroupByIDOK) GetPayload() *models.DashboardGroup {
+	return o.Payload
 }
 
 func (o *UpdateDashboardGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateDashboardGroupByIDDefault(code int) *UpdateDashboardGroupByIDDefau
 	}
 }
 
-/*UpdateDashboardGroupByIDDefault handles this case with default header values.
+/* UpdateDashboardGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateDashboardGroupByIDDefault) Code() int {
 
 func (o *UpdateDashboardGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /dashboard/groups/{id}][%d] updateDashboardGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateDashboardGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateDashboardGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

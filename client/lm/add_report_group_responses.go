@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddReportGroupReader is a Reader for the AddReportGroup structure.
@@ -24,14 +23,12 @@ type AddReportGroupReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddReportGroupReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddReportGroupOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddReportGroupDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddReportGroupOK() *AddReportGroupOK {
 	return &AddReportGroupOK{}
 }
 
-/*AddReportGroupOK handles this case with default header values.
+/* AddReportGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddReportGroupOK struct {
 
 func (o *AddReportGroupOK) Error() string {
 	return fmt.Sprintf("[POST /report/groups][%d] addReportGroupOK  %+v", 200, o.Payload)
+}
+func (o *AddReportGroupOK) GetPayload() *models.ReportGroup {
+	return o.Payload
 }
 
 func (o *AddReportGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddReportGroupDefault(code int) *AddReportGroupDefault {
 	}
 }
 
-/*AddReportGroupDefault handles this case with default header values.
+/* AddReportGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddReportGroupDefault) Code() int {
 
 func (o *AddReportGroupDefault) Error() string {
 	return fmt.Sprintf("[POST /report/groups][%d] addReportGroup default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddReportGroupDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddReportGroupDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

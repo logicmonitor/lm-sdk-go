@@ -6,68 +6,80 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
-// NewImportDataSourceParams creates a new ImportDataSourceParams object
-// with the default values initialized.
+// NewImportDataSourceParams creates a new ImportDataSourceParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewImportDataSourceParams() *ImportDataSourceParams {
-	var ()
 	return &ImportDataSourceParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewImportDataSourceParamsWithTimeout creates a new ImportDataSourceParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewImportDataSourceParamsWithTimeout(timeout time.Duration) *ImportDataSourceParams {
-	var ()
 	return &ImportDataSourceParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewImportDataSourceParamsWithContext creates a new ImportDataSourceParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewImportDataSourceParamsWithContext(ctx context.Context) *ImportDataSourceParams {
-	var ()
 	return &ImportDataSourceParams{
-
 		Context: ctx,
 	}
 }
 
 // NewImportDataSourceParamsWithHTTPClient creates a new ImportDataSourceParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewImportDataSourceParamsWithHTTPClient(client *http.Client) *ImportDataSourceParams {
-	var ()
 	return &ImportDataSourceParams{
 		HTTPClient: client,
 	}
 }
 
-/*ImportDataSourceParams contains all the parameters to send to the API endpoint
-for the import data source operation typically these are written to a http.Request
+/* ImportDataSourceParams contains all the parameters to send to the API endpoint
+   for the import data source operation.
+
+   Typically these are written to a http.Request.
 */
 type ImportDataSourceParams struct {
 
-	/*File*/
+	// File.
 	File runtime.NamedReadCloser
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the import data source params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ImportDataSourceParams) WithDefaults() *ImportDataSourceParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the import data source params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ImportDataSourceParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the import data source params
@@ -121,7 +133,6 @@ func (o *ImportDataSourceParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
 	// form file param file
 	if err := r.SetFileParam("file", o.File); err != nil {
 		return err

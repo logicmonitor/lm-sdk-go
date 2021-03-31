@@ -6,69 +6,83 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewDeleteDatasourceByIDParams creates a new DeleteDatasourceByIDParams object
-// with the default values initialized.
+// NewDeleteDatasourceByIDParams creates a new DeleteDatasourceByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewDeleteDatasourceByIDParams() *DeleteDatasourceByIDParams {
-	var ()
 	return &DeleteDatasourceByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewDeleteDatasourceByIDParamsWithTimeout creates a new DeleteDatasourceByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewDeleteDatasourceByIDParamsWithTimeout(timeout time.Duration) *DeleteDatasourceByIDParams {
-	var ()
 	return &DeleteDatasourceByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewDeleteDatasourceByIDParamsWithContext creates a new DeleteDatasourceByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewDeleteDatasourceByIDParamsWithContext(ctx context.Context) *DeleteDatasourceByIDParams {
-	var ()
 	return &DeleteDatasourceByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewDeleteDatasourceByIDParamsWithHTTPClient creates a new DeleteDatasourceByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewDeleteDatasourceByIDParamsWithHTTPClient(client *http.Client) *DeleteDatasourceByIDParams {
-	var ()
 	return &DeleteDatasourceByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*DeleteDatasourceByIDParams contains all the parameters to send to the API endpoint
-for the delete datasource by Id operation typically these are written to a http.Request
+/* DeleteDatasourceByIDParams contains all the parameters to send to the API endpoint
+   for the delete datasource by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type DeleteDatasourceByIDParams struct {
 
-	/*ID*/
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the delete datasource by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteDatasourceByIDParams) WithDefaults() *DeleteDatasourceByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the delete datasource by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *DeleteDatasourceByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete datasource by Id params

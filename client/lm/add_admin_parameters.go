@@ -6,70 +6,82 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewAddAdminParams creates a new AddAdminParams object
-// with the default values initialized.
+// NewAddAdminParams creates a new AddAdminParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAddAdminParams() *AddAdminParams {
-	var ()
 	return &AddAdminParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAddAdminParamsWithTimeout creates a new AddAdminParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAddAdminParamsWithTimeout(timeout time.Duration) *AddAdminParams {
-	var ()
 	return &AddAdminParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAddAdminParamsWithContext creates a new AddAdminParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAddAdminParamsWithContext(ctx context.Context) *AddAdminParams {
-	var ()
 	return &AddAdminParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAddAdminParamsWithHTTPClient creates a new AddAdminParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAddAdminParamsWithHTTPClient(client *http.Client) *AddAdminParams {
-	var ()
 	return &AddAdminParams{
 		HTTPClient: client,
 	}
 }
 
-/*AddAdminParams contains all the parameters to send to the API endpoint
-for the add admin operation typically these are written to a http.Request
+/* AddAdminParams contains all the parameters to send to the API endpoint
+   for the add admin operation.
+
+   Typically these are written to a http.Request.
 */
 type AddAdminParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.Admin
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the add admin params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddAdminParams) WithDefaults() *AddAdminParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the add admin params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddAdminParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add admin params
@@ -123,7 +135,6 @@ func (o *AddAdminParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

@@ -6,70 +6,82 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewAddWidgetParams creates a new AddWidgetParams object
-// with the default values initialized.
+// NewAddWidgetParams creates a new AddWidgetParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAddWidgetParams() *AddWidgetParams {
-	var ()
 	return &AddWidgetParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAddWidgetParamsWithTimeout creates a new AddWidgetParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAddWidgetParamsWithTimeout(timeout time.Duration) *AddWidgetParams {
-	var ()
 	return &AddWidgetParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAddWidgetParamsWithContext creates a new AddWidgetParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAddWidgetParamsWithContext(ctx context.Context) *AddWidgetParams {
-	var ()
 	return &AddWidgetParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAddWidgetParamsWithHTTPClient creates a new AddWidgetParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAddWidgetParamsWithHTTPClient(client *http.Client) *AddWidgetParams {
-	var ()
 	return &AddWidgetParams{
 		HTTPClient: client,
 	}
 }
 
-/*AddWidgetParams contains all the parameters to send to the API endpoint
-for the add widget operation typically these are written to a http.Request
+/* AddWidgetParams contains all the parameters to send to the API endpoint
+   for the add widget operation.
+
+   Typically these are written to a http.Request.
 */
 type AddWidgetParams struct {
 
-	/*Body*/
+	// Body.
 	Body models.Widget
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the add widget params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddWidgetParams) WithDefaults() *AddWidgetParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the add widget params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddWidgetParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add widget params
@@ -123,7 +135,6 @@ func (o *AddWidgetParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
-
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

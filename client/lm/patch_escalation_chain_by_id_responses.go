@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchEscalationChainByIDReader is a Reader for the PatchEscalationChainByID structure.
@@ -24,14 +23,12 @@ type PatchEscalationChainByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchEscalationChainByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchEscalationChainByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchEscalationChainByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchEscalationChainByIDOK() *PatchEscalationChainByIDOK {
 	return &PatchEscalationChainByIDOK{}
 }
 
-/*PatchEscalationChainByIDOK handles this case with default header values.
+/* PatchEscalationChainByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchEscalationChainByIDOK struct {
 
 func (o *PatchEscalationChainByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /setting/alert/chains/{id}][%d] patchEscalationChainByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchEscalationChainByIDOK) GetPayload() *models.EscalatingChain {
+	return o.Payload
 }
 
 func (o *PatchEscalationChainByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchEscalationChainByIDDefault(code int) *PatchEscalationChainByIDDefau
 	}
 }
 
-/*PatchEscalationChainByIDDefault handles this case with default header values.
+/* PatchEscalationChainByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchEscalationChainByIDDefault) Code() int {
 
 func (o *PatchEscalationChainByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /setting/alert/chains/{id}][%d] patchEscalationChainById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchEscalationChainByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchEscalationChainByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

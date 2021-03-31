@@ -6,70 +6,82 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewAddDashboardGroupParams creates a new AddDashboardGroupParams object
-// with the default values initialized.
+// NewAddDashboardGroupParams creates a new AddDashboardGroupParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAddDashboardGroupParams() *AddDashboardGroupParams {
-	var ()
 	return &AddDashboardGroupParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAddDashboardGroupParamsWithTimeout creates a new AddDashboardGroupParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAddDashboardGroupParamsWithTimeout(timeout time.Duration) *AddDashboardGroupParams {
-	var ()
 	return &AddDashboardGroupParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAddDashboardGroupParamsWithContext creates a new AddDashboardGroupParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAddDashboardGroupParamsWithContext(ctx context.Context) *AddDashboardGroupParams {
-	var ()
 	return &AddDashboardGroupParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAddDashboardGroupParamsWithHTTPClient creates a new AddDashboardGroupParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAddDashboardGroupParamsWithHTTPClient(client *http.Client) *AddDashboardGroupParams {
-	var ()
 	return &AddDashboardGroupParams{
 		HTTPClient: client,
 	}
 }
 
-/*AddDashboardGroupParams contains all the parameters to send to the API endpoint
-for the add dashboard group operation typically these are written to a http.Request
+/* AddDashboardGroupParams contains all the parameters to send to the API endpoint
+   for the add dashboard group operation.
+
+   Typically these are written to a http.Request.
 */
 type AddDashboardGroupParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.DashboardGroup
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the add dashboard group params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddDashboardGroupParams) WithDefaults() *AddDashboardGroupParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the add dashboard group params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddDashboardGroupParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add dashboard group params
@@ -123,7 +135,6 @@ func (o *AddDashboardGroupParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

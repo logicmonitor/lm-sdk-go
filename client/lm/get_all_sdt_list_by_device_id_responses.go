@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetAllSDTListByDeviceIDReader is a Reader for the GetAllSDTListByDeviceID structure.
@@ -24,14 +23,12 @@ type GetAllSDTListByDeviceIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAllSDTListByDeviceIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetAllSDTListByDeviceIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetAllSDTListByDeviceIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetAllSDTListByDeviceIDOK() *GetAllSDTListByDeviceIDOK {
 	return &GetAllSDTListByDeviceIDOK{}
 }
 
-/*GetAllSDTListByDeviceIDOK handles this case with default header values.
+/* GetAllSDTListByDeviceIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetAllSDTListByDeviceIDOK struct {
 
 func (o *GetAllSDTListByDeviceIDOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/sdts][%d] getAllSdtListByDeviceIdOK  %+v", 200, o.Payload)
+}
+func (o *GetAllSDTListByDeviceIDOK) GetPayload() *models.SDTPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetAllSDTListByDeviceIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetAllSDTListByDeviceIDDefault(code int) *GetAllSDTListByDeviceIDDefault
 	}
 }
 
-/*GetAllSDTListByDeviceIDDefault handles this case with default header values.
+/* GetAllSDTListByDeviceIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetAllSDTListByDeviceIDDefault) Code() int {
 
 func (o *GetAllSDTListByDeviceIDDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/sdts][%d] getAllSDTListByDeviceId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetAllSDTListByDeviceIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetAllSDTListByDeviceIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

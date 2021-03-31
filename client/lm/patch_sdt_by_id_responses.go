@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchSDTByIDReader is a Reader for the PatchSDTByID structure.
@@ -24,14 +23,12 @@ type PatchSDTByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchSDTByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchSDTByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchSDTByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchSDTByIDOK() *PatchSDTByIDOK {
 	return &PatchSDTByIDOK{}
 }
 
-/*PatchSDTByIDOK handles this case with default header values.
+/* PatchSDTByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchSDTByIDOK struct {
 
 func (o *PatchSDTByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /sdt/sdts/{id}][%d] patchSdtByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchSDTByIDOK) GetPayload() models.SDT {
+	return o.Payload
 }
 
 func (o *PatchSDTByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchSDTByIDDefault(code int) *PatchSDTByIDDefault {
 	}
 }
 
-/*PatchSDTByIDDefault handles this case with default header values.
+/* PatchSDTByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchSDTByIDDefault) Code() int {
 
 func (o *PatchSDTByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /sdt/sdts/{id}][%d] patchSDTById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchSDTByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchSDTByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

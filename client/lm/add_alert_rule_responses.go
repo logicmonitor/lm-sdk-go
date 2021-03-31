@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddAlertRuleReader is a Reader for the AddAlertRule structure.
@@ -24,14 +23,12 @@ type AddAlertRuleReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddAlertRuleReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddAlertRuleOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddAlertRuleDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddAlertRuleOK() *AddAlertRuleOK {
 	return &AddAlertRuleOK{}
 }
 
-/*AddAlertRuleOK handles this case with default header values.
+/* AddAlertRuleOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddAlertRuleOK struct {
 
 func (o *AddAlertRuleOK) Error() string {
 	return fmt.Sprintf("[POST /setting/alert/rules][%d] addAlertRuleOK  %+v", 200, o.Payload)
+}
+func (o *AddAlertRuleOK) GetPayload() *models.AlertRule {
+	return o.Payload
 }
 
 func (o *AddAlertRuleOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddAlertRuleDefault(code int) *AddAlertRuleDefault {
 	}
 }
 
-/*AddAlertRuleDefault handles this case with default header values.
+/* AddAlertRuleDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddAlertRuleDefault) Code() int {
 
 func (o *AddAlertRuleDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/alert/rules][%d] addAlertRule default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddAlertRuleDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddAlertRuleDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

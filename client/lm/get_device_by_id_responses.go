@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceByIDReader is a Reader for the GetDeviceByID structure.
@@ -24,14 +23,12 @@ type GetDeviceByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceByIDOK() *GetDeviceByIDOK {
 	return &GetDeviceByIDOK{}
 }
 
-/*GetDeviceByIDOK handles this case with default header values.
+/* GetDeviceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceByIDOK struct {
 
 func (o *GetDeviceByIDOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceByIDOK) GetPayload() *models.Device {
+	return o.Payload
 }
 
 func (o *GetDeviceByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceByIDDefault(code int) *GetDeviceByIDDefault {
 	}
 }
 
-/*GetDeviceByIDDefault handles this case with default header values.
+/* GetDeviceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceByIDDefault) Code() int {
 
 func (o *GetDeviceByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

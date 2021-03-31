@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDebugCommandResultReader is a Reader for the GetDebugCommandResult structure.
@@ -24,14 +23,12 @@ type GetDebugCommandResultReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDebugCommandResultReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDebugCommandResultOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDebugCommandResultDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDebugCommandResultOK() *GetDebugCommandResultOK {
 	return &GetDebugCommandResultOK{}
 }
 
-/*GetDebugCommandResultOK handles this case with default header values.
+/* GetDebugCommandResultOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDebugCommandResultOK struct {
 
 func (o *GetDebugCommandResultOK) Error() string {
 	return fmt.Sprintf("[GET /debug/{id}][%d] getDebugCommandResultOK  %+v", 200, o.Payload)
+}
+func (o *GetDebugCommandResultOK) GetPayload() *models.Debug {
+	return o.Payload
 }
 
 func (o *GetDebugCommandResultOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDebugCommandResultDefault(code int) *GetDebugCommandResultDefault {
 	}
 }
 
-/*GetDebugCommandResultDefault handles this case with default header values.
+/* GetDebugCommandResultDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDebugCommandResultDefault) Code() int {
 
 func (o *GetDebugCommandResultDefault) Error() string {
 	return fmt.Sprintf("[GET /debug/{id}][%d] getDebugCommandResult default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDebugCommandResultDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDebugCommandResultDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

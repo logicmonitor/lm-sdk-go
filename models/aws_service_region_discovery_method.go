@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // AwsServiceRegionDiscoveryMethod aws service region discovery method
+//
 // swagger:model AwsServiceRegionDiscoveryMethod
 type AwsServiceRegionDiscoveryMethod struct {
 
@@ -32,10 +33,7 @@ func (m *AwsServiceRegionDiscoveryMethod) Name() string {
 
 // SetName sets the name of this subtype
 func (m *AwsServiceRegionDiscoveryMethod) SetName(val string) {
-
 }
-
-// AwsServiceName gets the aws service name of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *AwsServiceRegionDiscoveryMethod) UnmarshalJSON(raw []byte) error {
@@ -92,8 +90,7 @@ func (m AwsServiceRegionDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		AwsServiceName: m.AwsServiceName,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -102,8 +99,7 @@ func (m AwsServiceRegionDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -131,6 +127,16 @@ func (m *AwsServiceRegionDiscoveryMethod) validateAwsServiceName(formats strfmt.
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validate this aws service region discovery method based on the context it is used
+func (m *AwsServiceRegionDiscoveryMethod) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

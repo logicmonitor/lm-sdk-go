@@ -6,73 +6,88 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewPatchReportByIDParams creates a new PatchReportByIDParams object
-// with the default values initialized.
+// NewPatchReportByIDParams creates a new PatchReportByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPatchReportByIDParams() *PatchReportByIDParams {
-	var ()
 	return &PatchReportByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPatchReportByIDParamsWithTimeout creates a new PatchReportByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPatchReportByIDParamsWithTimeout(timeout time.Duration) *PatchReportByIDParams {
-	var ()
 	return &PatchReportByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPatchReportByIDParamsWithContext creates a new PatchReportByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPatchReportByIDParamsWithContext(ctx context.Context) *PatchReportByIDParams {
-	var ()
 	return &PatchReportByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPatchReportByIDParamsWithHTTPClient creates a new PatchReportByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPatchReportByIDParamsWithHTTPClient(client *http.Client) *PatchReportByIDParams {
-	var ()
 	return &PatchReportByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*PatchReportByIDParams contains all the parameters to send to the API endpoint
-for the patch report by Id operation typically these are written to a http.Request
+/* PatchReportByIDParams contains all the parameters to send to the API endpoint
+   for the patch report by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type PatchReportByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body models.ReportBase
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the patch report by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchReportByIDParams) WithDefaults() *PatchReportByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the patch report by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchReportByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch report by Id params
@@ -137,7 +152,6 @@ func (o *PatchReportByIDParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
-
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // WebsiteGraphWidget website graph widget
+//
 // swagger:model WebsiteGraphWidget
 type WebsiteGraphWidget struct {
 	dashboardIdField *int32
@@ -152,7 +153,6 @@ func (m *WebsiteGraphWidget) Type() string {
 
 // SetType sets the type of this subtype
 func (m *WebsiteGraphWidget) SetType(val string) {
-
 }
 
 // UserPermission gets the user permission of this subtype
@@ -164,14 +164,6 @@ func (m *WebsiteGraphWidget) UserPermission() string {
 func (m *WebsiteGraphWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
-
-// CheckpointID gets the checkpoint Id of this subtype
-
-// GeoInfo gets the geo info of this subtype
-
-// Graph gets the graph of this subtype
-
-// WebsiteName gets the website name of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *WebsiteGraphWidget) UnmarshalJSON(raw []byte) error {
@@ -257,15 +249,11 @@ func (m *WebsiteGraphWidget) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.userPermissionField = base.UserPermission
 
 	result.CheckpointID = data.CheckpointID
-
 	result.GeoInfo = data.GeoInfo
-
 	result.Graph = data.Graph
-
 	result.WebsiteName = data.WebsiteName
 
 	*m = result
@@ -302,8 +290,7 @@ func (m WebsiteGraphWidget) MarshalJSON() ([]byte, error) {
 		Graph: m.Graph,
 
 		WebsiteName: m.WebsiteName,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -352,8 +339,7 @@ func (m WebsiteGraphWidget) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserPermission: m.UserPermission(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -404,6 +390,81 @@ func (m *WebsiteGraphWidget) validateName(formats strfmt.Registry) error {
 func (m *WebsiteGraphWidget) validateCheckpointID(formats strfmt.Registry) error {
 
 	if err := validate.Required("checkpointId", "body", m.CheckpointID); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this website graph widget based on the context it is used
+func (m *WebsiteGraphWidget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLastUpdatedBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastUpdatedOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGeoInfo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWebsiteName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *WebsiteGraphWidget) contextValidateLastUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedBy", "body", string(m.LastUpdatedBy())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebsiteGraphWidget) contextValidateLastUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedOn", "body", int64(m.LastUpdatedOn())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebsiteGraphWidget) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebsiteGraphWidget) contextValidateGeoInfo(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "geoInfo", "body", string(m.GeoInfo)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebsiteGraphWidget) contextValidateWebsiteName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "websiteName", "body", string(m.WebsiteName)); err != nil {
 		return err
 	}
 

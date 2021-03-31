@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceGroupSDTListReader is a Reader for the GetDeviceGroupSDTList structure.
@@ -24,14 +23,12 @@ type GetDeviceGroupSDTListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceGroupSDTListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceGroupSDTListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceGroupSDTListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceGroupSDTListOK() *GetDeviceGroupSDTListOK {
 	return &GetDeviceGroupSDTListOK{}
 }
 
-/*GetDeviceGroupSDTListOK handles this case with default header values.
+/* GetDeviceGroupSDTListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceGroupSDTListOK struct {
 
 func (o *GetDeviceGroupSDTListOK) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{id}/sdts][%d] getDeviceGroupSdtListOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceGroupSDTListOK) GetPayload() *models.SDTPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceGroupSDTListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceGroupSDTListDefault(code int) *GetDeviceGroupSDTListDefault {
 	}
 }
 
-/*GetDeviceGroupSDTListDefault handles this case with default header values.
+/* GetDeviceGroupSDTListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceGroupSDTListDefault) Code() int {
 
 func (o *GetDeviceGroupSDTListDefault) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{id}/sdts][%d] getDeviceGroupSDTList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceGroupSDTListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceGroupSDTListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

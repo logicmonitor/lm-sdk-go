@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddDeviceReader is a Reader for the AddDevice structure.
@@ -24,14 +23,12 @@ type AddDeviceReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddDeviceReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddDeviceOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddDeviceDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddDeviceOK() *AddDeviceOK {
 	return &AddDeviceOK{}
 }
 
-/*AddDeviceOK handles this case with default header values.
+/* AddDeviceOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddDeviceOK struct {
 
 func (o *AddDeviceOK) Error() string {
 	return fmt.Sprintf("[POST /device/devices][%d] addDeviceOK  %+v", 200, o.Payload)
+}
+func (o *AddDeviceOK) GetPayload() *models.Device {
+	return o.Payload
 }
 
 func (o *AddDeviceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddDeviceDefault(code int) *AddDeviceDefault {
 	}
 }
 
-/*AddDeviceDefault handles this case with default header values.
+/* AddDeviceDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddDeviceDefault) Code() int {
 
 func (o *AddDeviceDefault) Error() string {
 	return fmt.Sprintf("[POST /device/devices][%d] addDevice default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddDeviceDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddDeviceDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

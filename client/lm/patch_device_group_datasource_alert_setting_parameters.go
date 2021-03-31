@@ -6,75 +6,93 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewPatchDeviceGroupDatasourceAlertSettingParams creates a new PatchDeviceGroupDatasourceAlertSettingParams object
-// with the default values initialized.
+// NewPatchDeviceGroupDatasourceAlertSettingParams creates a new PatchDeviceGroupDatasourceAlertSettingParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPatchDeviceGroupDatasourceAlertSettingParams() *PatchDeviceGroupDatasourceAlertSettingParams {
-	var ()
 	return &PatchDeviceGroupDatasourceAlertSettingParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPatchDeviceGroupDatasourceAlertSettingParamsWithTimeout creates a new PatchDeviceGroupDatasourceAlertSettingParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPatchDeviceGroupDatasourceAlertSettingParamsWithTimeout(timeout time.Duration) *PatchDeviceGroupDatasourceAlertSettingParams {
-	var ()
 	return &PatchDeviceGroupDatasourceAlertSettingParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPatchDeviceGroupDatasourceAlertSettingParamsWithContext creates a new PatchDeviceGroupDatasourceAlertSettingParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPatchDeviceGroupDatasourceAlertSettingParamsWithContext(ctx context.Context) *PatchDeviceGroupDatasourceAlertSettingParams {
-	var ()
 	return &PatchDeviceGroupDatasourceAlertSettingParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPatchDeviceGroupDatasourceAlertSettingParamsWithHTTPClient creates a new PatchDeviceGroupDatasourceAlertSettingParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPatchDeviceGroupDatasourceAlertSettingParamsWithHTTPClient(client *http.Client) *PatchDeviceGroupDatasourceAlertSettingParams {
-	var ()
 	return &PatchDeviceGroupDatasourceAlertSettingParams{
 		HTTPClient: client,
 	}
 }
 
-/*PatchDeviceGroupDatasourceAlertSettingParams contains all the parameters to send to the API endpoint
-for the patch device group datasource alert setting operation typically these are written to a http.Request
+/* PatchDeviceGroupDatasourceAlertSettingParams contains all the parameters to send to the API endpoint
+   for the patch device group datasource alert setting operation.
+
+   Typically these are written to a http.Request.
 */
 type PatchDeviceGroupDatasourceAlertSettingParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.DeviceGroupDataSourceAlertConfig
-	/*DeviceGroupID*/
+
+	// DeviceGroupID.
+	//
+	// Format: int32
 	DeviceGroupID int32
-	/*DsID*/
+
+	// DsID.
+	//
+	// Format: int32
 	DsID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the patch device group datasource alert setting params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchDeviceGroupDatasourceAlertSettingParams) WithDefaults() *PatchDeviceGroupDatasourceAlertSettingParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the patch device group datasource alert setting params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchDeviceGroupDatasourceAlertSettingParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch device group datasource alert setting params
@@ -150,7 +168,6 @@ func (o *PatchDeviceGroupDatasourceAlertSettingParams) WriteToRequest(r runtime.
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

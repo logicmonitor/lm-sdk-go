@@ -7,15 +7,16 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // JDBCCollectorAttribute j d b c collector attribute
+//
 // swagger:model JDBCCollectorAttribute
 type JDBCCollectorAttribute struct {
 
@@ -39,16 +40,7 @@ func (m *JDBCCollectorAttribute) Name() string {
 
 // SetName sets the name of this subtype
 func (m *JDBCCollectorAttribute) SetName(val string) {
-
 }
-
-// Password gets the password of this subtype
-
-// Query gets the query of this subtype
-
-// URL gets the url of this subtype
-
-// Username gets the username of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *JDBCCollectorAttribute) UnmarshalJSON(raw []byte) error {
@@ -95,11 +87,8 @@ func (m *JDBCCollectorAttribute) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.Password = data.Password
-
 	result.Query = data.Query
-
 	result.URL = data.URL
-
 	result.Username = data.Username
 
 	*m = result
@@ -133,8 +122,7 @@ func (m JDBCCollectorAttribute) MarshalJSON() ([]byte, error) {
 		URL: m.URL,
 
 		Username: m.Username,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -143,8 +131,7 @@ func (m JDBCCollectorAttribute) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -154,6 +141,16 @@ func (m JDBCCollectorAttribute) MarshalJSON() ([]byte, error) {
 
 // Validate validates this j d b c collector attribute
 func (m *JDBCCollectorAttribute) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+// ContextValidate validate this j d b c collector attribute based on the context it is used
+func (m *JDBCCollectorAttribute) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if len(res) > 0 {

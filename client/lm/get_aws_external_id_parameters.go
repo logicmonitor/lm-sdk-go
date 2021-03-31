@@ -6,64 +6,76 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
-// NewGetAwsExternalIDParams creates a new GetAwsExternalIDParams object
-// with the default values initialized.
+// NewGetAwsExternalIDParams creates a new GetAwsExternalIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetAwsExternalIDParams() *GetAwsExternalIDParams {
-
 	return &GetAwsExternalIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetAwsExternalIDParamsWithTimeout creates a new GetAwsExternalIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetAwsExternalIDParamsWithTimeout(timeout time.Duration) *GetAwsExternalIDParams {
-
 	return &GetAwsExternalIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetAwsExternalIDParamsWithContext creates a new GetAwsExternalIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetAwsExternalIDParamsWithContext(ctx context.Context) *GetAwsExternalIDParams {
-
 	return &GetAwsExternalIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetAwsExternalIDParamsWithHTTPClient creates a new GetAwsExternalIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetAwsExternalIDParamsWithHTTPClient(client *http.Client) *GetAwsExternalIDParams {
-
 	return &GetAwsExternalIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetAwsExternalIDParams contains all the parameters to send to the API endpoint
-for the get aws external Id operation typically these are written to a http.Request
+/* GetAwsExternalIDParams contains all the parameters to send to the API endpoint
+   for the get aws external Id operation.
+
+   Typically these are written to a http.Request.
 */
 type GetAwsExternalIDParams struct {
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get aws external Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAwsExternalIDParams) WithDefaults() *GetAwsExternalIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get aws external Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetAwsExternalIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get aws external Id params

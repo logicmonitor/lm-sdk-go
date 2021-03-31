@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetTopTalkersGraphReader is a Reader for the GetTopTalkersGraph structure.
@@ -24,14 +23,12 @@ type GetTopTalkersGraphReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetTopTalkersGraphReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetTopTalkersGraphOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetTopTalkersGraphDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetTopTalkersGraphOK() *GetTopTalkersGraphOK {
 	return &GetTopTalkersGraphOK{}
 }
 
-/*GetTopTalkersGraphOK handles this case with default header values.
+/* GetTopTalkersGraphOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetTopTalkersGraphOK struct {
 
 func (o *GetTopTalkersGraphOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/topTalkersGraph][%d] getTopTalkersGraphOK  %+v", 200, o.Payload)
+}
+func (o *GetTopTalkersGraphOK) GetPayload() *models.GraphPlot {
+	return o.Payload
 }
 
 func (o *GetTopTalkersGraphOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetTopTalkersGraphDefault(code int) *GetTopTalkersGraphDefault {
 	}
 }
 
-/*GetTopTalkersGraphDefault handles this case with default header values.
+/* GetTopTalkersGraphDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetTopTalkersGraphDefault) Code() int {
 
 func (o *GetTopTalkersGraphDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/topTalkersGraph][%d] getTopTalkersGraph default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetTopTalkersGraphDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetTopTalkersGraphDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

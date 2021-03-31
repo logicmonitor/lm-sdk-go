@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetAPITokenListByAdminIDReader is a Reader for the GetAPITokenListByAdminID structure.
@@ -24,14 +23,12 @@ type GetAPITokenListByAdminIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAPITokenListByAdminIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetAPITokenListByAdminIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetAPITokenListByAdminIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetAPITokenListByAdminIDOK() *GetAPITokenListByAdminIDOK {
 	return &GetAPITokenListByAdminIDOK{}
 }
 
-/*GetAPITokenListByAdminIDOK handles this case with default header values.
+/* GetAPITokenListByAdminIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetAPITokenListByAdminIDOK struct {
 
 func (o *GetAPITokenListByAdminIDOK) Error() string {
 	return fmt.Sprintf("[GET /setting/admins/{adminId}/apitokens][%d] getApiTokenListByAdminIdOK  %+v", 200, o.Payload)
+}
+func (o *GetAPITokenListByAdminIDOK) GetPayload() *models.APITokenPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetAPITokenListByAdminIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetAPITokenListByAdminIDDefault(code int) *GetAPITokenListByAdminIDDefau
 	}
 }
 
-/*GetAPITokenListByAdminIDDefault handles this case with default header values.
+/* GetAPITokenListByAdminIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetAPITokenListByAdminIDDefault) Code() int {
 
 func (o *GetAPITokenListByAdminIDDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/admins/{adminId}/apitokens][%d] getApiTokenListByAdminId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetAPITokenListByAdminIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetAPITokenListByAdminIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

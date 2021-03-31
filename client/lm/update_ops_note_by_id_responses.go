@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateOpsNoteByIDReader is a Reader for the UpdateOpsNoteByID structure.
@@ -24,14 +23,12 @@ type UpdateOpsNoteByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateOpsNoteByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateOpsNoteByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateOpsNoteByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateOpsNoteByIDOK() *UpdateOpsNoteByIDOK {
 	return &UpdateOpsNoteByIDOK{}
 }
 
-/*UpdateOpsNoteByIDOK handles this case with default header values.
+/* UpdateOpsNoteByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateOpsNoteByIDOK struct {
 
 func (o *UpdateOpsNoteByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /setting/opsnotes/{id}][%d] updateOpsNoteByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateOpsNoteByIDOK) GetPayload() *models.OpsNote {
+	return o.Payload
 }
 
 func (o *UpdateOpsNoteByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateOpsNoteByIDDefault(code int) *UpdateOpsNoteByIDDefault {
 	}
 }
 
-/*UpdateOpsNoteByIDDefault handles this case with default header values.
+/* UpdateOpsNoteByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateOpsNoteByIDDefault) Code() int {
 
 func (o *UpdateOpsNoteByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /setting/opsnotes/{id}][%d] updateOpsNoteById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateOpsNoteByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateOpsNoteByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDevicePropertyByNameReader is a Reader for the GetDevicePropertyByName structure.
@@ -24,14 +23,12 @@ type GetDevicePropertyByNameReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDevicePropertyByNameReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDevicePropertyByNameOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDevicePropertyByNameDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDevicePropertyByNameOK() *GetDevicePropertyByNameOK {
 	return &GetDevicePropertyByNameOK{}
 }
 
-/*GetDevicePropertyByNameOK handles this case with default header values.
+/* GetDevicePropertyByNameOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDevicePropertyByNameOK struct {
 
 func (o *GetDevicePropertyByNameOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties/{name}][%d] getDevicePropertyByNameOK  %+v", 200, o.Payload)
+}
+func (o *GetDevicePropertyByNameOK) GetPayload() *models.EntityProperty {
+	return o.Payload
 }
 
 func (o *GetDevicePropertyByNameOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDevicePropertyByNameDefault(code int) *GetDevicePropertyByNameDefault
 	}
 }
 
-/*GetDevicePropertyByNameDefault handles this case with default header values.
+/* GetDevicePropertyByNameDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDevicePropertyByNameDefault) Code() int {
 
 func (o *GetDevicePropertyByNameDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties/{name}][%d] getDevicePropertyByName default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDevicePropertyByNameDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDevicePropertyByNameDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

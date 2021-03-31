@@ -7,15 +7,16 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // AwsElastiCacheDiscoveryMethod aws elasti cache discovery method
+//
 // swagger:model AwsElastiCacheDiscoveryMethod
 type AwsElastiCacheDiscoveryMethod struct {
 	AwsElastiCacheDiscoveryMethodAllOf1
@@ -28,7 +29,6 @@ func (m *AwsElastiCacheDiscoveryMethod) Name() string {
 
 // SetName sets the name of this subtype
 func (m *AwsElastiCacheDiscoveryMethod) SetName(val string) {
-
 }
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
@@ -63,7 +63,6 @@ func (m *AwsElastiCacheDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid name value: %q", base.Name)
 	}
-
 	result.AwsElastiCacheDiscoveryMethodAllOf1 = data.AwsElastiCacheDiscoveryMethodAllOf1
 
 	*m = result
@@ -80,8 +79,7 @@ func (m AwsElastiCacheDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		AwsElastiCacheDiscoveryMethodAllOf1: m.AwsElastiCacheDiscoveryMethodAllOf1,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -90,8 +88,7 @@ func (m AwsElastiCacheDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -101,6 +98,18 @@ func (m AwsElastiCacheDiscoveryMethod) MarshalJSON() ([]byte, error) {
 
 // Validate validates this aws elasti cache discovery method
 func (m *AwsElastiCacheDiscoveryMethod) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with AwsElastiCacheDiscoveryMethodAllOf1
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+// ContextValidate validate this aws elasti cache discovery method based on the context it is used
+func (m *AwsElastiCacheDiscoveryMethod) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	// validation for a type composition with AwsElastiCacheDiscoveryMethodAllOf1
@@ -130,5 +139,6 @@ func (m *AwsElastiCacheDiscoveryMethod) UnmarshalBinary(b []byte) error {
 }
 
 // AwsElastiCacheDiscoveryMethodAllOf1 aws elasti cache discovery method all of1
+//
 // swagger:model AwsElastiCacheDiscoveryMethodAllOf1
 type AwsElastiCacheDiscoveryMethodAllOf1 interface{}

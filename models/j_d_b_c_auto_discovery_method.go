@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // JDBCAutoDiscoveryMethod j d b c auto discovery method
+//
 // swagger:model JDBCAutoDiscoveryMethod
 type JDBCAutoDiscoveryMethod struct {
 
@@ -50,20 +51,7 @@ func (m *JDBCAutoDiscoveryMethod) Name() string {
 
 // SetName sets the name of this subtype
 func (m *JDBCAutoDiscoveryMethod) SetName(val string) {
-
 }
-
-// Ports gets the ports of this subtype
-
-// Query gets the query of this subtype
-
-// Separator gets the separator of this subtype
-
-// Sid gets the sid of this subtype
-
-// Type gets the type of this subtype
-
-// URL gets the url of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *JDBCAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
@@ -120,15 +108,10 @@ func (m *JDBCAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.Ports = data.Ports
-
 	result.Query = data.Query
-
 	result.Separator = data.Separator
-
 	result.Sid = data.Sid
-
 	result.Type = data.Type
-
 	result.URL = data.URL
 
 	*m = result
@@ -176,8 +159,7 @@ func (m JDBCAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 		Type: m.Type,
 
 		URL: m.URL,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -186,8 +168,7 @@ func (m JDBCAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -254,6 +235,16 @@ func (m *JDBCAutoDiscoveryMethod) validateURL(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validate this j d b c auto discovery method based on the context it is used
+func (m *JDBCAutoDiscoveryMethod) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

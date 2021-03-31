@@ -6,97 +6,102 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewUpdateCollectorGroupByIDParams creates a new UpdateCollectorGroupByIDParams object
-// with the default values initialized.
+// NewUpdateCollectorGroupByIDParams creates a new UpdateCollectorGroupByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateCollectorGroupByIDParams() *UpdateCollectorGroupByIDParams {
-	var (
-		collectorLoadBalancedDefault        = bool(false)
-		forceUpdateFailedOverDevicesDefault = bool(false)
-	)
 	return &UpdateCollectorGroupByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
-		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateCollectorGroupByIDParamsWithTimeout creates a new UpdateCollectorGroupByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateCollectorGroupByIDParamsWithTimeout(timeout time.Duration) *UpdateCollectorGroupByIDParams {
-	var (
-		collectorLoadBalancedDefault        = bool(false)
-		forceUpdateFailedOverDevicesDefault = bool(false)
-	)
 	return &UpdateCollectorGroupByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
-		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateCollectorGroupByIDParamsWithContext creates a new UpdateCollectorGroupByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateCollectorGroupByIDParamsWithContext(ctx context.Context) *UpdateCollectorGroupByIDParams {
-	var (
-		collectorLoadBalancedDefault        = bool(false)
-		forceUpdateFailedOverDevicesDefault = bool(false)
-	)
 	return &UpdateCollectorGroupByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
-		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateCollectorGroupByIDParamsWithHTTPClient creates a new UpdateCollectorGroupByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateCollectorGroupByIDParamsWithHTTPClient(client *http.Client) *UpdateCollectorGroupByIDParams {
-	var (
-		collectorLoadBalancedDefault        = bool(false)
-		forceUpdateFailedOverDevicesDefault = bool(false)
-	)
 	return &UpdateCollectorGroupByIDParams{
-		CollectorLoadBalanced:        &collectorLoadBalancedDefault,
-		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
-		HTTPClient:                   client,
+		HTTPClient: client,
 	}
 }
 
-/*UpdateCollectorGroupByIDParams contains all the parameters to send to the API endpoint
-for the update collector group by Id operation typically these are written to a http.Request
+/* UpdateCollectorGroupByIDParams contains all the parameters to send to the API endpoint
+   for the update collector group by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateCollectorGroupByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.CollectorGroup
-	/*CollectorLoadBalanced*/
-	CollectorLoadBalanced *bool
-	/*ForceUpdateFailedOverDevices*/
+
+	// ForceUpdateFailedOverDevices.
 	ForceUpdateFailedOverDevices *bool
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update collector group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateCollectorGroupByIDParams) WithDefaults() *UpdateCollectorGroupByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update collector group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateCollectorGroupByIDParams) SetDefaults() {
+	var (
+		forceUpdateFailedOverDevicesDefault = bool(false)
+	)
+
+	val := UpdateCollectorGroupByIDParams{
+		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update collector group by Id params
@@ -143,17 +148,6 @@ func (o *UpdateCollectorGroupByIDParams) SetBody(body *models.CollectorGroup) {
 	o.Body = body
 }
 
-// WithCollectorLoadBalanced adds the collectorLoadBalanced to the update collector group by Id params
-func (o *UpdateCollectorGroupByIDParams) WithCollectorLoadBalanced(collectorLoadBalanced *bool) *UpdateCollectorGroupByIDParams {
-	o.SetCollectorLoadBalanced(collectorLoadBalanced)
-	return o
-}
-
-// SetCollectorLoadBalanced adds the collectorLoadBalanced to the update collector group by Id params
-func (o *UpdateCollectorGroupByIDParams) SetCollectorLoadBalanced(collectorLoadBalanced *bool) {
-	o.CollectorLoadBalanced = collectorLoadBalanced
-}
-
 // WithForceUpdateFailedOverDevices adds the forceUpdateFailedOverDevices to the update collector group by Id params
 func (o *UpdateCollectorGroupByIDParams) WithForceUpdateFailedOverDevices(forceUpdateFailedOverDevices *bool) *UpdateCollectorGroupByIDParams {
 	o.SetForceUpdateFailedOverDevices(forceUpdateFailedOverDevices)
@@ -183,43 +177,27 @@ func (o *UpdateCollectorGroupByIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
 		}
 	}
 
-	if o.CollectorLoadBalanced != nil {
-
-		// query param collectorLoadBalanced
-		var qrCollectorLoadBalanced bool
-		if o.CollectorLoadBalanced != nil {
-			qrCollectorLoadBalanced = *o.CollectorLoadBalanced
-		}
-		qCollectorLoadBalanced := swag.FormatBool(qrCollectorLoadBalanced)
-		if qCollectorLoadBalanced != "" {
-			if err := r.SetQueryParam("collectorLoadBalanced", qCollectorLoadBalanced); err != nil {
-				return err
-			}
-		}
-
-	}
-
 	if o.ForceUpdateFailedOverDevices != nil {
 
 		// query param forceUpdateFailedOverDevices
 		var qrForceUpdateFailedOverDevices bool
+
 		if o.ForceUpdateFailedOverDevices != nil {
 			qrForceUpdateFailedOverDevices = *o.ForceUpdateFailedOverDevices
 		}
 		qForceUpdateFailedOverDevices := swag.FormatBool(qrForceUpdateFailedOverDevices)
 		if qForceUpdateFailedOverDevices != "" {
+
 			if err := r.SetQueryParam("forceUpdateFailedOverDevices", qForceUpdateFailedOverDevices); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id

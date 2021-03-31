@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddWebsiteGroupReader is a Reader for the AddWebsiteGroup structure.
@@ -24,14 +23,12 @@ type AddWebsiteGroupReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddWebsiteGroupReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddWebsiteGroupOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddWebsiteGroupDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddWebsiteGroupOK() *AddWebsiteGroupOK {
 	return &AddWebsiteGroupOK{}
 }
 
-/*AddWebsiteGroupOK handles this case with default header values.
+/* AddWebsiteGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddWebsiteGroupOK struct {
 
 func (o *AddWebsiteGroupOK) Error() string {
 	return fmt.Sprintf("[POST /website/groups][%d] addWebsiteGroupOK  %+v", 200, o.Payload)
+}
+func (o *AddWebsiteGroupOK) GetPayload() *models.WebsiteGroup {
+	return o.Payload
 }
 
 func (o *AddWebsiteGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddWebsiteGroupDefault(code int) *AddWebsiteGroupDefault {
 	}
 }
 
-/*AddWebsiteGroupDefault handles this case with default header values.
+/* AddWebsiteGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddWebsiteGroupDefault) Code() int {
 
 func (o *AddWebsiteGroupDefault) Error() string {
 	return fmt.Sprintf("[POST /website/groups][%d] addWebsiteGroup default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddWebsiteGroupDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddWebsiteGroupDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

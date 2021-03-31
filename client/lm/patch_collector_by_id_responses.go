@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchCollectorByIDReader is a Reader for the PatchCollectorByID structure.
@@ -24,14 +23,12 @@ type PatchCollectorByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchCollectorByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchCollectorByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchCollectorByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchCollectorByIDOK() *PatchCollectorByIDOK {
 	return &PatchCollectorByIDOK{}
 }
 
-/*PatchCollectorByIDOK handles this case with default header values.
+/* PatchCollectorByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchCollectorByIDOK struct {
 
 func (o *PatchCollectorByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /setting/collector/collectors/{id}][%d] patchCollectorByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchCollectorByIDOK) GetPayload() *models.Collector {
+	return o.Payload
 }
 
 func (o *PatchCollectorByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchCollectorByIDDefault(code int) *PatchCollectorByIDDefault {
 	}
 }
 
-/*PatchCollectorByIDDefault handles this case with default header values.
+/* PatchCollectorByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchCollectorByIDDefault) Code() int {
 
 func (o *PatchCollectorByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /setting/collector/collectors/{id}][%d] patchCollectorById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchCollectorByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchCollectorByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

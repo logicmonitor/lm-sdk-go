@@ -7,15 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // DeviceDataSourceInstanceSDT device data source instance SDT
+//
 // swagger:model DeviceDataSourceInstanceSDT
 type DeviceDataSourceInstanceSDT struct {
 	adminField string
@@ -234,7 +236,6 @@ func (m *DeviceDataSourceInstanceSDT) Type() string {
 
 // SetType sets the type of this subtype
 func (m *DeviceDataSourceInstanceSDT) SetType(val string) {
-
 }
 
 // WeekDay gets the week day of this subtype
@@ -256,14 +257,6 @@ func (m *DeviceDataSourceInstanceSDT) WeekOfMonth() string {
 func (m *DeviceDataSourceInstanceSDT) SetWeekOfMonth(val string) {
 	m.weekOfMonthField = val
 }
-
-// DataSourceInstanceID gets the data source instance Id of this subtype
-
-// DataSourceInstanceName gets the data source instance name of this subtype
-
-// DeviceDisplayName gets the device display name of this subtype
-
-// DeviceID gets the device Id of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *DeviceDataSourceInstanceSDT) UnmarshalJSON(raw []byte) error {
@@ -376,17 +369,13 @@ func (m *DeviceDataSourceInstanceSDT) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.weekDayField = base.WeekDay
 
 	result.weekOfMonthField = base.WeekOfMonth
 
 	result.DataSourceInstanceID = data.DataSourceInstanceID
-
 	result.DataSourceInstanceName = data.DataSourceInstanceName
-
 	result.DeviceDisplayName = data.DeviceDisplayName
-
 	result.DeviceID = data.DeviceID
 
 	*m = result
@@ -420,8 +409,7 @@ func (m DeviceDataSourceInstanceSDT) MarshalJSON() ([]byte, error) {
 		DeviceDisplayName: m.DeviceDisplayName,
 
 		DeviceID: m.DeviceID,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -502,8 +490,7 @@ func (m DeviceDataSourceInstanceSDT) MarshalJSON() ([]byte, error) {
 		WeekDay: m.WeekDay(),
 
 		WeekOfMonth: m.WeekOfMonth(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -518,6 +505,81 @@ func (m *DeviceDataSourceInstanceSDT) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+// ContextValidate validate this device data source instance SDT based on the context it is used
+func (m *DeviceDataSourceInstanceSDT) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAdmin(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEndDateTimeOnLocal(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIsEffective(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStartDateTimeOnLocal(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceSDT) contextValidateAdmin(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "admin", "body", string(m.Admin())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceSDT) contextValidateEndDateTimeOnLocal(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "endDateTimeOnLocal", "body", string(m.EndDateTimeOnLocal())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceSDT) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", string(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceSDT) contextValidateIsEffective(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "isEffective", "body", m.IsEffective()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceSDT) contextValidateStartDateTimeOnLocal(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "startDateTimeOnLocal", "body", string(m.StartDateTimeOnLocal())); err != nil {
+		return err
+	}
+
 	return nil
 }
 

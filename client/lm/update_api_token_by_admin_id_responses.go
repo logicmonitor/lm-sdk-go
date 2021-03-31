@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateAPITokenByAdminIDReader is a Reader for the UpdateAPITokenByAdminID structure.
@@ -24,14 +23,12 @@ type UpdateAPITokenByAdminIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateAPITokenByAdminIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateAPITokenByAdminIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateAPITokenByAdminIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateAPITokenByAdminIDOK() *UpdateAPITokenByAdminIDOK {
 	return &UpdateAPITokenByAdminIDOK{}
 }
 
-/*UpdateAPITokenByAdminIDOK handles this case with default header values.
+/* UpdateAPITokenByAdminIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateAPITokenByAdminIDOK struct {
 
 func (o *UpdateAPITokenByAdminIDOK) Error() string {
 	return fmt.Sprintf("[PUT /setting/admins/{adminId}/apitokens/{apitokenId}][%d] updateApiTokenByAdminIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateAPITokenByAdminIDOK) GetPayload() *models.APIToken {
+	return o.Payload
 }
 
 func (o *UpdateAPITokenByAdminIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateAPITokenByAdminIDDefault(code int) *UpdateAPITokenByAdminIDDefault
 	}
 }
 
-/*UpdateAPITokenByAdminIDDefault handles this case with default header values.
+/* UpdateAPITokenByAdminIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateAPITokenByAdminIDDefault) Code() int {
 
 func (o *UpdateAPITokenByAdminIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /setting/admins/{adminId}/apitokens/{apitokenId}][%d] updateApiTokenByAdminId default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateAPITokenByAdminIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateAPITokenByAdminIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -6,75 +6,91 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewUpdateDevicePropertyByNameParams creates a new UpdateDevicePropertyByNameParams object
-// with the default values initialized.
+// NewUpdateDevicePropertyByNameParams creates a new UpdateDevicePropertyByNameParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateDevicePropertyByNameParams() *UpdateDevicePropertyByNameParams {
-	var ()
 	return &UpdateDevicePropertyByNameParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateDevicePropertyByNameParamsWithTimeout creates a new UpdateDevicePropertyByNameParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateDevicePropertyByNameParamsWithTimeout(timeout time.Duration) *UpdateDevicePropertyByNameParams {
-	var ()
 	return &UpdateDevicePropertyByNameParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateDevicePropertyByNameParamsWithContext creates a new UpdateDevicePropertyByNameParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateDevicePropertyByNameParamsWithContext(ctx context.Context) *UpdateDevicePropertyByNameParams {
-	var ()
 	return &UpdateDevicePropertyByNameParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateDevicePropertyByNameParamsWithHTTPClient creates a new UpdateDevicePropertyByNameParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateDevicePropertyByNameParamsWithHTTPClient(client *http.Client) *UpdateDevicePropertyByNameParams {
-	var ()
 	return &UpdateDevicePropertyByNameParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateDevicePropertyByNameParams contains all the parameters to send to the API endpoint
-for the update device property by name operation typically these are written to a http.Request
+/* UpdateDevicePropertyByNameParams contains all the parameters to send to the API endpoint
+   for the update device property by name operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateDevicePropertyByNameParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.EntityProperty
-	/*DeviceID*/
+
+	// DeviceID.
+	//
+	// Format: int32
 	DeviceID int32
-	/*Name*/
+
+	// Name.
 	Name string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update device property by name params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateDevicePropertyByNameParams) WithDefaults() *UpdateDevicePropertyByNameParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update device property by name params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateDevicePropertyByNameParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update device property by name params
@@ -150,7 +166,6 @@ func (o *UpdateDevicePropertyByNameParams) WriteToRequest(r runtime.ClientReques
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

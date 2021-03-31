@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceGroupDatasourceAlertSettingReader is a Reader for the GetDeviceGroupDatasourceAlertSetting structure.
@@ -24,14 +23,12 @@ type GetDeviceGroupDatasourceAlertSettingReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceGroupDatasourceAlertSettingReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceGroupDatasourceAlertSettingOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceGroupDatasourceAlertSettingDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceGroupDatasourceAlertSettingOK() *GetDeviceGroupDatasourceAlertS
 	return &GetDeviceGroupDatasourceAlertSettingOK{}
 }
 
-/*GetDeviceGroupDatasourceAlertSettingOK handles this case with default header values.
+/* GetDeviceGroupDatasourceAlertSettingOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceGroupDatasourceAlertSettingOK struct {
 
 func (o *GetDeviceGroupDatasourceAlertSettingOK) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] getDeviceGroupDatasourceAlertSettingOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceGroupDatasourceAlertSettingOK) GetPayload() *models.DeviceGroupDataSourceAlertConfig {
+	return o.Payload
 }
 
 func (o *GetDeviceGroupDatasourceAlertSettingOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceGroupDatasourceAlertSettingDefault(code int) *GetDeviceGroupDat
 	}
 }
 
-/*GetDeviceGroupDatasourceAlertSettingDefault handles this case with default header values.
+/* GetDeviceGroupDatasourceAlertSettingDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceGroupDatasourceAlertSettingDefault) Code() int {
 
 func (o *GetDeviceGroupDatasourceAlertSettingDefault) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] getDeviceGroupDatasourceAlertSetting default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceGroupDatasourceAlertSettingDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceGroupDatasourceAlertSettingDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

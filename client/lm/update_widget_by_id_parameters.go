@@ -6,73 +6,88 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewUpdateWidgetByIDParams creates a new UpdateWidgetByIDParams object
-// with the default values initialized.
+// NewUpdateWidgetByIDParams creates a new UpdateWidgetByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateWidgetByIDParams() *UpdateWidgetByIDParams {
-	var ()
 	return &UpdateWidgetByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateWidgetByIDParamsWithTimeout creates a new UpdateWidgetByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateWidgetByIDParamsWithTimeout(timeout time.Duration) *UpdateWidgetByIDParams {
-	var ()
 	return &UpdateWidgetByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateWidgetByIDParamsWithContext creates a new UpdateWidgetByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateWidgetByIDParamsWithContext(ctx context.Context) *UpdateWidgetByIDParams {
-	var ()
 	return &UpdateWidgetByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateWidgetByIDParamsWithHTTPClient creates a new UpdateWidgetByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateWidgetByIDParamsWithHTTPClient(client *http.Client) *UpdateWidgetByIDParams {
-	var ()
 	return &UpdateWidgetByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateWidgetByIDParams contains all the parameters to send to the API endpoint
-for the update widget by Id operation typically these are written to a http.Request
+/* UpdateWidgetByIDParams contains all the parameters to send to the API endpoint
+   for the update widget by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateWidgetByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body models.Widget
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update widget by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateWidgetByIDParams) WithDefaults() *UpdateWidgetByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update widget by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateWidgetByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update widget by Id params
@@ -137,7 +152,6 @@ func (o *UpdateWidgetByIDParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

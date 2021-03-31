@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetRoleListReader is a Reader for the GetRoleList structure.
@@ -24,14 +23,12 @@ type GetRoleListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRoleListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRoleListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetRoleListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetRoleListOK() *GetRoleListOK {
 	return &GetRoleListOK{}
 }
 
-/*GetRoleListOK handles this case with default header values.
+/* GetRoleListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetRoleListOK struct {
 
 func (o *GetRoleListOK) Error() string {
 	return fmt.Sprintf("[GET /setting/roles][%d] getRoleListOK  %+v", 200, o.Payload)
+}
+func (o *GetRoleListOK) GetPayload() *models.RolePaginationResponse {
+	return o.Payload
 }
 
 func (o *GetRoleListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetRoleListDefault(code int) *GetRoleListDefault {
 	}
 }
 
-/*GetRoleListDefault handles this case with default header values.
+/* GetRoleListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetRoleListDefault) Code() int {
 
 func (o *GetRoleListDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/roles][%d] getRoleList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetRoleListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetRoleListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

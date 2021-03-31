@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteRecipientGroupByIDReader is a Reader for the DeleteRecipientGroupByID structure.
@@ -24,14 +23,12 @@ type DeleteRecipientGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteRecipientGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteRecipientGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteRecipientGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteRecipientGroupByIDOK() *DeleteRecipientGroupByIDOK {
 	return &DeleteRecipientGroupByIDOK{}
 }
 
-/*DeleteRecipientGroupByIDOK handles this case with default header values.
+/* DeleteRecipientGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteRecipientGroupByIDOK struct {
 
 func (o *DeleteRecipientGroupByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /setting/recipientgroups/{id}][%d] deleteRecipientGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteRecipientGroupByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteRecipientGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteRecipientGroupByIDDefault(code int) *DeleteRecipientGroupByIDDefau
 	}
 }
 
-/*DeleteRecipientGroupByIDDefault handles this case with default header values.
+/* DeleteRecipientGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteRecipientGroupByIDDefault) Code() int {
 
 func (o *DeleteRecipientGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /setting/recipientgroups/{id}][%d] deleteRecipientGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteRecipientGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteRecipientGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

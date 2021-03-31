@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateCollectorGroupByIDReader is a Reader for the UpdateCollectorGroupByID structure.
@@ -24,14 +23,12 @@ type UpdateCollectorGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateCollectorGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateCollectorGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateCollectorGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateCollectorGroupByIDOK() *UpdateCollectorGroupByIDOK {
 	return &UpdateCollectorGroupByIDOK{}
 }
 
-/*UpdateCollectorGroupByIDOK handles this case with default header values.
+/* UpdateCollectorGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateCollectorGroupByIDOK struct {
 
 func (o *UpdateCollectorGroupByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /setting/collector/groups/{id}][%d] updateCollectorGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateCollectorGroupByIDOK) GetPayload() *models.CollectorGroup {
+	return o.Payload
 }
 
 func (o *UpdateCollectorGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateCollectorGroupByIDDefault(code int) *UpdateCollectorGroupByIDDefau
 	}
 }
 
-/*UpdateCollectorGroupByIDDefault handles this case with default header values.
+/* UpdateCollectorGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateCollectorGroupByIDDefault) Code() int {
 
 func (o *UpdateCollectorGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /setting/collector/groups/{id}][%d] updateCollectorGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateCollectorGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateCollectorGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateWebsiteByIDReader is a Reader for the UpdateWebsiteByID structure.
@@ -24,14 +23,12 @@ type UpdateWebsiteByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateWebsiteByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateWebsiteByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateWebsiteByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateWebsiteByIDOK() *UpdateWebsiteByIDOK {
 	return &UpdateWebsiteByIDOK{}
 }
 
-/*UpdateWebsiteByIDOK handles this case with default header values.
+/* UpdateWebsiteByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateWebsiteByIDOK struct {
 
 func (o *UpdateWebsiteByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateWebsiteByIDOK) GetPayload() models.Website {
+	return o.Payload
 }
 
 func (o *UpdateWebsiteByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateWebsiteByIDDefault(code int) *UpdateWebsiteByIDDefault {
 	}
 }
 
-/*UpdateWebsiteByIDDefault handles this case with default header values.
+/* UpdateWebsiteByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateWebsiteByIDDefault) Code() int {
 
 func (o *UpdateWebsiteByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateWebsiteByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateWebsiteByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

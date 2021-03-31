@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchCollectorGroupByIDReader is a Reader for the PatchCollectorGroupByID structure.
@@ -24,14 +23,12 @@ type PatchCollectorGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchCollectorGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchCollectorGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchCollectorGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchCollectorGroupByIDOK() *PatchCollectorGroupByIDOK {
 	return &PatchCollectorGroupByIDOK{}
 }
 
-/*PatchCollectorGroupByIDOK handles this case with default header values.
+/* PatchCollectorGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchCollectorGroupByIDOK struct {
 
 func (o *PatchCollectorGroupByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /setting/collector/groups/{id}][%d] patchCollectorGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchCollectorGroupByIDOK) GetPayload() *models.CollectorGroup {
+	return o.Payload
 }
 
 func (o *PatchCollectorGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchCollectorGroupByIDDefault(code int) *PatchCollectorGroupByIDDefault
 	}
 }
 
-/*PatchCollectorGroupByIDDefault handles this case with default header values.
+/* PatchCollectorGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchCollectorGroupByIDDefault) Code() int {
 
 func (o *PatchCollectorGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /setting/collector/groups/{id}][%d] patchCollectorGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchCollectorGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchCollectorGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -6,73 +6,91 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetDeviceDatasourceByIDParams creates a new GetDeviceDatasourceByIDParams object
-// with the default values initialized.
+// NewGetDeviceDatasourceByIDParams creates a new GetDeviceDatasourceByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetDeviceDatasourceByIDParams() *GetDeviceDatasourceByIDParams {
-	var ()
 	return &GetDeviceDatasourceByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetDeviceDatasourceByIDParamsWithTimeout creates a new GetDeviceDatasourceByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetDeviceDatasourceByIDParamsWithTimeout(timeout time.Duration) *GetDeviceDatasourceByIDParams {
-	var ()
 	return &GetDeviceDatasourceByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetDeviceDatasourceByIDParamsWithContext creates a new GetDeviceDatasourceByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetDeviceDatasourceByIDParamsWithContext(ctx context.Context) *GetDeviceDatasourceByIDParams {
-	var ()
 	return &GetDeviceDatasourceByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetDeviceDatasourceByIDParamsWithHTTPClient creates a new GetDeviceDatasourceByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetDeviceDatasourceByIDParamsWithHTTPClient(client *http.Client) *GetDeviceDatasourceByIDParams {
-	var ()
 	return &GetDeviceDatasourceByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetDeviceDatasourceByIDParams contains all the parameters to send to the API endpoint
-for the get device datasource by Id operation typically these are written to a http.Request
+/* GetDeviceDatasourceByIDParams contains all the parameters to send to the API endpoint
+   for the get device datasource by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceByIDParams struct {
 
-	/*DeviceID*/
+	// DeviceID.
+	//
+	// Format: int32
 	DeviceID int32
-	/*Fields*/
+
+	// Fields.
 	Fields *string
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get device datasource by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDeviceDatasourceByIDParams) WithDefaults() *GetDeviceDatasourceByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get device datasource by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDeviceDatasourceByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get device datasource by Id params
@@ -158,16 +176,17 @@ func (o *GetDeviceDatasourceByIDParams) WriteToRequest(r runtime.ClientRequest, 
 
 		// query param fields
 		var qrFields string
+
 		if o.Fields != nil {
 			qrFields = *o.Fields
 		}
 		qFields := qrFields
 		if qFields != "" {
+
 			if err := r.SetQueryParam("fields", qFields); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id

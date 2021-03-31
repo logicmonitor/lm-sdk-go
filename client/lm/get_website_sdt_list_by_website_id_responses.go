@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetWebsiteSDTListByWebsiteIDReader is a Reader for the GetWebsiteSDTListByWebsiteID structure.
@@ -24,14 +23,12 @@ type GetWebsiteSDTListByWebsiteIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetWebsiteSDTListByWebsiteIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetWebsiteSDTListByWebsiteIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetWebsiteSDTListByWebsiteIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetWebsiteSDTListByWebsiteIDOK() *GetWebsiteSDTListByWebsiteIDOK {
 	return &GetWebsiteSDTListByWebsiteIDOK{}
 }
 
-/*GetWebsiteSDTListByWebsiteIDOK handles this case with default header values.
+/* GetWebsiteSDTListByWebsiteIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetWebsiteSDTListByWebsiteIDOK struct {
 
 func (o *GetWebsiteSDTListByWebsiteIDOK) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{id}/sdts][%d] getWebsiteSdtListByWebsiteIdOK  %+v", 200, o.Payload)
+}
+func (o *GetWebsiteSDTListByWebsiteIDOK) GetPayload() *models.SDTPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetWebsiteSDTListByWebsiteIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetWebsiteSDTListByWebsiteIDDefault(code int) *GetWebsiteSDTListByWebsit
 	}
 }
 
-/*GetWebsiteSDTListByWebsiteIDDefault handles this case with default header values.
+/* GetWebsiteSDTListByWebsiteIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetWebsiteSDTListByWebsiteIDDefault) Code() int {
 
 func (o *GetWebsiteSDTListByWebsiteIDDefault) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{id}/sdts][%d] getWebsiteSDTListByWebsiteId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetWebsiteSDTListByWebsiteIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetWebsiteSDTListByWebsiteIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

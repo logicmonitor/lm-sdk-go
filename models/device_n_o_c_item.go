@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // DeviceNOCItem device n o c item
+//
 // swagger:model DeviceNOCItem
 type DeviceNOCItem struct {
 
@@ -55,22 +56,7 @@ func (m *DeviceNOCItem) Type() string {
 
 // SetType sets the type of this subtype
 func (m *DeviceNOCItem) SetType(val string) {
-
 }
-
-// DataPointName gets the data point name of this subtype
-
-// DataSourceDisplayName gets the data source display name of this subtype
-
-// DeviceDisplayName gets the device display name of this subtype
-
-// DeviceGroupFullPath gets the device group full path of this subtype
-
-// GroupBy gets the group by of this subtype
-
-// InstanceName gets the instance name of this subtype
-
-// Name gets the name of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *DeviceNOCItem) UnmarshalJSON(raw []byte) error {
@@ -132,17 +118,11 @@ func (m *DeviceNOCItem) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.DataPointName = data.DataPointName
-
 	result.DataSourceDisplayName = data.DataSourceDisplayName
-
 	result.DeviceDisplayName = data.DeviceDisplayName
-
 	result.DeviceGroupFullPath = data.DeviceGroupFullPath
-
 	result.GroupBy = data.GroupBy
-
 	result.InstanceName = data.InstanceName
-
 	result.Name = data.Name
 
 	*m = result
@@ -197,8 +177,7 @@ func (m DeviceNOCItem) MarshalJSON() ([]byte, error) {
 		InstanceName: m.InstanceName,
 
 		Name: m.Name,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -207,8 +186,7 @@ func (m DeviceNOCItem) MarshalJSON() ([]byte, error) {
 	}{
 
 		Type: m.Type(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -301,6 +279,16 @@ func (m *DeviceNOCItem) validateName(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validate this device n o c item based on the context it is used
+func (m *DeviceNOCItem) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

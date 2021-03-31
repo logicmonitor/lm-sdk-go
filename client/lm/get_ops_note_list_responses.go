@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetOpsNoteListReader is a Reader for the GetOpsNoteList structure.
@@ -24,14 +23,12 @@ type GetOpsNoteListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetOpsNoteListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetOpsNoteListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetOpsNoteListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetOpsNoteListOK() *GetOpsNoteListOK {
 	return &GetOpsNoteListOK{}
 }
 
-/*GetOpsNoteListOK handles this case with default header values.
+/* GetOpsNoteListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetOpsNoteListOK struct {
 
 func (o *GetOpsNoteListOK) Error() string {
 	return fmt.Sprintf("[GET /setting/opsnotes][%d] getOpsNoteListOK  %+v", 200, o.Payload)
+}
+func (o *GetOpsNoteListOK) GetPayload() *models.OpsNotePaginationResponse {
+	return o.Payload
 }
 
 func (o *GetOpsNoteListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetOpsNoteListDefault(code int) *GetOpsNoteListDefault {
 	}
 }
 
-/*GetOpsNoteListDefault handles this case with default header values.
+/* GetOpsNoteListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetOpsNoteListDefault) Code() int {
 
 func (o *GetOpsNoteListDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/opsnotes][%d] getOpsNoteList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetOpsNoteListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetOpsNoteListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

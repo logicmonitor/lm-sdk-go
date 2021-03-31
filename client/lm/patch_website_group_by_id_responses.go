@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchWebsiteGroupByIDReader is a Reader for the PatchWebsiteGroupByID structure.
@@ -24,14 +23,12 @@ type PatchWebsiteGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchWebsiteGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchWebsiteGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchWebsiteGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchWebsiteGroupByIDOK() *PatchWebsiteGroupByIDOK {
 	return &PatchWebsiteGroupByIDOK{}
 }
 
-/*PatchWebsiteGroupByIDOK handles this case with default header values.
+/* PatchWebsiteGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchWebsiteGroupByIDOK struct {
 
 func (o *PatchWebsiteGroupByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchWebsiteGroupByIDOK) GetPayload() *models.WebsiteGroup {
+	return o.Payload
 }
 
 func (o *PatchWebsiteGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchWebsiteGroupByIDDefault(code int) *PatchWebsiteGroupByIDDefault {
 	}
 }
 
-/*PatchWebsiteGroupByIDDefault handles this case with default header values.
+/* PatchWebsiteGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchWebsiteGroupByIDDefault) Code() int {
 
 func (o *PatchWebsiteGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchWebsiteGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchWebsiteGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

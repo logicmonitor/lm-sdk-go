@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetAlertRuleListReader is a Reader for the GetAlertRuleList structure.
@@ -24,14 +23,12 @@ type GetAlertRuleListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAlertRuleListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetAlertRuleListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetAlertRuleListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetAlertRuleListOK() *GetAlertRuleListOK {
 	return &GetAlertRuleListOK{}
 }
 
-/*GetAlertRuleListOK handles this case with default header values.
+/* GetAlertRuleListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetAlertRuleListOK struct {
 
 func (o *GetAlertRuleListOK) Error() string {
 	return fmt.Sprintf("[GET /setting/alert/rules][%d] getAlertRuleListOK  %+v", 200, o.Payload)
+}
+func (o *GetAlertRuleListOK) GetPayload() *models.AlertRulePaginationResponse {
+	return o.Payload
 }
 
 func (o *GetAlertRuleListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetAlertRuleListDefault(code int) *GetAlertRuleListDefault {
 	}
 }
 
-/*GetAlertRuleListDefault handles this case with default header values.
+/* GetAlertRuleListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetAlertRuleListDefault) Code() int {
 
 func (o *GetAlertRuleListDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/alert/rules][%d] getAlertRuleList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetAlertRuleListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetAlertRuleListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // BasicAuthentication basic authentication
+//
 // swagger:model BasicAuthentication
 type BasicAuthentication struct {
 	passwordField *string
@@ -43,7 +44,6 @@ func (m *BasicAuthentication) Type() string {
 
 // SetType sets the type of this subtype
 func (m *BasicAuthentication) SetType(val string) {
-
 }
 
 // UserName gets the user name of this subtype
@@ -94,7 +94,6 @@ func (m *BasicAuthentication) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.userNameField = base.UserName
 
 	result.BasicAuthenticationAllOf1 = data.BasicAuthenticationAllOf1
@@ -113,8 +112,7 @@ func (m BasicAuthentication) MarshalJSON() ([]byte, error) {
 	}{
 
 		BasicAuthenticationAllOf1: m.BasicAuthenticationAllOf1,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -131,8 +129,7 @@ func (m BasicAuthentication) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserName: m.UserName(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -178,6 +175,18 @@ func (m *BasicAuthentication) validateUserName(formats strfmt.Registry) error {
 	return nil
 }
 
+// ContextValidate validate this basic authentication based on the context it is used
+func (m *BasicAuthentication) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with BasicAuthenticationAllOf1
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
 // MarshalBinary interface implementation
 func (m *BasicAuthentication) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -197,5 +206,6 @@ func (m *BasicAuthentication) UnmarshalBinary(b []byte) error {
 }
 
 // BasicAuthenticationAllOf1 basic authentication all of1
+//
 // swagger:model BasicAuthenticationAllOf1
 type BasicAuthenticationAllOf1 interface{}

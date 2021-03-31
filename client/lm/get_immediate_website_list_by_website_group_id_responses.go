@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetImmediateWebsiteListByWebsiteGroupIDReader is a Reader for the GetImmediateWebsiteListByWebsiteGroupID structure.
@@ -24,14 +23,12 @@ type GetImmediateWebsiteListByWebsiteGroupIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetImmediateWebsiteListByWebsiteGroupIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetImmediateWebsiteListByWebsiteGroupIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetImmediateWebsiteListByWebsiteGroupIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetImmediateWebsiteListByWebsiteGroupIDOK() *GetImmediateWebsiteListByWe
 	return &GetImmediateWebsiteListByWebsiteGroupIDOK{}
 }
 
-/*GetImmediateWebsiteListByWebsiteGroupIDOK handles this case with default header values.
+/* GetImmediateWebsiteListByWebsiteGroupIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetImmediateWebsiteListByWebsiteGroupIDOK struct {
 
 func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) Error() string {
 	return fmt.Sprintf("[GET /website/groups/{id}/websites][%d] getImmediateWebsiteListByWebsiteGroupIdOK  %+v", 200, o.Payload)
+}
+func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) GetPayload() *models.WebsitePaginationResponse {
+	return o.Payload
 }
 
 func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetImmediateWebsiteListByWebsiteGroupIDDefault(code int) *GetImmediateWe
 	}
 }
 
-/*GetImmediateWebsiteListByWebsiteGroupIDDefault handles this case with default header values.
+/* GetImmediateWebsiteListByWebsiteGroupIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) Code() int {
 
 func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) Error() string {
 	return fmt.Sprintf("[GET /website/groups/{id}/websites][%d] getImmediateWebsiteListByWebsiteGroupId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

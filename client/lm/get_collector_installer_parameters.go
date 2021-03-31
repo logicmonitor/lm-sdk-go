@@ -6,118 +6,133 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetCollectorInstallerParams creates a new GetCollectorInstallerParams object
-// with the default values initialized.
+// NewGetCollectorInstallerParams creates a new GetCollectorInstallerParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetCollectorInstallerParams() *GetCollectorInstallerParams {
-	var (
-		collectorSizeDefault = string("medium")
-		monitorOthersDefault = bool(true)
-		useEADefault         = bool(false)
-	)
 	return &GetCollectorInstallerParams{
-		CollectorSize: &collectorSizeDefault,
-		MonitorOthers: &monitorOthersDefault,
-		UseEA:         &useEADefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetCollectorInstallerParamsWithTimeout creates a new GetCollectorInstallerParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetCollectorInstallerParamsWithTimeout(timeout time.Duration) *GetCollectorInstallerParams {
-	var (
-		collectorSizeDefault = string("medium")
-		monitorOthersDefault = bool(true)
-		useEADefault         = bool(false)
-	)
 	return &GetCollectorInstallerParams{
-		CollectorSize: &collectorSizeDefault,
-		MonitorOthers: &monitorOthersDefault,
-		UseEA:         &useEADefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetCollectorInstallerParamsWithContext creates a new GetCollectorInstallerParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetCollectorInstallerParamsWithContext(ctx context.Context) *GetCollectorInstallerParams {
-	var (
-		collectorSizeDefault = string("medium")
-		monitorOthersDefault = bool(true)
-		useEADefault         = bool(false)
-	)
 	return &GetCollectorInstallerParams{
-		CollectorSize: &collectorSizeDefault,
-		MonitorOthers: &monitorOthersDefault,
-		UseEA:         &useEADefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetCollectorInstallerParamsWithHTTPClient creates a new GetCollectorInstallerParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetCollectorInstallerParamsWithHTTPClient(client *http.Client) *GetCollectorInstallerParams {
-	var (
-		collectorSizeDefault = string("medium")
-		monitorOthersDefault = bool(true)
-		useEADefault         = bool(false)
-	)
 	return &GetCollectorInstallerParams{
-		CollectorSize: &collectorSizeDefault,
-		MonitorOthers: &monitorOthersDefault,
-		UseEA:         &useEADefault,
-		HTTPClient:    client,
+		HTTPClient: client,
 	}
 }
 
-/*GetCollectorInstallerParams contains all the parameters to send to the API endpoint
-for the get collector installer operation typically these are written to a http.Request
+/* GetCollectorInstallerParams contains all the parameters to send to the API endpoint
+   for the get collector installer operation.
+
+   Typically these are written to a http.Request.
 */
 type GetCollectorInstallerParams struct {
 
-	/*CollectorID*/
+	// CollectorID.
+	//
+	// Format: int32
 	CollectorID int32
-	/*CollectorSize
-	  The size of the Collector you'd like to install. Options are nano, small (requires 2GB memory), medium (requires 4GB memory), large (requires 8GB memory). Requires collector version 22.180 or higher. Defaults to small
 
+	/* CollectorSize.
+
+	   The size of the Collector you'd like to install. Options are nano, small (requires 2GB memory), medium (requires 4GB memory), large (requires 8GB memory), extra large (requires 16GB memory), double extra large (requires 32GB memory). Requires collector version 22.180 or higher. Defaults to small
+
+	   Default: "medium"
 	*/
 	CollectorSize *string
-	/*CollectorVersion
-	  The version of the installer you'd like to download. This defaults to the latest GD Collector, unless useEA is true
 
+	/* CollectorVersion.
+
+	   The version of the installer you'd like to download. This defaults to the latest GD Collector, unless useEA is true
+
+	   Format: int32
 	*/
 	CollectorVersion *int32
-	/*MonitorOthers*/
-	MonitorOthers *bool
-	/*OsAndArch*/
-	OsAndArch string
-	/*Token*/
-	Token *string
-	/*UseEA
-	  If true, the latest EA Collector version will be used. Defaults to false
 
+	// MonitorOthers.
+	//
+	// Default: true
+	MonitorOthers *bool
+
+	// OsAndArch.
+	OsAndArch string
+
+	// Token.
+	Token *string
+
+	/* UseEA.
+
+	   If true, the latest EA Collector version will be used. Defaults to false
 	*/
 	UseEA *bool
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get collector installer params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetCollectorInstallerParams) WithDefaults() *GetCollectorInstallerParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get collector installer params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetCollectorInstallerParams) SetDefaults() {
+	var (
+		collectorSizeDefault = string("medium")
+
+		monitorOthersDefault = bool(true)
+
+		useEADefault = bool(false)
+	)
+
+	val := GetCollectorInstallerParams{
+		CollectorSize: &collectorSizeDefault,
+		MonitorOthers: &monitorOthersDefault,
+		UseEA:         &useEADefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get collector installer params
@@ -247,48 +262,51 @@ func (o *GetCollectorInstallerParams) WriteToRequest(r runtime.ClientRequest, re
 
 		// query param collectorSize
 		var qrCollectorSize string
+
 		if o.CollectorSize != nil {
 			qrCollectorSize = *o.CollectorSize
 		}
 		qCollectorSize := qrCollectorSize
 		if qCollectorSize != "" {
+
 			if err := r.SetQueryParam("collectorSize", qCollectorSize); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.CollectorVersion != nil {
 
 		// query param collectorVersion
 		var qrCollectorVersion int32
+
 		if o.CollectorVersion != nil {
 			qrCollectorVersion = *o.CollectorVersion
 		}
 		qCollectorVersion := swag.FormatInt32(qrCollectorVersion)
 		if qCollectorVersion != "" {
+
 			if err := r.SetQueryParam("collectorVersion", qCollectorVersion); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.MonitorOthers != nil {
 
 		// query param monitorOthers
 		var qrMonitorOthers bool
+
 		if o.MonitorOthers != nil {
 			qrMonitorOthers = *o.MonitorOthers
 		}
 		qMonitorOthers := swag.FormatBool(qrMonitorOthers)
 		if qMonitorOthers != "" {
+
 			if err := r.SetQueryParam("monitorOthers", qMonitorOthers); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param osAndArch
@@ -300,32 +318,34 @@ func (o *GetCollectorInstallerParams) WriteToRequest(r runtime.ClientRequest, re
 
 		// query param token
 		var qrToken string
+
 		if o.Token != nil {
 			qrToken = *o.Token
 		}
 		qToken := qrToken
 		if qToken != "" {
+
 			if err := r.SetQueryParam("token", qToken); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.UseEA != nil {
 
 		// query param useEA
 		var qrUseEA bool
+
 		if o.UseEA != nil {
 			qrUseEA = *o.UseEA
 		}
 		qUseEA := swag.FormatBool(qrUseEA)
 		if qUseEA != "" {
+
 			if err := r.SetQueryParam("useEA", qUseEA); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

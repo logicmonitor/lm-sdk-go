@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateDeviceGroupPropertyByNameReader is a Reader for the UpdateDeviceGroupPropertyByName structure.
@@ -24,14 +23,12 @@ type UpdateDeviceGroupPropertyByNameReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateDeviceGroupPropertyByNameReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateDeviceGroupPropertyByNameOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateDeviceGroupPropertyByNameDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateDeviceGroupPropertyByNameOK() *UpdateDeviceGroupPropertyByNameOK {
 	return &UpdateDeviceGroupPropertyByNameOK{}
 }
 
-/*UpdateDeviceGroupPropertyByNameOK handles this case with default header values.
+/* UpdateDeviceGroupPropertyByNameOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateDeviceGroupPropertyByNameOK struct {
 
 func (o *UpdateDeviceGroupPropertyByNameOK) Error() string {
 	return fmt.Sprintf("[PUT /device/groups/{gid}/properties/{name}][%d] updateDeviceGroupPropertyByNameOK  %+v", 200, o.Payload)
+}
+func (o *UpdateDeviceGroupPropertyByNameOK) GetPayload() *models.EntityProperty {
+	return o.Payload
 }
 
 func (o *UpdateDeviceGroupPropertyByNameOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateDeviceGroupPropertyByNameDefault(code int) *UpdateDeviceGroupPrope
 	}
 }
 
-/*UpdateDeviceGroupPropertyByNameDefault handles this case with default header values.
+/* UpdateDeviceGroupPropertyByNameDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateDeviceGroupPropertyByNameDefault) Code() int {
 
 func (o *UpdateDeviceGroupPropertyByNameDefault) Error() string {
 	return fmt.Sprintf("[PUT /device/groups/{gid}/properties/{name}][%d] updateDeviceGroupPropertyByName default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateDeviceGroupPropertyByNameDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateDeviceGroupPropertyByNameDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

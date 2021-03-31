@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceGroupByIDReader is a Reader for the GetDeviceGroupByID structure.
@@ -24,14 +23,12 @@ type GetDeviceGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceGroupByIDOK() *GetDeviceGroupByIDOK {
 	return &GetDeviceGroupByIDOK{}
 }
 
-/*GetDeviceGroupByIDOK handles this case with default header values.
+/* GetDeviceGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceGroupByIDOK struct {
 
 func (o *GetDeviceGroupByIDOK) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{id}][%d] getDeviceGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceGroupByIDOK) GetPayload() *models.DeviceGroup {
+	return o.Payload
 }
 
 func (o *GetDeviceGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceGroupByIDDefault(code int) *GetDeviceGroupByIDDefault {
 	}
 }
 
-/*GetDeviceGroupByIDDefault handles this case with default header values.
+/* GetDeviceGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceGroupByIDDefault) Code() int {
 
 func (o *GetDeviceGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{id}][%d] getDeviceGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

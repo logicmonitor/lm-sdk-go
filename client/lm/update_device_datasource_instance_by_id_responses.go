@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateDeviceDatasourceInstanceByIDReader is a Reader for the UpdateDeviceDatasourceInstanceByID structure.
@@ -24,14 +23,12 @@ type UpdateDeviceDatasourceInstanceByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateDeviceDatasourceInstanceByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateDeviceDatasourceInstanceByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateDeviceDatasourceInstanceByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateDeviceDatasourceInstanceByIDOK() *UpdateDeviceDatasourceInstanceBy
 	return &UpdateDeviceDatasourceInstanceByIDOK{}
 }
 
-/*UpdateDeviceDatasourceInstanceByIDOK handles this case with default header values.
+/* UpdateDeviceDatasourceInstanceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateDeviceDatasourceInstanceByIDOK struct {
 
 func (o *UpdateDeviceDatasourceInstanceByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] updateDeviceDatasourceInstanceByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateDeviceDatasourceInstanceByIDOK) GetPayload() *models.DeviceDataSourceInstance {
+	return o.Payload
 }
 
 func (o *UpdateDeviceDatasourceInstanceByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateDeviceDatasourceInstanceByIDDefault(code int) *UpdateDeviceDatasou
 	}
 }
 
-/*UpdateDeviceDatasourceInstanceByIDDefault handles this case with default header values.
+/* UpdateDeviceDatasourceInstanceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateDeviceDatasourceInstanceByIDDefault) Code() int {
 
 func (o *UpdateDeviceDatasourceInstanceByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] updateDeviceDatasourceInstanceById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateDeviceDatasourceInstanceByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateDeviceDatasourceInstanceByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

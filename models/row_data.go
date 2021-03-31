@@ -6,15 +6,17 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // RowData row data
+//
 // swagger:model RowData
 type RowData struct {
 
@@ -46,7 +48,6 @@ func (m *RowData) Validate(formats strfmt.Registry) error {
 }
 
 func (m *RowData) validateCells(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Cells) { // not required
 		return nil
 	}
@@ -65,6 +66,68 @@ func (m *RowData) validateCells(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+// ContextValidate validate this row data based on the context it is used
+func (m *RowData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCells(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeviceDisplayName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeviceID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *RowData) contextValidateCells(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "cells", "body", []*CellData(m.Cells)); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Cells); i++ {
+
+		if m.Cells[i] != nil {
+			if err := m.Cells[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("cells" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *RowData) contextValidateDeviceDisplayName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "deviceDisplayName", "body", string(m.DeviceDisplayName)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *RowData) contextValidateDeviceID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "deviceId", "body", int32(m.DeviceID)); err != nil {
+		return err
 	}
 
 	return nil

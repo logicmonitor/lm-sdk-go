@@ -7,15 +7,16 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // UDPCollectorAttribute UDP collector attribute
+//
 // swagger:model UDPCollectorAttribute
 type UDPCollectorAttribute struct {
 
@@ -33,12 +34,7 @@ func (m *UDPCollectorAttribute) Name() string {
 
 // SetName sets the name of this subtype
 func (m *UDPCollectorAttribute) SetName(val string) {
-
 }
-
-// Payload gets the payload of this subtype
-
-// Port gets the port of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *UDPCollectorAttribute) UnmarshalJSON(raw []byte) error {
@@ -79,7 +75,6 @@ func (m *UDPCollectorAttribute) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.Payload = data.Payload
-
 	result.Port = data.Port
 
 	*m = result
@@ -103,8 +98,7 @@ func (m UDPCollectorAttribute) MarshalJSON() ([]byte, error) {
 		Payload: m.Payload,
 
 		Port: m.Port,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -113,8 +107,7 @@ func (m UDPCollectorAttribute) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -124,6 +117,16 @@ func (m UDPCollectorAttribute) MarshalJSON() ([]byte, error) {
 
 // Validate validates this UDP collector attribute
 func (m *UDPCollectorAttribute) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+// ContextValidate validate this UDP collector attribute based on the context it is used
+func (m *UDPCollectorAttribute) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if len(res) > 0 {

@@ -6,87 +6,102 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewUpdateAdminByIDParams creates a new UpdateAdminByIDParams object
-// with the default values initialized.
+// NewUpdateAdminByIDParams creates a new UpdateAdminByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateAdminByIDParams() *UpdateAdminByIDParams {
-	var (
-		changePasswordDefault = bool(false)
-	)
 	return &UpdateAdminByIDParams{
-		ChangePassword: &changePasswordDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateAdminByIDParamsWithTimeout creates a new UpdateAdminByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateAdminByIDParamsWithTimeout(timeout time.Duration) *UpdateAdminByIDParams {
-	var (
-		changePasswordDefault = bool(false)
-	)
 	return &UpdateAdminByIDParams{
-		ChangePassword: &changePasswordDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateAdminByIDParamsWithContext creates a new UpdateAdminByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateAdminByIDParamsWithContext(ctx context.Context) *UpdateAdminByIDParams {
-	var (
-		changePasswordDefault = bool(false)
-	)
 	return &UpdateAdminByIDParams{
-		ChangePassword: &changePasswordDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateAdminByIDParamsWithHTTPClient creates a new UpdateAdminByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateAdminByIDParamsWithHTTPClient(client *http.Client) *UpdateAdminByIDParams {
-	var (
-		changePasswordDefault = bool(false)
-	)
 	return &UpdateAdminByIDParams{
-		ChangePassword: &changePasswordDefault,
-		HTTPClient:     client,
+		HTTPClient: client,
 	}
 }
 
-/*UpdateAdminByIDParams contains all the parameters to send to the API endpoint
-for the update admin by Id operation typically these are written to a http.Request
+/* UpdateAdminByIDParams contains all the parameters to send to the API endpoint
+   for the update admin by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateAdminByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.Admin
-	/*ChangePassword*/
+
+	// ChangePassword.
 	ChangePassword *bool
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update admin by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAdminByIDParams) WithDefaults() *UpdateAdminByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update admin by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAdminByIDParams) SetDefaults() {
+	var (
+		changePasswordDefault = bool(false)
+	)
+
+	val := UpdateAdminByIDParams{
+		ChangePassword: &changePasswordDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update admin by Id params
@@ -162,7 +177,6 @@ func (o *UpdateAdminByIDParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
@@ -173,16 +187,17 @@ func (o *UpdateAdminByIDParams) WriteToRequest(r runtime.ClientRequest, reg strf
 
 		// query param changePassword
 		var qrChangePassword bool
+
 		if o.ChangePassword != nil {
 			qrChangePassword = *o.ChangePassword
 		}
 		qChangePassword := swag.FormatBool(qrChangePassword)
 		if qChangePassword != "" {
+
 			if err := r.SetQueryParam("changePassword", qChangePassword); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id

@@ -206,6 +206,35 @@ func (a *Client) AddAPITokenByAdminID(params *AddAPITokenByAdminIDParams) (*AddA
 }
 
 /*
+AddAppliesToFunction adds applies to function
+*/
+func (a *Client) AddAppliesToFunction(params *AddAppliesToFunctionParams) (*AddAppliesToFunctionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddAppliesToFunctionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addAppliesToFunction",
+		Method:             "POST",
+		PathPattern:        "/setting/functions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddAppliesToFunctionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddAppliesToFunctionOK), nil
+
+}
+
+/*
 AddCollector adds collector
 */
 func (a *Client) AddCollector(params *AddCollectorParams) (*AddCollectorOK, error) {
@@ -857,7 +886,7 @@ func (a *Client) CollectDeviceConfigSourceConfig(params *CollectDeviceConfigSour
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/collectNow",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &CollectDeviceConfigSourceConfigReader{formats: a.formats},
@@ -886,7 +915,7 @@ func (a *Client) DeleteAdminByID(params *DeleteAdminByIDParams) (*DeleteAdminByI
 		Method:             "DELETE",
 		PathPattern:        "/setting/admins/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteAdminByIDReader{formats: a.formats},
@@ -915,7 +944,7 @@ func (a *Client) DeleteAlertRuleByID(params *DeleteAlertRuleByIDParams) (*Delete
 		Method:             "DELETE",
 		PathPattern:        "/setting/alert/rules/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteAlertRuleByIDReader{formats: a.formats},
@@ -944,7 +973,7 @@ func (a *Client) DeleteAPITokenByID(params *DeleteAPITokenByIDParams) (*DeleteAP
 		Method:             "DELETE",
 		PathPattern:        "/setting/admins/{adminId}/apitokens/{apitokenId}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteAPITokenByIDReader{formats: a.formats},
@@ -956,6 +985,35 @@ func (a *Client) DeleteAPITokenByID(params *DeleteAPITokenByIDParams) (*DeleteAP
 		return nil, err
 	}
 	return result.(*DeleteAPITokenByIDOK), nil
+
+}
+
+/*
+DeleteAppliesToFunctionByID deletes applies to function
+*/
+func (a *Client) DeleteAppliesToFunctionByID(params *DeleteAppliesToFunctionByIDParams) (*DeleteAppliesToFunctionByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteAppliesToFunctionByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteAppliesToFunctionById",
+		Method:             "DELETE",
+		PathPattern:        "/setting/functions/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteAppliesToFunctionByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteAppliesToFunctionByIDOK), nil
 
 }
 
@@ -973,7 +1031,7 @@ func (a *Client) DeleteCollectorByID(params *DeleteCollectorByIDParams) (*Delete
 		Method:             "DELETE",
 		PathPattern:        "/setting/collector/collectors/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteCollectorByIDReader{formats: a.formats},
@@ -1002,7 +1060,7 @@ func (a *Client) DeleteCollectorGroupByID(params *DeleteCollectorGroupByIDParams
 		Method:             "DELETE",
 		PathPattern:        "/setting/collector/groups/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteCollectorGroupByIDReader{formats: a.formats},
@@ -1031,7 +1089,7 @@ func (a *Client) DeleteDashboardByID(params *DeleteDashboardByIDParams) (*Delete
 		Method:             "DELETE",
 		PathPattern:        "/dashboard/dashboards/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteDashboardByIDReader{formats: a.formats},
@@ -1060,7 +1118,7 @@ func (a *Client) DeleteDashboardGroupByID(params *DeleteDashboardGroupByIDParams
 		Method:             "DELETE",
 		PathPattern:        "/dashboard/groups/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteDashboardGroupByIDReader{formats: a.formats},
@@ -1089,7 +1147,7 @@ func (a *Client) DeleteDatasourceByID(params *DeleteDatasourceByIDParams) (*Dele
 		Method:             "DELETE",
 		PathPattern:        "/setting/datasources/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteDatasourceByIDReader{formats: a.formats},
@@ -1118,7 +1176,7 @@ func (a *Client) DeleteDeviceByID(params *DeleteDeviceByIDParams) (*DeleteDevice
 		Method:             "DELETE",
 		PathPattern:        "/device/devices/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteDeviceByIDReader{formats: a.formats},
@@ -1147,7 +1205,7 @@ func (a *Client) DeleteDeviceDatasourceInstanceByID(params *DeleteDeviceDatasour
 		Method:             "DELETE",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteDeviceDatasourceInstanceByIDReader{formats: a.formats},
@@ -1176,7 +1234,7 @@ func (a *Client) DeleteDeviceGroupByID(params *DeleteDeviceGroupByIDParams) (*De
 		Method:             "DELETE",
 		PathPattern:        "/device/groups/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteDeviceGroupByIDReader{formats: a.formats},
@@ -1205,7 +1263,7 @@ func (a *Client) DeleteDeviceGroupClusterAlertConfByID(params *DeleteDeviceGroup
 		Method:             "DELETE",
 		PathPattern:        "/device/groups/{deviceGroupId}/clusterAlertConf/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteDeviceGroupClusterAlertConfByIDReader{formats: a.formats},
@@ -1234,7 +1292,7 @@ func (a *Client) DeleteDeviceGroupPropertyByName(params *DeleteDeviceGroupProper
 		Method:             "DELETE",
 		PathPattern:        "/device/groups/{gid}/properties/{name}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteDeviceGroupPropertyByNameReader{formats: a.formats},
@@ -1263,7 +1321,7 @@ func (a *Client) DeleteDevicePropertyByName(params *DeleteDevicePropertyByNamePa
 		Method:             "DELETE",
 		PathPattern:        "/device/devices/{deviceId}/properties/{name}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteDevicePropertyByNameReader{formats: a.formats},
@@ -1292,7 +1350,7 @@ func (a *Client) DeleteEscalationChainByID(params *DeleteEscalationChainByIDPara
 		Method:             "DELETE",
 		PathPattern:        "/setting/alert/chains/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteEscalationChainByIDReader{formats: a.formats},
@@ -1321,7 +1379,7 @@ func (a *Client) DeleteNetscanByID(params *DeleteNetscanByIDParams) (*DeleteNets
 		Method:             "DELETE",
 		PathPattern:        "/setting/netscans/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteNetscanByIDReader{formats: a.formats},
@@ -1350,7 +1408,7 @@ func (a *Client) DeleteOpsNoteByID(params *DeleteOpsNoteByIDParams) (*DeleteOpsN
 		Method:             "DELETE",
 		PathPattern:        "/setting/opsnotes/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteOpsNoteByIDReader{formats: a.formats},
@@ -1379,7 +1437,7 @@ func (a *Client) DeleteRecipientGroupByID(params *DeleteRecipientGroupByIDParams
 		Method:             "DELETE",
 		PathPattern:        "/setting/recipientgroups/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteRecipientGroupByIDReader{formats: a.formats},
@@ -1408,7 +1466,7 @@ func (a *Client) DeleteReportByID(params *DeleteReportByIDParams) (*DeleteReport
 		Method:             "DELETE",
 		PathPattern:        "/report/reports/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteReportByIDReader{formats: a.formats},
@@ -1437,7 +1495,7 @@ func (a *Client) DeleteReportGroupByID(params *DeleteReportGroupByIDParams) (*De
 		Method:             "DELETE",
 		PathPattern:        "/report/groups/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteReportGroupByIDReader{formats: a.formats},
@@ -1466,7 +1524,7 @@ func (a *Client) DeleteRoleByID(params *DeleteRoleByIDParams) (*DeleteRoleByIDOK
 		Method:             "DELETE",
 		PathPattern:        "/setting/roles/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteRoleByIDReader{formats: a.formats},
@@ -1495,7 +1553,7 @@ func (a *Client) DeleteSDTByID(params *DeleteSDTByIDParams) (*DeleteSDTByIDOK, e
 		Method:             "DELETE",
 		PathPattern:        "/sdt/sdts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteSDTByIDReader{formats: a.formats},
@@ -1524,7 +1582,7 @@ func (a *Client) DeleteWebsiteByID(params *DeleteWebsiteByIDParams) (*DeleteWebs
 		Method:             "DELETE",
 		PathPattern:        "/website/websites/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteWebsiteByIDReader{formats: a.formats},
@@ -1582,7 +1640,7 @@ func (a *Client) DeleteWidgetByID(params *DeleteWidgetByIDParams) (*DeleteWidget
 		Method:             "DELETE",
 		PathPattern:        "/dashboard/widgets/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &DeleteWidgetByIDReader{formats: a.formats},
@@ -1623,6 +1681,35 @@ func (a *Client) ExecuteDebugCommand(params *ExecuteDebugCommandParams) (*Execut
 		return nil, err
 	}
 	return result.(*ExecuteDebugCommandOK), nil
+
+}
+
+/*
+FetchDeviceInstancesData fetches device instances data
+*/
+func (a *Client) FetchDeviceInstancesData(params *FetchDeviceInstancesDataParams) (*FetchDeviceInstancesDataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFetchDeviceInstancesDataParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "fetchDeviceInstancesData",
+		Method:             "POST",
+		PathPattern:        "/device/instances/datafetch",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FetchDeviceInstancesDataReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*FetchDeviceInstancesDataOK), nil
 
 }
 
@@ -1669,7 +1756,7 @@ func (a *Client) GetAdminByID(params *GetAdminByIDParams) (*GetAdminByIDOK, erro
 		Method:             "GET",
 		PathPattern:        "/setting/admins/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAdminByIDReader{formats: a.formats},
@@ -1698,7 +1785,7 @@ func (a *Client) GetAdminList(params *GetAdminListParams) (*GetAdminListOK, erro
 		Method:             "GET",
 		PathPattern:        "/setting/admins",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAdminListReader{formats: a.formats},
@@ -1727,7 +1814,7 @@ func (a *Client) GetAlertByID(params *GetAlertByIDParams) (*GetAlertByIDOK, erro
 		Method:             "GET",
 		PathPattern:        "/alert/alerts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAlertByIDReader{formats: a.formats},
@@ -1756,7 +1843,7 @@ func (a *Client) GetAlertList(params *GetAlertListParams) (*GetAlertListOK, erro
 		Method:             "GET",
 		PathPattern:        "/alert/alerts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAlertListReader{formats: a.formats},
@@ -1785,7 +1872,7 @@ func (a *Client) GetAlertListByDeviceGroupID(params *GetAlertListByDeviceGroupID
 		Method:             "GET",
 		PathPattern:        "/device/groups/{id}/alerts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAlertListByDeviceGroupIDReader{formats: a.formats},
@@ -1814,7 +1901,7 @@ func (a *Client) GetAlertListByDeviceID(params *GetAlertListByDeviceIDParams) (*
 		Method:             "GET",
 		PathPattern:        "/device/devices/{id}/alerts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAlertListByDeviceIDReader{formats: a.formats},
@@ -1843,7 +1930,7 @@ func (a *Client) GetAlertRuleByID(params *GetAlertRuleByIDParams) (*GetAlertRule
 		Method:             "GET",
 		PathPattern:        "/setting/alert/rules/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAlertRuleByIDReader{formats: a.formats},
@@ -1872,7 +1959,7 @@ func (a *Client) GetAlertRuleList(params *GetAlertRuleListParams) (*GetAlertRule
 		Method:             "GET",
 		PathPattern:        "/setting/alert/rules",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAlertRuleListReader{formats: a.formats},
@@ -1888,7 +1975,7 @@ func (a *Client) GetAlertRuleList(params *GetAlertRuleListParams) (*GetAlertRule
 }
 
 /*
-GetAllSDTListByDeviceID gets sdts for a device
+GetAllSDTListByDeviceID gets s d ts for a device
 */
 func (a *Client) GetAllSDTListByDeviceID(params *GetAllSDTListByDeviceIDParams) (*GetAllSDTListByDeviceIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1901,7 +1988,7 @@ func (a *Client) GetAllSDTListByDeviceID(params *GetAllSDTListByDeviceIDParams) 
 		Method:             "GET",
 		PathPattern:        "/device/devices/{id}/sdts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAllSDTListByDeviceIDReader{formats: a.formats},
@@ -1917,7 +2004,7 @@ func (a *Client) GetAllSDTListByDeviceID(params *GetAllSDTListByDeviceIDParams) 
 }
 
 /*
-GetAllSDTListByWebsiteGroupID gets a list of sdts for a website group
+GetAllSDTListByWebsiteGroupID gets a list of s d ts for a website group
 */
 func (a *Client) GetAllSDTListByWebsiteGroupID(params *GetAllSDTListByWebsiteGroupIDParams) (*GetAllSDTListByWebsiteGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1959,7 +2046,7 @@ func (a *Client) GetAPITokenList(params *GetAPITokenListParams) (*GetAPITokenLis
 		Method:             "GET",
 		PathPattern:        "/setting/admins/apitokens",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAPITokenListReader{formats: a.formats},
@@ -1988,7 +2075,7 @@ func (a *Client) GetAPITokenListByAdminID(params *GetAPITokenListByAdminIDParams
 		Method:             "GET",
 		PathPattern:        "/setting/admins/{adminId}/apitokens",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAPITokenListByAdminIDReader{formats: a.formats},
@@ -2000,6 +2087,64 @@ func (a *Client) GetAPITokenListByAdminID(params *GetAPITokenListByAdminIDParams
 		return nil, err
 	}
 	return result.(*GetAPITokenListByAdminIDOK), nil
+
+}
+
+/*
+GetAppliesToFunctionByID gets applies to function
+*/
+func (a *Client) GetAppliesToFunctionByID(params *GetAppliesToFunctionByIDParams) (*GetAppliesToFunctionByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAppliesToFunctionByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAppliesToFunctionById",
+		Method:             "GET",
+		PathPattern:        "/setting/functions/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAppliesToFunctionByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAppliesToFunctionByIDOK), nil
+
+}
+
+/*
+GetAppliesToFunctionList gets applies to function list
+*/
+func (a *Client) GetAppliesToFunctionList(params *GetAppliesToFunctionListParams) (*GetAppliesToFunctionListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAppliesToFunctionListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAppliesToFunctionList",
+		Method:             "GET",
+		PathPattern:        "/setting/functions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAppliesToFunctionListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAppliesToFunctionListOK), nil
 
 }
 
@@ -2017,7 +2162,7 @@ func (a *Client) GetAssociatedDeviceListByDataSourceID(params *GetAssociatedDevi
 		Method:             "GET",
 		PathPattern:        "/setting/datasources/{id}/devices",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAssociatedDeviceListByDataSourceIDReader{formats: a.formats},
@@ -2046,7 +2191,7 @@ func (a *Client) GetAuditLogByID(params *GetAuditLogByIDParams) (*GetAuditLogByI
 		Method:             "GET",
 		PathPattern:        "/setting/accesslogs/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAuditLogByIDReader{formats: a.formats},
@@ -2075,7 +2220,7 @@ func (a *Client) GetAuditLogList(params *GetAuditLogListParams) (*GetAuditLogLis
 		Method:             "GET",
 		PathPattern:        "/setting/accesslogs",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAuditLogListReader{formats: a.formats},
@@ -2104,7 +2249,7 @@ func (a *Client) GetAwsExternalID(params *GetAwsExternalIDParams) (*GetAwsExtern
 		Method:             "GET",
 		PathPattern:        "/aws/externalId",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetAwsExternalIDReader{formats: a.formats},
@@ -2133,7 +2278,7 @@ func (a *Client) GetCollectorByID(params *GetCollectorByIDParams) (*GetCollector
 		Method:             "GET",
 		PathPattern:        "/setting/collector/collectors/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCollectorByIDReader{formats: a.formats},
@@ -2162,7 +2307,7 @@ func (a *Client) GetCollectorGroupByID(params *GetCollectorGroupByIDParams) (*Ge
 		Method:             "GET",
 		PathPattern:        "/setting/collector/groups/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCollectorGroupByIDReader{formats: a.formats},
@@ -2191,7 +2336,7 @@ func (a *Client) GetCollectorGroupList(params *GetCollectorGroupListParams) (*Ge
 		Method:             "GET",
 		PathPattern:        "/setting/collector/groups",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCollectorGroupListReader{formats: a.formats},
@@ -2220,7 +2365,7 @@ func (a *Client) GetCollectorInstaller(params *GetCollectorInstallerParams, writ
 		Method:             "GET",
 		PathPattern:        "/setting/collector/collectors/{collectorId}/installers/{osAndArch}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCollectorInstallerReader{formats: a.formats, writer: writer},
@@ -2249,7 +2394,7 @@ func (a *Client) GetCollectorList(params *GetCollectorListParams) (*GetCollector
 		Method:             "GET",
 		PathPattern:        "/setting/collector/collectors",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetCollectorListReader{formats: a.formats},
@@ -2261,6 +2406,35 @@ func (a *Client) GetCollectorList(params *GetCollectorListParams) (*GetCollector
 		return nil, err
 	}
 	return result.(*GetCollectorListOK), nil
+
+}
+
+/*
+GetCollectorVersionList gets collector version list
+*/
+func (a *Client) GetCollectorVersionList(params *GetCollectorVersionListParams) (*GetCollectorVersionListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCollectorVersionListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCollectorVersionList",
+		Method:             "GET",
+		PathPattern:        "/setting/collector/collectors/versions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCollectorVersionListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetCollectorVersionListOK), nil
 
 }
 
@@ -2278,7 +2452,7 @@ func (a *Client) GetDashboardByID(params *GetDashboardByIDParams) (*GetDashboard
 		Method:             "GET",
 		PathPattern:        "/dashboard/dashboards/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDashboardByIDReader{formats: a.formats},
@@ -2307,7 +2481,7 @@ func (a *Client) GetDashboardGroupByID(params *GetDashboardGroupByIDParams) (*Ge
 		Method:             "GET",
 		PathPattern:        "/dashboard/groups/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDashboardGroupByIDReader{formats: a.formats},
@@ -2336,7 +2510,7 @@ func (a *Client) GetDashboardGroupList(params *GetDashboardGroupListParams) (*Ge
 		Method:             "GET",
 		PathPattern:        "/dashboard/groups",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDashboardGroupListReader{formats: a.formats},
@@ -2365,7 +2539,7 @@ func (a *Client) GetDashboardList(params *GetDashboardListParams) (*GetDashboard
 		Method:             "GET",
 		PathPattern:        "/dashboard/dashboards",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDashboardListReader{formats: a.formats},
@@ -2394,7 +2568,7 @@ func (a *Client) GetDataSourceOverviewGraphByID(params *GetDataSourceOverviewGra
 		Method:             "GET",
 		PathPattern:        "/setting/datasources/{dsId}/ographs/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDataSourceOverviewGraphByIDReader{formats: a.formats},
@@ -2423,7 +2597,7 @@ func (a *Client) GetDataSourceOverviewGraphList(params *GetDataSourceOverviewGra
 		Method:             "GET",
 		PathPattern:        "/setting/datasources/{dsId}/ographs",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDataSourceOverviewGraphListReader{formats: a.formats},
@@ -2452,7 +2626,7 @@ func (a *Client) GetDatasourceByID(params *GetDatasourceByIDParams) (*GetDatasou
 		Method:             "GET",
 		PathPattern:        "/setting/datasources/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDatasourceByIDReader{formats: a.formats},
@@ -2481,7 +2655,7 @@ func (a *Client) GetDatasourceList(params *GetDatasourceListParams) (*GetDatasou
 		Method:             "GET",
 		PathPattern:        "/setting/datasources",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDatasourceListReader{formats: a.formats},
@@ -2510,7 +2684,7 @@ func (a *Client) GetDebugCommandResult(params *GetDebugCommandResultParams) (*Ge
 		Method:             "GET",
 		PathPattern:        "/debug/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDebugCommandResultReader{formats: a.formats},
@@ -2539,7 +2713,7 @@ func (a *Client) GetDeviceByID(params *GetDeviceByIDParams) (*GetDeviceByIDOK, e
 		Method:             "GET",
 		PathPattern:        "/device/devices/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceByIDReader{formats: a.formats},
@@ -2568,7 +2742,7 @@ func (a *Client) GetDeviceConfigSourceConfigByID(params *GetDeviceConfigSourceCo
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceConfigSourceConfigByIDReader{formats: a.formats},
@@ -2584,7 +2758,7 @@ func (a *Client) GetDeviceConfigSourceConfigByID(params *GetDeviceConfigSourceCo
 }
 
 /*
-GetDeviceConfigSourceConfigList gets config instances for a configsource
+GetDeviceConfigSourceConfigList gets detailed config information for the instance
 */
 func (a *Client) GetDeviceConfigSourceConfigList(params *GetDeviceConfigSourceConfigListParams) (*GetDeviceConfigSourceConfigListOK, error) {
 	// TODO: Validate the params before sending
@@ -2597,7 +2771,7 @@ func (a *Client) GetDeviceConfigSourceConfigList(params *GetDeviceConfigSourceCo
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceConfigSourceConfigListReader{formats: a.formats},
@@ -2626,7 +2800,7 @@ func (a *Client) GetDeviceDatasourceByID(params *GetDeviceDatasourceByIDParams) 
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceByIDReader{formats: a.formats},
@@ -2655,7 +2829,7 @@ func (a *Client) GetDeviceDatasourceDataByID(params *GetDeviceDatasourceDataByID
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{id}/data",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceDataByIDReader{formats: a.formats},
@@ -2684,7 +2858,7 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingByID(params *GetDeviceDa
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceInstanceAlertSettingByIDReader{formats: a.formats},
@@ -2700,23 +2874,23 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingByID(params *GetDeviceDa
 }
 
 /*
-GetDeviceDatasourceInstanceAlertSettingList gets a list of alert settings for a device
+GetDeviceDatasourceInstanceAlertSettingListOfDSI gets a list of alert settings for a device datasource instance
 */
-func (a *Client) GetDeviceDatasourceInstanceAlertSettingList(params *GetDeviceDatasourceInstanceAlertSettingListParams) (*GetDeviceDatasourceInstanceAlertSettingListOK, error) {
+func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDSI(params *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) (*GetDeviceDatasourceInstanceAlertSettingListOfDSIOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewGetDeviceDatasourceInstanceAlertSettingListParams()
+		params = NewGetDeviceDatasourceInstanceAlertSettingListOfDSIParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getDeviceDatasourceInstanceAlertSettingList",
+		ID:                 "getDeviceDatasourceInstanceAlertSettingListOfDSI",
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &GetDeviceDatasourceInstanceAlertSettingListReader{formats: a.formats},
+		Reader:             &GetDeviceDatasourceInstanceAlertSettingListOfDSIReader{formats: a.formats},
 		AuthInfo:           a.authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -2724,7 +2898,36 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingList(params *GetDeviceDa
 	if err != nil {
 		return nil, err
 	}
-	return result.(*GetDeviceDatasourceInstanceAlertSettingListOK), nil
+	return result.(*GetDeviceDatasourceInstanceAlertSettingListOfDSIOK), nil
+
+}
+
+/*
+GetDeviceDatasourceInstanceAlertSettingListOfDevice gets a list of alert settings for a device
+*/
+func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDevice(params *GetDeviceDatasourceInstanceAlertSettingListOfDeviceParams) (*GetDeviceDatasourceInstanceAlertSettingListOfDeviceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeviceDatasourceInstanceAlertSettingListOfDeviceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDeviceDatasourceInstanceAlertSettingListOfDevice",
+		Method:             "GET",
+		PathPattern:        "/device/devices/{deviceId}/alertsettings",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeviceDatasourceInstanceAlertSettingListOfDeviceReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDeviceDatasourceInstanceAlertSettingListOfDeviceOK), nil
 
 }
 
@@ -2742,7 +2945,7 @@ func (a *Client) GetDeviceDatasourceInstanceByID(params *GetDeviceDatasourceInst
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceInstanceByIDReader{formats: a.formats},
@@ -2771,7 +2974,7 @@ func (a *Client) GetDeviceDatasourceInstanceData(params *GetDeviceDatasourceInst
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/data",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceInstanceDataReader{formats: a.formats},
@@ -2800,7 +3003,7 @@ func (a *Client) GetDeviceDatasourceInstanceGraphData(params *GetDeviceDatasourc
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/graphs/{graphId}/data",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceInstanceGraphDataReader{formats: a.formats},
@@ -2829,7 +3032,7 @@ func (a *Client) GetDeviceDatasourceInstanceGroupByID(params *GetDeviceDatasourc
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceInstanceGroupByIDReader{formats: a.formats},
@@ -2858,7 +3061,7 @@ func (a *Client) GetDeviceDatasourceInstanceGroupList(params *GetDeviceDatasourc
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceInstanceGroupListReader{formats: a.formats},
@@ -2887,7 +3090,7 @@ func (a *Client) GetDeviceDatasourceInstanceGroupOverviewGraphData(params *GetDe
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceInstanceGroupOverviewGraphDataReader{formats: a.formats},
@@ -2916,7 +3119,7 @@ func (a *Client) GetDeviceDatasourceInstanceList(params *GetDeviceDatasourceInst
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceInstanceListReader{formats: a.formats},
@@ -2945,7 +3148,7 @@ func (a *Client) GetDeviceDatasourceInstanceSDTHistory(params *GetDeviceDatasour
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceInstanceSDTHistoryReader{formats: a.formats},
@@ -2974,7 +3177,7 @@ func (a *Client) GetDeviceDatasourceList(params *GetDeviceDatasourceListParams) 
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceDatasourceListReader{formats: a.formats},
@@ -3003,7 +3206,7 @@ func (a *Client) GetDeviceGroupByID(params *GetDeviceGroupByIDParams) (*GetDevic
 		Method:             "GET",
 		PathPattern:        "/device/groups/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceGroupByIDReader{formats: a.formats},
@@ -3032,7 +3235,7 @@ func (a *Client) GetDeviceGroupClusterAlertConfByID(params *GetDeviceGroupCluste
 		Method:             "GET",
 		PathPattern:        "/device/groups/{deviceGroupId}/clusterAlertConf/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceGroupClusterAlertConfByIDReader{formats: a.formats},
@@ -3061,7 +3264,7 @@ func (a *Client) GetDeviceGroupClusterAlertConfList(params *GetDeviceGroupCluste
 		Method:             "GET",
 		PathPattern:        "/device/groups/{deviceGroupId}/clusterAlertConf",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceGroupClusterAlertConfListReader{formats: a.formats},
@@ -3090,7 +3293,7 @@ func (a *Client) GetDeviceGroupDatasourceAlertSetting(params *GetDeviceGroupData
 		Method:             "GET",
 		PathPattern:        "/device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceGroupDatasourceAlertSettingReader{formats: a.formats},
@@ -3119,7 +3322,7 @@ func (a *Client) GetDeviceGroupDatasourceByID(params *GetDeviceGroupDatasourceBy
 		Method:             "GET",
 		PathPattern:        "/device/groups/{deviceGroupId}/datasources/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceGroupDatasourceByIDReader{formats: a.formats},
@@ -3148,7 +3351,7 @@ func (a *Client) GetDeviceGroupDatasourceList(params *GetDeviceGroupDatasourceLi
 		Method:             "GET",
 		PathPattern:        "/device/groups/{deviceGroupId}/datasources",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceGroupDatasourceListReader{formats: a.formats},
@@ -3177,7 +3380,7 @@ func (a *Client) GetDeviceGroupList(params *GetDeviceGroupListParams) (*GetDevic
 		Method:             "GET",
 		PathPattern:        "/device/groups",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceGroupListReader{formats: a.formats},
@@ -3206,7 +3409,7 @@ func (a *Client) GetDeviceGroupPropertyByName(params *GetDeviceGroupPropertyByNa
 		Method:             "GET",
 		PathPattern:        "/device/groups/{gid}/properties/{name}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceGroupPropertyByNameReader{formats: a.formats},
@@ -3235,7 +3438,7 @@ func (a *Client) GetDeviceGroupPropertyList(params *GetDeviceGroupPropertyListPa
 		Method:             "GET",
 		PathPattern:        "/device/groups/{gid}/properties",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceGroupPropertyListReader{formats: a.formats},
@@ -3251,7 +3454,7 @@ func (a *Client) GetDeviceGroupPropertyList(params *GetDeviceGroupPropertyListPa
 }
 
 /*
-GetDeviceGroupSDTList gets device group sdts
+GetDeviceGroupSDTList gets device group s d ts
 */
 func (a *Client) GetDeviceGroupSDTList(params *GetDeviceGroupSDTListParams) (*GetDeviceGroupSDTListOK, error) {
 	// TODO: Validate the params before sending
@@ -3264,7 +3467,7 @@ func (a *Client) GetDeviceGroupSDTList(params *GetDeviceGroupSDTListParams) (*Ge
 		Method:             "GET",
 		PathPattern:        "/device/groups/{id}/sdts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceGroupSDTListReader{formats: a.formats},
@@ -3293,7 +3496,7 @@ func (a *Client) GetDeviceInstanceGraphDataOnlyByInstanceID(params *GetDeviceIns
 		Method:             "GET",
 		PathPattern:        "/device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceInstanceGraphDataOnlyByInstanceIDReader{formats: a.formats},
@@ -3305,6 +3508,35 @@ func (a *Client) GetDeviceInstanceGraphDataOnlyByInstanceID(params *GetDeviceIns
 		return nil, err
 	}
 	return result.(*GetDeviceInstanceGraphDataOnlyByInstanceIDOK), nil
+
+}
+
+/*
+GetDeviceInstanceList gets device instance list
+*/
+func (a *Client) GetDeviceInstanceList(params *GetDeviceInstanceListParams) (*GetDeviceInstanceListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeviceInstanceListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDeviceInstanceList",
+		Method:             "GET",
+		PathPattern:        "/device/devices/{id}/instances",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeviceInstanceListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDeviceInstanceListOK), nil
 
 }
 
@@ -3322,7 +3554,7 @@ func (a *Client) GetDeviceList(params *GetDeviceListParams) (*GetDeviceListOK, e
 		Method:             "GET",
 		PathPattern:        "/device/devices",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDeviceListReader{formats: a.formats},
@@ -3351,7 +3583,7 @@ func (a *Client) GetDevicePropertyByName(params *GetDevicePropertyByNameParams) 
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/properties/{name}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDevicePropertyByNameReader{formats: a.formats},
@@ -3380,7 +3612,7 @@ func (a *Client) GetDevicePropertyList(params *GetDevicePropertyListParams) (*Ge
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/properties",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetDevicePropertyListReader{formats: a.formats},
@@ -3409,7 +3641,7 @@ func (a *Client) GetEscalationChainByID(params *GetEscalationChainByIDParams) (*
 		Method:             "GET",
 		PathPattern:        "/setting/alert/chains/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetEscalationChainByIDReader{formats: a.formats},
@@ -3438,7 +3670,7 @@ func (a *Client) GetEscalationChainList(params *GetEscalationChainListParams) (*
 		Method:             "GET",
 		PathPattern:        "/setting/alert/chains",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetEscalationChainListReader{formats: a.formats},
@@ -3450,6 +3682,64 @@ func (a *Client) GetEscalationChainList(params *GetEscalationChainListParams) (*
 		return nil, err
 	}
 	return result.(*GetEscalationChainListOK), nil
+
+}
+
+/*
+GetEventSourceList gets event source list
+*/
+func (a *Client) GetEventSourceList(params *GetEventSourceListParams) (*GetEventSourceListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetEventSourceListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getEventSourceList",
+		Method:             "GET",
+		PathPattern:        "/setting/eventsources",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetEventSourceListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetEventSourceListOK), nil
+
+}
+
+/*
+GetExternalAPIStats gets external api stats info
+*/
+func (a *Client) GetExternalAPIStats(params *GetExternalAPIStatsParams) (*GetExternalAPIStatsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetExternalAPIStatsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getExternalApiStats",
+		Method:             "GET",
+		PathPattern:        "/apiStats/externalApis",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetExternalAPIStatsReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetExternalAPIStatsOK), nil
 
 }
 
@@ -3467,7 +3757,7 @@ func (a *Client) GetImmediateDeviceListByDeviceGroupID(params *GetImmediateDevic
 		Method:             "GET",
 		PathPattern:        "/device/groups/{id}/devices",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetImmediateDeviceListByDeviceGroupIDReader{formats: a.formats},
@@ -3512,6 +3802,35 @@ func (a *Client) GetImmediateWebsiteListByWebsiteGroupID(params *GetImmediateWeb
 }
 
 /*
+GetMetricsUsage gets metrics usage
+*/
+func (a *Client) GetMetricsUsage(params *GetMetricsUsageParams) (*GetMetricsUsageOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMetricsUsageParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMetricsUsage",
+		Method:             "GET",
+		PathPattern:        "/metrics/usage",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMetricsUsageReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetMetricsUsageOK), nil
+
+}
+
+/*
 GetNetflowEndpointList gets netflow endpoint list
 */
 func (a *Client) GetNetflowEndpointList(params *GetNetflowEndpointListParams) (*GetNetflowEndpointListOK, error) {
@@ -3525,7 +3844,7 @@ func (a *Client) GetNetflowEndpointList(params *GetNetflowEndpointListParams) (*
 		Method:             "GET",
 		PathPattern:        "/device/devices/{id}/endpoints",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetNetflowEndpointListReader{formats: a.formats},
@@ -3554,7 +3873,7 @@ func (a *Client) GetNetflowFlowList(params *GetNetflowFlowListParams) (*GetNetfl
 		Method:             "GET",
 		PathPattern:        "/device/devices/{id}/flows",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetNetflowFlowListReader{formats: a.formats},
@@ -3583,7 +3902,7 @@ func (a *Client) GetNetflowPortList(params *GetNetflowPortListParams) (*GetNetfl
 		Method:             "GET",
 		PathPattern:        "/device/devices/{id}/ports",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetNetflowPortListReader{formats: a.formats},
@@ -3612,7 +3931,7 @@ func (a *Client) GetNetscanByID(params *GetNetscanByIDParams) (*GetNetscanByIDOK
 		Method:             "GET",
 		PathPattern:        "/setting/netscans/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetNetscanByIDReader{formats: a.formats},
@@ -3641,7 +3960,7 @@ func (a *Client) GetNetscanList(params *GetNetscanListParams) (*GetNetscanListOK
 		Method:             "GET",
 		PathPattern:        "/setting/netscans",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetNetscanListReader{formats: a.formats},
@@ -3670,7 +3989,7 @@ func (a *Client) GetOpsNoteByID(params *GetOpsNoteByIDParams) (*GetOpsNoteByIDOK
 		Method:             "GET",
 		PathPattern:        "/setting/opsnotes/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOpsNoteByIDReader{formats: a.formats},
@@ -3699,7 +4018,7 @@ func (a *Client) GetOpsNoteList(params *GetOpsNoteListParams) (*GetOpsNoteListOK
 		Method:             "GET",
 		PathPattern:        "/setting/opsnotes",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetOpsNoteListReader{formats: a.formats},
@@ -3728,7 +4047,7 @@ func (a *Client) GetRecipientGroupByID(params *GetRecipientGroupByIDParams) (*Ge
 		Method:             "GET",
 		PathPattern:        "/setting/recipientgroups/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRecipientGroupByIDReader{formats: a.formats},
@@ -3757,7 +4076,7 @@ func (a *Client) GetRecipientGroupList(params *GetRecipientGroupListParams) (*Ge
 		Method:             "GET",
 		PathPattern:        "/setting/recipientgroups",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRecipientGroupListReader{formats: a.formats},
@@ -3786,7 +4105,7 @@ func (a *Client) GetReportByID(params *GetReportByIDParams) (*GetReportByIDOK, e
 		Method:             "GET",
 		PathPattern:        "/report/reports/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetReportByIDReader{formats: a.formats},
@@ -3815,7 +4134,7 @@ func (a *Client) GetReportGroupByID(params *GetReportGroupByIDParams) (*GetRepor
 		Method:             "GET",
 		PathPattern:        "/report/groups/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetReportGroupByIDReader{formats: a.formats},
@@ -3844,7 +4163,7 @@ func (a *Client) GetReportGroupList(params *GetReportGroupListParams) (*GetRepor
 		Method:             "GET",
 		PathPattern:        "/report/groups",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetReportGroupListReader{formats: a.formats},
@@ -3873,7 +4192,7 @@ func (a *Client) GetReportList(params *GetReportListParams) (*GetReportListOK, e
 		Method:             "GET",
 		PathPattern:        "/report/reports",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetReportListReader{formats: a.formats},
@@ -3902,7 +4221,7 @@ func (a *Client) GetRoleByID(params *GetRoleByIDParams) (*GetRoleByIDOK, error) 
 		Method:             "GET",
 		PathPattern:        "/setting/roles/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRoleByIDReader{formats: a.formats},
@@ -3931,7 +4250,7 @@ func (a *Client) GetRoleList(params *GetRoleListParams) (*GetRoleListOK, error) 
 		Method:             "GET",
 		PathPattern:        "/setting/roles",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetRoleListReader{formats: a.formats},
@@ -3960,7 +4279,7 @@ func (a *Client) GetSDTByID(params *GetSDTByIDParams) (*GetSDTByIDOK, error) {
 		Method:             "GET",
 		PathPattern:        "/sdt/sdts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSDTByIDReader{formats: a.formats},
@@ -3989,7 +4308,7 @@ func (a *Client) GetSDTHistoryByDeviceDataSourceID(params *GetSDTHistoryByDevice
 		Method:             "GET",
 		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{id}/historysdts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSDTHistoryByDeviceDataSourceIDReader{formats: a.formats},
@@ -4018,7 +4337,7 @@ func (a *Client) GetSDTHistoryByDeviceGroupID(params *GetSDTHistoryByDeviceGroup
 		Method:             "GET",
 		PathPattern:        "/device/groups/{id}/historysdts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSDTHistoryByDeviceGroupIDReader{formats: a.formats},
@@ -4047,7 +4366,7 @@ func (a *Client) GetSDTHistoryByDeviceID(params *GetSDTHistoryByDeviceIDParams) 
 		Method:             "GET",
 		PathPattern:        "/device/devices/{id}/historysdts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSDTHistoryByDeviceIDReader{formats: a.formats},
@@ -4105,7 +4424,7 @@ func (a *Client) GetSDTHistoryByWebsiteID(params *GetSDTHistoryByWebsiteIDParams
 		Method:             "GET",
 		PathPattern:        "/website/websites/{id}/historysdts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSDTHistoryByWebsiteIDReader{formats: a.formats},
@@ -4134,7 +4453,7 @@ func (a *Client) GetSDTList(params *GetSDTListParams) (*GetSDTListOK, error) {
 		Method:             "GET",
 		PathPattern:        "/sdt/sdts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSDTListReader{formats: a.formats},
@@ -4163,7 +4482,7 @@ func (a *Client) GetSiteMonitorCheckPointList(params *GetSiteMonitorCheckPointLi
 		Method:             "GET",
 		PathPattern:        "/website/smcheckpoints",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetSiteMonitorCheckPointListReader{formats: a.formats},
@@ -4192,7 +4511,7 @@ func (a *Client) GetTopTalkersGraph(params *GetTopTalkersGraphParams) (*GetTopTa
 		Method:             "GET",
 		PathPattern:        "/device/devices/{id}/topTalkersGraph",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetTopTalkersGraphReader{formats: a.formats},
@@ -4221,7 +4540,7 @@ func (a *Client) GetUnmonitoredDeviceList(params *GetUnmonitoredDeviceListParams
 		Method:             "GET",
 		PathPattern:        "/device/unmonitoreddevices",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUnmonitoredDeviceListReader{formats: a.formats},
@@ -4250,7 +4569,7 @@ func (a *Client) GetUpdateReasonListByDataSourceID(params *GetUpdateReasonListBy
 		Method:             "GET",
 		PathPattern:        "/setting/datasources/{id}/updatereasons",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetUpdateReasonListByDataSourceIDReader{formats: a.formats},
@@ -4279,7 +4598,7 @@ func (a *Client) GetWebsiteAlertListByWebsiteID(params *GetWebsiteAlertListByWeb
 		Method:             "GET",
 		PathPattern:        "/website/websites/{id}/alerts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWebsiteAlertListByWebsiteIDReader{formats: a.formats},
@@ -4337,7 +4656,7 @@ func (a *Client) GetWebsiteCheckpointDataByID(params *GetWebsiteCheckpointDataBy
 		Method:             "GET",
 		PathPattern:        "/website/websites/{srvId}/checkpoints/{checkId}/data",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWebsiteCheckpointDataByIDReader{formats: a.formats},
@@ -4366,7 +4685,7 @@ func (a *Client) GetWebsiteDataByGraphName(params *GetWebsiteDataByGraphNamePara
 		Method:             "GET",
 		PathPattern:        "/website/websites/{id}/graphs/{graphName}/data",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWebsiteDataByGraphNameReader{formats: a.formats},
@@ -4395,7 +4714,7 @@ func (a *Client) GetWebsiteGraphData(params *GetWebsiteGraphDataParams) (*GetWeb
 		Method:             "GET",
 		PathPattern:        "/website/websites/{websiteId}/checkpoints/{checkpointId}/graphs/{graphName}/data",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWebsiteGraphDataReader{formats: a.formats},
@@ -4511,7 +4830,7 @@ func (a *Client) GetWebsitePropertyListByWebsiteID(params *GetWebsitePropertyLis
 		Method:             "GET",
 		PathPattern:        "/website/websites/{id}/properties",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWebsitePropertyListByWebsiteIDReader{formats: a.formats},
@@ -4527,7 +4846,7 @@ func (a *Client) GetWebsitePropertyListByWebsiteID(params *GetWebsitePropertyLis
 }
 
 /*
-GetWebsiteSDTListByWebsiteID gets a list of sdts for a website
+GetWebsiteSDTListByWebsiteID gets a list of s d ts for a website
 */
 func (a *Client) GetWebsiteSDTListByWebsiteID(params *GetWebsiteSDTListByWebsiteIDParams) (*GetWebsiteSDTListByWebsiteIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4540,7 +4859,7 @@ func (a *Client) GetWebsiteSDTListByWebsiteID(params *GetWebsiteSDTListByWebsite
 		Method:             "GET",
 		PathPattern:        "/website/websites/{id}/sdts",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWebsiteSDTListByWebsiteIDReader{formats: a.formats},
@@ -4569,7 +4888,7 @@ func (a *Client) GetWidgetByID(params *GetWidgetByIDParams) (*GetWidgetByIDOK, e
 		Method:             "GET",
 		PathPattern:        "/dashboard/widgets/{id}",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWidgetByIDReader{formats: a.formats},
@@ -4598,7 +4917,7 @@ func (a *Client) GetWidgetDataByID(params *GetWidgetDataByIDParams) (*GetWidgetD
 		Method:             "GET",
 		PathPattern:        "/dashboard/widgets/{id}/data",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWidgetDataByIDReader{formats: a.formats},
@@ -4627,7 +4946,7 @@ func (a *Client) GetWidgetList(params *GetWidgetListParams) (*GetWidgetListOK, e
 		Method:             "GET",
 		PathPattern:        "/dashboard/widgets",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWidgetListReader{formats: a.formats},
@@ -4656,7 +4975,7 @@ func (a *Client) GetWidgetListByDashboardID(params *GetWidgetListByDashboardIDPa
 		Method:             "GET",
 		PathPattern:        "/dashboard/dashboards/{id}/widgets",
 		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{""},
+		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
 		Reader:             &GetWidgetListByDashboardIDReader{formats: a.formats},
@@ -4726,6 +5045,35 @@ func (a *Client) ImportConfigSource(params *ImportConfigSourceParams) (*ImportCo
 		return nil, err
 	}
 	return result.(*ImportConfigSourceOK), nil
+
+}
+
+/*
+ImportDNSMapping imports DNS mapping via c s v
+*/
+func (a *Client) ImportDNSMapping(params *ImportDNSMappingParams) (*ImportDNSMappingOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportDNSMappingParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importDNSMapping",
+		Method:             "POST",
+		PathPattern:        "/setting/dnsmappings",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportDNSMappingReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportDNSMappingOK), nil
 
 }
 
@@ -4871,6 +5219,35 @@ func (a *Client) PatchAPITokenByAdminID(params *PatchAPITokenByAdminIDParams) (*
 		return nil, err
 	}
 	return result.(*PatchAPITokenByAdminIDOK), nil
+
+}
+
+/*
+PatchAppliesToFunction updates applies to function
+*/
+func (a *Client) PatchAppliesToFunction(params *PatchAppliesToFunctionParams) (*PatchAppliesToFunctionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchAppliesToFunctionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchAppliesToFunction",
+		Method:             "PATCH",
+		PathPattern:        "/setting/functions/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchAppliesToFunctionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchAppliesToFunctionOK), nil
 
 }
 
@@ -5190,6 +5567,35 @@ func (a *Client) PatchDeviceGroupDatasourceAlertSetting(params *PatchDeviceGroup
 		return nil, err
 	}
 	return result.(*PatchDeviceGroupDatasourceAlertSettingOK), nil
+
+}
+
+/*
+PatchDeviceGroupDatasourceByID updates device group datasource
+*/
+func (a *Client) PatchDeviceGroupDatasourceByID(params *PatchDeviceGroupDatasourceByIDParams) (*PatchDeviceGroupDatasourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchDeviceGroupDatasourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchDeviceGroupDatasourceById",
+		Method:             "PATCH",
+		PathPattern:        "/device/groups/{deviceGroupId}/datasources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchDeviceGroupDatasourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchDeviceGroupDatasourceByIDOK), nil
 
 }
 
@@ -5687,6 +6093,35 @@ func (a *Client) UpdateAPITokenByAdminID(params *UpdateAPITokenByAdminIDParams) 
 }
 
 /*
+UpdateAppliesToFunction updates applies to function
+*/
+func (a *Client) UpdateAppliesToFunction(params *UpdateAppliesToFunctionParams) (*UpdateAppliesToFunctionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAppliesToFunctionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateAppliesToFunction",
+		Method:             "PUT",
+		PathPattern:        "/setting/functions/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAppliesToFunctionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateAppliesToFunctionOK), nil
+
+}
+
+/*
 UpdateCollectorByID updates collector
 */
 func (a *Client) UpdateCollectorByID(params *UpdateCollectorByIDParams) (*UpdateCollectorByIDOK, error) {
@@ -6002,6 +6437,35 @@ func (a *Client) UpdateDeviceGroupDatasourceAlertSetting(params *UpdateDeviceGro
 		return nil, err
 	}
 	return result.(*UpdateDeviceGroupDatasourceAlertSettingOK), nil
+
+}
+
+/*
+UpdateDeviceGroupDatasourceByID updates device group datasource
+*/
+func (a *Client) UpdateDeviceGroupDatasourceByID(params *UpdateDeviceGroupDatasourceByIDParams) (*UpdateDeviceGroupDatasourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateDeviceGroupDatasourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateDeviceGroupDatasourceById",
+		Method:             "PUT",
+		PathPattern:        "/device/groups/{deviceGroupId}/datasources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateDeviceGroupDatasourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateDeviceGroupDatasourceByIDOK), nil
 
 }
 

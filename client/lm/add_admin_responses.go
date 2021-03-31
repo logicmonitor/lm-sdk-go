@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddAdminReader is a Reader for the AddAdmin structure.
@@ -24,14 +23,12 @@ type AddAdminReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddAdminReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddAdminOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddAdminDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddAdminOK() *AddAdminOK {
 	return &AddAdminOK{}
 }
 
-/*AddAdminOK handles this case with default header values.
+/* AddAdminOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddAdminOK struct {
 
 func (o *AddAdminOK) Error() string {
 	return fmt.Sprintf("[POST /setting/admins][%d] addAdminOK  %+v", 200, o.Payload)
+}
+func (o *AddAdminOK) GetPayload() *models.Admin {
+	return o.Payload
 }
 
 func (o *AddAdminOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddAdminDefault(code int) *AddAdminDefault {
 	}
 }
 
-/*AddAdminDefault handles this case with default header values.
+/* AddAdminDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddAdminDefault) Code() int {
 
 func (o *AddAdminDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/admins][%d] addAdmin default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddAdminDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddAdminDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

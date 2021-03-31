@@ -7,20 +7,26 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"io"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // AutoDiscoveryConfiguration auto discovery configuration
+//
 // swagger:model AutoDiscoveryConfiguration
 type AutoDiscoveryConfiguration struct {
+
+	// data source name
+	// Read Only: true
+	DataSourceName string `json:"dataSourceName,omitempty"`
 
 	// delete inactive instance
 	DeleteInactiveInstance bool `json:"deleteInactiveInstance,omitempty"`
@@ -59,6 +65,8 @@ func (m *AutoDiscoveryConfiguration) SetMethod(val AutoDiscoveryMethod) {
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *AutoDiscoveryConfiguration) UnmarshalJSON(raw []byte) error {
 	var data struct {
+		DataSourceName string `json:"dataSourceName,omitempty"`
+
 		DeleteInactiveInstance bool `json:"deleteInactiveInstance,omitempty"`
 
 		DisableInstance bool `json:"disableInstance,omitempty"`
@@ -89,6 +97,9 @@ func (m *AutoDiscoveryConfiguration) UnmarshalJSON(raw []byte) error {
 	}
 
 	var result AutoDiscoveryConfiguration
+
+	// dataSourceName
+	result.DataSourceName = data.DataSourceName
 
 	// deleteInactiveInstance
 	result.DeleteInactiveInstance = data.DeleteInactiveInstance
@@ -124,6 +135,8 @@ func (m AutoDiscoveryConfiguration) MarshalJSON() ([]byte, error) {
 	var b1, b2, b3 []byte
 	var err error
 	b1, err = json.Marshal(struct {
+		DataSourceName string `json:"dataSourceName,omitempty"`
+
 		DeleteInactiveInstance bool `json:"deleteInactiveInstance,omitempty"`
 
 		DisableInstance bool `json:"disableInstance,omitempty"`
@@ -139,6 +152,8 @@ func (m AutoDiscoveryConfiguration) MarshalJSON() ([]byte, error) {
 		ScheduleInterval int32 `json:"scheduleInterval,omitempty"`
 	}{
 
+		DataSourceName: m.DataSourceName,
+
 		DeleteInactiveInstance: m.DeleteInactiveInstance,
 
 		DisableInstance: m.DisableInstance,
@@ -152,8 +167,7 @@ func (m AutoDiscoveryConfiguration) MarshalJSON() ([]byte, error) {
 		PersistentInstance: m.PersistentInstance,
 
 		ScheduleInterval: m.ScheduleInterval,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -162,8 +176,7 @@ func (m AutoDiscoveryConfiguration) MarshalJSON() ([]byte, error) {
 	}{
 
 		Method: m.methodField,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -190,7 +203,6 @@ func (m *AutoDiscoveryConfiguration) Validate(formats strfmt.Registry) error {
 }
 
 func (m *AutoDiscoveryConfiguration) validateFilters(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Filters) { // not required
 		return nil
 	}
@@ -216,7 +228,72 @@ func (m *AutoDiscoveryConfiguration) validateFilters(formats strfmt.Registry) er
 
 func (m *AutoDiscoveryConfiguration) validateMethod(formats strfmt.Registry) error {
 
+	if err := validate.Required("method", "body", m.Method()); err != nil {
+		return err
+	}
+
 	if err := m.Method().Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("method")
+		}
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this auto discovery configuration based on the context it is used
+func (m *AutoDiscoveryConfiguration) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDataSourceName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFilters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMethod(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AutoDiscoveryConfiguration) contextValidateDataSourceName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "dataSourceName", "body", string(m.DataSourceName)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AutoDiscoveryConfiguration) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Filters); i++ {
+
+		if m.Filters[i] != nil {
+			if err := m.Filters[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AutoDiscoveryConfiguration) contextValidateMethod(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.Method().ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("method")
 		}

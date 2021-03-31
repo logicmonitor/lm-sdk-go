@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteDeviceDatasourceInstanceByIDReader is a Reader for the DeleteDeviceDatasourceInstanceByID structure.
@@ -24,14 +23,12 @@ type DeleteDeviceDatasourceInstanceByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteDeviceDatasourceInstanceByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteDeviceDatasourceInstanceByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteDeviceDatasourceInstanceByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteDeviceDatasourceInstanceByIDOK() *DeleteDeviceDatasourceInstanceBy
 	return &DeleteDeviceDatasourceInstanceByIDOK{}
 }
 
-/*DeleteDeviceDatasourceInstanceByIDOK handles this case with default header values.
+/* DeleteDeviceDatasourceInstanceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteDeviceDatasourceInstanceByIDOK struct {
 
 func (o *DeleteDeviceDatasourceInstanceByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] deleteDeviceDatasourceInstanceByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteDeviceDatasourceInstanceByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteDeviceDatasourceInstanceByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteDeviceDatasourceInstanceByIDDefault(code int) *DeleteDeviceDatasou
 	}
 }
 
-/*DeleteDeviceDatasourceInstanceByIDDefault handles this case with default header values.
+/* DeleteDeviceDatasourceInstanceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteDeviceDatasourceInstanceByIDDefault) Code() int {
 
 func (o *DeleteDeviceDatasourceInstanceByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] deleteDeviceDatasourceInstanceById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteDeviceDatasourceInstanceByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteDeviceDatasourceInstanceByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

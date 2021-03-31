@@ -7,45 +7,53 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"io"
 	"io/ioutil"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // Netscan netscan
+//
 // swagger:discriminator Netscan method
 type Netscan interface {
 	runtime.Validatable
+	runtime.ContextValidatable
 
 	// The ID of the Collector associated with this Netscan
+	// Example: 148
 	// Required: true
 	Collector() *int32
 	SetCollector(*int32)
 
 	// The description of the Collector associated with this Netscan
+	// Example: Prod CollectorA
 	CollectorDescription() string
 	SetCollectorDescription(string)
 
 	// The ID of the group of the Collector associated with this Netscan
+	// Example: 4
 	CollectorGroup() int32
 	SetCollectorGroup(int32)
 
 	// The name of the group of the Collector associated with this Netscan
+	// Example: Prod
 	CollectorGroupName() string
 	SetCollectorGroupName(string)
 
 	// The user that created the policy
+	// Example: sarah@logicmonitor.com
 	Creator() string
 	SetCreator(string)
 
 	// The description of the Netscan Policy
+	// Example: Discovers devices within the office network for monitoring
 	Description() string
 	SetDescription(string)
 
@@ -55,42 +63,57 @@ type Netscan interface {
 	SetDuplicate(*ExcludeDuplicateIps)
 
 	// The group the Netscan policy should belong to
+	// Example: RT_check
 	Group() string
 	SetGroup(string)
 
 	// The ID of the Netscan Policy
+	// Example: 208
 	ID() int32
 	SetID(int32)
 
+	// Ignore system.ips when checking for duplicate resources
+	IgnoreSystemIPsDuplicates() bool
+	SetIgnoreSystemIPsDuplicates(bool)
+
 	// The method that should be used to discover devices. Options are nmap (ICMP Ping), nec2 (EC2), and script
+	// Example: nmap
 	// Required: true
 	Method() string
 	SetMethod(string)
 
 	// The name of the Netscan Policy
+	// Example: Office Network
 	// Required: true
 	Name() *string
 	SetName(*string)
 
 	// The date and time of the next start time of the scan - displayed as manual if the scan does not run on a schedule
+	// Example: 2018-09-07 15:12:00 PDT
 	NextStart() string
 	SetNextStart(string)
 
 	// The epoch of the next start time of the scan - displayed as 0 if the scan does not run on a schedule
+	// Example: 1536358320
 	NextStartEpoch() int64
 	SetNextStartEpoch(int64)
 
 	// The ID of the group the policy belongs to
+	// Example: 47
 	NsgID() int32
 	SetNsgID(int32)
 
 	// Information related to the recurring execution schedule for the Netscan Policy
-	Schedule() *NetScanSchedule
-	SetSchedule(*NetScanSchedule)
+	Schedule() *RestSchedule
+	SetSchedule(*RestSchedule)
 
 	// The Id of the device
+	// Example: 2
 	Version() int32
 	SetVersion(int32)
+
+	// AdditionalProperties in base type shoud be handled just like regular properties
+	// At this moment, the base type property is pushed down to the subtype
 }
 
 type netscan struct {
@@ -112,6 +135,8 @@ type netscan struct {
 
 	idField int32
 
+	ignoreSystemIPsDuplicatesField bool
+
 	methodField string
 
 	nameField *string
@@ -122,7 +147,7 @@ type netscan struct {
 
 	nsgIdField int32
 
-	scheduleField *NetScanSchedule
+	scheduleField *RestSchedule
 
 	versionField int32
 }
@@ -217,6 +242,16 @@ func (m *netscan) SetID(val int32) {
 	m.idField = val
 }
 
+// IgnoreSystemIPsDuplicates gets the ignore system i ps duplicates of this polymorphic type
+func (m *netscan) IgnoreSystemIPsDuplicates() bool {
+	return m.ignoreSystemIPsDuplicatesField
+}
+
+// SetIgnoreSystemIPsDuplicates sets the ignore system i ps duplicates of this polymorphic type
+func (m *netscan) SetIgnoreSystemIPsDuplicates(val bool) {
+	m.ignoreSystemIPsDuplicatesField = val
+}
+
 // Method gets the method of this polymorphic type
 func (m *netscan) Method() string {
 	return "Netscan"
@@ -224,7 +259,6 @@ func (m *netscan) Method() string {
 
 // SetMethod sets the method of this polymorphic type
 func (m *netscan) SetMethod(val string) {
-
 }
 
 // Name gets the name of this polymorphic type
@@ -268,12 +302,12 @@ func (m *netscan) SetNsgID(val int32) {
 }
 
 // Schedule gets the schedule of this polymorphic type
-func (m *netscan) Schedule() *NetScanSchedule {
+func (m *netscan) Schedule() *RestSchedule {
 	return m.scheduleField
 }
 
 // SetSchedule sets the schedule of this polymorphic type
-func (m *netscan) SetSchedule(val *NetScanSchedule) {
+func (m *netscan) SetSchedule(val *RestSchedule) {
 	m.scheduleField = val
 }
 
@@ -339,52 +373,50 @@ func unmarshalNetscan(data []byte, consumer runtime.Consumer) (Netscan, error) {
 			return nil, err
 		}
 		return &result, nil
-
+	case "SaasNetScan":
+		var result SaasNetScan
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "aws":
 		var result AWSNetscan
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "azure":
 		var result AzureNetscan
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "gcp":
 		var result GCPNetscan
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "nec2":
 		var result Ec2Netscan
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "nmap":
 		var result NMapNetscan
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "script":
 		var result ScriptNetscan
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	}
 	return nil, errors.New(422, "invalid method value: %q", getType.Method)
-
 }
 
 // Validate validates this netscan
@@ -450,13 +482,58 @@ func (m *netscan) validateName(formats strfmt.Registry) error {
 }
 
 func (m *netscan) validateSchedule(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Schedule()) { // not required
 		return nil
 	}
 
 	if m.Schedule() != nil {
 		if err := m.Schedule().Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("schedule")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this netscan based on the context it is used
+func (m *netscan) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDuplicate(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSchedule(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *netscan) contextValidateDuplicate(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Duplicate() != nil {
+		if err := m.Duplicate().ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("duplicate")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *netscan) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Schedule() != nil {
+		if err := m.Schedule().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
 			}

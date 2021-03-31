@@ -6,97 +6,114 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetWebsiteSDTListByWebsiteIDParams creates a new GetWebsiteSDTListByWebsiteIDParams object
-// with the default values initialized.
+// NewGetWebsiteSDTListByWebsiteIDParams creates a new GetWebsiteSDTListByWebsiteIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetWebsiteSDTListByWebsiteIDParams() *GetWebsiteSDTListByWebsiteIDParams {
-	var (
-		offsetDefault = int32(0)
-		sizeDefault   = int32(50)
-	)
 	return &GetWebsiteSDTListByWebsiteIDParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetWebsiteSDTListByWebsiteIDParamsWithTimeout creates a new GetWebsiteSDTListByWebsiteIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetWebsiteSDTListByWebsiteIDParamsWithTimeout(timeout time.Duration) *GetWebsiteSDTListByWebsiteIDParams {
-	var (
-		offsetDefault = int32(0)
-		sizeDefault   = int32(50)
-	)
 	return &GetWebsiteSDTListByWebsiteIDParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetWebsiteSDTListByWebsiteIDParamsWithContext creates a new GetWebsiteSDTListByWebsiteIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetWebsiteSDTListByWebsiteIDParamsWithContext(ctx context.Context) *GetWebsiteSDTListByWebsiteIDParams {
-	var (
-		offsetDefault = int32(0)
-		sizeDefault   = int32(50)
-	)
 	return &GetWebsiteSDTListByWebsiteIDParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetWebsiteSDTListByWebsiteIDParamsWithHTTPClient creates a new GetWebsiteSDTListByWebsiteIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetWebsiteSDTListByWebsiteIDParamsWithHTTPClient(client *http.Client) *GetWebsiteSDTListByWebsiteIDParams {
-	var (
-		offsetDefault = int32(0)
-		sizeDefault   = int32(50)
-	)
 	return &GetWebsiteSDTListByWebsiteIDParams{
-		Offset:     &offsetDefault,
-		Size:       &sizeDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetWebsiteSDTListByWebsiteIDParams contains all the parameters to send to the API endpoint
-for the get website SDT list by website Id operation typically these are written to a http.Request
+/* GetWebsiteSDTListByWebsiteIDParams contains all the parameters to send to the API endpoint
+   for the get website SDT list by website Id operation.
+
+   Typically these are written to a http.Request.
 */
 type GetWebsiteSDTListByWebsiteIDParams struct {
 
-	/*Fields*/
+	// Fields.
 	Fields *string
-	/*Filter*/
+
+	// Filter.
 	Filter *string
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
-	/*Offset*/
+
+	// Offset.
+	//
+	// Format: int32
 	Offset *int32
-	/*Size*/
+
+	// Size.
+	//
+	// Format: int32
+	// Default: 50
 	Size *int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get website SDT list by website Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetWebsiteSDTListByWebsiteIDParams) WithDefaults() *GetWebsiteSDTListByWebsiteIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get website SDT list by website Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetWebsiteSDTListByWebsiteIDParams) SetDefaults() {
+	var (
+		offsetDefault = int32(0)
+
+		sizeDefault = int32(50)
+	)
+
+	val := GetWebsiteSDTListByWebsiteIDParams{
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get website SDT list by website Id params
@@ -199,32 +216,34 @@ func (o *GetWebsiteSDTListByWebsiteIDParams) WriteToRequest(r runtime.ClientRequ
 
 		// query param fields
 		var qrFields string
+
 		if o.Fields != nil {
 			qrFields = *o.Fields
 		}
 		qFields := qrFields
 		if qFields != "" {
+
 			if err := r.SetQueryParam("fields", qFields); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Filter != nil {
 
 		// query param filter
 		var qrFilter string
+
 		if o.Filter != nil {
 			qrFilter = *o.Filter
 		}
 		qFilter := qrFilter
 		if qFilter != "" {
+
 			if err := r.SetQueryParam("filter", qFilter); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id
@@ -236,32 +255,34 @@ func (o *GetWebsiteSDTListByWebsiteIDParams) WriteToRequest(r runtime.ClientRequ
 
 		// query param offset
 		var qrOffset int32
+
 		if o.Offset != nil {
 			qrOffset = *o.Offset
 		}
 		qOffset := swag.FormatInt32(qrOffset)
 		if qOffset != "" {
+
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Size != nil {
 
 		// query param size
 		var qrSize int32
+
 		if o.Size != nil {
 			qrSize = *o.Size
 		}
 		qSize := swag.FormatInt32(qrSize)
 		if qSize != "" {
+
 			if err := r.SetQueryParam("size", qSize); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

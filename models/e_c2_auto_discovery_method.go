@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // EC2AutoDiscoveryMethod e c2 auto discovery method
+//
 // swagger:model EC2AutoDiscoveryMethod
 type EC2AutoDiscoveryMethod struct {
 
@@ -36,12 +37,7 @@ func (m *EC2AutoDiscoveryMethod) Name() string {
 
 // SetName sets the name of this subtype
 func (m *EC2AutoDiscoveryMethod) SetName(val string) {
-
 }
-
-// AccessKeyID gets the access key Id of this subtype
-
-// SecretAccessKey gets the secret access key of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *EC2AutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
@@ -84,7 +80,6 @@ func (m *EC2AutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.AccessKeyID = data.AccessKeyID
-
 	result.SecretAccessKey = data.SecretAccessKey
 
 	*m = result
@@ -110,8 +105,7 @@ func (m EC2AutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 		AccessKeyID: m.AccessKeyID,
 
 		SecretAccessKey: m.SecretAccessKey,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -120,8 +114,7 @@ func (m EC2AutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -162,6 +155,16 @@ func (m *EC2AutoDiscoveryMethod) validateSecretAccessKey(formats strfmt.Registry
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validate this e c2 auto discovery method based on the context it is used
+func (m *EC2AutoDiscoveryMethod) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

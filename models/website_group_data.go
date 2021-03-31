@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // WebsiteGroupData website group data
+//
 // swagger:model WebsiteGroupData
 type WebsiteGroupData struct {
 
@@ -59,6 +61,11 @@ func (m *WebsiteGroupData) validateWebsiteName(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this website group data based on context it is used
+func (m *WebsiteGroupData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

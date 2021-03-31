@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // ScheduleAutoDiscoveryByDeviceIDReader is a Reader for the ScheduleAutoDiscoveryByDeviceID structure.
@@ -24,14 +23,12 @@ type ScheduleAutoDiscoveryByDeviceIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ScheduleAutoDiscoveryByDeviceIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewScheduleAutoDiscoveryByDeviceIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewScheduleAutoDiscoveryByDeviceIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewScheduleAutoDiscoveryByDeviceIDOK() *ScheduleAutoDiscoveryByDeviceIDOK {
 	return &ScheduleAutoDiscoveryByDeviceIDOK{}
 }
 
-/*ScheduleAutoDiscoveryByDeviceIDOK handles this case with default header values.
+/* ScheduleAutoDiscoveryByDeviceIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type ScheduleAutoDiscoveryByDeviceIDOK struct {
 
 func (o *ScheduleAutoDiscoveryByDeviceIDOK) Error() string {
 	return fmt.Sprintf("[POST /device/devices/{id}/scheduleAutoDiscovery][%d] scheduleAutoDiscoveryByDeviceIdOK  %+v", 200, o.Payload)
+}
+func (o *ScheduleAutoDiscoveryByDeviceIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *ScheduleAutoDiscoveryByDeviceIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewScheduleAutoDiscoveryByDeviceIDDefault(code int) *ScheduleAutoDiscoveryB
 	}
 }
 
-/*ScheduleAutoDiscoveryByDeviceIDDefault handles this case with default header values.
+/* ScheduleAutoDiscoveryByDeviceIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *ScheduleAutoDiscoveryByDeviceIDDefault) Code() int {
 
 func (o *ScheduleAutoDiscoveryByDeviceIDDefault) Error() string {
 	return fmt.Sprintf("[POST /device/devices/{id}/scheduleAutoDiscovery][%d] scheduleAutoDiscoveryByDeviceId default  %+v", o._statusCode, o.Payload)
+}
+func (o *ScheduleAutoDiscoveryByDeviceIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *ScheduleAutoDiscoveryByDeviceIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

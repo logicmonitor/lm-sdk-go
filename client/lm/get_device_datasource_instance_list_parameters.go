@@ -6,74 +6,122 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetDeviceDatasourceInstanceListParams creates a new GetDeviceDatasourceInstanceListParams object
-// with the default values initialized.
+// NewGetDeviceDatasourceInstanceListParams creates a new GetDeviceDatasourceInstanceListParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetDeviceDatasourceInstanceListParams() *GetDeviceDatasourceInstanceListParams {
-	var ()
 	return &GetDeviceDatasourceInstanceListParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetDeviceDatasourceInstanceListParamsWithTimeout creates a new GetDeviceDatasourceInstanceListParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetDeviceDatasourceInstanceListParamsWithTimeout(timeout time.Duration) *GetDeviceDatasourceInstanceListParams {
-	var ()
 	return &GetDeviceDatasourceInstanceListParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetDeviceDatasourceInstanceListParamsWithContext creates a new GetDeviceDatasourceInstanceListParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetDeviceDatasourceInstanceListParamsWithContext(ctx context.Context) *GetDeviceDatasourceInstanceListParams {
-	var ()
 	return &GetDeviceDatasourceInstanceListParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetDeviceDatasourceInstanceListParamsWithHTTPClient creates a new GetDeviceDatasourceInstanceListParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetDeviceDatasourceInstanceListParamsWithHTTPClient(client *http.Client) *GetDeviceDatasourceInstanceListParams {
-	var ()
 	return &GetDeviceDatasourceInstanceListParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetDeviceDatasourceInstanceListParams contains all the parameters to send to the API endpoint
-for the get device datasource instance list operation typically these are written to a http.Request
+/* GetDeviceDatasourceInstanceListParams contains all the parameters to send to the API endpoint
+   for the get device datasource instance list operation.
+
+   Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceInstanceListParams struct {
 
-	/*DeviceID*/
+	// DeviceID.
+	//
+	// Format: int32
 	DeviceID int32
-	/*HdsID
-	  The device-datasource ID
 
+	// Fields.
+	Fields *string
+
+	// Filter.
+	Filter *string
+
+	/* HdsID.
+
+	   The device-datasource ID
+
+	   Format: int32
 	*/
 	HdsID int32
+
+	// Offset.
+	//
+	// Format: int32
+	Offset *int32
+
+	// Size.
+	//
+	// Format: int32
+	// Default: 50
+	Size *int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get device datasource instance list params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDeviceDatasourceInstanceListParams) WithDefaults() *GetDeviceDatasourceInstanceListParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get device datasource instance list params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDeviceDatasourceInstanceListParams) SetDefaults() {
+	var (
+		offsetDefault = int32(0)
+
+		sizeDefault = int32(50)
+	)
+
+	val := GetDeviceDatasourceInstanceListParams{
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get device datasource instance list params
@@ -120,6 +168,28 @@ func (o *GetDeviceDatasourceInstanceListParams) SetDeviceID(deviceID int32) {
 	o.DeviceID = deviceID
 }
 
+// WithFields adds the fields to the get device datasource instance list params
+func (o *GetDeviceDatasourceInstanceListParams) WithFields(fields *string) *GetDeviceDatasourceInstanceListParams {
+	o.SetFields(fields)
+	return o
+}
+
+// SetFields adds the fields to the get device datasource instance list params
+func (o *GetDeviceDatasourceInstanceListParams) SetFields(fields *string) {
+	o.Fields = fields
+}
+
+// WithFilter adds the filter to the get device datasource instance list params
+func (o *GetDeviceDatasourceInstanceListParams) WithFilter(filter *string) *GetDeviceDatasourceInstanceListParams {
+	o.SetFilter(filter)
+	return o
+}
+
+// SetFilter adds the filter to the get device datasource instance list params
+func (o *GetDeviceDatasourceInstanceListParams) SetFilter(filter *string) {
+	o.Filter = filter
+}
+
 // WithHdsID adds the hdsID to the get device datasource instance list params
 func (o *GetDeviceDatasourceInstanceListParams) WithHdsID(hdsID int32) *GetDeviceDatasourceInstanceListParams {
 	o.SetHdsID(hdsID)
@@ -129,6 +199,28 @@ func (o *GetDeviceDatasourceInstanceListParams) WithHdsID(hdsID int32) *GetDevic
 // SetHdsID adds the hdsId to the get device datasource instance list params
 func (o *GetDeviceDatasourceInstanceListParams) SetHdsID(hdsID int32) {
 	o.HdsID = hdsID
+}
+
+// WithOffset adds the offset to the get device datasource instance list params
+func (o *GetDeviceDatasourceInstanceListParams) WithOffset(offset *int32) *GetDeviceDatasourceInstanceListParams {
+	o.SetOffset(offset)
+	return o
+}
+
+// SetOffset adds the offset to the get device datasource instance list params
+func (o *GetDeviceDatasourceInstanceListParams) SetOffset(offset *int32) {
+	o.Offset = offset
+}
+
+// WithSize adds the size to the get device datasource instance list params
+func (o *GetDeviceDatasourceInstanceListParams) WithSize(size *int32) *GetDeviceDatasourceInstanceListParams {
+	o.SetSize(size)
+	return o
+}
+
+// SetSize adds the size to the get device datasource instance list params
+func (o *GetDeviceDatasourceInstanceListParams) SetSize(size *int32) {
+	o.Size = size
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -144,9 +236,77 @@ func (o *GetDeviceDatasourceInstanceListParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 
+	if o.Fields != nil {
+
+		// query param fields
+		var qrFields string
+
+		if o.Fields != nil {
+			qrFields = *o.Fields
+		}
+		qFields := qrFields
+		if qFields != "" {
+
+			if err := r.SetQueryParam("fields", qFields); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Filter != nil {
+
+		// query param filter
+		var qrFilter string
+
+		if o.Filter != nil {
+			qrFilter = *o.Filter
+		}
+		qFilter := qrFilter
+		if qFilter != "" {
+
+			if err := r.SetQueryParam("filter", qFilter); err != nil {
+				return err
+			}
+		}
+	}
+
 	// path param hdsId
 	if err := r.SetPathParam("hdsId", swag.FormatInt32(o.HdsID)); err != nil {
 		return err
+	}
+
+	if o.Offset != nil {
+
+		// query param offset
+		var qrOffset int32
+
+		if o.Offset != nil {
+			qrOffset = *o.Offset
+		}
+		qOffset := swag.FormatInt32(qrOffset)
+		if qOffset != "" {
+
+			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Size != nil {
+
+		// query param size
+		var qrSize int32
+
+		if o.Size != nil {
+			qrSize = *o.Size
+		}
+		qSize := swag.FormatInt32(qrSize)
+		if qSize != "" {
+
+			if err := r.SetQueryParam("size", qSize); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

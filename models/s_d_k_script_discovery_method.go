@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // SDKScriptDiscoveryMethod s d k script discovery method
+//
 // swagger:model SDKScriptDiscoveryMethod
 type SDKScriptDiscoveryMethod struct {
 
@@ -40,14 +41,7 @@ func (m *SDKScriptDiscoveryMethod) Name() string {
 
 // SetName sets the name of this subtype
 func (m *SDKScriptDiscoveryMethod) SetName(val string) {
-
 }
-
-// GroovyScript gets the groovy script of this subtype
-
-// SdkName gets the sdk name of this subtype
-
-// SdkVersion gets the sdk version of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *SDKScriptDiscoveryMethod) UnmarshalJSON(raw []byte) error {
@@ -94,9 +88,7 @@ func (m *SDKScriptDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.GroovyScript = data.GroovyScript
-
 	result.SdkName = data.SdkName
-
 	result.SdkVersion = data.SdkVersion
 
 	*m = result
@@ -128,8 +120,7 @@ func (m SDKScriptDiscoveryMethod) MarshalJSON() ([]byte, error) {
 		SdkName: m.SdkName,
 
 		SdkVersion: m.SdkVersion,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -138,8 +129,7 @@ func (m SDKScriptDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -193,6 +183,16 @@ func (m *SDKScriptDiscoveryMethod) validateSdkVersion(formats strfmt.Registry) e
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validate this s d k script discovery method based on the context it is used
+func (m *SDKScriptDiscoveryMethod) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

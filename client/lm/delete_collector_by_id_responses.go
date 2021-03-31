@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteCollectorByIDReader is a Reader for the DeleteCollectorByID structure.
@@ -24,14 +23,12 @@ type DeleteCollectorByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteCollectorByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteCollectorByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteCollectorByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteCollectorByIDOK() *DeleteCollectorByIDOK {
 	return &DeleteCollectorByIDOK{}
 }
 
-/*DeleteCollectorByIDOK handles this case with default header values.
+/* DeleteCollectorByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteCollectorByIDOK struct {
 
 func (o *DeleteCollectorByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /setting/collector/collectors/{id}][%d] deleteCollectorByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteCollectorByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteCollectorByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteCollectorByIDDefault(code int) *DeleteCollectorByIDDefault {
 	}
 }
 
-/*DeleteCollectorByIDDefault handles this case with default header values.
+/* DeleteCollectorByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteCollectorByIDDefault) Code() int {
 
 func (o *DeleteCollectorByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /setting/collector/collectors/{id}][%d] deleteCollectorById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteCollectorByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteCollectorByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
