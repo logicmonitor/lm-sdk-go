@@ -49,6 +49,13 @@ func main() {
 			},
 		},
 	}
+	userAgent := map[string]interface{}{
+		"in":       "header",
+		"name":     "User-Agent",
+		"type":     "string",
+		"required": false,
+		"default":  fmt.Sprintf("Logicmonitor/SDK: Argus Dist-%s", os.Args[3]),
+	}
 	paths := result["paths"].(map[string]interface{})
 	for _, v := range paths {
 		verbsMap := v.(map[string]interface{})
@@ -56,6 +63,9 @@ func main() {
 			verbDetails := val.(map[string]interface{})
 			responses := verbDetails["responses"].(map[string]interface{})
 			responses["429"] = m
+			parameters := verbDetails["parameters"].([]interface{})
+			parameters = append(parameters, userAgent)
+			verbDetails["parameters"] = parameters
 		}
 	}
 	file, _ := json.MarshalIndent(result, "", "  ")

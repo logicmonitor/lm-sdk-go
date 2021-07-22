@@ -30,6 +30,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry, authInfo ru
     transport: transport,
     formats: formats,
     authInfo: authInfo,
+    userAgent: nil,
   }
 }
 
@@ -42,6 +43,7 @@ type Client struct {
   transport runtime.ClientTransport
   formats strfmt.Registry
   authInfo runtime.ClientAuthInfoWriter
+  userAgent *string
 }
 
 {{ range .Operations }}/*
@@ -53,6 +55,9 @@ func (a *Client) {{ pascalize .Name }}(params *{{ pascalize .Name }}Params{{ if 
   // TODO: Validate the params before sending
   if params == nil {
     params = New{{ pascalize .Name }}Params()
+  }
+  if x, ok := params.(interface{ SetUserAgent(*string) }); ok && a.userAgent != nil {
+  	x.SetUserAgent(a.userAgent)
   }
   {{ $length := len .SuccessResponses }}
   {{ if .SuccessResponse }}result{{else}}_{{ end }}, err := a.transport.Submit(&runtime.ClientOperation{
@@ -83,4 +88,9 @@ func (a *Client) {{ pascalize .Name }}(params *{{ pascalize .Name }}Params{{ if 
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
   a.transport = transport
+}
+
+// SetUserAgent changes the userAgent on the client
+func (a *Client) SetUserAgent(userAgent *string) {
+  a.userAgent = userAgent
 }
