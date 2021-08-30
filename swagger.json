@@ -16617,6 +16617,12 @@
                         "required": false
                     },
                     {
+                        "in": "query",
+                        "name": "patchFields",
+                        "type": "string",
+                        "required": false
+                    },
+                    {
                         "in": "path",
                         "name": "id",
                         "pattern": "\\d+",

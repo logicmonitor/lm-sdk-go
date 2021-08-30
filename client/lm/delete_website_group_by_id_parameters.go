@@ -62,7 +62,7 @@ type DeleteWebsiteGroupByIDParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
 	UserAgent *string
 
 	// DeleteChildren.
@@ -93,7 +93,7 @@ func (o *DeleteWebsiteGroupByIDParams) WithDefaults() *DeleteWebsiteGroupByIDPar
 // All values with no default are reset to their zero value.
 func (o *DeleteWebsiteGroupByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
 
 		deleteChildrenDefault = int32(0)
 	)

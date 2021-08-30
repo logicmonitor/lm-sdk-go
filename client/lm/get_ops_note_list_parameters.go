@@ -62,7 +62,7 @@ type GetOpsNoteListParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
 	UserAgent *string
 
 	// Fields.
@@ -103,7 +103,7 @@ func (o *GetOpsNoteListParams) WithDefaults() *GetOpsNoteListParams {
 // All values with no default are reset to their zero value.
 func (o *GetOpsNoteListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
 
 		offsetDefault = int32(0)
 

@@ -64,7 +64,7 @@ type AckCollectorDownAlertByIDParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
 	UserAgent *string
 
 	// Body.
@@ -93,7 +93,7 @@ func (o *AckCollectorDownAlertByIDParams) WithDefaults() *AckCollectorDownAlertB
 // All values with no default are reset to their zero value.
 func (o *AckCollectorDownAlertByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
 	)
 
 	val := AckCollectorDownAlertByIDParams{

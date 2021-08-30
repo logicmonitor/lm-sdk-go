@@ -62,7 +62,7 @@ type GetDeviceDatasourceInstanceAlertSettingListOfDSIParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
 	UserAgent *string
 
 	// DeviceID.
@@ -112,7 +112,7 @@ func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) WithDefaults() 
 // All values with no default are reset to their zero value.
 func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
 
 		offsetDefault = int32(0)
 

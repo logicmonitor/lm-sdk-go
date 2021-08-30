@@ -62,7 +62,7 @@ type GetTopTalkersGraphParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
 	UserAgent *string
 
 	// End.
@@ -107,7 +107,7 @@ func (o *GetTopTalkersGraphParams) WithDefaults() *GetTopTalkersGraphParams {
 // All values with no default are reset to their zero value.
 func (o *GetTopTalkersGraphParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
 	)
 
 	val := GetTopTalkersGraphParams{

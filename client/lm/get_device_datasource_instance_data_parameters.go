@@ -62,7 +62,7 @@ type GetDeviceDatasourceInstanceDataParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
 	UserAgent *string
 
 	// Datapoints.
@@ -125,7 +125,7 @@ func (o *GetDeviceDatasourceInstanceDataParams) WithDefaults() *GetDeviceDatasou
 // All values with no default are reset to their zero value.
 func (o *GetDeviceDatasourceInstanceDataParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
 
 		endDefault = int64(0)
 

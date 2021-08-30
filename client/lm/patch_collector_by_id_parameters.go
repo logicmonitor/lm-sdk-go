@@ -64,7 +64,7 @@ type PatchCollectorByIDParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
 	UserAgent *string
 
 	// Body.
@@ -96,7 +96,7 @@ func (o *PatchCollectorByIDParams) WithDefaults() *PatchCollectorByIDParams {
 // All values with no default are reset to their zero value.
 func (o *PatchCollectorByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-4-gd30bcfd-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
 
 		forceUpdateFailedOverDevicesDefault = bool(false)
 	)
