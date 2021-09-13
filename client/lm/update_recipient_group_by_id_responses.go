@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateRecipientGroupByIDReader is a Reader for the UpdateRecipientGroupByID structure.
@@ -24,14 +23,12 @@ type UpdateRecipientGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateRecipientGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateRecipientGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateRecipientGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateRecipientGroupByIDOK() *UpdateRecipientGroupByIDOK {
 	return &UpdateRecipientGroupByIDOK{}
 }
 
-/*UpdateRecipientGroupByIDOK handles this case with default header values.
+/* UpdateRecipientGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateRecipientGroupByIDOK struct {
 
 func (o *UpdateRecipientGroupByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /setting/recipientgroups/{id}][%d] updateRecipientGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateRecipientGroupByIDOK) GetPayload() *models.RecipientGroup {
+	return o.Payload
 }
 
 func (o *UpdateRecipientGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateRecipientGroupByIDDefault(code int) *UpdateRecipientGroupByIDDefau
 	}
 }
 
-/*UpdateRecipientGroupByIDDefault handles this case with default header values.
+/* UpdateRecipientGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateRecipientGroupByIDDefault) Code() int {
 
 func (o *UpdateRecipientGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /setting/recipientgroups/{id}][%d] updateRecipientGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateRecipientGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateRecipientGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

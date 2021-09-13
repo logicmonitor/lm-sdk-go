@@ -6,89 +6,105 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewPatchAppliesToFunctionParams creates a new PatchAppliesToFunctionParams object
-// with the default values initialized.
+// NewPatchAppliesToFunctionParams creates a new PatchAppliesToFunctionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPatchAppliesToFunctionParams() *PatchAppliesToFunctionParams {
-	var (
-		ignoreReferenceDefault = bool(false)
-	)
 	return &PatchAppliesToFunctionParams{
-		IgnoreReference: &ignoreReferenceDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPatchAppliesToFunctionParamsWithTimeout creates a new PatchAppliesToFunctionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPatchAppliesToFunctionParamsWithTimeout(timeout time.Duration) *PatchAppliesToFunctionParams {
-	var (
-		ignoreReferenceDefault = bool(false)
-	)
 	return &PatchAppliesToFunctionParams{
-		IgnoreReference: &ignoreReferenceDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewPatchAppliesToFunctionParamsWithContext creates a new PatchAppliesToFunctionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPatchAppliesToFunctionParamsWithContext(ctx context.Context) *PatchAppliesToFunctionParams {
-	var (
-		ignoreReferenceDefault = bool(false)
-	)
 	return &PatchAppliesToFunctionParams{
-		IgnoreReference: &ignoreReferenceDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewPatchAppliesToFunctionParamsWithHTTPClient creates a new PatchAppliesToFunctionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPatchAppliesToFunctionParamsWithHTTPClient(client *http.Client) *PatchAppliesToFunctionParams {
-	var (
-		ignoreReferenceDefault = bool(false)
-	)
 	return &PatchAppliesToFunctionParams{
-		IgnoreReference: &ignoreReferenceDefault,
-		HTTPClient:      client,
+		HTTPClient: client,
 	}
 }
 
-/*PatchAppliesToFunctionParams contains all the parameters to send to the API endpoint
-for the patch applies to function operation typically these are written to a http.Request
+/* PatchAppliesToFunctionParams contains all the parameters to send to the API endpoint
+   for the patch applies to function operation.
+
+   Typically these are written to a http.Request.
 */
 type PatchAppliesToFunctionParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.AppliesToFunction
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
-	/*IgnoreReference*/
+
+	// IgnoreReference.
 	IgnoreReference *bool
-	/*Reason*/
+
+	// Reason.
 	Reason *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the patch applies to function params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchAppliesToFunctionParams) WithDefaults() *PatchAppliesToFunctionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the patch applies to function params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchAppliesToFunctionParams) SetDefaults() {
+	var (
+		ignoreReferenceDefault = bool(false)
+	)
+
+	val := PatchAppliesToFunctionParams{
+		IgnoreReference: &ignoreReferenceDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the patch applies to function params
@@ -175,7 +191,6 @@ func (o *PatchAppliesToFunctionParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
@@ -191,32 +206,34 @@ func (o *PatchAppliesToFunctionParams) WriteToRequest(r runtime.ClientRequest, r
 
 		// query param ignoreReference
 		var qrIgnoreReference bool
+
 		if o.IgnoreReference != nil {
 			qrIgnoreReference = *o.IgnoreReference
 		}
 		qIgnoreReference := swag.FormatBool(qrIgnoreReference)
 		if qIgnoreReference != "" {
+
 			if err := r.SetQueryParam("ignoreReference", qIgnoreReference); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Reason != nil {
 
 		// query param reason
 		var qrReason string
+
 		if o.Reason != nil {
 			qrReason = *o.Reason
 		}
 		qReason := qrReason
 		if qReason != "" {
+
 			if err := r.SetQueryParam("reason", qReason); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

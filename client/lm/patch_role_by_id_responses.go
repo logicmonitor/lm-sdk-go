@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchRoleByIDReader is a Reader for the PatchRoleByID structure.
@@ -24,14 +23,12 @@ type PatchRoleByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchRoleByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchRoleByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchRoleByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchRoleByIDOK() *PatchRoleByIDOK {
 	return &PatchRoleByIDOK{}
 }
 
-/*PatchRoleByIDOK handles this case with default header values.
+/* PatchRoleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchRoleByIDOK struct {
 
 func (o *PatchRoleByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /setting/roles/{id}][%d] patchRoleByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchRoleByIDOK) GetPayload() *models.Role {
+	return o.Payload
 }
 
 func (o *PatchRoleByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchRoleByIDDefault(code int) *PatchRoleByIDDefault {
 	}
 }
 
-/*PatchRoleByIDDefault handles this case with default header values.
+/* PatchRoleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchRoleByIDDefault) Code() int {
 
 func (o *PatchRoleByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /setting/roles/{id}][%d] patchRoleById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchRoleByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchRoleByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

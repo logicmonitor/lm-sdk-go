@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchWebsiteByIDReader is a Reader for the PatchWebsiteByID structure.
@@ -24,14 +23,12 @@ type PatchWebsiteByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchWebsiteByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchWebsiteByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchWebsiteByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchWebsiteByIDOK() *PatchWebsiteByIDOK {
 	return &PatchWebsiteByIDOK{}
 }
 
-/*PatchWebsiteByIDOK handles this case with default header values.
+/* PatchWebsiteByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchWebsiteByIDOK struct {
 
 func (o *PatchWebsiteByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /website/websites/{id}][%d] patchWebsiteByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchWebsiteByIDOK) GetPayload() models.Website {
+	return o.Payload
 }
 
 func (o *PatchWebsiteByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchWebsiteByIDDefault(code int) *PatchWebsiteByIDDefault {
 	}
 }
 
-/*PatchWebsiteByIDDefault handles this case with default header values.
+/* PatchWebsiteByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchWebsiteByIDDefault) Code() int {
 
 func (o *PatchWebsiteByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /website/websites/{id}][%d] patchWebsiteById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchWebsiteByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchWebsiteByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

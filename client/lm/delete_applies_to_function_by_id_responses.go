@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteAppliesToFunctionByIDReader is a Reader for the DeleteAppliesToFunctionByID structure.
@@ -24,14 +23,12 @@ type DeleteAppliesToFunctionByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteAppliesToFunctionByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteAppliesToFunctionByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteAppliesToFunctionByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteAppliesToFunctionByIDOK() *DeleteAppliesToFunctionByIDOK {
 	return &DeleteAppliesToFunctionByIDOK{}
 }
 
-/*DeleteAppliesToFunctionByIDOK handles this case with default header values.
+/* DeleteAppliesToFunctionByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteAppliesToFunctionByIDOK struct {
 
 func (o *DeleteAppliesToFunctionByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /setting/functions/{id}][%d] deleteAppliesToFunctionByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteAppliesToFunctionByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteAppliesToFunctionByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteAppliesToFunctionByIDDefault(code int) *DeleteAppliesToFunctionByI
 	}
 }
 
-/*DeleteAppliesToFunctionByIDDefault handles this case with default header values.
+/* DeleteAppliesToFunctionByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteAppliesToFunctionByIDDefault) Code() int {
 
 func (o *DeleteAppliesToFunctionByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /setting/functions/{id}][%d] deleteAppliesToFunctionById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteAppliesToFunctionByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteAppliesToFunctionByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

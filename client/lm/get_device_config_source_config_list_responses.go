@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceConfigSourceConfigListReader is a Reader for the GetDeviceConfigSourceConfigList structure.
@@ -24,14 +23,12 @@ type GetDeviceConfigSourceConfigListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceConfigSourceConfigListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceConfigSourceConfigListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceConfigSourceConfigListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceConfigSourceConfigListOK() *GetDeviceConfigSourceConfigListOK {
 	return &GetDeviceConfigSourceConfigListOK{}
 }
 
-/*GetDeviceConfigSourceConfigListOK handles this case with default header values.
+/* GetDeviceConfigSourceConfigListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceConfigSourceConfigListOK struct {
 
 func (o *GetDeviceConfigSourceConfigListOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config][%d] getDeviceConfigSourceConfigListOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceConfigSourceConfigListOK) GetPayload() *models.DeviceDatasourceInstanceConfigPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceConfigSourceConfigListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceConfigSourceConfigListDefault(code int) *GetDeviceConfigSourceC
 	}
 }
 
-/*GetDeviceConfigSourceConfigListDefault handles this case with default header values.
+/* GetDeviceConfigSourceConfigListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceConfigSourceConfigListDefault) Code() int {
 
 func (o *GetDeviceConfigSourceConfigListDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config][%d] getDeviceConfigSourceConfigList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceConfigSourceConfigListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceConfigSourceConfigListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

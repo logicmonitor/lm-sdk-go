@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteRoleByIDReader is a Reader for the DeleteRoleByID structure.
@@ -24,14 +23,12 @@ type DeleteRoleByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteRoleByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteRoleByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteRoleByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteRoleByIDOK() *DeleteRoleByIDOK {
 	return &DeleteRoleByIDOK{}
 }
 
-/*DeleteRoleByIDOK handles this case with default header values.
+/* DeleteRoleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteRoleByIDOK struct {
 
 func (o *DeleteRoleByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /setting/roles/{id}][%d] deleteRoleByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteRoleByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteRoleByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteRoleByIDDefault(code int) *DeleteRoleByIDDefault {
 	}
 }
 
-/*DeleteRoleByIDDefault handles this case with default header values.
+/* DeleteRoleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteRoleByIDDefault) Code() int {
 
 func (o *DeleteRoleByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /setting/roles/{id}][%d] deleteRoleById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteRoleByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteRoleByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

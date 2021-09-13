@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateEscalationChainByIDReader is a Reader for the UpdateEscalationChainByID structure.
@@ -24,14 +23,12 @@ type UpdateEscalationChainByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateEscalationChainByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateEscalationChainByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateEscalationChainByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateEscalationChainByIDOK() *UpdateEscalationChainByIDOK {
 	return &UpdateEscalationChainByIDOK{}
 }
 
-/*UpdateEscalationChainByIDOK handles this case with default header values.
+/* UpdateEscalationChainByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateEscalationChainByIDOK struct {
 
 func (o *UpdateEscalationChainByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /setting/alert/chains/{id}][%d] updateEscalationChainByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateEscalationChainByIDOK) GetPayload() *models.EscalatingChain {
+	return o.Payload
 }
 
 func (o *UpdateEscalationChainByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateEscalationChainByIDDefault(code int) *UpdateEscalationChainByIDDef
 	}
 }
 
-/*UpdateEscalationChainByIDDefault handles this case with default header values.
+/* UpdateEscalationChainByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateEscalationChainByIDDefault) Code() int {
 
 func (o *UpdateEscalationChainByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /setting/alert/chains/{id}][%d] updateEscalationChainById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateEscalationChainByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateEscalationChainByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

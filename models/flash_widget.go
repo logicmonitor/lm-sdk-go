@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // FlashWidget flash widget
+//
 // swagger:model FlashWidget
 type FlashWidget struct {
 	dashboardIdField *int32
@@ -144,7 +145,6 @@ func (m *FlashWidget) Type() string {
 
 // SetType sets the type of this subtype
 func (m *FlashWidget) SetType(val string) {
-
 }
 
 // UserPermission gets the user permission of this subtype
@@ -156,10 +156,6 @@ func (m *FlashWidget) UserPermission() string {
 func (m *FlashWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
-
-// Height gets the height of this subtype
-
-// URL gets the url of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *FlashWidget) UnmarshalJSON(raw []byte) error {
@@ -237,11 +233,9 @@ func (m *FlashWidget) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.userPermissionField = base.UserPermission
 
 	result.Height = data.Height
-
 	result.URL = data.URL
 
 	*m = result
@@ -266,8 +260,7 @@ func (m FlashWidget) MarshalJSON() ([]byte, error) {
 		Height: m.Height,
 
 		URL: m.URL,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -316,8 +309,7 @@ func (m FlashWidget) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserPermission: m.UserPermission(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -368,6 +360,55 @@ func (m *FlashWidget) validateName(formats strfmt.Registry) error {
 func (m *FlashWidget) validateURL(formats strfmt.Registry) error {
 
 	if err := validate.Required("url", "body", m.URL); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this flash widget based on the context it is used
+func (m *FlashWidget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLastUpdatedBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastUpdatedOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *FlashWidget) contextValidateLastUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedBy", "body", string(m.LastUpdatedBy())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *FlashWidget) contextValidateLastUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedOn", "body", int64(m.LastUpdatedOn())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *FlashWidget) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
 		return err
 	}
 

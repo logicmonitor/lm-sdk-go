@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetWebsiteListReader is a Reader for the GetWebsiteList structure.
@@ -24,14 +23,12 @@ type GetWebsiteListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetWebsiteListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetWebsiteListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetWebsiteListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetWebsiteListOK() *GetWebsiteListOK {
 	return &GetWebsiteListOK{}
 }
 
-/*GetWebsiteListOK handles this case with default header values.
+/* GetWebsiteListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetWebsiteListOK struct {
 
 func (o *GetWebsiteListOK) Error() string {
 	return fmt.Sprintf("[GET /website/websites][%d] getWebsiteListOK  %+v", 200, o.Payload)
+}
+func (o *GetWebsiteListOK) GetPayload() *models.WebsitePaginationResponse {
+	return o.Payload
 }
 
 func (o *GetWebsiteListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetWebsiteListDefault(code int) *GetWebsiteListDefault {
 	}
 }
 
-/*GetWebsiteListDefault handles this case with default header values.
+/* GetWebsiteListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetWebsiteListDefault) Code() int {
 
 func (o *GetWebsiteListDefault) Error() string {
 	return fmt.Sprintf("[GET /website/websites][%d] getWebsiteList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetWebsiteListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetWebsiteListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

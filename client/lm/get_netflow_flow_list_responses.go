@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetNetflowFlowListReader is a Reader for the GetNetflowFlowList structure.
@@ -24,14 +23,12 @@ type GetNetflowFlowListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetNetflowFlowListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetNetflowFlowListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetNetflowFlowListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetNetflowFlowListOK() *GetNetflowFlowListOK {
 	return &GetNetflowFlowListOK{}
 }
 
-/*GetNetflowFlowListOK handles this case with default header values.
+/* GetNetflowFlowListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetNetflowFlowListOK struct {
 
 func (o *GetNetflowFlowListOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/flows][%d] getNetflowFlowListOK  %+v", 200, o.Payload)
+}
+func (o *GetNetflowFlowListOK) GetPayload() *models.FlowRecordPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetNetflowFlowListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetNetflowFlowListDefault(code int) *GetNetflowFlowListDefault {
 	}
 }
 
-/*GetNetflowFlowListDefault handles this case with default header values.
+/* GetNetflowFlowListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetNetflowFlowListDefault) Code() int {
 
 func (o *GetNetflowFlowListDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/flows][%d] getNetflowFlowList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetNetflowFlowListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetNetflowFlowListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

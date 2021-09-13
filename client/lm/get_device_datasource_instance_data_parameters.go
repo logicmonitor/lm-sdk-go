@@ -6,122 +6,140 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetDeviceDatasourceInstanceDataParams creates a new GetDeviceDatasourceInstanceDataParams object
-// with the default values initialized.
+// NewGetDeviceDatasourceInstanceDataParams creates a new GetDeviceDatasourceInstanceDataParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetDeviceDatasourceInstanceDataParams() *GetDeviceDatasourceInstanceDataParams {
-	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
-	)
 	return &GetDeviceDatasourceInstanceDataParams{
-		End:    &endDefault,
-		Format: &formatDefault,
-		Period: &periodDefault,
-		Start:  &startDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetDeviceDatasourceInstanceDataParamsWithTimeout creates a new GetDeviceDatasourceInstanceDataParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetDeviceDatasourceInstanceDataParamsWithTimeout(timeout time.Duration) *GetDeviceDatasourceInstanceDataParams {
-	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
-	)
 	return &GetDeviceDatasourceInstanceDataParams{
-		End:    &endDefault,
-		Format: &formatDefault,
-		Period: &periodDefault,
-		Start:  &startDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetDeviceDatasourceInstanceDataParamsWithContext creates a new GetDeviceDatasourceInstanceDataParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetDeviceDatasourceInstanceDataParamsWithContext(ctx context.Context) *GetDeviceDatasourceInstanceDataParams {
-	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
-	)
 	return &GetDeviceDatasourceInstanceDataParams{
-		End:    &endDefault,
-		Format: &formatDefault,
-		Period: &periodDefault,
-		Start:  &startDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetDeviceDatasourceInstanceDataParamsWithHTTPClient creates a new GetDeviceDatasourceInstanceDataParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetDeviceDatasourceInstanceDataParamsWithHTTPClient(client *http.Client) *GetDeviceDatasourceInstanceDataParams {
-	var (
-		endDefault    = int64(0)
-		formatDefault = string("json")
-		periodDefault = float64(1)
-		startDefault  = int64(0)
-	)
 	return &GetDeviceDatasourceInstanceDataParams{
-		End:        &endDefault,
-		Format:     &formatDefault,
-		Period:     &periodDefault,
-		Start:      &startDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetDeviceDatasourceInstanceDataParams contains all the parameters to send to the API endpoint
-for the get device datasource instance data operation typically these are written to a http.Request
+/* GetDeviceDatasourceInstanceDataParams contains all the parameters to send to the API endpoint
+   for the get device datasource instance data operation.
+
+   Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceInstanceDataParams struct {
 
-	/*Datapoints*/
+	// Datapoints.
 	Datapoints *string
-	/*DeviceID*/
-	DeviceID int32
-	/*End*/
-	End *int64
-	/*Format*/
-	Format *string
-	/*HdsID
-	  The device-datasource ID
 
+	// DeviceID.
+	//
+	// Format: int32
+	DeviceID int32
+
+	// End.
+	//
+	// Format: int64
+	End *int64
+
+	// Format.
+	//
+	// Default: "json"
+	Format *string
+
+	/* HdsID.
+
+	   The device-datasource ID
+
+	   Format: int32
 	*/
 	HdsID int32
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
-	/*Period*/
+
+	// Period.
+	//
+	// Format: double
+	// Default: 1
 	Period *float64
-	/*Start*/
+
+	// Start.
+	//
+	// Format: int64
 	Start *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get device datasource instance data params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDeviceDatasourceInstanceDataParams) WithDefaults() *GetDeviceDatasourceInstanceDataParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get device datasource instance data params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDeviceDatasourceInstanceDataParams) SetDefaults() {
+	var (
+		endDefault = int64(0)
+
+		formatDefault = string("json")
+
+		periodDefault = float64(1)
+
+		startDefault = int64(0)
+	)
+
+	val := GetDeviceDatasourceInstanceDataParams{
+		End:    &endDefault,
+		Format: &formatDefault,
+		Period: &periodDefault,
+		Start:  &startDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get device datasource instance data params
@@ -257,16 +275,17 @@ func (o *GetDeviceDatasourceInstanceDataParams) WriteToRequest(r runtime.ClientR
 
 		// query param datapoints
 		var qrDatapoints string
+
 		if o.Datapoints != nil {
 			qrDatapoints = *o.Datapoints
 		}
 		qDatapoints := qrDatapoints
 		if qDatapoints != "" {
+
 			if err := r.SetQueryParam("datapoints", qDatapoints); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param deviceId
@@ -278,32 +297,34 @@ func (o *GetDeviceDatasourceInstanceDataParams) WriteToRequest(r runtime.ClientR
 
 		// query param end
 		var qrEnd int64
+
 		if o.End != nil {
 			qrEnd = *o.End
 		}
 		qEnd := swag.FormatInt64(qrEnd)
 		if qEnd != "" {
+
 			if err := r.SetQueryParam("end", qEnd); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Format != nil {
 
 		// query param format
 		var qrFormat string
+
 		if o.Format != nil {
 			qrFormat = *o.Format
 		}
 		qFormat := qrFormat
 		if qFormat != "" {
+
 			if err := r.SetQueryParam("format", qFormat); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param hdsId
@@ -320,32 +341,34 @@ func (o *GetDeviceDatasourceInstanceDataParams) WriteToRequest(r runtime.ClientR
 
 		// query param period
 		var qrPeriod float64
+
 		if o.Period != nil {
 			qrPeriod = *o.Period
 		}
 		qPeriod := swag.FormatFloat64(qrPeriod)
 		if qPeriod != "" {
+
 			if err := r.SetQueryParam("period", qPeriod); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Start != nil {
 
 		// query param start
 		var qrStart int64
+
 		if o.Start != nil {
 			qrStart = *o.Start
 		}
 		qStart := swag.FormatInt64(qrStart)
 		if qStart != "" {
+
 			if err := r.SetQueryParam("start", qStart); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddDeviceDatasourceInstanceGroupReader is a Reader for the AddDeviceDatasourceInstanceGroup structure.
@@ -24,14 +23,12 @@ type AddDeviceDatasourceInstanceGroupReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddDeviceDatasourceInstanceGroupReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddDeviceDatasourceInstanceGroupOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddDeviceDatasourceInstanceGroupDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddDeviceDatasourceInstanceGroupOK() *AddDeviceDatasourceInstanceGroupOK
 	return &AddDeviceDatasourceInstanceGroupOK{}
 }
 
-/*AddDeviceDatasourceInstanceGroupOK handles this case with default header values.
+/* AddDeviceDatasourceInstanceGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddDeviceDatasourceInstanceGroupOK struct {
 
 func (o *AddDeviceDatasourceInstanceGroupOK) Error() string {
 	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] addDeviceDatasourceInstanceGroupOK  %+v", 200, o.Payload)
+}
+func (o *AddDeviceDatasourceInstanceGroupOK) GetPayload() *models.DeviceDataSourceInstanceGroup {
+	return o.Payload
 }
 
 func (o *AddDeviceDatasourceInstanceGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddDeviceDatasourceInstanceGroupDefault(code int) *AddDeviceDatasourceIn
 	}
 }
 
-/*AddDeviceDatasourceInstanceGroupDefault handles this case with default header values.
+/* AddDeviceDatasourceInstanceGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddDeviceDatasourceInstanceGroupDefault) Code() int {
 
 func (o *AddDeviceDatasourceInstanceGroupDefault) Error() string {
 	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] addDeviceDatasourceInstanceGroup default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddDeviceDatasourceInstanceGroupDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddDeviceDatasourceInstanceGroupDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

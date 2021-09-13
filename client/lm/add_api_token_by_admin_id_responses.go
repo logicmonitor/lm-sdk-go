@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddAPITokenByAdminIDReader is a Reader for the AddAPITokenByAdminID structure.
@@ -24,14 +23,12 @@ type AddAPITokenByAdminIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddAPITokenByAdminIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddAPITokenByAdminIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddAPITokenByAdminIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddAPITokenByAdminIDOK() *AddAPITokenByAdminIDOK {
 	return &AddAPITokenByAdminIDOK{}
 }
 
-/*AddAPITokenByAdminIDOK handles this case with default header values.
+/* AddAPITokenByAdminIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddAPITokenByAdminIDOK struct {
 
 func (o *AddAPITokenByAdminIDOK) Error() string {
 	return fmt.Sprintf("[POST /setting/admins/{adminId}/apitokens][%d] addApiTokenByAdminIdOK  %+v", 200, o.Payload)
+}
+func (o *AddAPITokenByAdminIDOK) GetPayload() *models.APIToken {
+	return o.Payload
 }
 
 func (o *AddAPITokenByAdminIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddAPITokenByAdminIDDefault(code int) *AddAPITokenByAdminIDDefault {
 	}
 }
 
-/*AddAPITokenByAdminIDDefault handles this case with default header values.
+/* AddAPITokenByAdminIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddAPITokenByAdminIDDefault) Code() int {
 
 func (o *AddAPITokenByAdminIDDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/admins/{adminId}/apitokens][%d] addApiTokenByAdminId default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddAPITokenByAdminIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddAPITokenByAdminIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

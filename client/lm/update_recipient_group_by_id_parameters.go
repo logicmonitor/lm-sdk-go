@@ -6,73 +6,88 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewUpdateRecipientGroupByIDParams creates a new UpdateRecipientGroupByIDParams object
-// with the default values initialized.
+// NewUpdateRecipientGroupByIDParams creates a new UpdateRecipientGroupByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateRecipientGroupByIDParams() *UpdateRecipientGroupByIDParams {
-	var ()
 	return &UpdateRecipientGroupByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateRecipientGroupByIDParamsWithTimeout creates a new UpdateRecipientGroupByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateRecipientGroupByIDParamsWithTimeout(timeout time.Duration) *UpdateRecipientGroupByIDParams {
-	var ()
 	return &UpdateRecipientGroupByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateRecipientGroupByIDParamsWithContext creates a new UpdateRecipientGroupByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateRecipientGroupByIDParamsWithContext(ctx context.Context) *UpdateRecipientGroupByIDParams {
-	var ()
 	return &UpdateRecipientGroupByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateRecipientGroupByIDParamsWithHTTPClient creates a new UpdateRecipientGroupByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateRecipientGroupByIDParamsWithHTTPClient(client *http.Client) *UpdateRecipientGroupByIDParams {
-	var ()
 	return &UpdateRecipientGroupByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateRecipientGroupByIDParams contains all the parameters to send to the API endpoint
-for the update recipient group by Id operation typically these are written to a http.Request
+/* UpdateRecipientGroupByIDParams contains all the parameters to send to the API endpoint
+   for the update recipient group by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateRecipientGroupByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.RecipientGroup
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update recipient group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateRecipientGroupByIDParams) WithDefaults() *UpdateRecipientGroupByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update recipient group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateRecipientGroupByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update recipient group by Id params
@@ -137,7 +152,6 @@ func (o *UpdateRecipientGroupByIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

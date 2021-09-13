@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // WebsiteOverviewWidget website overview widget
+//
 // swagger:model WebsiteOverviewWidget
 type WebsiteOverviewWidget struct {
 	dashboardIdField *int32
@@ -152,7 +153,6 @@ func (m *WebsiteOverviewWidget) Type() string {
 
 // SetType sets the type of this subtype
 func (m *WebsiteOverviewWidget) SetType(val string) {
-
 }
 
 // UserPermission gets the user permission of this subtype
@@ -164,14 +164,6 @@ func (m *WebsiteOverviewWidget) UserPermission() string {
 func (m *WebsiteOverviewWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
-
-// GeoInfo gets the geo info of this subtype
-
-// Graph gets the graph of this subtype
-
-// WebsiteID gets the website Id of this subtype
-
-// WebsiteName gets the website name of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *WebsiteOverviewWidget) UnmarshalJSON(raw []byte) error {
@@ -257,15 +249,11 @@ func (m *WebsiteOverviewWidget) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.userPermissionField = base.UserPermission
 
 	result.GeoInfo = data.GeoInfo
-
 	result.Graph = data.Graph
-
 	result.WebsiteID = data.WebsiteID
-
 	result.WebsiteName = data.WebsiteName
 
 	*m = result
@@ -302,8 +290,7 @@ func (m WebsiteOverviewWidget) MarshalJSON() ([]byte, error) {
 		WebsiteID: m.WebsiteID,
 
 		WebsiteName: m.WebsiteName,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -352,8 +339,7 @@ func (m WebsiteOverviewWidget) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserPermission: m.UserPermission(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -404,6 +390,81 @@ func (m *WebsiteOverviewWidget) validateName(formats strfmt.Registry) error {
 func (m *WebsiteOverviewWidget) validateGraph(formats strfmt.Registry) error {
 
 	if err := validate.Required("graph", "body", m.Graph); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this website overview widget based on the context it is used
+func (m *WebsiteOverviewWidget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLastUpdatedBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastUpdatedOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGeoInfo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateWebsiteName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *WebsiteOverviewWidget) contextValidateLastUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedBy", "body", string(m.LastUpdatedBy())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebsiteOverviewWidget) contextValidateLastUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedOn", "body", int64(m.LastUpdatedOn())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebsiteOverviewWidget) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebsiteOverviewWidget) contextValidateGeoInfo(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "geoInfo", "body", string(m.GeoInfo)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebsiteOverviewWidget) contextValidateWebsiteName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "websiteName", "body", string(m.WebsiteName)); err != nil {
 		return err
 	}
 

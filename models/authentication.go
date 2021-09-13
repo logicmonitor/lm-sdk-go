@@ -7,21 +7,23 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"io"
 	"io/ioutil"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/validate"
 )
 
 // Authentication authentication
+//
 // swagger:discriminator Authentication type
 type Authentication interface {
 	runtime.Validatable
+	runtime.ContextValidatable
 
 	// password
 	// Required: true
@@ -29,6 +31,7 @@ type Authentication interface {
 	SetPassword(*string)
 
 	// type
+	// Example: basic
 	// Required: true
 	Type() string
 	SetType(string)
@@ -37,6 +40,9 @@ type Authentication interface {
 	// Required: true
 	UserName() *string
 	SetUserName(*string)
+
+	// AdditionalProperties in base type shoud be handled just like regular properties
+	// At this moment, the base type property is pushed down to the subtype
 }
 
 type authentication struct {
@@ -64,7 +70,6 @@ func (m *authentication) Type() string {
 
 // SetType sets the type of this polymorphic type
 func (m *authentication) SetType(val string) {
-
 }
 
 // UserName gets the user name of this polymorphic type
@@ -129,24 +134,20 @@ func unmarshalAuthentication(data []byte, consumer runtime.Consumer) (Authentica
 			return nil, err
 		}
 		return &result, nil
-
 	case "basic":
 		var result BasicAuthentication
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "ntlm":
 		var result NTLMAuthentication
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	}
 	return nil, errors.New(422, "invalid type value: %q", getType.Type)
-
 }
 
 // Validate validates this authentication
@@ -182,5 +183,10 @@ func (m *authentication) validateUserName(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this authentication based on context it is used
+func (m *authentication) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }

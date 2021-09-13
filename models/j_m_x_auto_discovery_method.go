@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // JMXAutoDiscoveryMethod j m x auto discovery method
+//
 // swagger:model JMXAutoDiscoveryMethod
 type JMXAutoDiscoveryMethod struct {
 
@@ -40,14 +41,7 @@ func (m *JMXAutoDiscoveryMethod) Name() string {
 
 // SetName sets the name of this subtype
 func (m *JMXAutoDiscoveryMethod) SetName(val string) {
-
 }
-
-// Path gets the path of this subtype
-
-// Ports gets the ports of this subtype
-
-// URL gets the url of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *JMXAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
@@ -94,9 +88,7 @@ func (m *JMXAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.Path = data.Path
-
 	result.Ports = data.Ports
-
 	result.URL = data.URL
 
 	*m = result
@@ -128,8 +120,7 @@ func (m JMXAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 		Ports: m.Ports,
 
 		URL: m.URL,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -138,8 +129,7 @@ func (m JMXAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -193,6 +183,16 @@ func (m *JMXAutoDiscoveryMethod) validateURL(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validate this j m x auto discovery method based on the context it is used
+func (m *JMXAutoDiscoveryMethod) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

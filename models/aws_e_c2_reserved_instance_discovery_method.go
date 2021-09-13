@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // AwsEC2ReservedInstanceDiscoveryMethod aws e c2 reserved instance discovery method
+//
 // swagger:model AwsEC2ReservedInstanceDiscoveryMethod
 type AwsEC2ReservedInstanceDiscoveryMethod struct {
 
@@ -32,10 +33,7 @@ func (m *AwsEC2ReservedInstanceDiscoveryMethod) Name() string {
 
 // SetName sets the name of this subtype
 func (m *AwsEC2ReservedInstanceDiscoveryMethod) SetName(val string) {
-
 }
-
-// InstanceName gets the instance name of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *AwsEC2ReservedInstanceDiscoveryMethod) UnmarshalJSON(raw []byte) error {
@@ -92,8 +90,7 @@ func (m AwsEC2ReservedInstanceDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		InstanceName: m.InstanceName,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -102,8 +99,7 @@ func (m AwsEC2ReservedInstanceDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -131,6 +127,16 @@ func (m *AwsEC2ReservedInstanceDiscoveryMethod) validateInstanceName(formats str
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validate this aws e c2 reserved instance discovery method based on the context it is used
+func (m *AwsEC2ReservedInstanceDiscoveryMethod) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

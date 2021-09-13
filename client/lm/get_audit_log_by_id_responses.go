@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetAuditLogByIDReader is a Reader for the GetAuditLogByID structure.
@@ -24,14 +23,12 @@ type GetAuditLogByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAuditLogByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetAuditLogByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetAuditLogByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetAuditLogByIDOK() *GetAuditLogByIDOK {
 	return &GetAuditLogByIDOK{}
 }
 
-/*GetAuditLogByIDOK handles this case with default header values.
+/* GetAuditLogByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetAuditLogByIDOK struct {
 
 func (o *GetAuditLogByIDOK) Error() string {
 	return fmt.Sprintf("[GET /setting/accesslogs/{id}][%d] getAuditLogByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetAuditLogByIDOK) GetPayload() *models.AuditLog {
+	return o.Payload
 }
 
 func (o *GetAuditLogByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetAuditLogByIDDefault(code int) *GetAuditLogByIDDefault {
 	}
 }
 
-/*GetAuditLogByIDDefault handles this case with default header values.
+/* GetAuditLogByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetAuditLogByIDDefault) Code() int {
 
 func (o *GetAuditLogByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/accesslogs/{id}][%d] getAuditLogById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetAuditLogByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetAuditLogByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

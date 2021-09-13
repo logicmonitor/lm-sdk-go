@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetSDTHistoryByWebsiteGroupIDReader is a Reader for the GetSDTHistoryByWebsiteGroupID structure.
@@ -24,14 +23,12 @@ type GetSDTHistoryByWebsiteGroupIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSDTHistoryByWebsiteGroupIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSDTHistoryByWebsiteGroupIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetSDTHistoryByWebsiteGroupIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetSDTHistoryByWebsiteGroupIDOK() *GetSDTHistoryByWebsiteGroupIDOK {
 	return &GetSDTHistoryByWebsiteGroupIDOK{}
 }
 
-/*GetSDTHistoryByWebsiteGroupIDOK handles this case with default header values.
+/* GetSDTHistoryByWebsiteGroupIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetSDTHistoryByWebsiteGroupIDOK struct {
 
 func (o *GetSDTHistoryByWebsiteGroupIDOK) Error() string {
 	return fmt.Sprintf("[GET /website/groups/{id}/historysdts][%d] getSdtHistoryByWebsiteGroupIdOK  %+v", 200, o.Payload)
+}
+func (o *GetSDTHistoryByWebsiteGroupIDOK) GetPayload() *models.WebsiteGroupSDTHistoryPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetSDTHistoryByWebsiteGroupIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetSDTHistoryByWebsiteGroupIDDefault(code int) *GetSDTHistoryByWebsiteGr
 	}
 }
 
-/*GetSDTHistoryByWebsiteGroupIDDefault handles this case with default header values.
+/* GetSDTHistoryByWebsiteGroupIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetSDTHistoryByWebsiteGroupIDDefault) Code() int {
 
 func (o *GetSDTHistoryByWebsiteGroupIDDefault) Error() string {
 	return fmt.Sprintf("[GET /website/groups/{id}/historysdts][%d] getSDTHistoryByWebsiteGroupId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetSDTHistoryByWebsiteGroupIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetSDTHistoryByWebsiteGroupIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

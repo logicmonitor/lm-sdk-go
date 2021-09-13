@@ -6,83 +6,98 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetDebugCommandResultParams creates a new GetDebugCommandResultParams object
-// with the default values initialized.
+// NewGetDebugCommandResultParams creates a new GetDebugCommandResultParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetDebugCommandResultParams() *GetDebugCommandResultParams {
-	var (
-		collectorIDDefault = int32(-1)
-	)
 	return &GetDebugCommandResultParams{
-		CollectorID: &collectorIDDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetDebugCommandResultParamsWithTimeout creates a new GetDebugCommandResultParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetDebugCommandResultParamsWithTimeout(timeout time.Duration) *GetDebugCommandResultParams {
-	var (
-		collectorIDDefault = int32(-1)
-	)
 	return &GetDebugCommandResultParams{
-		CollectorID: &collectorIDDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetDebugCommandResultParamsWithContext creates a new GetDebugCommandResultParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetDebugCommandResultParamsWithContext(ctx context.Context) *GetDebugCommandResultParams {
-	var (
-		collectorIdDefault = int32(-1)
-	)
 	return &GetDebugCommandResultParams{
-		CollectorID: &collectorIdDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetDebugCommandResultParamsWithHTTPClient creates a new GetDebugCommandResultParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetDebugCommandResultParamsWithHTTPClient(client *http.Client) *GetDebugCommandResultParams {
-	var (
-		collectorIdDefault = int32(-1)
-	)
 	return &GetDebugCommandResultParams{
-		CollectorID: &collectorIdDefault,
-		HTTPClient:  client,
+		HTTPClient: client,
 	}
 }
 
-/*GetDebugCommandResultParams contains all the parameters to send to the API endpoint
-for the get debug command result operation typically these are written to a http.Request
+/* GetDebugCommandResultParams contains all the parameters to send to the API endpoint
+   for the get debug command result operation.
+
+   Typically these are written to a http.Request.
 */
 type GetDebugCommandResultParams struct {
 
-	/*CollectorID*/
+	// CollectorID.
+	//
+	// Format: int32
+	// Default: -1
 	CollectorID *int32
-	/*ID*/
+
+	// ID.
 	ID string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get debug command result params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDebugCommandResultParams) WithDefaults() *GetDebugCommandResultParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get debug command result params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetDebugCommandResultParams) SetDefaults() {
+	var (
+		collectorIDDefault = int32(-1)
+	)
+
+	val := GetDebugCommandResultParams{
+		CollectorID: &collectorIDDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get debug command result params
@@ -152,16 +167,17 @@ func (o *GetDebugCommandResultParams) WriteToRequest(r runtime.ClientRequest, re
 
 		// query param collectorId
 		var qrCollectorID int32
+
 		if o.CollectorID != nil {
 			qrCollectorID = *o.CollectorID
 		}
 		qCollectorID := swag.FormatInt32(qrCollectorID)
 		if qCollectorID != "" {
+
 			if err := r.SetQueryParam("collectorId", qCollectorID); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id

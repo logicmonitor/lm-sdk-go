@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceInstanceListReader is a Reader for the GetDeviceInstanceList structure.
@@ -24,14 +23,12 @@ type GetDeviceInstanceListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceInstanceListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceInstanceListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceInstanceListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceInstanceListOK() *GetDeviceInstanceListOK {
 	return &GetDeviceInstanceListOK{}
 }
 
-/*GetDeviceInstanceListOK handles this case with default header values.
+/* GetDeviceInstanceListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceInstanceListOK struct {
 
 func (o *GetDeviceInstanceListOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/instances][%d] getDeviceInstanceListOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceInstanceListOK) GetPayload() *models.DeviceDatasourceInstancePaginationResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceInstanceListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceInstanceListDefault(code int) *GetDeviceInstanceListDefault {
 	}
 }
 
-/*GetDeviceInstanceListDefault handles this case with default header values.
+/* GetDeviceInstanceListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceInstanceListDefault) Code() int {
 
 func (o *GetDeviceInstanceListDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/instances][%d] getDeviceInstanceList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceInstanceListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceInstanceListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

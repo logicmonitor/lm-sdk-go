@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateDeviceDatasourceInstanceGroupByIDReader is a Reader for the UpdateDeviceDatasourceInstanceGroupByID structure.
@@ -24,14 +23,12 @@ type UpdateDeviceDatasourceInstanceGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateDeviceDatasourceInstanceGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateDeviceDatasourceInstanceGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateDeviceDatasourceInstanceGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateDeviceDatasourceInstanceGroupByIDOK() *UpdateDeviceDatasourceInsta
 	return &UpdateDeviceDatasourceInstanceGroupByIDOK{}
 }
 
-/*UpdateDeviceDatasourceInstanceGroupByIDOK handles this case with default header values.
+/* UpdateDeviceDatasourceInstanceGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateDeviceDatasourceInstanceGroupByIDOK struct {
 
 func (o *UpdateDeviceDatasourceInstanceGroupByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}][%d] updateDeviceDatasourceInstanceGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateDeviceDatasourceInstanceGroupByIDOK) GetPayload() *models.DeviceDataSourceInstanceGroup {
+	return o.Payload
 }
 
 func (o *UpdateDeviceDatasourceInstanceGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateDeviceDatasourceInstanceGroupByIDDefault(code int) *UpdateDeviceDa
 	}
 }
 
-/*UpdateDeviceDatasourceInstanceGroupByIDDefault handles this case with default header values.
+/* UpdateDeviceDatasourceInstanceGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateDeviceDatasourceInstanceGroupByIDDefault) Code() int {
 
 func (o *UpdateDeviceDatasourceInstanceGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}][%d] updateDeviceDatasourceInstanceGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateDeviceDatasourceInstanceGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateDeviceDatasourceInstanceGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

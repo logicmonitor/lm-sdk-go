@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddDeviceDatasourceInstanceReader is a Reader for the AddDeviceDatasourceInstance structure.
@@ -24,14 +23,12 @@ type AddDeviceDatasourceInstanceReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddDeviceDatasourceInstanceReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddDeviceDatasourceInstanceOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddDeviceDatasourceInstanceDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddDeviceDatasourceInstanceOK() *AddDeviceDatasourceInstanceOK {
 	return &AddDeviceDatasourceInstanceOK{}
 }
 
-/*AddDeviceDatasourceInstanceOK handles this case with default header values.
+/* AddDeviceDatasourceInstanceOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddDeviceDatasourceInstanceOK struct {
 
 func (o *AddDeviceDatasourceInstanceOK) Error() string {
 	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances][%d] addDeviceDatasourceInstanceOK  %+v", 200, o.Payload)
+}
+func (o *AddDeviceDatasourceInstanceOK) GetPayload() *models.DeviceDataSourceInstance {
+	return o.Payload
 }
 
 func (o *AddDeviceDatasourceInstanceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddDeviceDatasourceInstanceDefault(code int) *AddDeviceDatasourceInstanc
 	}
 }
 
-/*AddDeviceDatasourceInstanceDefault handles this case with default header values.
+/* AddDeviceDatasourceInstanceDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddDeviceDatasourceInstanceDefault) Code() int {
 
 func (o *AddDeviceDatasourceInstanceDefault) Error() string {
 	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances][%d] addDeviceDatasourceInstance default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddDeviceDatasourceInstanceDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddDeviceDatasourceInstanceDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

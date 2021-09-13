@@ -6,87 +6,102 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewPatchDashboardByIDParams creates a new PatchDashboardByIDParams object
-// with the default values initialized.
+// NewPatchDashboardByIDParams creates a new PatchDashboardByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPatchDashboardByIDParams() *PatchDashboardByIDParams {
-	var (
-		overwriteGroupFieldsDefault = bool(false)
-	)
 	return &PatchDashboardByIDParams{
-		OverwriteGroupFields: &overwriteGroupFieldsDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPatchDashboardByIDParamsWithTimeout creates a new PatchDashboardByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPatchDashboardByIDParamsWithTimeout(timeout time.Duration) *PatchDashboardByIDParams {
-	var (
-		overwriteGroupFieldsDefault = bool(false)
-	)
 	return &PatchDashboardByIDParams{
-		OverwriteGroupFields: &overwriteGroupFieldsDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewPatchDashboardByIDParamsWithContext creates a new PatchDashboardByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPatchDashboardByIDParamsWithContext(ctx context.Context) *PatchDashboardByIDParams {
-	var (
-		overwriteGroupFieldsDefault = bool(false)
-	)
 	return &PatchDashboardByIDParams{
-		OverwriteGroupFields: &overwriteGroupFieldsDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewPatchDashboardByIDParamsWithHTTPClient creates a new PatchDashboardByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPatchDashboardByIDParamsWithHTTPClient(client *http.Client) *PatchDashboardByIDParams {
-	var (
-		overwriteGroupFieldsDefault = bool(false)
-	)
 	return &PatchDashboardByIDParams{
-		OverwriteGroupFields: &overwriteGroupFieldsDefault,
-		HTTPClient:           client,
+		HTTPClient: client,
 	}
 }
 
-/*PatchDashboardByIDParams contains all the parameters to send to the API endpoint
-for the patch dashboard by Id operation typically these are written to a http.Request
+/* PatchDashboardByIDParams contains all the parameters to send to the API endpoint
+   for the patch dashboard by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type PatchDashboardByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.Dashboard
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
-	/*OverwriteGroupFields*/
+
+	// OverwriteGroupFields.
 	OverwriteGroupFields *bool
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the patch dashboard by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchDashboardByIDParams) WithDefaults() *PatchDashboardByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the patch dashboard by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchDashboardByIDParams) SetDefaults() {
+	var (
+		overwriteGroupFieldsDefault = bool(false)
+	)
+
+	val := PatchDashboardByIDParams{
+		OverwriteGroupFields: &overwriteGroupFieldsDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the patch dashboard by Id params
@@ -162,7 +177,6 @@ func (o *PatchDashboardByIDParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
@@ -178,16 +192,17 @@ func (o *PatchDashboardByIDParams) WriteToRequest(r runtime.ClientRequest, reg s
 
 		// query param overwriteGroupFields
 		var qrOverwriteGroupFields bool
+
 		if o.OverwriteGroupFields != nil {
 			qrOverwriteGroupFields = *o.OverwriteGroupFields
 		}
 		qOverwriteGroupFields := swag.FormatBool(qrOverwriteGroupFields)
 		if qOverwriteGroupFields != "" {
+
 			if err := r.SetQueryParam("overwriteGroupFields", qOverwriteGroupFields); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

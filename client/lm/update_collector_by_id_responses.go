@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateCollectorByIDReader is a Reader for the UpdateCollectorByID structure.
@@ -24,14 +23,12 @@ type UpdateCollectorByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateCollectorByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateCollectorByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateCollectorByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateCollectorByIDOK() *UpdateCollectorByIDOK {
 	return &UpdateCollectorByIDOK{}
 }
 
-/*UpdateCollectorByIDOK handles this case with default header values.
+/* UpdateCollectorByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateCollectorByIDOK struct {
 
 func (o *UpdateCollectorByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /setting/collector/collectors/{id}][%d] updateCollectorByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateCollectorByIDOK) GetPayload() *models.Collector {
+	return o.Payload
 }
 
 func (o *UpdateCollectorByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateCollectorByIDDefault(code int) *UpdateCollectorByIDDefault {
 	}
 }
 
-/*UpdateCollectorByIDDefault handles this case with default header values.
+/* UpdateCollectorByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateCollectorByIDDefault) Code() int {
 
 func (o *UpdateCollectorByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /setting/collector/collectors/{id}][%d] updateCollectorById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateCollectorByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateCollectorByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

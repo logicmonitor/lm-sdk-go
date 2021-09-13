@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDatasourceByIDReader is a Reader for the GetDatasourceByID structure.
@@ -24,14 +23,12 @@ type GetDatasourceByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDatasourceByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDatasourceByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDatasourceByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDatasourceByIDOK() *GetDatasourceByIDOK {
 	return &GetDatasourceByIDOK{}
 }
 
-/*GetDatasourceByIDOK handles this case with default header values.
+/* GetDatasourceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDatasourceByIDOK struct {
 
 func (o *GetDatasourceByIDOK) Error() string {
 	return fmt.Sprintf("[GET /setting/datasources/{id}][%d] getDatasourceByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetDatasourceByIDOK) GetPayload() *models.DataSource {
+	return o.Payload
 }
 
 func (o *GetDatasourceByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDatasourceByIDDefault(code int) *GetDatasourceByIDDefault {
 	}
 }
 
-/*GetDatasourceByIDDefault handles this case with default header values.
+/* GetDatasourceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDatasourceByIDDefault) Code() int {
 
 func (o *GetDatasourceByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/datasources/{id}][%d] getDatasourceById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDatasourceByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDatasourceByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

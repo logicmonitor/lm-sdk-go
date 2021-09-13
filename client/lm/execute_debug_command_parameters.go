@@ -6,85 +6,100 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewExecuteDebugCommandParams creates a new ExecuteDebugCommandParams object
-// with the default values initialized.
+// NewExecuteDebugCommandParams creates a new ExecuteDebugCommandParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewExecuteDebugCommandParams() *ExecuteDebugCommandParams {
-	var (
-		collectorIDDefault = int32(-1)
-	)
 	return &ExecuteDebugCommandParams{
-		CollectorID: &collectorIDDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewExecuteDebugCommandParamsWithTimeout creates a new ExecuteDebugCommandParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewExecuteDebugCommandParamsWithTimeout(timeout time.Duration) *ExecuteDebugCommandParams {
-	var (
-		collectorIDDefault = int32(-1)
-	)
 	return &ExecuteDebugCommandParams{
-		CollectorID: &collectorIDDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewExecuteDebugCommandParamsWithContext creates a new ExecuteDebugCommandParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewExecuteDebugCommandParamsWithContext(ctx context.Context) *ExecuteDebugCommandParams {
-	var (
-		collectorIdDefault = int32(-1)
-	)
 	return &ExecuteDebugCommandParams{
-		CollectorID: &collectorIdDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewExecuteDebugCommandParamsWithHTTPClient creates a new ExecuteDebugCommandParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewExecuteDebugCommandParamsWithHTTPClient(client *http.Client) *ExecuteDebugCommandParams {
-	var (
-		collectorIdDefault = int32(-1)
-	)
 	return &ExecuteDebugCommandParams{
-		CollectorID: &collectorIdDefault,
-		HTTPClient:  client,
+		HTTPClient: client,
 	}
 }
 
-/*ExecuteDebugCommandParams contains all the parameters to send to the API endpoint
-for the execute debug command operation typically these are written to a http.Request
+/* ExecuteDebugCommandParams contains all the parameters to send to the API endpoint
+   for the execute debug command operation.
+
+   Typically these are written to a http.Request.
 */
 type ExecuteDebugCommandParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.Debug
-	/*CollectorID*/
+
+	// CollectorID.
+	//
+	// Format: int32
+	// Default: -1
 	CollectorID *int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the execute debug command params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ExecuteDebugCommandParams) WithDefaults() *ExecuteDebugCommandParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the execute debug command params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *ExecuteDebugCommandParams) SetDefaults() {
+	var (
+		collectorIDDefault = int32(-1)
+	)
+
+	val := ExecuteDebugCommandParams{
+		CollectorID: &collectorIDDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the execute debug command params
@@ -149,7 +164,6 @@ func (o *ExecuteDebugCommandParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
@@ -160,16 +174,17 @@ func (o *ExecuteDebugCommandParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 		// query param collectorId
 		var qrCollectorID int32
+
 		if o.CollectorID != nil {
 			qrCollectorID = *o.CollectorID
 		}
 		qCollectorID := swag.FormatInt32(qrCollectorID)
 		if qCollectorID != "" {
+
 			if err := r.SetQueryParam("collectorId", qCollectorID); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

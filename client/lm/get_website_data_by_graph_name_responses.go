@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetWebsiteDataByGraphNameReader is a Reader for the GetWebsiteDataByGraphName structure.
@@ -24,14 +23,12 @@ type GetWebsiteDataByGraphNameReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetWebsiteDataByGraphNameReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetWebsiteDataByGraphNameOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetWebsiteDataByGraphNameDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetWebsiteDataByGraphNameOK() *GetWebsiteDataByGraphNameOK {
 	return &GetWebsiteDataByGraphNameOK{}
 }
 
-/*GetWebsiteDataByGraphNameOK handles this case with default header values.
+/* GetWebsiteDataByGraphNameOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetWebsiteDataByGraphNameOK struct {
 
 func (o *GetWebsiteDataByGraphNameOK) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{id}/graphs/{graphName}/data][%d] getWebsiteDataByGraphNameOK  %+v", 200, o.Payload)
+}
+func (o *GetWebsiteDataByGraphNameOK) GetPayload() *models.GraphPlot {
+	return o.Payload
 }
 
 func (o *GetWebsiteDataByGraphNameOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetWebsiteDataByGraphNameDefault(code int) *GetWebsiteDataByGraphNameDef
 	}
 }
 
-/*GetWebsiteDataByGraphNameDefault handles this case with default header values.
+/* GetWebsiteDataByGraphNameDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetWebsiteDataByGraphNameDefault) Code() int {
 
 func (o *GetWebsiteDataByGraphNameDefault) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{id}/graphs/{graphName}/data][%d] getWebsiteDataByGraphName default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetWebsiteDataByGraphNameDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetWebsiteDataByGraphNameDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

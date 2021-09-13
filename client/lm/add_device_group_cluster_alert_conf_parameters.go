@@ -6,73 +6,88 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewAddDeviceGroupClusterAlertConfParams creates a new AddDeviceGroupClusterAlertConfParams object
-// with the default values initialized.
+// NewAddDeviceGroupClusterAlertConfParams creates a new AddDeviceGroupClusterAlertConfParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewAddDeviceGroupClusterAlertConfParams() *AddDeviceGroupClusterAlertConfParams {
-	var ()
 	return &AddDeviceGroupClusterAlertConfParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewAddDeviceGroupClusterAlertConfParamsWithTimeout creates a new AddDeviceGroupClusterAlertConfParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewAddDeviceGroupClusterAlertConfParamsWithTimeout(timeout time.Duration) *AddDeviceGroupClusterAlertConfParams {
-	var ()
 	return &AddDeviceGroupClusterAlertConfParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewAddDeviceGroupClusterAlertConfParamsWithContext creates a new AddDeviceGroupClusterAlertConfParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewAddDeviceGroupClusterAlertConfParamsWithContext(ctx context.Context) *AddDeviceGroupClusterAlertConfParams {
-	var ()
 	return &AddDeviceGroupClusterAlertConfParams{
-
 		Context: ctx,
 	}
 }
 
 // NewAddDeviceGroupClusterAlertConfParamsWithHTTPClient creates a new AddDeviceGroupClusterAlertConfParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewAddDeviceGroupClusterAlertConfParamsWithHTTPClient(client *http.Client) *AddDeviceGroupClusterAlertConfParams {
-	var ()
 	return &AddDeviceGroupClusterAlertConfParams{
 		HTTPClient: client,
 	}
 }
 
-/*AddDeviceGroupClusterAlertConfParams contains all the parameters to send to the API endpoint
-for the add device group cluster alert conf operation typically these are written to a http.Request
+/* AddDeviceGroupClusterAlertConfParams contains all the parameters to send to the API endpoint
+   for the add device group cluster alert conf operation.
+
+   Typically these are written to a http.Request.
 */
 type AddDeviceGroupClusterAlertConfParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.DeviceClusterAlertConfig
-	/*DeviceGroupID*/
+
+	// DeviceGroupID.
+	//
+	// Format: int32
 	DeviceGroupID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the add device group cluster alert conf params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddDeviceGroupClusterAlertConfParams) WithDefaults() *AddDeviceGroupClusterAlertConfParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the add device group cluster alert conf params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *AddDeviceGroupClusterAlertConfParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add device group cluster alert conf params
@@ -137,7 +152,6 @@ func (o *AddDeviceGroupClusterAlertConfParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

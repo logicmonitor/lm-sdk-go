@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteReportByIDReader is a Reader for the DeleteReportByID structure.
@@ -24,14 +23,12 @@ type DeleteReportByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteReportByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteReportByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteReportByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteReportByIDOK() *DeleteReportByIDOK {
 	return &DeleteReportByIDOK{}
 }
 
-/*DeleteReportByIDOK handles this case with default header values.
+/* DeleteReportByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteReportByIDOK struct {
 
 func (o *DeleteReportByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /report/reports/{id}][%d] deleteReportByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteReportByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteReportByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteReportByIDDefault(code int) *DeleteReportByIDDefault {
 	}
 }
 
-/*DeleteReportByIDDefault handles this case with default header values.
+/* DeleteReportByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteReportByIDDefault) Code() int {
 
 func (o *DeleteReportByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /report/reports/{id}][%d] deleteReportById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteReportByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteReportByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

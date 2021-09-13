@@ -6,71 +6,86 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetEscalationChainByIDParams creates a new GetEscalationChainByIDParams object
-// with the default values initialized.
+// NewGetEscalationChainByIDParams creates a new GetEscalationChainByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetEscalationChainByIDParams() *GetEscalationChainByIDParams {
-	var ()
 	return &GetEscalationChainByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetEscalationChainByIDParamsWithTimeout creates a new GetEscalationChainByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetEscalationChainByIDParamsWithTimeout(timeout time.Duration) *GetEscalationChainByIDParams {
-	var ()
 	return &GetEscalationChainByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetEscalationChainByIDParamsWithContext creates a new GetEscalationChainByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetEscalationChainByIDParamsWithContext(ctx context.Context) *GetEscalationChainByIDParams {
-	var ()
 	return &GetEscalationChainByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetEscalationChainByIDParamsWithHTTPClient creates a new GetEscalationChainByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetEscalationChainByIDParamsWithHTTPClient(client *http.Client) *GetEscalationChainByIDParams {
-	var ()
 	return &GetEscalationChainByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetEscalationChainByIDParams contains all the parameters to send to the API endpoint
-for the get escalation chain by Id operation typically these are written to a http.Request
+/* GetEscalationChainByIDParams contains all the parameters to send to the API endpoint
+   for the get escalation chain by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type GetEscalationChainByIDParams struct {
 
-	/*Fields*/
+	// Fields.
 	Fields *string
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get escalation chain by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetEscalationChainByIDParams) WithDefaults() *GetEscalationChainByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get escalation chain by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetEscalationChainByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get escalation chain by Id params
@@ -140,16 +155,17 @@ func (o *GetEscalationChainByIDParams) WriteToRequest(r runtime.ClientRequest, r
 
 		// query param fields
 		var qrFields string
+
 		if o.Fields != nil {
 			qrFields = *o.Fields
 		}
 		qFields := qrFields
 		if qFields != "" {
+
 			if err := r.SetQueryParam("fields", qFields); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id

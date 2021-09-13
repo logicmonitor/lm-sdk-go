@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchDeviceGroupDatasourceByIDReader is a Reader for the PatchDeviceGroupDatasourceByID structure.
@@ -24,14 +23,12 @@ type PatchDeviceGroupDatasourceByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchDeviceGroupDatasourceByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchDeviceGroupDatasourceByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchDeviceGroupDatasourceByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchDeviceGroupDatasourceByIDOK() *PatchDeviceGroupDatasourceByIDOK {
 	return &PatchDeviceGroupDatasourceByIDOK{}
 }
 
-/*PatchDeviceGroupDatasourceByIDOK handles this case with default header values.
+/* PatchDeviceGroupDatasourceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchDeviceGroupDatasourceByIDOK struct {
 
 func (o *PatchDeviceGroupDatasourceByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /device/groups/{deviceGroupId}/datasources/{id}][%d] patchDeviceGroupDatasourceByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchDeviceGroupDatasourceByIDOK) GetPayload() *models.DeviceGroupDataSource {
+	return o.Payload
 }
 
 func (o *PatchDeviceGroupDatasourceByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchDeviceGroupDatasourceByIDDefault(code int) *PatchDeviceGroupDatasou
 	}
 }
 
-/*PatchDeviceGroupDatasourceByIDDefault handles this case with default header values.
+/* PatchDeviceGroupDatasourceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchDeviceGroupDatasourceByIDDefault) Code() int {
 
 func (o *PatchDeviceGroupDatasourceByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /device/groups/{deviceGroupId}/datasources/{id}][%d] patchDeviceGroupDatasourceById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchDeviceGroupDatasourceByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchDeviceGroupDatasourceByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetSDTHistoryByWebsiteIDReader is a Reader for the GetSDTHistoryByWebsiteID structure.
@@ -24,14 +23,12 @@ type GetSDTHistoryByWebsiteIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSDTHistoryByWebsiteIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSDTHistoryByWebsiteIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetSDTHistoryByWebsiteIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetSDTHistoryByWebsiteIDOK() *GetSDTHistoryByWebsiteIDOK {
 	return &GetSDTHistoryByWebsiteIDOK{}
 }
 
-/*GetSDTHistoryByWebsiteIDOK handles this case with default header values.
+/* GetSDTHistoryByWebsiteIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetSDTHistoryByWebsiteIDOK struct {
 
 func (o *GetSDTHistoryByWebsiteIDOK) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{id}/historysdts][%d] getSdtHistoryByWebsiteIdOK  %+v", 200, o.Payload)
+}
+func (o *GetSDTHistoryByWebsiteIDOK) GetPayload() *models.WebsiteSDTHistoryPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetSDTHistoryByWebsiteIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetSDTHistoryByWebsiteIDDefault(code int) *GetSDTHistoryByWebsiteIDDefau
 	}
 }
 
-/*GetSDTHistoryByWebsiteIDDefault handles this case with default header values.
+/* GetSDTHistoryByWebsiteIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetSDTHistoryByWebsiteIDDefault) Code() int {
 
 func (o *GetSDTHistoryByWebsiteIDDefault) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{id}/historysdts][%d] getSDTHistoryByWebsiteId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetSDTHistoryByWebsiteIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetSDTHistoryByWebsiteIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

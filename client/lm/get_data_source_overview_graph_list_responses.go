@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDataSourceOverviewGraphListReader is a Reader for the GetDataSourceOverviewGraphList structure.
@@ -24,14 +23,12 @@ type GetDataSourceOverviewGraphListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDataSourceOverviewGraphListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDataSourceOverviewGraphListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDataSourceOverviewGraphListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDataSourceOverviewGraphListOK() *GetDataSourceOverviewGraphListOK {
 	return &GetDataSourceOverviewGraphListOK{}
 }
 
-/*GetDataSourceOverviewGraphListOK handles this case with default header values.
+/* GetDataSourceOverviewGraphListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDataSourceOverviewGraphListOK struct {
 
 func (o *GetDataSourceOverviewGraphListOK) Error() string {
 	return fmt.Sprintf("[GET /setting/datasources/{dsId}/ographs][%d] getDataSourceOverviewGraphListOK  %+v", 200, o.Payload)
+}
+func (o *GetDataSourceOverviewGraphListOK) GetPayload() *models.DatasourceOverviewGraphPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetDataSourceOverviewGraphListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDataSourceOverviewGraphListDefault(code int) *GetDataSourceOverviewGr
 	}
 }
 
-/*GetDataSourceOverviewGraphListDefault handles this case with default header values.
+/* GetDataSourceOverviewGraphListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDataSourceOverviewGraphListDefault) Code() int {
 
 func (o *GetDataSourceOverviewGraphListDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/datasources/{dsId}/ographs][%d] getDataSourceOverviewGraphList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDataSourceOverviewGraphListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDataSourceOverviewGraphListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

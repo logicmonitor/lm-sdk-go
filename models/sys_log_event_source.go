@@ -7,17 +7,18 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // SysLogEventSource sys log event source
+//
 // swagger:model SysLogEventSource
 type SysLogEventSource struct {
 	alertBodyTemplateField string
@@ -41,6 +42,8 @@ type SysLogEventSource struct {
 	idField int32
 
 	nameField *string
+
+	suppressDuplicatesESField bool
 
 	tagsField string
 
@@ -118,7 +121,6 @@ func (m *SysLogEventSource) Collector() string {
 
 // SetCollector sets the collector of this subtype
 func (m *SysLogEventSource) SetCollector(val string) {
-
 }
 
 // Description gets the description of this subtype
@@ -169,6 +171,16 @@ func (m *SysLogEventSource) Name() *string {
 // SetName sets the name of this subtype
 func (m *SysLogEventSource) SetName(val *string) {
 	m.nameField = val
+}
+
+// SuppressDuplicatesES gets the suppress duplicates e s of this subtype
+func (m *SysLogEventSource) SuppressDuplicatesES() bool {
+	return m.suppressDuplicatesESField
+}
+
+// SetSuppressDuplicatesES sets the suppress duplicates e s of this subtype
+func (m *SysLogEventSource) SetSuppressDuplicatesES(val bool) {
+	m.suppressDuplicatesESField = val
 }
 
 // Tags gets the tags of this subtype
@@ -241,6 +253,8 @@ func (m *SysLogEventSource) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
+		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
+
 		Tags string `json:"tags,omitempty"`
 
 		Technology string `json:"technology,omitempty"`
@@ -273,7 +287,6 @@ func (m *SysLogEventSource) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid collector value: %q", base.Collector)
 	}
-
 	result.descriptionField = base.Description
 
 	result.filtersField = base.Filters
@@ -283,6 +296,8 @@ func (m *SysLogEventSource) UnmarshalJSON(raw []byte) error {
 	result.idField = base.ID
 
 	result.nameField = base.Name
+
+	result.suppressDuplicatesESField = base.SuppressDuplicatesES
 
 	result.tagsField = base.Tags
 
@@ -306,8 +321,7 @@ func (m SysLogEventSource) MarshalJSON() ([]byte, error) {
 	}{
 
 		SysLogEventSourceAllOf1: m.SysLogEventSourceAllOf1,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -335,6 +349,8 @@ func (m SysLogEventSource) MarshalJSON() ([]byte, error) {
 		ID int32 `json:"id"`
 
 		Name *string `json:"name"`
+
+		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
 
 		Tags string `json:"tags,omitempty"`
 
@@ -367,13 +383,14 @@ func (m SysLogEventSource) MarshalJSON() ([]byte, error) {
 
 		Name: m.Name(),
 
+		SuppressDuplicatesES: m.SuppressDuplicatesES(),
+
 		Tags: m.Tags(),
 
 		Technology: m.Technology(),
 
 		Version: m.Version(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -461,6 +478,66 @@ func (m *SysLogEventSource) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
+// ContextValidate validate this sys log event source based on the context it is used
+func (m *SysLogEventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateFilters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	// validation for a type composition with SysLogEventSourceAllOf1
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *SysLogEventSource) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Filters()); i++ {
+
+		if m.filtersField[i] != nil {
+			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *SysLogEventSource) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SysLogEventSource) contextValidateVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "version", "body", int64(m.Version())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // MarshalBinary interface implementation
 func (m *SysLogEventSource) MarshalBinary() ([]byte, error) {
 	if m == nil {
@@ -480,5 +557,6 @@ func (m *SysLogEventSource) UnmarshalBinary(b []byte) error {
 }
 
 // SysLogEventSourceAllOf1 sys log event source all of1
+//
 // swagger:model SysLogEventSourceAllOf1
 type SysLogEventSourceAllOf1 interface{}

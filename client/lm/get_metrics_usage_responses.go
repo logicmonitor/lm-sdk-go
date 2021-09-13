@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetMetricsUsageReader is a Reader for the GetMetricsUsage structure.
@@ -24,14 +23,12 @@ type GetMetricsUsageReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetMetricsUsageReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetMetricsUsageOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetMetricsUsageDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetMetricsUsageOK() *GetMetricsUsageOK {
 	return &GetMetricsUsageOK{}
 }
 
-/*GetMetricsUsageOK handles this case with default header values.
+/* GetMetricsUsageOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetMetricsUsageOK struct {
 
 func (o *GetMetricsUsageOK) Error() string {
 	return fmt.Sprintf("[GET /metrics/usage][%d] getMetricsUsageOK  %+v", 200, o.Payload)
+}
+func (o *GetMetricsUsageOK) GetPayload() *models.Usage {
+	return o.Payload
 }
 
 func (o *GetMetricsUsageOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetMetricsUsageDefault(code int) *GetMetricsUsageDefault {
 	}
 }
 
-/*GetMetricsUsageDefault handles this case with default header values.
+/* GetMetricsUsageDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetMetricsUsageDefault) Code() int {
 
 func (o *GetMetricsUsageDefault) Error() string {
 	return fmt.Sprintf("[GET /metrics/usage][%d] getMetricsUsage default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetMetricsUsageDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetMetricsUsageDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

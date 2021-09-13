@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddDeviceGroupPropertyReader is a Reader for the AddDeviceGroupProperty structure.
@@ -24,14 +23,12 @@ type AddDeviceGroupPropertyReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddDeviceGroupPropertyReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddDeviceGroupPropertyOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddDeviceGroupPropertyDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddDeviceGroupPropertyOK() *AddDeviceGroupPropertyOK {
 	return &AddDeviceGroupPropertyOK{}
 }
 
-/*AddDeviceGroupPropertyOK handles this case with default header values.
+/* AddDeviceGroupPropertyOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddDeviceGroupPropertyOK struct {
 
 func (o *AddDeviceGroupPropertyOK) Error() string {
 	return fmt.Sprintf("[POST /device/groups/{gid}/properties][%d] addDeviceGroupPropertyOK  %+v", 200, o.Payload)
+}
+func (o *AddDeviceGroupPropertyOK) GetPayload() *models.EntityProperty {
+	return o.Payload
 }
 
 func (o *AddDeviceGroupPropertyOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddDeviceGroupPropertyDefault(code int) *AddDeviceGroupPropertyDefault {
 	}
 }
 
-/*AddDeviceGroupPropertyDefault handles this case with default header values.
+/* AddDeviceGroupPropertyDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddDeviceGroupPropertyDefault) Code() int {
 
 func (o *AddDeviceGroupPropertyDefault) Error() string {
 	return fmt.Sprintf("[POST /device/groups/{gid}/properties][%d] addDeviceGroupProperty default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddDeviceGroupPropertyDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddDeviceGroupPropertyDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

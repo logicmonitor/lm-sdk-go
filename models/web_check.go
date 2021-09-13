@@ -7,17 +7,18 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // WebCheck web check
+//
 // swagger:model WebCheck
 type WebCheck struct {
 	checkpointsField []*WebsiteCheckPoint
@@ -69,28 +70,35 @@ type WebCheck struct {
 	userPermissionField string
 
 	// The threshold (in days) for triggering SSL certification alerts
+	// Example: \u003c 200 100 50
 	AlertExpr string `json:"alertExpr,omitempty"`
 
 	// The domain of the service. This is the base URL of the service
+	// Example: www.ebay.com
 	// Required: true
 	Domain *string `json:"domain"`
 
 	// Whether or not SSL should be ignored, the default value is true
+	// Example: true
 	IgnoreSSL interface{} `json:"ignoreSSL,omitempty"`
 
 	// The time in milliseconds that the page must load within for each step to avoid triggering an alert
+	// Example: 30000
 	PageLoadAlertTimeInMS int64 `json:"pageLoadAlertTimeInMS,omitempty"`
 
 	// The scheme or protocol associated with the URL to check. Acceptable values are: http, https
+	// Example: https
 	Schema string `json:"schema,omitempty"`
 
 	// An object comprising one or more steps, see the table below for the properties included in each step
 	Steps []*WebCheckStep `json:"steps,omitempty"`
 
 	// Whether or not SSL expiration alerts should be triggered
+	// Example: false
 	TriggerSSLExpirationAlert bool `json:"triggerSSLExpirationAlert,omitempty"`
 
 	// Whether or not SSL status alerts should be triggered
+	// Example: false
 	TriggerSSLStatusAlert bool `json:"triggerSSLStatusAlert,omitempty"`
 }
 
@@ -311,7 +319,6 @@ func (m *WebCheck) Type() string {
 
 // SetType sets the type of this subtype
 func (m *WebCheck) SetType(val string) {
-
 }
 
 // UseDefaultAlertSetting gets the use default alert setting of this subtype
@@ -344,49 +351,40 @@ func (m *WebCheck) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
 
-// AlertExpr gets the alert expr of this subtype
-
-// Domain gets the domain of this subtype
-
-// IgnoreSSL gets the ignore s s l of this subtype
-
-// PageLoadAlertTimeInMS gets the page load alert time in m s of this subtype
-
-// Schema gets the schema of this subtype
-
-// Steps gets the steps of this subtype
-
-// TriggerSSLExpirationAlert gets the trigger s s l expiration alert of this subtype
-
-// TriggerSSLStatusAlert gets the trigger s s l status alert of this subtype
-
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// The threshold (in days) for triggering SSL certification alerts
+		// Example: \u003c 200 100 50
 		AlertExpr string `json:"alertExpr,omitempty"`
 
 		// The domain of the service. This is the base URL of the service
+		// Example: www.ebay.com
 		// Required: true
 		Domain *string `json:"domain"`
 
 		// Whether or not SSL should be ignored, the default value is true
+		// Example: true
 		IgnoreSSL interface{} `json:"ignoreSSL,omitempty"`
 
 		// The time in milliseconds that the page must load within for each step to avoid triggering an alert
+		// Example: 30000
 		PageLoadAlertTimeInMS int64 `json:"pageLoadAlertTimeInMS,omitempty"`
 
 		// The scheme or protocol associated with the URL to check. Acceptable values are: http, https
+		// Example: https
 		Schema string `json:"schema,omitempty"`
 
 		// An object comprising one or more steps, see the table below for the properties included in each step
 		Steps []*WebCheckStep `json:"steps,omitempty"`
 
 		// Whether or not SSL expiration alerts should be triggered
+		// Example: false
 		TriggerSSLExpirationAlert bool `json:"triggerSSLExpirationAlert,omitempty"`
 
 		// Whether or not SSL status alerts should be triggered
+		// Example: false
 		TriggerSSLStatusAlert bool `json:"triggerSSLStatusAlert,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
@@ -506,7 +504,6 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.useDefaultAlertSettingField = base.UseDefaultAlertSetting
 
 	result.useDefaultLocationSettingField = base.UseDefaultLocationSetting
@@ -514,19 +511,12 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 	result.userPermissionField = base.UserPermission
 
 	result.AlertExpr = data.AlertExpr
-
 	result.Domain = data.Domain
-
 	result.IgnoreSSL = data.IgnoreSSL
-
 	result.PageLoadAlertTimeInMS = data.PageLoadAlertTimeInMS
-
 	result.Schema = data.Schema
-
 	result.Steps = data.Steps
-
 	result.TriggerSSLExpirationAlert = data.TriggerSSLExpirationAlert
-
 	result.TriggerSSLStatusAlert = data.TriggerSSLStatusAlert
 
 	*m = result
@@ -541,28 +531,35 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// The threshold (in days) for triggering SSL certification alerts
+		// Example: \u003c 200 100 50
 		AlertExpr string `json:"alertExpr,omitempty"`
 
 		// The domain of the service. This is the base URL of the service
+		// Example: www.ebay.com
 		// Required: true
 		Domain *string `json:"domain"`
 
 		// Whether or not SSL should be ignored, the default value is true
+		// Example: true
 		IgnoreSSL interface{} `json:"ignoreSSL,omitempty"`
 
 		// The time in milliseconds that the page must load within for each step to avoid triggering an alert
+		// Example: 30000
 		PageLoadAlertTimeInMS int64 `json:"pageLoadAlertTimeInMS,omitempty"`
 
 		// The scheme or protocol associated with the URL to check. Acceptable values are: http, https
+		// Example: https
 		Schema string `json:"schema,omitempty"`
 
 		// An object comprising one or more steps, see the table below for the properties included in each step
 		Steps []*WebCheckStep `json:"steps,omitempty"`
 
 		// Whether or not SSL expiration alerts should be triggered
+		// Example: false
 		TriggerSSLExpirationAlert bool `json:"triggerSSLExpirationAlert,omitempty"`
 
 		// Whether or not SSL status alerts should be triggered
+		// Example: false
 		TriggerSSLStatusAlert bool `json:"triggerSSLStatusAlert,omitempty"`
 	}{
 
@@ -581,8 +578,7 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 		TriggerSSLExpirationAlert: m.TriggerSSLExpirationAlert,
 
 		TriggerSSLStatusAlert: m.TriggerSSLStatusAlert,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -687,8 +683,7 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 		UseDefaultLocationSetting: m.UseDefaultLocationSetting(),
 
 		UserPermission: m.UserPermission(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -858,6 +853,195 @@ func (m *WebCheck) validateSteps(formats strfmt.Registry) error {
 
 		if m.Steps[i] != nil {
 			if err := m.Steps[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this web check based on the context it is used
+func (m *WebCheck) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCheckpoints(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCollectors(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGroupID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastUpdated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateProperties(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStopMonitoringByFolder(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTestLocation(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSteps(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *WebCheck) contextValidateCheckpoints(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Checkpoints()); i++ {
+
+		if m.checkpointsField[i] != nil {
+			if err := m.checkpointsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("checkpoints" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *WebCheck) contextValidateCollectors(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "collectors", "body", []*WebsiteCollectorInfo(m.Collectors())); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Collectors()); i++ {
+
+		if m.collectorsField[i] != nil {
+			if err := m.collectorsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *WebCheck) contextValidateGroupID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "groupId", "body", int32(m.GroupID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebCheck) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebCheck) contextValidateLastUpdated(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdated", "body", int64(m.LastUpdated())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebCheck) contextValidateProperties(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "properties", "body", []*NameAndValue(m.Properties())); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Properties()); i++ {
+
+		if m.propertiesField[i] != nil {
+			if err := m.propertiesField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *WebCheck) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "status", "body", string(m.Status())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebCheck) contextValidateStopMonitoringByFolder(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "stopMonitoringByFolder", "body", m.StopMonitoringByFolder()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WebCheck) contextValidateTestLocation(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.TestLocation() != nil {
+		if err := m.TestLocation().ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("testLocation")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *WebCheck) contextValidateSteps(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Steps); i++ {
+
+		if m.Steps[i] != nil {
+			if err := m.Steps[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
 				}

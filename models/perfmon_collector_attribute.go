@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // PerfmonCollectorAttribute perfmon collector attribute
+//
 // swagger:model PerfmonCollectorAttribute
 type PerfmonCollectorAttribute struct {
 
@@ -31,10 +32,7 @@ func (m *PerfmonCollectorAttribute) Name() string {
 
 // SetName sets the name of this subtype
 func (m *PerfmonCollectorAttribute) SetName(val string) {
-
 }
-
-// Counters gets the counters of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *PerfmonCollectorAttribute) UnmarshalJSON(raw []byte) error {
@@ -89,8 +87,7 @@ func (m PerfmonCollectorAttribute) MarshalJSON() ([]byte, error) {
 	}{
 
 		Counters: m.Counters,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -99,8 +96,7 @@ func (m PerfmonCollectorAttribute) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -135,6 +131,38 @@ func (m *PerfmonCollectorAttribute) validateCounters(formats strfmt.Registry) er
 
 		if m.Counters[i] != nil {
 			if err := m.Counters[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this perfmon collector attribute based on the context it is used
+func (m *PerfmonCollectorAttribute) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCounters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *PerfmonCollectorAttribute) contextValidateCounters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Counters); i++ {
+
+		if m.Counters[i] != nil {
+			if err := m.Counters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
 				}

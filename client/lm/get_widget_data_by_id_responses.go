@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetWidgetDataByIDReader is a Reader for the GetWidgetDataByID structure.
@@ -24,14 +23,12 @@ type GetWidgetDataByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetWidgetDataByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetWidgetDataByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetWidgetDataByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetWidgetDataByIDOK() *GetWidgetDataByIDOK {
 	return &GetWidgetDataByIDOK{}
 }
 
-/*GetWidgetDataByIDOK handles this case with default header values.
+/* GetWidgetDataByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetWidgetDataByIDOK struct {
 
 func (o *GetWidgetDataByIDOK) Error() string {
 	return fmt.Sprintf("[GET /dashboard/widgets/{id}/data][%d] getWidgetDataByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetWidgetDataByIDOK) GetPayload() models.WidgetData {
+	return o.Payload
 }
 
 func (o *GetWidgetDataByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetWidgetDataByIDDefault(code int) *GetWidgetDataByIDDefault {
 	}
 }
 
-/*GetWidgetDataByIDDefault handles this case with default header values.
+/* GetWidgetDataByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetWidgetDataByIDDefault) Code() int {
 
 func (o *GetWidgetDataByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /dashboard/widgets/{id}/data][%d] getWidgetDataById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetWidgetDataByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetWidgetDataByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

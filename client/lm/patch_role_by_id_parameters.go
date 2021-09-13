@@ -6,73 +6,88 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewPatchRoleByIDParams creates a new PatchRoleByIDParams object
-// with the default values initialized.
+// NewPatchRoleByIDParams creates a new PatchRoleByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPatchRoleByIDParams() *PatchRoleByIDParams {
-	var ()
 	return &PatchRoleByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPatchRoleByIDParamsWithTimeout creates a new PatchRoleByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPatchRoleByIDParamsWithTimeout(timeout time.Duration) *PatchRoleByIDParams {
-	var ()
 	return &PatchRoleByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPatchRoleByIDParamsWithContext creates a new PatchRoleByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPatchRoleByIDParamsWithContext(ctx context.Context) *PatchRoleByIDParams {
-	var ()
 	return &PatchRoleByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPatchRoleByIDParamsWithHTTPClient creates a new PatchRoleByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPatchRoleByIDParamsWithHTTPClient(client *http.Client) *PatchRoleByIDParams {
-	var ()
 	return &PatchRoleByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*PatchRoleByIDParams contains all the parameters to send to the API endpoint
-for the patch role by Id operation typically these are written to a http.Request
+/* PatchRoleByIDParams contains all the parameters to send to the API endpoint
+   for the patch role by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type PatchRoleByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.Role
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the patch role by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchRoleByIDParams) WithDefaults() *PatchRoleByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the patch role by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchRoleByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch role by Id params
@@ -137,7 +152,6 @@ func (o *PatchRoleByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

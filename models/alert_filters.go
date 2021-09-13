@@ -6,12 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // AlertFilters alert filters
+//
 // swagger:model AlertFilters
 type AlertFilters struct {
 
@@ -46,7 +48,7 @@ type AlertFilters struct {
 	Rule string `json:"rule,omitempty"`
 
 	// Displayed alerts must have an SDT status that meets this criteria
-	SDTED string `json:"sdted,omitempty"`
+	Sdted string `json:"sdted,omitempty"`
 
 	// Displayed alerts must have a severity that satisfies this criteria. Multiple severities are separated by commas
 	Severity string `json:"severity,omitempty"`
@@ -54,6 +56,11 @@ type AlertFilters struct {
 
 // Validate validates this alert filters
 func (m *AlertFilters) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this alert filters based on context it is used
+func (m *AlertFilters) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -6,13 +6,15 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // StatsDMetricDefinition stats d metric definition
+//
 // swagger:model StatsDMetricDefinition
 type StatsDMetricDefinition struct {
 
@@ -44,13 +46,40 @@ func (m *StatsDMetricDefinition) Validate(formats strfmt.Registry) error {
 }
 
 func (m *StatsDMetricDefinition) validateDisplay(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Display) { // not required
 		return nil
 	}
 
 	if m.Display != nil {
 		if err := m.Display.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("display")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this stats d metric definition based on the context it is used
+func (m *StatsDMetricDefinition) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDisplay(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *StatsDMetricDefinition) contextValidateDisplay(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Display != nil {
+		if err := m.Display.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("display")
 			}

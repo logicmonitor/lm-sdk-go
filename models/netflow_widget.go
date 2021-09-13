@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // NetflowWidget netflow widget
+//
 // swagger:model NetflowWidget
 type NetflowWidget struct {
 	dashboardIdField *int32
@@ -154,7 +155,6 @@ func (m *NetflowWidget) Type() string {
 
 // SetType sets the type of this subtype
 func (m *NetflowWidget) SetType(val string) {
-
 }
 
 // UserPermission gets the user permission of this subtype
@@ -166,16 +166,6 @@ func (m *NetflowWidget) UserPermission() string {
 func (m *NetflowWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
-
-// DataType gets the data type of this subtype
-
-// DeviceDisplayName gets the device display name of this subtype
-
-// DeviceID gets the device Id of this subtype
-
-// Filter gets the filter of this subtype
-
-// NetflowFilter gets the netflow filter of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *NetflowWidget) UnmarshalJSON(raw []byte) error {
@@ -263,17 +253,12 @@ func (m *NetflowWidget) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.userPermissionField = base.UserPermission
 
 	result.DataType = data.DataType
-
 	result.DeviceDisplayName = data.DeviceDisplayName
-
 	result.DeviceID = data.DeviceID
-
 	result.Filter = data.Filter
-
 	result.NetflowFilter = data.NetflowFilter
 
 	*m = result
@@ -314,8 +299,7 @@ func (m NetflowWidget) MarshalJSON() ([]byte, error) {
 		Filter: m.Filter,
 
 		NetflowFilter: m.NetflowFilter,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -364,8 +348,7 @@ func (m NetflowWidget) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserPermission: m.UserPermission(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -434,6 +417,86 @@ func (m *NetflowWidget) validateNetflowFilter(formats strfmt.Registry) error {
 
 	if m.NetflowFilter != nil {
 		if err := m.NetflowFilter.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("netflowFilter")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this netflow widget based on the context it is used
+func (m *NetflowWidget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLastUpdatedBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastUpdatedOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeviceID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNetflowFilter(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *NetflowWidget) contextValidateLastUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedBy", "body", string(m.LastUpdatedBy())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowWidget) contextValidateLastUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedOn", "body", int64(m.LastUpdatedOn())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowWidget) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowWidget) contextValidateDeviceID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "deviceId", "body", int32(m.DeviceID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowWidget) contextValidateNetflowFilter(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.NetflowFilter != nil {
+		if err := m.NetflowFilter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("netflowFilter")
 			}

@@ -7,15 +7,16 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // AggregateCollectorAttribute aggregate collector attribute
+//
 // swagger:model AggregateCollectorAttribute
 type AggregateCollectorAttribute struct {
 	AggregateCollectorAttributeAllOf1
@@ -28,7 +29,6 @@ func (m *AggregateCollectorAttribute) Name() string {
 
 // SetName sets the name of this subtype
 func (m *AggregateCollectorAttribute) SetName(val string) {
-
 }
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
@@ -63,7 +63,6 @@ func (m *AggregateCollectorAttribute) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid name value: %q", base.Name)
 	}
-
 	result.AggregateCollectorAttributeAllOf1 = data.AggregateCollectorAttributeAllOf1
 
 	*m = result
@@ -80,8 +79,7 @@ func (m AggregateCollectorAttribute) MarshalJSON() ([]byte, error) {
 	}{
 
 		AggregateCollectorAttributeAllOf1: m.AggregateCollectorAttributeAllOf1,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -90,8 +88,7 @@ func (m AggregateCollectorAttribute) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -101,6 +98,18 @@ func (m AggregateCollectorAttribute) MarshalJSON() ([]byte, error) {
 
 // Validate validates this aggregate collector attribute
 func (m *AggregateCollectorAttribute) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with AggregateCollectorAttributeAllOf1
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+// ContextValidate validate this aggregate collector attribute based on the context it is used
+func (m *AggregateCollectorAttribute) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	// validation for a type composition with AggregateCollectorAttributeAllOf1
@@ -130,5 +139,6 @@ func (m *AggregateCollectorAttribute) UnmarshalBinary(b []byte) error {
 }
 
 // AggregateCollectorAttributeAllOf1 aggregate collector attribute all of1
+//
 // swagger:model AggregateCollectorAttributeAllOf1
 type AggregateCollectorAttributeAllOf1 interface{}

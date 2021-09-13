@@ -6,18 +6,28 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // CollectorGroup collector group
+//
 // swagger:model CollectorGroup
 type CollectorGroup struct {
+
+	// if the collector is autoBalance set as true or false
+	AutoBalance string `json:"autoBalance,omitempty"`
+
+	// threshold for instance count strategy to check if a collector has high load
+	AutoBalanceInstanceCountThreshold int32 `json:"autoBalanceInstanceCountThreshold,omitempty"`
+
+	// the auto balance strategy
+	AutoBalanceStrategy string `json:"autoBalanceStrategy,omitempty"`
 
 	// The time at which the group was created, in epoch format
 	// Read Only: true
@@ -27,6 +37,7 @@ type CollectorGroup struct {
 	CustomProperties []*NameAndValue `json:"customProperties,omitempty"`
 
 	// The description of the Collector Group
+	// Example: Group for collectors dedicated to Network Devices
 	Description string `json:"description,omitempty"`
 
 	// The id of the Collector Group
@@ -34,6 +45,7 @@ type CollectorGroup struct {
 	ID int32 `json:"id,omitempty"`
 
 	// The name of the Collector Group
+	// Example: Collector (Network Devices)
 	// Required: true
 	Name *string `json:"name"`
 
@@ -65,7 +77,6 @@ func (m *CollectorGroup) Validate(formats strfmt.Registry) error {
 }
 
 func (m *CollectorGroup) validateCustomProperties(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.CustomProperties) { // not required
 		return nil
 	}
@@ -92,6 +103,90 @@ func (m *CollectorGroup) validateCustomProperties(formats strfmt.Registry) error
 func (m *CollectorGroup) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this collector group based on the context it is used
+func (m *CollectorGroup) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCreateOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCustomProperties(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfCollectors(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *CollectorGroup) contextValidateCreateOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "createOn", "body", int64(m.CreateOn)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorGroup) contextValidateCustomProperties(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.CustomProperties); i++ {
+
+		if m.CustomProperties[i] != nil {
+			if err := m.CustomProperties[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *CollectorGroup) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorGroup) contextValidateNumOfCollectors(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfCollectors", "body", int32(m.NumOfCollectors)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorGroup) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission)); err != nil {
 		return err
 	}
 

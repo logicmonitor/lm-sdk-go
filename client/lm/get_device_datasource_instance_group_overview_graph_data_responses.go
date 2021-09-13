@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceDatasourceInstanceGroupOverviewGraphDataReader is a Reader for the GetDeviceDatasourceInstanceGroupOverviewGraphData structure.
@@ -24,14 +23,12 @@ type GetDeviceDatasourceInstanceGroupOverviewGraphDataReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceDatasourceInstanceGroupOverviewGraphDataOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceDatasourceInstanceGroupOverviewGraphDataDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceDatasourceInstanceGroupOverviewGraphDataOK() *GetDeviceDatasour
 	return &GetDeviceDatasourceInstanceGroupOverviewGraphDataOK{}
 }
 
-/*GetDeviceDatasourceInstanceGroupOverviewGraphDataOK handles this case with default header values.
+/* GetDeviceDatasourceInstanceGroupOverviewGraphDataOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceDatasourceInstanceGroupOverviewGraphDataOK struct {
 
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data][%d] getDeviceDatasourceInstanceGroupOverviewGraphDataOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataOK) GetPayload() *models.GraphPlot {
+	return o.Payload
 }
 
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceDatasourceInstanceGroupOverviewGraphDataDefault(code int) *GetD
 	}
 }
 
-/*GetDeviceDatasourceInstanceGroupOverviewGraphDataDefault handles this case with default header values.
+/* GetDeviceDatasourceInstanceGroupOverviewGraphDataDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataDefault) Code() int {
 
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data][%d] getDeviceDatasourceInstanceGroupOverviewGraphData default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

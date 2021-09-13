@@ -7,17 +7,18 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // AlertSLAReport alert Sla report
+//
 // swagger:model AlertSlaReport
 type AlertSLAReport struct {
 	customReportTypeIdField int32
@@ -267,7 +268,6 @@ func (m *AlertSLAReport) Type() string {
 
 // SetType sets the type of this subtype
 func (m *AlertSLAReport) SetType(val string) {
-
 }
 
 // UserPermission gets the user permission of this subtype
@@ -279,20 +279,6 @@ func (m *AlertSLAReport) UserPermission() string {
 func (m *AlertSLAReport) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
-
-// AlertLevel gets the alert level of this subtype
-
-// AlertRule gets the alert rule of this subtype
-
-// DataPoint gets the data point of this subtype
-
-// DataSource gets the data source of this subtype
-
-// DateRange gets the date range of this subtype
-
-// HostsVal gets the hosts val of this subtype
-
-// HostsValType gets the hosts val type of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *AlertSLAReport) UnmarshalJSON(raw []byte) error {
@@ -420,21 +406,14 @@ func (m *AlertSLAReport) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.userPermissionField = base.UserPermission
 
 	result.AlertLevel = data.AlertLevel
-
 	result.AlertRule = data.AlertRule
-
 	result.DataPoint = data.DataPoint
-
 	result.DataSource = data.DataSource
-
 	result.DateRange = data.DateRange
-
 	result.HostsVal = data.HostsVal
-
 	result.HostsValType = data.HostsValType
 
 	*m = result
@@ -483,8 +462,7 @@ func (m AlertSLAReport) MarshalJSON() ([]byte, error) {
 		HostsVal: m.HostsVal,
 
 		HostsValType: m.HostsValType,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -569,8 +547,7 @@ func (m AlertSLAReport) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserPermission: m.UserPermission(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -625,6 +602,181 @@ func (m *AlertSLAReport) validateRecipients(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+// ContextValidate validate this alert Sla report based on the context it is used
+func (m *AlertSLAReport) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateCustomReportTypeID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCustomReportTypeName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEnableViewAsOtherUser(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastGenerateOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastGeneratePages(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastGenerateSize(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastmodifyUserID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastmodifyUserName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRecipients(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateReportLinkNum(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateCustomReportTypeID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "customReportTypeId", "body", int32(m.CustomReportTypeID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateCustomReportTypeName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "customReportTypeName", "body", string(m.CustomReportTypeName())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateEnableViewAsOtherUser(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "enableViewAsOtherUser", "body", m.EnableViewAsOtherUser()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateLastGenerateOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastGenerateOn", "body", int64(m.LastGenerateOn())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateLastGeneratePages(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastGeneratePages", "body", int32(m.LastGeneratePages())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateLastGenerateSize(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastGenerateSize", "body", int64(m.LastGenerateSize())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateLastmodifyUserID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastmodifyUserId", "body", int32(m.LastmodifyUserID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateLastmodifyUserName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastmodifyUserName", "body", string(m.LastmodifyUserName())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateRecipients(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Recipients()); i++ {
+
+		if m.recipientsField[i] != nil {
+			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateReportLinkNum(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "reportLinkNum", "body", int32(m.ReportLinkNum())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertSLAReport) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
+		return err
 	}
 
 	return nil

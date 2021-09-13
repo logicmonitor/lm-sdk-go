@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddNetscanReader is a Reader for the AddNetscan structure.
@@ -24,14 +23,12 @@ type AddNetscanReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddNetscanReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddNetscanOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddNetscanDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddNetscanOK() *AddNetscanOK {
 	return &AddNetscanOK{}
 }
 
-/*AddNetscanOK handles this case with default header values.
+/* AddNetscanOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddNetscanOK struct {
 
 func (o *AddNetscanOK) Error() string {
 	return fmt.Sprintf("[POST /setting/netscans][%d] addNetscanOK  %+v", 200, o.Payload)
+}
+func (o *AddNetscanOK) GetPayload() models.Netscan {
+	return o.Payload
 }
 
 func (o *AddNetscanOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddNetscanDefault(code int) *AddNetscanDefault {
 	}
 }
 
-/*AddNetscanDefault handles this case with default header values.
+/* AddNetscanDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddNetscanDefault) Code() int {
 
 func (o *AddNetscanDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/netscans][%d] addNetscan default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddNetscanDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddNetscanDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

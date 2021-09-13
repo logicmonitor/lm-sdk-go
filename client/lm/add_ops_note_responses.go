@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddOpsNoteReader is a Reader for the AddOpsNote structure.
@@ -24,14 +23,12 @@ type AddOpsNoteReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddOpsNoteReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddOpsNoteOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddOpsNoteDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddOpsNoteOK() *AddOpsNoteOK {
 	return &AddOpsNoteOK{}
 }
 
-/*AddOpsNoteOK handles this case with default header values.
+/* AddOpsNoteOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddOpsNoteOK struct {
 
 func (o *AddOpsNoteOK) Error() string {
 	return fmt.Sprintf("[POST /setting/opsnotes][%d] addOpsNoteOK  %+v", 200, o.Payload)
+}
+func (o *AddOpsNoteOK) GetPayload() *models.OpsNote {
+	return o.Payload
 }
 
 func (o *AddOpsNoteOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddOpsNoteDefault(code int) *AddOpsNoteDefault {
 	}
 }
 
-/*AddOpsNoteDefault handles this case with default header values.
+/* AddOpsNoteDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddOpsNoteDefault) Code() int {
 
 func (o *AddOpsNoteDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/opsnotes][%d] addOpsNote default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddOpsNoteDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddOpsNoteDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

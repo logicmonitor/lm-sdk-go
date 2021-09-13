@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteNetscanByIDReader is a Reader for the DeleteNetscanByID structure.
@@ -24,14 +23,12 @@ type DeleteNetscanByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteNetscanByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteNetscanByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteNetscanByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteNetscanByIDOK() *DeleteNetscanByIDOK {
 	return &DeleteNetscanByIDOK{}
 }
 
-/*DeleteNetscanByIDOK handles this case with default header values.
+/* DeleteNetscanByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteNetscanByIDOK struct {
 
 func (o *DeleteNetscanByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /setting/netscans/{id}][%d] deleteNetscanByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteNetscanByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteNetscanByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteNetscanByIDDefault(code int) *DeleteNetscanByIDDefault {
 	}
 }
 
-/*DeleteNetscanByIDDefault handles this case with default header values.
+/* DeleteNetscanByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteNetscanByIDDefault) Code() int {
 
 func (o *DeleteNetscanByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /setting/netscans/{id}][%d] deleteNetscanById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteNetscanByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteNetscanByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

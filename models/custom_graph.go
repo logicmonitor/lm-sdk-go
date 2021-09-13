@@ -6,16 +6,17 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // CustomGraph custom graph
+//
 // swagger:model CustomGraph
 type CustomGraph struct {
 
@@ -100,7 +101,6 @@ func (m *CustomGraph) validateDataPoints(formats strfmt.Registry) error {
 }
 
 func (m *CustomGraph) validateVirtualDataPoints(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.VirtualDataPoints) { // not required
 		return nil
 	}
@@ -112,6 +112,60 @@ func (m *CustomGraph) validateVirtualDataPoints(formats strfmt.Registry) error {
 
 		if m.VirtualDataPoints[i] != nil {
 			if err := m.VirtualDataPoints[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this custom graph based on the context it is used
+func (m *CustomGraph) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDataPoints(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVirtualDataPoints(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *CustomGraph) contextValidateDataPoints(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.DataPoints); i++ {
+
+		if m.DataPoints[i] != nil {
+			if err := m.DataPoints[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *CustomGraph) contextValidateVirtualDataPoints(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.VirtualDataPoints); i++ {
+
+		if m.VirtualDataPoints[i] != nil {
+			if err := m.VirtualDataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}

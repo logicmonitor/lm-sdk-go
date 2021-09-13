@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchDeviceDatasourceInstanceAlertSettingByIDReader is a Reader for the PatchDeviceDatasourceInstanceAlertSettingByID structure.
@@ -24,14 +23,12 @@ type PatchDeviceDatasourceInstanceAlertSettingByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchDeviceDatasourceInstanceAlertSettingByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchDeviceDatasourceInstanceAlertSettingByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchDeviceDatasourceInstanceAlertSettingByIDOK() *PatchDeviceDatasource
 	return &PatchDeviceDatasourceInstanceAlertSettingByIDOK{}
 }
 
-/*PatchDeviceDatasourceInstanceAlertSettingByIDOK handles this case with default header values.
+/* PatchDeviceDatasourceInstanceAlertSettingByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchDeviceDatasourceInstanceAlertSettingByIDOK struct {
 
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] patchDeviceDatasourceInstanceAlertSettingByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) GetPayload() *models.DeviceDataSourceInstanceAlertSetting {
+	return o.Payload
 }
 
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchDeviceDatasourceInstanceAlertSettingByIDDefault(code int) *PatchDev
 	}
 }
 
-/*PatchDeviceDatasourceInstanceAlertSettingByIDDefault handles this case with default header values.
+/* PatchDeviceDatasourceInstanceAlertSettingByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) Code() int {
 
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] patchDeviceDatasourceInstanceAlertSettingById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

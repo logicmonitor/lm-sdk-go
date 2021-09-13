@@ -7,15 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // DeviceSDT device SDT
+//
 // swagger:model DeviceSDT
 type DeviceSDT struct {
 	adminField string
@@ -228,7 +230,6 @@ func (m *DeviceSDT) Type() string {
 
 // SetType sets the type of this subtype
 func (m *DeviceSDT) SetType(val string) {
-
 }
 
 // WeekDay gets the week day of this subtype
@@ -250,10 +251,6 @@ func (m *DeviceSDT) WeekOfMonth() string {
 func (m *DeviceSDT) SetWeekOfMonth(val string) {
 	m.weekOfMonthField = val
 }
-
-// DeviceDisplayName gets the device display name of this subtype
-
-// DeviceID gets the device Id of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *DeviceSDT) UnmarshalJSON(raw []byte) error {
@@ -360,13 +357,11 @@ func (m *DeviceSDT) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.weekDayField = base.WeekDay
 
 	result.weekOfMonthField = base.WeekOfMonth
 
 	result.DeviceDisplayName = data.DeviceDisplayName
-
 	result.DeviceID = data.DeviceID
 
 	*m = result
@@ -390,8 +385,7 @@ func (m DeviceSDT) MarshalJSON() ([]byte, error) {
 		DeviceDisplayName: m.DeviceDisplayName,
 
 		DeviceID: m.DeviceID,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -472,8 +466,7 @@ func (m DeviceSDT) MarshalJSON() ([]byte, error) {
 		WeekDay: m.WeekDay(),
 
 		WeekOfMonth: m.WeekOfMonth(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -488,6 +481,81 @@ func (m *DeviceSDT) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+// ContextValidate validate this device SDT based on the context it is used
+func (m *DeviceSDT) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAdmin(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEndDateTimeOnLocal(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIsEffective(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStartDateTimeOnLocal(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *DeviceSDT) contextValidateAdmin(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "admin", "body", string(m.Admin())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceSDT) contextValidateEndDateTimeOnLocal(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "endDateTimeOnLocal", "body", string(m.EndDateTimeOnLocal())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceSDT) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", string(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceSDT) contextValidateIsEffective(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "isEffective", "body", m.IsEffective()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceSDT) contextValidateStartDateTimeOnLocal(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "startDateTimeOnLocal", "body", string(m.StartDateTimeOnLocal())); err != nil {
+		return err
+	}
+
 	return nil
 }
 

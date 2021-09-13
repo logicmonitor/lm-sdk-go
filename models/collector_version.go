@@ -6,12 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // CollectorVersion collector version
+//
 // swagger:model CollectorVersion
 type CollectorVersion struct {
 
@@ -46,6 +50,107 @@ type CollectorVersion struct {
 
 // Validate validates this collector version
 func (m *CollectorVersion) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validate this collector version based on the context it is used
+func (m *CollectorVersion) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateHas32bitLinux(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHas32bitWindows(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMajorVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMandatory(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMinorVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateReleaseEpoch(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStable(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *CollectorVersion) contextValidateHas32bitLinux(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "has32bitLinux", "body", m.Has32bitLinux); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorVersion) contextValidateHas32bitWindows(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "has32bitWindows", "body", m.Has32bitWindows); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorVersion) contextValidateMajorVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "majorVersion", "body", int32(m.MajorVersion)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorVersion) contextValidateMandatory(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "mandatory", "body", m.Mandatory); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorVersion) contextValidateMinorVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "minorVersion", "body", int32(m.MinorVersion)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorVersion) contextValidateReleaseEpoch(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "releaseEpoch", "body", int64(m.ReleaseEpoch)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorVersion) contextValidateStable(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "stable", "body", m.Stable); err != nil {
+		return err
+	}
+
 	return nil
 }
 

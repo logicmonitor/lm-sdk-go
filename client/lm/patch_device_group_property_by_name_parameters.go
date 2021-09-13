@@ -6,78 +6,94 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewPatchDeviceGroupPropertyByNameParams creates a new PatchDeviceGroupPropertyByNameParams object
-// with the default values initialized.
+// NewPatchDeviceGroupPropertyByNameParams creates a new PatchDeviceGroupPropertyByNameParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPatchDeviceGroupPropertyByNameParams() *PatchDeviceGroupPropertyByNameParams {
-	var ()
 	return &PatchDeviceGroupPropertyByNameParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPatchDeviceGroupPropertyByNameParamsWithTimeout creates a new PatchDeviceGroupPropertyByNameParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPatchDeviceGroupPropertyByNameParamsWithTimeout(timeout time.Duration) *PatchDeviceGroupPropertyByNameParams {
-	var ()
 	return &PatchDeviceGroupPropertyByNameParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPatchDeviceGroupPropertyByNameParamsWithContext creates a new PatchDeviceGroupPropertyByNameParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPatchDeviceGroupPropertyByNameParamsWithContext(ctx context.Context) *PatchDeviceGroupPropertyByNameParams {
-	var ()
 	return &PatchDeviceGroupPropertyByNameParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPatchDeviceGroupPropertyByNameParamsWithHTTPClient creates a new PatchDeviceGroupPropertyByNameParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPatchDeviceGroupPropertyByNameParamsWithHTTPClient(client *http.Client) *PatchDeviceGroupPropertyByNameParams {
-	var ()
 	return &PatchDeviceGroupPropertyByNameParams{
 		HTTPClient: client,
 	}
 }
 
-/*PatchDeviceGroupPropertyByNameParams contains all the parameters to send to the API endpoint
-for the patch device group property by name operation typically these are written to a http.Request
+/* PatchDeviceGroupPropertyByNameParams contains all the parameters to send to the API endpoint
+   for the patch device group property by name operation.
+
+   Typically these are written to a http.Request.
 */
 type PatchDeviceGroupPropertyByNameParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.EntityProperty
-	/*Gid
-	  group ID
 
+	/* Gid.
+
+	   group ID
+
+	   Format: int32
 	*/
 	Gid int32
-	/*Name*/
+
+	// Name.
 	Name string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the patch device group property by name params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchDeviceGroupPropertyByNameParams) WithDefaults() *PatchDeviceGroupPropertyByNameParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the patch device group property by name params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchDeviceGroupPropertyByNameParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch device group property by name params
@@ -153,7 +169,6 @@ func (o *PatchDeviceGroupPropertyByNameParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

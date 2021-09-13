@@ -7,16 +7,18 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // DynamicTableWidgetData dynamic table widget data
+//
 // swagger:model DynamicTableWidgetData
 type DynamicTableWidgetData struct {
 	titleField string
@@ -47,12 +49,7 @@ func (m *DynamicTableWidgetData) Type() string {
 
 // SetType sets the type of this subtype
 func (m *DynamicTableWidgetData) SetType(val string) {
-
 }
-
-// ColumnHeaders gets the column headers of this subtype
-
-// Rows gets the rows of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *DynamicTableWidgetData) UnmarshalJSON(raw []byte) error {
@@ -99,7 +96,6 @@ func (m *DynamicTableWidgetData) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.ColumnHeaders = data.ColumnHeaders
-
 	result.Rows = data.Rows
 
 	*m = result
@@ -125,8 +121,7 @@ func (m DynamicTableWidgetData) MarshalJSON() ([]byte, error) {
 		ColumnHeaders: m.ColumnHeaders,
 
 		Rows: m.Rows,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -139,8 +134,7 @@ func (m DynamicTableWidgetData) MarshalJSON() ([]byte, error) {
 		Title: m.Title(),
 
 		Type: m.Type(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -204,6 +198,77 @@ func (m *DynamicTableWidgetData) validateRows(formats strfmt.Registry) error {
 
 		if m.Rows[i] != nil {
 			if err := m.Rows[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("rows" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this dynamic table widget data based on the context it is used
+func (m *DynamicTableWidgetData) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateColumnHeaders(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRows(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *DynamicTableWidgetData) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "type", "body", string(m.Type())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DynamicTableWidgetData) contextValidateColumnHeaders(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "columnHeaders", "body", []*ColumnHeader(m.ColumnHeaders)); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.ColumnHeaders); i++ {
+
+		if m.ColumnHeaders[i] != nil {
+			if err := m.ColumnHeaders[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("columnHeaders" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *DynamicTableWidgetData) contextValidateRows(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "rows", "body", []*RowData(m.Rows)); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Rows); i++ {
+
+		if m.Rows[i] != nil {
+			if err := m.Rows[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rows" + "." + strconv.Itoa(i))
 				}

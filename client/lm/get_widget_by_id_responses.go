@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetWidgetByIDReader is a Reader for the GetWidgetByID structure.
@@ -24,14 +23,12 @@ type GetWidgetByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetWidgetByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetWidgetByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetWidgetByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetWidgetByIDOK() *GetWidgetByIDOK {
 	return &GetWidgetByIDOK{}
 }
 
-/*GetWidgetByIDOK handles this case with default header values.
+/* GetWidgetByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetWidgetByIDOK struct {
 
 func (o *GetWidgetByIDOK) Error() string {
 	return fmt.Sprintf("[GET /dashboard/widgets/{id}][%d] getWidgetByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetWidgetByIDOK) GetPayload() models.Widget {
+	return o.Payload
 }
 
 func (o *GetWidgetByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetWidgetByIDDefault(code int) *GetWidgetByIDDefault {
 	}
 }
 
-/*GetWidgetByIDDefault handles this case with default header values.
+/* GetWidgetByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetWidgetByIDDefault) Code() int {
 
 func (o *GetWidgetByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /dashboard/widgets/{id}][%d] getWidgetById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetWidgetByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetWidgetByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

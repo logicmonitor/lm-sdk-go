@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetWebsiteGroupByIDReader is a Reader for the GetWebsiteGroupByID structure.
@@ -24,14 +23,12 @@ type GetWebsiteGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetWebsiteGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetWebsiteGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetWebsiteGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetWebsiteGroupByIDOK() *GetWebsiteGroupByIDOK {
 	return &GetWebsiteGroupByIDOK{}
 }
 
-/*GetWebsiteGroupByIDOK handles this case with default header values.
+/* GetWebsiteGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetWebsiteGroupByIDOK struct {
 
 func (o *GetWebsiteGroupByIDOK) Error() string {
 	return fmt.Sprintf("[GET /website/groups/{id}][%d] getWebsiteGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetWebsiteGroupByIDOK) GetPayload() *models.WebsiteGroup {
+	return o.Payload
 }
 
 func (o *GetWebsiteGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetWebsiteGroupByIDDefault(code int) *GetWebsiteGroupByIDDefault {
 	}
 }
 
-/*GetWebsiteGroupByIDDefault handles this case with default header values.
+/* GetWebsiteGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetWebsiteGroupByIDDefault) Code() int {
 
 func (o *GetWebsiteGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /website/groups/{id}][%d] getWebsiteGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetWebsiteGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetWebsiteGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

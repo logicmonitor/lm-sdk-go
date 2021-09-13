@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetSDTHistoryByDeviceIDReader is a Reader for the GetSDTHistoryByDeviceID structure.
@@ -24,14 +23,12 @@ type GetSDTHistoryByDeviceIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSDTHistoryByDeviceIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSDTHistoryByDeviceIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetSDTHistoryByDeviceIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetSDTHistoryByDeviceIDOK() *GetSDTHistoryByDeviceIDOK {
 	return &GetSDTHistoryByDeviceIDOK{}
 }
 
-/*GetSDTHistoryByDeviceIDOK handles this case with default header values.
+/* GetSDTHistoryByDeviceIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetSDTHistoryByDeviceIDOK struct {
 
 func (o *GetSDTHistoryByDeviceIDOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/historysdts][%d] getSdtHistoryByDeviceIdOK  %+v", 200, o.Payload)
+}
+func (o *GetSDTHistoryByDeviceIDOK) GetPayload() *models.DeviceSDTHistoryPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetSDTHistoryByDeviceIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetSDTHistoryByDeviceIDDefault(code int) *GetSDTHistoryByDeviceIDDefault
 	}
 }
 
-/*GetSDTHistoryByDeviceIDDefault handles this case with default header values.
+/* GetSDTHistoryByDeviceIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetSDTHistoryByDeviceIDDefault) Code() int {
 
 func (o *GetSDTHistoryByDeviceIDDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/historysdts][%d] getSDTHistoryByDeviceId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetSDTHistoryByDeviceIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetSDTHistoryByDeviceIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchAPITokenByAdminIDReader is a Reader for the PatchAPITokenByAdminID structure.
@@ -24,14 +23,12 @@ type PatchAPITokenByAdminIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchAPITokenByAdminIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchAPITokenByAdminIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchAPITokenByAdminIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchAPITokenByAdminIDOK() *PatchAPITokenByAdminIDOK {
 	return &PatchAPITokenByAdminIDOK{}
 }
 
-/*PatchAPITokenByAdminIDOK handles this case with default header values.
+/* PatchAPITokenByAdminIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchAPITokenByAdminIDOK struct {
 
 func (o *PatchAPITokenByAdminIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /setting/admins/{adminId}/apitokens/{apitokenId}][%d] patchApiTokenByAdminIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchAPITokenByAdminIDOK) GetPayload() *models.APIToken {
+	return o.Payload
 }
 
 func (o *PatchAPITokenByAdminIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchAPITokenByAdminIDDefault(code int) *PatchAPITokenByAdminIDDefault {
 	}
 }
 
-/*PatchAPITokenByAdminIDDefault handles this case with default header values.
+/* PatchAPITokenByAdminIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchAPITokenByAdminIDDefault) Code() int {
 
 func (o *PatchAPITokenByAdminIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /setting/admins/{adminId}/apitokens/{apitokenId}][%d] patchApiTokenByAdminId default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchAPITokenByAdminIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchAPITokenByAdminIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

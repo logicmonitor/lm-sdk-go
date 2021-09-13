@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AckCollectorDownAlertByIDReader is a Reader for the AckCollectorDownAlertByID structure.
@@ -24,14 +23,12 @@ type AckCollectorDownAlertByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AckCollectorDownAlertByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAckCollectorDownAlertByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAckCollectorDownAlertByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAckCollectorDownAlertByIDOK() *AckCollectorDownAlertByIDOK {
 	return &AckCollectorDownAlertByIDOK{}
 }
 
-/*AckCollectorDownAlertByIDOK handles this case with default header values.
+/* AckCollectorDownAlertByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AckCollectorDownAlertByIDOK struct {
 
 func (o *AckCollectorDownAlertByIDOK) Error() string {
 	return fmt.Sprintf("[POST /setting/collector/collectors/{id}/ackdown][%d] ackCollectorDownAlertByIdOK  %+v", 200, o.Payload)
+}
+func (o *AckCollectorDownAlertByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *AckCollectorDownAlertByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewAckCollectorDownAlertByIDDefault(code int) *AckCollectorDownAlertByIDDef
 	}
 }
 
-/*AckCollectorDownAlertByIDDefault handles this case with default header values.
+/* AckCollectorDownAlertByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *AckCollectorDownAlertByIDDefault) Code() int {
 
 func (o *AckCollectorDownAlertByIDDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/collector/collectors/{id}/ackdown][%d] ackCollectorDownAlertById default  %+v", o._statusCode, o.Payload)
+}
+func (o *AckCollectorDownAlertByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AckCollectorDownAlertByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

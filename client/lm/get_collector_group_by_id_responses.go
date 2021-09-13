@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetCollectorGroupByIDReader is a Reader for the GetCollectorGroupByID structure.
@@ -24,14 +23,12 @@ type GetCollectorGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetCollectorGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetCollectorGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetCollectorGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetCollectorGroupByIDOK() *GetCollectorGroupByIDOK {
 	return &GetCollectorGroupByIDOK{}
 }
 
-/*GetCollectorGroupByIDOK handles this case with default header values.
+/* GetCollectorGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetCollectorGroupByIDOK struct {
 
 func (o *GetCollectorGroupByIDOK) Error() string {
 	return fmt.Sprintf("[GET /setting/collector/groups/{id}][%d] getCollectorGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetCollectorGroupByIDOK) GetPayload() *models.CollectorGroup {
+	return o.Payload
 }
 
 func (o *GetCollectorGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetCollectorGroupByIDDefault(code int) *GetCollectorGroupByIDDefault {
 	}
 }
 
-/*GetCollectorGroupByIDDefault handles this case with default header values.
+/* GetCollectorGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetCollectorGroupByIDDefault) Code() int {
 
 func (o *GetCollectorGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/collector/groups/{id}][%d] getCollectorGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetCollectorGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetCollectorGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -7,19 +7,20 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"io"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // DataSource data source
+//
 // swagger:model DataSource
 type DataSource struct {
 
@@ -59,7 +60,7 @@ type DataSource struct {
 	EnableEriDiscovery bool `json:"enableEriDiscovery,omitempty"`
 
 	// eri discovery config
-	EriDiscoveryConfig *ScriptERIdiscoveryAttributeV2 `json:"eriDiscoveryConfig,omitempty"`
+	EriDiscoveryConfig *ScriptERIDiscoveryAttributeV2 `json:"eriDiscoveryConfig,omitempty"`
 
 	// eri discovery interval
 	EriDiscoveryInterval int32 `json:"eriDiscoveryInterval,omitempty"`
@@ -126,7 +127,7 @@ func (m *DataSource) UnmarshalJSON(raw []byte) error {
 
 		EnableEriDiscovery bool `json:"enableEriDiscovery,omitempty"`
 
-		EriDiscoveryConfig *ScriptERIdiscoveryAttributeV2 `json:"eriDiscoveryConfig,omitempty"`
+		EriDiscoveryConfig *ScriptERIDiscoveryAttributeV2 `json:"eriDiscoveryConfig,omitempty"`
 
 		EriDiscoveryInterval int32 `json:"eriDiscoveryInterval,omitempty"`
 
@@ -249,7 +250,7 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 
 		EnableEriDiscovery bool `json:"enableEriDiscovery,omitempty"`
 
-		EriDiscoveryConfig *ScriptERIdiscoveryAttributeV2 `json:"eriDiscoveryConfig,omitempty"`
+		EriDiscoveryConfig *ScriptERIDiscoveryAttributeV2 `json:"eriDiscoveryConfig,omitempty"`
 
 		EriDiscoveryInterval int32 `json:"eriDiscoveryInterval,omitempty"`
 
@@ -305,8 +306,7 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 		Technology: m.Technology,
 
 		Version: m.Version,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -315,8 +315,7 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 	}{
 
 		CollectorAttribute: m.collectorAttributeField,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -367,7 +366,6 @@ func (m *DataSource) Validate(formats strfmt.Registry) error {
 }
 
 func (m *DataSource) validateAutoDiscoveryConfig(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.AutoDiscoveryConfig) { // not required
 		return nil
 	}
@@ -404,6 +402,10 @@ func (m *DataSource) validateCollectMethod(formats strfmt.Registry) error {
 
 func (m *DataSource) validateCollectorAttribute(formats strfmt.Registry) error {
 
+	if err := validate.Required("collectorAttribute", "body", m.CollectorAttribute()); err != nil {
+		return err
+	}
+
 	if err := m.CollectorAttribute().Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("collectorAttribute")
@@ -415,7 +417,6 @@ func (m *DataSource) validateCollectorAttribute(formats strfmt.Registry) error {
 }
 
 func (m *DataSource) validateDataPoints(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.DataPoints) { // not required
 		return nil
 	}
@@ -440,7 +441,6 @@ func (m *DataSource) validateDataPoints(formats strfmt.Registry) error {
 }
 
 func (m *DataSource) validateEriDiscoveryConfig(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.EriDiscoveryConfig) { // not required
 		return nil
 	}
@@ -469,6 +469,142 @@ func (m *DataSource) validateID(formats strfmt.Registry) error {
 func (m *DataSource) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this data source based on the context it is used
+func (m *DataSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAutoDiscoveryConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCollectorAttribute(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDataPoints(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEriDiscoveryConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHasMultiInstances(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *DataSource) contextValidateAuditVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "auditVersion", "body", int64(m.AuditVersion)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidateAutoDiscoveryConfig(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AutoDiscoveryConfig != nil {
+		if err := m.AutoDiscoveryConfig.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("autoDiscoveryConfig")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidateCollectorAttribute(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := m.CollectorAttribute().ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("collectorAttribute")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidateDataPoints(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.DataPoints); i++ {
+
+		if m.DataPoints[i] != nil {
+			if err := m.DataPoints[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidateEriDiscoveryConfig(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.EriDiscoveryConfig != nil {
+		if err := m.EriDiscoveryConfig.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("eriDiscoveryConfig")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidateHasMultiInstances(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "hasMultiInstances", "body", m.HasMultiInstances); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidateVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "version", "body", int64(m.Version)); err != nil {
 		return err
 	}
 

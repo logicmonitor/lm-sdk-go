@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // StatsDWidget stats d widget
+//
 // swagger:model StatsDWidget
 type StatsDWidget struct {
 	dashboardIdField *int32
@@ -140,7 +141,6 @@ func (m *StatsDWidget) Type() string {
 
 // SetType sets the type of this subtype
 func (m *StatsDWidget) SetType(val string) {
-
 }
 
 // UserPermission gets the user permission of this subtype
@@ -152,8 +152,6 @@ func (m *StatsDWidget) UserPermission() string {
 func (m *StatsDWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
-
-// GraphInfo gets the graph info of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *StatsDWidget) UnmarshalJSON(raw []byte) error {
@@ -227,7 +225,6 @@ func (m *StatsDWidget) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.userPermissionField = base.UserPermission
 
 	result.GraphInfo = data.GraphInfo
@@ -248,8 +245,7 @@ func (m StatsDWidget) MarshalJSON() ([]byte, error) {
 	}{
 
 		GraphInfo: m.GraphInfo,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -298,8 +294,7 @@ func (m StatsDWidget) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserPermission: m.UserPermission(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -355,6 +350,73 @@ func (m *StatsDWidget) validateGraphInfo(formats strfmt.Registry) error {
 
 	if m.GraphInfo != nil {
 		if err := m.GraphInfo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("graphInfo")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this stats d widget based on the context it is used
+func (m *StatsDWidget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLastUpdatedBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastUpdatedOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGraphInfo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *StatsDWidget) contextValidateLastUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedBy", "body", string(m.LastUpdatedBy())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *StatsDWidget) contextValidateLastUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedOn", "body", int64(m.LastUpdatedOn())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *StatsDWidget) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *StatsDWidget) contextValidateGraphInfo(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.GraphInfo != nil {
+		if err := m.GraphInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("graphInfo")
 			}

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetRecipientGroupByIDReader is a Reader for the GetRecipientGroupByID structure.
@@ -24,14 +23,12 @@ type GetRecipientGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetRecipientGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetRecipientGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetRecipientGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetRecipientGroupByIDOK() *GetRecipientGroupByIDOK {
 	return &GetRecipientGroupByIDOK{}
 }
 
-/*GetRecipientGroupByIDOK handles this case with default header values.
+/* GetRecipientGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetRecipientGroupByIDOK struct {
 
 func (o *GetRecipientGroupByIDOK) Error() string {
 	return fmt.Sprintf("[GET /setting/recipientgroups/{id}][%d] getRecipientGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetRecipientGroupByIDOK) GetPayload() *models.RecipientGroup {
+	return o.Payload
 }
 
 func (o *GetRecipientGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetRecipientGroupByIDDefault(code int) *GetRecipientGroupByIDDefault {
 	}
 }
 
-/*GetRecipientGroupByIDDefault handles this case with default header values.
+/* GetRecipientGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetRecipientGroupByIDDefault) Code() int {
 
 func (o *GetRecipientGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/recipientgroups/{id}][%d] getRecipientGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetRecipientGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetRecipientGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

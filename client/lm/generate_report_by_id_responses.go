@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GenerateReportByIDReader is a Reader for the GenerateReportByID structure.
@@ -24,14 +23,12 @@ type GenerateReportByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GenerateReportByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGenerateReportByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGenerateReportByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGenerateReportByIDOK() *GenerateReportByIDOK {
 	return &GenerateReportByIDOK{}
 }
 
-/*GenerateReportByIDOK handles this case with default header values.
+/* GenerateReportByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GenerateReportByIDOK struct {
 
 func (o *GenerateReportByIDOK) Error() string {
 	return fmt.Sprintf("[POST /report/reports/{id}/executions][%d] generateReportByIdOK  %+v", 200, o.Payload)
+}
+func (o *GenerateReportByIDOK) GetPayload() *models.GenerateReportResult {
+	return o.Payload
 }
 
 func (o *GenerateReportByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGenerateReportByIDDefault(code int) *GenerateReportByIDDefault {
 	}
 }
 
-/*GenerateReportByIDDefault handles this case with default header values.
+/* GenerateReportByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GenerateReportByIDDefault) Code() int {
 
 func (o *GenerateReportByIDDefault) Error() string {
 	return fmt.Sprintf("[POST /report/reports/{id}/executions][%d] generateReportById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GenerateReportByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GenerateReportByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

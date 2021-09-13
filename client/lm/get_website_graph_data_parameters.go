@@ -6,79 +6,104 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetWebsiteGraphDataParams creates a new GetWebsiteGraphDataParams object
-// with the default values initialized.
+// NewGetWebsiteGraphDataParams creates a new GetWebsiteGraphDataParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetWebsiteGraphDataParams() *GetWebsiteGraphDataParams {
-	var ()
 	return &GetWebsiteGraphDataParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetWebsiteGraphDataParamsWithTimeout creates a new GetWebsiteGraphDataParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetWebsiteGraphDataParamsWithTimeout(timeout time.Duration) *GetWebsiteGraphDataParams {
-	var ()
 	return &GetWebsiteGraphDataParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetWebsiteGraphDataParamsWithContext creates a new GetWebsiteGraphDataParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetWebsiteGraphDataParamsWithContext(ctx context.Context) *GetWebsiteGraphDataParams {
-	var ()
 	return &GetWebsiteGraphDataParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetWebsiteGraphDataParamsWithHTTPClient creates a new GetWebsiteGraphDataParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetWebsiteGraphDataParamsWithHTTPClient(client *http.Client) *GetWebsiteGraphDataParams {
-	var ()
 	return &GetWebsiteGraphDataParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetWebsiteGraphDataParams contains all the parameters to send to the API endpoint
-for the get website graph data operation typically these are written to a http.Request
+/* GetWebsiteGraphDataParams contains all the parameters to send to the API endpoint
+   for the get website graph data operation.
+
+   Typically these are written to a http.Request.
 */
 type GetWebsiteGraphDataParams struct {
 
-	/*CheckpointID*/
+	// CheckpointID.
+	//
+	// Format: int32
 	CheckpointID int32
-	/*End*/
+
+	// End.
+	//
+	// Format: int64
 	End *int64
-	/*Format*/
+
+	// Format.
 	Format *string
-	/*GraphName*/
+
+	// GraphName.
 	GraphName string
-	/*Start*/
+
+	// Start.
+	//
+	// Format: int64
 	Start *int64
-	/*WebsiteID*/
+
+	// WebsiteID.
+	//
+	// Format: int32
 	WebsiteID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get website graph data params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetWebsiteGraphDataParams) WithDefaults() *GetWebsiteGraphDataParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get website graph data params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetWebsiteGraphDataParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get website graph data params
@@ -197,32 +222,34 @@ func (o *GetWebsiteGraphDataParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 		// query param end
 		var qrEnd int64
+
 		if o.End != nil {
 			qrEnd = *o.End
 		}
 		qEnd := swag.FormatInt64(qrEnd)
 		if qEnd != "" {
+
 			if err := r.SetQueryParam("end", qEnd); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Format != nil {
 
 		// query param format
 		var qrFormat string
+
 		if o.Format != nil {
 			qrFormat = *o.Format
 		}
 		qFormat := qrFormat
 		if qFormat != "" {
+
 			if err := r.SetQueryParam("format", qFormat); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param graphName
@@ -234,16 +261,17 @@ func (o *GetWebsiteGraphDataParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 		// query param start
 		var qrStart int64
+
 		if o.Start != nil {
 			qrStart = *o.Start
 		}
 		qStart := swag.FormatInt64(qrStart)
 		if qStart != "" {
+
 			if err := r.SetQueryParam("start", qStart); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param websiteId

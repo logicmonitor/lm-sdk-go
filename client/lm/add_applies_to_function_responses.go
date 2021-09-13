@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddAppliesToFunctionReader is a Reader for the AddAppliesToFunction structure.
@@ -24,14 +23,12 @@ type AddAppliesToFunctionReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddAppliesToFunctionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddAppliesToFunctionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddAppliesToFunctionDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddAppliesToFunctionOK() *AddAppliesToFunctionOK {
 	return &AddAppliesToFunctionOK{}
 }
 
-/*AddAppliesToFunctionOK handles this case with default header values.
+/* AddAppliesToFunctionOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddAppliesToFunctionOK struct {
 
 func (o *AddAppliesToFunctionOK) Error() string {
 	return fmt.Sprintf("[POST /setting/functions][%d] addAppliesToFunctionOK  %+v", 200, o.Payload)
+}
+func (o *AddAppliesToFunctionOK) GetPayload() *models.AppliesToFunction {
+	return o.Payload
 }
 
 func (o *AddAppliesToFunctionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddAppliesToFunctionDefault(code int) *AddAppliesToFunctionDefault {
 	}
 }
 
-/*AddAppliesToFunctionDefault handles this case with default header values.
+/* AddAppliesToFunctionDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddAppliesToFunctionDefault) Code() int {
 
 func (o *AddAppliesToFunctionDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/functions][%d] addAppliesToFunction default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddAppliesToFunctionDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddAppliesToFunctionDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

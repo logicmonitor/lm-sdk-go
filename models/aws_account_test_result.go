@@ -6,14 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // AwsAccountTestResult aws account test result
+//
 // swagger:model AwsAccountTestResult
 type AwsAccountTestResult struct {
 
@@ -48,7 +50,6 @@ func (m *AwsAccountTestResult) Validate(formats strfmt.Registry) error {
 }
 
 func (m *AwsAccountTestResult) validateNoPermissionServices(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.NoPermissionServices) { // not required
 		return nil
 	}
@@ -61,7 +62,6 @@ func (m *AwsAccountTestResult) validateNoPermissionServices(formats strfmt.Regis
 }
 
 func (m *AwsAccountTestResult) validateNonPermissionErrors(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.NonPermissionErrors) { // not required
 		return nil
 	}
@@ -70,6 +70,11 @@ func (m *AwsAccountTestResult) validateNonPermissionErrors(formats strfmt.Regist
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validates this aws account test result based on context it is used
+func (m *AwsAccountTestResult) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

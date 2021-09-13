@@ -7,23 +7,25 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"io"
 	"io/ioutil"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // EventSource event source
+//
 // swagger:discriminator EventSource collector
 type EventSource interface {
 	runtime.Validatable
+	runtime.ContextValidatable
 
 	// The alert message body for the EventSource
 	AlertBodyTemplate() string
@@ -77,6 +79,10 @@ type EventSource interface {
 	Name() *string
 	SetName(*string)
 
+	// Whether or not duplicate alerts should be suppressed at eventsource level
+	SuppressDuplicatesES() bool
+	SetSuppressDuplicatesES(bool)
+
 	// The Tags for the LMModule
 	Tags() string
 	SetTags(string)
@@ -89,6 +95,9 @@ type EventSource interface {
 	// Read Only: true
 	Version() int64
 	SetVersion(int64)
+
+	// AdditionalProperties in base type shoud be handled just like regular properties
+	// At this moment, the base type property is pushed down to the subtype
 }
 
 type eventSource struct {
@@ -115,6 +124,8 @@ type eventSource struct {
 	idField int32
 
 	nameField *string
+
+	suppressDuplicatesESField bool
 
 	tagsField string
 
@@ -190,7 +201,6 @@ func (m *eventSource) Collector() string {
 
 // SetCollector sets the collector of this polymorphic type
 func (m *eventSource) SetCollector(val string) {
-
 }
 
 // Description gets the description of this polymorphic type
@@ -241,6 +251,16 @@ func (m *eventSource) Name() *string {
 // SetName sets the name of this polymorphic type
 func (m *eventSource) SetName(val *string) {
 	m.nameField = val
+}
+
+// SuppressDuplicatesES gets the suppress duplicates e s of this polymorphic type
+func (m *eventSource) SuppressDuplicatesES() bool {
+	return m.suppressDuplicatesESField
+}
+
+// SetSuppressDuplicatesES sets the suppress duplicates e s of this polymorphic type
+func (m *eventSource) SetSuppressDuplicatesES(val bool) {
+	m.suppressDuplicatesESField = val
 }
 
 // Tags gets the tags of this polymorphic type
@@ -325,80 +345,68 @@ func unmarshalEventSource(data []byte, consumer runtime.Consumer) (EventSource, 
 			return nil, err
 		}
 		return &result, nil
-
 	case "RestIPMIEventSource":
 		var result RestIPMIEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "awsrss":
 		var result AwsRssEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "azurerss":
 		var result AzureRssEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "echo":
 		var result EchoEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "gcpatom":
 		var result GcpAtomEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "logfile":
 		var result LogFileEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "scriptevent":
 		var result ScriptEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "snmptrap":
 		var result SnmpTrapEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "syslog":
 		var result SysLogEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	case "wineventlog":
 		var result WindowsEventLogEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-
 	}
 	return nil, errors.New(422, "invalid collector value: %q", getType.Collector)
-
 }
 
 // Validate validates this event source
@@ -437,7 +445,6 @@ func (m *eventSource) validateAlertEffectiveIval(formats strfmt.Registry) error 
 }
 
 func (m *eventSource) validateFilters(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Filters()) { // not required
 		return nil
 	}
@@ -473,6 +480,64 @@ func (m *eventSource) validateID(formats strfmt.Registry) error {
 func (m *eventSource) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this event source based on the context it is used
+func (m *eventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateFilters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *eventSource) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Filters()); i++ {
+
+		if m.filtersField[i] != nil {
+			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *eventSource) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) contextValidateVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "version", "body", int64(m.Version())); err != nil {
 		return err
 	}
 

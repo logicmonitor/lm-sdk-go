@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetAlertListByDeviceIDReader is a Reader for the GetAlertListByDeviceID structure.
@@ -24,14 +23,12 @@ type GetAlertListByDeviceIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAlertListByDeviceIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetAlertListByDeviceIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetAlertListByDeviceIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetAlertListByDeviceIDOK() *GetAlertListByDeviceIDOK {
 	return &GetAlertListByDeviceIDOK{}
 }
 
-/*GetAlertListByDeviceIDOK handles this case with default header values.
+/* GetAlertListByDeviceIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetAlertListByDeviceIDOK struct {
 
 func (o *GetAlertListByDeviceIDOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/alerts][%d] getAlertListByDeviceIdOK  %+v", 200, o.Payload)
+}
+func (o *GetAlertListByDeviceIDOK) GetPayload() *models.AlertPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetAlertListByDeviceIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetAlertListByDeviceIDDefault(code int) *GetAlertListByDeviceIDDefault {
 	}
 }
 
-/*GetAlertListByDeviceIDDefault handles this case with default header values.
+/* GetAlertListByDeviceIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetAlertListByDeviceIDDefault) Code() int {
 
 func (o *GetAlertListByDeviceIDDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{id}/alerts][%d] getAlertListByDeviceId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetAlertListByDeviceIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetAlertListByDeviceIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

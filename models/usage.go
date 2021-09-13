@@ -6,12 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // Usage usage
+//
 // swagger:model Usage
 type Usage struct {
 
@@ -90,6 +94,250 @@ type Usage struct {
 
 // Validate validates this usage
 func (m *Usage) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validate this usage based on the context it is used
+func (m *Usage) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateNumOfAWSDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfAzureDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfCombinedAWSDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfCombinedAzureDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfCombinedGcpDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfConfigSourceDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfGcpDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfServices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfStoppedAWSDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfStoppedAzureDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfStoppedGcpDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfTerminatedAWSDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfTerminatedAzureDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfTerminatedGcpCloudDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfWebsites(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumberOfDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumberOfKubernetesDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumberOfStandardDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfAWSDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfAWSDevices", "body", int32(m.NumOfAWSDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfAzureDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfAzureDevices", "body", int32(m.NumOfAzureDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfCombinedAWSDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfCombinedAWSDevices", "body", int32(m.NumOfCombinedAWSDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfCombinedAzureDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfCombinedAzureDevices", "body", int32(m.NumOfCombinedAzureDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfCombinedGcpDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfCombinedGcpDevices", "body", int32(m.NumOfCombinedGcpDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfConfigSourceDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfConfigSourceDevices", "body", int32(m.NumOfConfigSourceDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfGcpDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfGcpDevices", "body", int32(m.NumOfGcpDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfServices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfServices", "body", int32(m.NumOfServices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfStoppedAWSDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfStoppedAWSDevices", "body", int32(m.NumOfStoppedAWSDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfStoppedAzureDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfStoppedAzureDevices", "body", int32(m.NumOfStoppedAzureDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfStoppedGcpDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfStoppedGcpDevices", "body", int32(m.NumOfStoppedGcpDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfTerminatedAWSDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfTerminatedAWSDevices", "body", int32(m.NumOfTerminatedAWSDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfTerminatedAzureDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfTerminatedAzureDevices", "body", int32(m.NumOfTerminatedAzureDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfTerminatedGcpCloudDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfTerminatedGcpCloudDevices", "body", int32(m.NumOfTerminatedGcpCloudDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumOfWebsites(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfWebsites", "body", int32(m.NumOfWebsites)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumberOfDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numberOfDevices", "body", int32(m.NumberOfDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumberOfKubernetesDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numberOfKubernetesDevices", "body", int32(m.NumberOfKubernetesDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Usage) contextValidateNumberOfStandardDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numberOfStandardDevices", "body", int32(m.NumberOfStandardDevices)); err != nil {
+		return err
+	}
+
 	return nil
 }
 

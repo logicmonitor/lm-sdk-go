@@ -6,75 +6,93 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewUpdateDeviceGroupDatasourceByIDParams creates a new UpdateDeviceGroupDatasourceByIDParams object
-// with the default values initialized.
+// NewUpdateDeviceGroupDatasourceByIDParams creates a new UpdateDeviceGroupDatasourceByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateDeviceGroupDatasourceByIDParams() *UpdateDeviceGroupDatasourceByIDParams {
-	var ()
 	return &UpdateDeviceGroupDatasourceByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateDeviceGroupDatasourceByIDParamsWithTimeout creates a new UpdateDeviceGroupDatasourceByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateDeviceGroupDatasourceByIDParamsWithTimeout(timeout time.Duration) *UpdateDeviceGroupDatasourceByIDParams {
-	var ()
 	return &UpdateDeviceGroupDatasourceByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateDeviceGroupDatasourceByIDParamsWithContext creates a new UpdateDeviceGroupDatasourceByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateDeviceGroupDatasourceByIDParamsWithContext(ctx context.Context) *UpdateDeviceGroupDatasourceByIDParams {
-	var ()
 	return &UpdateDeviceGroupDatasourceByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateDeviceGroupDatasourceByIDParamsWithHTTPClient creates a new UpdateDeviceGroupDatasourceByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateDeviceGroupDatasourceByIDParamsWithHTTPClient(client *http.Client) *UpdateDeviceGroupDatasourceByIDParams {
-	var ()
 	return &UpdateDeviceGroupDatasourceByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateDeviceGroupDatasourceByIDParams contains all the parameters to send to the API endpoint
-for the update device group datasource by Id operation typically these are written to a http.Request
+/* UpdateDeviceGroupDatasourceByIDParams contains all the parameters to send to the API endpoint
+   for the update device group datasource by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateDeviceGroupDatasourceByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.DeviceGroupDataSource
-	/*DeviceGroupID*/
+
+	// DeviceGroupID.
+	//
+	// Format: int32
 	DeviceGroupID int32
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update device group datasource by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateDeviceGroupDatasourceByIDParams) WithDefaults() *UpdateDeviceGroupDatasourceByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update device group datasource by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateDeviceGroupDatasourceByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update device group datasource by Id params
@@ -150,7 +168,6 @@ func (o *UpdateDeviceGroupDatasourceByIDParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

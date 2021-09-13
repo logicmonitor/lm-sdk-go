@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetAdminListReader is a Reader for the GetAdminList structure.
@@ -24,14 +23,12 @@ type GetAdminListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAdminListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetAdminListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetAdminListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetAdminListOK() *GetAdminListOK {
 	return &GetAdminListOK{}
 }
 
-/*GetAdminListOK handles this case with default header values.
+/* GetAdminListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetAdminListOK struct {
 
 func (o *GetAdminListOK) Error() string {
 	return fmt.Sprintf("[GET /setting/admins][%d] getAdminListOK  %+v", 200, o.Payload)
+}
+func (o *GetAdminListOK) GetPayload() *models.AdminPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetAdminListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetAdminListDefault(code int) *GetAdminListDefault {
 	}
 }
 
-/*GetAdminListDefault handles this case with default header values.
+/* GetAdminListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetAdminListDefault) Code() int {
 
 func (o *GetAdminListDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/admins][%d] getAdminList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetAdminListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetAdminListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

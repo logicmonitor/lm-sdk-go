@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // ExecuteDebugCommandReader is a Reader for the ExecuteDebugCommand structure.
@@ -24,14 +23,12 @@ type ExecuteDebugCommandReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExecuteDebugCommandReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewExecuteDebugCommandOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewExecuteDebugCommandDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewExecuteDebugCommandOK() *ExecuteDebugCommandOK {
 	return &ExecuteDebugCommandOK{}
 }
 
-/*ExecuteDebugCommandOK handles this case with default header values.
+/* ExecuteDebugCommandOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type ExecuteDebugCommandOK struct {
 
 func (o *ExecuteDebugCommandOK) Error() string {
 	return fmt.Sprintf("[POST /debug][%d] executeDebugCommandOK  %+v", 200, o.Payload)
+}
+func (o *ExecuteDebugCommandOK) GetPayload() *models.Debug {
+	return o.Payload
 }
 
 func (o *ExecuteDebugCommandOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewExecuteDebugCommandDefault(code int) *ExecuteDebugCommandDefault {
 	}
 }
 
-/*ExecuteDebugCommandDefault handles this case with default header values.
+/* ExecuteDebugCommandDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *ExecuteDebugCommandDefault) Code() int {
 
 func (o *ExecuteDebugCommandDefault) Error() string {
 	return fmt.Sprintf("[POST /debug][%d] executeDebugCommand default  %+v", o._statusCode, o.Payload)
+}
+func (o *ExecuteDebugCommandDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *ExecuteDebugCommandDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

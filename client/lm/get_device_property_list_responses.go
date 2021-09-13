@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDevicePropertyListReader is a Reader for the GetDevicePropertyList structure.
@@ -24,14 +23,12 @@ type GetDevicePropertyListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDevicePropertyListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDevicePropertyListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDevicePropertyListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDevicePropertyListOK() *GetDevicePropertyListOK {
 	return &GetDevicePropertyListOK{}
 }
 
-/*GetDevicePropertyListOK handles this case with default header values.
+/* GetDevicePropertyListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDevicePropertyListOK struct {
 
 func (o *GetDevicePropertyListOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties][%d] getDevicePropertyListOK  %+v", 200, o.Payload)
+}
+func (o *GetDevicePropertyListOK) GetPayload() *models.PropertyPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetDevicePropertyListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDevicePropertyListDefault(code int) *GetDevicePropertyListDefault {
 	}
 }
 
-/*GetDevicePropertyListDefault handles this case with default header values.
+/* GetDevicePropertyListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDevicePropertyListDefault) Code() int {
 
 func (o *GetDevicePropertyListDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties][%d] getDevicePropertyList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDevicePropertyListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDevicePropertyListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

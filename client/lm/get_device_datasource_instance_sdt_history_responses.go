@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceDatasourceInstanceSDTHistoryReader is a Reader for the GetDeviceDatasourceInstanceSDTHistory structure.
@@ -24,14 +23,12 @@ type GetDeviceDatasourceInstanceSDTHistoryReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceDatasourceInstanceSDTHistoryReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceDatasourceInstanceSDTHistoryOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceDatasourceInstanceSDTHistoryDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceDatasourceInstanceSDTHistoryOK() *GetDeviceDatasourceInstanceSD
 	return &GetDeviceDatasourceInstanceSDTHistoryOK{}
 }
 
-/*GetDeviceDatasourceInstanceSDTHistoryOK handles this case with default header values.
+/* GetDeviceDatasourceInstanceSDTHistoryOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceDatasourceInstanceSDTHistoryOK struct {
 
 func (o *GetDeviceDatasourceInstanceSDTHistoryOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts][%d] getDeviceDatasourceInstanceSdtHistoryOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceDatasourceInstanceSDTHistoryOK) GetPayload() *models.DeviceGroupSDTHistoryPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceDatasourceInstanceSDTHistoryOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceDatasourceInstanceSDTHistoryDefault(code int) *GetDeviceDatasou
 	}
 }
 
-/*GetDeviceDatasourceInstanceSDTHistoryDefault handles this case with default header values.
+/* GetDeviceDatasourceInstanceSDTHistoryDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) Code() int {
 
 func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts][%d] getDeviceDatasourceInstanceSDTHistory default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

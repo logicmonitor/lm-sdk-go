@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetNetscanListReader is a Reader for the GetNetscanList structure.
@@ -24,14 +23,12 @@ type GetNetscanListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetNetscanListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetNetscanListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetNetscanListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetNetscanListOK() *GetNetscanListOK {
 	return &GetNetscanListOK{}
 }
 
-/*GetNetscanListOK handles this case with default header values.
+/* GetNetscanListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetNetscanListOK struct {
 
 func (o *GetNetscanListOK) Error() string {
 	return fmt.Sprintf("[GET /setting/netscans][%d] getNetscanListOK  %+v", 200, o.Payload)
+}
+func (o *GetNetscanListOK) GetPayload() *models.NetscanPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetNetscanListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetNetscanListDefault(code int) *GetNetscanListDefault {
 	}
 }
 
-/*GetNetscanListDefault handles this case with default header values.
+/* GetNetscanListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetNetscanListDefault) Code() int {
 
 func (o *GetNetscanListDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/netscans][%d] getNetscanList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetNetscanListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetNetscanListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

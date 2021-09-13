@@ -7,17 +7,18 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // LogFileEventSource log file event source
+//
 // swagger:model LogFileEventSource
 type LogFileEventSource struct {
 	alertBodyTemplateField string
@@ -41,6 +42,8 @@ type LogFileEventSource struct {
 	idField int32
 
 	nameField *string
+
+	suppressDuplicatesESField bool
 
 	tagsField string
 
@@ -119,7 +122,6 @@ func (m *LogFileEventSource) Collector() string {
 
 // SetCollector sets the collector of this subtype
 func (m *LogFileEventSource) SetCollector(val string) {
-
 }
 
 // Description gets the description of this subtype
@@ -172,6 +174,16 @@ func (m *LogFileEventSource) SetName(val *string) {
 	m.nameField = val
 }
 
+// SuppressDuplicatesES gets the suppress duplicates e s of this subtype
+func (m *LogFileEventSource) SuppressDuplicatesES() bool {
+	return m.suppressDuplicatesESField
+}
+
+// SetSuppressDuplicatesES sets the suppress duplicates e s of this subtype
+func (m *LogFileEventSource) SetSuppressDuplicatesES(val bool) {
+	m.suppressDuplicatesESField = val
+}
+
 // Tags gets the tags of this subtype
 func (m *LogFileEventSource) Tags() string {
 	return m.tagsField
@@ -201,8 +213,6 @@ func (m *LogFileEventSource) Version() int64 {
 func (m *LogFileEventSource) SetVersion(val int64) {
 	m.versionField = val
 }
-
-// LogFiles gets the log files of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *LogFileEventSource) UnmarshalJSON(raw []byte) error {
@@ -246,6 +256,8 @@ func (m *LogFileEventSource) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
+		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
+
 		Tags string `json:"tags,omitempty"`
 
 		Technology string `json:"technology,omitempty"`
@@ -278,7 +290,6 @@ func (m *LogFileEventSource) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid collector value: %q", base.Collector)
 	}
-
 	result.descriptionField = base.Description
 
 	result.filtersField = base.Filters
@@ -288,6 +299,8 @@ func (m *LogFileEventSource) UnmarshalJSON(raw []byte) error {
 	result.idField = base.ID
 
 	result.nameField = base.Name
+
+	result.suppressDuplicatesESField = base.SuppressDuplicatesES
 
 	result.tagsField = base.Tags
 
@@ -313,8 +326,7 @@ func (m LogFileEventSource) MarshalJSON() ([]byte, error) {
 	}{
 
 		LogFiles: m.LogFiles,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -342,6 +354,8 @@ func (m LogFileEventSource) MarshalJSON() ([]byte, error) {
 		ID int32 `json:"id"`
 
 		Name *string `json:"name"`
+
+		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
 
 		Tags string `json:"tags,omitempty"`
 
@@ -374,13 +388,14 @@ func (m LogFileEventSource) MarshalJSON() ([]byte, error) {
 
 		Name: m.Name(),
 
+		SuppressDuplicatesES: m.SuppressDuplicatesES(),
+
 		Tags: m.Tags(),
 
 		Technology: m.Technology(),
 
 		Version: m.Version(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -483,6 +498,86 @@ func (m *LogFileEventSource) validateLogFiles(formats strfmt.Registry) error {
 
 		if m.LogFiles[i] != nil {
 			if err := m.LogFiles[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("logFiles" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this log file event source based on the context it is used
+func (m *LogFileEventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateFilters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLogFiles(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *LogFileEventSource) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Filters()); i++ {
+
+		if m.filtersField[i] != nil {
+			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *LogFileEventSource) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *LogFileEventSource) contextValidateVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "version", "body", int64(m.Version())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *LogFileEventSource) contextValidateLogFiles(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.LogFiles); i++ {
+
+		if m.LogFiles[i] != nil {
+			if err := m.LogFiles[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("logFiles" + "." + strconv.Itoa(i))
 				}

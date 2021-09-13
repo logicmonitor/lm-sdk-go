@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchOpsNoteByIDReader is a Reader for the PatchOpsNoteByID structure.
@@ -24,14 +23,12 @@ type PatchOpsNoteByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchOpsNoteByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchOpsNoteByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchOpsNoteByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchOpsNoteByIDOK() *PatchOpsNoteByIDOK {
 	return &PatchOpsNoteByIDOK{}
 }
 
-/*PatchOpsNoteByIDOK handles this case with default header values.
+/* PatchOpsNoteByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchOpsNoteByIDOK struct {
 
 func (o *PatchOpsNoteByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /setting/opsnotes/{id}][%d] patchOpsNoteByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchOpsNoteByIDOK) GetPayload() *models.OpsNote {
+	return o.Payload
 }
 
 func (o *PatchOpsNoteByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchOpsNoteByIDDefault(code int) *PatchOpsNoteByIDDefault {
 	}
 }
 
-/*PatchOpsNoteByIDDefault handles this case with default header values.
+/* PatchOpsNoteByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchOpsNoteByIDDefault) Code() int {
 
 func (o *PatchOpsNoteByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /setting/opsnotes/{id}][%d] patchOpsNoteById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchOpsNoteByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchOpsNoteByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

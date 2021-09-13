@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchAlertRuleByIDReader is a Reader for the PatchAlertRuleByID structure.
@@ -24,14 +23,12 @@ type PatchAlertRuleByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchAlertRuleByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchAlertRuleByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchAlertRuleByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchAlertRuleByIDOK() *PatchAlertRuleByIDOK {
 	return &PatchAlertRuleByIDOK{}
 }
 
-/*PatchAlertRuleByIDOK handles this case with default header values.
+/* PatchAlertRuleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchAlertRuleByIDOK struct {
 
 func (o *PatchAlertRuleByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /setting/alert/rules/{id}][%d] patchAlertRuleByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchAlertRuleByIDOK) GetPayload() *models.AlertRule {
+	return o.Payload
 }
 
 func (o *PatchAlertRuleByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchAlertRuleByIDDefault(code int) *PatchAlertRuleByIDDefault {
 	}
 }
 
-/*PatchAlertRuleByIDDefault handles this case with default header values.
+/* PatchAlertRuleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchAlertRuleByIDDefault) Code() int {
 
 func (o *PatchAlertRuleByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /setting/alert/rules/{id}][%d] patchAlertRuleById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchAlertRuleByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchAlertRuleByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

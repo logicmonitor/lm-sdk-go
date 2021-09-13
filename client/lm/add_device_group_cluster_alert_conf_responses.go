@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddDeviceGroupClusterAlertConfReader is a Reader for the AddDeviceGroupClusterAlertConf structure.
@@ -24,14 +23,12 @@ type AddDeviceGroupClusterAlertConfReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddDeviceGroupClusterAlertConfReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddDeviceGroupClusterAlertConfOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddDeviceGroupClusterAlertConfDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddDeviceGroupClusterAlertConfOK() *AddDeviceGroupClusterAlertConfOK {
 	return &AddDeviceGroupClusterAlertConfOK{}
 }
 
-/*AddDeviceGroupClusterAlertConfOK handles this case with default header values.
+/* AddDeviceGroupClusterAlertConfOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddDeviceGroupClusterAlertConfOK struct {
 
 func (o *AddDeviceGroupClusterAlertConfOK) Error() string {
 	return fmt.Sprintf("[POST /device/groups/{deviceGroupId}/clusterAlertConf][%d] addDeviceGroupClusterAlertConfOK  %+v", 200, o.Payload)
+}
+func (o *AddDeviceGroupClusterAlertConfOK) GetPayload() *models.DeviceClusterAlertConfig {
+	return o.Payload
 }
 
 func (o *AddDeviceGroupClusterAlertConfOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddDeviceGroupClusterAlertConfDefault(code int) *AddDeviceGroupClusterAl
 	}
 }
 
-/*AddDeviceGroupClusterAlertConfDefault handles this case with default header values.
+/* AddDeviceGroupClusterAlertConfDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddDeviceGroupClusterAlertConfDefault) Code() int {
 
 func (o *AddDeviceGroupClusterAlertConfDefault) Error() string {
 	return fmt.Sprintf("[POST /device/groups/{deviceGroupId}/clusterAlertConf][%d] addDeviceGroupClusterAlertConf default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddDeviceGroupClusterAlertConfDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddDeviceGroupClusterAlertConfDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDashboardGroupListReader is a Reader for the GetDashboardGroupList structure.
@@ -24,14 +23,12 @@ type GetDashboardGroupListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDashboardGroupListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDashboardGroupListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDashboardGroupListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDashboardGroupListOK() *GetDashboardGroupListOK {
 	return &GetDashboardGroupListOK{}
 }
 
-/*GetDashboardGroupListOK handles this case with default header values.
+/* GetDashboardGroupListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDashboardGroupListOK struct {
 
 func (o *GetDashboardGroupListOK) Error() string {
 	return fmt.Sprintf("[GET /dashboard/groups][%d] getDashboardGroupListOK  %+v", 200, o.Payload)
+}
+func (o *GetDashboardGroupListOK) GetPayload() *models.DashboardGroupPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetDashboardGroupListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDashboardGroupListDefault(code int) *GetDashboardGroupListDefault {
 	}
 }
 
-/*GetDashboardGroupListDefault handles this case with default header values.
+/* GetDashboardGroupListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDashboardGroupListDefault) Code() int {
 
 func (o *GetDashboardGroupListDefault) Error() string {
 	return fmt.Sprintf("[GET /dashboard/groups][%d] getDashboardGroupList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDashboardGroupListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDashboardGroupListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

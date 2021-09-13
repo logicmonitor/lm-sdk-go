@@ -6,75 +6,91 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewPatchNetscanParams creates a new PatchNetscanParams object
-// with the default values initialized.
+// NewPatchNetscanParams creates a new PatchNetscanParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPatchNetscanParams() *PatchNetscanParams {
-	var ()
 	return &PatchNetscanParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPatchNetscanParamsWithTimeout creates a new PatchNetscanParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPatchNetscanParamsWithTimeout(timeout time.Duration) *PatchNetscanParams {
-	var ()
 	return &PatchNetscanParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPatchNetscanParamsWithContext creates a new PatchNetscanParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPatchNetscanParamsWithContext(ctx context.Context) *PatchNetscanParams {
-	var ()
 	return &PatchNetscanParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPatchNetscanParamsWithHTTPClient creates a new PatchNetscanParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPatchNetscanParamsWithHTTPClient(client *http.Client) *PatchNetscanParams {
-	var ()
 	return &PatchNetscanParams{
 		HTTPClient: client,
 	}
 }
 
-/*PatchNetscanParams contains all the parameters to send to the API endpoint
-for the patch netscan operation typically these are written to a http.Request
+/* PatchNetscanParams contains all the parameters to send to the API endpoint
+   for the patch netscan operation.
+
+   Typically these are written to a http.Request.
 */
 type PatchNetscanParams struct {
 
-	/*Body*/
+	// Body.
 	Body models.Netscan
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
-	/*Reason*/
+
+	// Reason.
 	Reason *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the patch netscan params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchNetscanParams) WithDefaults() *PatchNetscanParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the patch netscan params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchNetscanParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch netscan params
@@ -150,7 +166,6 @@ func (o *PatchNetscanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}
@@ -164,16 +179,17 @@ func (o *PatchNetscanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 
 		// query param reason
 		var qrReason string
+
 		if o.Reason != nil {
 			qrReason = *o.Reason
 		}
 		qReason := qrReason
 		if qReason != "" {
+
 			if err := r.SetQueryParam("reason", qReason); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

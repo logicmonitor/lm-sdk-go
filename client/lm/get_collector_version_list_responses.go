@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetCollectorVersionListReader is a Reader for the GetCollectorVersionList structure.
@@ -24,14 +23,12 @@ type GetCollectorVersionListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetCollectorVersionListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetCollectorVersionListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetCollectorVersionListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetCollectorVersionListOK() *GetCollectorVersionListOK {
 	return &GetCollectorVersionListOK{}
 }
 
-/*GetCollectorVersionListOK handles this case with default header values.
+/* GetCollectorVersionListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetCollectorVersionListOK struct {
 
 func (o *GetCollectorVersionListOK) Error() string {
 	return fmt.Sprintf("[GET /setting/collector/collectors/versions][%d] getCollectorVersionListOK  %+v", 200, o.Payload)
+}
+func (o *GetCollectorVersionListOK) GetPayload() *models.CollectorVersionPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetCollectorVersionListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetCollectorVersionListDefault(code int) *GetCollectorVersionListDefault
 	}
 }
 
-/*GetCollectorVersionListDefault handles this case with default header values.
+/* GetCollectorVersionListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetCollectorVersionListDefault) Code() int {
 
 func (o *GetCollectorVersionListDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/collector/collectors/versions][%d] getCollectorVersionList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetCollectorVersionListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetCollectorVersionListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

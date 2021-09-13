@@ -7,17 +7,18 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // AzureRssEventSource azure rss event source
+//
 // swagger:model AzureRssEventSource
 type AzureRssEventSource struct {
 	alertBodyTemplateField string
@@ -41,6 +42,8 @@ type AzureRssEventSource struct {
 	idField int32
 
 	nameField *string
+
+	suppressDuplicatesESField bool
 
 	tagsField string
 
@@ -119,7 +122,6 @@ func (m *AzureRssEventSource) Collector() string {
 
 // SetCollector sets the collector of this subtype
 func (m *AzureRssEventSource) SetCollector(val string) {
-
 }
 
 // Description gets the description of this subtype
@@ -172,6 +174,16 @@ func (m *AzureRssEventSource) SetName(val *string) {
 	m.nameField = val
 }
 
+// SuppressDuplicatesES gets the suppress duplicates e s of this subtype
+func (m *AzureRssEventSource) SuppressDuplicatesES() bool {
+	return m.suppressDuplicatesESField
+}
+
+// SetSuppressDuplicatesES sets the suppress duplicates e s of this subtype
+func (m *AzureRssEventSource) SetSuppressDuplicatesES(val bool) {
+	m.suppressDuplicatesESField = val
+}
+
 // Tags gets the tags of this subtype
 func (m *AzureRssEventSource) Tags() string {
 	return m.tagsField
@@ -201,8 +213,6 @@ func (m *AzureRssEventSource) Version() int64 {
 func (m *AzureRssEventSource) SetVersion(val int64) {
 	m.versionField = val
 }
-
-// Schedule gets the schedule of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *AzureRssEventSource) UnmarshalJSON(raw []byte) error {
@@ -246,6 +256,8 @@ func (m *AzureRssEventSource) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
+		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
+
 		Tags string `json:"tags,omitempty"`
 
 		Technology string `json:"technology,omitempty"`
@@ -278,7 +290,6 @@ func (m *AzureRssEventSource) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid collector value: %q", base.Collector)
 	}
-
 	result.descriptionField = base.Description
 
 	result.filtersField = base.Filters
@@ -288,6 +299,8 @@ func (m *AzureRssEventSource) UnmarshalJSON(raw []byte) error {
 	result.idField = base.ID
 
 	result.nameField = base.Name
+
+	result.suppressDuplicatesESField = base.SuppressDuplicatesES
 
 	result.tagsField = base.Tags
 
@@ -313,8 +326,7 @@ func (m AzureRssEventSource) MarshalJSON() ([]byte, error) {
 	}{
 
 		Schedule: m.Schedule,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -342,6 +354,8 @@ func (m AzureRssEventSource) MarshalJSON() ([]byte, error) {
 		ID int32 `json:"id"`
 
 		Name *string `json:"name"`
+
+		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
 
 		Tags string `json:"tags,omitempty"`
 
@@ -374,13 +388,14 @@ func (m AzureRssEventSource) MarshalJSON() ([]byte, error) {
 
 		Name: m.Name(),
 
+		SuppressDuplicatesES: m.SuppressDuplicatesES(),
+
 		Tags: m.Tags(),
 
 		Technology: m.Technology(),
 
 		Version: m.Version(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -460,6 +475,64 @@ func (m *AzureRssEventSource) validateID(formats strfmt.Registry) error {
 func (m *AzureRssEventSource) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this azure rss event source based on the context it is used
+func (m *AzureRssEventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateFilters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AzureRssEventSource) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Filters()); i++ {
+
+		if m.filtersField[i] != nil {
+			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AzureRssEventSource) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AzureRssEventSource) contextValidateVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "version", "body", int64(m.Version())); err != nil {
 		return err
 	}
 

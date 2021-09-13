@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetAppliesToFunctionListReader is a Reader for the GetAppliesToFunctionList structure.
@@ -24,14 +23,12 @@ type GetAppliesToFunctionListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAppliesToFunctionListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetAppliesToFunctionListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetAppliesToFunctionListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetAppliesToFunctionListOK() *GetAppliesToFunctionListOK {
 	return &GetAppliesToFunctionListOK{}
 }
 
-/*GetAppliesToFunctionListOK handles this case with default header values.
+/* GetAppliesToFunctionListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetAppliesToFunctionListOK struct {
 
 func (o *GetAppliesToFunctionListOK) Error() string {
 	return fmt.Sprintf("[GET /setting/functions][%d] getAppliesToFunctionListOK  %+v", 200, o.Payload)
+}
+func (o *GetAppliesToFunctionListOK) GetPayload() *models.RestAppliesToFunctionPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetAppliesToFunctionListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetAppliesToFunctionListDefault(code int) *GetAppliesToFunctionListDefau
 	}
 }
 
-/*GetAppliesToFunctionListDefault handles this case with default header values.
+/* GetAppliesToFunctionListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetAppliesToFunctionListDefault) Code() int {
 
 func (o *GetAppliesToFunctionListDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/functions][%d] getAppliesToFunctionList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetAppliesToFunctionListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetAppliesToFunctionListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

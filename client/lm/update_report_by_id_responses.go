@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateReportByIDReader is a Reader for the UpdateReportByID structure.
@@ -24,14 +23,12 @@ type UpdateReportByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateReportByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateReportByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateReportByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateReportByIDOK() *UpdateReportByIDOK {
 	return &UpdateReportByIDOK{}
 }
 
-/*UpdateReportByIDOK handles this case with default header values.
+/* UpdateReportByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateReportByIDOK struct {
 
 func (o *UpdateReportByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /report/reports/{id}][%d] updateReportByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateReportByIDOK) GetPayload() models.ReportBase {
+	return o.Payload
 }
 
 func (o *UpdateReportByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateReportByIDDefault(code int) *UpdateReportByIDDefault {
 	}
 }
 
-/*UpdateReportByIDDefault handles this case with default header values.
+/* UpdateReportByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateReportByIDDefault) Code() int {
 
 func (o *UpdateReportByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /report/reports/{id}][%d] updateReportById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateReportByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateReportByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

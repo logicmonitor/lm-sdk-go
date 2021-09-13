@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetWebsiteCheckpointDataByIDReader is a Reader for the GetWebsiteCheckpointDataByID structure.
@@ -24,14 +23,12 @@ type GetWebsiteCheckpointDataByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetWebsiteCheckpointDataByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetWebsiteCheckpointDataByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetWebsiteCheckpointDataByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetWebsiteCheckpointDataByIDOK() *GetWebsiteCheckpointDataByIDOK {
 	return &GetWebsiteCheckpointDataByIDOK{}
 }
 
-/*GetWebsiteCheckpointDataByIDOK handles this case with default header values.
+/* GetWebsiteCheckpointDataByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetWebsiteCheckpointDataByIDOK struct {
 
 func (o *GetWebsiteCheckpointDataByIDOK) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{srvId}/checkpoints/{checkId}/data][%d] getWebsiteCheckpointDataByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetWebsiteCheckpointDataByIDOK) GetPayload() *models.WebsiteCheckpointRawData {
+	return o.Payload
 }
 
 func (o *GetWebsiteCheckpointDataByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetWebsiteCheckpointDataByIDDefault(code int) *GetWebsiteCheckpointDataB
 	}
 }
 
-/*GetWebsiteCheckpointDataByIDDefault handles this case with default header values.
+/* GetWebsiteCheckpointDataByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetWebsiteCheckpointDataByIDDefault) Code() int {
 
 func (o *GetWebsiteCheckpointDataByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{srvId}/checkpoints/{checkId}/data][%d] getWebsiteCheckpointDataById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetWebsiteCheckpointDataByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetWebsiteCheckpointDataByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

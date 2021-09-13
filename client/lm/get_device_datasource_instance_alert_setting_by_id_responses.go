@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceDatasourceInstanceAlertSettingByIDReader is a Reader for the GetDeviceDatasourceInstanceAlertSettingByID structure.
@@ -24,14 +23,12 @@ type GetDeviceDatasourceInstanceAlertSettingByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceDatasourceInstanceAlertSettingByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceDatasourceInstanceAlertSettingByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceDatasourceInstanceAlertSettingByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceDatasourceInstanceAlertSettingByIDOK() *GetDeviceDatasourceInst
 	return &GetDeviceDatasourceInstanceAlertSettingByIDOK{}
 }
 
-/*GetDeviceDatasourceInstanceAlertSettingByIDOK handles this case with default header values.
+/* GetDeviceDatasourceInstanceAlertSettingByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceDatasourceInstanceAlertSettingByIDOK struct {
 
 func (o *GetDeviceDatasourceInstanceAlertSettingByIDOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] getDeviceDatasourceInstanceAlertSettingByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceDatasourceInstanceAlertSettingByIDOK) GetPayload() *models.DeviceDataSourceInstanceAlertSetting {
+	return o.Payload
 }
 
 func (o *GetDeviceDatasourceInstanceAlertSettingByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceDatasourceInstanceAlertSettingByIDDefault(code int) *GetDeviceD
 	}
 }
 
-/*GetDeviceDatasourceInstanceAlertSettingByIDDefault handles this case with default header values.
+/* GetDeviceDatasourceInstanceAlertSettingByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceDatasourceInstanceAlertSettingByIDDefault) Code() int {
 
 func (o *GetDeviceDatasourceInstanceAlertSettingByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] getDeviceDatasourceInstanceAlertSettingById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceDatasourceInstanceAlertSettingByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceDatasourceInstanceAlertSettingByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

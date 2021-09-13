@@ -6,89 +6,105 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewUpdateAppliesToFunctionParams creates a new UpdateAppliesToFunctionParams object
-// with the default values initialized.
+// NewUpdateAppliesToFunctionParams creates a new UpdateAppliesToFunctionParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateAppliesToFunctionParams() *UpdateAppliesToFunctionParams {
-	var (
-		ignoreReferenceDefault = bool(false)
-	)
 	return &UpdateAppliesToFunctionParams{
-		IgnoreReference: &ignoreReferenceDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateAppliesToFunctionParamsWithTimeout creates a new UpdateAppliesToFunctionParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateAppliesToFunctionParamsWithTimeout(timeout time.Duration) *UpdateAppliesToFunctionParams {
-	var (
-		ignoreReferenceDefault = bool(false)
-	)
 	return &UpdateAppliesToFunctionParams{
-		IgnoreReference: &ignoreReferenceDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateAppliesToFunctionParamsWithContext creates a new UpdateAppliesToFunctionParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateAppliesToFunctionParamsWithContext(ctx context.Context) *UpdateAppliesToFunctionParams {
-	var (
-		ignoreReferenceDefault = bool(false)
-	)
 	return &UpdateAppliesToFunctionParams{
-		IgnoreReference: &ignoreReferenceDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateAppliesToFunctionParamsWithHTTPClient creates a new UpdateAppliesToFunctionParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateAppliesToFunctionParamsWithHTTPClient(client *http.Client) *UpdateAppliesToFunctionParams {
-	var (
-		ignoreReferenceDefault = bool(false)
-	)
 	return &UpdateAppliesToFunctionParams{
-		IgnoreReference: &ignoreReferenceDefault,
-		HTTPClient:      client,
+		HTTPClient: client,
 	}
 }
 
-/*UpdateAppliesToFunctionParams contains all the parameters to send to the API endpoint
-for the update applies to function operation typically these are written to a http.Request
+/* UpdateAppliesToFunctionParams contains all the parameters to send to the API endpoint
+   for the update applies to function operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateAppliesToFunctionParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.AppliesToFunction
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
-	/*IgnoreReference*/
+
+	// IgnoreReference.
 	IgnoreReference *bool
-	/*Reason*/
+
+	// Reason.
 	Reason *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update applies to function params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAppliesToFunctionParams) WithDefaults() *UpdateAppliesToFunctionParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update applies to function params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateAppliesToFunctionParams) SetDefaults() {
+	var (
+		ignoreReferenceDefault = bool(false)
+	)
+
+	val := UpdateAppliesToFunctionParams{
+		IgnoreReference: &ignoreReferenceDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update applies to function params
@@ -175,7 +191,6 @@ func (o *UpdateAppliesToFunctionParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
@@ -191,32 +206,34 @@ func (o *UpdateAppliesToFunctionParams) WriteToRequest(r runtime.ClientRequest, 
 
 		// query param ignoreReference
 		var qrIgnoreReference bool
+
 		if o.IgnoreReference != nil {
 			qrIgnoreReference = *o.IgnoreReference
 		}
 		qIgnoreReference := swag.FormatBool(qrIgnoreReference)
 		if qIgnoreReference != "" {
+
 			if err := r.SetQueryParam("ignoreReference", qIgnoreReference); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Reason != nil {
 
 		// query param reason
 		var qrReason string
+
 		if o.Reason != nil {
 			qrReason = *o.Reason
 		}
 		qReason := qrReason
 		if qReason != "" {
+
 			if err := r.SetQueryParam("reason", qReason); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

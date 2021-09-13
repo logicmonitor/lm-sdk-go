@@ -6,73 +6,88 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewUpdateDashboardGroupByIDParams creates a new UpdateDashboardGroupByIDParams object
-// with the default values initialized.
+// NewUpdateDashboardGroupByIDParams creates a new UpdateDashboardGroupByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateDashboardGroupByIDParams() *UpdateDashboardGroupByIDParams {
-	var ()
 	return &UpdateDashboardGroupByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateDashboardGroupByIDParamsWithTimeout creates a new UpdateDashboardGroupByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateDashboardGroupByIDParamsWithTimeout(timeout time.Duration) *UpdateDashboardGroupByIDParams {
-	var ()
 	return &UpdateDashboardGroupByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateDashboardGroupByIDParamsWithContext creates a new UpdateDashboardGroupByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateDashboardGroupByIDParamsWithContext(ctx context.Context) *UpdateDashboardGroupByIDParams {
-	var ()
 	return &UpdateDashboardGroupByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateDashboardGroupByIDParamsWithHTTPClient creates a new UpdateDashboardGroupByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateDashboardGroupByIDParamsWithHTTPClient(client *http.Client) *UpdateDashboardGroupByIDParams {
-	var ()
 	return &UpdateDashboardGroupByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateDashboardGroupByIDParams contains all the parameters to send to the API endpoint
-for the update dashboard group by Id operation typically these are written to a http.Request
+/* UpdateDashboardGroupByIDParams contains all the parameters to send to the API endpoint
+   for the update dashboard group by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateDashboardGroupByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.DashboardGroup
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update dashboard group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateDashboardGroupByIDParams) WithDefaults() *UpdateDashboardGroupByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update dashboard group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateDashboardGroupByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update dashboard group by Id params
@@ -137,7 +152,6 @@ func (o *UpdateDashboardGroupByIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

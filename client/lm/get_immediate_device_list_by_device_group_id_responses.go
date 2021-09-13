@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetImmediateDeviceListByDeviceGroupIDReader is a Reader for the GetImmediateDeviceListByDeviceGroupID structure.
@@ -24,14 +23,12 @@ type GetImmediateDeviceListByDeviceGroupIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetImmediateDeviceListByDeviceGroupIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetImmediateDeviceListByDeviceGroupIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetImmediateDeviceListByDeviceGroupIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetImmediateDeviceListByDeviceGroupIDOK() *GetImmediateDeviceListByDevic
 	return &GetImmediateDeviceListByDeviceGroupIDOK{}
 }
 
-/*GetImmediateDeviceListByDeviceGroupIDOK handles this case with default header values.
+/* GetImmediateDeviceListByDeviceGroupIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetImmediateDeviceListByDeviceGroupIDOK struct {
 
 func (o *GetImmediateDeviceListByDeviceGroupIDOK) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{id}/devices][%d] getImmediateDeviceListByDeviceGroupIdOK  %+v", 200, o.Payload)
+}
+func (o *GetImmediateDeviceListByDeviceGroupIDOK) GetPayload() *models.DevicePaginationResponse {
+	return o.Payload
 }
 
 func (o *GetImmediateDeviceListByDeviceGroupIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetImmediateDeviceListByDeviceGroupIDDefault(code int) *GetImmediateDevi
 	}
 }
 
-/*GetImmediateDeviceListByDeviceGroupIDDefault handles this case with default header values.
+/* GetImmediateDeviceListByDeviceGroupIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetImmediateDeviceListByDeviceGroupIDDefault) Code() int {
 
 func (o *GetImmediateDeviceListByDeviceGroupIDDefault) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{id}/devices][%d] getImmediateDeviceListByDeviceGroupId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetImmediateDeviceListByDeviceGroupIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetImmediateDeviceListByDeviceGroupIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

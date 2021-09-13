@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateWidgetByIDReader is a Reader for the UpdateWidgetByID structure.
@@ -24,14 +23,12 @@ type UpdateWidgetByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateWidgetByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateWidgetByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateWidgetByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateWidgetByIDOK() *UpdateWidgetByIDOK {
 	return &UpdateWidgetByIDOK{}
 }
 
-/*UpdateWidgetByIDOK handles this case with default header values.
+/* UpdateWidgetByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateWidgetByIDOK struct {
 
 func (o *UpdateWidgetByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /dashboard/widgets/{id}][%d] updateWidgetByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateWidgetByIDOK) GetPayload() models.Widget {
+	return o.Payload
 }
 
 func (o *UpdateWidgetByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateWidgetByIDDefault(code int) *UpdateWidgetByIDDefault {
 	}
 }
 
-/*UpdateWidgetByIDDefault handles this case with default header values.
+/* UpdateWidgetByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateWidgetByIDDefault) Code() int {
 
 func (o *UpdateWidgetByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /dashboard/widgets/{id}][%d] updateWidgetById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateWidgetByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateWidgetByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

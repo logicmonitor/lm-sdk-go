@@ -6,73 +6,104 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewPatchDeviceGroupByIDParams creates a new PatchDeviceGroupByIDParams object
-// with the default values initialized.
+// NewPatchDeviceGroupByIDParams creates a new PatchDeviceGroupByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPatchDeviceGroupByIDParams() *PatchDeviceGroupByIDParams {
-	var ()
 	return &PatchDeviceGroupByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPatchDeviceGroupByIDParamsWithTimeout creates a new PatchDeviceGroupByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPatchDeviceGroupByIDParamsWithTimeout(timeout time.Duration) *PatchDeviceGroupByIDParams {
-	var ()
 	return &PatchDeviceGroupByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPatchDeviceGroupByIDParamsWithContext creates a new PatchDeviceGroupByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPatchDeviceGroupByIDParamsWithContext(ctx context.Context) *PatchDeviceGroupByIDParams {
-	var ()
 	return &PatchDeviceGroupByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPatchDeviceGroupByIDParamsWithHTTPClient creates a new PatchDeviceGroupByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPatchDeviceGroupByIDParamsWithHTTPClient(client *http.Client) *PatchDeviceGroupByIDParams {
-	var ()
 	return &PatchDeviceGroupByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*PatchDeviceGroupByIDParams contains all the parameters to send to the API endpoint
-for the patch device group by Id operation typically these are written to a http.Request
+/* PatchDeviceGroupByIDParams contains all the parameters to send to the API endpoint
+   for the patch device group by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type PatchDeviceGroupByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.DeviceGroup
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
+
+	// OpType.
+	//
+	// Default: "refresh"
+	OpType *string
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the patch device group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchDeviceGroupByIDParams) WithDefaults() *PatchDeviceGroupByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the patch device group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchDeviceGroupByIDParams) SetDefaults() {
+	var (
+		opTypeDefault = string("refresh")
+	)
+
+	val := PatchDeviceGroupByIDParams{
+		OpType: &opTypeDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the patch device group by Id params
@@ -130,6 +161,17 @@ func (o *PatchDeviceGroupByIDParams) SetID(id int32) {
 	o.ID = id
 }
 
+// WithOpType adds the opType to the patch device group by Id params
+func (o *PatchDeviceGroupByIDParams) WithOpType(opType *string) *PatchDeviceGroupByIDParams {
+	o.SetOpType(opType)
+	return o
+}
+
+// SetOpType adds the opType to the patch device group by Id params
+func (o *PatchDeviceGroupByIDParams) SetOpType(opType *string) {
+	o.OpType = opType
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PatchDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -137,7 +179,6 @@ func (o *PatchDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
@@ -147,6 +188,23 @@ func (o *PatchDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, reg
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {
 		return err
+	}
+
+	if o.OpType != nil {
+
+		// query param opType
+		var qrOpType string
+
+		if o.OpType != nil {
+			qrOpType = *o.OpType
+		}
+		qOpType := qrOpType
+		if qOpType != "" {
+
+			if err := r.SetQueryParam("opType", qOpType); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteDashboardGroupByIDReader is a Reader for the DeleteDashboardGroupByID structure.
@@ -24,14 +23,12 @@ type DeleteDashboardGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteDashboardGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteDashboardGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteDashboardGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteDashboardGroupByIDOK() *DeleteDashboardGroupByIDOK {
 	return &DeleteDashboardGroupByIDOK{}
 }
 
-/*DeleteDashboardGroupByIDOK handles this case with default header values.
+/* DeleteDashboardGroupByIDOK describes a response with status code 200, with default header values.
 
 OK
 */
@@ -59,6 +56,9 @@ type DeleteDashboardGroupByIDOK struct {
 
 func (o *DeleteDashboardGroupByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /dashboard/groups/{id}][%d] deleteDashboardGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteDashboardGroupByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteDashboardGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteDashboardGroupByIDDefault(code int) *DeleteDashboardGroupByIDDefau
 	}
 }
 
-/*DeleteDashboardGroupByIDDefault handles this case with default header values.
+/* DeleteDashboardGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteDashboardGroupByIDDefault) Code() int {
 
 func (o *DeleteDashboardGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /dashboard/groups/{id}][%d] deleteDashboardGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteDashboardGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteDashboardGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

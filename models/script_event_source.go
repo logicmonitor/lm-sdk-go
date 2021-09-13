@@ -7,17 +7,18 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // ScriptEventSource script event source
+//
 // swagger:model ScriptEventSource
 type ScriptEventSource struct {
 	alertBodyTemplateField string
@@ -41,6 +42,8 @@ type ScriptEventSource struct {
 	idField int32
 
 	nameField *string
+
+	suppressDuplicatesESField bool
 
 	tagsField string
 
@@ -137,7 +140,6 @@ func (m *ScriptEventSource) Collector() string {
 
 // SetCollector sets the collector of this subtype
 func (m *ScriptEventSource) SetCollector(val string) {
-
 }
 
 // Description gets the description of this subtype
@@ -190,6 +192,16 @@ func (m *ScriptEventSource) SetName(val *string) {
 	m.nameField = val
 }
 
+// SuppressDuplicatesES gets the suppress duplicates e s of this subtype
+func (m *ScriptEventSource) SuppressDuplicatesES() bool {
+	return m.suppressDuplicatesESField
+}
+
+// SetSuppressDuplicatesES sets the suppress duplicates e s of this subtype
+func (m *ScriptEventSource) SetSuppressDuplicatesES(val bool) {
+	m.suppressDuplicatesESField = val
+}
+
 // Tags gets the tags of this subtype
 func (m *ScriptEventSource) Tags() string {
 	return m.tagsField
@@ -219,20 +231,6 @@ func (m *ScriptEventSource) Version() int64 {
 func (m *ScriptEventSource) SetVersion(val int64) {
 	m.versionField = val
 }
-
-// GroovyScript gets the groovy script of this subtype
-
-// LinuxCmdline gets the linux cmdline of this subtype
-
-// LinuxScript gets the linux script of this subtype
-
-// Schedule gets the schedule of this subtype
-
-// ScriptType gets the script type of this subtype
-
-// WindowsCmdline gets the windows cmdline of this subtype
-
-// WindowsScript gets the windows script of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *ScriptEventSource) UnmarshalJSON(raw []byte) error {
@@ -294,6 +292,8 @@ func (m *ScriptEventSource) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
+		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
+
 		Tags string `json:"tags,omitempty"`
 
 		Technology string `json:"technology,omitempty"`
@@ -326,7 +326,6 @@ func (m *ScriptEventSource) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid collector value: %q", base.Collector)
 	}
-
 	result.descriptionField = base.Description
 
 	result.filtersField = base.Filters
@@ -337,6 +336,8 @@ func (m *ScriptEventSource) UnmarshalJSON(raw []byte) error {
 
 	result.nameField = base.Name
 
+	result.suppressDuplicatesESField = base.SuppressDuplicatesES
+
 	result.tagsField = base.Tags
 
 	result.technologyField = base.Technology
@@ -344,17 +345,11 @@ func (m *ScriptEventSource) UnmarshalJSON(raw []byte) error {
 	result.versionField = base.Version
 
 	result.GroovyScript = data.GroovyScript
-
 	result.LinuxCmdline = data.LinuxCmdline
-
 	result.LinuxScript = data.LinuxScript
-
 	result.Schedule = data.Schedule
-
 	result.ScriptType = data.ScriptType
-
 	result.WindowsCmdline = data.WindowsCmdline
-
 	result.WindowsScript = data.WindowsScript
 
 	*m = result
@@ -403,8 +398,7 @@ func (m ScriptEventSource) MarshalJSON() ([]byte, error) {
 		WindowsCmdline: m.WindowsCmdline,
 
 		WindowsScript: m.WindowsScript,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -432,6 +426,8 @@ func (m ScriptEventSource) MarshalJSON() ([]byte, error) {
 		ID int32 `json:"id"`
 
 		Name *string `json:"name"`
+
+		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
 
 		Tags string `json:"tags,omitempty"`
 
@@ -464,13 +460,14 @@ func (m ScriptEventSource) MarshalJSON() ([]byte, error) {
 
 		Name: m.Name(),
 
+		SuppressDuplicatesES: m.SuppressDuplicatesES(),
+
 		Tags: m.Tags(),
 
 		Technology: m.Technology(),
 
 		Version: m.Version(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -550,6 +547,64 @@ func (m *ScriptEventSource) validateID(formats strfmt.Registry) error {
 func (m *ScriptEventSource) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this script event source based on the context it is used
+func (m *ScriptEventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateFilters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *ScriptEventSource) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Filters()); i++ {
+
+		if m.filtersField[i] != nil {
+			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *ScriptEventSource) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ScriptEventSource) contextValidateVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "version", "body", int64(m.Version())); err != nil {
 		return err
 	}
 

@@ -6,130 +6,143 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetWebsiteCheckpointDataByIDParams creates a new GetWebsiteCheckpointDataByIDParams object
-// with the default values initialized.
+// NewGetWebsiteCheckpointDataByIDParams creates a new GetWebsiteCheckpointDataByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetWebsiteCheckpointDataByIDParams() *GetWebsiteCheckpointDataByIDParams {
-	var (
-		aggregateDefault = string("none")
-		endDefault       = int64(0)
-		formatDefault    = string("json")
-		periodDefault    = float64(1)
-		startDefault     = int64(0)
-	)
 	return &GetWebsiteCheckpointDataByIDParams{
-		Aggregate: &aggregateDefault,
-		End:       &endDefault,
-		Format:    &formatDefault,
-		Period:    &periodDefault,
-		Start:     &startDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetWebsiteCheckpointDataByIDParamsWithTimeout creates a new GetWebsiteCheckpointDataByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetWebsiteCheckpointDataByIDParamsWithTimeout(timeout time.Duration) *GetWebsiteCheckpointDataByIDParams {
-	var (
-		aggregateDefault = string("none")
-		endDefault       = int64(0)
-		formatDefault    = string("json")
-		periodDefault    = float64(1)
-		startDefault     = int64(0)
-	)
 	return &GetWebsiteCheckpointDataByIDParams{
-		Aggregate: &aggregateDefault,
-		End:       &endDefault,
-		Format:    &formatDefault,
-		Period:    &periodDefault,
-		Start:     &startDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetWebsiteCheckpointDataByIDParamsWithContext creates a new GetWebsiteCheckpointDataByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetWebsiteCheckpointDataByIDParamsWithContext(ctx context.Context) *GetWebsiteCheckpointDataByIDParams {
-	var (
-		aggregateDefault = string("none")
-		endDefault       = int64(0)
-		formatDefault    = string("json")
-		periodDefault    = float64(1)
-		startDefault     = int64(0)
-	)
 	return &GetWebsiteCheckpointDataByIDParams{
-		Aggregate: &aggregateDefault,
-		End:       &endDefault,
-		Format:    &formatDefault,
-		Period:    &periodDefault,
-		Start:     &startDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetWebsiteCheckpointDataByIDParamsWithHTTPClient creates a new GetWebsiteCheckpointDataByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetWebsiteCheckpointDataByIDParamsWithHTTPClient(client *http.Client) *GetWebsiteCheckpointDataByIDParams {
-	var (
-		aggregateDefault = string("none")
-		endDefault       = int64(0)
-		formatDefault    = string("json")
-		periodDefault    = float64(1)
-		startDefault     = int64(0)
-	)
 	return &GetWebsiteCheckpointDataByIDParams{
-		Aggregate:  &aggregateDefault,
-		End:        &endDefault,
-		Format:     &formatDefault,
-		Period:     &periodDefault,
-		Start:      &startDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetWebsiteCheckpointDataByIDParams contains all the parameters to send to the API endpoint
-for the get website checkpoint data by Id operation typically these are written to a http.Request
+/* GetWebsiteCheckpointDataByIDParams contains all the parameters to send to the API endpoint
+   for the get website checkpoint data by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type GetWebsiteCheckpointDataByIDParams struct {
 
-	/*Aggregate
-	  the aggregate option
+	/* Aggregate.
 
+	   the aggregate option
+
+	   Default: "none"
 	*/
 	Aggregate *string
-	/*CheckID*/
+
+	// CheckID.
+	//
+	// Format: int32
 	CheckID int32
-	/*Datapoints*/
+
+	// Datapoints.
 	Datapoints *string
-	/*End*/
+
+	// End.
+	//
+	// Format: int64
 	End *int64
-	/*Format*/
+
+	// Format.
+	//
+	// Default: "json"
 	Format *string
-	/*Period*/
+
+	// Period.
+	//
+	// Format: double
+	// Default: 1
 	Period *float64
-	/*SrvID*/
+
+	// SrvID.
+	//
+	// Format: int32
 	SrvID int32
-	/*Start*/
+
+	// Start.
+	//
+	// Format: int64
 	Start *int64
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get website checkpoint data by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetWebsiteCheckpointDataByIDParams) WithDefaults() *GetWebsiteCheckpointDataByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get website checkpoint data by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetWebsiteCheckpointDataByIDParams) SetDefaults() {
+	var (
+		aggregateDefault = string("none")
+
+		endDefault = int64(0)
+
+		formatDefault = string("json")
+
+		periodDefault = float64(1)
+
+		startDefault = int64(0)
+	)
+
+	val := GetWebsiteCheckpointDataByIDParams{
+		Aggregate: &aggregateDefault,
+		End:       &endDefault,
+		Format:    &formatDefault,
+		Period:    &periodDefault,
+		Start:     &startDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get website checkpoint data by Id params
@@ -265,16 +278,17 @@ func (o *GetWebsiteCheckpointDataByIDParams) WriteToRequest(r runtime.ClientRequ
 
 		// query param aggregate
 		var qrAggregate string
+
 		if o.Aggregate != nil {
 			qrAggregate = *o.Aggregate
 		}
 		qAggregate := qrAggregate
 		if qAggregate != "" {
+
 			if err := r.SetQueryParam("aggregate", qAggregate); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param checkId
@@ -286,64 +300,68 @@ func (o *GetWebsiteCheckpointDataByIDParams) WriteToRequest(r runtime.ClientRequ
 
 		// query param datapoints
 		var qrDatapoints string
+
 		if o.Datapoints != nil {
 			qrDatapoints = *o.Datapoints
 		}
 		qDatapoints := qrDatapoints
 		if qDatapoints != "" {
+
 			if err := r.SetQueryParam("datapoints", qDatapoints); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.End != nil {
 
 		// query param end
 		var qrEnd int64
+
 		if o.End != nil {
 			qrEnd = *o.End
 		}
 		qEnd := swag.FormatInt64(qrEnd)
 		if qEnd != "" {
+
 			if err := r.SetQueryParam("end", qEnd); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Format != nil {
 
 		// query param format
 		var qrFormat string
+
 		if o.Format != nil {
 			qrFormat = *o.Format
 		}
 		qFormat := qrFormat
 		if qFormat != "" {
+
 			if err := r.SetQueryParam("format", qFormat); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if o.Period != nil {
 
 		// query param period
 		var qrPeriod float64
+
 		if o.Period != nil {
 			qrPeriod = *o.Period
 		}
 		qPeriod := swag.FormatFloat64(qrPeriod)
 		if qPeriod != "" {
+
 			if err := r.SetQueryParam("period", qPeriod); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param srvId
@@ -355,16 +373,17 @@ func (o *GetWebsiteCheckpointDataByIDParams) WriteToRequest(r runtime.ClientRequ
 
 		// query param start
 		var qrStart int64
+
 		if o.Start != nil {
 			qrStart = *o.Start
 		}
 		qStart := swag.FormatInt64(qrStart)
 		if qStart != "" {
+
 			if err := r.SetQueryParam("start", qStart); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	if len(res) > 0 {

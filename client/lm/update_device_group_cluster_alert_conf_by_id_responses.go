@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateDeviceGroupClusterAlertConfByIDReader is a Reader for the UpdateDeviceGroupClusterAlertConfByID structure.
@@ -24,14 +23,12 @@ type UpdateDeviceGroupClusterAlertConfByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateDeviceGroupClusterAlertConfByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateDeviceGroupClusterAlertConfByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateDeviceGroupClusterAlertConfByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateDeviceGroupClusterAlertConfByIDOK() *UpdateDeviceGroupClusterAlert
 	return &UpdateDeviceGroupClusterAlertConfByIDOK{}
 }
 
-/*UpdateDeviceGroupClusterAlertConfByIDOK handles this case with default header values.
+/* UpdateDeviceGroupClusterAlertConfByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateDeviceGroupClusterAlertConfByIDOK struct {
 
 func (o *UpdateDeviceGroupClusterAlertConfByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/clusterAlertConf/{id}][%d] updateDeviceGroupClusterAlertConfByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateDeviceGroupClusterAlertConfByIDOK) GetPayload() *models.DeviceClusterAlertConfig {
+	return o.Payload
 }
 
 func (o *UpdateDeviceGroupClusterAlertConfByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateDeviceGroupClusterAlertConfByIDDefault(code int) *UpdateDeviceGrou
 	}
 }
 
-/*UpdateDeviceGroupClusterAlertConfByIDDefault handles this case with default header values.
+/* UpdateDeviceGroupClusterAlertConfByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateDeviceGroupClusterAlertConfByIDDefault) Code() int {
 
 func (o *UpdateDeviceGroupClusterAlertConfByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/clusterAlertConf/{id}][%d] updateDeviceGroupClusterAlertConfById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateDeviceGroupClusterAlertConfByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateDeviceGroupClusterAlertConfByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

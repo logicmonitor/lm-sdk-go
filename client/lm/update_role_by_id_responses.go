@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateRoleByIDReader is a Reader for the UpdateRoleByID structure.
@@ -24,14 +23,12 @@ type UpdateRoleByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateRoleByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateRoleByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateRoleByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateRoleByIDOK() *UpdateRoleByIDOK {
 	return &UpdateRoleByIDOK{}
 }
 
-/*UpdateRoleByIDOK handles this case with default header values.
+/* UpdateRoleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateRoleByIDOK struct {
 
 func (o *UpdateRoleByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /setting/roles/{id}][%d] updateRoleByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateRoleByIDOK) GetPayload() *models.Role {
+	return o.Payload
 }
 
 func (o *UpdateRoleByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateRoleByIDDefault(code int) *UpdateRoleByIDDefault {
 	}
 }
 
-/*UpdateRoleByIDDefault handles this case with default header values.
+/* UpdateRoleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateRoleByIDDefault) Code() int {
 
 func (o *UpdateRoleByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /setting/roles/{id}][%d] updateRoleById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateRoleByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateRoleByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -6,73 +6,88 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewUpdateReportGroupByIDParams creates a new UpdateReportGroupByIDParams object
-// with the default values initialized.
+// NewUpdateReportGroupByIDParams creates a new UpdateReportGroupByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewUpdateReportGroupByIDParams() *UpdateReportGroupByIDParams {
-	var ()
 	return &UpdateReportGroupByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewUpdateReportGroupByIDParamsWithTimeout creates a new UpdateReportGroupByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewUpdateReportGroupByIDParamsWithTimeout(timeout time.Duration) *UpdateReportGroupByIDParams {
-	var ()
 	return &UpdateReportGroupByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewUpdateReportGroupByIDParamsWithContext creates a new UpdateReportGroupByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewUpdateReportGroupByIDParamsWithContext(ctx context.Context) *UpdateReportGroupByIDParams {
-	var ()
 	return &UpdateReportGroupByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewUpdateReportGroupByIDParamsWithHTTPClient creates a new UpdateReportGroupByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewUpdateReportGroupByIDParamsWithHTTPClient(client *http.Client) *UpdateReportGroupByIDParams {
-	var ()
 	return &UpdateReportGroupByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*UpdateReportGroupByIDParams contains all the parameters to send to the API endpoint
-for the update report group by Id operation typically these are written to a http.Request
+/* UpdateReportGroupByIDParams contains all the parameters to send to the API endpoint
+   for the update report group by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type UpdateReportGroupByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.ReportGroup
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the update report group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateReportGroupByIDParams) WithDefaults() *UpdateReportGroupByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the update report group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *UpdateReportGroupByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update report group by Id params
@@ -137,7 +152,6 @@ func (o *UpdateReportGroupByIDParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddAlertNoteByIDReader is a Reader for the AddAlertNoteByID structure.
@@ -24,14 +23,12 @@ type AddAlertNoteByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddAlertNoteByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddAlertNoteByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddAlertNoteByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddAlertNoteByIDOK() *AddAlertNoteByIDOK {
 	return &AddAlertNoteByIDOK{}
 }
 
-/*AddAlertNoteByIDOK handles this case with default header values.
+/* AddAlertNoteByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddAlertNoteByIDOK struct {
 
 func (o *AddAlertNoteByIDOK) Error() string {
 	return fmt.Sprintf("[POST /alert/alerts/{id}/note][%d] addAlertNoteByIdOK  %+v", 200, o.Payload)
+}
+func (o *AddAlertNoteByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *AddAlertNoteByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewAddAlertNoteByIDDefault(code int) *AddAlertNoteByIDDefault {
 	}
 }
 
-/*AddAlertNoteByIDDefault handles this case with default header values.
+/* AddAlertNoteByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *AddAlertNoteByIDDefault) Code() int {
 
 func (o *AddAlertNoteByIDDefault) Error() string {
 	return fmt.Sprintf("[POST /alert/alerts/{id}/note][%d] addAlertNoteById default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddAlertNoteByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddAlertNoteByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

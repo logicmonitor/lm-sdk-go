@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchReportByIDReader is a Reader for the PatchReportByID structure.
@@ -24,14 +23,12 @@ type PatchReportByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchReportByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchReportByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchReportByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchReportByIDOK() *PatchReportByIDOK {
 	return &PatchReportByIDOK{}
 }
 
-/*PatchReportByIDOK handles this case with default header values.
+/* PatchReportByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchReportByIDOK struct {
 
 func (o *PatchReportByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /report/reports/{id}][%d] patchReportByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchReportByIDOK) GetPayload() models.ReportBase {
+	return o.Payload
 }
 
 func (o *PatchReportByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchReportByIDDefault(code int) *PatchReportByIDDefault {
 	}
 }
 
-/*PatchReportByIDDefault handles this case with default header values.
+/* PatchReportByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchReportByIDDefault) Code() int {
 
 func (o *PatchReportByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /report/reports/{id}][%d] patchReportById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchReportByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchReportByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

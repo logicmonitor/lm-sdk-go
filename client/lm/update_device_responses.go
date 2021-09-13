@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateDeviceReader is a Reader for the UpdateDevice structure.
@@ -24,14 +23,12 @@ type UpdateDeviceReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateDeviceReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateDeviceOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateDeviceDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateDeviceOK() *UpdateDeviceOK {
 	return &UpdateDeviceOK{}
 }
 
-/*UpdateDeviceOK handles this case with default header values.
+/* UpdateDeviceOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateDeviceOK struct {
 
 func (o *UpdateDeviceOK) Error() string {
 	return fmt.Sprintf("[PUT /device/devices/{id}][%d] updateDeviceOK  %+v", 200, o.Payload)
+}
+func (o *UpdateDeviceOK) GetPayload() *models.Device {
+	return o.Payload
 }
 
 func (o *UpdateDeviceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateDeviceDefault(code int) *UpdateDeviceDefault {
 	}
 }
 
-/*UpdateDeviceDefault handles this case with default header values.
+/* UpdateDeviceDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateDeviceDefault) Code() int {
 
 func (o *UpdateDeviceDefault) Error() string {
 	return fmt.Sprintf("[PUT /device/devices/{id}][%d] updateDevice default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateDeviceDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateDeviceDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

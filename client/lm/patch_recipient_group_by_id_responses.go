@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // PatchRecipientGroupByIDReader is a Reader for the PatchRecipientGroupByID structure.
@@ -24,14 +23,12 @@ type PatchRecipientGroupByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *PatchRecipientGroupByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewPatchRecipientGroupByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewPatchRecipientGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewPatchRecipientGroupByIDOK() *PatchRecipientGroupByIDOK {
 	return &PatchRecipientGroupByIDOK{}
 }
 
-/*PatchRecipientGroupByIDOK handles this case with default header values.
+/* PatchRecipientGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type PatchRecipientGroupByIDOK struct {
 
 func (o *PatchRecipientGroupByIDOK) Error() string {
 	return fmt.Sprintf("[PATCH /setting/recipientgroups/{id}][%d] patchRecipientGroupByIdOK  %+v", 200, o.Payload)
+}
+func (o *PatchRecipientGroupByIDOK) GetPayload() *models.RecipientGroup {
+	return o.Payload
 }
 
 func (o *PatchRecipientGroupByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewPatchRecipientGroupByIDDefault(code int) *PatchRecipientGroupByIDDefault
 	}
 }
 
-/*PatchRecipientGroupByIDDefault handles this case with default header values.
+/* PatchRecipientGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *PatchRecipientGroupByIDDefault) Code() int {
 
 func (o *PatchRecipientGroupByIDDefault) Error() string {
 	return fmt.Sprintf("[PATCH /setting/recipientgroups/{id}][%d] patchRecipientGroupById default  %+v", o._statusCode, o.Payload)
+}
+func (o *PatchRecipientGroupByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *PatchRecipientGroupByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

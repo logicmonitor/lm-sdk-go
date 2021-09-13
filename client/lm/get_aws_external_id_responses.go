@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetAwsExternalIDReader is a Reader for the GetAwsExternalID structure.
@@ -24,14 +23,12 @@ type GetAwsExternalIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAwsExternalIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetAwsExternalIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetAwsExternalIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetAwsExternalIDOK() *GetAwsExternalIDOK {
 	return &GetAwsExternalIDOK{}
 }
 
-/*GetAwsExternalIDOK handles this case with default header values.
+/* GetAwsExternalIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetAwsExternalIDOK struct {
 
 func (o *GetAwsExternalIDOK) Error() string {
 	return fmt.Sprintf("[GET /aws/externalId][%d] getAwsExternalIdOK  %+v", 200, o.Payload)
+}
+func (o *GetAwsExternalIDOK) GetPayload() *models.AwsExternalID {
+	return o.Payload
 }
 
 func (o *GetAwsExternalIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetAwsExternalIDDefault(code int) *GetAwsExternalIDDefault {
 	}
 }
 
-/*GetAwsExternalIDDefault handles this case with default header values.
+/* GetAwsExternalIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetAwsExternalIDDefault) Code() int {
 
 func (o *GetAwsExternalIDDefault) Error() string {
 	return fmt.Sprintf("[GET /aws/externalId][%d] getAwsExternalId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetAwsExternalIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetAwsExternalIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

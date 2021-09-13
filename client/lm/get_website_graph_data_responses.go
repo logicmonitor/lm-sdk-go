@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetWebsiteGraphDataReader is a Reader for the GetWebsiteGraphData structure.
@@ -24,14 +23,12 @@ type GetWebsiteGraphDataReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetWebsiteGraphDataReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetWebsiteGraphDataOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetWebsiteGraphDataDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetWebsiteGraphDataOK() *GetWebsiteGraphDataOK {
 	return &GetWebsiteGraphDataOK{}
 }
 
-/*GetWebsiteGraphDataOK handles this case with default header values.
+/* GetWebsiteGraphDataOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetWebsiteGraphDataOK struct {
 
 func (o *GetWebsiteGraphDataOK) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{websiteId}/checkpoints/{checkpointId}/graphs/{graphName}/data][%d] getWebsiteGraphDataOK  %+v", 200, o.Payload)
+}
+func (o *GetWebsiteGraphDataOK) GetPayload() *models.GraphPlot {
+	return o.Payload
 }
 
 func (o *GetWebsiteGraphDataOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetWebsiteGraphDataDefault(code int) *GetWebsiteGraphDataDefault {
 	}
 }
 
-/*GetWebsiteGraphDataDefault handles this case with default header values.
+/* GetWebsiteGraphDataDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetWebsiteGraphDataDefault) Code() int {
 
 func (o *GetWebsiteGraphDataDefault) Error() string {
 	return fmt.Sprintf("[GET /website/websites/{websiteId}/checkpoints/{checkpointId}/graphs/{graphName}/data][%d] getWebsiteGraphData default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetWebsiteGraphDataDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetWebsiteGraphDataDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

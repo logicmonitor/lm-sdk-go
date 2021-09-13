@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateAppliesToFunctionReader is a Reader for the UpdateAppliesToFunction structure.
@@ -24,14 +23,12 @@ type UpdateAppliesToFunctionReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateAppliesToFunctionReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateAppliesToFunctionOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateAppliesToFunctionDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateAppliesToFunctionOK() *UpdateAppliesToFunctionOK {
 	return &UpdateAppliesToFunctionOK{}
 }
 
-/*UpdateAppliesToFunctionOK handles this case with default header values.
+/* UpdateAppliesToFunctionOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateAppliesToFunctionOK struct {
 
 func (o *UpdateAppliesToFunctionOK) Error() string {
 	return fmt.Sprintf("[PUT /setting/functions/{id}][%d] updateAppliesToFunctionOK  %+v", 200, o.Payload)
+}
+func (o *UpdateAppliesToFunctionOK) GetPayload() *models.AppliesToFunction {
+	return o.Payload
 }
 
 func (o *UpdateAppliesToFunctionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateAppliesToFunctionDefault(code int) *UpdateAppliesToFunctionDefault
 	}
 }
 
-/*UpdateAppliesToFunctionDefault handles this case with default header values.
+/* UpdateAppliesToFunctionDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateAppliesToFunctionDefault) Code() int {
 
 func (o *UpdateAppliesToFunctionDefault) Error() string {
 	return fmt.Sprintf("[PUT /setting/functions/{id}][%d] updateAppliesToFunction default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateAppliesToFunctionDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateAppliesToFunctionDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

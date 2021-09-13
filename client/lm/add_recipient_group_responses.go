@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddRecipientGroupReader is a Reader for the AddRecipientGroup structure.
@@ -24,14 +23,12 @@ type AddRecipientGroupReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddRecipientGroupReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddRecipientGroupOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddRecipientGroupDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddRecipientGroupOK() *AddRecipientGroupOK {
 	return &AddRecipientGroupOK{}
 }
 
-/*AddRecipientGroupOK handles this case with default header values.
+/* AddRecipientGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddRecipientGroupOK struct {
 
 func (o *AddRecipientGroupOK) Error() string {
 	return fmt.Sprintf("[POST /setting/recipientgroups][%d] addRecipientGroupOK  %+v", 200, o.Payload)
+}
+func (o *AddRecipientGroupOK) GetPayload() *models.RecipientGroup {
+	return o.Payload
 }
 
 func (o *AddRecipientGroupOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddRecipientGroupDefault(code int) *AddRecipientGroupDefault {
 	}
 }
 
-/*AddRecipientGroupDefault handles this case with default header values.
+/* AddRecipientGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddRecipientGroupDefault) Code() int {
 
 func (o *AddRecipientGroupDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/recipientgroups][%d] addRecipientGroup default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddRecipientGroupDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddRecipientGroupDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

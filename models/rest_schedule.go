@@ -6,33 +6,45 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
-	strfmt "github.com/go-openapi/strfmt"
+	"context"
 
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // RestSchedule rest schedule
+//
 // swagger:model RestSchedule
 type RestSchedule struct {
 
 	// The cron schedule for when the scan should be run
+	// Example: 12 * * * *
 	Cron string `json:"cron,omitempty"`
 
 	// Whether or not an email should be sent when the scan finishes
+	// Example: false
 	Notify bool `json:"notify,omitempty"`
 
 	// The recipients that should receive the notification of the scan finish
+	// Example: [\"sarah@logicmonitor.com\" ]
 	Recipients []string `json:"recipients,omitempty"`
 
 	// The timezone for the schedule
+	// Example: America/Los_Angeles
 	Timezone string `json:"timezone,omitempty"`
 
 	// The type of schedule. Possible values are manual (no schedule), hourly, daily, weekly, monthly
+	// Example: manual
 	Type string `json:"type,omitempty"`
 }
 
 // Validate validates this rest schedule
 func (m *RestSchedule) Validate(formats strfmt.Registry) error {
+	return nil
+}
+
+// ContextValidate validates this rest schedule based on context it is used
+func (m *RestSchedule) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	return nil
 }
 

@@ -7,15 +7,16 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // AwsClassicElbServiceLimitsCollectorAttribute aws classic elb service limits collector attribute
+//
 // swagger:model AwsClassicElbServiceLimitsCollectorAttribute
 type AwsClassicElbServiceLimitsCollectorAttribute struct {
 
@@ -30,10 +31,7 @@ func (m *AwsClassicElbServiceLimitsCollectorAttribute) Name() string {
 
 // SetName sets the name of this subtype
 func (m *AwsClassicElbServiceLimitsCollectorAttribute) SetName(val string) {
-
 }
-
-// Period gets the period of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *AwsClassicElbServiceLimitsCollectorAttribute) UnmarshalJSON(raw []byte) error {
@@ -88,8 +86,7 @@ func (m AwsClassicElbServiceLimitsCollectorAttribute) MarshalJSON() ([]byte, err
 	}{
 
 		Period: m.Period,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -98,8 +95,7 @@ func (m AwsClassicElbServiceLimitsCollectorAttribute) MarshalJSON() ([]byte, err
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -109,6 +105,16 @@ func (m AwsClassicElbServiceLimitsCollectorAttribute) MarshalJSON() ([]byte, err
 
 // Validate validates this aws classic elb service limits collector attribute
 func (m *AwsClassicElbServiceLimitsCollectorAttribute) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+// ContextValidate validate this aws classic elb service limits collector attribute based on the context it is used
+func (m *AwsClassicElbServiceLimitsCollectorAttribute) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if len(res) > 0 {

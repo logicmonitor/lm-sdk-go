@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteDeviceByIDReader is a Reader for the DeleteDeviceByID structure.
@@ -24,14 +23,12 @@ type DeleteDeviceByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteDeviceByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteDeviceByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteDeviceByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteDeviceByIDOK() *DeleteDeviceByIDOK {
 	return &DeleteDeviceByIDOK{}
 }
 
-/*DeleteDeviceByIDOK handles this case with default header values.
+/* DeleteDeviceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteDeviceByIDOK struct {
 
 func (o *DeleteDeviceByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /device/devices/{id}][%d] deleteDeviceByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteDeviceByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteDeviceByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteDeviceByIDDefault(code int) *DeleteDeviceByIDDefault {
 	}
 }
 
-/*DeleteDeviceByIDDefault handles this case with default header values.
+/* DeleteDeviceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteDeviceByIDDefault) Code() int {
 
 func (o *DeleteDeviceByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /device/devices/{id}][%d] deleteDeviceById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteDeviceByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteDeviceByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

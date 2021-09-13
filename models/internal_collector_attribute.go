@@ -7,15 +7,16 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // InternalCollectorAttribute internal collector attribute
+//
 // swagger:model InternalCollectorAttribute
 type InternalCollectorAttribute struct {
 	InternalCollectorAttributeAllOf1
@@ -28,7 +29,6 @@ func (m *InternalCollectorAttribute) Name() string {
 
 // SetName sets the name of this subtype
 func (m *InternalCollectorAttribute) SetName(val string) {
-
 }
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
@@ -63,7 +63,6 @@ func (m *InternalCollectorAttribute) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid name value: %q", base.Name)
 	}
-
 	result.InternalCollectorAttributeAllOf1 = data.InternalCollectorAttributeAllOf1
 
 	*m = result
@@ -80,8 +79,7 @@ func (m InternalCollectorAttribute) MarshalJSON() ([]byte, error) {
 	}{
 
 		InternalCollectorAttributeAllOf1: m.InternalCollectorAttributeAllOf1,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -90,8 +88,7 @@ func (m InternalCollectorAttribute) MarshalJSON() ([]byte, error) {
 	}{
 
 		Name: m.Name(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -101,6 +98,18 @@ func (m InternalCollectorAttribute) MarshalJSON() ([]byte, error) {
 
 // Validate validates this internal collector attribute
 func (m *InternalCollectorAttribute) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	// validation for a type composition with InternalCollectorAttributeAllOf1
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+// ContextValidate validate this internal collector attribute based on the context it is used
+func (m *InternalCollectorAttribute) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	// validation for a type composition with InternalCollectorAttributeAllOf1
@@ -130,5 +139,6 @@ func (m *InternalCollectorAttribute) UnmarshalBinary(b []byte) error {
 }
 
 // InternalCollectorAttributeAllOf1 internal collector attribute all of1
+//
 // swagger:model InternalCollectorAttributeAllOf1
 type InternalCollectorAttributeAllOf1 interface{}

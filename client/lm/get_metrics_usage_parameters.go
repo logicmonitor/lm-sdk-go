@@ -6,64 +6,76 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
-
-	strfmt "github.com/go-openapi/strfmt"
+	"github.com/go-openapi/strfmt"
 )
 
-// NewGetMetricsUsageParams creates a new GetMetricsUsageParams object
-// with the default values initialized.
+// NewGetMetricsUsageParams creates a new GetMetricsUsageParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetMetricsUsageParams() *GetMetricsUsageParams {
-
 	return &GetMetricsUsageParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetMetricsUsageParamsWithTimeout creates a new GetMetricsUsageParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetMetricsUsageParamsWithTimeout(timeout time.Duration) *GetMetricsUsageParams {
-
 	return &GetMetricsUsageParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewGetMetricsUsageParamsWithContext creates a new GetMetricsUsageParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetMetricsUsageParamsWithContext(ctx context.Context) *GetMetricsUsageParams {
-
 	return &GetMetricsUsageParams{
-
 		Context: ctx,
 	}
 }
 
 // NewGetMetricsUsageParamsWithHTTPClient creates a new GetMetricsUsageParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetMetricsUsageParamsWithHTTPClient(client *http.Client) *GetMetricsUsageParams {
-
 	return &GetMetricsUsageParams{
 		HTTPClient: client,
 	}
 }
 
-/*GetMetricsUsageParams contains all the parameters to send to the API endpoint
-for the get metrics usage operation typically these are written to a http.Request
+/* GetMetricsUsageParams contains all the parameters to send to the API endpoint
+   for the get metrics usage operation.
+
+   Typically these are written to a http.Request.
 */
 type GetMetricsUsageParams struct {
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get metrics usage params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetMetricsUsageParams) WithDefaults() *GetMetricsUsageParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get metrics usage params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetMetricsUsageParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get metrics usage params

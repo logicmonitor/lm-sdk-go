@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // Ec2Netscan ec2 netscan
+//
 // swagger:model Ec2Netscan
 type Ec2Netscan struct {
 	collectorField *int32
@@ -37,6 +38,8 @@ type Ec2Netscan struct {
 
 	idField int32
 
+	ignoreSystemIPsDuplicatesField bool
+
 	nameField *string
 
 	nextStartField string
@@ -50,6 +53,7 @@ type Ec2Netscan struct {
 	versionField int32
 
 	// Which IP the EC2 instance should be monitored with for nec2 scans: private or public
+	// Example: private
 	// Required: true
 	Accessibility *string `json:"accessibility"`
 
@@ -61,6 +65,7 @@ type Ec2Netscan struct {
 	Ddr *Ec2DDR `json:"ddr,omitempty"`
 
 	// How dead EC2 instances should be handled for nec2 scans. Must be Manually
+	// Example: MANUALLY
 	DeadOperation string `json:"deadOperation,omitempty"`
 
 	// ports
@@ -157,6 +162,16 @@ func (m *Ec2Netscan) SetID(val int32) {
 	m.idField = val
 }
 
+// IgnoreSystemIPsDuplicates gets the ignore system i ps duplicates of this subtype
+func (m *Ec2Netscan) IgnoreSystemIPsDuplicates() bool {
+	return m.ignoreSystemIPsDuplicatesField
+}
+
+// SetIgnoreSystemIPsDuplicates sets the ignore system i ps duplicates of this subtype
+func (m *Ec2Netscan) SetIgnoreSystemIPsDuplicates(val bool) {
+	m.ignoreSystemIPsDuplicatesField = val
+}
+
 // Method gets the method of this subtype
 func (m *Ec2Netscan) Method() string {
 	return "nec2"
@@ -164,7 +179,6 @@ func (m *Ec2Netscan) Method() string {
 
 // SetMethod sets the method of this subtype
 func (m *Ec2Netscan) SetMethod(val string) {
-
 }
 
 // Name gets the name of this subtype
@@ -227,21 +241,12 @@ func (m *Ec2Netscan) SetVersion(val int32) {
 	m.versionField = val
 }
 
-// Accessibility gets the accessibility of this subtype
-
-// Credentials gets the credentials of this subtype
-
-// Ddr gets the ddr of this subtype
-
-// DeadOperation gets the dead operation of this subtype
-
-// Ports gets the ports of this subtype
-
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *Ec2Netscan) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// Which IP the EC2 instance should be monitored with for nec2 scans: private or public
+		// Example: private
 		// Required: true
 		Accessibility *string `json:"accessibility"`
 
@@ -253,6 +258,7 @@ func (m *Ec2Netscan) UnmarshalJSON(raw []byte) error {
 		Ddr *Ec2DDR `json:"ddr,omitempty"`
 
 		// How dead EC2 instances should be handled for nec2 scans. Must be Manually
+		// Example: MANUALLY
 		DeadOperation string `json:"deadOperation,omitempty"`
 
 		// ports
@@ -286,6 +292,8 @@ func (m *Ec2Netscan) UnmarshalJSON(raw []byte) error {
 		Group string `json:"group,omitempty"`
 
 		ID int32 `json:"id,omitempty"`
+
+		IgnoreSystemIPsDuplicates bool `json:"ignoreSystemIPsDuplicates,omitempty"`
 
 		Method string `json:"method"`
 
@@ -329,11 +337,12 @@ func (m *Ec2Netscan) UnmarshalJSON(raw []byte) error {
 
 	result.idField = base.ID
 
+	result.ignoreSystemIPsDuplicatesField = base.IgnoreSystemIPsDuplicates
+
 	if base.Method != result.Method() {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid method value: %q", base.Method)
 	}
-
 	result.nameField = base.Name
 
 	result.nextStartField = base.NextStart
@@ -347,13 +356,9 @@ func (m *Ec2Netscan) UnmarshalJSON(raw []byte) error {
 	result.versionField = base.Version
 
 	result.Accessibility = data.Accessibility
-
 	result.Credentials = data.Credentials
-
 	result.Ddr = data.Ddr
-
 	result.DeadOperation = data.DeadOperation
-
 	result.Ports = data.Ports
 
 	*m = result
@@ -368,6 +373,7 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// Which IP the EC2 instance should be monitored with for nec2 scans: private or public
+		// Example: private
 		// Required: true
 		Accessibility *string `json:"accessibility"`
 
@@ -379,6 +385,7 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 		Ddr *Ec2DDR `json:"ddr,omitempty"`
 
 		// How dead EC2 instances should be handled for nec2 scans. Must be Manually
+		// Example: MANUALLY
 		DeadOperation string `json:"deadOperation,omitempty"`
 
 		// ports
@@ -394,8 +401,7 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 		DeadOperation: m.DeadOperation,
 
 		Ports: m.Ports,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -417,6 +423,8 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 		Group string `json:"group,omitempty"`
 
 		ID int32 `json:"id,omitempty"`
+
+		IgnoreSystemIPsDuplicates bool `json:"ignoreSystemIPsDuplicates,omitempty"`
 
 		Method string `json:"method"`
 
@@ -451,6 +459,8 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 
 		ID: m.ID(),
 
+		IgnoreSystemIPsDuplicates: m.IgnoreSystemIPsDuplicates(),
+
 		Method: m.Method(),
 
 		Name: m.Name(),
@@ -464,8 +474,7 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 		Schedule: m.Schedule(),
 
 		Version: m.Version(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -622,6 +631,106 @@ func (m *Ec2Netscan) validatePorts(formats strfmt.Registry) error {
 
 	if m.Ports != nil {
 		if err := m.Ports.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ports")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this ec2 netscan based on the context it is used
+func (m *Ec2Netscan) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDuplicate(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSchedule(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCredentials(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDdr(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePorts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidateDuplicate(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Duplicate() != nil {
+		if err := m.Duplicate().ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("duplicate")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Schedule() != nil {
+		if err := m.Schedule().ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("schedule")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidateCredentials(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Credentials != nil {
+		if err := m.Credentials.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("credentials")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidateDdr(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Ddr != nil {
+		if err := m.Ddr.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ddr")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidatePorts(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Ports != nil {
+		if err := m.Ports.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ports")
 			}

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceInstanceGraphDataOnlyByInstanceIDReader is a Reader for the GetDeviceInstanceGraphDataOnlyByInstanceID structure.
@@ -24,14 +23,12 @@ type GetDeviceInstanceGraphDataOnlyByInstanceIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceInstanceGraphDataOnlyByInstanceIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceInstanceGraphDataOnlyByInstanceIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceInstanceGraphDataOnlyByInstanceIDOK() *GetDeviceInstanceGraphDa
 	return &GetDeviceInstanceGraphDataOnlyByInstanceIDOK{}
 }
 
-/*GetDeviceInstanceGraphDataOnlyByInstanceIDOK handles this case with default header values.
+/* GetDeviceInstanceGraphDataOnlyByInstanceIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceInstanceGraphDataOnlyByInstanceIDOK struct {
 
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDOK) Error() string {
 	return fmt.Sprintf("[GET /device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data][%d] getDeviceInstanceGraphDataOnlyByInstanceIdOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDOK) GetPayload() *models.GraphPlot {
+	return o.Payload
 }
 
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceInstanceGraphDataOnlyByInstanceIDDefault(code int) *GetDeviceIn
 	}
 }
 
-/*GetDeviceInstanceGraphDataOnlyByInstanceIDDefault handles this case with default header values.
+/* GetDeviceInstanceGraphDataOnlyByInstanceIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDDefault) Code() int {
 
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data][%d] getDeviceInstanceGraphDataOnlyByInstanceId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

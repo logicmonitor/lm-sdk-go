@@ -6,83 +6,99 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-
-	strfmt "github.com/go-openapi/strfmt"
 )
 
-// NewGetWebsiteByIDParams creates a new GetWebsiteByIDParams object
-// with the default values initialized.
+// NewGetWebsiteByIDParams creates a new GetWebsiteByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewGetWebsiteByIDParams() *GetWebsiteByIDParams {
-	var (
-		formatDefault = string("json")
-	)
 	return &GetWebsiteByIDParams{
-		Format: &formatDefault,
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewGetWebsiteByIDParamsWithTimeout creates a new GetWebsiteByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewGetWebsiteByIDParamsWithTimeout(timeout time.Duration) *GetWebsiteByIDParams {
-	var (
-		formatDefault = string("json")
-	)
 	return &GetWebsiteByIDParams{
-		Format: &formatDefault,
-
 		timeout: timeout,
 	}
 }
 
 // NewGetWebsiteByIDParamsWithContext creates a new GetWebsiteByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewGetWebsiteByIDParamsWithContext(ctx context.Context) *GetWebsiteByIDParams {
-	var (
-		formatDefault = string("json")
-	)
 	return &GetWebsiteByIDParams{
-		Format: &formatDefault,
-
 		Context: ctx,
 	}
 }
 
 // NewGetWebsiteByIDParamsWithHTTPClient creates a new GetWebsiteByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewGetWebsiteByIDParamsWithHTTPClient(client *http.Client) *GetWebsiteByIDParams {
-	var (
-		formatDefault = string("json")
-	)
 	return &GetWebsiteByIDParams{
-		Format:     &formatDefault,
 		HTTPClient: client,
 	}
 }
 
-/*GetWebsiteByIDParams contains all the parameters to send to the API endpoint
-for the get website by Id operation typically these are written to a http.Request
+/* GetWebsiteByIDParams contains all the parameters to send to the API endpoint
+   for the get website by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type GetWebsiteByIDParams struct {
 
-	/*Format*/
+	// Format.
+	//
+	// Default: "json"
 	Format *string
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the get website by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetWebsiteByIDParams) WithDefaults() *GetWebsiteByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the get website by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *GetWebsiteByIDParams) SetDefaults() {
+	var (
+		formatDefault = string("json")
+	)
+
+	val := GetWebsiteByIDParams{
+		Format: &formatDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get website by Id params
@@ -152,16 +168,17 @@ func (o *GetWebsiteByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 
 		// query param format
 		var qrFormat string
+
 		if o.Format != nil {
 			qrFormat = *o.Format
 		}
 		qFormat := qrFormat
 		if qFormat != "" {
+
 			if err := r.SetQueryParam("format", qFormat); err != nil {
 				return err
 			}
 		}
-
 	}
 
 	// path param id

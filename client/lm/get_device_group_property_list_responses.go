@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceGroupPropertyListReader is a Reader for the GetDeviceGroupPropertyList structure.
@@ -24,14 +23,12 @@ type GetDeviceGroupPropertyListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceGroupPropertyListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceGroupPropertyListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceGroupPropertyListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceGroupPropertyListOK() *GetDeviceGroupPropertyListOK {
 	return &GetDeviceGroupPropertyListOK{}
 }
 
-/*GetDeviceGroupPropertyListOK handles this case with default header values.
+/* GetDeviceGroupPropertyListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceGroupPropertyListOK struct {
 
 func (o *GetDeviceGroupPropertyListOK) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{gid}/properties][%d] getDeviceGroupPropertyListOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceGroupPropertyListOK) GetPayload() *models.PropertyPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceGroupPropertyListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceGroupPropertyListDefault(code int) *GetDeviceGroupPropertyListD
 	}
 }
 
-/*GetDeviceGroupPropertyListDefault handles this case with default header values.
+/* GetDeviceGroupPropertyListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceGroupPropertyListDefault) Code() int {
 
 func (o *GetDeviceGroupPropertyListDefault) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{gid}/properties][%d] getDeviceGroupPropertyList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceGroupPropertyListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceGroupPropertyListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

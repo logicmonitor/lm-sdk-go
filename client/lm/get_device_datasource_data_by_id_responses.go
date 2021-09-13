@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDeviceDatasourceDataByIDReader is a Reader for the GetDeviceDatasourceDataByID structure.
@@ -24,14 +23,12 @@ type GetDeviceDatasourceDataByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetDeviceDatasourceDataByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetDeviceDatasourceDataByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetDeviceDatasourceDataByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetDeviceDatasourceDataByIDOK() *GetDeviceDatasourceDataByIDOK {
 	return &GetDeviceDatasourceDataByIDOK{}
 }
 
-/*GetDeviceDatasourceDataByIDOK handles this case with default header values.
+/* GetDeviceDatasourceDataByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetDeviceDatasourceDataByIDOK struct {
 
 func (o *GetDeviceDatasourceDataByIDOK) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}/data][%d] getDeviceDatasourceDataByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetDeviceDatasourceDataByIDOK) GetPayload() *models.DeviceDataSourceData {
+	return o.Payload
 }
 
 func (o *GetDeviceDatasourceDataByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetDeviceDatasourceDataByIDDefault(code int) *GetDeviceDatasourceDataByI
 	}
 }
 
-/*GetDeviceDatasourceDataByIDDefault handles this case with default header values.
+/* GetDeviceDatasourceDataByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetDeviceDatasourceDataByIDDefault) Code() int {
 
 func (o *GetDeviceDatasourceDataByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}/data][%d] getDeviceDatasourceDataById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetDeviceDatasourceDataByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetDeviceDatasourceDataByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

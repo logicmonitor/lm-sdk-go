@@ -7,16 +7,17 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // WebsiteNOCItem website n o c item
+//
 // swagger:model WebsiteNOCItem
 type WebsiteNOCItem struct {
 
@@ -43,16 +44,7 @@ func (m *WebsiteNOCItem) Type() string {
 
 // SetType sets the type of this subtype
 func (m *WebsiteNOCItem) SetType(val string) {
-
 }
-
-// GroupBy gets the group by of this subtype
-
-// Name gets the name of this subtype
-
-// WebsiteGroupName gets the website group name of this subtype
-
-// WebsiteName gets the website name of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *WebsiteNOCItem) UnmarshalJSON(raw []byte) error {
@@ -102,11 +94,8 @@ func (m *WebsiteNOCItem) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.GroupBy = data.GroupBy
-
 	result.Name = data.Name
-
 	result.WebsiteGroupName = data.WebsiteGroupName
-
 	result.WebsiteName = data.WebsiteName
 
 	*m = result
@@ -143,8 +132,7 @@ func (m WebsiteNOCItem) MarshalJSON() ([]byte, error) {
 		WebsiteGroupName: m.WebsiteGroupName,
 
 		WebsiteName: m.WebsiteName,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -153,8 +141,7 @@ func (m WebsiteNOCItem) MarshalJSON() ([]byte, error) {
 	}{
 
 		Type: m.Type(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -208,6 +195,16 @@ func (m *WebsiteNOCItem) validateWebsiteName(formats strfmt.Registry) error {
 		return err
 	}
 
+	return nil
+}
+
+// ContextValidate validate this website n o c item based on the context it is used
+func (m *WebsiteNOCItem) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateDeviceGroupDatasourceAlertSettingReader is a Reader for the UpdateDeviceGroupDatasourceAlertSetting structure.
@@ -24,14 +23,12 @@ type UpdateDeviceGroupDatasourceAlertSettingReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateDeviceGroupDatasourceAlertSettingReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateDeviceGroupDatasourceAlertSettingOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateDeviceGroupDatasourceAlertSettingDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateDeviceGroupDatasourceAlertSettingOK() *UpdateDeviceGroupDatasource
 	return &UpdateDeviceGroupDatasourceAlertSettingOK{}
 }
 
-/*UpdateDeviceGroupDatasourceAlertSettingOK handles this case with default header values.
+/* UpdateDeviceGroupDatasourceAlertSettingOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateDeviceGroupDatasourceAlertSettingOK struct {
 
 func (o *UpdateDeviceGroupDatasourceAlertSettingOK) Error() string {
 	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] updateDeviceGroupDatasourceAlertSettingOK  %+v", 200, o.Payload)
+}
+func (o *UpdateDeviceGroupDatasourceAlertSettingOK) GetPayload() *models.DeviceGroupDataSourceAlertConfig {
+	return o.Payload
 }
 
 func (o *UpdateDeviceGroupDatasourceAlertSettingOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateDeviceGroupDatasourceAlertSettingDefault(code int) *UpdateDeviceGr
 	}
 }
 
-/*UpdateDeviceGroupDatasourceAlertSettingDefault handles this case with default header values.
+/* UpdateDeviceGroupDatasourceAlertSettingDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) Code() int {
 
 func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) Error() string {
 	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] updateDeviceGroupDatasourceAlertSetting default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // DeleteDashboardByIDReader is a Reader for the DeleteDashboardByID structure.
@@ -24,14 +23,12 @@ type DeleteDashboardByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DeleteDashboardByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDeleteDashboardByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewDeleteDashboardByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewDeleteDashboardByIDOK() *DeleteDashboardByIDOK {
 	return &DeleteDashboardByIDOK{}
 }
 
-/*DeleteDashboardByIDOK handles this case with default header values.
+/* DeleteDashboardByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type DeleteDashboardByIDOK struct {
 
 func (o *DeleteDashboardByIDOK) Error() string {
 	return fmt.Sprintf("[DELETE /dashboard/dashboards/{id}][%d] deleteDashboardByIdOK  %+v", 200, o.Payload)
+}
+func (o *DeleteDashboardByIDOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *DeleteDashboardByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewDeleteDashboardByIDDefault(code int) *DeleteDashboardByIDDefault {
 	}
 }
 
-/*DeleteDashboardByIDDefault handles this case with default header values.
+/* DeleteDashboardByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *DeleteDashboardByIDDefault) Code() int {
 
 func (o *DeleteDashboardByIDDefault) Error() string {
 	return fmt.Sprintf("[DELETE /dashboard/dashboards/{id}][%d] deleteDashboardById default  %+v", o._statusCode, o.Payload)
+}
+func (o *DeleteDashboardByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *DeleteDashboardByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

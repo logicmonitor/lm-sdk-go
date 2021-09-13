@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetEventSourceListReader is a Reader for the GetEventSourceList structure.
@@ -24,14 +23,12 @@ type GetEventSourceListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetEventSourceListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetEventSourceListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetEventSourceListDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetEventSourceListOK() *GetEventSourceListOK {
 	return &GetEventSourceListOK{}
 }
 
-/*GetEventSourceListOK handles this case with default header values.
+/* GetEventSourceListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetEventSourceListOK struct {
 
 func (o *GetEventSourceListOK) Error() string {
 	return fmt.Sprintf("[GET /setting/eventsources][%d] getEventSourceListOK  %+v", 200, o.Payload)
+}
+func (o *GetEventSourceListOK) GetPayload() *models.EventSourcePaginationResponse {
+	return o.Payload
 }
 
 func (o *GetEventSourceListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetEventSourceListDefault(code int) *GetEventSourceListDefault {
 	}
 }
 
-/*GetEventSourceListDefault handles this case with default header values.
+/* GetEventSourceListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetEventSourceListDefault) Code() int {
 
 func (o *GetEventSourceListDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/eventsources][%d] getEventSourceList default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetEventSourceListDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetEventSourceListDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

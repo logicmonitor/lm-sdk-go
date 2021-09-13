@@ -6,80 +6,101 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	cr "github.com/go-openapi/runtime/client"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
-// NewPatchDeviceDatasourceInstanceGroupByIDParams creates a new PatchDeviceDatasourceInstanceGroupByIDParams object
-// with the default values initialized.
+// NewPatchDeviceDatasourceInstanceGroupByIDParams creates a new PatchDeviceDatasourceInstanceGroupByIDParams object,
+// with the default timeout for this client.
+//
+// Default values are not hydrated, since defaults are normally applied by the API server side.
+//
+// To enforce default values in parameter, use SetDefaults or WithDefaults.
 func NewPatchDeviceDatasourceInstanceGroupByIDParams() *PatchDeviceDatasourceInstanceGroupByIDParams {
-	var ()
 	return &PatchDeviceDatasourceInstanceGroupByIDParams{
-
 		timeout: cr.DefaultTimeout,
 	}
 }
 
 // NewPatchDeviceDatasourceInstanceGroupByIDParamsWithTimeout creates a new PatchDeviceDatasourceInstanceGroupByIDParams object
-// with the default values initialized, and the ability to set a timeout on a request
+// with the ability to set a timeout on a request.
 func NewPatchDeviceDatasourceInstanceGroupByIDParamsWithTimeout(timeout time.Duration) *PatchDeviceDatasourceInstanceGroupByIDParams {
-	var ()
 	return &PatchDeviceDatasourceInstanceGroupByIDParams{
-
 		timeout: timeout,
 	}
 }
 
 // NewPatchDeviceDatasourceInstanceGroupByIDParamsWithContext creates a new PatchDeviceDatasourceInstanceGroupByIDParams object
-// with the default values initialized, and the ability to set a context for a request
+// with the ability to set a context for a request.
 func NewPatchDeviceDatasourceInstanceGroupByIDParamsWithContext(ctx context.Context) *PatchDeviceDatasourceInstanceGroupByIDParams {
-	var ()
 	return &PatchDeviceDatasourceInstanceGroupByIDParams{
-
 		Context: ctx,
 	}
 }
 
 // NewPatchDeviceDatasourceInstanceGroupByIDParamsWithHTTPClient creates a new PatchDeviceDatasourceInstanceGroupByIDParams object
-// with the default values initialized, and the ability to set a custom HTTPClient for a request
+// with the ability to set a custom HTTPClient for a request.
 func NewPatchDeviceDatasourceInstanceGroupByIDParamsWithHTTPClient(client *http.Client) *PatchDeviceDatasourceInstanceGroupByIDParams {
-	var ()
 	return &PatchDeviceDatasourceInstanceGroupByIDParams{
 		HTTPClient: client,
 	}
 }
 
-/*PatchDeviceDatasourceInstanceGroupByIDParams contains all the parameters to send to the API endpoint
-for the patch device datasource instance group by Id operation typically these are written to a http.Request
+/* PatchDeviceDatasourceInstanceGroupByIDParams contains all the parameters to send to the API endpoint
+   for the patch device datasource instance group by Id operation.
+
+   Typically these are written to a http.Request.
 */
 type PatchDeviceDatasourceInstanceGroupByIDParams struct {
 
-	/*Body*/
+	// Body.
 	Body *models.DeviceDataSourceInstanceGroup
-	/*DeviceDsID
-	  The device-datasource ID you'd like to add an instance group for
 
+	/* DeviceDsID.
+
+	   The device-datasource ID you'd like to add an instance group for
+
+	   Format: int32
 	*/
 	DeviceDsID int32
-	/*DeviceID*/
+
+	// DeviceID.
+	//
+	// Format: int32
 	DeviceID int32
-	/*ID*/
+
+	// ID.
+	//
+	// Format: int32
 	ID int32
 
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
+}
+
+// WithDefaults hydrates default values in the patch device datasource instance group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchDeviceDatasourceInstanceGroupByIDParams) WithDefaults() *PatchDeviceDatasourceInstanceGroupByIDParams {
+	o.SetDefaults()
+	return o
+}
+
+// SetDefaults hydrates default values in the patch device datasource instance group by Id params (not the query body).
+//
+// All values with no default are reset to their zero value.
+func (o *PatchDeviceDatasourceInstanceGroupByIDParams) SetDefaults() {
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch device datasource instance group by Id params
@@ -166,7 +187,6 @@ func (o *PatchDeviceDatasourceInstanceGroupByIDParams) WriteToRequest(r runtime.
 		return err
 	}
 	var res []error
-
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // UpdateAlertRuleByIDReader is a Reader for the UpdateAlertRuleByID structure.
@@ -24,14 +23,12 @@ type UpdateAlertRuleByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *UpdateAlertRuleByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewUpdateAlertRuleByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewUpdateAlertRuleByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewUpdateAlertRuleByIDOK() *UpdateAlertRuleByIDOK {
 	return &UpdateAlertRuleByIDOK{}
 }
 
-/*UpdateAlertRuleByIDOK handles this case with default header values.
+/* UpdateAlertRuleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type UpdateAlertRuleByIDOK struct {
 
 func (o *UpdateAlertRuleByIDOK) Error() string {
 	return fmt.Sprintf("[PUT /setting/alert/rules/{id}][%d] updateAlertRuleByIdOK  %+v", 200, o.Payload)
+}
+func (o *UpdateAlertRuleByIDOK) GetPayload() *models.AlertRule {
+	return o.Payload
 }
 
 func (o *UpdateAlertRuleByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewUpdateAlertRuleByIDDefault(code int) *UpdateAlertRuleByIDDefault {
 	}
 }
 
-/*UpdateAlertRuleByIDDefault handles this case with default header values.
+/* UpdateAlertRuleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *UpdateAlertRuleByIDDefault) Code() int {
 
 func (o *UpdateAlertRuleByIDDefault) Error() string {
 	return fmt.Sprintf("[PUT /setting/alert/rules/{id}][%d] updateAlertRuleById default  %+v", o._statusCode, o.Payload)
+}
+func (o *UpdateAlertRuleByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *UpdateAlertRuleByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

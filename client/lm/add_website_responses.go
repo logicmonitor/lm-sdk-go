@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // AddWebsiteReader is a Reader for the AddWebsite structure.
@@ -24,14 +23,12 @@ type AddWebsiteReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *AddWebsiteReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewAddWebsiteOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewAddWebsiteDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewAddWebsiteOK() *AddWebsiteOK {
 	return &AddWebsiteOK{}
 }
 
-/*AddWebsiteOK handles this case with default header values.
+/* AddWebsiteOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type AddWebsiteOK struct {
 
 func (o *AddWebsiteOK) Error() string {
 	return fmt.Sprintf("[POST /website/websites][%d] addWebsiteOK  %+v", 200, o.Payload)
+}
+func (o *AddWebsiteOK) GetPayload() models.Website {
+	return o.Payload
 }
 
 func (o *AddWebsiteOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewAddWebsiteDefault(code int) *AddWebsiteDefault {
 	}
 }
 
-/*AddWebsiteDefault handles this case with default header values.
+/* AddWebsiteDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *AddWebsiteDefault) Code() int {
 
 func (o *AddWebsiteDefault) Error() string {
 	return fmt.Sprintf("[POST /website/websites][%d] addWebsite default  %+v", o._statusCode, o.Payload)
+}
+func (o *AddWebsiteDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *AddWebsiteDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -6,15 +6,16 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
 // LogFile log file
+//
 // swagger:model LogFile
 type LogFile struct {
 
@@ -49,7 +50,6 @@ func (m *LogFile) Validate(formats strfmt.Registry) error {
 }
 
 func (m *LogFile) validateMatches(formats strfmt.Registry) error {
-
 	if swag.IsZero(m.Matches) { // not required
 		return nil
 	}
@@ -61,6 +61,38 @@ func (m *LogFile) validateMatches(formats strfmt.Registry) error {
 
 		if m.Matches[i] != nil {
 			if err := m.Matches[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("matches" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this log file based on the context it is used
+func (m *LogFile) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateMatches(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *LogFile) contextValidateMatches(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Matches); i++ {
+
+		if m.Matches[i] != nil {
+			if err := m.Matches[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("matches" + "." + strconv.Itoa(i))
 				}

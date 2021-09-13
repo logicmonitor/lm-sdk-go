@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // ImportEventSourceReader is a Reader for the ImportEventSource structure.
@@ -24,14 +23,12 @@ type ImportEventSourceReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ImportEventSourceReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewImportEventSourceOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewImportEventSourceDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewImportEventSourceOK() *ImportEventSourceOK {
 	return &ImportEventSourceOK{}
 }
 
-/*ImportEventSourceOK handles this case with default header values.
+/* ImportEventSourceOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type ImportEventSourceOK struct {
 
 func (o *ImportEventSourceOK) Error() string {
 	return fmt.Sprintf("[POST /setting/eventsources/importxml][%d] importEventSourceOK  %+v", 200, o.Payload)
+}
+func (o *ImportEventSourceOK) GetPayload() interface{} {
+	return o.Payload
 }
 
 func (o *ImportEventSourceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -78,7 +78,7 @@ func NewImportEventSourceDefault(code int) *ImportEventSourceDefault {
 	}
 }
 
-/*ImportEventSourceDefault handles this case with default header values.
+/* ImportEventSourceDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -95,6 +95,9 @@ func (o *ImportEventSourceDefault) Code() int {
 
 func (o *ImportEventSourceDefault) Error() string {
 	return fmt.Sprintf("[POST /setting/eventsources/importxml][%d] importEventSource default  %+v", o._statusCode, o.Payload)
+}
+func (o *ImportEventSourceDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *ImportEventSourceDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -7,17 +7,18 @@ package models
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"strconv"
 
-	strfmt "github.com/go-openapi/strfmt"
-
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
 // TableWidget table widget
+//
 // swagger:model TableWidget
 type TableWidget struct {
 	dashboardIdField *int32
@@ -149,7 +150,6 @@ func (m *TableWidget) Type() string {
 
 // SetType sets the type of this subtype
 func (m *TableWidget) SetType(val string) {
-
 }
 
 // UserPermission gets the user permission of this subtype
@@ -161,12 +161,6 @@ func (m *TableWidget) UserPermission() string {
 func (m *TableWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
-
-// Columns gets the columns of this subtype
-
-// Forecast gets the forecast of this subtype
-
-// Rows gets the rows of this subtype
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *TableWidget) UnmarshalJSON(raw []byte) error {
@@ -248,13 +242,10 @@ func (m *TableWidget) UnmarshalJSON(raw []byte) error {
 		/* Not the type we're looking for. */
 		return errors.New(422, "invalid type value: %q", base.Type)
 	}
-
 	result.userPermissionField = base.UserPermission
 
 	result.Columns = data.Columns
-
 	result.Forecast = data.Forecast
-
 	result.Rows = data.Rows
 
 	*m = result
@@ -285,8 +276,7 @@ func (m TableWidget) MarshalJSON() ([]byte, error) {
 		Forecast: m.Forecast,
 
 		Rows: m.Rows,
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -335,8 +325,7 @@ func (m TableWidget) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserPermission: m.UserPermission(),
-	},
-	)
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -448,6 +437,117 @@ func (m *TableWidget) validateRows(formats strfmt.Registry) error {
 
 		if m.Rows[i] != nil {
 			if err := m.Rows[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("rows" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+// ContextValidate validate this table widget based on the context it is used
+func (m *TableWidget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateLastUpdatedBy(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastUpdatedOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateColumns(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateForecast(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRows(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *TableWidget) contextValidateLastUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedBy", "body", string(m.LastUpdatedBy())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *TableWidget) contextValidateLastUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedOn", "body", int64(m.LastUpdatedOn())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *TableWidget) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *TableWidget) contextValidateColumns(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Columns); i++ {
+
+		if m.Columns[i] != nil {
+			if err := m.Columns[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *TableWidget) contextValidateForecast(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Forecast != nil {
+		if err := m.Forecast.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("forecast")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *TableWidget) contextValidateRows(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Rows); i++ {
+
+		if m.Rows[i] != nil {
+			if err := m.Rows[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rows" + "." + strconv.Itoa(i))
 				}

@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetAllSDTListByWebsiteGroupIDReader is a Reader for the GetAllSDTListByWebsiteGroupID structure.
@@ -24,14 +23,12 @@ type GetAllSDTListByWebsiteGroupIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAllSDTListByWebsiteGroupIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetAllSDTListByWebsiteGroupIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetAllSDTListByWebsiteGroupIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetAllSDTListByWebsiteGroupIDOK() *GetAllSDTListByWebsiteGroupIDOK {
 	return &GetAllSDTListByWebsiteGroupIDOK{}
 }
 
-/*GetAllSDTListByWebsiteGroupIDOK handles this case with default header values.
+/* GetAllSDTListByWebsiteGroupIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetAllSDTListByWebsiteGroupIDOK struct {
 
 func (o *GetAllSDTListByWebsiteGroupIDOK) Error() string {
 	return fmt.Sprintf("[GET /website/groups/{id}/sdts][%d] getAllSdtListByWebsiteGroupIdOK  %+v", 200, o.Payload)
+}
+func (o *GetAllSDTListByWebsiteGroupIDOK) GetPayload() *models.SDTPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetAllSDTListByWebsiteGroupIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetAllSDTListByWebsiteGroupIDDefault(code int) *GetAllSDTListByWebsiteGr
 	}
 }
 
-/*GetAllSDTListByWebsiteGroupIDDefault handles this case with default header values.
+/* GetAllSDTListByWebsiteGroupIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetAllSDTListByWebsiteGroupIDDefault) Code() int {
 
 func (o *GetAllSDTListByWebsiteGroupIDDefault) Error() string {
 	return fmt.Sprintf("[GET /website/groups/{id}/sdts][%d] getAllSDTListByWebsiteGroupId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetAllSDTListByWebsiteGroupIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetAllSDTListByWebsiteGroupIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

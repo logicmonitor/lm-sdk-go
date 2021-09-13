@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetSDTHistoryByDeviceGroupIDReader is a Reader for the GetSDTHistoryByDeviceGroupID structure.
@@ -24,14 +23,12 @@ type GetSDTHistoryByDeviceGroupIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetSDTHistoryByDeviceGroupIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetSDTHistoryByDeviceGroupIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetSDTHistoryByDeviceGroupIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetSDTHistoryByDeviceGroupIDOK() *GetSDTHistoryByDeviceGroupIDOK {
 	return &GetSDTHistoryByDeviceGroupIDOK{}
 }
 
-/*GetSDTHistoryByDeviceGroupIDOK handles this case with default header values.
+/* GetSDTHistoryByDeviceGroupIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetSDTHistoryByDeviceGroupIDOK struct {
 
 func (o *GetSDTHistoryByDeviceGroupIDOK) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{id}/historysdts][%d] getSdtHistoryByDeviceGroupIdOK  %+v", 200, o.Payload)
+}
+func (o *GetSDTHistoryByDeviceGroupIDOK) GetPayload() *models.DeviceGroupSDTHistoryPaginationResponse {
+	return o.Payload
 }
 
 func (o *GetSDTHistoryByDeviceGroupIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetSDTHistoryByDeviceGroupIDDefault(code int) *GetSDTHistoryByDeviceGrou
 	}
 }
 
-/*GetSDTHistoryByDeviceGroupIDDefault handles this case with default header values.
+/* GetSDTHistoryByDeviceGroupIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetSDTHistoryByDeviceGroupIDDefault) Code() int {
 
 func (o *GetSDTHistoryByDeviceGroupIDDefault) Error() string {
 	return fmt.Sprintf("[GET /device/groups/{id}/historysdts][%d] getSDTHistoryByDeviceGroupId default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetSDTHistoryByDeviceGroupIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetSDTHistoryByDeviceGroupIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

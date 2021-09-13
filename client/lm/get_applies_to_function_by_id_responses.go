@@ -10,10 +10,9 @@ import (
 	"io"
 
 	"github.com/go-openapi/runtime"
+	"github.com/go-openapi/strfmt"
 
-	strfmt "github.com/go-openapi/strfmt"
-
-	models "github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetAppliesToFunctionByIDReader is a Reader for the GetAppliesToFunctionByID structure.
@@ -24,14 +23,12 @@ type GetAppliesToFunctionByIDReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *GetAppliesToFunctionByIDReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewGetAppliesToFunctionByIDOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
 			return nil, err
 		}
 		return result, nil
-
 	default:
 		result := NewGetAppliesToFunctionByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -49,7 +46,7 @@ func NewGetAppliesToFunctionByIDOK() *GetAppliesToFunctionByIDOK {
 	return &GetAppliesToFunctionByIDOK{}
 }
 
-/*GetAppliesToFunctionByIDOK handles this case with default header values.
+/* GetAppliesToFunctionByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -59,6 +56,9 @@ type GetAppliesToFunctionByIDOK struct {
 
 func (o *GetAppliesToFunctionByIDOK) Error() string {
 	return fmt.Sprintf("[GET /setting/functions/{id}][%d] getAppliesToFunctionByIdOK  %+v", 200, o.Payload)
+}
+func (o *GetAppliesToFunctionByIDOK) GetPayload() *models.AppliesToFunction {
+	return o.Payload
 }
 
 func (o *GetAppliesToFunctionByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -80,7 +80,7 @@ func NewGetAppliesToFunctionByIDDefault(code int) *GetAppliesToFunctionByIDDefau
 	}
 }
 
-/*GetAppliesToFunctionByIDDefault handles this case with default header values.
+/* GetAppliesToFunctionByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -97,6 +97,9 @@ func (o *GetAppliesToFunctionByIDDefault) Code() int {
 
 func (o *GetAppliesToFunctionByIDDefault) Error() string {
 	return fmt.Sprintf("[GET /setting/functions/{id}][%d] getAppliesToFunctionById default  %+v", o._statusCode, o.Payload)
+}
+func (o *GetAppliesToFunctionByIDDefault) GetPayload() *models.ErrorResponse {
+	return o.Payload
 }
 
 func (o *GetAppliesToFunctionByIDDefault) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
