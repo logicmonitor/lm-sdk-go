@@ -62,7 +62,7 @@ type GetDatasourceListParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
 	UserAgent *string
 
 	// Fields.
@@ -105,7 +105,7 @@ func (o *GetDatasourceListParams) WithDefaults() *GetDatasourceListParams {
 // All values with no default are reset to their zero value.
 func (o *GetDatasourceListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
 
 		formatDefault = string("json")
 

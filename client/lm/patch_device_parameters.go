@@ -62,9 +62,12 @@ func NewPatchDeviceParamsWithHTTPClient(client *http.Client) *PatchDeviceParams 
 */
 type PatchDeviceParams struct {
 
+	// PatchFields.
+	PatchFields *string
+
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
 	UserAgent *string
 
 	// Body.
@@ -87,9 +90,6 @@ type PatchDeviceParams struct {
 	//
 	// Default: "refresh"
 	OpType *string
-
-	// PatchFields.
-	PatchFields *string
 
 	// Start.
 	//
@@ -114,7 +114,7 @@ func (o *PatchDeviceParams) WithDefaults() *PatchDeviceParams {
 // All values with no default are reset to their zero value.
 func (o *PatchDeviceParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
 
 		opTypeDefault = string("refresh")
 	)
@@ -161,6 +161,17 @@ func (o *PatchDeviceParams) WithHTTPClient(client *http.Client) *PatchDevicePara
 // SetHTTPClient adds the HTTPClient to the patch device params
 func (o *PatchDeviceParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithPatchFields adds the patchFields to the patch device params
+func (o *PatchDeviceParams) WithPatchFields(patchFields *string) *PatchDeviceParams {
+	o.SetPatchFields(patchFields)
+	return o
+}
+
+// SetPatchFields adds the patchFields to the patch device params
+func (o *PatchDeviceParams) SetPatchFields(patchFields *string) {
+	o.PatchFields = patchFields
 }
 
 // WithUserAgent adds the userAgent to the patch device params
@@ -229,17 +240,6 @@ func (o *PatchDeviceParams) SetOpType(opType *string) {
 	o.OpType = opType
 }
 
-// WithPatchFields adds the patchFields to the patch device params
-func (o *PatchDeviceParams) WithPatchFields(patchFields *string) *PatchDeviceParams {
-	o.SetPatchFields(patchFields)
-	return o
-}
-
-// SetPatchFields adds the patchFields to the patch device params
-func (o *PatchDeviceParams) SetPatchFields(patchFields *string) {
-	o.PatchFields = patchFields
-}
-
 // WithStart adds the start to the patch device params
 func (o *PatchDeviceParams) WithStart(start *int64) *PatchDeviceParams {
 	o.SetStart(start)
@@ -258,6 +258,23 @@ func (o *PatchDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
+
+	if o.PatchFields != nil {
+
+		// query param PatchFields
+		var qrPatchFields string
+
+		if o.PatchFields != nil {
+			qrPatchFields = *o.PatchFields
+		}
+		qPatchFields := qrPatchFields
+		if qPatchFields != "" {
+
+			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.UserAgent != nil {
 
@@ -323,23 +340,6 @@ func (o *PatchDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		if qOpType != "" {
 
 			if err := r.SetQueryParam("opType", qOpType); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.PatchFields != nil {
-
-		// query param patchFields
-		var qrPatchFields string
-
-		if o.PatchFields != nil {
-			qrPatchFields = *o.PatchFields
-		}
-		qPatchFields := qrPatchFields
-		if qPatchFields != "" {
-
-			if err := r.SetQueryParam("patchFields", qPatchFields); err != nil {
 				return err
 			}
 		}

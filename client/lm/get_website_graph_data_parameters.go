@@ -62,7 +62,7 @@ type GetWebsiteGraphDataParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
 	UserAgent *string
 
 	// CheckpointID.
@@ -109,7 +109,7 @@ func (o *GetWebsiteGraphDataParams) WithDefaults() *GetWebsiteGraphDataParams {
 // All values with no default are reset to their zero value.
 func (o *GetWebsiteGraphDataParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
 	)
 
 	val := GetWebsiteGraphDataParams{

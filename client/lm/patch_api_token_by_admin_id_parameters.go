@@ -62,9 +62,12 @@ func NewPatchAPITokenByAdminIDParamsWithHTTPClient(client *http.Client) *PatchAP
 */
 type PatchAPITokenByAdminIDParams struct {
 
+	// PatchFields.
+	PatchFields *string
+
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
 	UserAgent *string
 
 	// AdminID.
@@ -98,7 +101,7 @@ func (o *PatchAPITokenByAdminIDParams) WithDefaults() *PatchAPITokenByAdminIDPar
 // All values with no default are reset to their zero value.
 func (o *PatchAPITokenByAdminIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
 	)
 
 	val := PatchAPITokenByAdminIDParams{
@@ -142,6 +145,17 @@ func (o *PatchAPITokenByAdminIDParams) WithHTTPClient(client *http.Client) *Patc
 // SetHTTPClient adds the HTTPClient to the patch Api token by admin Id params
 func (o *PatchAPITokenByAdminIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithPatchFields adds the patchFields to the patch Api token by admin Id params
+func (o *PatchAPITokenByAdminIDParams) WithPatchFields(patchFields *string) *PatchAPITokenByAdminIDParams {
+	o.SetPatchFields(patchFields)
+	return o
+}
+
+// SetPatchFields adds the patchFields to the patch Api token by admin Id params
+func (o *PatchAPITokenByAdminIDParams) SetPatchFields(patchFields *string) {
+	o.PatchFields = patchFields
 }
 
 // WithUserAgent adds the userAgent to the patch Api token by admin Id params
@@ -195,6 +209,23 @@ func (o *PatchAPITokenByAdminIDParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
+
+	if o.PatchFields != nil {
+
+		// query param PatchFields
+		var qrPatchFields string
+
+		if o.PatchFields != nil {
+			qrPatchFields = *o.PatchFields
+		}
+		qPatchFields := qrPatchFields
+		if qPatchFields != "" {
+
+			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.UserAgent != nil {
 
