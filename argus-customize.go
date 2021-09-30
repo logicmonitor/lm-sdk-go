@@ -56,15 +56,25 @@ func main() {
 		"required": false,
 		"default":  fmt.Sprintf("Logicmonitor/SDK: Argus Dist-%s", os.Args[3]),
 	}
+	patchFields := map[string]interface{}{
+		"in":       "query",
+		"name":     "PatchFields",
+		"type":     "string",
+		"required": false,
+	}
 	paths := result["paths"].(map[string]interface{})
 	for _, v := range paths {
 		verbsMap := v.(map[string]interface{})
-		for _, val := range verbsMap {
+		for key, val := range verbsMap {
 			verbDetails := val.(map[string]interface{})
 			responses := verbDetails["responses"].(map[string]interface{})
 			responses["429"] = m
 			parameters := verbDetails["parameters"].([]interface{})
-			parameters = append(parameters, userAgent)
+			if key == "patch" {
+				parameters = append(parameters, userAgent, patchFields)
+			} else {
+				parameters = append(parameters, userAgent)
+			}
 			verbDetails["parameters"] = parameters
 		}
 	}

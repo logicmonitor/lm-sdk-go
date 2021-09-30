@@ -62,9 +62,12 @@ func NewPatchDeviceGroupDatasourceByIDParamsWithHTTPClient(client *http.Client) 
 */
 type PatchDeviceGroupDatasourceByIDParams struct {
 
+	// PatchFields.
+	PatchFields *string
+
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
 	UserAgent *string
 
 	// Body.
@@ -98,7 +101,7 @@ func (o *PatchDeviceGroupDatasourceByIDParams) WithDefaults() *PatchDeviceGroupD
 // All values with no default are reset to their zero value.
 func (o *PatchDeviceGroupDatasourceByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
 	)
 
 	val := PatchDeviceGroupDatasourceByIDParams{
@@ -142,6 +145,17 @@ func (o *PatchDeviceGroupDatasourceByIDParams) WithHTTPClient(client *http.Clien
 // SetHTTPClient adds the HTTPClient to the patch device group datasource by Id params
 func (o *PatchDeviceGroupDatasourceByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithPatchFields adds the patchFields to the patch device group datasource by Id params
+func (o *PatchDeviceGroupDatasourceByIDParams) WithPatchFields(patchFields *string) *PatchDeviceGroupDatasourceByIDParams {
+	o.SetPatchFields(patchFields)
+	return o
+}
+
+// SetPatchFields adds the patchFields to the patch device group datasource by Id params
+func (o *PatchDeviceGroupDatasourceByIDParams) SetPatchFields(patchFields *string) {
+	o.PatchFields = patchFields
 }
 
 // WithUserAgent adds the userAgent to the patch device group datasource by Id params
@@ -195,6 +209,23 @@ func (o *PatchDeviceGroupDatasourceByIDParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 	var res []error
+
+	if o.PatchFields != nil {
+
+		// query param PatchFields
+		var qrPatchFields string
+
+		if o.PatchFields != nil {
+			qrPatchFields = *o.PatchFields
+		}
+		qPatchFields := qrPatchFields
+		if qPatchFields != "" {
+
+			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.UserAgent != nil {
 

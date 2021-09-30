@@ -62,9 +62,12 @@ func NewPatchReportByIDParamsWithHTTPClient(client *http.Client) *PatchReportByI
 */
 type PatchReportByIDParams struct {
 
+	// PatchFields.
+	PatchFields *string
+
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
 	UserAgent *string
 
 	// Body.
@@ -93,7 +96,7 @@ func (o *PatchReportByIDParams) WithDefaults() *PatchReportByIDParams {
 // All values with no default are reset to their zero value.
 func (o *PatchReportByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v2.0.0-argus5-7-gdde4eda-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
 	)
 
 	val := PatchReportByIDParams{
@@ -139,6 +142,17 @@ func (o *PatchReportByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithPatchFields adds the patchFields to the patch report by Id params
+func (o *PatchReportByIDParams) WithPatchFields(patchFields *string) *PatchReportByIDParams {
+	o.SetPatchFields(patchFields)
+	return o
+}
+
+// SetPatchFields adds the patchFields to the patch report by Id params
+func (o *PatchReportByIDParams) SetPatchFields(patchFields *string) {
+	o.PatchFields = patchFields
+}
+
 // WithUserAgent adds the userAgent to the patch report by Id params
 func (o *PatchReportByIDParams) WithUserAgent(userAgent *string) *PatchReportByIDParams {
 	o.SetUserAgent(userAgent)
@@ -179,6 +193,23 @@ func (o *PatchReportByIDParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.PatchFields != nil {
+
+		// query param PatchFields
+		var qrPatchFields string
+
+		if o.PatchFields != nil {
+			qrPatchFields = *o.PatchFields
+		}
+		qPatchFields := qrPatchFields
+		if qPatchFields != "" {
+
+			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
+				return err
+			}
+		}
+	}
 
 	if o.UserAgent != nil {
 
