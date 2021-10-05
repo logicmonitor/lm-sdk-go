@@ -62,7 +62,7 @@ type DeleteDeviceGroupByIDParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
 	UserAgent *string
 
 	// DeleteChildren.
@@ -96,7 +96,7 @@ func (o *DeleteDeviceGroupByIDParams) WithDefaults() *DeleteDeviceGroupByIDParam
 // All values with no default are reset to their zero value.
 func (o *DeleteDeviceGroupByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
 
 		deleteChildrenDefault = bool(false)
 

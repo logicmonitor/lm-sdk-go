@@ -62,7 +62,7 @@ type DeleteDeviceByIDParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
 	UserAgent *string
 
 	// DeleteHard.
@@ -106,7 +106,7 @@ func (o *DeleteDeviceByIDParams) WithDefaults() *DeleteDeviceByIDParams {
 // All values with no default are reset to their zero value.
 func (o *DeleteDeviceByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
 
 		deleteHardDefault = bool(true)
 	)

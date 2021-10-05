@@ -71,10 +71,9 @@ func main() {
 			responses["429"] = m
 			parameters := verbDetails["parameters"].([]interface{})
 			if key == "patch" {
-				parameters = append(parameters, userAgent, patchFields)
-			} else {
-				parameters = append(parameters, userAgent)
+				parameters = append(parameters, patchFields)
 			}
+			parameters = append(parameters, userAgent)
 			verbDetails["parameters"] = parameters
 		}
 	}

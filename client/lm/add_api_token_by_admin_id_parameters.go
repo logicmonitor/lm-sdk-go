@@ -64,7 +64,7 @@ type AddAPITokenByAdminIDParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
 	UserAgent *string
 
 	// AdminID.
@@ -98,7 +98,7 @@ func (o *AddAPITokenByAdminIDParams) WithDefaults() *AddAPITokenByAdminIDParams 
 // All values with no default are reset to their zero value.
 func (o *AddAPITokenByAdminIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
 
 		typeVarDefault = string("API Token")
 	)

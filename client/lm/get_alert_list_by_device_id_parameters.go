@@ -62,7 +62,7 @@ type GetAlertListByDeviceIDParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
 	UserAgent *string
 
 	// Bound.
@@ -129,7 +129,7 @@ func (o *GetAlertListByDeviceIDParams) WithDefaults() *GetAlertListByDeviceIDPar
 // All values with no default are reset to their zero value.
 func (o *GetAlertListByDeviceIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
 
 		boundDefault = string("instances")
 

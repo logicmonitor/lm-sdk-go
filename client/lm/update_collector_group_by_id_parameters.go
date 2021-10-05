@@ -64,7 +64,7 @@ type UpdateCollectorGroupByIDParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
 	UserAgent *string
 
 	// Body.
@@ -96,7 +96,7 @@ func (o *UpdateCollectorGroupByIDParams) WithDefaults() *UpdateCollectorGroupByI
 // All values with no default are reset to their zero value.
 func (o *UpdateCollectorGroupByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
 
 		forceUpdateFailedOverDevicesDefault = bool(false)
 	)

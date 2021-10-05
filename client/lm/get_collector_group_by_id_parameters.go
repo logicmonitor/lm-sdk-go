@@ -62,7 +62,7 @@ type GetCollectorGroupByIDParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
 	UserAgent *string
 
 	// Fields.
@@ -91,7 +91,7 @@ func (o *GetCollectorGroupByIDParams) WithDefaults() *GetCollectorGroupByIDParam
 // All values with no default are reset to their zero value.
 func (o *GetCollectorGroupByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
 	)
 
 	val := GetCollectorGroupByIDParams{

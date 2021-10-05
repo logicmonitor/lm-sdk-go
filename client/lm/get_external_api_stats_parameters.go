@@ -61,7 +61,7 @@ type GetExternalAPIStatsParams struct {
 
 	// UserAgent.
 	//
-	// Default: "Logicmonitor/SDK: Argus Dist-95bb3f4-dirty"
+	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
 	UserAgent *string
 
 	timeout    time.Duration
@@ -82,7 +82,7 @@ func (o *GetExternalAPIStatsParams) WithDefaults() *GetExternalAPIStatsParams {
 // All values with no default are reset to their zero value.
 func (o *GetExternalAPIStatsParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-95bb3f4-dirty")
+		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
 	)
 
 	val := GetExternalAPIStatsParams{
