@@ -26,7 +26,7 @@ type DeviceGroupDataSourceAlertConfig struct {
 
 	// dp config
 	// Read Only: true
-	DpConfig []*DeviceGroupDataSourceDataPointConfig `json:"dpConfig,omitempty"`
+	DpConfig []*DeviceGroupDataSourceDataPointConfig `json:"dpConfig"`
 }
 
 // Validate validates this device group data source alert config
@@ -57,6 +57,8 @@ func (m *DeviceGroupDataSourceAlertConfig) validateDpConfig(formats strfmt.Regis
 			if err := m.DpConfig[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dpConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dpConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -106,6 +108,8 @@ func (m *DeviceGroupDataSourceAlertConfig) contextValidateDpConfig(ctx context.C
 			if err := m.DpConfig[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dpConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dpConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

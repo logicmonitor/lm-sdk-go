@@ -51,6 +51,8 @@ type AlertForecastingReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -63,7 +65,7 @@ type AlertForecastingReport struct {
 	Algorithm string `json:"algorithm,omitempty"`
 
 	// The columns displayed in the report
-	Columns []*DynamicColumn `json:"columns,omitempty"`
+	Columns []*DynamicColumn `json:"columns"`
 
 	// The confidence level when do forecasting
 	// Required: true
@@ -242,6 +244,16 @@ func (m *AlertForecastingReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *AlertForecastingReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *AlertForecastingReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *AlertForecastingReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -274,7 +286,7 @@ func (m *AlertForecastingReport) SetScheduleTimezone(val string) {
 
 // Type gets the type of this subtype
 func (m *AlertForecastingReport) Type() string {
-	return "Alert Forecasting"
+	return "AlertForecastingReport"
 }
 
 // SetType sets the type of this subtype
@@ -299,7 +311,7 @@ func (m *AlertForecastingReport) UnmarshalJSON(raw []byte) error {
 		Algorithm string `json:"algorithm,omitempty"`
 
 		// The columns displayed in the report
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The confidence level when do forecasting
 		// Required: true
@@ -366,7 +378,9 @@ func (m *AlertForecastingReport) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -418,6 +432,8 @@ func (m *AlertForecastingReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -455,7 +471,7 @@ func (m AlertForecastingReport) MarshalJSON() ([]byte, error) {
 		Algorithm string `json:"algorithm,omitempty"`
 
 		// The columns displayed in the report
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The confidence level when do forecasting
 		// Required: true
@@ -534,7 +550,9 @@ func (m AlertForecastingReport) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -576,6 +594,8 @@ func (m AlertForecastingReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 
@@ -652,6 +672,8 @@ func (m *AlertForecastingReport) validateRecipients(formats strfmt.Registry) err
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -677,6 +699,8 @@ func (m *AlertForecastingReport) validateColumns(formats strfmt.Registry) error 
 			if err := m.Columns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -720,6 +744,8 @@ func (m *AlertForecastingReport) validateMetrics(formats strfmt.Registry) error 
 			if err := m.Metrics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -885,6 +911,8 @@ func (m *AlertForecastingReport) contextValidateRecipients(ctx context.Context, 
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -921,6 +949,8 @@ func (m *AlertForecastingReport) contextValidateColumns(ctx context.Context, for
 			if err := m.Columns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -939,6 +969,8 @@ func (m *AlertForecastingReport) contextValidateMetrics(ctx context.Context, for
 			if err := m.Metrics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

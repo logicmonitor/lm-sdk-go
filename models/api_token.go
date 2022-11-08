@@ -58,11 +58,16 @@ type APIToken struct {
 	// The roles assigned to the user that is associated with the API Tokens
 	// Read Only: true
 	// Unique: true
-	Roles []string `json:"roles,omitempty"`
+	Roles []string `json:"roles"`
 
 	// 1 | 2 - Whether or not the API Tokens are enabled, where 2 = enabled
 	// Example: 2
 	Status int32 `json:"status,omitempty"`
+
+	// The permission of current apiToken with the admin. values can be write|read|none
+	// Example: read
+	// Read Only: true
+	UserPermission string `json:"userPermission,omitempty"`
 }
 
 // Validate validates this API token
@@ -128,6 +133,10 @@ func (m *APIToken) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	}
 
 	if err := m.contextValidateRoles(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -212,6 +221,15 @@ func (m *APIToken) contextValidateLastUsedOn(ctx context.Context, formats strfmt
 func (m *APIToken) contextValidateRoles(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "roles", "body", []string(m.Roles)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIToken) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission)); err != nil {
 		return err
 	}
 

@@ -176,6 +176,6 @@ func LMv1Auth(accessId, accessKey string) runtime.ClientAuthInfoWriter {
 		hexDigest := hex.EncodeToString(h.Sum(nil))
 		signature := base64.StdEncoding.EncodeToString([]byte(hexDigest))
 		r.SetHeaderParam("Authorization", fmt.Sprintf("LMv1 %s:%s:%s", accessId, signature, epoch))
-		return r.SetHeaderParam("X-version", "2")
+		return r.SetHeaderParam("X-version", "3")
 	})
 }

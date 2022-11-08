@@ -24,7 +24,7 @@ type DataPumpCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *DataPumpCollectorAttribute) Name() string {
-	return "datapump"
+	return "DataPumpCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

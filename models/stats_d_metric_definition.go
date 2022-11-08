@@ -54,6 +54,8 @@ func (m *StatsDMetricDefinition) validateDisplay(formats strfmt.Registry) error 
 		if err := m.Display.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("display")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("display")
 			}
 			return err
 		}
@@ -82,6 +84,8 @@ func (m *StatsDMetricDefinition) contextValidateDisplay(ctx context.Context, for
 		if err := m.Display.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("display")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("display")
 			}
 			return err
 		}

@@ -27,48 +27,52 @@ type DataSource struct {
 	// The Applies To for the LMModule
 	AppliesTo string `json:"appliesTo,omitempty"`
 
-	// audit version
+	// The data source audit version
 	// Read Only: true
 	AuditVersion int64 `json:"auditVersion,omitempty"`
 
-	// auto discovery config
+	// Auto discovery configuration
 	AutoDiscoveryConfig *AutoDiscoveryConfiguration `json:"autoDiscoveryConfig,omitempty"`
 
-	// collect interval
+	// The metadata checksum for the LMModule content
+	// Read Only: true
+	Checksum string `json:"checksum,omitempty"`
+
+	// The DataSource data collect interval
 	// Required: true
 	CollectInterval *int32 `json:"collectInterval"`
 
-	// collect method
+	// The  method to collect data: snmp|ping|exs|webpage|wmi|cim|datadump|dns|ipmi|jdbb|script|udp|tcp|xen
 	// Required: true
 	CollectMethod *string `json:"collectMethod"`
 
 	collectorAttributeField CollectorAttribute
 
-	// data points
-	DataPoints []*DataPoint `json:"dataPoints,omitempty"`
+	// The data point list
+	DataPoints []*DataPoint `json:"dataPoints"`
 
 	// The description for the LMModule
 	Description string `json:"description,omitempty"`
 
-	// display name
+	// The data source display name
 	DisplayName string `json:"displayName,omitempty"`
 
-	// enable auto discovery
+	// Enable Auto Discovery or not when this data source has multi instance: false|true
 	EnableAutoDiscovery bool `json:"enableAutoDiscovery,omitempty"`
 
-	// enable eri discovery
+	// Enable ERI Discovery or not: false|true
 	EnableEriDiscovery bool `json:"enableEriDiscovery,omitempty"`
 
-	// eri discovery config
-	EriDiscoveryConfig *ScriptERIDiscoveryAttributeV2 `json:"eriDiscoveryConfig,omitempty"`
+	// Enable ERI Discovery or not
+	EriDiscoveryConfig *ScriptERIDiscoveryAttributeV3 `json:"eriDiscoveryConfig,omitempty"`
 
-	// eri discovery interval
+	// The DataSource data collect interval
 	EriDiscoveryInterval int32 `json:"eriDiscoveryInterval,omitempty"`
 
 	// The group the LMModule is in
 	Group string `json:"group,omitempty"`
 
-	// has multi instances
+	// If the DataSource has multi instance: true|false
 	// Read Only: true
 	HasMultiInstances *bool `json:"hasMultiInstances,omitempty"`
 
@@ -77,9 +81,21 @@ type DataSource struct {
 	// Read Only: true
 	ID int32 `json:"id"`
 
-	// name
+	// The local module's IntegrationMetadata, readable for troubleshooting purposes
+	// Read Only: true
+	InstallationMetadata *IntegrationMetadata `json:"installationMetadata,omitempty"`
+
+	// The lineageId the LMModule belongs to
+	// Read Only: true
+	LineageID string `json:"lineageId,omitempty"`
+
+	// The data source name
 	// Required: true
 	Name *string `json:"name"`
+
+	// The dataSource payload Version for custom metrics
+	// Read Only: true
+	PayloadVersion int32 `json:"payloadVersion,omitempty"`
 
 	// The Tags for the LMModule
 	Tags string `json:"tags,omitempty"`
@@ -87,7 +103,11 @@ type DataSource struct {
 	// The Technical Notes for the LMModule
 	Technology string `json:"technology,omitempty"`
 
-	// version
+	// Use Wildvalue as Unique identifier in case of multiinstance datasource: true|false
+	// Read Only: true
+	UseWildValueAsUUID *bool `json:"useWildValueAsUUID,omitempty"`
+
+	// The data source version
 	// Read Only: true
 	Version int64 `json:"version,omitempty"`
 }
@@ -111,13 +131,15 @@ func (m *DataSource) UnmarshalJSON(raw []byte) error {
 
 		AutoDiscoveryConfig *AutoDiscoveryConfiguration `json:"autoDiscoveryConfig,omitempty"`
 
+		Checksum string `json:"checksum,omitempty"`
+
 		CollectInterval *int32 `json:"collectInterval"`
 
 		CollectMethod *string `json:"collectMethod"`
 
 		CollectorAttribute json.RawMessage `json:"collectorAttribute"`
 
-		DataPoints []*DataPoint `json:"dataPoints,omitempty"`
+		DataPoints []*DataPoint `json:"dataPoints"`
 
 		Description string `json:"description,omitempty"`
 
@@ -127,7 +149,7 @@ func (m *DataSource) UnmarshalJSON(raw []byte) error {
 
 		EnableEriDiscovery bool `json:"enableEriDiscovery,omitempty"`
 
-		EriDiscoveryConfig *ScriptERIDiscoveryAttributeV2 `json:"eriDiscoveryConfig,omitempty"`
+		EriDiscoveryConfig *ScriptERIDiscoveryAttributeV3 `json:"eriDiscoveryConfig,omitempty"`
 
 		EriDiscoveryInterval int32 `json:"eriDiscoveryInterval,omitempty"`
 
@@ -137,11 +159,19 @@ func (m *DataSource) UnmarshalJSON(raw []byte) error {
 
 		ID int32 `json:"id"`
 
+		InstallationMetadata *IntegrationMetadata `json:"installationMetadata,omitempty"`
+
+		LineageID string `json:"lineageId,omitempty"`
+
 		Name *string `json:"name"`
+
+		PayloadVersion int32 `json:"payloadVersion,omitempty"`
 
 		Tags string `json:"tags,omitempty"`
 
 		Technology string `json:"technology,omitempty"`
+
+		UseWildValueAsUUID *bool `json:"useWildValueAsUUID,omitempty"`
 
 		Version int64 `json:"version,omitempty"`
 	}
@@ -168,6 +198,9 @@ func (m *DataSource) UnmarshalJSON(raw []byte) error {
 
 	// autoDiscoveryConfig
 	result.AutoDiscoveryConfig = data.AutoDiscoveryConfig
+
+	// checksum
+	result.Checksum = data.Checksum
 
 	// collectInterval
 	result.CollectInterval = data.CollectInterval
@@ -208,14 +241,26 @@ func (m *DataSource) UnmarshalJSON(raw []byte) error {
 	// id
 	result.ID = data.ID
 
+	// installationMetadata
+	result.InstallationMetadata = data.InstallationMetadata
+
+	// lineageId
+	result.LineageID = data.LineageID
+
 	// name
 	result.Name = data.Name
+
+	// payloadVersion
+	result.PayloadVersion = data.PayloadVersion
 
 	// tags
 	result.Tags = data.Tags
 
 	// technology
 	result.Technology = data.Technology
+
+	// useWildValueAsUUID
+	result.UseWildValueAsUUID = data.UseWildValueAsUUID
 
 	// version
 	result.Version = data.Version
@@ -236,11 +281,13 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 
 		AutoDiscoveryConfig *AutoDiscoveryConfiguration `json:"autoDiscoveryConfig,omitempty"`
 
+		Checksum string `json:"checksum,omitempty"`
+
 		CollectInterval *int32 `json:"collectInterval"`
 
 		CollectMethod *string `json:"collectMethod"`
 
-		DataPoints []*DataPoint `json:"dataPoints,omitempty"`
+		DataPoints []*DataPoint `json:"dataPoints"`
 
 		Description string `json:"description,omitempty"`
 
@@ -250,7 +297,7 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 
 		EnableEriDiscovery bool `json:"enableEriDiscovery,omitempty"`
 
-		EriDiscoveryConfig *ScriptERIDiscoveryAttributeV2 `json:"eriDiscoveryConfig,omitempty"`
+		EriDiscoveryConfig *ScriptERIDiscoveryAttributeV3 `json:"eriDiscoveryConfig,omitempty"`
 
 		EriDiscoveryInterval int32 `json:"eriDiscoveryInterval,omitempty"`
 
@@ -260,11 +307,19 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 
 		ID int32 `json:"id"`
 
+		InstallationMetadata *IntegrationMetadata `json:"installationMetadata,omitempty"`
+
+		LineageID string `json:"lineageId,omitempty"`
+
 		Name *string `json:"name"`
+
+		PayloadVersion int32 `json:"payloadVersion,omitempty"`
 
 		Tags string `json:"tags,omitempty"`
 
 		Technology string `json:"technology,omitempty"`
+
+		UseWildValueAsUUID *bool `json:"useWildValueAsUUID,omitempty"`
 
 		Version int64 `json:"version,omitempty"`
 	}{
@@ -274,6 +329,8 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 		AuditVersion: m.AuditVersion,
 
 		AutoDiscoveryConfig: m.AutoDiscoveryConfig,
+
+		Checksum: m.Checksum,
 
 		CollectInterval: m.CollectInterval,
 
@@ -299,11 +356,19 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 
 		ID: m.ID,
 
+		InstallationMetadata: m.InstallationMetadata,
+
+		LineageID: m.LineageID,
+
 		Name: m.Name,
+
+		PayloadVersion: m.PayloadVersion,
 
 		Tags: m.Tags,
 
 		Technology: m.Technology,
+
+		UseWildValueAsUUID: m.UseWildValueAsUUID,
 
 		Version: m.Version,
 	})
@@ -355,6 +420,10 @@ func (m *DataSource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateInstallationMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
 	}
@@ -374,6 +443,8 @@ func (m *DataSource) validateAutoDiscoveryConfig(formats strfmt.Registry) error 
 		if err := m.AutoDiscoveryConfig.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("autoDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("autoDiscoveryConfig")
 			}
 			return err
 		}
@@ -409,6 +480,8 @@ func (m *DataSource) validateCollectorAttribute(formats strfmt.Registry) error {
 	if err := m.CollectorAttribute().Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("collectorAttribute")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("collectorAttribute")
 		}
 		return err
 	}
@@ -430,6 +503,8 @@ func (m *DataSource) validateDataPoints(formats strfmt.Registry) error {
 			if err := m.DataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -449,6 +524,8 @@ func (m *DataSource) validateEriDiscoveryConfig(formats strfmt.Registry) error {
 		if err := m.EriDiscoveryConfig.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("eriDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("eriDiscoveryConfig")
 			}
 			return err
 		}
@@ -461,6 +538,25 @@ func (m *DataSource) validateID(formats strfmt.Registry) error {
 
 	if err := validate.Required("id", "body", int32(m.ID)); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *DataSource) validateInstallationMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.InstallationMetadata) { // not required
+		return nil
+	}
+
+	if m.InstallationMetadata != nil {
+		if err := m.InstallationMetadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -487,6 +583,10 @@ func (m *DataSource) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateChecksum(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCollectorAttribute(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -504,6 +604,22 @@ func (m *DataSource) ContextValidate(ctx context.Context, formats strfmt.Registr
 	}
 
 	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInstallationMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLineageID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePayloadVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUseWildValueAsUUID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -532,9 +648,20 @@ func (m *DataSource) contextValidateAutoDiscoveryConfig(ctx context.Context, for
 		if err := m.AutoDiscoveryConfig.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("autoDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("autoDiscoveryConfig")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidateChecksum(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "checksum", "body", string(m.Checksum)); err != nil {
+		return err
 	}
 
 	return nil
@@ -545,6 +672,8 @@ func (m *DataSource) contextValidateCollectorAttribute(ctx context.Context, form
 	if err := m.CollectorAttribute().ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("collectorAttribute")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("collectorAttribute")
 		}
 		return err
 	}
@@ -560,6 +689,8 @@ func (m *DataSource) contextValidateDataPoints(ctx context.Context, formats strf
 			if err := m.DataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -576,6 +707,8 @@ func (m *DataSource) contextValidateEriDiscoveryConfig(ctx context.Context, form
 		if err := m.EriDiscoveryConfig.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("eriDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("eriDiscoveryConfig")
 			}
 			return err
 		}
@@ -596,6 +729,49 @@ func (m *DataSource) contextValidateHasMultiInstances(ctx context.Context, forma
 func (m *DataSource) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InstallationMetadata != nil {
+		if err := m.InstallationMetadata.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidateLineageID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lineageId", "body", string(m.LineageID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidatePayloadVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "payloadVersion", "body", int32(m.PayloadVersion)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DataSource) contextValidateUseWildValueAsUUID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "useWildValueAsUUID", "body", m.UseWildValueAsUUID); err != nil {
 		return err
 	}
 

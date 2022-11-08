@@ -34,7 +34,7 @@ type RecipientGroup struct {
 	ID int32 `json:"id,omitempty"`
 
 	// The recipients in the group
-	Recipients []*Recipient `json:"recipients,omitempty"`
+	Recipients []*Recipient `json:"recipients"`
 }
 
 // Validate validates this recipient group
@@ -78,6 +78,8 @@ func (m *RecipientGroup) validateRecipients(formats strfmt.Registry) error {
 			if err := m.Recipients[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -123,6 +125,8 @@ func (m *RecipientGroup) contextValidateRecipients(ctx context.Context, formats 
 			if err := m.Recipients[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

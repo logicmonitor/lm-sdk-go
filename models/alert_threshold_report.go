@@ -51,6 +51,8 @@ type AlertThresholdReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -60,7 +62,7 @@ type AlertThresholdReport struct {
 	userPermissionField string
 
 	// The columns that will be displayed in the report. You should specify the columns in the order in which you'd like them to be displayed
-	Columns []*DynamicColumn `json:"columns,omitempty"`
+	Columns []*DynamicColumn `json:"columns"`
 
 	// The datapoint to be included in the report. Glob expressions supported
 	DataPoint string `json:"dataPoint,omitempty"`
@@ -74,7 +76,7 @@ type AlertThresholdReport struct {
 	// true: only variations from the global thresholds will be displayed
 	// false: all thresholds will be displayed, including global thresholds an custom group and instance level thresholds
 	// the default value is true
-	ExcludeGlobal interface{} `json:"excludeGlobal,omitempty"`
+	ExcludeGlobal bool `json:"excludeGlobal,omitempty"`
 
 	// The full path of the group whose member devices you are going to include in the report. Glob expressions supported
 	GroupFullPath string `json:"groupFullPath,omitempty"`
@@ -236,6 +238,16 @@ func (m *AlertThresholdReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *AlertThresholdReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *AlertThresholdReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *AlertThresholdReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -268,7 +280,7 @@ func (m *AlertThresholdReport) SetScheduleTimezone(val string) {
 
 // Type gets the type of this subtype
 func (m *AlertThresholdReport) Type() string {
-	return "Alert threshold"
+	return "AlertThresholdReport"
 }
 
 // SetType sets the type of this subtype
@@ -290,7 +302,7 @@ func (m *AlertThresholdReport) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// The columns that will be displayed in the report. You should specify the columns in the order in which you'd like them to be displayed
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The datapoint to be included in the report. Glob expressions supported
 		DataPoint string `json:"dataPoint,omitempty"`
@@ -304,7 +316,7 @@ func (m *AlertThresholdReport) UnmarshalJSON(raw []byte) error {
 		// true: only variations from the global thresholds will be displayed
 		// false: all thresholds will be displayed, including global thresholds an custom group and instance level thresholds
 		// the default value is true
-		ExcludeGlobal interface{} `json:"excludeGlobal,omitempty"`
+		ExcludeGlobal bool `json:"excludeGlobal,omitempty"`
 
 		// The full path of the group whose member devices you are going to include in the report. Glob expressions supported
 		GroupFullPath string `json:"groupFullPath,omitempty"`
@@ -354,7 +366,9 @@ func (m *AlertThresholdReport) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -406,6 +420,8 @@ func (m *AlertThresholdReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -438,7 +454,7 @@ func (m AlertThresholdReport) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// The columns that will be displayed in the report. You should specify the columns in the order in which you'd like them to be displayed
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The datapoint to be included in the report. Glob expressions supported
 		DataPoint string `json:"dataPoint,omitempty"`
@@ -452,7 +468,7 @@ func (m AlertThresholdReport) MarshalJSON() ([]byte, error) {
 		// true: only variations from the global thresholds will be displayed
 		// false: all thresholds will be displayed, including global thresholds an custom group and instance level thresholds
 		// the default value is true
-		ExcludeGlobal interface{} `json:"excludeGlobal,omitempty"`
+		ExcludeGlobal bool `json:"excludeGlobal,omitempty"`
 
 		// The full path of the group whose member devices you are going to include in the report. Glob expressions supported
 		GroupFullPath string `json:"groupFullPath,omitempty"`
@@ -510,7 +526,9 @@ func (m AlertThresholdReport) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -552,6 +570,8 @@ func (m AlertThresholdReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 
@@ -616,6 +636,8 @@ func (m *AlertThresholdReport) validateRecipients(formats strfmt.Registry) error
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -641,6 +663,8 @@ func (m *AlertThresholdReport) validateColumns(formats strfmt.Registry) error {
 			if err := m.Columns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -802,6 +826,8 @@ func (m *AlertThresholdReport) contextValidateRecipients(ctx context.Context, fo
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -838,6 +864,8 @@ func (m *AlertThresholdReport) contextValidateColumns(ctx context.Context, forma
 			if err := m.Columns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

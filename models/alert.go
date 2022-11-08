@@ -39,9 +39,21 @@ type Alert struct {
 	// Read Only: true
 	AckedEpoch int64 `json:"ackedEpoch,omitempty"`
 
+	// Whether or not the alert is dynamic threshold based
+	// Read Only: true
+	AdAlert *bool `json:"adAlert,omitempty"`
+
+	// The description for dynamic threshold based alert
+	// Read Only: true
+	AdAlertDesc string `json:"adAlertDesc,omitempty"`
+
 	// The value that triggered the alert
 	// Read Only: true
 	AlertValue string `json:"alertValue,omitempty"`
+
+	// Indicates the anomaly alert, value can be true/false/null. If alert value lies within confidence band then false, otherwise true. If confidence band is not available then value will be null.
+	// Read Only: true
+	Anomaly *bool `json:"anomaly,omitempty"`
 
 	// The escalation chain the alert was routed to
 	// Read Only: true
@@ -71,14 +83,30 @@ type Alert struct {
 	// Read Only: true
 	DataPointName string `json:"dataPointName,omitempty"`
 
+	// The dependency role
+	// Read Only: true
+	DependencyRole string `json:"dependencyRole,omitempty"`
+
+	// The dependency routing state
+	// Read Only: true
+	DependencyRoutingState string `json:"dependencyRoutingState,omitempty"`
+
 	// The alert message, if needMessage=true is included in the query parameters
 	// Read Only: true
 	DetailMessage interface{} `json:"detailMessage,omitempty"`
 
-	// enable anomaly alert generation
+	// Indicates dynamic threshold alert generation setting. expression is comma separated
+	// 0 denotes OFF, 1 denotes ON, -1 denotes INVALID
+	// 1,0,1 =   warn : ON     error: OFF   critical: ON
+	// Empty value on this parameter means : 0,0,0
+	// Read Only: true
 	EnableAnomalyAlertGeneration string `json:"enableAnomalyAlertGeneration,omitempty"`
 
-	// enable anomaly alert suppression
+	// Indicates anomaly detection alert suppression setting, expression is comma separated
+	// 0 denotes OFF, 1 denotes ON, -1 denotes INVALID
+	// 1,0,1 =   warn : ON     error: OFF   critical: ON
+	// Empty value on this parameter means : 0,0,0
+	// Read Only: true
 	EnableAnomalyAlertSuppression string `json:"enableAnomalyAlertSuppression,omitempty"`
 
 	// The time (in epoch format) that the alert ended
@@ -153,7 +181,7 @@ type Alert struct {
 	// Read Only: true
 	RuleID int32 `json:"ruleId,omitempty"`
 
-	// Whether or not the alert was triggered during an SDT
+	// It specifies if the SDT is set for an active alert or not. However, the sdted is set to false for cleared alert as you cannot apply SDT to a cleared alert.
 	// Read Only: true
 	Sdted *bool `json:"sdted,omitempty"`
 
@@ -168,6 +196,18 @@ type Alert struct {
 	// The id of the sub time based chain
 	// Read Only: true
 	SubChainID int32 `json:"subChainId,omitempty"`
+
+	// The description for suppressed alert
+	// Read Only: true
+	SuppressDesc string `json:"suppressDesc,omitempty"`
+
+	// The component (Ex SDT, HostClusterAlert) which suppressed the alert
+	// Read Only: true
+	Suppressor string `json:"suppressor,omitempty"`
+
+	// tenant to which this alert belongs to.
+	// Read Only: true
+	Tenant string `json:"tenant,omitempty"`
 
 	// The threshold associated with the object in alert
 	// Read Only: true
@@ -203,7 +243,19 @@ func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAdAlert(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAdAlertDesc(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAlertValue(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAnomaly(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -228,6 +280,22 @@ func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	}
 
 	if err := m.contextValidateDataPointName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDependencyRole(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDependencyRoutingState(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEnableAnomalyAlertGeneration(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEnableAnomalyAlertSuppression(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -315,6 +383,18 @@ func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSuppressDesc(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSuppressor(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTenant(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateThreshold(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -365,9 +445,36 @@ func (m *Alert) contextValidateAckedEpoch(ctx context.Context, formats strfmt.Re
 	return nil
 }
 
+func (m *Alert) contextValidateAdAlert(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "adAlert", "body", m.AdAlert); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateAdAlertDesc(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "adAlertDesc", "body", string(m.AdAlertDesc)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Alert) contextValidateAlertValue(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "alertValue", "body", string(m.AlertValue)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateAnomaly(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "anomaly", "body", m.Anomaly); err != nil {
 		return err
 	}
 
@@ -422,6 +529,42 @@ func (m *Alert) contextValidateDataPointID(ctx context.Context, formats strfmt.R
 func (m *Alert) contextValidateDataPointName(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "dataPointName", "body", string(m.DataPointName)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateDependencyRole(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "dependencyRole", "body", string(m.DependencyRole)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateDependencyRoutingState(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "dependencyRoutingState", "body", string(m.DependencyRoutingState)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateEnableAnomalyAlertGeneration(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "enableAnomalyAlertGeneration", "body", string(m.EnableAnomalyAlertGeneration)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateEnableAnomalyAlertSuppression(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "enableAnomalyAlertSuppression", "body", string(m.EnableAnomalyAlertSuppression)); err != nil {
 		return err
 	}
 
@@ -611,6 +754,33 @@ func (m *Alert) contextValidateStartEpoch(ctx context.Context, formats strfmt.Re
 func (m *Alert) contextValidateSubChainID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "subChainId", "body", int32(m.SubChainID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateSuppressDesc(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "suppressDesc", "body", string(m.SuppressDesc)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateSuppressor(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "suppressor", "body", string(m.Suppressor)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateTenant(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "tenant", "body", string(m.Tenant)); err != nil {
 		return err
 	}
 

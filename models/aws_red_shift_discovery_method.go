@@ -24,7 +24,7 @@ type AwsRedShiftDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *AwsRedShiftDiscoveryMethod) Name() string {
-	return "ad_awsredshift"
+	return "AwsRedShiftDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

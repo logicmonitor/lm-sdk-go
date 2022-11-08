@@ -50,7 +50,7 @@ type AwsDynamodbCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AwsDynamodbCollectorAttribute) Name() string {
-	return "awsdynamodb"
+	return "AwsDynamodbCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

@@ -21,7 +21,7 @@ import (
 type RecipientGroupPaginationResponse struct {
 
 	// items
-	Items []*RecipientGroup `json:"items,omitempty"`
+	Items []*RecipientGroup `json:"items"`
 
 	// search Id
 	// Read Only: true
@@ -60,6 +60,8 @@ func (m *RecipientGroupPaginationResponse) validateItems(formats strfmt.Registry
 			if err := m.Items[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -100,6 +102,8 @@ func (m *RecipientGroupPaginationResponse) contextValidateItems(ctx context.Cont
 			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

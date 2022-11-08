@@ -21,7 +21,7 @@ import (
 type LinkedWmiClass struct {
 
 	// i l p
-	ILP []*ILP `json:"ILP,omitempty"`
+	ILP []*ILP `json:"ILP"`
 
 	// anchor class w m i property
 	// Required: true
@@ -78,6 +78,8 @@ func (m *LinkedWmiClass) validateILP(formats strfmt.Registry) error {
 			if err := m.ILP[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ILP" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ILP" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -115,6 +117,8 @@ func (m *LinkedWmiClass) validateMatch(formats strfmt.Registry) error {
 		if err := m.Match.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("match")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("match")
 			}
 			return err
 		}
@@ -149,6 +153,8 @@ func (m *LinkedWmiClass) contextValidateILP(ctx context.Context, formats strfmt.
 			if err := m.ILP[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ILP" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ILP" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -165,6 +171,8 @@ func (m *LinkedWmiClass) contextValidateMatch(ctx context.Context, formats strfm
 		if err := m.Match.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("match")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("match")
 			}
 			return err
 		}

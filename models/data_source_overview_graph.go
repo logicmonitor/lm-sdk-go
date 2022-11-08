@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // DataSourceOverviewGraph data source overview graph
@@ -19,52 +20,53 @@ import (
 // swagger:model DataSourceOverviewGraph
 type DataSourceOverviewGraph struct {
 
-	// aggregated
-	Aggregated bool `json:"aggregated,omitempty"`
+	// is the overview graph aggregated
+	// Read Only: true
+	Aggregated *bool `json:"aggregated,omitempty"`
 
-	// base1024
+	// base1024 graph or not
 	Base1024 bool `json:"base1024,omitempty"`
 
-	// data points
-	DataPoints []*OverviewGraphDataPoint `json:"dataPoints,omitempty"`
+	// the graph data point list
+	DataPoints []*OverviewGraphDataPoint `json:"dataPoints"`
 
-	// display prio
+	// the graph display priority
 	DisplayPrio int32 `json:"displayPrio,omitempty"`
 
-	// height
+	// the graph height
 	Height int32 `json:"height,omitempty"`
 
-	// id
+	// the graph id
 	ID int32 `json:"id,omitempty"`
 
-	// lines
-	Lines []*GraphLine `json:"lines,omitempty"`
+	// the graph lines
+	Lines []*GraphLine `json:"lines"`
 
-	// max value
+	// graph max value
 	MaxValue interface{} `json:"maxValue,omitempty"`
 
-	// min value
+	// graph min value
 	MinValue interface{} `json:"minValue,omitempty"`
 
-	// name
+	// the graph name
 	Name string `json:"name,omitempty"`
 
-	// rigid
+	// the rigid, true|false
 	Rigid bool `json:"rigid,omitempty"`
 
-	// time scale
+	// the graph time scale, 1hour|2hour|5hour|day|yesterday|week|lastweek|month|3month|year
 	TimeScale string `json:"timeScale,omitempty"`
 
-	// title
+	// the graph title
 	Title string `json:"title,omitempty"`
 
-	// vertical label
+	// the graph vertical label
 	VerticalLabel string `json:"verticalLabel,omitempty"`
 
-	// virtual data points
-	VirtualDataPoints []*GraphVirtualDataPoint `json:"virtualDataPoints,omitempty"`
+	// the virtual data point list
+	VirtualDataPoints []*GraphVirtualDataPoint `json:"virtualDataPoints"`
 
-	// width
+	// the graph width
 	Width int32 `json:"width,omitempty"`
 }
 
@@ -104,6 +106,8 @@ func (m *DataSourceOverviewGraph) validateDataPoints(formats strfmt.Registry) er
 			if err := m.DataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -128,6 +132,8 @@ func (m *DataSourceOverviewGraph) validateLines(formats strfmt.Registry) error {
 			if err := m.Lines[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("lines" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("lines" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -152,6 +158,8 @@ func (m *DataSourceOverviewGraph) validateVirtualDataPoints(formats strfmt.Regis
 			if err := m.VirtualDataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -165,6 +173,10 @@ func (m *DataSourceOverviewGraph) validateVirtualDataPoints(formats strfmt.Regis
 // ContextValidate validate this data source overview graph based on the context it is used
 func (m *DataSourceOverviewGraph) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateAggregated(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateDataPoints(ctx, formats); err != nil {
 		res = append(res, err)
@@ -184,6 +196,15 @@ func (m *DataSourceOverviewGraph) ContextValidate(ctx context.Context, formats s
 	return nil
 }
 
+func (m *DataSourceOverviewGraph) contextValidateAggregated(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "aggregated", "body", m.Aggregated); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *DataSourceOverviewGraph) contextValidateDataPoints(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.DataPoints); i++ {
@@ -192,6 +213,8 @@ func (m *DataSourceOverviewGraph) contextValidateDataPoints(ctx context.Context,
 			if err := m.DataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -210,6 +233,8 @@ func (m *DataSourceOverviewGraph) contextValidateLines(ctx context.Context, form
 			if err := m.Lines[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("lines" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("lines" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -228,6 +253,8 @@ func (m *DataSourceOverviewGraph) contextValidateVirtualDataPoints(ctx context.C
 			if err := m.VirtualDataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

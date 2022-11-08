@@ -28,8 +28,12 @@ type Admin struct {
 	// Read Only: true
 	AcceptEULAOn int64 `json:"acceptEULAOn,omitempty"`
 
+	// The Id(s) of the groups the admin is in, where multiple group ids are comma separated
+	// Example: [1,2,3]
+	AdminGroupIds []int32 `json:"adminGroupIds"`
+
 	// Any API Tokens associated with the user
-	APITokens []*APIToken `json:"apiTokens,omitempty"`
+	APITokens []*APIToken `json:"apiTokens"`
 
 	// Whether it is a API only user
 	// Example: false
@@ -110,6 +114,11 @@ type Admin struct {
 	// Example: active
 	Status string `json:"status,omitempty"`
 
+	// The tenant id of the user
+	// Example: 2
+	// Read Only: true
+	TenantID int32 `json:"tenantId,omitempty"`
+
 	// The timezone of the user
 	// Example: America/Los Angeles
 	Timezone string `json:"timezone,omitempty"`
@@ -122,13 +131,18 @@ type Admin struct {
 	// Example: false
 	TwoFAEnabled bool `json:"twoFAEnabled,omitempty"`
 
+	// The permission of current user with the admin. values can be write|read|none
+	// Example: read
+	// Read Only: true
+	UserPermission string `json:"userPermission,omitempty"`
+
 	// The username associated with the user
 	// Example: John
 	// Required: true
 	Username *string `json:"username"`
 
 	// The account tabs that will be visible to the user
-	// Example: {\n\n\"Hosts\" : true,\n\"Services\" : true,\n\"Reports\" : true,\n\"Dashboards\" : true,\n\"Alerts\" : true,\n\"Settings\" : true\n}
+	// Example: {\n\n\"Resources\" : true,\n\"Websites\" : true,\n\"Reports\" : true,\n\"Dashboards\" : true,\n\"Alerts\" : true,\n\"Settings\" : true,\n\"Maps\" : true,\n\"Logs\" : true,\n\"Traces\" : true\n}
 	ViewPermission interface{} `json:"viewPermission,omitempty"`
 }
 
@@ -176,6 +190,8 @@ func (m *Admin) validateAPITokens(formats strfmt.Registry) error {
 			if err := m.APITokens[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apiTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("apiTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -223,6 +239,8 @@ func (m *Admin) validateRoles(formats strfmt.Registry) error {
 			if err := m.Roles[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("roles" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("roles" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -278,7 +296,15 @@ func (m *Admin) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTenantID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTrainingEmail(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -305,6 +331,8 @@ func (m *Admin) contextValidateAPITokens(ctx context.Context, formats strfmt.Reg
 			if err := m.APITokens[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apiTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("apiTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -368,6 +396,8 @@ func (m *Admin) contextValidateRoles(ctx context.Context, formats strfmt.Registr
 			if err := m.Roles[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("roles" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("roles" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -378,9 +408,27 @@ func (m *Admin) contextValidateRoles(ctx context.Context, formats strfmt.Registr
 	return nil
 }
 
+func (m *Admin) contextValidateTenantID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "tenantId", "body", int32(m.TenantID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Admin) contextValidateTrainingEmail(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "trainingEmail", "body", string(m.TrainingEmail)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Admin) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission)); err != nil {
 		return err
 	}
 

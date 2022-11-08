@@ -26,7 +26,7 @@ type AzureVMServiceLimitsCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AzureVMServiceLimitsCollectorAttribute) Name() string {
-	return "azurevmservicelimits"
+	return "AzureVMServiceLimitsCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

@@ -29,7 +29,7 @@ type PingCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *PingCollectorAttribute) Name() string {
-	return "ping"
+	return "PingCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

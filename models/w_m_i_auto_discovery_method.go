@@ -23,7 +23,7 @@ import (
 type WMIAutoDiscoveryMethod struct {
 
 	// i l p
-	ILP []*ILP `json:"ILP,omitempty"`
+	ILP []*ILP `json:"ILP"`
 
 	// enable linked class i l p
 	EnableLinkedClassILP bool `json:"enableLinkedClassILP,omitempty"`
@@ -38,7 +38,7 @@ type WMIAutoDiscoveryMethod struct {
 	ExternalResourceType string `json:"externalResourceType,omitempty"`
 
 	// linked classes
-	LinkedClasses []*LinkedWmiClass `json:"linkedClasses,omitempty"`
+	LinkedClasses []*LinkedWmiClass `json:"linkedClasses"`
 
 	// namespace
 	// Required: true
@@ -55,7 +55,7 @@ type WMIAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *WMIAutoDiscoveryMethod) Name() string {
-	return "ad_wmi"
+	return "WMIAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype
@@ -67,7 +67,7 @@ func (m *WMIAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// i l p
-		ILP []*ILP `json:"ILP,omitempty"`
+		ILP []*ILP `json:"ILP"`
 
 		// enable linked class i l p
 		EnableLinkedClassILP bool `json:"enableLinkedClassILP,omitempty"`
@@ -82,7 +82,7 @@ func (m *WMIAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 		ExternalResourceType string `json:"externalResourceType,omitempty"`
 
 		// linked classes
-		LinkedClasses []*LinkedWmiClass `json:"linkedClasses,omitempty"`
+		LinkedClasses []*LinkedWmiClass `json:"linkedClasses"`
 
 		// namespace
 		// Required: true
@@ -146,7 +146,7 @@ func (m WMIAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// i l p
-		ILP []*ILP `json:"ILP,omitempty"`
+		ILP []*ILP `json:"ILP"`
 
 		// enable linked class i l p
 		EnableLinkedClassILP bool `json:"enableLinkedClassILP,omitempty"`
@@ -161,7 +161,7 @@ func (m WMIAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 		ExternalResourceType string `json:"externalResourceType,omitempty"`
 
 		// linked classes
-		LinkedClasses []*LinkedWmiClass `json:"linkedClasses,omitempty"`
+		LinkedClasses []*LinkedWmiClass `json:"linkedClasses"`
 
 		// namespace
 		// Required: true
@@ -255,6 +255,8 @@ func (m *WMIAutoDiscoveryMethod) validateILP(formats strfmt.Registry) error {
 			if err := m.ILP[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ILP" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ILP" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -280,6 +282,8 @@ func (m *WMIAutoDiscoveryMethod) validateLinkedClasses(formats strfmt.Registry) 
 			if err := m.LinkedClasses[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("linkedClasses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("linkedClasses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -343,6 +347,8 @@ func (m *WMIAutoDiscoveryMethod) contextValidateILP(ctx context.Context, formats
 			if err := m.ILP[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ILP" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ILP" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -361,6 +367,8 @@ func (m *WMIAutoDiscoveryMethod) contextValidateLinkedClasses(ctx context.Contex
 			if err := m.LinkedClasses[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("linkedClasses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("linkedClasses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

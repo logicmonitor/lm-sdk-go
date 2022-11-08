@@ -106,6 +106,8 @@ func (m *CustomFlexibleVirtualDataSourceEx) validateDeviceDisplayName(formats st
 		if err := m.DeviceDisplayName.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("deviceDisplayName")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("deviceDisplayName")
 			}
 			return err
 		}
@@ -124,6 +126,8 @@ func (m *CustomFlexibleVirtualDataSourceEx) validateDeviceGroupFullPath(formats 
 		if err := m.DeviceGroupFullPath.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("deviceGroupFullPath")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("deviceGroupFullPath")
 			}
 			return err
 		}
@@ -142,6 +146,8 @@ func (m *CustomFlexibleVirtualDataSourceEx) validateDisplay(formats strfmt.Regis
 		if err := m.Display.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("display")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("display")
 			}
 			return err
 		}
@@ -160,6 +166,8 @@ func (m *CustomFlexibleVirtualDataSourceEx) validateInstanceName(formats strfmt.
 		if err := m.InstanceName.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("instanceName")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("instanceName")
 			}
 			return err
 		}
@@ -226,6 +234,8 @@ func (m *CustomFlexibleVirtualDataSourceEx) contextValidateDeviceDisplayName(ctx
 		if err := m.DeviceDisplayName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("deviceDisplayName")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("deviceDisplayName")
 			}
 			return err
 		}
@@ -240,6 +250,8 @@ func (m *CustomFlexibleVirtualDataSourceEx) contextValidateDeviceGroupFullPath(c
 		if err := m.DeviceGroupFullPath.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("deviceGroupFullPath")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("deviceGroupFullPath")
 			}
 			return err
 		}
@@ -254,6 +266,8 @@ func (m *CustomFlexibleVirtualDataSourceEx) contextValidateDisplay(ctx context.C
 		if err := m.Display.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("display")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("display")
 			}
 			return err
 		}
@@ -277,6 +291,8 @@ func (m *CustomFlexibleVirtualDataSourceEx) contextValidateInstanceName(ctx cont
 		if err := m.InstanceName.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("instanceName")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("instanceName")
 			}
 			return err
 		}

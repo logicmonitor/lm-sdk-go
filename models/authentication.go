@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -25,18 +24,18 @@ type Authentication interface {
 	runtime.Validatable
 	runtime.ContextValidatable
 
-	// password
+	// NTLM authentication password
 	// Required: true
 	Password() *string
 	SetPassword(*string)
 
-	// type
+	// Authentication type
 	// Example: basic
 	// Required: true
 	Type() string
 	SetType(string)
 
-	// user name
+	// NTLM  authentication userName
 	// Required: true
 	UserName() *string
 	SetUserName(*string)
@@ -103,7 +102,7 @@ func UnmarshalAuthenticationSlice(reader io.Reader, consumer runtime.Consumer) (
 // UnmarshalAuthentication unmarshals polymorphic Authentication
 func UnmarshalAuthentication(reader io.Reader, consumer runtime.Consumer) (Authentication, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -134,13 +133,13 @@ func unmarshalAuthentication(data []byte, consumer runtime.Consumer) (Authentica
 			return nil, err
 		}
 		return &result, nil
-	case "basic":
+	case "BasicAuthentication":
 		var result BasicAuthentication
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "ntlm":
+	case "NTLMAuthentication":
 		var result NTLMAuthentication
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err

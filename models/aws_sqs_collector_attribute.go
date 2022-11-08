@@ -29,7 +29,7 @@ type AwsSqsCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AwsSqsCollectorAttribute) Name() string {
-	return "awssqs"
+	return "AwsSqsCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

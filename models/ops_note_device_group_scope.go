@@ -29,7 +29,7 @@ type OpsNoteDeviceGroupScope struct {
 
 // Type gets the type of this subtype
 func (m *OpsNoteDeviceGroupScope) Type() string {
-	return "deviceGroup"
+	return "OpsNoteDeviceGroupScope"
 }
 
 // SetType sets the type of this subtype

@@ -28,7 +28,7 @@ type AwsServiceRegionDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *AwsServiceRegionDiscoveryMethod) Name() string {
-	return "ad_awsserviceregion"
+	return "AwsServiceRegionDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

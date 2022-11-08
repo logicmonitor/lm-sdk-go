@@ -61,9 +61,18 @@ type Role struct {
 	// Example: true
 	RequireEULA bool `json:"requireEULA,omitempty"`
 
+	// The group Id of the role
+	// Example: 3
+	RoleGroupID int32 `json:"roleGroupId,omitempty"`
+
 	// Whether Two-Factor Authentication should be required for this role
 	// Example: true
 	TwoFARequired bool `json:"twoFARequired,omitempty"`
+
+	// The permission of current role with the admin. values can be write|read|none
+	// Example: read
+	// Read Only: true
+	UserPermission string `json:"userPermission,omitempty"`
 }
 
 // Validate validates this role
@@ -108,6 +117,8 @@ func (m *Role) validatePrivileges(formats strfmt.Registry) error {
 			if err := m.Privileges[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("privileges" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("privileges" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -139,6 +150,10 @@ func (m *Role) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 	}
 
 	if err := m.contextValidatePrivileges(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -192,11 +207,22 @@ func (m *Role) contextValidatePrivileges(ctx context.Context, formats strfmt.Reg
 			if err := m.Privileges[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("privileges" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("privileges" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *Role) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission)); err != nil {
+		return err
 	}
 
 	return nil

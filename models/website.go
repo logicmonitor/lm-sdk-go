@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -46,6 +45,11 @@ type Website interface {
 	// If stopMonitoring=true, then alerting will also by default be disabled for the website
 	DisableAlerting() bool
 	SetDisableAlerting(bool)
+
+	// Required for type=webcheck , The domain of the service. This is the base URL of the service
+	// Example: www.ebay.com
+	Domain() string
+	SetDomain(string)
 
 	// The number of test locations that checks must fail at to trigger an alert, where the alert triggered will be consistent with the value of overallAlertLevel. Possible values and corresponding number of Site Monitor locations are
 	// 0 : all
@@ -112,10 +116,19 @@ type Website interface {
 	Properties() []*NameAndValue
 	SetProperties([]*NameAndValue)
 
+	// The role privilege operation(s) for this website that are granted to the user who made the API request
+	// Read Only: true
+	RolePrivileges() []string
+	SetRolePrivileges([]string)
+
 	// Whether is the website dead (the collector is down) or not
 	// Read Only: true
 	Status() string
 	SetStatus(string)
+
+	// Required for type=webcheck , An object comprising one or more steps, see the table below for the properties included in each step
+	Steps() []*WebCheckStep
+	SetSteps([]*WebCheckStep)
 
 	// true: monitoring is disabled for the website
 	// false: monitoring is enabled for the website
@@ -153,7 +166,8 @@ type Website interface {
 	Transition() int32
 	SetTransition(int32)
 
-	// The type of the website. Acceptable values are: pingcheck, webcheck
+	// pingcheck | webcheck
+	// The type of the service
 	// Example: webcheck
 	// Required: true
 	Type() string
@@ -188,6 +202,8 @@ type website struct {
 
 	disableAlertingField bool
 
+	domainField string
+
 	globalSmAlertCondField int32
 
 	groupIdField int32
@@ -210,7 +226,11 @@ type website struct {
 
 	propertiesField []*NameAndValue
 
+	rolePrivilegesField []string
+
 	statusField string
+
+	stepsField []*WebCheckStep
 
 	stopMonitoringField bool
 
@@ -269,6 +289,16 @@ func (m *website) DisableAlerting() bool {
 // SetDisableAlerting sets the disable alerting of this polymorphic type
 func (m *website) SetDisableAlerting(val bool) {
 	m.disableAlertingField = val
+}
+
+// Domain gets the domain of this polymorphic type
+func (m *website) Domain() string {
+	return m.domainField
+}
+
+// SetDomain sets the domain of this polymorphic type
+func (m *website) SetDomain(val string) {
+	m.domainField = val
 }
 
 // GlobalSmAlertCond gets the global sm alert cond of this polymorphic type
@@ -381,6 +411,16 @@ func (m *website) SetProperties(val []*NameAndValue) {
 	m.propertiesField = val
 }
 
+// RolePrivileges gets the role privileges of this polymorphic type
+func (m *website) RolePrivileges() []string {
+	return m.rolePrivilegesField
+}
+
+// SetRolePrivileges sets the role privileges of this polymorphic type
+func (m *website) SetRolePrivileges(val []string) {
+	m.rolePrivilegesField = val
+}
+
 // Status gets the status of this polymorphic type
 func (m *website) Status() string {
 	return m.statusField
@@ -389,6 +429,16 @@ func (m *website) Status() string {
 // SetStatus sets the status of this polymorphic type
 func (m *website) SetStatus(val string) {
 	m.statusField = val
+}
+
+// Steps gets the steps of this polymorphic type
+func (m *website) Steps() []*WebCheckStep {
+	return m.stepsField
+}
+
+// SetSteps sets the steps of this polymorphic type
+func (m *website) SetSteps(val []*WebCheckStep) {
+	m.stepsField = val
 }
 
 // StopMonitoring gets the stop monitoring of this polymorphic type
@@ -501,7 +551,7 @@ func UnmarshalWebsiteSlice(reader io.Reader, consumer runtime.Consumer) ([]Websi
 // UnmarshalWebsite unmarshals polymorphic Website
 func UnmarshalWebsite(reader io.Reader, consumer runtime.Consumer) (Website, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -526,20 +576,20 @@ func unmarshalWebsite(data []byte, consumer runtime.Consumer) (Website, error) {
 
 	// The value of type is used to determine which type to create and unmarshal the data into
 	switch getType.Type {
-	case "Website":
-		var result website
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "pingcheck":
+	case "PingCheck":
 		var result PingCheck
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "webcheck":
+	case "WebCheck":
 		var result WebCheck
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "Website":
+		var result website
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -568,6 +618,10 @@ func (m *website) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSteps(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTestLocation(formats); err != nil {
 		res = append(res, err)
 	}
@@ -592,6 +646,8 @@ func (m *website) validateCheckpoints(formats strfmt.Registry) error {
 			if err := m.checkpointsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("checkpoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("checkpoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -616,6 +672,8 @@ func (m *website) validateCollectors(formats strfmt.Registry) error {
 			if err := m.collectorsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -649,6 +707,34 @@ func (m *website) validateProperties(formats strfmt.Registry) error {
 			if err := m.propertiesField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *website) validateSteps(formats strfmt.Registry) error {
+	if swag.IsZero(m.Steps()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Steps()); i++ {
+		if swag.IsZero(m.stepsField[i]) { // not required
+			continue
+		}
+
+		if m.stepsField[i] != nil {
+			if err := m.stepsField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -669,6 +755,8 @@ func (m *website) validateTestLocation(formats strfmt.Registry) error {
 		if err := m.TestLocation().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}
@@ -705,7 +793,15 @@ func (m *website) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRolePrivileges(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSteps(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -731,6 +827,8 @@ func (m *website) contextValidateCheckpoints(ctx context.Context, formats strfmt
 			if err := m.checkpointsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("checkpoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("checkpoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -753,6 +851,8 @@ func (m *website) contextValidateCollectors(ctx context.Context, formats strfmt.
 			if err := m.collectorsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -802,6 +902,8 @@ func (m *website) contextValidateProperties(ctx context.Context, formats strfmt.
 			if err := m.propertiesField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -812,10 +914,39 @@ func (m *website) contextValidateProperties(ctx context.Context, formats strfmt.
 	return nil
 }
 
+func (m *website) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *website) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "status", "body", string(m.Status())); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *website) contextValidateSteps(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Steps()); i++ {
+
+		if m.stepsField[i] != nil {
+			if err := m.stepsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -836,6 +967,8 @@ func (m *website) contextValidateTestLocation(ctx context.Context, formats strfm
 		if err := m.TestLocation().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}

@@ -22,12 +22,12 @@ import (
 type PerfmonCollectorAttribute struct {
 
 	// counters
-	Counters []*PerfmonCounter `json:"counters,omitempty"`
+	Counters []*PerfmonCounter `json:"counters"`
 }
 
 // Name gets the name of this subtype
 func (m *PerfmonCollectorAttribute) Name() string {
-	return "perfmon"
+	return "PerfmonCollectorAttribute"
 }
 
 // SetName sets the name of this subtype
@@ -39,7 +39,7 @@ func (m *PerfmonCollectorAttribute) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// counters
-		Counters []*PerfmonCounter `json:"counters,omitempty"`
+		Counters []*PerfmonCounter `json:"counters"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -83,7 +83,7 @@ func (m PerfmonCollectorAttribute) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// counters
-		Counters []*PerfmonCounter `json:"counters,omitempty"`
+		Counters []*PerfmonCounter `json:"counters"`
 	}{
 
 		Counters: m.Counters,
@@ -133,6 +133,8 @@ func (m *PerfmonCollectorAttribute) validateCounters(formats strfmt.Registry) er
 			if err := m.Counters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -165,6 +167,8 @@ func (m *PerfmonCollectorAttribute) contextValidateCounters(ctx context.Context,
 			if err := m.Counters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

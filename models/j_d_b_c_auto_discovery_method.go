@@ -46,7 +46,7 @@ type JDBCAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *JDBCAutoDiscoveryMethod) Name() string {
-	return "ad_jdbc"
+	return "JDBCAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

@@ -51,6 +51,8 @@ type AlertTrendsReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -217,6 +219,16 @@ func (m *AlertTrendsReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *AlertTrendsReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *AlertTrendsReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *AlertTrendsReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -249,7 +261,7 @@ func (m *AlertTrendsReport) SetScheduleTimezone(val string) {
 
 // Type gets the type of this subtype
 func (m *AlertTrendsReport) Type() string {
-	return "Alert trends"
+	return "AlertTrendsReport"
 }
 
 // SetType sets the type of this subtype
@@ -316,7 +328,9 @@ func (m *AlertTrendsReport) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -367,6 +381,8 @@ func (m *AlertTrendsReport) UnmarshalJSON(raw []byte) error {
 	result.nameField = base.Name
 
 	result.recipientsField = base.Recipients
+
+	result.reportLinkExpireField = base.ReportLinkExpire
 
 	result.reportLinkNumField = base.ReportLinkNum
 
@@ -438,7 +454,9 @@ func (m AlertTrendsReport) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -480,6 +498,8 @@ func (m AlertTrendsReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 
@@ -544,6 +564,8 @@ func (m *AlertTrendsReport) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -569,6 +591,8 @@ func (m *AlertTrendsReport) validateMetrics(formats strfmt.Registry) error {
 			if err := m.Metrics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -730,6 +754,8 @@ func (m *AlertTrendsReport) contextValidateRecipients(ctx context.Context, forma
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -766,6 +792,8 @@ func (m *AlertTrendsReport) contextValidateMetrics(ctx context.Context, formats 
 			if err := m.Metrics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -26,7 +26,7 @@ type AzureNetworkServiceLimitsCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AzureNetworkServiceLimitsCollectorAttribute) Name() string {
-	return "azurenetworkservicelimits"
+	return "AzureNetworkServiceLimitsCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

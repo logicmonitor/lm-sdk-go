@@ -50,6 +50,10 @@ type Dashboard struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// Overwrite existing Resource/Website Group fields with ##defaultResourceGroup## and/or ##defaultWebsiteGroup## tokens. This value of this attribute is only considered while updating the Dashboard configuration. While creating the new Dashboard, this value will always be considered as false irrespective of the passed value.
+	// Read Only: true
+	OverwriteGroupFields *bool `json:"overwriteGroupFields,omitempty"`
+
 	// This field will be empty unless the dashboard is a private dashboard, in which case the owner will be listed
 	Owner string `json:"owner,omitempty"`
 
@@ -57,7 +61,7 @@ type Dashboard struct {
 	// Example: true
 	Sharable bool `json:"sharable,omitempty"`
 
-	// The template which is used for import dashboard
+	// The template which is used for importing dashboard
 	Template interface{} `json:"template,omitempty"`
 
 	// The permission of the user that made the API call
@@ -66,7 +70,7 @@ type Dashboard struct {
 
 	// If useDynamicWidget=true, this field must at least contain tokens defaultDeviceGroup and defaultServiceGroup
 	// Example: \"widgetTokens\":[{\"name\":\"defaultDeviceGroup\",\"value\":\"*\"},{\"name\":\"defaultServiceGroup\",\"value\":\"*\"}]
-	WidgetTokens []*WidgetToken `json:"widgetTokens,omitempty"`
+	WidgetTokens []*WidgetToken `json:"widgetTokens"`
 
 	// Information about widget configuration used by the UI
 	WidgetsConfig interface{} `json:"widgetsConfig,omitempty"`
@@ -113,6 +117,8 @@ func (m *Dashboard) validateWidgetTokens(formats strfmt.Registry) error {
 			if err := m.WidgetTokens[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -136,6 +142,10 @@ func (m *Dashboard) ContextValidate(ctx context.Context, formats strfmt.Registry
 	}
 
 	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOverwriteGroupFields(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -180,6 +190,15 @@ func (m *Dashboard) contextValidateID(ctx context.Context, formats strfmt.Regist
 	return nil
 }
 
+func (m *Dashboard) contextValidateOverwriteGroupFields(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "overwriteGroupFields", "body", m.OverwriteGroupFields); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Dashboard) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission)); err != nil {
@@ -197,6 +216,8 @@ func (m *Dashboard) contextValidateWidgetTokens(ctx context.Context, formats str
 			if err := m.WidgetTokens[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

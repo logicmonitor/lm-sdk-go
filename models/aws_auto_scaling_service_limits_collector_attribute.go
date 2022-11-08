@@ -26,7 +26,7 @@ type AwsAutoScalingServiceLimitsCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AwsAutoScalingServiceLimitsCollectorAttribute) Name() string {
-	return "awsautoscalingservicelimits"
+	return "AwsAutoScalingServiceLimitsCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

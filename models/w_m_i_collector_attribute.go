@@ -52,7 +52,7 @@ type WMICollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *WMICollectorAttribute) Name() string {
-	return "wmi"
+	return "WMICollectorAttribute"
 }
 
 // SetName sets the name of this subtype

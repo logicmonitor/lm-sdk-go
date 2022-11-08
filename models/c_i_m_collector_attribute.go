@@ -23,7 +23,7 @@ import (
 type CIMCollectorAttribute struct {
 
 	// fields
-	Fields []*DataSourceAttribute `json:"fields,omitempty"`
+	Fields []*DataSourceAttribute `json:"fields"`
 
 	// ip
 	// Read Only: true
@@ -44,7 +44,7 @@ type CIMCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *CIMCollectorAttribute) Name() string {
-	return "cim"
+	return "CIMCollectorAttribute"
 }
 
 // SetName sets the name of this subtype
@@ -56,7 +56,7 @@ func (m *CIMCollectorAttribute) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// fields
-		Fields []*DataSourceAttribute `json:"fields,omitempty"`
+		Fields []*DataSourceAttribute `json:"fields"`
 
 		// ip
 		// Read Only: true
@@ -121,7 +121,7 @@ func (m CIMCollectorAttribute) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// fields
-		Fields []*DataSourceAttribute `json:"fields,omitempty"`
+		Fields []*DataSourceAttribute `json:"fields"`
 
 		// ip
 		// Read Only: true
@@ -197,6 +197,8 @@ func (m *CIMCollectorAttribute) validateFields(formats strfmt.Registry) error {
 			if err := m.Fields[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("fields" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("fields" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -233,6 +235,8 @@ func (m *CIMCollectorAttribute) contextValidateFields(ctx context.Context, forma
 			if err := m.Fields[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("fields" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("fields" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

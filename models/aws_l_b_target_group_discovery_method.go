@@ -24,7 +24,7 @@ type AwsLBTargetGroupDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *AwsLBTargetGroupDiscoveryMethod) Name() string {
-	return "ad_awslbtargetgroups"
+	return "AwsLBTargetGroupDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

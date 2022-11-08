@@ -26,7 +26,7 @@ type IPMICollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *IPMICollectorAttribute) Name() string {
-	return "ipmi"
+	return "IPMICollectorAttribute"
 }
 
 // SetName sets the name of this subtype

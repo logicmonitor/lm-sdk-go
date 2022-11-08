@@ -136,7 +136,7 @@ func (m *StatsDWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *StatsDWidget) Type() string {
-	return "statsd"
+	return "StatsDWidget"
 }
 
 // SetType sets the type of this subtype
@@ -352,6 +352,8 @@ func (m *StatsDWidget) validateGraphInfo(formats strfmt.Registry) error {
 		if err := m.GraphInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("graphInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("graphInfo")
 			}
 			return err
 		}
@@ -419,6 +421,8 @@ func (m *StatsDWidget) contextValidateGraphInfo(ctx context.Context, formats str
 		if err := m.GraphInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("graphInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("graphInfo")
 			}
 			return err
 		}

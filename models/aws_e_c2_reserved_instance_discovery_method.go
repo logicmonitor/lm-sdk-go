@@ -28,7 +28,7 @@ type AwsEC2ReservedInstanceDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *AwsEC2ReservedInstanceDiscoveryMethod) Name() string {
-	return "ad_awsec2reservedinstance"
+	return "AwsEC2ReservedInstanceDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

@@ -24,7 +24,7 @@ type AwsEcsServiceDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *AwsEcsServiceDiscoveryMethod) Name() string {
-	return "ad_awsecsservice"
+	return "AwsEcsServiceDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

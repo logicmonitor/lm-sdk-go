@@ -24,7 +24,7 @@ type AwsS3CollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AwsS3CollectorAttribute) Name() string {
-	return "awss3"
+	return "AwsS3CollectorAttribute"
 }
 
 // SetName sets the name of this subtype

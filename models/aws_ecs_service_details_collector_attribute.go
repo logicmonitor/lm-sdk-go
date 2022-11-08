@@ -26,7 +26,7 @@ type AwsEcsServiceDetailsCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AwsEcsServiceDetailsCollectorAttribute) Name() string {
-	return "awsecsservicedetails"
+	return "AwsEcsServiceDetailsCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

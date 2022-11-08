@@ -36,7 +36,7 @@ type SDKScriptDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *SDKScriptDiscoveryMethod) Name() string {
-	return "ad_sdkscript"
+	return "SDKScriptDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

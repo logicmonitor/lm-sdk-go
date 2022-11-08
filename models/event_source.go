@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -36,7 +35,7 @@ type EventSource interface {
 	AlertEffectiveIval() *int32
 	SetAlertEffectiveIval(*int32)
 
-	// The default alert level: warn | error |critical
+	// The default alert level: warn | error | critical | doMapping
 	AlertLevel() string
 	SetAlertLevel(string)
 
@@ -48,11 +47,21 @@ type EventSource interface {
 	AppliesTo() string
 	SetAppliesTo(string)
 
+	// The auditVersion of the EventSource
+	// Read Only: true
+	AuditVersion() int64
+	SetAuditVersion(int64)
+
+	// The metadata checksum for the LMModule content
+	// Read Only: true
+	Checksum() string
+	SetChecksum(string)
+
 	// Whether or not the alert should clear after acknowledgement
 	ClearAfterAck() bool
 	SetClearAfterAck(bool)
 
-	// The EventSource type: logfile | snmptrap | syslog | wineventlog | scriptevent
+	// The EventSource collector type: wineventlog | syslog | snmptrap | echo | logfile | scriptevent | awsrss | azurerss | azureadvisor | gcpatom | awsrdspievent | azureresourcehealthevent | azureemergingissue | azureloganalyticsworkspacesevent | awstrustedadvisor | awshealth | ipmievent
 	Collector() string
 	SetCollector(string)
 
@@ -74,12 +83,22 @@ type EventSource interface {
 	ID() int32
 	SetID(int32)
 
+	// The local module's IntegrationMetadata, readable for troubleshooting purposes
+	// Read Only: true
+	InstallationMetadata() *IntegrationMetadata
+	SetInstallationMetadata(*IntegrationMetadata)
+
+	// The lineageId the LMModule belongs to
+	// Read Only: true
+	LineageID() string
+	SetLineageID(string)
+
 	// The name of the EventSource
 	// Required: true
 	Name() *string
 	SetName(*string)
 
-	// Whether or not duplicate alerts should be suppressed at eventsource level
+	// Whether or not duplicate alerts have to be suppressed
 	SuppressDuplicatesES() bool
 	SetSuppressDuplicatesES(bool)
 
@@ -111,6 +130,10 @@ type eventSource struct {
 
 	appliesToField string
 
+	auditVersionField int64
+
+	checksumField string
+
 	clearAfterAckField bool
 
 	collectorField string
@@ -122,6 +145,10 @@ type eventSource struct {
 	groupField string
 
 	idField int32
+
+	installationMetadataField *IntegrationMetadata
+
+	lineageIdField string
 
 	nameField *string
 
@@ -184,6 +211,26 @@ func (m *eventSource) SetAppliesTo(val string) {
 	m.appliesToField = val
 }
 
+// AuditVersion gets the audit version of this polymorphic type
+func (m *eventSource) AuditVersion() int64 {
+	return m.auditVersionField
+}
+
+// SetAuditVersion sets the audit version of this polymorphic type
+func (m *eventSource) SetAuditVersion(val int64) {
+	m.auditVersionField = val
+}
+
+// Checksum gets the checksum of this polymorphic type
+func (m *eventSource) Checksum() string {
+	return m.checksumField
+}
+
+// SetChecksum sets the checksum of this polymorphic type
+func (m *eventSource) SetChecksum(val string) {
+	m.checksumField = val
+}
+
 // ClearAfterAck gets the clear after ack of this polymorphic type
 func (m *eventSource) ClearAfterAck() bool {
 	return m.clearAfterAckField
@@ -241,6 +288,26 @@ func (m *eventSource) ID() int32 {
 // SetID sets the id of this polymorphic type
 func (m *eventSource) SetID(val int32) {
 	m.idField = val
+}
+
+// InstallationMetadata gets the installation metadata of this polymorphic type
+func (m *eventSource) InstallationMetadata() *IntegrationMetadata {
+	return m.installationMetadataField
+}
+
+// SetInstallationMetadata sets the installation metadata of this polymorphic type
+func (m *eventSource) SetInstallationMetadata(val *IntegrationMetadata) {
+	m.installationMetadataField = val
+}
+
+// LineageID gets the lineage Id of this polymorphic type
+func (m *eventSource) LineageID() string {
+	return m.lineageIdField
+}
+
+// SetLineageID sets the lineage Id of this polymorphic type
+func (m *eventSource) SetLineageID(val string) {
+	m.lineageIdField = val
 }
 
 // Name gets the name of this polymorphic type
@@ -314,7 +381,7 @@ func UnmarshalEventSourceSlice(reader io.Reader, consumer runtime.Consumer) ([]E
 // UnmarshalEventSource unmarshals polymorphic EventSource
 func UnmarshalEventSource(reader io.Reader, consumer runtime.Consumer) (EventSource, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -339,67 +406,109 @@ func unmarshalEventSource(data []byte, consumer runtime.Consumer) (EventSource, 
 
 	// The value of collector is used to determine which type to create and unmarshal the data into
 	switch getType.Collector {
+	case "AwsRssEventSource":
+		var result AwsRssEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureEmergingIssueEventSource":
+		var result AzureEmergingIssueEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureRssEventSource":
+		var result AzureRssEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "EchoEventSource":
+		var result EchoEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "EventSource":
 		var result eventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "RestIPMIEventSource":
-		var result RestIPMIEventSource
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "awsrss":
-		var result AwsRssEventSource
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "azurerss":
-		var result AzureRssEventSource
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "echo":
-		var result EchoEventSource
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "gcpatom":
+	case "GcpAtomEventSource":
 		var result GcpAtomEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "logfile":
+	case "IPMIEventSource":
+		var result IPMIEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "LogFileEventSource":
 		var result LogFileEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "scriptevent":
+	case "RestAwsHealthEventSource":
+		var result RestAwsHealthEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAwsRdsPerformanceInsightsEventSource":
+		var result RestAwsRdsPerformanceInsightsEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAwsTrustedAdvisorEventSource":
+		var result RestAwsTrustedAdvisorEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAzureAdvisorEventSource":
+		var result RestAzureAdvisorEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAzureResourceHealthEventSource":
+		var result RestAzureResourceHealthEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAzureResourceLogAnalyticsWorkspacesSource":
+		var result RestAzureResourceLogAnalyticsWorkspacesSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "ScriptEventSource":
 		var result ScriptEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "snmptrap":
+	case "SnmpTrapEventSource":
 		var result SnmpTrapEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "syslog":
+	case "SysLogEventSource":
 		var result SysLogEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "wineventlog":
+	case "WindowsEventLogEventSource":
 		var result WindowsEventLogEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
@@ -422,6 +531,10 @@ func (m *eventSource) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInstallationMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -458,6 +571,8 @@ func (m *eventSource) validateFilters(formats strfmt.Registry) error {
 			if err := m.filtersField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -477,6 +592,25 @@ func (m *eventSource) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *eventSource) validateInstallationMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.InstallationMetadata()) { // not required
+		return nil
+	}
+
+	if m.InstallationMetadata() != nil {
+		if err := m.InstallationMetadata().Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *eventSource) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name()); err != nil {
@@ -490,11 +624,27 @@ func (m *eventSource) validateName(formats strfmt.Registry) error {
 func (m *eventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateChecksum(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateFilters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInstallationMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLineageID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -508,6 +658,24 @@ func (m *eventSource) ContextValidate(ctx context.Context, formats strfmt.Regist
 	return nil
 }
 
+func (m *eventSource) contextValidateAuditVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "auditVersion", "body", int64(m.AuditVersion())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) contextValidateChecksum(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "checksum", "body", string(m.Checksum())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *eventSource) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Filters()); i++ {
@@ -516,6 +684,8 @@ func (m *eventSource) contextValidateFilters(ctx context.Context, formats strfmt
 			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -529,6 +699,31 @@ func (m *eventSource) contextValidateFilters(ctx context.Context, formats strfmt
 func (m *eventSource) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InstallationMetadata() != nil {
+		if err := m.InstallationMetadata().ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *eventSource) contextValidateLineageID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lineageId", "body", string(m.LineageID())); err != nil {
 		return err
 	}
 

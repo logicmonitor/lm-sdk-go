@@ -26,7 +26,7 @@ type IPMIAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *IPMIAutoDiscoveryMethod) Name() string {
-	return "ad_ipmi"
+	return "IPMIAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

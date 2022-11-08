@@ -29,7 +29,7 @@ type AwsServiceLimitsFromTrustedAdvisorCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AwsServiceLimitsFromTrustedAdvisorCollectorAttribute) Name() string {
-	return "awsservicelimitsfromtrustedadvisor"
+	return "AwsServiceLimitsFromTrustedAdvisorCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

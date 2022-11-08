@@ -72,7 +72,7 @@ type NetflowApplication struct {
 
 // DataType gets the data type of this subtype
 func (m *NetflowApplication) DataType() string {
-	return "application"
+	return "NetflowApplication"
 }
 
 // SetDataType sets the data type of this subtype

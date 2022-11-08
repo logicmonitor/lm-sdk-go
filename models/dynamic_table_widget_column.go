@@ -21,7 +21,7 @@ import (
 type DynamicTableWidgetColumn struct {
 
 	// The threshold of color changes
-	ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
+	ColorThresholds []*ColorThreshold `json:"colorThresholds"`
 
 	// The name for the column
 	// Required: true
@@ -93,6 +93,8 @@ func (m *DynamicTableWidgetColumn) validateColorThresholds(formats strfmt.Regist
 			if err := m.ColorThresholds[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -147,6 +149,8 @@ func (m *DynamicTableWidgetColumn) contextValidateColorThresholds(ctx context.Co
 			if err := m.ColorThresholds[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

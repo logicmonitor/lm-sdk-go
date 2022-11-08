@@ -28,7 +28,7 @@ type XENAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *XENAutoDiscoveryMethod) Name() string {
-	return "ad_xen"
+	return "XENAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

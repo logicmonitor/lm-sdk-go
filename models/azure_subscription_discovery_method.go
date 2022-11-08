@@ -24,7 +24,7 @@ type AzureSubscriptionDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *AzureSubscriptionDiscoveryMethod) Name() string {
-	return "ad_azuresubscription"
+	return "AzureSubscriptionDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

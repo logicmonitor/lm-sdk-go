@@ -25,14 +25,14 @@ type BigNumberInfo struct {
 	BigNumberItems []*BigNumberItem `json:"bigNumberItems"`
 
 	// The counter is used for saving applyTo expression, it's mainly used for count device
-	Counters []*Counter `json:"counters,omitempty"`
+	Counters []*Counter `json:"counters"`
 
 	// The datapoints included in the widget. Note that a datapoint must be referenced in the bigNumberItems object in order to be displayed
 	// Required: true
 	DataPoints []*BigNumberDataPoint `json:"dataPoints"`
 
 	// The virtual datapoints included in the widget. Note that a virtual datapoint must be referenced in the bigNumberItems object in order to be displayed
-	VirtualDataPoints []*VirtualDataPoint `json:"virtualDataPoints,omitempty"`
+	VirtualDataPoints []*VirtualDataPoint `json:"virtualDataPoints"`
 }
 
 // Validate validates this big number info
@@ -76,6 +76,8 @@ func (m *BigNumberInfo) validateBigNumberItems(formats strfmt.Registry) error {
 			if err := m.BigNumberItems[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("bigNumberItems" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("bigNumberItems" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -100,6 +102,8 @@ func (m *BigNumberInfo) validateCounters(formats strfmt.Registry) error {
 			if err := m.Counters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -125,6 +129,8 @@ func (m *BigNumberInfo) validateDataPoints(formats strfmt.Registry) error {
 			if err := m.DataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -149,6 +155,8 @@ func (m *BigNumberInfo) validateVirtualDataPoints(formats strfmt.Registry) error
 			if err := m.VirtualDataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -193,6 +201,8 @@ func (m *BigNumberInfo) contextValidateBigNumberItems(ctx context.Context, forma
 			if err := m.BigNumberItems[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("bigNumberItems" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("bigNumberItems" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -211,6 +221,8 @@ func (m *BigNumberInfo) contextValidateCounters(ctx context.Context, formats str
 			if err := m.Counters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -229,6 +241,8 @@ func (m *BigNumberInfo) contextValidateDataPoints(ctx context.Context, formats s
 			if err := m.DataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -247,6 +261,8 @@ func (m *BigNumberInfo) contextValidateVirtualDataPoints(ctx context.Context, fo
 			if err := m.VirtualDataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

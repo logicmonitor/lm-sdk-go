@@ -147,7 +147,7 @@ func (m *NetflowGraphWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *NetflowGraphWidget) Type() string {
-	return "netflowgraph"
+	return "NetflowGraphWidget"
 }
 
 // SetType sets the type of this subtype
@@ -407,6 +407,8 @@ func (m *NetflowGraphWidget) validateNetflowFilter(formats strfmt.Registry) erro
 		if err := m.NetflowFilter.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("netflowFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("netflowFilter")
 			}
 			return err
 		}
@@ -487,6 +489,8 @@ func (m *NetflowGraphWidget) contextValidateNetflowFilter(ctx context.Context, f
 		if err := m.NetflowFilter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("netflowFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("netflowFilter")
 			}
 			return err
 		}

@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -70,7 +69,7 @@ type Widget interface {
 	Timescale() string
 	SetTimescale(string)
 
-	// alert | batchjob | flash | gmap | ngraph | ograph | cgraph | sgraph | netflowgraph | groupNetflowGraph | netflow | groupNetflow | html | bigNumber | gauge | pieChart | table | dynamicTable | deviceSLA | text | statsd | deviceStatus | serviceAlert | noc | websiteOverview | websiteOverallStatus | websiteIndividualStatus | websiteSLA
+	// alert | batchjob | flash | gmap | ngraph | ograph | cgraph | sgraph | netflowgraph | groupNetflowGraph | netflow | groupNetflow | html | bigNumber | gauge | pieChart | table | dynamicTable | deviceSLA | text | statsd | deviceStatus | serviceAlert | noc | websiteOverview | websiteOverallStatus | websiteIndividualStatus | websiteSLA | savedMap
 	// Example: bigNumber
 	// Required: true
 	Type() string
@@ -240,7 +239,7 @@ func UnmarshalWidgetSlice(reader io.Reader, consumer runtime.Consumer) ([]Widget
 // UnmarshalWidget unmarshals polymorphic Widget
 func UnmarshalWidget(reader io.Reader, consumer runtime.Consumer) (Widget, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -265,176 +264,182 @@ func unmarshalWidget(data []byte, consumer runtime.Consumer) (Widget, error) {
 
 	// The value of type is used to determine which type to create and unmarshal the data into
 	switch getType.Type {
+	case "AlertWidget":
+		var result AlertWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "BatchJobWidget":
+		var result BatchJobWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "BigNumberWidget":
+		var result BigNumberWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "CustomGraphWidget":
+		var result CustomGraphWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "DeviceSLAWidget":
+		var result DeviceSLAWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "DeviceStatus":
+		var result DeviceStatus
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "DynamicTableWidget":
+		var result DynamicTableWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "FlashWidget":
+		var result FlashWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "GaugeWidget":
+		var result GaugeWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "GoogleMapWidget":
+		var result GoogleMapWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "HtmlWidget":
+		var result HTMLWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "NOCWidget":
+		var result NOCWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "NetflowGraphWidget":
+		var result NetflowGraphWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "NetflowGroupGraphWidget":
+		var result NetflowGroupGraphWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "NetflowGroupWidget":
+		var result NetflowGroupWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "NetflowWidget":
+		var result NetflowWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "NormalGraphWidget":
+		var result NormalGraphWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "OverviewGraphWidget":
+		var result OverviewGraphWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "PieChartWidget":
+		var result PieChartWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestSavedMapWidgetV3":
+		var result RestSavedMapWidgetV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "ServiceAlert":
 		var result ServiceAlert
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Widget":
-		var result widget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "alert":
-		var result AlertWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "batchjob":
-		var result BatchJobWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "bigNumber":
-		var result BigNumberWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "cgraph":
-		var result CustomGraphWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "deviceSLA":
-		var result DeviceSLAWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "deviceStatus":
-		var result DeviceStatus
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "dynamicTable":
-		var result DynamicTableWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "flash":
-		var result FlashWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "gauge":
-		var result GaugeWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "gmap":
-		var result GoogleMapWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "groupNetflow":
-		var result NetflowGroupWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "groupNetflowGraph":
-		var result NetflowGroupGraphWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "html":
-		var result HTMLWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "netflow":
-		var result NetflowWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "netflowgraph":
-		var result NetflowGraphWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "ngraph":
-		var result NormalGraphWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "noc":
-		var result NOCWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "ograph":
-		var result OverviewGraphWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "pieChart":
-		var result PieChartWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "sgraph":
-		var result WebsiteGraphWidget
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "statsd":
+	case "StatsDWidget":
 		var result StatsDWidget
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "table":
+	case "TableWidget":
 		var result TableWidget
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "text":
+	case "TextWidget":
 		var result TextWidget
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "websiteIndividualStatus":
+	case "WebsiteGraphWidget":
+		var result WebsiteGraphWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "WebsiteIndividualsStatusWidget":
 		var result WebsiteIndividualsStatusWidget
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "websiteOverallStatus":
+	case "WebsiteOverallStatusWidget":
 		var result WebsiteOverallStatusWidget
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "websiteOverview":
+	case "WebsiteOverviewWidget":
 		var result WebsiteOverviewWidget
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "websiteSLA":
+	case "WebsiteSLAWidget":
 		var result WebsiteSLAWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "Widget":
+		var result widget
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

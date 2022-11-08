@@ -26,7 +26,7 @@ type AzureStorageServiceLimitsCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AzureStorageServiceLimitsCollectorAttribute) Name() string {
-	return "azurestorageservicelimits"
+	return "AzureStorageServiceLimitsCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

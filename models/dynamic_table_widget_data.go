@@ -25,11 +25,11 @@ type DynamicTableWidgetData struct {
 
 	// column headers
 	// Read Only: true
-	ColumnHeaders []*ColumnHeader `json:"columnHeaders,omitempty"`
+	ColumnHeaders []*ColumnHeader `json:"columnHeaders"`
 
 	// rows
 	// Read Only: true
-	Rows []*RowData `json:"rows,omitempty"`
+	Rows []*RowData `json:"rows"`
 }
 
 // Title gets the title of this subtype
@@ -44,7 +44,7 @@ func (m *DynamicTableWidgetData) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *DynamicTableWidgetData) Type() string {
-	return "dynamicTable"
+	return "DynamicTableWidgetData"
 }
 
 // SetType sets the type of this subtype
@@ -57,11 +57,11 @@ func (m *DynamicTableWidgetData) UnmarshalJSON(raw []byte) error {
 
 		// column headers
 		// Read Only: true
-		ColumnHeaders []*ColumnHeader `json:"columnHeaders,omitempty"`
+		ColumnHeaders []*ColumnHeader `json:"columnHeaders"`
 
 		// rows
 		// Read Only: true
-		Rows []*RowData `json:"rows,omitempty"`
+		Rows []*RowData `json:"rows"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -111,11 +111,11 @@ func (m DynamicTableWidgetData) MarshalJSON() ([]byte, error) {
 
 		// column headers
 		// Read Only: true
-		ColumnHeaders []*ColumnHeader `json:"columnHeaders,omitempty"`
+		ColumnHeaders []*ColumnHeader `json:"columnHeaders"`
 
 		// rows
 		// Read Only: true
-		Rows []*RowData `json:"rows,omitempty"`
+		Rows []*RowData `json:"rows"`
 	}{
 
 		ColumnHeaders: m.ColumnHeaders,
@@ -175,6 +175,8 @@ func (m *DynamicTableWidgetData) validateColumnHeaders(formats strfmt.Registry) 
 			if err := m.ColumnHeaders[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columnHeaders" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columnHeaders" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -200,6 +202,8 @@ func (m *DynamicTableWidgetData) validateRows(formats strfmt.Registry) error {
 			if err := m.Rows[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rows" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rows" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -249,6 +253,8 @@ func (m *DynamicTableWidgetData) contextValidateColumnHeaders(ctx context.Contex
 			if err := m.ColumnHeaders[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columnHeaders" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columnHeaders" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -271,6 +277,8 @@ func (m *DynamicTableWidgetData) contextValidateRows(ctx context.Context, format
 			if err := m.Rows[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rows" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rows" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

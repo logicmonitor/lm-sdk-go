@@ -23,12 +23,12 @@ type CollectorAutoDiscoveryMethod struct {
 
 	// collector Id
 	// Required: true
-	CollectorID *string `json:"collectorId"`
+	CollectorID *int64 `json:"collectorId"`
 }
 
 // Name gets the name of this subtype
 func (m *CollectorAutoDiscoveryMethod) Name() string {
-	return "ad_collector"
+	return "CollectorAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype
@@ -41,7 +41,7 @@ func (m *CollectorAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 
 		// collector Id
 		// Required: true
-		CollectorID *string `json:"collectorId"`
+		CollectorID *int64 `json:"collectorId"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -86,7 +86,7 @@ func (m CollectorAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 
 		// collector Id
 		// Required: true
-		CollectorID *string `json:"collectorId"`
+		CollectorID *int64 `json:"collectorId"`
 	}{
 
 		CollectorID: m.CollectorID,

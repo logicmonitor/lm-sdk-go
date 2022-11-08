@@ -24,7 +24,7 @@ type AwsElastiCacheDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *AwsElastiCacheDiscoveryMethod) Name() string {
-	return "ad_awselasticache"
+	return "AwsElastiCacheDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

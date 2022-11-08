@@ -21,7 +21,7 @@ import (
 type AccessLogPaginationResponse struct {
 
 	// items
-	Items []*AuditLog `json:"items,omitempty"`
+	Items []*AuditLog `json:"items"`
 
 	// search Id
 	// Read Only: true
@@ -60,6 +60,8 @@ func (m *AccessLogPaginationResponse) validateItems(formats strfmt.Registry) err
 			if err := m.Items[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -100,6 +102,8 @@ func (m *AccessLogPaginationResponse) contextValidateItems(ctx context.Context, 
 			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

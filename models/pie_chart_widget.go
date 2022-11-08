@@ -137,7 +137,7 @@ func (m *PieChartWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *PieChartWidget) Type() string {
-	return "pieChart"
+	return "PieChartWidget"
 }
 
 // SetType sets the type of this subtype
@@ -355,6 +355,8 @@ func (m *PieChartWidget) validatePieChartInfo(formats strfmt.Registry) error {
 		if err := m.PieChartInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("pieChartInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pieChartInfo")
 			}
 			return err
 		}
@@ -422,6 +424,8 @@ func (m *PieChartWidget) contextValidatePieChartInfo(ctx context.Context, format
 		if err := m.PieChartInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("pieChartInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pieChartInfo")
 			}
 			return err
 		}

@@ -40,6 +40,10 @@ type Collector struct {
 	// Read Only: true
 	AckedOnLocal string `json:"ackedOnLocal,omitempty"`
 
+	// This is key value pairs of collector config properties
+	// Read Only: true
+	AgentConfFields map[string]string `json:"agentConfFields,omitempty"`
+
 	// The collector architecture (Windows | Linux platform followed by 32 | 64 bit)
 	// Read Only: true
 	Arch string `json:"arch,omitempty"`
@@ -100,7 +104,7 @@ type Collector struct {
 	CreatedOnLocal string `json:"createdOnLocal,omitempty"`
 
 	// The custom properties defined for the Collector
-	CustomProperties []*NameAndValue `json:"customProperties,omitempty"`
+	CustomProperties []*NameAndValue `json:"customProperties"`
 
 	// The Collector's description
 	// Example: Linux Collector
@@ -112,7 +116,7 @@ type Collector struct {
 
 	// Whether or not automatic failback is enabled for the Collector, the default value is true
 	// Example: true
-	EnableFailBack interface{} `json:"enableFailBack,omitempty"`
+	EnableFailBack bool `json:"enableFailBack,omitempty"`
 
 	// Whether or not the device the Collector is installed on is enabled for fail over
 	// Example: true
@@ -152,7 +156,7 @@ type Collector struct {
 
 	// Whether to create a collector device when instance collector, the default value is true
 	// Example: true
-	NeedAutoCreateCollectorDevice interface{} `json:"needAutoCreateCollectorDevice,omitempty"`
+	NeedAutoCreateCollectorDevice bool `json:"needAutoCreateCollectorDevice,omitempty"`
 
 	// The Netscan version associated with the Collector
 	// Read Only: true
@@ -214,6 +218,10 @@ type Collector struct {
 	// Whether alert clear notifications are suppressed for the Collector
 	// Example: true
 	SuppressAlertClear bool `json:"suppressAlertClear,omitempty"`
+
+	// Whether the collector can monitor Synthetic devices (Selenium grid property must be defined)
+	// Read Only: true
+	SyntheticsEnabled *bool `json:"syntheticsEnabled,omitempty"`
 
 	// The time the Collector has been up, in seconds
 	// Read Only: true
@@ -307,6 +315,8 @@ func (m *Collector) validateAutomaticUpgradeInfo(formats strfmt.Registry) error 
 		if err := m.AutomaticUpgradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("automaticUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("automaticUpgradeInfo")
 			}
 			return err
 		}
@@ -329,6 +339,8 @@ func (m *Collector) validateCustomProperties(formats strfmt.Registry) error {
 			if err := m.CustomProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -348,6 +360,8 @@ func (m *Collector) validateNextUpgradeInfo(formats strfmt.Registry) error {
 		if err := m.NextUpgradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nextUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nextUpgradeInfo")
 			}
 			return err
 		}
@@ -365,6 +379,8 @@ func (m *Collector) validateOnetimeDowngradeInfo(formats strfmt.Registry) error 
 		if err := m.OnetimeDowngradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeDowngradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeDowngradeInfo")
 			}
 			return err
 		}
@@ -382,6 +398,8 @@ func (m *Collector) validateOnetimeUpgradeInfo(formats strfmt.Registry) error {
 		if err := m.OnetimeUpgradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeUpgradeInfo")
 			}
 			return err
 		}
@@ -411,6 +429,10 @@ func (m *Collector) ContextValidate(ctx context.Context, formats strfmt.Registry
 	}
 
 	if err := m.contextValidateAckedOnLocal(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAgentConfFields(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -546,6 +568,10 @@ func (m *Collector) ContextValidate(ctx context.Context, formats strfmt.Registry
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSyntheticsEnabled(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateUpTime(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -649,6 +675,11 @@ func (m *Collector) contextValidateAckedOnLocal(ctx context.Context, formats str
 	return nil
 }
 
+func (m *Collector) contextValidateAgentConfFields(ctx context.Context, formats strfmt.Registry) error {
+
+	return nil
+}
+
 func (m *Collector) contextValidateArch(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "arch", "body", string(m.Arch)); err != nil {
@@ -664,6 +695,8 @@ func (m *Collector) contextValidateAutomaticUpgradeInfo(ctx context.Context, for
 		if err := m.AutomaticUpgradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("automaticUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("automaticUpgradeInfo")
 			}
 			return err
 		}
@@ -779,6 +812,8 @@ func (m *Collector) contextValidateCustomProperties(ctx context.Context, formats
 			if err := m.CustomProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -885,6 +920,8 @@ func (m *Collector) contextValidateNextUpgradeInfo(ctx context.Context, formats 
 		if err := m.NextUpgradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nextUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nextUpgradeInfo")
 			}
 			return err
 		}
@@ -917,6 +954,8 @@ func (m *Collector) contextValidateOnetimeDowngradeInfo(ctx context.Context, for
 		if err := m.OnetimeDowngradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeDowngradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeDowngradeInfo")
 			}
 			return err
 		}
@@ -931,6 +970,8 @@ func (m *Collector) contextValidateOnetimeUpgradeInfo(ctx context.Context, forma
 		if err := m.OnetimeUpgradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeUpgradeInfo")
 			}
 			return err
 		}
@@ -969,6 +1010,15 @@ func (m *Collector) contextValidateSbproxyConf(ctx context.Context, formats strf
 func (m *Collector) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "status", "body", int32(m.Status)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Collector) contextValidateSyntheticsEnabled(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "syntheticsEnabled", "body", m.SyntheticsEnabled); err != nil {
 		return err
 	}
 

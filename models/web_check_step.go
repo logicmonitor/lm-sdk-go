@@ -23,97 +23,108 @@ import (
 // swagger:model WebCheckStep
 type WebCheckStep struct {
 
-	// HTTP body
+	// HTTP Body
 	HTTPBody string `json:"HTTPBody,omitempty"`
 
-	// HTTP headers
+	// HTTP header
 	HTTPHeaders string `json:"HTTPHeaders,omitempty"`
 
-	// HTTP method
+	// GET | HEAD | POST
+	// Specifies the type of HTTP method
 	// Example: GET
 	HTTPMethod string `json:"HTTPMethod,omitempty"`
 
-	// HTTP version
+	// 1.1 | 1
+	// Specifies HTTP version
 	// Example: 1.1
 	HTTPVersion string `json:"HTTPVersion,omitempty"`
 
 	authField Authentication
 
-	// description
+	// The description of the Step
 	Description string `json:"description,omitempty"`
 
-	// enable
-	Enable interface{} `json:"enable,omitempty"`
+	// true | false
+	// Specifies whether to enable step or not
+	Enable bool `json:"enable,omitempty"`
 
-	// follow redirection
+	// true | false
+	// Specifies whether to follow redirection or not
 	// Example: true
-	FollowRedirection interface{} `json:"followRedirection,omitempty"`
+	FollowRedirection bool `json:"followRedirection,omitempty"`
 
-	// fullpage load
+	// true | false
+	// Checks if full page should be loaded or not
 	// Example: false
 	FullpageLoad bool `json:"fullpageLoad,omitempty"`
 
-	// invert match
+	// true | false
+	// Checks if invert matches or not
 	// Example: false
 	InvertMatch bool `json:"invertMatch,omitempty"`
 
-	// keyword
+	// Keyword that matches the body
 	Keyword string `json:"keyword,omitempty"`
 
-	// label
+	// The Label of the Step
 	Label string `json:"label,omitempty"`
 
-	// match type
+	// Body match type
 	// Example: plain
 	MatchType string `json:"matchType,omitempty"`
 
-	// name
+	// The name of the Step
 	Name string `json:"name,omitempty"`
 
-	// path
+	// Path for JSON, XPATH
 	Path string `json:"path,omitempty"`
 
-	// post data edit type
+	// Raw | Formatted Data
+	// Specifies POST data type
 	// Example: raw
 	PostDataEditType string `json:"postDataEditType,omitempty"`
 
-	// req script
+	// The Request Script
 	ReqScript string `json:"reqScript,omitempty"`
 
-	// req type
+	// script | config
+	// Step Request Type
 	ReqType string `json:"reqType,omitempty"`
 
-	// require auth
+	// true | false
+	// Checks if authorization required or not
 	// Example: false
 	RequireAuth bool `json:"requireAuth,omitempty"`
 
-	// resp script
+	// The Step Response Script
 	RespScript string `json:"respScript,omitempty"`
 
-	// resp type
+	// Plain Text/String | Glob expression | JSON | XML | Multi line key value pair
+	// Step Response Type
 	RespType string `json:"respType,omitempty"`
 
-	// schema
+	// HTTP schema
 	Schema string `json:"schema,omitempty"`
 
-	// status code
+	// The expected status code
 	StatusCode string `json:"statusCode,omitempty"`
 
-	// timeout
+	// Request timeout measured in seconds
 	Timeout int32 `json:"timeout,omitempty"`
 
-	// type
+	// script | config
+	// The type of service step
 	// Example: config
 	// Read Only: true
 	Type string `json:"type,omitempty"`
 
-	// url
+	// The URL of service step
 	// Example: /
 	URL string `json:"url,omitempty"`
 
-	// use default root
+	// true | falseCheck if using the default root
 	// Example: true
-	UseDefaultRoot interface{} `json:"useDefaultRoot,omitempty"`
+	UseDefaultRoot bool `json:"useDefaultRoot,omitempty"`
 }
 
 // Auth gets the auth of this base type
@@ -141,9 +152,9 @@ func (m *WebCheckStep) UnmarshalJSON(raw []byte) error {
 
 		Description string `json:"description,omitempty"`
 
-		Enable interface{} `json:"enable,omitempty"`
+		Enable bool `json:"enable,omitempty"`
 
-		FollowRedirection interface{} `json:"followRedirection,omitempty"`
+		FollowRedirection bool `json:"followRedirection,omitempty"`
 
 		FullpageLoad bool `json:"fullpageLoad,omitempty"`
 
@@ -181,7 +192,7 @@ func (m *WebCheckStep) UnmarshalJSON(raw []byte) error {
 
 		URL string `json:"url,omitempty"`
 
-		UseDefaultRoot interface{} `json:"useDefaultRoot,omitempty"`
+		UseDefaultRoot bool `json:"useDefaultRoot,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -303,9 +314,9 @@ func (m WebCheckStep) MarshalJSON() ([]byte, error) {
 
 		Description string `json:"description,omitempty"`
 
-		Enable interface{} `json:"enable,omitempty"`
+		Enable bool `json:"enable,omitempty"`
 
-		FollowRedirection interface{} `json:"followRedirection,omitempty"`
+		FollowRedirection bool `json:"followRedirection,omitempty"`
 
 		FullpageLoad bool `json:"fullpageLoad,omitempty"`
 
@@ -343,7 +354,7 @@ func (m WebCheckStep) MarshalJSON() ([]byte, error) {
 
 		URL string `json:"url,omitempty"`
 
-		UseDefaultRoot interface{} `json:"useDefaultRoot,omitempty"`
+		UseDefaultRoot bool `json:"useDefaultRoot,omitempty"`
 	}{
 
 		HTTPBody: m.HTTPBody,
@@ -436,6 +447,8 @@ func (m *WebCheckStep) validateAuth(formats strfmt.Registry) error {
 	if err := m.Auth().Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("auth")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("auth")
 		}
 		return err
 	}
@@ -466,6 +479,8 @@ func (m *WebCheckStep) contextValidateAuth(ctx context.Context, formats strfmt.R
 	if err := m.Auth().ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("auth")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("auth")
 		}
 		return err
 	}

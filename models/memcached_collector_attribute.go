@@ -29,7 +29,7 @@ type MemcachedCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *MemcachedCollectorAttribute) Name() string {
-	return "memcached"
+	return "MemcachedCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

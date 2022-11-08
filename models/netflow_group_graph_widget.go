@@ -140,7 +140,7 @@ func (m *NetflowGroupGraphWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *NetflowGroupGraphWidget) Type() string {
-	return "groupNetflowGraph"
+	return "NetflowGroupGraphWidget"
 }
 
 // SetType sets the type of this subtype

@@ -44,7 +44,7 @@ type WebPageCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *WebPageCollectorAttribute) Name() string {
-	return "webpage"
+	return "WebPageCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

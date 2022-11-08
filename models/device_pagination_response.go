@@ -21,7 +21,7 @@ import (
 type DevicePaginationResponse struct {
 
 	// items
-	Items []*Device `json:"items,omitempty"`
+	Items []*Device `json:"items"`
 
 	// search Id
 	// Read Only: true
@@ -60,6 +60,8 @@ func (m *DevicePaginationResponse) validateItems(formats strfmt.Registry) error 
 			if err := m.Items[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -100,6 +102,8 @@ func (m *DevicePaginationResponse) contextValidateItems(ctx context.Context, for
 			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

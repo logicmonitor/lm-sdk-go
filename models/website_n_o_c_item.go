@@ -39,7 +39,7 @@ type WebsiteNOCItem struct {
 
 // Type gets the type of this subtype
 func (m *WebsiteNOCItem) Type() string {
-	return "website"
+	return "WebsiteNOCItem"
 }
 
 // SetType sets the type of this subtype

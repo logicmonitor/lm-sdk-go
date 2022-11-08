@@ -10,12 +10,10 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
@@ -28,27 +26,30 @@ type Netscan interface {
 
 	// The ID of the Collector associated with this Netscan
 	// Example: 148
-	// Required: true
-	Collector() *int32
-	SetCollector(*int32)
+	Collector() int32
+	SetCollector(int32)
 
 	// The description of the Collector associated with this Netscan
 	// Example: Prod CollectorA
+	// Read Only: true
 	CollectorDescription() string
 	SetCollectorDescription(string)
 
 	// The ID of the group of the Collector associated with this Netscan
 	// Example: 4
+	// Read Only: true
 	CollectorGroup() int32
 	SetCollectorGroup(int32)
 
 	// The name of the group of the Collector associated with this Netscan
 	// Example: Prod
+	// Read Only: true
 	CollectorGroupName() string
 	SetCollectorGroupName(string)
 
 	// The user that created the policy
 	// Example: sarah@logicmonitor.com
+	// Read Only: true
 	Creator() string
 	SetCreator(string)
 
@@ -69,14 +70,16 @@ type Netscan interface {
 
 	// The ID of the Netscan Policy
 	// Example: 208
+	// Read Only: true
 	ID() int32
 	SetID(int32)
 
 	// Ignore system.ips when checking for duplicate resources
-	IgnoreSystemIPsDuplicates() bool
-	SetIgnoreSystemIPsDuplicates(bool)
+	// Read Only: true
+	IgnoreSystemIPsDuplicates() *bool
+	SetIgnoreSystemIPsDuplicates(*bool)
 
-	// The method that should be used to discover devices. Options are nmap (ICMP Ping), nec2 (EC2), and script
+	// The method that should be used to discover devices. Options are nmap (ICMP Ping), nec2 (EC2), enhancedScript and script
 	// Example: nmap
 	// Required: true
 	Method() string
@@ -90,11 +93,13 @@ type Netscan interface {
 
 	// The date and time of the next start time of the scan - displayed as manual if the scan does not run on a schedule
 	// Example: 2018-09-07 15:12:00 PDT
+	// Read Only: true
 	NextStart() string
 	SetNextStart(string)
 
 	// The epoch of the next start time of the scan - displayed as 0 if the scan does not run on a schedule
 	// Example: 1536358320
+	// Read Only: true
 	NextStartEpoch() int64
 	SetNextStartEpoch(int64)
 
@@ -104,6 +109,7 @@ type Netscan interface {
 	SetNsgID(int32)
 
 	// Information related to the recurring execution schedule for the Netscan Policy
+	// Required: true
 	Schedule() *RestSchedule
 	SetSchedule(*RestSchedule)
 
@@ -117,7 +123,7 @@ type Netscan interface {
 }
 
 type netscan struct {
-	collectorField *int32
+	collectorField int32
 
 	collectorDescriptionField string
 
@@ -135,7 +141,7 @@ type netscan struct {
 
 	idField int32
 
-	ignoreSystemIPsDuplicatesField bool
+	ignoreSystemIPsDuplicatesField *bool
 
 	methodField string
 
@@ -153,12 +159,12 @@ type netscan struct {
 }
 
 // Collector gets the collector of this polymorphic type
-func (m *netscan) Collector() *int32 {
+func (m *netscan) Collector() int32 {
 	return m.collectorField
 }
 
 // SetCollector sets the collector of this polymorphic type
-func (m *netscan) SetCollector(val *int32) {
+func (m *netscan) SetCollector(val int32) {
 	m.collectorField = val
 }
 
@@ -243,12 +249,12 @@ func (m *netscan) SetID(val int32) {
 }
 
 // IgnoreSystemIPsDuplicates gets the ignore system i ps duplicates of this polymorphic type
-func (m *netscan) IgnoreSystemIPsDuplicates() bool {
+func (m *netscan) IgnoreSystemIPsDuplicates() *bool {
 	return m.ignoreSystemIPsDuplicatesField
 }
 
 // SetIgnoreSystemIPsDuplicates sets the ignore system i ps duplicates of this polymorphic type
-func (m *netscan) SetIgnoreSystemIPsDuplicates(val bool) {
+func (m *netscan) SetIgnoreSystemIPsDuplicates(val *bool) {
 	m.ignoreSystemIPsDuplicatesField = val
 }
 
@@ -342,7 +348,7 @@ func UnmarshalNetscanSlice(reader io.Reader, consumer runtime.Consumer) ([]Netsc
 // UnmarshalNetscan unmarshals polymorphic Netscan
 func UnmarshalNetscan(reader io.Reader, consumer runtime.Consumer) (Netscan, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -367,49 +373,31 @@ func unmarshalNetscan(data []byte, consumer runtime.Consumer) (Netscan, error) {
 
 	// The value of method is used to determine which type to create and unmarshal the data into
 	switch getType.Method {
+	case "Ec2Netscan":
+		var result Ec2Netscan
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "EnhancedScriptNetscan":
+		var result EnhancedScriptNetscan
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "NMapNetscan":
+		var result NMapNetscan
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "Netscan":
 		var result netscan
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "SaasNetScan":
-		var result SaasNetScan
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "aws":
-		var result AWSNetscan
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "azure":
-		var result AzureNetscan
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "gcp":
-		var result GCPNetscan
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "nec2":
-		var result Ec2Netscan
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "nmap":
-		var result NMapNetscan
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "script":
+	case "ScriptNetscan":
 		var result ScriptNetscan
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
@@ -422,10 +410,6 @@ func unmarshalNetscan(data []byte, consumer runtime.Consumer) (Netscan, error) {
 // Validate validates this netscan
 func (m *netscan) Validate(formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.validateCollector(formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.validateDuplicate(formats); err != nil {
 		res = append(res, err)
@@ -445,15 +429,6 @@ func (m *netscan) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *netscan) validateCollector(formats strfmt.Registry) error {
-
-	if err := validate.Required("collector", "body", m.Collector()); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *netscan) validateDuplicate(formats strfmt.Registry) error {
 
 	if err := validate.Required("duplicate", "body", m.Duplicate()); err != nil {
@@ -464,6 +439,8 @@ func (m *netscan) validateDuplicate(formats strfmt.Registry) error {
 		if err := m.Duplicate().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
@@ -482,14 +459,17 @@ func (m *netscan) validateName(formats strfmt.Registry) error {
 }
 
 func (m *netscan) validateSchedule(formats strfmt.Registry) error {
-	if swag.IsZero(m.Schedule()) { // not required
-		return nil
+
+	if err := validate.Required("schedule", "body", m.Schedule()); err != nil {
+		return err
 	}
 
 	if m.Schedule() != nil {
 		if err := m.Schedule().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}
@@ -502,7 +482,39 @@ func (m *netscan) validateSchedule(formats strfmt.Registry) error {
 func (m *netscan) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateCollectorDescription(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCollectorGroup(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCollectorGroupName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCreator(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDuplicate(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIgnoreSystemIPsDuplicates(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNextStart(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNextStartEpoch(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -516,15 +528,89 @@ func (m *netscan) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 	return nil
 }
 
+func (m *netscan) contextValidateCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "collectorDescription", "body", string(m.CollectorDescription())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *netscan) contextValidateCollectorGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "collectorGroup", "body", int32(m.CollectorGroup())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *netscan) contextValidateCollectorGroupName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "collectorGroupName", "body", string(m.CollectorGroupName())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *netscan) contextValidateCreator(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "creator", "body", string(m.Creator())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *netscan) contextValidateDuplicate(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Duplicate() != nil {
 		if err := m.Duplicate().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *netscan) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *netscan) contextValidateIgnoreSystemIPsDuplicates(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "ignoreSystemIPsDuplicates", "body", m.IgnoreSystemIPsDuplicates()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *netscan) contextValidateNextStart(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "nextStart", "body", string(m.NextStart())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *netscan) contextValidateNextStartEpoch(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "nextStartEpoch", "body", int64(m.NextStartEpoch())); err != nil {
+		return err
 	}
 
 	return nil
@@ -536,6 +622,8 @@ func (m *netscan) contextValidateSchedule(ctx context.Context, formats strfmt.Re
 		if err := m.Schedule().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}

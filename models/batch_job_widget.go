@@ -145,7 +145,7 @@ func (m *BatchJobWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *BatchJobWidget) Type() string {
-	return "batchjob"
+	return "BatchJobWidget"
 }
 
 // SetType sets the type of this subtype

@@ -20,7 +20,7 @@ import (
 //
 // swagger:model Ec2Netscan
 type Ec2Netscan struct {
-	collectorField *int32
+	collectorField int32
 
 	collectorDescriptionField string
 
@@ -38,7 +38,7 @@ type Ec2Netscan struct {
 
 	idField int32
 
-	ignoreSystemIPsDuplicatesField bool
+	ignoreSystemIPsDuplicatesField *bool
 
 	nameField *string
 
@@ -69,16 +69,16 @@ type Ec2Netscan struct {
 	DeadOperation string `json:"deadOperation,omitempty"`
 
 	// ports
-	Ports *NetscanPorts `json:"ports,omitempty"`
+	Ports *RestNetscanPorts `json:"ports,omitempty"`
 }
 
 // Collector gets the collector of this subtype
-func (m *Ec2Netscan) Collector() *int32 {
+func (m *Ec2Netscan) Collector() int32 {
 	return m.collectorField
 }
 
 // SetCollector sets the collector of this subtype
-func (m *Ec2Netscan) SetCollector(val *int32) {
+func (m *Ec2Netscan) SetCollector(val int32) {
 	m.collectorField = val
 }
 
@@ -163,18 +163,18 @@ func (m *Ec2Netscan) SetID(val int32) {
 }
 
 // IgnoreSystemIPsDuplicates gets the ignore system i ps duplicates of this subtype
-func (m *Ec2Netscan) IgnoreSystemIPsDuplicates() bool {
+func (m *Ec2Netscan) IgnoreSystemIPsDuplicates() *bool {
 	return m.ignoreSystemIPsDuplicatesField
 }
 
 // SetIgnoreSystemIPsDuplicates sets the ignore system i ps duplicates of this subtype
-func (m *Ec2Netscan) SetIgnoreSystemIPsDuplicates(val bool) {
+func (m *Ec2Netscan) SetIgnoreSystemIPsDuplicates(val *bool) {
 	m.ignoreSystemIPsDuplicatesField = val
 }
 
 // Method gets the method of this subtype
 func (m *Ec2Netscan) Method() string {
-	return "nec2"
+	return "Ec2Netscan"
 }
 
 // SetMethod sets the method of this subtype
@@ -262,7 +262,7 @@ func (m *Ec2Netscan) UnmarshalJSON(raw []byte) error {
 		DeadOperation string `json:"deadOperation,omitempty"`
 
 		// ports
-		Ports *NetscanPorts `json:"ports,omitempty"`
+		Ports *RestNetscanPorts `json:"ports,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -275,7 +275,7 @@ func (m *Ec2Netscan) UnmarshalJSON(raw []byte) error {
 	var base struct {
 		/* Just the base type fields. Used for unmashalling polymorphic types.*/
 
-		Collector *int32 `json:"collector"`
+		Collector int32 `json:"collector,omitempty"`
 
 		CollectorDescription string `json:"collectorDescription,omitempty"`
 
@@ -293,7 +293,7 @@ func (m *Ec2Netscan) UnmarshalJSON(raw []byte) error {
 
 		ID int32 `json:"id,omitempty"`
 
-		IgnoreSystemIPsDuplicates bool `json:"ignoreSystemIPsDuplicates,omitempty"`
+		IgnoreSystemIPsDuplicates *bool `json:"ignoreSystemIPsDuplicates,omitempty"`
 
 		Method string `json:"method"`
 
@@ -305,7 +305,7 @@ func (m *Ec2Netscan) UnmarshalJSON(raw []byte) error {
 
 		NsgID int32 `json:"nsgId,omitempty"`
 
-		Schedule *RestSchedule `json:"schedule,omitempty"`
+		Schedule *RestSchedule `json:"schedule"`
 
 		Version int32 `json:"version,omitempty"`
 	}
@@ -389,7 +389,7 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 		DeadOperation string `json:"deadOperation,omitempty"`
 
 		// ports
-		Ports *NetscanPorts `json:"ports,omitempty"`
+		Ports *RestNetscanPorts `json:"ports,omitempty"`
 	}{
 
 		Accessibility: m.Accessibility,
@@ -406,7 +406,7 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	b2, err = json.Marshal(struct {
-		Collector *int32 `json:"collector"`
+		Collector int32 `json:"collector,omitempty"`
 
 		CollectorDescription string `json:"collectorDescription,omitempty"`
 
@@ -424,7 +424,7 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 
 		ID int32 `json:"id,omitempty"`
 
-		IgnoreSystemIPsDuplicates bool `json:"ignoreSystemIPsDuplicates,omitempty"`
+		IgnoreSystemIPsDuplicates *bool `json:"ignoreSystemIPsDuplicates,omitempty"`
 
 		Method string `json:"method"`
 
@@ -436,7 +436,7 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 
 		NsgID int32 `json:"nsgId,omitempty"`
 
-		Schedule *RestSchedule `json:"schedule,omitempty"`
+		Schedule *RestSchedule `json:"schedule"`
 
 		Version int32 `json:"version,omitempty"`
 	}{
@@ -486,10 +486,6 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 func (m *Ec2Netscan) Validate(formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.validateCollector(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateDuplicate(formats); err != nil {
 		res = append(res, err)
 	}
@@ -524,15 +520,6 @@ func (m *Ec2Netscan) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Ec2Netscan) validateCollector(formats strfmt.Registry) error {
-
-	if err := validate.Required("collector", "body", m.Collector()); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Ec2Netscan) validateDuplicate(formats strfmt.Registry) error {
 
 	if err := validate.Required("duplicate", "body", m.Duplicate()); err != nil {
@@ -543,6 +530,8 @@ func (m *Ec2Netscan) validateDuplicate(formats strfmt.Registry) error {
 		if err := m.Duplicate().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
@@ -562,14 +551,16 @@ func (m *Ec2Netscan) validateName(formats strfmt.Registry) error {
 
 func (m *Ec2Netscan) validateSchedule(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Schedule()) { // not required
-		return nil
+	if err := validate.Required("schedule", "body", m.Schedule()); err != nil {
+		return err
 	}
 
 	if m.Schedule() != nil {
 		if err := m.Schedule().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}
@@ -597,6 +588,8 @@ func (m *Ec2Netscan) validateCredentials(formats strfmt.Registry) error {
 		if err := m.Credentials.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("credentials")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credentials")
 			}
 			return err
 		}
@@ -615,6 +608,8 @@ func (m *Ec2Netscan) validateDdr(formats strfmt.Registry) error {
 		if err := m.Ddr.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ddr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ddr")
 			}
 			return err
 		}
@@ -633,6 +628,8 @@ func (m *Ec2Netscan) validatePorts(formats strfmt.Registry) error {
 		if err := m.Ports.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ports")
 			}
 			return err
 		}
@@ -645,7 +642,39 @@ func (m *Ec2Netscan) validatePorts(formats strfmt.Registry) error {
 func (m *Ec2Netscan) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateCollectorDescription(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCollectorGroup(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCollectorGroupName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCreator(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDuplicate(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIgnoreSystemIPsDuplicates(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNextStart(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNextStartEpoch(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -671,15 +700,89 @@ func (m *Ec2Netscan) ContextValidate(ctx context.Context, formats strfmt.Registr
 	return nil
 }
 
+func (m *Ec2Netscan) contextValidateCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "collectorDescription", "body", string(m.CollectorDescription())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidateCollectorGroup(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "collectorGroup", "body", int32(m.CollectorGroup())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidateCollectorGroupName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "collectorGroupName", "body", string(m.CollectorGroupName())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidateCreator(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "creator", "body", string(m.Creator())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Ec2Netscan) contextValidateDuplicate(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Duplicate() != nil {
 		if err := m.Duplicate().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidateIgnoreSystemIPsDuplicates(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "ignoreSystemIPsDuplicates", "body", m.IgnoreSystemIPsDuplicates()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidateNextStart(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "nextStart", "body", string(m.NextStart())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Ec2Netscan) contextValidateNextStartEpoch(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "nextStartEpoch", "body", int64(m.NextStartEpoch())); err != nil {
+		return err
 	}
 
 	return nil
@@ -691,6 +794,8 @@ func (m *Ec2Netscan) contextValidateSchedule(ctx context.Context, formats strfmt
 		if err := m.Schedule().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}
@@ -705,6 +810,8 @@ func (m *Ec2Netscan) contextValidateCredentials(ctx context.Context, formats str
 		if err := m.Credentials.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("credentials")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credentials")
 			}
 			return err
 		}
@@ -719,6 +826,8 @@ func (m *Ec2Netscan) contextValidateDdr(ctx context.Context, formats strfmt.Regi
 		if err := m.Ddr.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ddr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ddr")
 			}
 			return err
 		}
@@ -733,6 +842,8 @@ func (m *Ec2Netscan) contextValidatePorts(ctx context.Context, formats strfmt.Re
 		if err := m.Ports.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ports")
 			}
 			return err
 		}

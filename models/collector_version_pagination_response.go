@@ -21,7 +21,7 @@ import (
 type CollectorVersionPaginationResponse struct {
 
 	// items
-	Items []*CollectorVersion `json:"items,omitempty"`
+	Items []*CollectorVersion `json:"items"`
 
 	// search Id
 	// Read Only: true
@@ -60,6 +60,8 @@ func (m *CollectorVersionPaginationResponse) validateItems(formats strfmt.Regist
 			if err := m.Items[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -100,6 +102,8 @@ func (m *CollectorVersionPaginationResponse) contextValidateItems(ctx context.Co
 			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

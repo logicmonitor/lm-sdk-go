@@ -36,7 +36,7 @@ type JMXAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *JMXAutoDiscoveryMethod) Name() string {
-	return "ad_jmx"
+	return "JMXAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

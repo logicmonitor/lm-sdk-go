@@ -34,7 +34,7 @@ type WebsiteGroup struct {
 	// Read Only: true
 	FullPath string `json:"fullPath,omitempty"`
 
-	// has websites disabled
+	// Indicates if there are websites disabled in this group
 	// Read Only: true
 	HasWebsitesDisabled *bool `json:"hasWebsitesDisabled,omitempty"`
 
@@ -47,15 +47,15 @@ type WebsiteGroup struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// The number of direct website groups in this group (exlcuding those in subgroups)
+	// The number of direct website groups in this group (excluding those in subgroups)
 	// Read Only: true
 	NumOfDirectSubGroups int32 `json:"numOfDirectSubGroups,omitempty"`
 
-	// num of direct websites
+	// The number of direct websites in this group
 	// Read Only: true
 	NumOfDirectWebsites int32 `json:"numOfDirectWebsites,omitempty"`
 
-	// num of websites
+	// The number of websites in the service group, including the websites in sub groups
 	// Read Only: true
 	NumOfWebsites int32 `json:"numOfWebsites,omitempty"`
 
@@ -63,15 +63,20 @@ type WebsiteGroup struct {
 	// Example: 1
 	ParentID int32 `json:"parentId,omitempty"`
 
-	// properties
-	Properties []*NameAndValue `json:"properties,omitempty"`
+	// The website folder properties
+	Properties []*NameAndValue `json:"properties"`
+
+	// The privilege operations of the user's role that made the API request.  The array can contain the values ack, sdt and/or threshold
+	// Read Only: true
+	RolePrivileges []string `json:"rolePrivileges"`
 
 	// true: monitoring is disabled for the websites in the group
 	// false: monitoring is enabled for the websites in the group
 	// If stopMonitoring=true, then alerting will also by default be disabled for the websites in the group
 	StopMonitoring bool `json:"stopMonitoring,omitempty"`
 
-	// test location
+	// An object that indicates the websites locations.
+	// e.g. {'all': false, smgId:[1,2,3], collectorIds:[14,16]}
 	TestLocation *WebsiteLocation `json:"testLocation,omitempty"`
 
 	// The permission level of the user that made the API request. Acceptable values are: write, read, ack
@@ -124,6 +129,8 @@ func (m *WebsiteGroup) validateProperties(formats strfmt.Registry) error {
 			if err := m.Properties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -143,6 +150,8 @@ func (m *WebsiteGroup) validateTestLocation(formats strfmt.Registry) error {
 		if err := m.TestLocation.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}
@@ -180,6 +189,10 @@ func (m *WebsiteGroup) ContextValidate(ctx context.Context, formats strfmt.Regis
 	}
 
 	if err := m.contextValidateProperties(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRolePrivileges(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -259,11 +272,22 @@ func (m *WebsiteGroup) contextValidateProperties(ctx context.Context, formats st
 			if err := m.Properties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *WebsiteGroup) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges)); err != nil {
+		return err
 	}
 
 	return nil
@@ -275,6 +299,8 @@ func (m *WebsiteGroup) contextValidateTestLocation(ctx context.Context, formats 
 		if err := m.TestLocation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}

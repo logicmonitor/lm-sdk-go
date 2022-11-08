@@ -23,7 +23,7 @@ import (
 type SNMPAutoDiscoveryMethod struct {
 
 	// i l p
-	ILP []*SNMPILP `json:"ILP,omitempty"`
+	ILP []*SNMPILP `json:"ILP"`
 
 	// o ID
 	// Required: true
@@ -52,7 +52,7 @@ type SNMPAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *SNMPAutoDiscoveryMethod) Name() string {
-	return "ad_snmp"
+	return "SNMPAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype
@@ -64,7 +64,7 @@ func (m *SNMPAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// i l p
-		ILP []*SNMPILP `json:"ILP,omitempty"`
+		ILP []*SNMPILP `json:"ILP"`
 
 		// o ID
 		// Required: true
@@ -139,7 +139,7 @@ func (m SNMPAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// i l p
-		ILP []*SNMPILP `json:"ILP,omitempty"`
+		ILP []*SNMPILP `json:"ILP"`
 
 		// o ID
 		// Required: true
@@ -239,6 +239,8 @@ func (m *SNMPAutoDiscoveryMethod) validateILP(formats strfmt.Registry) error {
 			if err := m.ILP[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ILP" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ILP" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -298,6 +300,8 @@ func (m *SNMPAutoDiscoveryMethod) contextValidateILP(ctx context.Context, format
 			if err := m.ILP[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ILP" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ILP" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

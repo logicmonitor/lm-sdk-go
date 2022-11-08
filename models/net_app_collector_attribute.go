@@ -67,7 +67,7 @@ type NetAppCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *NetAppCollectorAttribute) Name() string {
-	return "netapp"
+	return "NetAppCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

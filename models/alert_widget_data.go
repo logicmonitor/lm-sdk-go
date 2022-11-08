@@ -25,7 +25,7 @@ type AlertWidgetData struct {
 
 	// items
 	// Read Only: true
-	Items []*Alert `json:"items,omitempty"`
+	Items []*Alert `json:"items"`
 
 	// search Id
 	// Read Only: true
@@ -48,7 +48,7 @@ func (m *AlertWidgetData) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *AlertWidgetData) Type() string {
-	return "alert"
+	return "AlertWidgetData"
 }
 
 // SetType sets the type of this subtype
@@ -61,7 +61,7 @@ func (m *AlertWidgetData) UnmarshalJSON(raw []byte) error {
 
 		// items
 		// Read Only: true
-		Items []*Alert `json:"items,omitempty"`
+		Items []*Alert `json:"items"`
 
 		// search Id
 		// Read Only: true
@@ -120,7 +120,7 @@ func (m AlertWidgetData) MarshalJSON() ([]byte, error) {
 
 		// items
 		// Read Only: true
-		Items []*Alert `json:"items,omitempty"`
+		Items []*Alert `json:"items"`
 
 		// search Id
 		// Read Only: true
@@ -186,6 +186,8 @@ func (m *AlertWidgetData) validateItems(formats strfmt.Registry) error {
 			if err := m.Items[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -239,6 +241,8 @@ func (m *AlertWidgetData) contextValidateItems(ctx context.Context, formats strf
 			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

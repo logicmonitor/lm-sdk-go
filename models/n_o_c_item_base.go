@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -68,7 +67,7 @@ func UnmarshalNOCItemBaseSlice(reader io.Reader, consumer runtime.Consumer) ([]N
 // UnmarshalNOCItemBase unmarshals polymorphic NOCItemBase
 func UnmarshalNOCItemBase(reader io.Reader, consumer runtime.Consumer) (NOCItemBase, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -93,19 +92,19 @@ func unmarshalNOCItemBase(data []byte, consumer runtime.Consumer) (NOCItemBase, 
 
 	// The value of type is used to determine which type to create and unmarshal the data into
 	switch getType.Type {
+	case "DeviceNOCItem":
+		var result DeviceNOCItem
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "NOCItemBase":
 		var result nOCItemBase
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "device":
-		var result DeviceNOCItem
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "website":
+	case "WebsiteNOCItem":
 		var result WebsiteNOCItem
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err

@@ -43,7 +43,7 @@ type ScriptAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *ScriptAutoDiscoveryMethod) Name() string {
-	return "ad_script"
+	return "ScriptAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

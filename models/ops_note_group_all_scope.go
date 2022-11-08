@@ -26,7 +26,7 @@ type OpsNoteGroupAllScope struct {
 
 // Type gets the type of this subtype
 func (m *OpsNoteGroupAllScope) Type() string {
-	return "groupAll"
+	return "OpsNoteGroupAllScope"
 }
 
 // SetType sets the type of this subtype

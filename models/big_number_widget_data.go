@@ -25,7 +25,7 @@ type BigNumberWidgetData struct {
 
 	// data
 	// Read Only: true
-	Data []*BigNumberData `json:"data,omitempty"`
+	Data []*BigNumberData `json:"data"`
 }
 
 // Title gets the title of this subtype
@@ -40,7 +40,7 @@ func (m *BigNumberWidgetData) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *BigNumberWidgetData) Type() string {
-	return "bigNumber"
+	return "BigNumberWidgetData"
 }
 
 // SetType sets the type of this subtype
@@ -53,7 +53,7 @@ func (m *BigNumberWidgetData) UnmarshalJSON(raw []byte) error {
 
 		// data
 		// Read Only: true
-		Data []*BigNumberData `json:"data,omitempty"`
+		Data []*BigNumberData `json:"data"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -102,7 +102,7 @@ func (m BigNumberWidgetData) MarshalJSON() ([]byte, error) {
 
 		// data
 		// Read Only: true
-		Data []*BigNumberData `json:"data,omitempty"`
+		Data []*BigNumberData `json:"data"`
 	}{
 
 		Data: m.Data,
@@ -156,6 +156,8 @@ func (m *BigNumberWidgetData) validateData(formats strfmt.Registry) error {
 			if err := m.Data[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -201,6 +203,8 @@ func (m *BigNumberWidgetData) contextValidateData(ctx context.Context, formats s
 			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

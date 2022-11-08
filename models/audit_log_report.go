@@ -51,6 +51,8 @@ type AuditLogReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -60,7 +62,7 @@ type AuditLogReport struct {
 	userPermissionField string
 
 	// The columns displayed in the report
-	Columns []*DynamicColumn `json:"columns,omitempty"`
+	Columns []*DynamicColumn `json:"columns"`
 
 	// The Time Range configured for the report: Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 	DateRange string `json:"dateRange,omitempty"`
@@ -225,6 +227,16 @@ func (m *AuditLogReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *AuditLogReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *AuditLogReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *AuditLogReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -257,7 +269,7 @@ func (m *AuditLogReport) SetScheduleTimezone(val string) {
 
 // Type gets the type of this subtype
 func (m *AuditLogReport) Type() string {
-	return "Audit Log"
+	return "AuditLogReport"
 }
 
 // SetType sets the type of this subtype
@@ -279,7 +291,7 @@ func (m *AuditLogReport) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// The columns displayed in the report
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The Time Range configured for the report: Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 		DateRange string `json:"dateRange,omitempty"`
@@ -332,7 +344,9 @@ func (m *AuditLogReport) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -384,6 +398,8 @@ func (m *AuditLogReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -414,7 +430,7 @@ func (m AuditLogReport) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// The columns displayed in the report
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The Time Range configured for the report: Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 		DateRange string `json:"dateRange,omitempty"`
@@ -471,7 +487,9 @@ func (m AuditLogReport) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -513,6 +531,8 @@ func (m AuditLogReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 
@@ -577,6 +597,8 @@ func (m *AuditLogReport) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -602,6 +624,8 @@ func (m *AuditLogReport) validateColumns(formats strfmt.Registry) error {
 			if err := m.Columns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -763,6 +787,8 @@ func (m *AuditLogReport) contextValidateRecipients(ctx context.Context, formats 
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -799,6 +825,8 @@ func (m *AuditLogReport) contextValidateColumns(ctx context.Context, formats str
 			if err := m.Columns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

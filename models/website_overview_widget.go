@@ -148,7 +148,7 @@ func (m *WebsiteOverviewWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *WebsiteOverviewWidget) Type() string {
-	return "websiteOverview"
+	return "WebsiteOverviewWidget"
 }
 
 // SetType sets the type of this subtype

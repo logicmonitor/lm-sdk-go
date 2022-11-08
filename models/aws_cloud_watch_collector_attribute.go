@@ -26,7 +26,7 @@ type AwsCloudWatchCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AwsCloudWatchCollectorAttribute) Name() string {
-	return "awscloudwatch"
+	return "AwsCloudWatchCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

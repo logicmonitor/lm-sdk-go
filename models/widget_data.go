@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -25,11 +24,11 @@ type WidgetData interface {
 	runtime.Validatable
 	runtime.ContextValidatable
 
-	// title
+	// the widget title
 	Title() string
 	SetTitle(string)
 
-	// type
+	// the widget data type. noc|alert|batchjob|gmap|netflow|netflowGroup|bigNumber|serviceNOC|gauge|pieChart|table|deviceNOC|deviceSLA|serviceSLA|dynamicTable|graph|savedMap
 	// Read Only: true
 	Type() string
 	SetType(string)
@@ -84,7 +83,7 @@ func UnmarshalWidgetDataSlice(reader io.Reader, consumer runtime.Consumer) ([]Wi
 // UnmarshalWidgetData unmarshals polymorphic WidgetData
 func UnmarshalWidgetData(reader io.Reader, consumer runtime.Consumer) (WidgetData, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -109,92 +108,92 @@ func unmarshalWidgetData(data []byte, consumer runtime.Consumer) (WidgetData, er
 
 	// The value of type is used to determine which type to create and unmarshal the data into
 	switch getType.Type {
-	case "WidgetData":
-		var result widgetData
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "alert":
+	case "AlertWidgetData":
 		var result AlertWidgetData
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "batchjob":
+	case "BatchJobWidgetData":
 		var result BatchJobWidgetData
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "bigNumber":
+	case "BigNumberWidgetData":
 		var result BigNumberWidgetData
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "deviceSLA":
+	case "DeviceSLAWidgetData":
 		var result DeviceSLAWidgetData
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "dynamicTable":
+	case "DynamicTableWidgetData":
 		var result DynamicTableWidgetData
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "gauge":
+	case "GaugeWidgetData":
 		var result GaugeWidgetData
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "gmap":
+	case "GoogleMapWidgetData":
 		var result GoogleMapWidgetData
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "graph":
+	case "GraphPlot":
 		var result GraphPlot
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "groupNetflow":
-		var result NetflowGroupWidgetData
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "netflow":
-		var result NetflowWidgetData
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "noc":
+	case "NOCWidgetData":
 		var result NOCWidgetData
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "pieChart":
+	case "NetflowGroupWidgetData":
+		var result NetflowGroupWidgetData
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "NetflowWidgetData":
+		var result NetflowWidgetData
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "PieChartWidgetData":
 		var result PieChartWidgetData
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "table":
+	case "TableWidgetData":
 		var result TableWidgetData
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "websiteSLA":
+	case "WebsiteSLAWidgetData":
 		var result WebsiteSLAWidgetData
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "WidgetData":
+		var result widgetData
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

@@ -23,15 +23,19 @@ type Recipient struct {
 	// Example: john.doe@logicmonitor.com
 	Addr string `json:"addr,omitempty"`
 
-	// contact
+	// contact details, email address or phone number
 	Contact string `json:"contact,omitempty"`
 
-	// Admin | Arbitrary, where Admin = a user, and Arbitrary = an arbitrary email
+	// EMAIL|SMEMAIL|VOICE|SMS, Recipient method for each type
+	//             group: "method" not used
+	//             arbitrary: the method should be email.
+	//             admin: the method  Should be email, smsEmail, voice, sms, or defaultMethod;
+	//
 	// Example: EMAIL
 	// Required: true
 	Method *string `json:"method"`
 
-	// email | sms | voice, where type must be email if method = arbitrary
+	// GROUP|ARBITRARY|ADMIN, where Admin = a user, and Arbitrary = an arbitrary email
 	// Example: Admin
 	// Required: true
 	Type *string `json:"type"`

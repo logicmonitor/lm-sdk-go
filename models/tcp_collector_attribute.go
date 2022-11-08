@@ -35,7 +35,7 @@ type TCPCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *TCPCollectorAttribute) Name() string {
-	return "tcp"
+	return "TCPCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

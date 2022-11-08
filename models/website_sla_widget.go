@@ -42,7 +42,7 @@ type WebsiteSLAWidget struct {
 	userPermissionField string
 
 	// The threshold of color changes
-	ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
+	ColorThresholds []*ColorThreshold `json:"colorThresholds"`
 
 	// The days that SLA should be computed for, separated by commas. 1=Sunday, 2=Monday, 3=Tuesday, 4=Wednesday, 5=Thursday, 6=Friday, 7=Saturday
 	DaysInWeek string `json:"daysInWeek,omitempty"`
@@ -150,7 +150,7 @@ func (m *WebsiteSLAWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *WebsiteSLAWidget) Type() string {
-	return "websiteSLA"
+	return "WebsiteSLAWidget"
 }
 
 // SetType sets the type of this subtype
@@ -172,7 +172,7 @@ func (m *WebsiteSLAWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// The threshold of color changes
-		ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
+		ColorThresholds []*ColorThreshold `json:"colorThresholds"`
 
 		// The days that SLA should be computed for, separated by commas. 1=Sunday, 2=Monday, 3=Tuesday, 4=Wednesday, 5=Thursday, 6=Friday, 7=Saturday
 		DaysInWeek string `json:"daysInWeek,omitempty"`
@@ -272,7 +272,7 @@ func (m WebsiteSLAWidget) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// The threshold of color changes
-		ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
+		ColorThresholds []*ColorThreshold `json:"colorThresholds"`
 
 		// The days that SLA should be computed for, separated by commas. 1=Sunday, 2=Monday, 3=Tuesday, 4=Wednesday, 5=Thursday, 6=Friday, 7=Saturday
 		DaysInWeek string `json:"daysInWeek,omitempty"`
@@ -413,6 +413,8 @@ func (m *WebsiteSLAWidget) validateColorThresholds(formats strfmt.Registry) erro
 			if err := m.ColorThresholds[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -438,6 +440,8 @@ func (m *WebsiteSLAWidget) validateItems(formats strfmt.Registry) error {
 			if err := m.Items[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -513,6 +517,8 @@ func (m *WebsiteSLAWidget) contextValidateColorThresholds(ctx context.Context, f
 			if err := m.ColorThresholds[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -531,6 +537,8 @@ func (m *WebsiteSLAWidget) contextValidateItems(ctx context.Context, formats str
 			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

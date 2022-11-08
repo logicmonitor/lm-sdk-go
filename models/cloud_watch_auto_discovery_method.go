@@ -25,6 +25,12 @@ type CloudWatchAutoDiscoveryMethod struct {
 	// Required: true
 	ClusterDimension *string `json:"clusterDimension"`
 
+	// cluster dimension value
+	ClusterDimensionValue string `json:"clusterDimensionValue,omitempty"`
+
+	// metric name
+	MetricName string `json:"metricName,omitempty"`
+
 	// namespace
 	// Required: true
 	Namespace *string `json:"namespace"`
@@ -32,11 +38,14 @@ type CloudWatchAutoDiscoveryMethod struct {
 	// node dimension
 	// Required: true
 	NodeDimension *string `json:"nodeDimension"`
+
+	// period
+	Period string `json:"period,omitempty"`
 }
 
 // Name gets the name of this subtype
 func (m *CloudWatchAutoDiscoveryMethod) Name() string {
-	return "ad_cloudwatch"
+	return "CloudWatchAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype
@@ -51,6 +60,12 @@ func (m *CloudWatchAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 		// Required: true
 		ClusterDimension *string `json:"clusterDimension"`
 
+		// cluster dimension value
+		ClusterDimensionValue string `json:"clusterDimensionValue,omitempty"`
+
+		// metric name
+		MetricName string `json:"metricName,omitempty"`
+
 		// namespace
 		// Required: true
 		Namespace *string `json:"namespace"`
@@ -58,6 +73,9 @@ func (m *CloudWatchAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 		// node dimension
 		// Required: true
 		NodeDimension *string `json:"nodeDimension"`
+
+		// period
+		Period string `json:"period,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -88,8 +106,11 @@ func (m *CloudWatchAutoDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.ClusterDimension = data.ClusterDimension
+	result.ClusterDimensionValue = data.ClusterDimensionValue
+	result.MetricName = data.MetricName
 	result.Namespace = data.Namespace
 	result.NodeDimension = data.NodeDimension
+	result.Period = data.Period
 
 	*m = result
 
@@ -106,6 +127,12 @@ func (m CloudWatchAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 		// Required: true
 		ClusterDimension *string `json:"clusterDimension"`
 
+		// cluster dimension value
+		ClusterDimensionValue string `json:"clusterDimensionValue,omitempty"`
+
+		// metric name
+		MetricName string `json:"metricName,omitempty"`
+
 		// namespace
 		// Required: true
 		Namespace *string `json:"namespace"`
@@ -113,13 +140,22 @@ func (m CloudWatchAutoDiscoveryMethod) MarshalJSON() ([]byte, error) {
 		// node dimension
 		// Required: true
 		NodeDimension *string `json:"nodeDimension"`
+
+		// period
+		Period string `json:"period,omitempty"`
 	}{
 
 		ClusterDimension: m.ClusterDimension,
 
+		ClusterDimensionValue: m.ClusterDimensionValue,
+
+		MetricName: m.MetricName,
+
 		Namespace: m.Namespace,
 
 		NodeDimension: m.NodeDimension,
+
+		Period: m.Period,
 	})
 	if err != nil {
 		return nil, err

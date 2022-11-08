@@ -160,7 +160,7 @@ func (m *NormalGraphWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *NormalGraphWidget) Type() string {
-	return "ngraph"
+	return "NormalGraphWidget"
 }
 
 // SetType sets the type of this subtype

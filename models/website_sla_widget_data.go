@@ -43,7 +43,7 @@ func (m *WebsiteSLAWidgetData) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *WebsiteSLAWidgetData) Type() string {
-	return "websiteSLA"
+	return "WebsiteSLAWidgetData"
 }
 
 // SetType sets the type of this subtype

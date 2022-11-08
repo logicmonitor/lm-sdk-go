@@ -24,7 +24,7 @@ type BigNumberItem struct {
 	BottomLabel string `json:"bottomLabel,omitempty"`
 
 	// color thresholds
-	ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
+	ColorThresholds []*ColorThreshold `json:"colorThresholds"`
 
 	// data point name
 	// Required: true
@@ -80,6 +80,8 @@ func (m *BigNumberItem) validateColorThresholds(formats strfmt.Registry) error {
 			if err := m.ColorThresholds[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -130,6 +132,8 @@ func (m *BigNumberItem) contextValidateColorThresholds(ctx context.Context, form
 			if err := m.ColorThresholds[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

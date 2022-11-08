@@ -21,7 +21,7 @@ import (
 type DeviceDatasourceInstanceGroupPaginationResponse struct {
 
 	// items
-	Items []*DeviceDataSourceInstanceGroup `json:"items,omitempty"`
+	Items []*DeviceDataSourceInstanceGroup `json:"items"`
 
 	// search Id
 	// Read Only: true
@@ -60,6 +60,8 @@ func (m *DeviceDatasourceInstanceGroupPaginationResponse) validateItems(formats 
 			if err := m.Items[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -100,6 +102,8 @@ func (m *DeviceDatasourceInstanceGroupPaginationResponse) contextValidateItems(c
 			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

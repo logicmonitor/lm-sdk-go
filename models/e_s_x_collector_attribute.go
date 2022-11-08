@@ -22,7 +22,7 @@ import (
 type ESXCollectorAttribute struct {
 
 	// counters
-	Counters []*DataSourceAttribute `json:"counters,omitempty"`
+	Counters []*DataSourceAttribute `json:"counters"`
 
 	// entity
 	Entity string `json:"entity,omitempty"`
@@ -30,7 +30,7 @@ type ESXCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *ESXCollectorAttribute) Name() string {
-	return "esx"
+	return "ESXCollectorAttribute"
 }
 
 // SetName sets the name of this subtype
@@ -42,7 +42,7 @@ func (m *ESXCollectorAttribute) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// counters
-		Counters []*DataSourceAttribute `json:"counters,omitempty"`
+		Counters []*DataSourceAttribute `json:"counters"`
 
 		// entity
 		Entity string `json:"entity,omitempty"`
@@ -90,7 +90,7 @@ func (m ESXCollectorAttribute) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// counters
-		Counters []*DataSourceAttribute `json:"counters,omitempty"`
+		Counters []*DataSourceAttribute `json:"counters"`
 
 		// entity
 		Entity string `json:"entity,omitempty"`
@@ -145,6 +145,8 @@ func (m *ESXCollectorAttribute) validateCounters(formats strfmt.Registry) error 
 			if err := m.Counters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -177,6 +179,8 @@ func (m *ESXCollectorAttribute) contextValidateCounters(ctx context.Context, for
 			if err := m.Counters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

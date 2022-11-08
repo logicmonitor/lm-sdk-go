@@ -36,7 +36,7 @@ type SDKScriptCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *SDKScriptCollectorAttribute) Name() string {
-	return "sdkscript"
+	return "SDKScriptCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

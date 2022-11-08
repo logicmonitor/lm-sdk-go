@@ -48,7 +48,7 @@ type HTTPAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *HTTPAutoDiscoveryMethod) Name() string {
-	return "ad_http"
+	return "HttpAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

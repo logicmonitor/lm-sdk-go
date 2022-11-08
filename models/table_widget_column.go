@@ -21,7 +21,7 @@ import (
 type TableWidgetColumn struct {
 
 	// alternate data points
-	AlternateDataPoints []*TableWidgetDataPoint `json:"alternateDataPoints,omitempty"`
+	AlternateDataPoints []*TableWidgetDataPoint `json:"alternateDataPoints"`
 
 	// column name
 	// Required: true
@@ -39,6 +39,9 @@ type TableWidgetColumn struct {
 
 	// rpn
 	Rpn string `json:"rpn,omitempty"`
+
+	// The unit label
+	UnitLabel string `json:"unitLabel,omitempty"`
 }
 
 // Validate validates this table widget column
@@ -77,6 +80,8 @@ func (m *TableWidgetColumn) validateAlternateDataPoints(formats strfmt.Registry)
 			if err := m.AlternateDataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alternateDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alternateDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -106,6 +111,8 @@ func (m *TableWidgetColumn) validateDataPoint(formats strfmt.Registry) error {
 		if err := m.DataPoint.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("dataPoint")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dataPoint")
 			}
 			return err
 		}
@@ -140,6 +147,8 @@ func (m *TableWidgetColumn) contextValidateAlternateDataPoints(ctx context.Conte
 			if err := m.AlternateDataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alternateDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alternateDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -156,6 +165,8 @@ func (m *TableWidgetColumn) contextValidateDataPoint(ctx context.Context, format
 		if err := m.DataPoint.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("dataPoint")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dataPoint")
 			}
 			return err
 		}

@@ -28,7 +28,7 @@ type ESXAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *ESXAutoDiscoveryMethod) Name() string {
-	return "ad_esx"
+	return "ESXAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

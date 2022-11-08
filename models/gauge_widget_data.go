@@ -38,7 +38,7 @@ type GaugeWidgetData struct {
 
 	// history timestamps
 	// Read Only: true
-	HistoryTimestamps []int64 `json:"historyTimestamps,omitempty"`
+	HistoryTimestamps []int64 `json:"historyTimestamps"`
 
 	// history values
 	// Read Only: true
@@ -85,7 +85,7 @@ func (m *GaugeWidgetData) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *GaugeWidgetData) Type() string {
-	return "gauge"
+	return "GaugeWidgetData"
 }
 
 // SetType sets the type of this subtype
@@ -112,7 +112,7 @@ func (m *GaugeWidgetData) UnmarshalJSON(raw []byte) error {
 
 		// history timestamps
 		// Read Only: true
-		HistoryTimestamps []int64 `json:"historyTimestamps,omitempty"`
+		HistoryTimestamps []int64 `json:"historyTimestamps"`
 
 		// history values
 		// Read Only: true
@@ -219,7 +219,7 @@ func (m GaugeWidgetData) MarshalJSON() ([]byte, error) {
 
 		// history timestamps
 		// Read Only: true
-		HistoryTimestamps []int64 `json:"historyTimestamps,omitempty"`
+		HistoryTimestamps []int64 `json:"historyTimestamps"`
 
 		// history values
 		// Read Only: true

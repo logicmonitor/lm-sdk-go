@@ -24,7 +24,7 @@ type AwsBillingCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AwsBillingCollectorAttribute) Name() string {
-	return "awsbilling"
+	return "AwsBillingCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

@@ -17,17 +17,20 @@ import (
 // swagger:model OverviewGraphDataPoint
 type OverviewGraphDataPoint struct {
 
-	// aggregate method
+	// the graph line data point aggregate method, average|min|max|sum
 	AggregateMethod string `json:"aggregateMethod,omitempty"`
 
-	// consolidate func
+	// the graph line data point consolidate function, 1=avg|2=max|3=min
 	ConsolidateFunc int32 `json:"consolidateFunc,omitempty"`
 
-	// data point Id
+	// the graph line data point id
 	DataPointID int32 `json:"dataPointId,omitempty"`
 
-	// data point name
+	// the graph line data point name
 	DataPointName string `json:"dataPointName,omitempty"`
+
+	// data source data point Id
+	DataSourceDataPointID int32 `json:"dataSourceDataPointId,omitempty"`
 }
 
 // Validate validates this overview graph data point

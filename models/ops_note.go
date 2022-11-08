@@ -44,7 +44,7 @@ type OpsNote struct {
 	scopesField []OpsNoteScope
 
 	// The tags that should be associated with the note. Each tag has a unique id and a name - you can either include the name of a new or existing tag, or the id of an existing tag
-	Tags []*OpsNoteTagBase `json:"tags,omitempty"`
+	Tags []*OpsNoteTagBase `json:"tags"`
 }
 
 // Scopes gets the scopes of this base type
@@ -68,9 +68,9 @@ func (m *OpsNote) UnmarshalJSON(raw []byte) error {
 
 		Note *string `json:"note"`
 
-		Scopes json.RawMessage `json:"scopes,omitempty"`
+		Scopes json.RawMessage `json:"scopes"`
 
-		Tags []*OpsNoteTagBase `json:"tags,omitempty"`
+		Tags []*OpsNoteTagBase `json:"tags"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -127,7 +127,7 @@ func (m OpsNote) MarshalJSON() ([]byte, error) {
 
 		Note *string `json:"note"`
 
-		Tags []*OpsNoteTagBase `json:"tags,omitempty"`
+		Tags []*OpsNoteTagBase `json:"tags"`
 	}{
 
 		CreatedBy: m.CreatedBy,
@@ -144,7 +144,7 @@ func (m OpsNote) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	b2, err = json.Marshal(struct {
-		Scopes []OpsNoteScope `json:"scopes,omitempty"`
+		Scopes []OpsNoteScope `json:"scopes"`
 	}{
 
 		Scopes: m.scopesField,
@@ -197,6 +197,8 @@ func (m *OpsNote) validateScopes(formats strfmt.Registry) error {
 		if err := m.scopesField[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("scopes" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -220,6 +222,8 @@ func (m *OpsNote) validateTags(formats strfmt.Registry) error {
 			if err := m.Tags[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("tags" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tags" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -281,6 +285,8 @@ func (m *OpsNote) contextValidateScopes(ctx context.Context, formats strfmt.Regi
 		if err := m.scopesField[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("scopes" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -298,6 +304,8 @@ func (m *OpsNote) contextValidateTags(ctx context.Context, formats strfmt.Regist
 			if err := m.Tags[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("tags" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tags" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

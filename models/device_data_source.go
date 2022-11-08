@@ -85,7 +85,7 @@ type DeviceDataSource struct {
 
 	// graphs
 	// Read Only: true
-	Graphs []*DeviceDatasourceGraph `json:"graphs,omitempty"`
+	Graphs []*DeviceDatasourceGraph `json:"graphs"`
 
 	// group name
 	// Read Only: true
@@ -93,7 +93,7 @@ type DeviceDataSource struct {
 
 	// groups disabled this source
 	// Read Only: true
-	GroupsDisabledThisSource []*TreeNode `json:"groupsDisabledThisSource,omitempty"`
+	GroupsDisabledThisSource []*TreeNode `json:"groupsDisabledThisSource"`
 
 	// id
 	// Read Only: true
@@ -121,7 +121,7 @@ type DeviceDataSource struct {
 
 	// overview graphs
 	// Read Only: true
-	OverviewGraphs []*DeviceDatasourceGraph `json:"overviewGraphs,omitempty"`
+	OverviewGraphs []*DeviceDatasourceGraph `json:"overviewGraphs"`
 
 	// sdt at
 	// Read Only: true
@@ -179,6 +179,8 @@ func (m *DeviceDataSource) validateAlertingDisabledOn(formats strfmt.Registry) e
 		if err := m.AlertingDisabledOn.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("alertingDisabledOn")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alertingDisabledOn")
 			}
 			return err
 		}
@@ -201,6 +203,8 @@ func (m *DeviceDataSource) validateGraphs(formats strfmt.Registry) error {
 			if err := m.Graphs[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("graphs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("graphs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -225,6 +229,8 @@ func (m *DeviceDataSource) validateGroupsDisabledThisSource(formats strfmt.Regis
 			if err := m.GroupsDisabledThisSource[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("groupsDisabledThisSource" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("groupsDisabledThisSource" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -249,6 +255,8 @@ func (m *DeviceDataSource) validateOverviewGraphs(formats strfmt.Registry) error
 			if err := m.OverviewGraphs[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("overviewGraphs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("overviewGraphs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -422,6 +430,8 @@ func (m *DeviceDataSource) contextValidateAlertingDisabledOn(ctx context.Context
 		if err := m.AlertingDisabledOn.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("alertingDisabledOn")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alertingDisabledOn")
 			}
 			return err
 		}
@@ -541,6 +551,8 @@ func (m *DeviceDataSource) contextValidateGraphs(ctx context.Context, formats st
 			if err := m.Graphs[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("graphs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("graphs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -572,6 +584,8 @@ func (m *DeviceDataSource) contextValidateGroupsDisabledThisSource(ctx context.C
 			if err := m.GroupsDisabledThisSource[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("groupsDisabledThisSource" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("groupsDisabledThisSource" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -648,6 +662,8 @@ func (m *DeviceDataSource) contextValidateOverviewGraphs(ctx context.Context, fo
 			if err := m.OverviewGraphs[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("overviewGraphs" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("overviewGraphs" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

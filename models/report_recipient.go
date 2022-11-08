@@ -32,7 +32,7 @@ type ReportRecipient struct {
 	// Example: email
 	Method string `json:"method,omitempty"`
 
-	// Where admin refers to a user in the account and arbitrary refers to an email address not associated with a user account.Acceptable values are: admin, arbitrary
+	// Where admin refers to a user in the account and arbitrary refers to an email address not associated with a user account.Acceptable values are: admin, arbitrary, group
 	// Example: admin
 	// Required: true
 	Type *string `json:"type"`

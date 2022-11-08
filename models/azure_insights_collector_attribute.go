@@ -26,7 +26,7 @@ type AzureInsightsCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AzureInsightsCollectorAttribute) Name() string {
-	return "azureinsights"
+	return "AzureInsightsCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

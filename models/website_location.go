@@ -19,19 +19,19 @@ import (
 // swagger:model WebsiteLocation
 type WebsiteLocation struct {
 
-	// all
+	// This field only for the SiteMonitor Groups, does not include Internal Service Groups
 	// Example: true
-	All interface{} `json:"all,omitempty"`
+	All bool `json:"all,omitempty"`
 
-	// collector ids
-	CollectorIds []int32 `json:"collectorIds,omitempty"`
+	// The Internal Service Groups Ids
+	CollectorIds []int32 `json:"collectorIds"`
 
-	// collectors
-	Collectors []*WebsiteCollectorInfo `json:"collectors,omitempty"`
+	// The collector info of the services
+	Collectors []*WebsiteCollectorInfo `json:"collectors"`
 
-	// smg ids
+	// The SiteMonitor Groups Ids
 	// Example: [1, 2, 4, 3, 5, 6]
-	SmgIds []int32 `json:"smgIds,omitempty"`
+	SmgIds []int32 `json:"smgIds"`
 }
 
 // Validate validates this website location
@@ -62,6 +62,8 @@ func (m *WebsiteLocation) validateCollectors(formats strfmt.Registry) error {
 			if err := m.Collectors[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -94,6 +96,8 @@ func (m *WebsiteLocation) contextValidateCollectors(ctx context.Context, formats
 			if err := m.Collectors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

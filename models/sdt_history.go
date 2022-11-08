@@ -24,6 +24,16 @@ type SDTHistory struct {
 	// Read Only: true
 	Admin string `json:"admin,omitempty"`
 
+	// The end epoch for the SDT
+	// Example: 1475902808000
+	// Read Only: true
+	ApproximateEndEpoch int64 `json:"approximateEndEpoch,omitempty"`
+
+	// The start epoch for the SDT
+	// Example: 1475875446000
+	// Read Only: true
+	ApproximateStartEpoch int64 `json:"approximateStartEpoch,omitempty"`
+
 	// The comment associated with the SDT
 	// Example: migrating devices to new network and new IP addresses
 	// Read Only: true
@@ -34,11 +44,6 @@ type SDTHistory struct {
 	// Read Only: true
 	Duration int64 `json:"duration,omitempty"`
 
-	// The end epoch for the SDT
-	// Example: 1475902808000
-	// Read Only: true
-	EndEpoch int64 `json:"endEpoch,omitempty"`
-
 	// The ID of the SDT
 	// Example: b-nTH4ECTH2rZ-Q548GOKg
 	// Read Only: true
@@ -48,11 +53,6 @@ type SDTHistory struct {
 	// Example: 1
 	// Read Only: true
 	ItemID int32 `json:"itemId,omitempty"`
-
-	// The start epoch for the SDT
-	// Example: 1475875446000
-	// Read Only: true
-	StartEpoch int64 `json:"startEpoch,omitempty"`
 
 	// The SDT type
 	// Example: DeviceGroupSDT
@@ -73,6 +73,14 @@ func (m *SDTHistory) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateApproximateEndEpoch(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateApproximateStartEpoch(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateComment(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -81,19 +89,11 @@ func (m *SDTHistory) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateEndEpoch(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateItemID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateStartEpoch(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -110,6 +110,24 @@ func (m *SDTHistory) ContextValidate(ctx context.Context, formats strfmt.Registr
 func (m *SDTHistory) contextValidateAdmin(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "admin", "body", string(m.Admin)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SDTHistory) contextValidateApproximateEndEpoch(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "approximateEndEpoch", "body", int64(m.ApproximateEndEpoch)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *SDTHistory) contextValidateApproximateStartEpoch(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "approximateStartEpoch", "body", int64(m.ApproximateStartEpoch)); err != nil {
 		return err
 	}
 
@@ -134,15 +152,6 @@ func (m *SDTHistory) contextValidateDuration(ctx context.Context, formats strfmt
 	return nil
 }
 
-func (m *SDTHistory) contextValidateEndEpoch(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "endEpoch", "body", int64(m.EndEpoch)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *SDTHistory) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "id", "body", string(m.ID)); err != nil {
@@ -155,15 +164,6 @@ func (m *SDTHistory) contextValidateID(ctx context.Context, formats strfmt.Regis
 func (m *SDTHistory) contextValidateItemID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "itemId", "body", int32(m.ItemID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *SDTHistory) contextValidateStartEpoch(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "startEpoch", "body", int64(m.StartEpoch)); err != nil {
 		return err
 	}
 

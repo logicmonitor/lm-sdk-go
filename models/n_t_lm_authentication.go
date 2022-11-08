@@ -40,7 +40,7 @@ func (m *NTLMAuthentication) SetPassword(val *string) {
 
 // Type gets the type of this subtype
 func (m *NTLMAuthentication) Type() string {
-	return "ntlm"
+	return "NTLMAuthentication"
 }
 
 // SetType sets the type of this subtype

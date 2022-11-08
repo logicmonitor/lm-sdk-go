@@ -31,7 +31,7 @@ type JMXCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *JMXCollectorAttribute) Name() string {
-	return "jmx"
+	return "JMXCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

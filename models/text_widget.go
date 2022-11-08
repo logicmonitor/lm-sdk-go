@@ -137,7 +137,7 @@ func (m *TextWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *TextWidget) Type() string {
-	return "text"
+	return "TextWidget"
 }
 
 // SetType sets the type of this subtype

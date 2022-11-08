@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -69,7 +68,7 @@ func UnmarshalOpsNoteScopeSlice(reader io.Reader, consumer runtime.Consumer) ([]
 // UnmarshalOpsNoteScope unmarshals polymorphic OpsNoteScope
 func UnmarshalOpsNoteScope(reader io.Reader, consumer runtime.Consumer) (OpsNoteScope, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -94,38 +93,38 @@ func unmarshalOpsNoteScope(data []byte, consumer runtime.Consumer) (OpsNoteScope
 
 	// The value of type is used to determine which type to create and unmarshal the data into
 	switch getType.Type {
+	case "OpsNoteDeviceGroupScope":
+		var result OpsNoteDeviceGroupScope
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "OpsNoteDeviceScope":
+		var result OpsNoteDeviceScope
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "OpsNoteGroupAllScope":
+		var result OpsNoteGroupAllScope
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "OpsNoteScope":
 		var result opsNoteScope
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "device":
-		var result OpsNoteDeviceScope
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "deviceGroup":
-		var result OpsNoteDeviceGroupScope
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "groupAll":
-		var result OpsNoteGroupAllScope
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "website":
-		var result OpsNoteWebsiteScope
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "websiteGroup":
+	case "OpsNoteWebsiteGroupScope":
 		var result OpsNoteWebsiteGroupScope
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "OpsNoteWebsiteScope":
+		var result OpsNoteWebsiteScope
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

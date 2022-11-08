@@ -51,6 +51,8 @@ type WebsiteOverviewReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -74,7 +76,7 @@ type WebsiteOverviewReport struct {
 	ExcludeSDT bool `json:"excludeSDT,omitempty"`
 
 	// The information that should be included in the report. Options include 1: availability, 2: alerts, 3: graphs
-	IncludeTypes []int32 `json:"includeTypes,omitempty"`
+	IncludeTypes []int32 `json:"includeTypes"`
 
 	// The websites OR website groups (full path) selected for the report, where multiple entities are separated by commas
 	Items string `json:"items,omitempty"`
@@ -234,6 +236,16 @@ func (m *WebsiteOverviewReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *WebsiteOverviewReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *WebsiteOverviewReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *WebsiteOverviewReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -266,7 +278,7 @@ func (m *WebsiteOverviewReport) SetScheduleTimezone(val string) {
 
 // Type gets the type of this subtype
 func (m *WebsiteOverviewReport) Type() string {
-	return "Website Service Overview"
+	return "WebsiteOverviewReport"
 }
 
 // SetType sets the type of this subtype
@@ -302,7 +314,7 @@ func (m *WebsiteOverviewReport) UnmarshalJSON(raw []byte) error {
 		ExcludeSDT bool `json:"excludeSDT,omitempty"`
 
 		// The information that should be included in the report. Options include 1: availability, 2: alerts, 3: graphs
-		IncludeTypes []int32 `json:"includeTypes,omitempty"`
+		IncludeTypes []int32 `json:"includeTypes"`
 
 		// The websites OR website groups (full path) selected for the report, where multiple entities are separated by commas
 		Items string `json:"items,omitempty"`
@@ -350,7 +362,9 @@ func (m *WebsiteOverviewReport) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -402,6 +416,8 @@ func (m *WebsiteOverviewReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -448,7 +464,7 @@ func (m WebsiteOverviewReport) MarshalJSON() ([]byte, error) {
 		ExcludeSDT bool `json:"excludeSDT,omitempty"`
 
 		// The information that should be included in the report. Options include 1: availability, 2: alerts, 3: graphs
-		IncludeTypes []int32 `json:"includeTypes,omitempty"`
+		IncludeTypes []int32 `json:"includeTypes"`
 
 		// The websites OR website groups (full path) selected for the report, where multiple entities are separated by commas
 		Items string `json:"items,omitempty"`
@@ -504,7 +520,9 @@ func (m WebsiteOverviewReport) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -546,6 +564,8 @@ func (m WebsiteOverviewReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 
@@ -610,6 +630,8 @@ func (m *WebsiteOverviewReport) validateRecipients(formats strfmt.Registry) erro
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -776,6 +798,8 @@ func (m *WebsiteOverviewReport) contextValidateRecipients(ctx context.Context, f
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

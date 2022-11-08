@@ -29,7 +29,7 @@ type OpsNoteWebsiteGroupScope struct {
 
 // Type gets the type of this subtype
 func (m *OpsNoteWebsiteGroupScope) Type() string {
-	return "websiteGroup"
+	return "OpsNoteWebsiteGroupScope"
 }
 
 // SetType sets the type of this subtype

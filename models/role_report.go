@@ -51,6 +51,8 @@ type RoleReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -60,7 +62,7 @@ type RoleReport struct {
 	userPermissionField string
 
 	// The columns displayed in the report
-	Columns []*DynamicColumn `json:"columns,omitempty"`
+	Columns []*DynamicColumn `json:"columns"`
 
 	// The display format for the report. Acceptable values are: list, detail
 	DisplayFormat string `json:"displayFormat,omitempty"`
@@ -216,6 +218,16 @@ func (m *RoleReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *RoleReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *RoleReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *RoleReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -248,7 +260,7 @@ func (m *RoleReport) SetScheduleTimezone(val string) {
 
 // Type gets the type of this subtype
 func (m *RoleReport) Type() string {
-	return "Role"
+	return "RoleReport"
 }
 
 // SetType sets the type of this subtype
@@ -270,7 +282,7 @@ func (m *RoleReport) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// The columns displayed in the report
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The display format for the report. Acceptable values are: list, detail
 		DisplayFormat string `json:"displayFormat,omitempty"`
@@ -314,7 +326,9 @@ func (m *RoleReport) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -366,6 +380,8 @@ func (m *RoleReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -393,7 +409,7 @@ func (m RoleReport) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// The columns displayed in the report
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The display format for the report. Acceptable values are: list, detail
 		DisplayFormat string `json:"displayFormat,omitempty"`
@@ -435,7 +451,9 @@ func (m RoleReport) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -477,6 +495,8 @@ func (m RoleReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 
@@ -541,6 +561,8 @@ func (m *RoleReport) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -566,6 +588,8 @@ func (m *RoleReport) validateColumns(formats strfmt.Registry) error {
 			if err := m.Columns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -727,6 +751,8 @@ func (m *RoleReport) contextValidateRecipients(ctx context.Context, formats strf
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -763,6 +789,8 @@ func (m *RoleReport) contextValidateColumns(ctx context.Context, formats strfmt.
 			if err := m.Columns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

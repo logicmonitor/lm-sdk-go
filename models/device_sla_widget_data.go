@@ -25,7 +25,7 @@ type DeviceSLAWidgetData struct {
 
 	// result list
 	// Read Only: true
-	ResultList []*ResultItem `json:"resultList,omitempty"`
+	ResultList []*ResultItem `json:"resultList"`
 }
 
 // Title gets the title of this subtype
@@ -40,7 +40,7 @@ func (m *DeviceSLAWidgetData) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *DeviceSLAWidgetData) Type() string {
-	return "deviceSLA"
+	return "DeviceSLAWidgetData"
 }
 
 // SetType sets the type of this subtype
@@ -53,7 +53,7 @@ func (m *DeviceSLAWidgetData) UnmarshalJSON(raw []byte) error {
 
 		// result list
 		// Read Only: true
-		ResultList []*ResultItem `json:"resultList,omitempty"`
+		ResultList []*ResultItem `json:"resultList"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -102,7 +102,7 @@ func (m DeviceSLAWidgetData) MarshalJSON() ([]byte, error) {
 
 		// result list
 		// Read Only: true
-		ResultList []*ResultItem `json:"resultList,omitempty"`
+		ResultList []*ResultItem `json:"resultList"`
 	}{
 
 		ResultList: m.ResultList,
@@ -156,6 +156,8 @@ func (m *DeviceSLAWidgetData) validateResultList(formats strfmt.Registry) error 
 			if err := m.ResultList[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resultList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resultList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -201,6 +203,8 @@ func (m *DeviceSLAWidgetData) contextValidateResultList(ctx context.Context, for
 			if err := m.ResultList[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resultList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resultList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

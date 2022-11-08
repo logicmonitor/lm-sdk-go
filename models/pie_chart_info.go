@@ -21,10 +21,10 @@ import (
 type PieChartInfo struct {
 
 	// The counter is used for saving applyTo expression, it's mainly used for count device
-	Counters []*Counter `json:"counters,omitempty"`
+	Counters []*Counter `json:"counters"`
 
 	// The datapoints added to the widget. Note that datapoints must be included in the pieChartItems object to be displayed in the widget
-	DataPoints []*PieChartDataPoint `json:"dataPoints,omitempty"`
+	DataPoints []*PieChartDataPoint `json:"dataPoints"`
 
 	// If the number of slices exceeds the maxSlicesCanBeShown, this value indicates whether the remaining slices should be grouped together
 	GroupRemainingAsOthers bool `json:"groupRemainingAsOthers,omitempty"`
@@ -46,7 +46,7 @@ type PieChartInfo struct {
 	Title string `json:"title,omitempty"`
 
 	// The virtual datapoints added to the widget. Note that virtual datapoints must be included in the pieChartItems object to be displayed in the widget
-	VirtualDataPoints []*VirtualDataPoint `json:"virtualDataPoints,omitempty"`
+	VirtualDataPoints []*VirtualDataPoint `json:"virtualDataPoints"`
 }
 
 // Validate validates this pie chart info
@@ -89,6 +89,8 @@ func (m *PieChartInfo) validateCounters(formats strfmt.Registry) error {
 			if err := m.Counters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -113,6 +115,8 @@ func (m *PieChartInfo) validateDataPoints(formats strfmt.Registry) error {
 			if err := m.DataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -138,6 +142,8 @@ func (m *PieChartInfo) validatePieChartItems(formats strfmt.Registry) error {
 			if err := m.PieChartItems[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pieChartItems" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("pieChartItems" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -162,6 +168,8 @@ func (m *PieChartInfo) validateVirtualDataPoints(formats strfmt.Registry) error 
 			if err := m.VirtualDataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -206,6 +214,8 @@ func (m *PieChartInfo) contextValidateCounters(ctx context.Context, formats strf
 			if err := m.Counters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -224,6 +234,8 @@ func (m *PieChartInfo) contextValidateDataPoints(ctx context.Context, formats st
 			if err := m.DataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -242,6 +254,8 @@ func (m *PieChartInfo) contextValidatePieChartItems(ctx context.Context, formats
 			if err := m.PieChartItems[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("pieChartItems" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("pieChartItems" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -260,6 +274,8 @@ func (m *PieChartInfo) contextValidateVirtualDataPoints(ctx context.Context, for
 			if err := m.VirtualDataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

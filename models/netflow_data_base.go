@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -68,7 +67,7 @@ func UnmarshalNetflowDataBaseSlice(reader io.Reader, consumer runtime.Consumer) 
 // UnmarshalNetflowDataBase unmarshals polymorphic NetflowDataBase
 func UnmarshalNetflowDataBase(reader io.Reader, consumer runtime.Consumer) (NetflowDataBase, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -93,31 +92,55 @@ func unmarshalNetflowDataBase(data []byte, consumer runtime.Consumer) (NetflowDa
 
 	// The value of dataType is used to determine which type to create and unmarshal the data into
 	switch getType.DataType {
+	case "GroupNetFlowRecord":
+		var result GroupNetFlowRecord
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "NetflowApplication":
+		var result NetflowApplication
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "NetflowBandwidth":
+		var result NetflowBandwidth
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "NetflowBgpTable":
+		var result NetflowBgpTable
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "NetflowDataBase":
 		var result netflowDataBase
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "application":
-		var result NetflowApplication
+	case "NetflowEndpoint":
+		var result NetflowEndpoint
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "bandwidth":
-		var result NetflowBandwidth
+	case "NetflowNbarApplication":
+		var result NetflowNbarApplication
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "groupFlowRecord":
-		var result GroupNetFlowRecord
+	case "NetflowPort":
+		var result NetflowPort
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "qosReportTableRow":
+	case "NetflowQoSReportTableRow":
 		var result NetflowQoSReportTableRow
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err

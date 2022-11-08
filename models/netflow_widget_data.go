@@ -44,7 +44,7 @@ func (m *NetflowWidgetData) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *NetflowWidgetData) Type() string {
-	return "netflow"
+	return "NetflowWidgetData"
 }
 
 // SetType sets the type of this subtype
@@ -64,7 +64,7 @@ func (m *NetflowWidgetData) SetItems(val []NetflowDataBase) {
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *NetflowWidgetData) UnmarshalJSON(raw []byte) error {
 	var data struct {
-		Items json.RawMessage `json:"items,omitempty"`
+		Items json.RawMessage `json:"items"`
 
 		// total
 		// Read Only: true
@@ -140,7 +140,7 @@ func (m NetflowWidgetData) MarshalJSON() ([]byte, error) {
 
 		Type string `json:"type,omitempty"`
 
-		Items []NetflowDataBase `json:"items,omitempty"`
+		Items []NetflowDataBase `json:"items"`
 	}{
 
 		Title: m.Title(),
@@ -181,6 +181,8 @@ func (m *NetflowWidgetData) validateItems(formats strfmt.Registry) error {
 		if err := m.itemsField[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("items" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("items" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -228,6 +230,8 @@ func (m *NetflowWidgetData) contextValidateItems(ctx context.Context, formats st
 		if err := m.itemsField[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("items" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("items" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

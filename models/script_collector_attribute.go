@@ -23,16 +23,19 @@ type ScriptCollectorAttribute struct {
 	// groovy script
 	GroovyScript string `json:"groovyScript,omitempty"`
 
-	// linux cmdline
+	// linux script command line
 	LinuxCmdline string `json:"linuxCmdline,omitempty"`
 
 	// linux script
 	LinuxScript string `json:"linuxScript,omitempty"`
 
-	// script type
+	// property based
+	Properties string `json:"properties,omitempty"`
+
+	// script type: embed | file | powershell
 	ScriptType string `json:"scriptType,omitempty"`
 
-	// windows cmdline
+	// windows script command line
 	WindowsCmdline string `json:"windowsCmdline,omitempty"`
 
 	// windows script
@@ -41,7 +44,7 @@ type ScriptCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *ScriptCollectorAttribute) Name() string {
-	return "script"
+	return "ScriptCollectorAttribute"
 }
 
 // SetName sets the name of this subtype
@@ -55,16 +58,19 @@ func (m *ScriptCollectorAttribute) UnmarshalJSON(raw []byte) error {
 		// groovy script
 		GroovyScript string `json:"groovyScript,omitempty"`
 
-		// linux cmdline
+		// linux script command line
 		LinuxCmdline string `json:"linuxCmdline,omitempty"`
 
 		// linux script
 		LinuxScript string `json:"linuxScript,omitempty"`
 
-		// script type
+		// property based
+		Properties string `json:"properties,omitempty"`
+
+		// script type: embed | file | powershell
 		ScriptType string `json:"scriptType,omitempty"`
 
-		// windows cmdline
+		// windows script command line
 		WindowsCmdline string `json:"windowsCmdline,omitempty"`
 
 		// windows script
@@ -101,6 +107,7 @@ func (m *ScriptCollectorAttribute) UnmarshalJSON(raw []byte) error {
 	result.GroovyScript = data.GroovyScript
 	result.LinuxCmdline = data.LinuxCmdline
 	result.LinuxScript = data.LinuxScript
+	result.Properties = data.Properties
 	result.ScriptType = data.ScriptType
 	result.WindowsCmdline = data.WindowsCmdline
 	result.WindowsScript = data.WindowsScript
@@ -119,16 +126,19 @@ func (m ScriptCollectorAttribute) MarshalJSON() ([]byte, error) {
 		// groovy script
 		GroovyScript string `json:"groovyScript,omitempty"`
 
-		// linux cmdline
+		// linux script command line
 		LinuxCmdline string `json:"linuxCmdline,omitempty"`
 
 		// linux script
 		LinuxScript string `json:"linuxScript,omitempty"`
 
-		// script type
+		// property based
+		Properties string `json:"properties,omitempty"`
+
+		// script type: embed | file | powershell
 		ScriptType string `json:"scriptType,omitempty"`
 
-		// windows cmdline
+		// windows script command line
 		WindowsCmdline string `json:"windowsCmdline,omitempty"`
 
 		// windows script
@@ -140,6 +150,8 @@ func (m ScriptCollectorAttribute) MarshalJSON() ([]byte, error) {
 		LinuxCmdline: m.LinuxCmdline,
 
 		LinuxScript: m.LinuxScript,
+
+		Properties: m.Properties,
 
 		ScriptType: m.ScriptType,
 

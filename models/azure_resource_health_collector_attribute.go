@@ -26,7 +26,7 @@ type AzureResourceHealthCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AzureResourceHealthCollectorAttribute) Name() string {
-	return "azureresourcehealth"
+	return "AzureResourceHealthCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

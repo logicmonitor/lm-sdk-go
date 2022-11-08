@@ -36,7 +36,7 @@ type DummyAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *DummyAutoDiscoveryMethod) Name() string {
-	return "ad_dummy"
+	return "DummyAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

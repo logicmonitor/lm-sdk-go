@@ -30,7 +30,7 @@ type NOCWidgetData struct {
 	// items
 	// Read Only: true
 	// Unique: true
-	Items []*ItemData `json:"items,omitempty"`
+	Items []*ItemData `json:"items"`
 
 	// sdt checked
 	// Read Only: true
@@ -49,7 +49,7 @@ func (m *NOCWidgetData) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *NOCWidgetData) Type() string {
-	return "noc"
+	return "NOCWidgetData"
 }
 
 // SetType sets the type of this subtype
@@ -67,7 +67,7 @@ func (m *NOCWidgetData) UnmarshalJSON(raw []byte) error {
 		// items
 		// Read Only: true
 		// Unique: true
-		Items []*ItemData `json:"items,omitempty"`
+		Items []*ItemData `json:"items"`
 
 		// sdt checked
 		// Read Only: true
@@ -127,7 +127,7 @@ func (m NOCWidgetData) MarshalJSON() ([]byte, error) {
 		// items
 		// Read Only: true
 		// Unique: true
-		Items []*ItemData `json:"items,omitempty"`
+		Items []*ItemData `json:"items"`
 
 		// sdt checked
 		// Read Only: true
@@ -193,6 +193,8 @@ func (m *NOCWidgetData) validateItems(formats strfmt.Registry) error {
 			if err := m.Items[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -255,6 +257,8 @@ func (m *NOCWidgetData) contextValidateItems(ctx context.Context, formats strfmt
 			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -44,7 +44,7 @@ func (m *NetflowGroupWidgetData) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *NetflowGroupWidgetData) Type() string {
-	return "groupNetflow"
+	return "NetflowGroupWidgetData"
 }
 
 // SetType sets the type of this subtype
@@ -64,7 +64,7 @@ func (m *NetflowGroupWidgetData) SetItems(val []NetflowDataBase) {
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *NetflowGroupWidgetData) UnmarshalJSON(raw []byte) error {
 	var data struct {
-		Items json.RawMessage `json:"items,omitempty"`
+		Items json.RawMessage `json:"items"`
 
 		// total
 		// Read Only: true
@@ -140,7 +140,7 @@ func (m NetflowGroupWidgetData) MarshalJSON() ([]byte, error) {
 
 		Type string `json:"type,omitempty"`
 
-		Items []NetflowDataBase `json:"items,omitempty"`
+		Items []NetflowDataBase `json:"items"`
 	}{
 
 		Title: m.Title(),
@@ -181,6 +181,8 @@ func (m *NetflowGroupWidgetData) validateItems(formats strfmt.Registry) error {
 		if err := m.itemsField[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("items" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("items" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -228,6 +230,8 @@ func (m *NetflowGroupWidgetData) contextValidateItems(ctx context.Context, forma
 		if err := m.itemsField[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("items" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("items" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

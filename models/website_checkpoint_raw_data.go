@@ -19,17 +19,17 @@ import (
 // swagger:model WebsiteCheckpointRawData
 type WebsiteCheckpointRawData struct {
 
-	// next page params
+	// the next page parameters
 	// Read Only: true
 	NextPageParams string `json:"nextPageParams,omitempty"`
 
-	// time
+	// timestamp list
 	// Read Only: true
-	Time []int64 `json:"time,omitempty"`
+	Time []int64 `json:"time"`
 
-	// values
+	// datapoint values 2-D list
 	// Read Only: true
-	Values [][]interface{} `json:"values,omitempty"`
+	Values [][]interface{} `json:"values"`
 }
 
 // Validate validates this website checkpoint raw data

@@ -36,7 +36,7 @@ type OpsNoteDeviceScope struct {
 
 // Type gets the type of this subtype
 func (m *OpsNoteDeviceScope) Type() string {
-	return "device"
+	return "OpsNoteDeviceScope"
 }
 
 // SetType sets the type of this subtype

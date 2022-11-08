@@ -37,7 +37,7 @@ type APIPerfMetrics struct {
 	// api tags
 	// Example: Devices, Device Groups
 	// Read Only: true
-	Tags []string `json:"tags,omitempty"`
+	Tags []string `json:"tags"`
 
 	// total time taken to process requests
 	// Example: 10

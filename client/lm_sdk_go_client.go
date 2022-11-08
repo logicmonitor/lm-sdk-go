@@ -21,7 +21,41 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/client/lm"
+	"github.com/logicmonitor/lm-sdk-go/client/alert_rules"
+	"github.com/logicmonitor/lm-sdk-go/client/alerts"
+	"github.com/logicmonitor/lm-sdk-go/client/api_perf_stats"
+	"github.com/logicmonitor/lm-sdk-go/client/api_tokens"
+	"github.com/logicmonitor/lm-sdk-go/client/applies_to_functions"
+	"github.com/logicmonitor/lm-sdk-go/client/audit_logs"
+	"github.com/logicmonitor/lm-sdk-go/client/collector_groups"
+	"github.com/logicmonitor/lm-sdk-go/client/collector_versions"
+	"github.com/logicmonitor/lm-sdk-go/client/collectors"
+	"github.com/logicmonitor/lm-sdk-go/client/config_sources"
+	"github.com/logicmonitor/lm-sdk-go/client/dashboard_groups"
+	"github.com/logicmonitor/lm-sdk-go/client/dashboards"
+	"github.com/logicmonitor/lm-sdk-go/client/data"
+	"github.com/logicmonitor/lm-sdk-go/client/datasource_instances"
+	"github.com/logicmonitor/lm-sdk-go/client/datasources"
+	"github.com/logicmonitor/lm-sdk-go/client/debug"
+	"github.com/logicmonitor/lm-sdk-go/client/device_groups"
+	"github.com/logicmonitor/lm-sdk-go/client/devices"
+	"github.com/logicmonitor/lm-sdk-go/client/escalation_chains"
+	"github.com/logicmonitor/lm-sdk-go/client/event_sources"
+	"github.com/logicmonitor/lm-sdk-go/client/integration_audit_logs"
+	"github.com/logicmonitor/lm-sdk-go/client/metrics"
+	"github.com/logicmonitor/lm-sdk-go/client/netscans"
+	"github.com/logicmonitor/lm-sdk-go/client/ops_notes"
+	"github.com/logicmonitor/lm-sdk-go/client/property_sources"
+	"github.com/logicmonitor/lm-sdk-go/client/recipient_groups"
+	"github.com/logicmonitor/lm-sdk-go/client/report"
+	"github.com/logicmonitor/lm-sdk-go/client/report_groups"
+	"github.com/logicmonitor/lm-sdk-go/client/roles"
+	"github.com/logicmonitor/lm-sdk-go/client/s_d_ts"
+	"github.com/logicmonitor/lm-sdk-go/client/thresholds"
+	"github.com/logicmonitor/lm-sdk-go/client/users"
+	"github.com/logicmonitor/lm-sdk-go/client/website_groups"
+	"github.com/logicmonitor/lm-sdk-go/client/websites"
+	"github.com/logicmonitor/lm-sdk-go/client/widgets"
 )
 
 const (
@@ -77,7 +111,75 @@ func New(c *Config) *LMSdkGo {
 	cli := new(LMSdkGo)
 	cli.Transport = transport
 
-	cli.LM = lm.New(transport, strfmt.Default, authInfo)
+	cli.AlertRules = alert_rules.New(transport, strfmt.Default, authInfo)
+
+	cli.Alerts = alerts.New(transport, strfmt.Default, authInfo)
+
+	cli.APIPerfStats = api_perf_stats.New(transport, strfmt.Default, authInfo)
+
+	cli.APITokens = api_tokens.New(transport, strfmt.Default, authInfo)
+
+	cli.AppliesToFunctions = applies_to_functions.New(transport, strfmt.Default, authInfo)
+
+	cli.AuditLogs = audit_logs.New(transport, strfmt.Default, authInfo)
+
+	cli.CollectorGroups = collector_groups.New(transport, strfmt.Default, authInfo)
+
+	cli.CollectorVersions = collector_versions.New(transport, strfmt.Default, authInfo)
+
+	cli.Collectors = collectors.New(transport, strfmt.Default, authInfo)
+
+	cli.ConfigSources = config_sources.New(transport, strfmt.Default, authInfo)
+
+	cli.DashboardGroups = dashboard_groups.New(transport, strfmt.Default, authInfo)
+
+	cli.Dashboards = dashboards.New(transport, strfmt.Default, authInfo)
+
+	cli.Data = data.New(transport, strfmt.Default, authInfo)
+
+	cli.DatasourceInstances = datasource_instances.New(transport, strfmt.Default, authInfo)
+
+	cli.Datasources = datasources.New(transport, strfmt.Default, authInfo)
+
+	cli.Debug = debug.New(transport, strfmt.Default, authInfo)
+
+	cli.DeviceGroups = device_groups.New(transport, strfmt.Default, authInfo)
+
+	cli.Devices = devices.New(transport, strfmt.Default, authInfo)
+
+	cli.EscalationChains = escalation_chains.New(transport, strfmt.Default, authInfo)
+
+	cli.EventSources = event_sources.New(transport, strfmt.Default, authInfo)
+
+	cli.IntegrationAuditLogs = integration_audit_logs.New(transport, strfmt.Default, authInfo)
+
+	cli.Metrics = metrics.New(transport, strfmt.Default, authInfo)
+
+	cli.Netscans = netscans.New(transport, strfmt.Default, authInfo)
+
+	cli.OpsNotes = ops_notes.New(transport, strfmt.Default, authInfo)
+
+	cli.PropertySources = property_sources.New(transport, strfmt.Default, authInfo)
+
+	cli.RecipientGroups = recipient_groups.New(transport, strfmt.Default, authInfo)
+
+	cli.Report = report.New(transport, strfmt.Default, authInfo)
+
+	cli.ReportGroups = report_groups.New(transport, strfmt.Default, authInfo)
+
+	cli.Roles = roles.New(transport, strfmt.Default, authInfo)
+
+	cli.SdTs = s_d_ts.New(transport, strfmt.Default, authInfo)
+
+	cli.Thresholds = thresholds.New(transport, strfmt.Default, authInfo)
+
+	cli.Users = users.New(transport, strfmt.Default, authInfo)
+
+	cli.WebsiteGroups = website_groups.New(transport, strfmt.Default, authInfo)
+
+	cli.Websites = websites.New(transport, strfmt.Default, authInfo)
+
+	cli.Widgets = widgets.New(transport, strfmt.Default, authInfo)
 
 	return cli
 }
@@ -123,7 +225,75 @@ func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
 
 // LMSdkGo is a client for LM sdk go
 type LMSdkGo struct {
-	LM *lm.Client
+	AlertRules *alert_rules.Client
+
+	Alerts *alerts.Client
+
+	APIPerfStats *api_perf_stats.Client
+
+	APITokens *api_tokens.Client
+
+	AppliesToFunctions *applies_to_functions.Client
+
+	AuditLogs *audit_logs.Client
+
+	CollectorGroups *collector_groups.Client
+
+	CollectorVersions *collector_versions.Client
+
+	Collectors *collectors.Client
+
+	ConfigSources *config_sources.Client
+
+	DashboardGroups *dashboard_groups.Client
+
+	Dashboards *dashboards.Client
+
+	Data *data.Client
+
+	DatasourceInstances *datasource_instances.Client
+
+	Datasources *datasources.Client
+
+	Debug *debug.Client
+
+	DeviceGroups *device_groups.Client
+
+	Devices *devices.Client
+
+	EscalationChains *escalation_chains.Client
+
+	EventSources *event_sources.Client
+
+	IntegrationAuditLogs *integration_audit_logs.Client
+
+	Metrics *metrics.Client
+
+	Netscans *netscans.Client
+
+	OpsNotes *ops_notes.Client
+
+	PropertySources *property_sources.Client
+
+	RecipientGroups *recipient_groups.Client
+
+	Report *report.Client
+
+	ReportGroups *report_groups.Client
+
+	Roles *roles.Client
+
+	SdTs *s_d_ts.Client
+
+	Thresholds *thresholds.Client
+
+	Users *users.Client
+
+	WebsiteGroups *website_groups.Client
+
+	Websites *websites.Client
+
+	Widgets *widgets.Client
 
 	Transport runtime.ClientTransport
 }
@@ -132,7 +302,75 @@ type LMSdkGo struct {
 func (c *LMSdkGo) SetTransport(transport runtime.ClientTransport) {
 	c.Transport = transport
 
-	c.LM.SetTransport(transport)
+	c.AlertRules.SetTransport(transport)
+
+	c.Alerts.SetTransport(transport)
+
+	c.APIPerfStats.SetTransport(transport)
+
+	c.APITokens.SetTransport(transport)
+
+	c.AppliesToFunctions.SetTransport(transport)
+
+	c.AuditLogs.SetTransport(transport)
+
+	c.CollectorGroups.SetTransport(transport)
+
+	c.CollectorVersions.SetTransport(transport)
+
+	c.Collectors.SetTransport(transport)
+
+	c.ConfigSources.SetTransport(transport)
+
+	c.DashboardGroups.SetTransport(transport)
+
+	c.Dashboards.SetTransport(transport)
+
+	c.Data.SetTransport(transport)
+
+	c.DatasourceInstances.SetTransport(transport)
+
+	c.Datasources.SetTransport(transport)
+
+	c.Debug.SetTransport(transport)
+
+	c.DeviceGroups.SetTransport(transport)
+
+	c.Devices.SetTransport(transport)
+
+	c.EscalationChains.SetTransport(transport)
+
+	c.EventSources.SetTransport(transport)
+
+	c.IntegrationAuditLogs.SetTransport(transport)
+
+	c.Metrics.SetTransport(transport)
+
+	c.Netscans.SetTransport(transport)
+
+	c.OpsNotes.SetTransport(transport)
+
+	c.PropertySources.SetTransport(transport)
+
+	c.RecipientGroups.SetTransport(transport)
+
+	c.Report.SetTransport(transport)
+
+	c.ReportGroups.SetTransport(transport)
+
+	c.Roles.SetTransport(transport)
+
+	c.SdTs.SetTransport(transport)
+
+	c.Thresholds.SetTransport(transport)
+
+	c.Users.SetTransport(transport)
+
+	c.WebsiteGroups.SetTransport(transport)
+
+	c.Websites.SetTransport(transport)
+
+	c.Widgets.SetTransport(transport)
 
 }
 
@@ -171,6 +409,6 @@ func LMv1Auth(accessId, accessKey string) runtime.ClientAuthInfoWriter {
 		hexDigest := hex.EncodeToString(h.Sum(nil))
 		signature := base64.StdEncoding.EncodeToString([]byte(hexDigest))
 		r.SetHeaderParam("Authorization", fmt.Sprintf("LMv1 %s:%s:%s", accessId, signature, epoch))
-		return r.SetHeaderParam("X-version", "2")
+		return r.SetHeaderParam("X-version", "3")
 	})
 }

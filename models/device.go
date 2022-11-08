@@ -25,7 +25,7 @@ type Device struct {
 
 	// Any auto properties assigned to the device
 	// Read Only: true
-	AutoProperties []*NameAndValue `json:"autoProperties,omitempty"`
+	AutoProperties []*NameAndValue `json:"autoProperties"`
 
 	// The time, in epoch seconds format, that properties were first discovered for this device
 	// Read Only: true
@@ -39,7 +39,7 @@ type Device struct {
 	// Read Only: true
 	AwsState int32 `json:"awsState,omitempty"`
 
-	// The GCP instance state (if applicable): 1 indicates that the instance is running, 2 indicates that the instance is stopped and 3 the instance is terminated.
+	// The azure instance state (if applicable): 1 indicates that the instance is running, 2 indicates that the instance is stopped and 3 the instance is terminated.
 	// Read Only: true
 	AzureState int32 `json:"azureState,omitempty"`
 
@@ -55,8 +55,12 @@ type Device struct {
 	// Example: 1
 	CurrentCollectorID int32 `json:"currentCollectorId,omitempty"`
 
+	// The id of the Log collector currently collecting logs.
+	// Example: 1
+	CurrentLogCollectorID int32 `json:"currentLogCollectorId,omitempty"`
+
 	// Any non-system properties (aside from system.categories) defined for this device
-	CustomProperties []*NameAndValue `json:"customProperties,omitempty"`
+	CustomProperties []*NameAndValue `json:"customProperties"`
 
 	// The time in milliseconds that the device has been dead for, or since the AWS device was filtered out
 	// Read Only: true
@@ -83,7 +87,7 @@ type Device struct {
 	// Example: true
 	EnableNetflow bool `json:"enableNetflow,omitempty"`
 
-	// The Azure instance state (if applicable): 1 indicates that the instance is running, 2 indicates that the instance is stopped and 3 the instance is terminated.
+	// The gcp instance state (if applicable): 1 indicates that the instance is running, 2 indicates that the instance is stopped and 3 the instance is terminated.
 	// Read Only: true
 	GcpState int32 `json:"gcpState,omitempty"`
 
@@ -101,7 +105,11 @@ type Device struct {
 
 	// Any properties inherit from parents
 	// Read Only: true
-	InheritedProperties []*NameAndValue `json:"inheritedProperties,omitempty"`
+	InheritedProperties []*NameAndValue `json:"inheritedProperties"`
+
+	// Indicates whether Preferred Log Collector is configured  (true) or not (false) for the device
+	// Example: true
+	IsPreferredLogCollectorConfigured bool `json:"isPreferredLogCollectorConfigured,omitempty"`
 
 	// The last time, in epoch seconds, that the device received Netflow data
 	// Read Only: true
@@ -114,6 +122,22 @@ type Device struct {
 	// The URL link associated with the device
 	// Example: www.ciscorouter.com
 	Link string `json:"link,omitempty"`
+
+	// The description/name of the log collector for this device
+	// Read Only: true
+	LogCollectorDescription string `json:"logCollectorDescription,omitempty"`
+
+	// The id of the Collector Group associated with the device's log collection
+	// Read Only: true
+	LogCollectorGroupID int32 `json:"logCollectorGroupId,omitempty"`
+
+	// The name of the Collector Group associated with the device's.
+	// Read Only: true
+	LogCollectorGroupName string `json:"logCollectorGroupName,omitempty"`
+
+	// The Id of the netflow collector associated with the device
+	// Example: 1
+	LogCollectorID int32 `json:"logCollectorId,omitempty"`
 
 	// The host name or IP address of the device
 	// Example: Main Collector
@@ -153,14 +177,26 @@ type Device struct {
 	// Example: -1
 	RelatedDeviceID int32 `json:"relatedDeviceId,omitempty"`
 
+	// Any non-system properties (aside from system.categories) defined for this device
+	ResourceIds []*NameAndValue `json:"resourceIds"`
+
+	// The role privilege operation(s) for this device that are granted to the user who made the API request
+	// Read Only: true
+	RolePrivileges []string `json:"rolePrivileges"`
+
 	// The Id of the netscan configuration which was used to discover this device. 0 indicates that the device was not discovered by a scan
 	// Example: 0
 	// Read Only: true
 	ScanConfigID int32 `json:"scanConfigId,omitempty"`
 
+	// The list of ids of the collectors currently monitoring the resource and discovering instances
+	// Example: 1,4
+	// Unique: true
+	SyntheticsCollectorIds []int32 `json:"syntheticsCollectorIds"`
+
 	// Any system properties (aside from system.categories) defined for this device
 	// Read Only: true
-	SystemProperties []*NameAndValue `json:"systemProperties,omitempty"`
+	SystemProperties []*NameAndValue `json:"systemProperties"`
 
 	// The number of milliseconds until the device will be automatically deleted from your LogicMonitor account (a value of zero indicates that a future delete time/date has not been scheduled)
 	// Read Only: true
@@ -212,6 +248,14 @@ func (m *Device) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateResourceIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSyntheticsCollectorIds(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateSystemProperties(formats); err != nil {
 		res = append(res, err)
 	}
@@ -236,6 +280,8 @@ func (m *Device) validateAutoProperties(formats strfmt.Registry) error {
 			if err := m.AutoProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -260,6 +306,8 @@ func (m *Device) validateCustomProperties(formats strfmt.Registry) error {
 			if err := m.CustomProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -293,6 +341,8 @@ func (m *Device) validateInheritedProperties(formats strfmt.Registry) error {
 			if err := m.InheritedProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -321,6 +371,44 @@ func (m *Device) validatePreferredCollectorID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Device) validateResourceIds(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResourceIds) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ResourceIds); i++ {
+		if swag.IsZero(m.ResourceIds[i]) { // not required
+			continue
+		}
+
+		if m.ResourceIds[i] != nil {
+			if err := m.ResourceIds[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("resourceIds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resourceIds" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Device) validateSyntheticsCollectorIds(formats strfmt.Registry) error {
+	if swag.IsZero(m.SyntheticsCollectorIds) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("syntheticsCollectorIds", "body", m.SyntheticsCollectorIds); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Device) validateSystemProperties(formats strfmt.Registry) error {
 	if swag.IsZero(m.SystemProperties) { // not required
 		return nil
@@ -335,6 +423,8 @@ func (m *Device) validateSystemProperties(formats strfmt.Registry) error {
 			if err := m.SystemProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -409,6 +499,18 @@ func (m *Device) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateLogCollectorDescription(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLogCollectorGroupID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLogCollectorGroupName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateNetflowCollectorDescription(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -426,6 +528,14 @@ func (m *Device) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 	}
 
 	if err := m.contextValidatePreferredCollectorGroupName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResourceIds(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRolePrivileges(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -471,6 +581,8 @@ func (m *Device) contextValidateAutoProperties(ctx context.Context, formats strf
 			if err := m.AutoProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -543,6 +655,8 @@ func (m *Device) contextValidateCustomProperties(ctx context.Context, formats st
 			if err := m.CustomProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -601,6 +715,8 @@ func (m *Device) contextValidateInheritedProperties(ctx context.Context, formats
 			if err := m.InheritedProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -623,6 +739,33 @@ func (m *Device) contextValidateLastDataTime(ctx context.Context, formats strfmt
 func (m *Device) contextValidateLastRawdataTime(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "lastRawdataTime", "body", int64(m.LastRawdataTime)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Device) contextValidateLogCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "logCollectorDescription", "body", string(m.LogCollectorDescription)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Device) contextValidateLogCollectorGroupID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "logCollectorGroupId", "body", int32(m.LogCollectorGroupID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Device) contextValidateLogCollectorGroupName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "logCollectorGroupName", "body", string(m.LogCollectorGroupName)); err != nil {
 		return err
 	}
 
@@ -674,6 +817,35 @@ func (m *Device) contextValidatePreferredCollectorGroupName(ctx context.Context,
 	return nil
 }
 
+func (m *Device) contextValidateResourceIds(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ResourceIds); i++ {
+
+		if m.ResourceIds[i] != nil {
+			if err := m.ResourceIds[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("resourceIds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resourceIds" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *Device) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Device) contextValidateScanConfigID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "scanConfigId", "body", int32(m.ScanConfigID)); err != nil {
@@ -695,6 +867,8 @@ func (m *Device) contextValidateSystemProperties(ctx context.Context, formats st
 			if err := m.SystemProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

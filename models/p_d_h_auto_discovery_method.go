@@ -32,7 +32,7 @@ type PDHAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *PDHAutoDiscoveryMethod) Name() string {
-	return "ad_pdh"
+	return "PDHAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

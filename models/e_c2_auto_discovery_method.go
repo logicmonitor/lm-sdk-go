@@ -32,7 +32,7 @@ type EC2AutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *EC2AutoDiscoveryMethod) Name() string {
-	return "ad_ec2"
+	return "EC2AutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

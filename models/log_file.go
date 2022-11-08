@@ -23,10 +23,13 @@ type LogFile struct {
 	Encoding string `json:"encoding,omitempty"`
 
 	// The regex or plain text to look for in the file and not trigger alert if found
-	Excludes []string `json:"excludes,omitempty"`
+	Excludes []string `json:"excludes"`
 
-	// matches
-	Matches []*MatchPattern `json:"matches,omitempty"`
+	// The regex or plain text to look for in the file and trigger alert if found
+	Matches []*MatchPattern `json:"matches"`
+
+	// origin Id
+	OriginID string `json:"originId,omitempty"`
 
 	// The path of the log file to monitor
 	Path string `json:"path,omitempty"`
@@ -63,6 +66,8 @@ func (m *LogFile) validateMatches(formats strfmt.Registry) error {
 			if err := m.Matches[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("matches" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("matches" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -95,6 +100,8 @@ func (m *LogFile) contextValidateMatches(ctx context.Context, formats strfmt.Reg
 			if err := m.Matches[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("matches" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("matches" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

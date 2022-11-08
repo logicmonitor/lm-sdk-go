@@ -24,7 +24,7 @@ type EC2ScheduledEventAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *EC2ScheduledEventAutoDiscoveryMethod) Name() string {
-	return "ad_awsec2scheduledevents"
+	return "EC2ScheduledEventAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

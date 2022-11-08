@@ -27,7 +27,7 @@ type RestSchedule struct {
 
 	// The recipients that should receive the notification of the scan finish
 	// Example: [\"sarah@logicmonitor.com\" ]
-	Recipients []string `json:"recipients,omitempty"`
+	Recipients []string `json:"recipients"`
 
 	// The timezone for the schedule
 	// Example: America/Los_Angeles

@@ -51,6 +51,8 @@ type HostInventoryReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -66,7 +68,7 @@ type HostInventoryReport struct {
 	HostsValType string `json:"hostsValType,omitempty"`
 
 	// The instances will be included in the report
-	Metrics []*HostInventoryMetric `json:"metrics,omitempty"`
+	Metrics []*HostInventoryMetric `json:"metrics"`
 
 	// The properties that should be displayed in the report
 	// Required: true
@@ -226,6 +228,16 @@ func (m *HostInventoryReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *HostInventoryReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *HostInventoryReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *HostInventoryReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -258,7 +270,7 @@ func (m *HostInventoryReport) SetScheduleTimezone(val string) {
 
 // Type gets the type of this subtype
 func (m *HostInventoryReport) Type() string {
-	return "Host inventory"
+	return "HostInventoryReport"
 }
 
 // SetType sets the type of this subtype
@@ -286,7 +298,7 @@ func (m *HostInventoryReport) UnmarshalJSON(raw []byte) error {
 		HostsValType string `json:"hostsValType,omitempty"`
 
 		// The instances will be included in the report
-		Metrics []*HostInventoryMetric `json:"metrics,omitempty"`
+		Metrics []*HostInventoryMetric `json:"metrics"`
 
 		// The properties that should be displayed in the report
 		// Required: true
@@ -334,7 +346,9 @@ func (m *HostInventoryReport) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -386,6 +400,8 @@ func (m *HostInventoryReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -422,7 +438,7 @@ func (m HostInventoryReport) MarshalJSON() ([]byte, error) {
 		HostsValType string `json:"hostsValType,omitempty"`
 
 		// The instances will be included in the report
-		Metrics []*HostInventoryMetric `json:"metrics,omitempty"`
+		Metrics []*HostInventoryMetric `json:"metrics"`
 
 		// The properties that should be displayed in the report
 		// Required: true
@@ -474,7 +490,9 @@ func (m HostInventoryReport) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -516,6 +534,8 @@ func (m HostInventoryReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 
@@ -584,6 +604,8 @@ func (m *HostInventoryReport) validateRecipients(formats strfmt.Registry) error 
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -609,6 +631,8 @@ func (m *HostInventoryReport) validateMetrics(formats strfmt.Registry) error {
 			if err := m.Metrics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -779,6 +803,8 @@ func (m *HostInventoryReport) contextValidateRecipients(ctx context.Context, for
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -815,6 +841,8 @@ func (m *HostInventoryReport) contextValidateMetrics(ctx context.Context, format
 			if err := m.Metrics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

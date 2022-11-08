@@ -137,7 +137,7 @@ func (m *BigNumberWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *BigNumberWidget) Type() string {
-	return "bigNumber"
+	return "BigNumberWidget"
 }
 
 // SetType sets the type of this subtype
@@ -355,6 +355,8 @@ func (m *BigNumberWidget) validateBigNumberInfo(formats strfmt.Registry) error {
 		if err := m.BigNumberInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bigNumberInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bigNumberInfo")
 			}
 			return err
 		}
@@ -422,6 +424,8 @@ func (m *BigNumberWidget) contextValidateBigNumberInfo(ctx context.Context, form
 		if err := m.BigNumberInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bigNumberInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bigNumberInfo")
 			}
 			return err
 		}

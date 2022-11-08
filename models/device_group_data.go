@@ -67,6 +67,10 @@ type DeviceGroupData struct {
 	// Read Only: true
 	NumOfHosts int32 `json:"numOfHosts,omitempty"`
 
+	// The role privilege operations for the device group that are granted to the user that made this API request
+	// Read Only: true
+	RolePrivileges []string `json:"rolePrivileges"`
+
 	// The permissions for the device group that are granted to the user that made this API request
 	// Read Only: true
 	UserPermission string `json:"userPermission,omitempty"`
@@ -126,6 +130,10 @@ func (m *DeviceGroupData) ContextValidate(ctx context.Context, formats strfmt.Re
 	}
 
 	if err := m.contextValidateNumOfHosts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateRolePrivileges(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -241,6 +249,15 @@ func (m *DeviceGroupData) contextValidateNumOfDirectSubGroups(ctx context.Contex
 func (m *DeviceGroupData) contextValidateNumOfHosts(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "numOfHosts", "body", int32(m.NumOfHosts)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceGroupData) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges)); err != nil {
 		return err
 	}
 

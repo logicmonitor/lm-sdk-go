@@ -24,7 +24,7 @@ type InternalCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *InternalCollectorAttribute) Name() string {
-	return "internal"
+	return "InternalCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

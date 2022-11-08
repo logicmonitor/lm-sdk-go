@@ -36,7 +36,7 @@ type CIMAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *CIMAutoDiscoveryMethod) Name() string {
-	return "ad_cim"
+	return "CIMAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

@@ -42,23 +42,23 @@ type GoogleMapWidget struct {
 	userPermissionField string
 
 	// Whether ACKed alerts should be displayed, the default value is true
-	AckChecked interface{} `json:"ackChecked,omitempty"`
+	AckChecked bool `json:"ackChecked,omitempty"`
 
 	// Whether critical alerts should be displayed, the default value is true
-	DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
+	DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
 
 	// Whether error alerts should be displayed, the default value is true
-	DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
+	DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
 
 	// Whether warning alerts should be displayed, the default value is true
-	DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
+	DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
 
 	// The points info
 	// Required: true
 	MapPoints []*PointSource `json:"mapPoints"`
 
 	// Whether alerts occuring during an SDT period should be displayed, the default value is true
-	SDTChecked interface{} `json:"sdtChecked,omitempty"`
+	SDTChecked bool `json:"sdtChecked,omitempty"`
 }
 
 // DashboardID gets the dashboard Id of this subtype
@@ -153,7 +153,7 @@ func (m *GoogleMapWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *GoogleMapWidget) Type() string {
-	return "gmap"
+	return "GoogleMapWidget"
 }
 
 // SetType sets the type of this subtype
@@ -175,23 +175,23 @@ func (m *GoogleMapWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// Whether ACKed alerts should be displayed, the default value is true
-		AckChecked interface{} `json:"ackChecked,omitempty"`
+		AckChecked bool `json:"ackChecked,omitempty"`
 
 		// Whether critical alerts should be displayed, the default value is true
-		DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
+		DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
 
 		// Whether error alerts should be displayed, the default value is true
-		DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
+		DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
 
 		// Whether warning alerts should be displayed, the default value is true
-		DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
+		DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
 
 		// The points info
 		// Required: true
 		MapPoints []*PointSource `json:"mapPoints"`
 
 		// Whether alerts occuring during an SDT period should be displayed, the default value is true
-		SDTChecked interface{} `json:"sdtChecked,omitempty"`
+		SDTChecked bool `json:"sdtChecked,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -279,23 +279,23 @@ func (m GoogleMapWidget) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// Whether ACKed alerts should be displayed, the default value is true
-		AckChecked interface{} `json:"ackChecked,omitempty"`
+		AckChecked bool `json:"ackChecked,omitempty"`
 
 		// Whether critical alerts should be displayed, the default value is true
-		DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
+		DisplayCriticalAlert bool `json:"displayCriticalAlert,omitempty"`
 
 		// Whether error alerts should be displayed, the default value is true
-		DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
+		DisplayErrorAlert bool `json:"displayErrorAlert,omitempty"`
 
 		// Whether warning alerts should be displayed, the default value is true
-		DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
+		DisplayWarnAlert bool `json:"displayWarnAlert,omitempty"`
 
 		// The points info
 		// Required: true
 		MapPoints []*PointSource `json:"mapPoints"`
 
 		// Whether alerts occuring during an SDT period should be displayed, the default value is true
-		SDTChecked interface{} `json:"sdtChecked,omitempty"`
+		SDTChecked bool `json:"sdtChecked,omitempty"`
 	}{
 
 		AckChecked: m.AckChecked,
@@ -421,6 +421,8 @@ func (m *GoogleMapWidget) validateMapPoints(formats strfmt.Registry) error {
 			if err := m.MapPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mapPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("mapPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -492,6 +494,8 @@ func (m *GoogleMapWidget) contextValidateMapPoints(ctx context.Context, formats 
 			if err := m.MapPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mapPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("mapPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

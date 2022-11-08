@@ -29,7 +29,7 @@ type UDPCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *UDPCollectorAttribute) Name() string {
-	return "udp"
+	return "UDPCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

@@ -31,7 +31,7 @@ type PortAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *PortAutoDiscoveryMethod) Name() string {
-	return "ad_port"
+	return "PortAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -102,6 +101,11 @@ type ReportBase interface {
 	Recipients() []*ReportRecipient
 	SetRecipients([]*ReportRecipient)
 
+	// The report link Expire. Allowable values are:High Flexibility,High Security
+	// Example: High Flexibility
+	ReportLinkExpire() string
+	SetReportLinkExpire(string)
+
 	// The number of links associated with the report, where each link corresponds to a generated report
 	// Read Only: true
 	ReportLinkNum() int32
@@ -162,6 +166,8 @@ type reportBase struct {
 	nameField *string
 
 	recipientsField []*ReportRecipient
+
+	reportLinkExpireField string
 
 	reportLinkNumField int32
 
@@ -324,6 +330,16 @@ func (m *reportBase) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this polymorphic type
+func (m *reportBase) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this polymorphic type
+func (m *reportBase) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this polymorphic type
 func (m *reportBase) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -394,7 +410,7 @@ func UnmarshalReportBaseSlice(reader io.Reader, consumer runtime.Consumer) ([]Re
 // UnmarshalReportBase unmarshals polymorphic ReportBase
 func UnmarshalReportBase(reader io.Reader, consumer runtime.Consumer) (ReportBase, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -419,79 +435,85 @@ func unmarshalReportBase(data []byte, consumer runtime.Consumer) (ReportBase, er
 
 	// The value of type is used to determine which type to create and unmarshal the data into
 	switch getType.Type {
-	case "Alert":
-		var result AlertReport
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "Alert Forecasting":
+	case "AlertForecastingReport":
 		var result AlertForecastingReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Alert SLA":
+	case "AlertReport":
+		var result AlertReport
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AlertSlaReport":
 		var result AlertSLAReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Alert threshold":
+	case "AlertThresholdReport":
 		var result AlertThresholdReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Alert trends":
+	case "AlertTrendsReport":
 		var result AlertTrendsReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Audit Log":
+	case "AuditLogReport":
 		var result AuditLogReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Dashboard":
+	case "CustomReport":
+		var result CustomReport
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "DashboardReport":
 		var result DashboardReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Host CPU":
+	case "HostCpuReport":
 		var result HostCPUReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Host group inventory":
+	case "HostGroupInventoryReport":
 		var result HostGroupInventoryReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Host inventory":
+	case "HostInventoryReport":
 		var result HostInventoryReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Host metric trends":
+	case "HostMetricsReport":
 		var result HostMetricsReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Interfaces Bandwidth":
+	case "InterfBandwidthReport":
 		var result InterfBandwidthReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Netflow device metric":
+	case "NetflowReport":
 		var result NetflowReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
@@ -503,38 +525,32 @@ func unmarshalReportBase(data []byte, consumer runtime.Consumer) (ReportBase, er
 			return nil, err
 		}
 		return &result, nil
-	case "Role":
+	case "RoleReport":
 		var result RoleReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Service Level Agreement":
+	case "SLAReport":
 		var result SLAReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "User":
+	case "UserReport":
 		var result UserReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Website SLA":
-		var result WebsiteSLAReport
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "Website Service Overview":
+	case "WebsiteOverviewReport":
 		var result WebsiteOverviewReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "Word template":
-		var result CustomReport
+	case "WebsiteSLAReport":
+		var result WebsiteSLAReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -584,6 +600,8 @@ func (m *reportBase) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -741,6 +759,8 @@ func (m *reportBase) contextValidateRecipients(ctx context.Context, formats strf
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

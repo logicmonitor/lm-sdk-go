@@ -139,7 +139,7 @@ func (m *AlertWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *AlertWidget) Type() string {
-	return "alert"
+	return "AlertWidget"
 }
 
 // SetType sets the type of this subtype
@@ -368,6 +368,8 @@ func (m *AlertWidget) validateFilters(formats strfmt.Registry) error {
 		if err := m.Filters.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("filters")
 			}
 			return err
 		}
@@ -386,6 +388,8 @@ func (m *AlertWidget) validateParsedFilters(formats strfmt.Registry) error {
 		if err := m.ParsedFilters.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parsedFilters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parsedFilters")
 			}
 			return err
 		}
@@ -457,6 +461,8 @@ func (m *AlertWidget) contextValidateFilters(ctx context.Context, formats strfmt
 		if err := m.Filters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("filters")
 			}
 			return err
 		}
@@ -471,6 +477,8 @@ func (m *AlertWidget) contextValidateParsedFilters(ctx context.Context, formats 
 		if err := m.ParsedFilters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parsedFilters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parsedFilters")
 			}
 			return err
 		}

@@ -23,14 +23,14 @@ type CustomGraph struct {
 	// true: You can set this field to true to aggregate results into one line.
 	// false: Results will not be aggregated
 	// the default value is true
-	Aggregate interface{} `json:"aggregate,omitempty"`
+	Aggregate bool `json:"aggregate,omitempty"`
 
 	// The datapoints added to the widget (note that a datapoint must be referenced in a graph line to be displayed)
 	// Required: true
 	DataPoints []*CustomFlexibleVirtualDataSourceEx `json:"dataPoints"`
 
 	// Whether the top X are displayed (false) or the bottom X are displayed (true), the default value is true
-	Desc interface{} `json:"desc,omitempty"`
+	Desc bool `json:"desc,omitempty"`
 
 	// The function for global consolidate
 	GlobalConsolidateFunction string `json:"globalConsolidateFunction,omitempty"`
@@ -39,10 +39,10 @@ type CustomGraph struct {
 	ID int32 `json:"id,omitempty"`
 
 	// The maximum value that should be displayed on the y-axis
-	MaxValue interface{} `json:"maxValue,omitempty"`
+	MaxValue float64 `json:"maxValue,omitempty"`
 
 	// The minimum value that should be displayed on the y-axis
-	MinValue interface{} `json:"minValue,omitempty"`
+	MinValue float64 `json:"minValue,omitempty"`
 
 	// The base scale unit (1000 or 1024)
 	ScaleUnit int32 `json:"scaleUnit,omitempty"`
@@ -54,7 +54,7 @@ type CustomGraph struct {
 	VerticalLabel string `json:"verticalLabel,omitempty"`
 
 	// The virtual datapoints added to the widget (note that a virtual datapoint must be referenced in a graph line to be displayed)
-	VirtualDataPoints []*CustomVirtualDataPoint `json:"virtualDataPoints,omitempty"`
+	VirtualDataPoints []*CustomVirtualDataPoint `json:"virtualDataPoints"`
 }
 
 // Validate validates this custom graph
@@ -90,6 +90,8 @@ func (m *CustomGraph) validateDataPoints(formats strfmt.Registry) error {
 			if err := m.DataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -114,6 +116,8 @@ func (m *CustomGraph) validateVirtualDataPoints(formats strfmt.Registry) error {
 			if err := m.VirtualDataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -150,6 +154,8 @@ func (m *CustomGraph) contextValidateDataPoints(ctx context.Context, formats str
 			if err := m.DataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -168,6 +174,8 @@ func (m *CustomGraph) contextValidateVirtualDataPoints(ctx context.Context, form
 			if err := m.VirtualDataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

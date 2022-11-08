@@ -22,7 +22,7 @@ type DashboardGroup struct {
 
 	// The dashboards that belong to the group
 	// Read Only: true
-	Dashboards []*DashboardData `json:"dashboards,omitempty"`
+	Dashboards []*DashboardData `json:"dashboards"`
 
 	// This is a description of the dashboard group
 	// Example: Servers in LA DataCenter
@@ -57,7 +57,7 @@ type DashboardGroup struct {
 	// Example: 1
 	ParentID int32 `json:"parentId,omitempty"`
 
-	// The template which is used for import dashboard group
+	// The template which is used for importing dashboard group
 	Template interface{} `json:"template,omitempty"`
 
 	// The permission of the user that made the API call
@@ -65,7 +65,7 @@ type DashboardGroup struct {
 	UserPermission string `json:"userPermission,omitempty"`
 
 	// The tokens assigned at the group level
-	WidgetTokens []*WidgetToken `json:"widgetTokens,omitempty"`
+	WidgetTokens []*WidgetToken `json:"widgetTokens"`
 }
 
 // Validate validates this dashboard group
@@ -104,6 +104,8 @@ func (m *DashboardGroup) validateDashboards(formats strfmt.Registry) error {
 			if err := m.Dashboards[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dashboards" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dashboards" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -137,6 +139,8 @@ func (m *DashboardGroup) validateWidgetTokens(formats strfmt.Registry) error {
 			if err := m.WidgetTokens[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -201,6 +205,8 @@ func (m *DashboardGroup) contextValidateDashboards(ctx context.Context, formats 
 			if err := m.Dashboards[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dashboards" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dashboards" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -273,6 +279,8 @@ func (m *DashboardGroup) contextValidateWidgetTokens(ctx context.Context, format
 			if err := m.WidgetTokens[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -19,11 +19,11 @@ type ExcludeDuplicateIps struct {
 
 	// The collectors for which monitored devices should be used to identify and exclude duplicate IPs, if duplicate type is 4
 	// Example: [\"ip-172-31-45-179.us-west-2.compute.internal\"]
-	Collectors []string `json:"collectors,omitempty"`
+	Collectors []string `json:"collectors"`
 
 	// The groups for which devices should be used to identify and exclude duplicate IPs, if duplicate type is 3
 	// Example: [\"Network Devices\"]
-	Groups []string `json:"groups,omitempty"`
+	Groups []string `json:"groups"`
 
 	// What types of duplicate IPs should be excluded. Options are 1 (matching any monitored devices), 2 (matching devices already discovered by this scan), 3 (matching devices in these groups), and 4 (matching devices assigned to these collectors)
 	// Example: 1

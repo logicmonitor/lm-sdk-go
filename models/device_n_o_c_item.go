@@ -51,7 +51,7 @@ type DeviceNOCItem struct {
 
 // Type gets the type of this subtype
 func (m *DeviceNOCItem) Type() string {
-	return "device"
+	return "DeviceNOCItem"
 }
 
 // SetType sets the type of this subtype

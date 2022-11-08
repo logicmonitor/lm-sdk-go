@@ -47,7 +47,7 @@ func (m *WebsitePaginationResponse) SetItems(val []Website) {
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *WebsitePaginationResponse) UnmarshalJSON(raw []byte) error {
 	var data struct {
-		Items json.RawMessage `json:"items,omitempty"`
+		Items json.RawMessage `json:"items"`
 
 		SearchID string `json:"searchId,omitempty"`
 
@@ -104,7 +104,7 @@ func (m WebsitePaginationResponse) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	b2, err = json.Marshal(struct {
-		Items []Website `json:"items,omitempty"`
+		Items []Website `json:"items"`
 	}{
 
 		Items: m.itemsField,
@@ -140,6 +140,8 @@ func (m *WebsitePaginationResponse) validateItems(formats strfmt.Registry) error
 		if err := m.itemsField[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("items" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("items" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -178,6 +180,8 @@ func (m *WebsitePaginationResponse) contextValidateItems(ctx context.Context, fo
 		if err := m.itemsField[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("items" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("items" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

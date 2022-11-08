@@ -28,7 +28,7 @@ type AwsBillingReportDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *AwsBillingReportDiscoveryMethod) Name() string {
-	return "ad_awsbillingreport"
+	return "AwsBillingReportDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

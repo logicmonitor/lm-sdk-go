@@ -49,7 +49,7 @@ type NetAppAutoDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *NetAppAutoDiscoveryMethod) Name() string {
-	return "ad_netapp"
+	return "NetAppAutoDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

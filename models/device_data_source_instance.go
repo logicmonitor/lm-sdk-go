@@ -21,10 +21,14 @@ import (
 type DeviceDataSourceInstance struct {
 
 	// Any instance level auto properties assigned to the instance
-	AutoProperties []*NameAndValue `json:"autoProperties,omitempty"`
+	AutoProperties []*NameAndValue `json:"autoProperties"`
+
+	// The id of the collector the datasource instance is associated with
+	// Read Only: true
+	CollectorID int32 `json:"collectorId,omitempty"`
 
 	// Any instance level properties assigned to the instance
-	CustomProperties []*NameAndValue `json:"customProperties,omitempty"`
+	CustomProperties []*NameAndValue `json:"customProperties"`
 
 	// The id of the datasource definition that the instance represents
 	// Read Only: true
@@ -71,6 +75,10 @@ type DeviceDataSourceInstance struct {
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
+	// Whether or not UNC Monitoring enabled for device
+	// Example: true
+	IsUNCInstance bool `json:"isUNCInstance,omitempty"`
+
 	// Whether or not Active Discovery is enabled, and thus whether or not the instance description is editable
 	// Example: true
 	LockDescription bool `json:"lockDescription,omitempty"`
@@ -84,7 +92,7 @@ type DeviceDataSourceInstance struct {
 	StopMonitoring bool `json:"stopMonitoring,omitempty"`
 
 	// Any instance level system properties assigned to the instance
-	SystemProperties []*NameAndValue `json:"systemProperties,omitempty"`
+	SystemProperties []*NameAndValue `json:"systemProperties"`
 
 	// The variable part of the instance, used to query data from a device. For example, variable part of the SNMP OID tree. This value must be unique for the device/datasource combination, unless two-dimensional active discovery is used
 	// Example: 1
@@ -140,6 +148,8 @@ func (m *DeviceDataSourceInstance) validateAutoProperties(formats strfmt.Registr
 			if err := m.AutoProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -164,6 +174,8 @@ func (m *DeviceDataSourceInstance) validateCustomProperties(formats strfmt.Regis
 			if err := m.CustomProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -197,6 +209,8 @@ func (m *DeviceDataSourceInstance) validateSystemProperties(formats strfmt.Regis
 			if err := m.SystemProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -221,6 +235,10 @@ func (m *DeviceDataSourceInstance) ContextValidate(ctx context.Context, formats 
 	var res []error
 
 	if err := m.contextValidateAutoProperties(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateCollectorID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -278,11 +296,22 @@ func (m *DeviceDataSourceInstance) contextValidateAutoProperties(ctx context.Con
 			if err := m.AutoProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstance) contextValidateCollectorID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "collectorId", "body", int32(m.CollectorID)); err != nil {
+		return err
 	}
 
 	return nil
@@ -296,6 +325,8 @@ func (m *DeviceDataSourceInstance) contextValidateCustomProperties(ctx context.C
 			if err := m.CustomProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -386,6 +417,8 @@ func (m *DeviceDataSourceInstance) contextValidateSystemProperties(ctx context.C
 			if err := m.SystemProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

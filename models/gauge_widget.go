@@ -42,7 +42,7 @@ type GaugeWidget struct {
 	userPermissionField string
 
 	// The threshold of Gauge color changes
-	ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
+	ColorThresholds []*ColorThreshold `json:"colorThresholds"`
 
 	// The datapoint whose value is displayed in the gauge widget
 	// Required: true
@@ -162,7 +162,7 @@ func (m *GaugeWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *GaugeWidget) Type() string {
-	return "gauge"
+	return "GaugeWidget"
 }
 
 // SetType sets the type of this subtype
@@ -184,7 +184,7 @@ func (m *GaugeWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// The threshold of Gauge color changes
-		ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
+		ColorThresholds []*ColorThreshold `json:"colorThresholds"`
 
 		// The datapoint whose value is displayed in the gauge widget
 		// Required: true
@@ -300,7 +300,7 @@ func (m GaugeWidget) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// The threshold of Gauge color changes
-		ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
+		ColorThresholds []*ColorThreshold `json:"colorThresholds"`
 
 		// The datapoint whose value is displayed in the gauge widget
 		// Required: true
@@ -461,6 +461,8 @@ func (m *GaugeWidget) validateColorThresholds(formats strfmt.Registry) error {
 			if err := m.ColorThresholds[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -481,6 +483,8 @@ func (m *GaugeWidget) validateDataPoint(formats strfmt.Registry) error {
 		if err := m.DataPoint.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("dataPoint")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dataPoint")
 			}
 			return err
 		}
@@ -554,6 +558,8 @@ func (m *GaugeWidget) contextValidateColorThresholds(ctx context.Context, format
 			if err := m.ColorThresholds[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -570,6 +576,8 @@ func (m *GaugeWidget) contextValidateDataPoint(ctx context.Context, formats strf
 		if err := m.DataPoint.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("dataPoint")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dataPoint")
 			}
 			return err
 		}

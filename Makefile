@@ -1,6 +1,6 @@
 NAMESPACE  := logicmonitor
 REPOSITORY := lm-sdk-go
-VERSION    := $(shell git describe --tags --always --dirty)
+VERSION    ?= $(shell git describe --tags --always --dirty)
 ifeq ($(VERSION),)
 VERSION := latest
 endif

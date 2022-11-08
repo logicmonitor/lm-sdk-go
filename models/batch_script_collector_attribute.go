@@ -41,7 +41,7 @@ type BatchScriptCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *BatchScriptCollectorAttribute) Name() string {
-	return "batchscript"
+	return "BatchScriptCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

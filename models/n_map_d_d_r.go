@@ -20,7 +20,7 @@ import (
 type NMapDDR struct {
 
 	// Information about how discovered devices are included in or excluded from monitoring. Assignment objects can be created for different types of discovered devices
-	Assignment []*Assignment `json:"assignment,omitempty"`
+	Assignment []*Assignment `json:"assignment"`
 
 	// change name
 	ChangeName string `json:"changeName,omitempty"`
@@ -54,6 +54,8 @@ func (m *NMapDDR) validateAssignment(formats strfmt.Registry) error {
 			if err := m.Assignment[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("assignment" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("assignment" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -86,6 +88,8 @@ func (m *NMapDDR) contextValidateAssignment(ctx context.Context, formats strfmt.
 			if err := m.Assignment[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("assignment" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("assignment" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

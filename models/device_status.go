@@ -141,7 +141,7 @@ func (m *DeviceStatus) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *DeviceStatus) Type() string {
-	return "deviceStatus"
+	return "DeviceStatus"
 }
 
 // SetType sets the type of this subtype

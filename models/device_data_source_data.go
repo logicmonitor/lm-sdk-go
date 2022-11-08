@@ -21,7 +21,7 @@ type DeviceDataSourceData struct {
 
 	// data points
 	// Read Only: true
-	DataPoints []string `json:"dataPoints,omitempty"`
+	DataPoints []string `json:"dataPoints"`
 
 	// data source name
 	// Read Only: true
@@ -62,6 +62,11 @@ func (m *DeviceDataSourceData) validateInstances(formats strfmt.Registry) error 
 		}
 		if val, ok := m.Instances[k]; ok {
 			if err := val.Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("instances" + "." + k)
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("instances" + "." + k)
+				}
 				return err
 			}
 		}

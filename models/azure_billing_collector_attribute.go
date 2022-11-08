@@ -24,7 +24,7 @@ type AzureBillingCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AzureBillingCollectorAttribute) Name() string {
-	return "azurebilling"
+	return "AzureBillingCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

@@ -36,7 +36,7 @@ type NetflowQoSReportTableRow struct {
 
 // DataType gets the data type of this subtype
 func (m *NetflowQoSReportTableRow) DataType() string {
-	return "qosReportTableRow"
+	return "NetflowQoSReportTableRow"
 }
 
 // SetDataType sets the data type of this subtype

@@ -29,6 +29,8 @@ type PingCheck struct {
 
 	disableAlertingField bool
 
+	domainField string
+
 	globalSmAlertCondField int32
 
 	groupIdField int32
@@ -51,7 +53,11 @@ type PingCheck struct {
 
 	propertiesField []*NameAndValue
 
+	rolePrivilegesField []string
+
 	statusField string
+
+	stepsField []*WebCheckStep
 
 	stopMonitoringField bool
 
@@ -122,6 +128,16 @@ func (m *PingCheck) DisableAlerting() bool {
 // SetDisableAlerting sets the disable alerting of this subtype
 func (m *PingCheck) SetDisableAlerting(val bool) {
 	m.disableAlertingField = val
+}
+
+// Domain gets the domain of this subtype
+func (m *PingCheck) Domain() string {
+	return m.domainField
+}
+
+// SetDomain sets the domain of this subtype
+func (m *PingCheck) SetDomain(val string) {
+	m.domainField = val
 }
 
 // GlobalSmAlertCond gets the global sm alert cond of this subtype
@@ -234,6 +250,16 @@ func (m *PingCheck) SetProperties(val []*NameAndValue) {
 	m.propertiesField = val
 }
 
+// RolePrivileges gets the role privileges of this subtype
+func (m *PingCheck) RolePrivileges() []string {
+	return m.rolePrivilegesField
+}
+
+// SetRolePrivileges sets the role privileges of this subtype
+func (m *PingCheck) SetRolePrivileges(val []string) {
+	m.rolePrivilegesField = val
+}
+
 // Status gets the status of this subtype
 func (m *PingCheck) Status() string {
 	return m.statusField
@@ -242,6 +268,16 @@ func (m *PingCheck) Status() string {
 // SetStatus sets the status of this subtype
 func (m *PingCheck) SetStatus(val string) {
 	m.statusField = val
+}
+
+// Steps gets the steps of this subtype
+func (m *PingCheck) Steps() []*WebCheckStep {
+	return m.stepsField
+}
+
+// SetSteps sets the steps of this subtype
+func (m *PingCheck) SetSteps(val []*WebCheckStep) {
+	m.stepsField = val
 }
 
 // StopMonitoring gets the stop monitoring of this subtype
@@ -296,7 +332,7 @@ func (m *PingCheck) SetTransition(val int32) {
 
 // Type gets the type of this subtype
 func (m *PingCheck) Type() string {
-	return "pingcheck"
+	return "PingCheck"
 }
 
 // SetType sets the type of this subtype
@@ -362,13 +398,15 @@ func (m *PingCheck) UnmarshalJSON(raw []byte) error {
 	var base struct {
 		/* Just the base type fields. Used for unmashalling polymorphic types.*/
 
-		Checkpoints []*WebsiteCheckPoint `json:"checkpoints,omitempty"`
+		Checkpoints []*WebsiteCheckPoint `json:"checkpoints"`
 
-		Collectors []*WebsiteCollectorInfo `json:"collectors,omitempty"`
+		Collectors []*WebsiteCollectorInfo `json:"collectors"`
 
 		Description string `json:"description,omitempty"`
 
 		DisableAlerting bool `json:"disableAlerting,omitempty"`
+
+		Domain string `json:"domain,omitempty"`
 
 		GlobalSmAlertCond int32 `json:"globalSmAlertCond,omitempty"`
 
@@ -390,9 +428,13 @@ func (m *PingCheck) UnmarshalJSON(raw []byte) error {
 
 		PollingInterval int32 `json:"pollingInterval,omitempty"`
 
-		Properties []*NameAndValue `json:"properties,omitempty"`
+		Properties []*NameAndValue `json:"properties"`
+
+		RolePrivileges []string `json:"rolePrivileges"`
 
 		Status string `json:"status,omitempty"`
+
+		Steps []*WebCheckStep `json:"steps"`
 
 		StopMonitoring bool `json:"stopMonitoring,omitempty"`
 
@@ -430,6 +472,8 @@ func (m *PingCheck) UnmarshalJSON(raw []byte) error {
 
 	result.disableAlertingField = base.DisableAlerting
 
+	result.domainField = base.Domain
+
 	result.globalSmAlertCondField = base.GlobalSmAlertCond
 
 	result.groupIdField = base.GroupID
@@ -452,7 +496,11 @@ func (m *PingCheck) UnmarshalJSON(raw []byte) error {
 
 	result.propertiesField = base.Properties
 
+	result.rolePrivilegesField = base.RolePrivileges
+
 	result.statusField = base.Status
+
+	result.stepsField = base.Steps
 
 	result.stopMonitoringField = base.StopMonitoring
 
@@ -517,13 +565,15 @@ func (m PingCheck) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	b2, err = json.Marshal(struct {
-		Checkpoints []*WebsiteCheckPoint `json:"checkpoints,omitempty"`
+		Checkpoints []*WebsiteCheckPoint `json:"checkpoints"`
 
-		Collectors []*WebsiteCollectorInfo `json:"collectors,omitempty"`
+		Collectors []*WebsiteCollectorInfo `json:"collectors"`
 
 		Description string `json:"description,omitempty"`
 
 		DisableAlerting bool `json:"disableAlerting,omitempty"`
+
+		Domain string `json:"domain,omitempty"`
 
 		GlobalSmAlertCond int32 `json:"globalSmAlertCond,omitempty"`
 
@@ -545,9 +595,13 @@ func (m PingCheck) MarshalJSON() ([]byte, error) {
 
 		PollingInterval int32 `json:"pollingInterval,omitempty"`
 
-		Properties []*NameAndValue `json:"properties,omitempty"`
+		Properties []*NameAndValue `json:"properties"`
+
+		RolePrivileges []string `json:"rolePrivileges"`
 
 		Status string `json:"status,omitempty"`
+
+		Steps []*WebCheckStep `json:"steps"`
 
 		StopMonitoring bool `json:"stopMonitoring,omitempty"`
 
@@ -576,6 +630,8 @@ func (m PingCheck) MarshalJSON() ([]byte, error) {
 
 		DisableAlerting: m.DisableAlerting(),
 
+		Domain: m.Domain(),
+
 		GlobalSmAlertCond: m.GlobalSmAlertCond(),
 
 		GroupID: m.GroupID(),
@@ -598,7 +654,11 @@ func (m PingCheck) MarshalJSON() ([]byte, error) {
 
 		Properties: m.Properties(),
 
+		RolePrivileges: m.RolePrivileges(),
+
 		Status: m.Status(),
+
+		Steps: m.Steps(),
 
 		StopMonitoring: m.StopMonitoring(),
 
@@ -645,6 +705,10 @@ func (m *PingCheck) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSteps(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTestLocation(formats); err != nil {
 		res = append(res, err)
 	}
@@ -674,6 +738,8 @@ func (m *PingCheck) validateCheckpoints(formats strfmt.Registry) error {
 			if err := m.checkpointsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("checkpoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("checkpoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -699,6 +765,8 @@ func (m *PingCheck) validateCollectors(formats strfmt.Registry) error {
 			if err := m.collectorsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -733,6 +801,35 @@ func (m *PingCheck) validateProperties(formats strfmt.Registry) error {
 			if err := m.propertiesField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *PingCheck) validateSteps(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Steps()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Steps()); i++ {
+		if swag.IsZero(m.stepsField[i]) { // not required
+			continue
+		}
+
+		if m.stepsField[i] != nil {
+			if err := m.stepsField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -753,6 +850,8 @@ func (m *PingCheck) validateTestLocation(formats strfmt.Registry) error {
 		if err := m.TestLocation().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}
@@ -798,7 +897,15 @@ func (m *PingCheck) ContextValidate(ctx context.Context, formats strfmt.Registry
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRolePrivileges(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSteps(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -824,6 +931,8 @@ func (m *PingCheck) contextValidateCheckpoints(ctx context.Context, formats strf
 			if err := m.checkpointsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("checkpoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("checkpoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -846,6 +955,8 @@ func (m *PingCheck) contextValidateCollectors(ctx context.Context, formats strfm
 			if err := m.collectorsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -895,6 +1006,8 @@ func (m *PingCheck) contextValidateProperties(ctx context.Context, formats strfm
 			if err := m.propertiesField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -905,10 +1018,39 @@ func (m *PingCheck) contextValidateProperties(ctx context.Context, formats strfm
 	return nil
 }
 
+func (m *PingCheck) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *PingCheck) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "status", "body", string(m.Status())); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *PingCheck) contextValidateSteps(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Steps()); i++ {
+
+		if m.stepsField[i] != nil {
+			if err := m.stepsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -929,6 +1071,8 @@ func (m *PingCheck) contextValidateTestLocation(ctx context.Context, formats str
 		if err := m.TestLocation().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}

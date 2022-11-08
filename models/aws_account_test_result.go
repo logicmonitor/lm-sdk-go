@@ -24,11 +24,11 @@ type AwsAccountTestResult struct {
 
 	// no permission services
 	// Unique: true
-	NoPermissionServices []string `json:"noPermissionServices,omitempty"`
+	NoPermissionServices []string `json:"noPermissionServices"`
 
 	// non permission errors
 	// Unique: true
-	NonPermissionErrors []string `json:"nonPermissionErrors,omitempty"`
+	NonPermissionErrors []string `json:"nonPermissionErrors"`
 }
 
 // Validate validates this aws account test result

@@ -23,112 +23,114 @@ import (
 type GraphPlot struct {
 	titleField string
 
-	// base
+	// The Base of the graph
 	// Read Only: true
 	Base int64 `json:"base,omitempty"`
 
-	// base1024
+	// true | false
+	// Changes base scale from 1000 to 1024 if value is set to true
 	// Read Only: true
 	Base1024 *bool `json:"base1024,omitempty"`
 
-	// display prio
+	// The display priority of the graph in your LogicMonitor portal
 	// Read Only: true
 	DisplayPrio int32 `json:"displayPrio,omitempty"`
 
-	// ds name
+	// The name of the DataSource to be used to plot the graph
 	// Read Only: true
 	DsName string `json:"dsName,omitempty"`
 
-	// end t z offset
+	// Specifies the end TimeZone Offset of the graph
 	// Read Only: true
 	EndTZOffset int32 `json:"endTZOffset,omitempty"`
 
-	// end time
+	// Specifies the end-time of the graph
 	// Read Only: true
 	EndTime int64 `json:"endTime,omitempty"`
 
-	// export file name
+	// The export file name
 	// Read Only: true
 	ExportFileName string `json:"exportFileName,omitempty"`
 
-	// height
+	// Specifies the height of graph
 	// Read Only: true
 	Height int32 `json:"height,omitempty"`
 
-	// id
+	// The Id of the graph
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
-	// instances
+	// The matched instances of graph
 	// Read Only: true
 	// Unique: true
-	Instances []int32 `json:"instances,omitempty"`
+	Instances []int32 `json:"instances"`
 
-	// lines
+	// The properties of the graph and graph lines
 	// Read Only: true
-	Lines []*GraphPlotLine `json:"lines,omitempty"`
+	Lines []*GraphPlotLine `json:"lines"`
 
-	// max value
+	// Specifies the maximum value of the graph
 	// Read Only: true
 	MaxValue interface{} `json:"maxValue,omitempty"`
 
-	// min value
+	// Specifies the minimum value of the graph
 	// Read Only: true
 	MinValue interface{} `json:"minValue,omitempty"`
 
-	// missinglines
+	// The Missing lines of the graph
 	// Read Only: true
-	Missinglines []string `json:"missinglines,omitempty"`
+	Missinglines []string `json:"missinglines"`
 
-	// name
+	// The Name of the Graph
 	// Read Only: true
 	Name string `json:"name,omitempty"`
 
-	// rigid
+	// true | false
+	// Specifies if the graph is rigid or not
 	// Read Only: true
 	Rigid *bool `json:"rigid,omitempty"`
 
-	// scopes
+	// Scopes: use this field to find match opsnote
 	// Read Only: true
-	Scopes []*GraphOpsNoteScope `json:"scopes,omitempty"`
+	Scopes []*GraphOpsNoteScope `json:"scopes"`
 
-	// start t z offset
+	// Specifies the start TimeZone Offset of the graph
 	// Read Only: true
 	StartTZOffset int32 `json:"startTZOffset,omitempty"`
 
-	// start time
+	// Specifies the start-time of the graph
 	// Read Only: true
 	StartTime int64 `json:"startTime,omitempty"`
 
-	// step
+	// The Step of the graph
 	// Read Only: true
 	Step int64 `json:"step,omitempty"`
 
-	// time scale
+	// The specified timescale for the graph
 	// Read Only: true
 	TimeScale string `json:"timeScale,omitempty"`
 
-	// time zone
+	// The selected timezone for the graph
 	// Read Only: true
 	TimeZone string `json:"timeZone,omitempty"`
 
-	// time zone Id
+	// The Id of selected Time Zone
 	// Read Only: true
 	TimeZoneID string `json:"timeZoneId,omitempty"`
 
-	// timestamps
+	// The timestamps of the graph
 	// Read Only: true
-	Timestamps []int64 `json:"timestamps,omitempty"`
+	Timestamps []int64 `json:"timestamps"`
 
-	// vertical label
+	// The label that will be displayed along the y axis (Vertical Label)
 	// Read Only: true
 	VerticalLabel string `json:"verticalLabel,omitempty"`
 
-	// width
+	// Specifies the width of graph
 	// Read Only: true
 	Width int32 `json:"width,omitempty"`
 
-	// x axis name
+	// The label that will be displayed along the X axis
 	// Read Only: true
 	XAxisName string `json:"xAxisName,omitempty"`
 }
@@ -145,7 +147,7 @@ func (m *GraphPlot) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *GraphPlot) Type() string {
-	return "graph"
+	return "GraphPlot"
 }
 
 // SetType sets the type of this subtype
@@ -156,112 +158,114 @@ func (m *GraphPlot) SetType(val string) {
 func (m *GraphPlot) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// base
+		// The Base of the graph
 		// Read Only: true
 		Base int64 `json:"base,omitempty"`
 
-		// base1024
+		// true | false
+		// Changes base scale from 1000 to 1024 if value is set to true
 		// Read Only: true
 		Base1024 *bool `json:"base1024,omitempty"`
 
-		// display prio
+		// The display priority of the graph in your LogicMonitor portal
 		// Read Only: true
 		DisplayPrio int32 `json:"displayPrio,omitempty"`
 
-		// ds name
+		// The name of the DataSource to be used to plot the graph
 		// Read Only: true
 		DsName string `json:"dsName,omitempty"`
 
-		// end t z offset
+		// Specifies the end TimeZone Offset of the graph
 		// Read Only: true
 		EndTZOffset int32 `json:"endTZOffset,omitempty"`
 
-		// end time
+		// Specifies the end-time of the graph
 		// Read Only: true
 		EndTime int64 `json:"endTime,omitempty"`
 
-		// export file name
+		// The export file name
 		// Read Only: true
 		ExportFileName string `json:"exportFileName,omitempty"`
 
-		// height
+		// Specifies the height of graph
 		// Read Only: true
 		Height int32 `json:"height,omitempty"`
 
-		// id
+		// The Id of the graph
 		// Read Only: true
 		ID int32 `json:"id,omitempty"`
 
-		// instances
+		// The matched instances of graph
 		// Read Only: true
 		// Unique: true
-		Instances []int32 `json:"instances,omitempty"`
+		Instances []int32 `json:"instances"`
 
-		// lines
+		// The properties of the graph and graph lines
 		// Read Only: true
-		Lines []*GraphPlotLine `json:"lines,omitempty"`
+		Lines []*GraphPlotLine `json:"lines"`
 
-		// max value
+		// Specifies the maximum value of the graph
 		// Read Only: true
 		MaxValue interface{} `json:"maxValue,omitempty"`
 
-		// min value
+		// Specifies the minimum value of the graph
 		// Read Only: true
 		MinValue interface{} `json:"minValue,omitempty"`
 
-		// missinglines
+		// The Missing lines of the graph
 		// Read Only: true
-		Missinglines []string `json:"missinglines,omitempty"`
+		Missinglines []string `json:"missinglines"`
 
-		// name
+		// The Name of the Graph
 		// Read Only: true
 		Name string `json:"name,omitempty"`
 
-		// rigid
+		// true | false
+		// Specifies if the graph is rigid or not
 		// Read Only: true
 		Rigid *bool `json:"rigid,omitempty"`
 
-		// scopes
+		// Scopes: use this field to find match opsnote
 		// Read Only: true
-		Scopes []*GraphOpsNoteScope `json:"scopes,omitempty"`
+		Scopes []*GraphOpsNoteScope `json:"scopes"`
 
-		// start t z offset
+		// Specifies the start TimeZone Offset of the graph
 		// Read Only: true
 		StartTZOffset int32 `json:"startTZOffset,omitempty"`
 
-		// start time
+		// Specifies the start-time of the graph
 		// Read Only: true
 		StartTime int64 `json:"startTime,omitempty"`
 
-		// step
+		// The Step of the graph
 		// Read Only: true
 		Step int64 `json:"step,omitempty"`
 
-		// time scale
+		// The specified timescale for the graph
 		// Read Only: true
 		TimeScale string `json:"timeScale,omitempty"`
 
-		// time zone
+		// The selected timezone for the graph
 		// Read Only: true
 		TimeZone string `json:"timeZone,omitempty"`
 
-		// time zone Id
+		// The Id of selected Time Zone
 		// Read Only: true
 		TimeZoneID string `json:"timeZoneId,omitempty"`
 
-		// timestamps
+		// The timestamps of the graph
 		// Read Only: true
-		Timestamps []int64 `json:"timestamps,omitempty"`
+		Timestamps []int64 `json:"timestamps"`
 
-		// vertical label
+		// The label that will be displayed along the y axis (Vertical Label)
 		// Read Only: true
 		VerticalLabel string `json:"verticalLabel,omitempty"`
 
-		// width
+		// Specifies the width of graph
 		// Read Only: true
 		Width int32 `json:"width,omitempty"`
 
-		// x axis name
+		// The label that will be displayed along the X axis
 		// Read Only: true
 		XAxisName string `json:"xAxisName,omitempty"`
 	}
@@ -336,112 +340,114 @@ func (m GraphPlot) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// base
+		// The Base of the graph
 		// Read Only: true
 		Base int64 `json:"base,omitempty"`
 
-		// base1024
+		// true | false
+		// Changes base scale from 1000 to 1024 if value is set to true
 		// Read Only: true
 		Base1024 *bool `json:"base1024,omitempty"`
 
-		// display prio
+		// The display priority of the graph in your LogicMonitor portal
 		// Read Only: true
 		DisplayPrio int32 `json:"displayPrio,omitempty"`
 
-		// ds name
+		// The name of the DataSource to be used to plot the graph
 		// Read Only: true
 		DsName string `json:"dsName,omitempty"`
 
-		// end t z offset
+		// Specifies the end TimeZone Offset of the graph
 		// Read Only: true
 		EndTZOffset int32 `json:"endTZOffset,omitempty"`
 
-		// end time
+		// Specifies the end-time of the graph
 		// Read Only: true
 		EndTime int64 `json:"endTime,omitempty"`
 
-		// export file name
+		// The export file name
 		// Read Only: true
 		ExportFileName string `json:"exportFileName,omitempty"`
 
-		// height
+		// Specifies the height of graph
 		// Read Only: true
 		Height int32 `json:"height,omitempty"`
 
-		// id
+		// The Id of the graph
 		// Read Only: true
 		ID int32 `json:"id,omitempty"`
 
-		// instances
+		// The matched instances of graph
 		// Read Only: true
 		// Unique: true
-		Instances []int32 `json:"instances,omitempty"`
+		Instances []int32 `json:"instances"`
 
-		// lines
+		// The properties of the graph and graph lines
 		// Read Only: true
-		Lines []*GraphPlotLine `json:"lines,omitempty"`
+		Lines []*GraphPlotLine `json:"lines"`
 
-		// max value
+		// Specifies the maximum value of the graph
 		// Read Only: true
 		MaxValue interface{} `json:"maxValue,omitempty"`
 
-		// min value
+		// Specifies the minimum value of the graph
 		// Read Only: true
 		MinValue interface{} `json:"minValue,omitempty"`
 
-		// missinglines
+		// The Missing lines of the graph
 		// Read Only: true
-		Missinglines []string `json:"missinglines,omitempty"`
+		Missinglines []string `json:"missinglines"`
 
-		// name
+		// The Name of the Graph
 		// Read Only: true
 		Name string `json:"name,omitempty"`
 
-		// rigid
+		// true | false
+		// Specifies if the graph is rigid or not
 		// Read Only: true
 		Rigid *bool `json:"rigid,omitempty"`
 
-		// scopes
+		// Scopes: use this field to find match opsnote
 		// Read Only: true
-		Scopes []*GraphOpsNoteScope `json:"scopes,omitempty"`
+		Scopes []*GraphOpsNoteScope `json:"scopes"`
 
-		// start t z offset
+		// Specifies the start TimeZone Offset of the graph
 		// Read Only: true
 		StartTZOffset int32 `json:"startTZOffset,omitempty"`
 
-		// start time
+		// Specifies the start-time of the graph
 		// Read Only: true
 		StartTime int64 `json:"startTime,omitempty"`
 
-		// step
+		// The Step of the graph
 		// Read Only: true
 		Step int64 `json:"step,omitempty"`
 
-		// time scale
+		// The specified timescale for the graph
 		// Read Only: true
 		TimeScale string `json:"timeScale,omitempty"`
 
-		// time zone
+		// The selected timezone for the graph
 		// Read Only: true
 		TimeZone string `json:"timeZone,omitempty"`
 
-		// time zone Id
+		// The Id of selected Time Zone
 		// Read Only: true
 		TimeZoneID string `json:"timeZoneId,omitempty"`
 
-		// timestamps
+		// The timestamps of the graph
 		// Read Only: true
-		Timestamps []int64 `json:"timestamps,omitempty"`
+		Timestamps []int64 `json:"timestamps"`
 
-		// vertical label
+		// The label that will be displayed along the y axis (Vertical Label)
 		// Read Only: true
 		VerticalLabel string `json:"verticalLabel,omitempty"`
 
-		// width
+		// Specifies the width of graph
 		// Read Only: true
 		Width int32 `json:"width,omitempty"`
 
-		// x axis name
+		// The label that will be displayed along the X axis
 		// Read Only: true
 		XAxisName string `json:"xAxisName,omitempty"`
 	}{
@@ -570,6 +576,8 @@ func (m *GraphPlot) validateLines(formats strfmt.Registry) error {
 			if err := m.Lines[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("lines" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("lines" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -595,6 +603,8 @@ func (m *GraphPlot) validateScopes(formats strfmt.Registry) error {
 			if err := m.Scopes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("scopes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -826,6 +836,8 @@ func (m *GraphPlot) contextValidateLines(ctx context.Context, formats strfmt.Reg
 			if err := m.Lines[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("lines" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("lines" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -875,6 +887,8 @@ func (m *GraphPlot) contextValidateScopes(ctx context.Context, formats strfmt.Re
 			if err := m.Scopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("scopes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

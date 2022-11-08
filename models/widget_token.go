@@ -20,18 +20,19 @@ import (
 // swagger:model WidgetToken
 type WidgetToken struct {
 
-	// inherit list
-	InheritList []*WidgetTokenInheritance `json:"inheritList,omitempty"`
+	// The widget token inherit list
+	InheritList []*WidgetTokenInheritance `json:"inheritList"`
 
 	// This is the name of the parent group of devices, if there is one established
 	// Example: Default Device Group
 	Name string `json:"name,omitempty"`
 
-	// type
+	// owned | inherit
+	// Specifies the type of the widget
 	// Read Only: true
 	Type string `json:"type,omitempty"`
 
-	// this is the name of the child group of devices, if there is one
+	// This is the name of the child group of devices, if there is one
 	// Example: Devices by Type/Network
 	Value string `json:"value,omitempty"`
 }
@@ -64,6 +65,8 @@ func (m *WidgetToken) validateInheritList(formats strfmt.Registry) error {
 			if err := m.InheritList[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -100,6 +103,8 @@ func (m *WidgetToken) contextValidateInheritList(ctx context.Context, formats st
 			if err := m.InheritList[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

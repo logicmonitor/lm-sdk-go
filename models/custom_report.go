@@ -51,6 +51,8 @@ type CustomReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -63,7 +65,7 @@ type CustomReport struct {
 	DateRange string `json:"dateRange,omitempty"`
 
 	// macros
-	Macros []*Macro `json:"macros,omitempty"`
+	Macros []*Macro `json:"macros"`
 }
 
 // CustomReportTypeID gets the custom report type Id of this subtype
@@ -216,6 +218,16 @@ func (m *CustomReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *CustomReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *CustomReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *CustomReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -248,7 +260,7 @@ func (m *CustomReport) SetScheduleTimezone(val string) {
 
 // Type gets the type of this subtype
 func (m *CustomReport) Type() string {
-	return "Word template"
+	return "CustomReport"
 }
 
 // SetType sets the type of this subtype
@@ -273,7 +285,7 @@ func (m *CustomReport) UnmarshalJSON(raw []byte) error {
 		DateRange string `json:"dateRange,omitempty"`
 
 		// macros
-		Macros []*Macro `json:"macros,omitempty"`
+		Macros []*Macro `json:"macros"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -314,7 +326,9 @@ func (m *CustomReport) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -366,6 +380,8 @@ func (m *CustomReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -396,7 +412,7 @@ func (m CustomReport) MarshalJSON() ([]byte, error) {
 		DateRange string `json:"dateRange,omitempty"`
 
 		// macros
-		Macros []*Macro `json:"macros,omitempty"`
+		Macros []*Macro `json:"macros"`
 	}{
 
 		DateRange: m.DateRange,
@@ -435,7 +451,9 @@ func (m CustomReport) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -477,6 +495,8 @@ func (m CustomReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 
@@ -541,6 +561,8 @@ func (m *CustomReport) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -566,6 +588,8 @@ func (m *CustomReport) validateMacros(formats strfmt.Registry) error {
 			if err := m.Macros[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("macros" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("macros" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -727,6 +751,8 @@ func (m *CustomReport) contextValidateRecipients(ctx context.Context, formats st
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -763,6 +789,8 @@ func (m *CustomReport) contextValidateMacros(ctx context.Context, formats strfmt
 			if err := m.Macros[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("macros" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("macros" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

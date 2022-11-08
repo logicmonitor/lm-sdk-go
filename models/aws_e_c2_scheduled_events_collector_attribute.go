@@ -26,7 +26,7 @@ type AwsEC2ScheduledEventsCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AwsEC2ScheduledEventsCollectorAttribute) Name() string {
-	return "awsec2scheduledevents"
+	return "AwsEC2ScheduledEventsCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

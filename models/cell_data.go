@@ -28,7 +28,7 @@ type CellData struct {
 	AlertStatus string `json:"alertStatus,omitempty"`
 
 	// days until alert list
-	DaysUntilAlertList []*DaysUntilAlert `json:"daysUntilAlertList,omitempty"`
+	DaysUntilAlertList []*DaysUntilAlert `json:"daysUntilAlertList"`
 
 	// forecast day
 	// Read Only: true
@@ -75,6 +75,8 @@ func (m *CellData) validateDaysUntilAlertList(formats strfmt.Registry) error {
 			if err := m.DaysUntilAlertList[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("daysUntilAlertList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("daysUntilAlertList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -136,6 +138,8 @@ func (m *CellData) contextValidateDaysUntilAlertList(ctx context.Context, format
 			if err := m.DaysUntilAlertList[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("daysUntilAlertList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("daysUntilAlertList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

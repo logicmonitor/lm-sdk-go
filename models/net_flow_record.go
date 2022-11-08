@@ -23,9 +23,17 @@ type NetFlowRecord struct {
 	// Read Only: true
 	DataType string `json:"dataType,omitempty"`
 
+	// dest asn name
+	// Read Only: true
+	DestAsnName string `json:"destAsnName,omitempty"`
+
 	// destination m bytes
 	// Read Only: true
 	DestinationMBytes float64 `json:"destinationMBytes,omitempty"`
+
+	// dst a s n
+	// Read Only: true
+	DstASN int64 `json:"dstASN,omitempty"`
 
 	// dst DNS
 	// Read Only: true
@@ -67,6 +75,14 @@ type NetFlowRecord struct {
 	// Read Only: true
 	SourceMBytes float64 `json:"sourceMBytes,omitempty"`
 
+	// src a s n
+	// Read Only: true
+	SrcASN int64 `json:"srcASN,omitempty"`
+
+	// src asn name
+	// Read Only: true
+	SrcAsnName string `json:"srcAsnName,omitempty"`
+
 	// src DNS
 	// Read Only: true
 	SrcDNS string `json:"srcDNS,omitempty"`
@@ -97,7 +113,15 @@ func (m *NetFlowRecord) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateDestAsnName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDestinationMBytes(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDstASN(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -141,6 +165,14 @@ func (m *NetFlowRecord) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateSrcASN(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSrcAsnName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateSrcDNS(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -172,9 +204,27 @@ func (m *NetFlowRecord) contextValidateDataType(ctx context.Context, formats str
 	return nil
 }
 
+func (m *NetFlowRecord) contextValidateDestAsnName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "destAsnName", "body", string(m.DestAsnName)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *NetFlowRecord) contextValidateDestinationMBytes(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "destinationMBytes", "body", float64(m.DestinationMBytes)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetFlowRecord) contextValidateDstASN(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "dstASN", "body", int64(m.DstASN)); err != nil {
 		return err
 	}
 
@@ -265,6 +315,24 @@ func (m *NetFlowRecord) contextValidateProtocol(ctx context.Context, formats str
 func (m *NetFlowRecord) contextValidateSourceMBytes(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "sourceMBytes", "body", float64(m.SourceMBytes)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetFlowRecord) contextValidateSrcASN(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "srcASN", "body", int64(m.SrcASN)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetFlowRecord) contextValidateSrcAsnName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "srcAsnName", "body", string(m.SrcAsnName)); err != nil {
 		return err
 	}
 

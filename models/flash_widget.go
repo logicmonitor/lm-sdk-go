@@ -140,7 +140,7 @@ func (m *FlashWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *FlashWidget) Type() string {
-	return "flash"
+	return "FlashWidget"
 }
 
 // SetType sets the type of this subtype

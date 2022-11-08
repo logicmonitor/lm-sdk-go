@@ -27,6 +27,14 @@ type DeviceGroupAlertThresholdInfo struct {
 	// Read Only: true
 	AlertExpr string `json:"alertExpr,omitempty"`
 
+	// enable anomaly alert generation
+	// Read Only: true
+	EnableAnomalyAlertGeneration string `json:"enableAnomalyAlertGeneration,omitempty"`
+
+	// enable anomaly alert suppression
+	// Read Only: true
+	EnableAnomalyAlertSuppression string `json:"enableAnomalyAlertSuppression,omitempty"`
+
 	// group full path
 	// Read Only: true
 	GroupFullPath string `json:"groupFullPath,omitempty"`
@@ -54,6 +62,14 @@ func (m *DeviceGroupAlertThresholdInfo) ContextValidate(ctx context.Context, for
 	}
 
 	if err := m.contextValidateAlertExpr(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEnableAnomalyAlertGeneration(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEnableAnomalyAlertSuppression(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -87,6 +103,24 @@ func (m *DeviceGroupAlertThresholdInfo) contextValidateAlertEnabled(ctx context.
 func (m *DeviceGroupAlertThresholdInfo) contextValidateAlertExpr(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "alertExpr", "body", string(m.AlertExpr)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceGroupAlertThresholdInfo) contextValidateEnableAnomalyAlertGeneration(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "enableAnomalyAlertGeneration", "body", string(m.EnableAnomalyAlertGeneration)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceGroupAlertThresholdInfo) contextValidateEnableAnomalyAlertSuppression(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "enableAnomalyAlertSuppression", "body", string(m.EnableAnomalyAlertSuppression)); err != nil {
 		return err
 	}
 

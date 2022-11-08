@@ -21,7 +21,7 @@ import (
 type EscalatingChain struct {
 
 	// cc destinations
-	CcDestinations []*Recipient `json:"ccDestinations,omitempty"`
+	CcDestinations []*Recipient `json:"ccDestinations"`
 
 	// description
 	// Example: For alerts escalated to the NOC Team
@@ -31,7 +31,7 @@ type EscalatingChain struct {
 	// Required: true
 	Destinations []*Chain `json:"destinations"`
 
-	// enable throttling
+	// if throttle needs to be enabled then true if not then false.
 	// Example: true
 	EnableThrottling bool `json:"enableThrottling,omitempty"`
 
@@ -43,16 +43,16 @@ type EscalatingChain struct {
 	// Read Only: true
 	InAlerting *bool `json:"inAlerting,omitempty"`
 
-	// name
+	// the chain name
 	// Example: NOC Team
 	// Required: true
 	Name *string `json:"name"`
 
-	// throttling alerts
+	// max number of alert can send during a throttle period
 	// Example: 40
 	ThrottlingAlerts int32 `json:"throttlingAlerts,omitempty"`
 
-	// throttling period
+	// the throttle period
 	// Example: 30
 	ThrottlingPeriod int32 `json:"throttlingPeriod,omitempty"`
 }
@@ -93,6 +93,8 @@ func (m *EscalatingChain) validateCcDestinations(formats strfmt.Registry) error 
 			if err := m.CcDestinations[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ccDestinations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ccDestinations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -118,6 +120,8 @@ func (m *EscalatingChain) validateDestinations(formats strfmt.Registry) error {
 			if err := m.Destinations[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("destinations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("destinations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -171,6 +175,8 @@ func (m *EscalatingChain) contextValidateCcDestinations(ctx context.Context, for
 			if err := m.CcDestinations[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ccDestinations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ccDestinations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -189,6 +195,8 @@ func (m *EscalatingChain) contextValidateDestinations(ctx context.Context, forma
 			if err := m.Destinations[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("destinations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("destinations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

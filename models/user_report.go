@@ -51,6 +51,8 @@ type UserReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -60,7 +62,7 @@ type UserReport struct {
 	userPermissionField string
 
 	// The columns displayed in the report
-	Columns []*DynamicColumn `json:"columns,omitempty"`
+	Columns []*DynamicColumn `json:"columns"`
 
 	// The sort by method
 	SortedBy string `json:"sortedBy,omitempty"`
@@ -219,6 +221,16 @@ func (m *UserReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *UserReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *UserReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *UserReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -251,7 +263,7 @@ func (m *UserReport) SetScheduleTimezone(val string) {
 
 // Type gets the type of this subtype
 func (m *UserReport) Type() string {
-	return "User"
+	return "UserReport"
 }
 
 // SetType sets the type of this subtype
@@ -273,7 +285,7 @@ func (m *UserReport) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
 		// The columns displayed in the report
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The sort by method
 		SortedBy string `json:"sortedBy,omitempty"`
@@ -320,7 +332,9 @@ func (m *UserReport) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -372,6 +386,8 @@ func (m *UserReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -400,7 +416,7 @@ func (m UserReport) MarshalJSON() ([]byte, error) {
 	b1, err = json.Marshal(struct {
 
 		// The columns displayed in the report
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The sort by method
 		SortedBy string `json:"sortedBy,omitempty"`
@@ -447,7 +463,9 @@ func (m UserReport) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -489,6 +507,8 @@ func (m UserReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 
@@ -557,6 +577,8 @@ func (m *UserReport) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -582,6 +604,8 @@ func (m *UserReport) validateColumns(formats strfmt.Registry) error {
 			if err := m.Columns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -602,6 +626,8 @@ func (m *UserReport) validateUserFilter(formats strfmt.Registry) error {
 		if err := m.UserFilter.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("userFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("userFilter")
 			}
 			return err
 		}
@@ -765,6 +791,8 @@ func (m *UserReport) contextValidateRecipients(ctx context.Context, formats strf
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -801,6 +829,8 @@ func (m *UserReport) contextValidateColumns(ctx context.Context, formats strfmt.
 			if err := m.Columns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -817,6 +847,8 @@ func (m *UserReport) contextValidateUserFilter(ctx context.Context, formats strf
 		if err := m.UserFilter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("userFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("userFilter")
 			}
 			return err
 		}

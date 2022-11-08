@@ -158,7 +158,7 @@ func (m *WebsiteIndividualsStatusWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *WebsiteIndividualsStatusWidget) Type() string {
-	return "websiteIndividualStatus"
+	return "WebsiteIndividualsStatusWidget"
 }
 
 // SetType sets the type of this subtype
@@ -439,6 +439,8 @@ func (m *WebsiteIndividualsStatusWidget) validateLocations(formats strfmt.Regist
 			if err := m.Locations[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("locations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("locations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -527,6 +529,8 @@ func (m *WebsiteIndividualsStatusWidget) contextValidateLocations(ctx context.Co
 			if err := m.Locations[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("locations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("locations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

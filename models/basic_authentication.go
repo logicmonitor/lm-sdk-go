@@ -39,7 +39,7 @@ func (m *BasicAuthentication) SetPassword(val *string) {
 
 // Type gets the type of this subtype
 func (m *BasicAuthentication) Type() string {
-	return "basic"
+	return "BasicAuthentication"
 }
 
 // SetType sets the type of this subtype

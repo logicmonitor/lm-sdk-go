@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // DeviceDataSourceInstanceConfig device data source instance config
@@ -19,52 +20,72 @@ import (
 // swagger:model DeviceDataSourceInstanceConfig
 type DeviceDataSourceInstanceConfig struct {
 
-	// alerts
-	Alerts []*DeviceDataSourceInstanceConfigAlert `json:"alerts,omitempty"`
+	// Alerts associated to this configuration file
+	// Read Only: true
+	Alerts []*DeviceDataSourceInstanceConfigAlert `json:"alerts"`
 
-	// change status
+	// Configuration file change status, if the first configuration then it is Added, else Changed, values can be : Add|Change
+	// Read Only: true
 	ChangeStatus string `json:"changeStatus,omitempty"`
 
-	// config
+	// Configuration file content
+	// Read Only: true
 	Config string `json:"config,omitempty"`
 
-	// config err msg
+	// Configuration file collect error message
+	// Read Only: true
 	ConfigErrMsg string `json:"configErrMsg,omitempty"`
 
-	// config status
+	// Configuration file collect status
+	// Read Only: true
 	ConfigStatus int32 `json:"configStatus,omitempty"`
 
-	// data source Id
+	// configsource id
+	// Read Only: true
 	DataSourceID int32 `json:"dataSourceId,omitempty"`
 
-	// data source name
+	// datasource name
+	// Read Only: true
 	DataSourceName string `json:"dataSourceName,omitempty"`
 
-	// delta config
-	DeltaConfig []*DeviceDataSourceInstanceConfigDiff `json:"deltaConfig,omitempty"`
+	// Configuration file diff
+	// Read Only: true
+	DeltaConfig []*DeviceDataSourceInstanceConfigDiff `json:"deltaConfig"`
 
-	// device data source Id
+	// device datasource id
+	// Read Only: true
 	DeviceDataSourceID int32 `json:"deviceDataSourceId,omitempty"`
 
 	// device display name
+	// Read Only: true
 	DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
 
-	// device Id
+	// device id
+	// Read Only: true
 	DeviceID int32 `json:"deviceId,omitempty"`
 
-	// id
+	// advanceDiffChecker
+	// Read Only: true
+	ExcludeLines []int32 `json:"excludeLines"`
+
+	// The id of the datasource
+	// Read Only: true
 	ID string `json:"id,omitempty"`
 
-	// instance Id
+	// device datasource instance id
+	// Read Only: true
 	InstanceID int32 `json:"instanceId,omitempty"`
 
-	// instance name
+	// device datasource instance name
+	// Read Only: true
 	InstanceName string `json:"instanceName,omitempty"`
 
-	// poll timestamp
+	// datasource poll timestamp in milliseconds
+	// Read Only: true
 	PollTimestamp int64 `json:"pollTimestamp,omitempty"`
 
-	// version
+	// config version
+	// Read Only: true
 	Version int64 `json:"version,omitempty"`
 }
 
@@ -100,6 +121,8 @@ func (m *DeviceDataSourceInstanceConfig) validateAlerts(formats strfmt.Registry)
 			if err := m.Alerts[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alerts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alerts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -124,6 +147,8 @@ func (m *DeviceDataSourceInstanceConfig) validateDeltaConfig(formats strfmt.Regi
 			if err := m.DeltaConfig[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -142,7 +167,67 @@ func (m *DeviceDataSourceInstanceConfig) ContextValidate(ctx context.Context, fo
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateChangeStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConfigErrMsg(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateConfigStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDataSourceID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDataSourceName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDeltaConfig(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeviceDataSourceID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeviceDisplayName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeviceID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateExcludeLines(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInstanceID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInstanceName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePollTimestamp(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVersion(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -154,12 +239,18 @@ func (m *DeviceDataSourceInstanceConfig) ContextValidate(ctx context.Context, fo
 
 func (m *DeviceDataSourceInstanceConfig) contextValidateAlerts(ctx context.Context, formats strfmt.Registry) error {
 
+	if err := validate.ReadOnly(ctx, "alerts", "body", []*DeviceDataSourceInstanceConfigAlert(m.Alerts)); err != nil {
+		return err
+	}
+
 	for i := 0; i < len(m.Alerts); i++ {
 
 		if m.Alerts[i] != nil {
 			if err := m.Alerts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alerts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alerts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -170,7 +261,65 @@ func (m *DeviceDataSourceInstanceConfig) contextValidateAlerts(ctx context.Conte
 	return nil
 }
 
+func (m *DeviceDataSourceInstanceConfig) contextValidateChangeStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "changeStatus", "body", string(m.ChangeStatus)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateConfig(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "config", "body", string(m.Config)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateConfigErrMsg(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "configErrMsg", "body", string(m.ConfigErrMsg)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateConfigStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "configStatus", "body", int32(m.ConfigStatus)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateDataSourceID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "dataSourceId", "body", int32(m.DataSourceID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateDataSourceName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "dataSourceName", "body", string(m.DataSourceName)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *DeviceDataSourceInstanceConfig) contextValidateDeltaConfig(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "deltaConfig", "body", []*DeviceDataSourceInstanceConfigDiff(m.DeltaConfig)); err != nil {
+		return err
+	}
 
 	for i := 0; i < len(m.DeltaConfig); i++ {
 
@@ -178,11 +327,94 @@ func (m *DeviceDataSourceInstanceConfig) contextValidateDeltaConfig(ctx context.
 			if err := m.DeltaConfig[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateDeviceDataSourceID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "deviceDataSourceId", "body", int32(m.DeviceDataSourceID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateDeviceDisplayName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "deviceDisplayName", "body", string(m.DeviceDisplayName)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateDeviceID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "deviceId", "body", int32(m.DeviceID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateExcludeLines(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "excludeLines", "body", []int32(m.ExcludeLines)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "id", "body", string(m.ID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateInstanceID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "instanceId", "body", int32(m.InstanceID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateInstanceName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "instanceName", "body", string(m.InstanceName)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidatePollTimestamp(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "pollTimestamp", "body", int64(m.PollTimestamp)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "version", "body", int64(m.Version)); err != nil {
+		return err
 	}
 
 	return nil

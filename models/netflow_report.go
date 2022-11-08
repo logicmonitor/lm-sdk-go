@@ -51,6 +51,8 @@ type NetflowReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -65,6 +67,10 @@ type NetflowReport struct {
 	// The devices OR groups (full path) selected for the report, where multiple entities are separated by commas. Glob is accepted
 	// Required: true
 	HostsVal *string `json:"hostsVal"`
+
+	// The resource type for the report, host or group
+	// Required: true
+	HostsValType *string `json:"hostsValType"`
 
 	// Whether include DNS mappings or not
 	IncludeDNSMappings bool `json:"includeDNSMappings,omitempty"`
@@ -220,6 +226,16 @@ func (m *NetflowReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *NetflowReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *NetflowReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *NetflowReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -252,7 +268,7 @@ func (m *NetflowReport) SetScheduleTimezone(val string) {
 
 // Type gets the type of this subtype
 func (m *NetflowReport) Type() string {
-	return "Netflow device metric"
+	return "NetflowReport"
 }
 
 // SetType sets the type of this subtype
@@ -279,6 +295,10 @@ func (m *NetflowReport) UnmarshalJSON(raw []byte) error {
 		// The devices OR groups (full path) selected for the report, where multiple entities are separated by commas. Glob is accepted
 		// Required: true
 		HostsVal *string `json:"hostsVal"`
+
+		// The resource type for the report, host or group
+		// Required: true
+		HostsValType *string `json:"hostsValType"`
 
 		// Whether include DNS mappings or not
 		IncludeDNSMappings bool `json:"includeDNSMappings,omitempty"`
@@ -322,7 +342,9 @@ func (m *NetflowReport) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -374,6 +396,8 @@ func (m *NetflowReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -388,6 +412,7 @@ func (m *NetflowReport) UnmarshalJSON(raw []byte) error {
 
 	result.DateRange = data.DateRange
 	result.HostsVal = data.HostsVal
+	result.HostsValType = data.HostsValType
 	result.IncludeDNSMappings = data.IncludeDNSMappings
 
 	*m = result
@@ -408,6 +433,10 @@ func (m NetflowReport) MarshalJSON() ([]byte, error) {
 		// Required: true
 		HostsVal *string `json:"hostsVal"`
 
+		// The resource type for the report, host or group
+		// Required: true
+		HostsValType *string `json:"hostsValType"`
+
 		// Whether include DNS mappings or not
 		IncludeDNSMappings bool `json:"includeDNSMappings,omitempty"`
 	}{
@@ -415,6 +444,8 @@ func (m NetflowReport) MarshalJSON() ([]byte, error) {
 		DateRange: m.DateRange,
 
 		HostsVal: m.HostsVal,
+
+		HostsValType: m.HostsValType,
 
 		IncludeDNSMappings: m.IncludeDNSMappings,
 	})
@@ -450,7 +481,9 @@ func (m NetflowReport) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -493,6 +526,8 @@ func (m NetflowReport) MarshalJSON() ([]byte, error) {
 
 		Recipients: m.Recipients(),
 
+		ReportLinkExpire: m.ReportLinkExpire(),
+
 		ReportLinkNum: m.ReportLinkNum(),
 
 		Schedule: m.Schedule(),
@@ -526,6 +561,10 @@ func (m *NetflowReport) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateHostsValType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -556,6 +595,8 @@ func (m *NetflowReport) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -569,6 +610,15 @@ func (m *NetflowReport) validateRecipients(formats strfmt.Registry) error {
 func (m *NetflowReport) validateHostsVal(formats strfmt.Registry) error {
 
 	if err := validate.Required("hostsVal", "body", m.HostsVal); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowReport) validateHostsValType(formats strfmt.Registry) error {
+
+	if err := validate.Required("hostsValType", "body", m.HostsValType); err != nil {
 		return err
 	}
 
@@ -722,6 +772,8 @@ func (m *NetflowReport) contextValidateRecipients(ctx context.Context, formats s
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

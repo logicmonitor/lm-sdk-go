@@ -19,6 +19,10 @@ import (
 // swagger:model AppliesToFunction
 type AppliesToFunction struct {
 
+	// The metadata checksum for the LMModule content
+	// Read Only: true
+	Checksum string `json:"checksum,omitempty"`
+
 	// The AppliesTo Function code. Note that special characters may need to be escaped.
 	// Required: true
 	Code *string `json:"code"`
@@ -28,7 +32,16 @@ type AppliesToFunction struct {
 
 	// The ID of the AppliesTo Function
 	// Read Only: true
+	// Minimum: 0
 	ID int32 `json:"id,omitempty"`
+
+	// The local module's IntegrationMetadata, readable for troubleshooting purposes
+	// Read Only: true
+	InstallationMetadata *IntegrationMetadata `json:"installationMetadata,omitempty"`
+
+	// The lineage Id of the LMModule
+	// Read Only: true
+	LineageID string `json:"lineageId,omitempty"`
 
 	// The name of the AppliesTo Function
 	// Required: true
@@ -40,6 +53,14 @@ func (m *AppliesToFunction) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInstallationMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -62,6 +83,37 @@ func (m *AppliesToFunction) validateCode(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AppliesToFunction) validateID(formats strfmt.Registry) error {
+	if swag.IsZero(m.ID) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("id", "body", int64(m.ID), 0, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AppliesToFunction) validateInstallationMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.InstallationMetadata) { // not required
+		return nil
+	}
+
+	if m.InstallationMetadata != nil {
+		if err := m.InstallationMetadata.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AppliesToFunction) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
@@ -75,7 +127,19 @@ func (m *AppliesToFunction) validateName(formats strfmt.Registry) error {
 func (m *AppliesToFunction) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateChecksum(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInstallationMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLineageID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -85,9 +149,43 @@ func (m *AppliesToFunction) ContextValidate(ctx context.Context, formats strfmt.
 	return nil
 }
 
+func (m *AppliesToFunction) contextValidateChecksum(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "checksum", "body", string(m.Checksum)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *AppliesToFunction) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AppliesToFunction) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InstallationMetadata != nil {
+		if err := m.InstallationMetadata.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *AppliesToFunction) contextValidateLineageID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lineageId", "body", string(m.LineageID)); err != nil {
 		return err
 	}
 

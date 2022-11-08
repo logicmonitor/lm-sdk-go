@@ -39,6 +39,9 @@ type OpenMetricDiscoveryMethod struct {
 	// Required: true
 	InstanceLabel *string `json:"instanceLabel"`
 
+	// instance property tags
+	InstancePropertyTags string `json:"instancePropertyTags,omitempty"`
+
 	// metric name
 	// Required: true
 	MetricName *string `json:"metricName"`
@@ -81,6 +84,9 @@ func (m *OpenMetricDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 		// instance label
 		// Required: true
 		InstanceLabel *string `json:"instanceLabel"`
+
+		// instance property tags
+		InstancePropertyTags string `json:"instancePropertyTags,omitempty"`
 
 		// metric name
 		// Required: true
@@ -126,6 +132,7 @@ func (m *OpenMetricDiscoveryMethod) UnmarshalJSON(raw []byte) error {
 	result.GroupLabel = data.GroupLabel
 	result.Headers = data.Headers
 	result.InstanceLabel = data.InstanceLabel
+	result.InstancePropertyTags = data.InstancePropertyTags
 	result.MetricName = data.MetricName
 	result.ReadTimeout = data.ReadTimeout
 	result.URL = data.URL
@@ -159,6 +166,9 @@ func (m OpenMetricDiscoveryMethod) MarshalJSON() ([]byte, error) {
 		// Required: true
 		InstanceLabel *string `json:"instanceLabel"`
 
+		// instance property tags
+		InstancePropertyTags string `json:"instancePropertyTags,omitempty"`
+
 		// metric name
 		// Required: true
 		MetricName *string `json:"metricName"`
@@ -180,6 +190,8 @@ func (m OpenMetricDiscoveryMethod) MarshalJSON() ([]byte, error) {
 		Headers: m.Headers,
 
 		InstanceLabel: m.InstanceLabel,
+
+		InstancePropertyTags: m.InstancePropertyTags,
 
 		MetricName: m.MetricName,
 

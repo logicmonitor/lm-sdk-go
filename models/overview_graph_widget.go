@@ -163,7 +163,7 @@ func (m *OverviewGraphWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *OverviewGraphWidget) Type() string {
-	return "ograph"
+	return "OverviewGraphWidget"
 }
 
 // SetType sets the type of this subtype

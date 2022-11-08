@@ -20,7 +20,7 @@ import (
 type Ec2DDR struct {
 
 	// assignment
-	Assignment []*Assignment `json:"assignment,omitempty"`
+	Assignment []*Assignment `json:"assignment"`
 
 	// change name
 	ChangeName string `json:"changeName,omitempty"`
@@ -54,6 +54,8 @@ func (m *Ec2DDR) validateAssignment(formats strfmt.Registry) error {
 			if err := m.Assignment[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("assignment" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("assignment" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -86,6 +88,8 @@ func (m *Ec2DDR) contextValidateAssignment(ctx context.Context, formats strfmt.R
 			if err := m.Assignment[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("assignment" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("assignment" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

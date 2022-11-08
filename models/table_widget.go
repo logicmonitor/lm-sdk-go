@@ -145,7 +145,7 @@ func (m *TableWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *TableWidget) Type() string {
-	return "table"
+	return "TableWidget"
 }
 
 // SetType sets the type of this subtype
@@ -396,6 +396,8 @@ func (m *TableWidget) validateColumns(formats strfmt.Registry) error {
 			if err := m.Columns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -416,6 +418,8 @@ func (m *TableWidget) validateForecast(formats strfmt.Registry) error {
 		if err := m.Forecast.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("forecast")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("forecast")
 			}
 			return err
 		}
@@ -439,6 +443,8 @@ func (m *TableWidget) validateRows(formats strfmt.Registry) error {
 			if err := m.Rows[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rows" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rows" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -518,6 +524,8 @@ func (m *TableWidget) contextValidateColumns(ctx context.Context, formats strfmt
 			if err := m.Columns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -534,6 +542,8 @@ func (m *TableWidget) contextValidateForecast(ctx context.Context, formats strfm
 		if err := m.Forecast.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("forecast")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("forecast")
 			}
 			return err
 		}
@@ -550,6 +560,8 @@ func (m *TableWidget) contextValidateRows(ctx context.Context, formats strfmt.Re
 			if err := m.Rows[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rows" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rows" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -26,7 +26,7 @@ type AwsEC2ReservedInstanceCoverageCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AwsEC2ReservedInstanceCoverageCollectorAttribute) Name() string {
-	return "awsec2reservedinstancecoverage"
+	return "AwsEC2ReservedInstanceCoverageCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

@@ -35,7 +35,7 @@ type JDBCCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *JDBCCollectorAttribute) Name() string {
-	return "jdbc"
+	return "JDBCCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

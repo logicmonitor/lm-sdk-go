@@ -26,7 +26,7 @@ type AwsClassicElbServiceLimitsCollectorAttribute struct {
 
 // Name gets the name of this subtype
 func (m *AwsClassicElbServiceLimitsCollectorAttribute) Name() string {
-	return "awsclassicelbservicelimits"
+	return "AwsClassicElbServiceLimitsCollectorAttribute"
 }
 
 // SetName sets the name of this subtype

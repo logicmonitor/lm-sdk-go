@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -86,7 +85,7 @@ type SDT interface {
 	MonthDay() int32
 	SetMonthDay(int32)
 
-	// sdt type
+	// the type of sdt, values can be oneTime|weekly|monthly|daily|monthlyByWeek
 	// Example: oneTime
 	SDTType() string
 	SetSDTType(string)
@@ -106,18 +105,18 @@ type SDT interface {
 	Timezone() string
 	SetTimezone(string)
 
-	// The type resource that this SDT is for: ServiceSDT | CollectorSDT | DeviceDataSourceInstanceSDT | DeviceBatchJobSDT | DeviceClusterAlertDefSDT | DeviceDataSourceInstanceGroupSDT | DeviceDataSourceSDT | DeviceEventSourceSDT | DeviceGroupSDT | DeviceSDT | WebsiteCheckpointSDT | WebsiteGroupSDT | WebsiteSDT
-	// Example: DeviceGroupSDT
+	// The type resource that this SDT is for: CollectorSDT | DeviceDataSourceInstanceSDT | DeviceBatchJobSDT | DeviceClusterAlertDefSDT | DeviceDataSourceInstanceGroupSDT | DeviceDataSourceSDT | DeviceEventSourceSDT | ResourceGroupSDT | ResourceSDT | WebsiteCheckpointSDT | WebsiteGroupSDT | WebsiteSDT | DeviceLogPipeLineResourceSDT
+	// Example: ResourceGroupSDT
 	// Required: true
 	Type() string
 	SetType(string)
 
-	// week day
+	// the week day of sdt, values can be SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY
 	// Example: Sunday
 	WeekDay() string
 	SetWeekDay(string)
 
-	// The weel of the month that the SDT will be active for a monthly SDT
+	// The week of the month that the SDT will be active for a monthly SDT
 	// Example: 1
 	WeekOfMonth() string
 	SetWeekOfMonth(string)
@@ -376,7 +375,7 @@ func UnmarshalSDTSlice(reader io.Reader, consumer runtime.Consumer) ([]SDT, erro
 // UnmarshalSDT unmarshals polymorphic SDT
 func UnmarshalSDT(reader io.Reader, consumer runtime.Consumer) (SDT, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -443,26 +442,26 @@ func unmarshalSDT(data []byte, consumer runtime.Consumer) (SDT, error) {
 			return nil, err
 		}
 		return &result, nil
-	case "DeviceGroupSDT":
-		var result DeviceGroupSDT
+	case "DeviceLogPipeLineResourceSDT":
+		var result DeviceLogPipeLineResourceSDT
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "DeviceSDT":
-		var result DeviceSDT
+	case "ResourceGroupSDT":
+		var result ResourceGroupSDT
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "ResourceSDT":
+		var result ResourceSDT
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
 	case "SDT":
 		var result sdt
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "ServiceSDT":
-		var result ServiceSDT
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

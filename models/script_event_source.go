@@ -31,6 +31,10 @@ type ScriptEventSource struct {
 
 	appliesToField string
 
+	auditVersionField int64
+
+	checksumField string
+
 	clearAfterAckField bool
 
 	descriptionField string
@@ -40,6 +44,10 @@ type ScriptEventSource struct {
 	groupField string
 
 	idField int32
+
+	installationMetadataField *IntegrationMetadata
+
+	lineageIdField string
 
 	nameField *string
 
@@ -123,6 +131,26 @@ func (m *ScriptEventSource) SetAppliesTo(val string) {
 	m.appliesToField = val
 }
 
+// AuditVersion gets the audit version of this subtype
+func (m *ScriptEventSource) AuditVersion() int64 {
+	return m.auditVersionField
+}
+
+// SetAuditVersion sets the audit version of this subtype
+func (m *ScriptEventSource) SetAuditVersion(val int64) {
+	m.auditVersionField = val
+}
+
+// Checksum gets the checksum of this subtype
+func (m *ScriptEventSource) Checksum() string {
+	return m.checksumField
+}
+
+// SetChecksum sets the checksum of this subtype
+func (m *ScriptEventSource) SetChecksum(val string) {
+	m.checksumField = val
+}
+
 // ClearAfterAck gets the clear after ack of this subtype
 func (m *ScriptEventSource) ClearAfterAck() bool {
 	return m.clearAfterAckField
@@ -135,7 +163,7 @@ func (m *ScriptEventSource) SetClearAfterAck(val bool) {
 
 // Collector gets the collector of this subtype
 func (m *ScriptEventSource) Collector() string {
-	return "scriptevent"
+	return "ScriptEventSource"
 }
 
 // SetCollector sets the collector of this subtype
@@ -180,6 +208,26 @@ func (m *ScriptEventSource) ID() int32 {
 // SetID sets the id of this subtype
 func (m *ScriptEventSource) SetID(val int32) {
 	m.idField = val
+}
+
+// InstallationMetadata gets the installation metadata of this subtype
+func (m *ScriptEventSource) InstallationMetadata() *IntegrationMetadata {
+	return m.installationMetadataField
+}
+
+// SetInstallationMetadata sets the installation metadata of this subtype
+func (m *ScriptEventSource) SetInstallationMetadata(val *IntegrationMetadata) {
+	m.installationMetadataField = val
+}
+
+// LineageID gets the lineage Id of this subtype
+func (m *ScriptEventSource) LineageID() string {
+	return m.lineageIdField
+}
+
+// SetLineageID sets the lineage Id of this subtype
+func (m *ScriptEventSource) SetLineageID(val string) {
+	m.lineageIdField = val
 }
 
 // Name gets the name of this subtype
@@ -278,17 +326,25 @@ func (m *ScriptEventSource) UnmarshalJSON(raw []byte) error {
 
 		AppliesTo string `json:"appliesTo,omitempty"`
 
+		AuditVersion int64 `json:"auditVersion,omitempty"`
+
+		Checksum string `json:"checksum,omitempty"`
+
 		ClearAfterAck bool `json:"clearAfterAck,omitempty"`
 
 		Collector string `json:"collector,omitempty"`
 
 		Description string `json:"description,omitempty"`
 
-		Filters []*RestEventSourceFilter `json:"filters,omitempty"`
+		Filters []*RestEventSourceFilter `json:"filters"`
 
 		Group string `json:"group,omitempty"`
 
 		ID int32 `json:"id"`
+
+		InstallationMetadata *IntegrationMetadata `json:"installationMetadata,omitempty"`
+
+		LineageID string `json:"lineageId,omitempty"`
 
 		Name *string `json:"name"`
 
@@ -320,6 +376,10 @@ func (m *ScriptEventSource) UnmarshalJSON(raw []byte) error {
 
 	result.appliesToField = base.AppliesTo
 
+	result.auditVersionField = base.AuditVersion
+
+	result.checksumField = base.Checksum
+
 	result.clearAfterAckField = base.ClearAfterAck
 
 	if base.Collector != result.Collector() {
@@ -333,6 +393,10 @@ func (m *ScriptEventSource) UnmarshalJSON(raw []byte) error {
 	result.groupField = base.Group
 
 	result.idField = base.ID
+
+	result.installationMetadataField = base.InstallationMetadata
+
+	result.lineageIdField = base.LineageID
 
 	result.nameField = base.Name
 
@@ -413,17 +477,25 @@ func (m ScriptEventSource) MarshalJSON() ([]byte, error) {
 
 		AppliesTo string `json:"appliesTo,omitempty"`
 
+		AuditVersion int64 `json:"auditVersion,omitempty"`
+
+		Checksum string `json:"checksum,omitempty"`
+
 		ClearAfterAck bool `json:"clearAfterAck,omitempty"`
 
 		Collector string `json:"collector,omitempty"`
 
 		Description string `json:"description,omitempty"`
 
-		Filters []*RestEventSourceFilter `json:"filters,omitempty"`
+		Filters []*RestEventSourceFilter `json:"filters"`
 
 		Group string `json:"group,omitempty"`
 
 		ID int32 `json:"id"`
+
+		InstallationMetadata *IntegrationMetadata `json:"installationMetadata,omitempty"`
+
+		LineageID string `json:"lineageId,omitempty"`
 
 		Name *string `json:"name"`
 
@@ -446,6 +518,10 @@ func (m ScriptEventSource) MarshalJSON() ([]byte, error) {
 
 		AppliesTo: m.AppliesTo(),
 
+		AuditVersion: m.AuditVersion(),
+
+		Checksum: m.Checksum(),
+
 		ClearAfterAck: m.ClearAfterAck(),
 
 		Collector: m.Collector(),
@@ -457,6 +533,10 @@ func (m ScriptEventSource) MarshalJSON() ([]byte, error) {
 		Group: m.Group(),
 
 		ID: m.ID(),
+
+		InstallationMetadata: m.InstallationMetadata(),
+
+		LineageID: m.LineageID(),
 
 		Name: m.Name(),
 
@@ -488,6 +568,10 @@ func (m *ScriptEventSource) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateID(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateInstallationMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -525,6 +609,8 @@ func (m *ScriptEventSource) validateFilters(formats strfmt.Registry) error {
 			if err := m.filtersField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -544,6 +630,26 @@ func (m *ScriptEventSource) validateID(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *ScriptEventSource) validateInstallationMetadata(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.InstallationMetadata()) { // not required
+		return nil
+	}
+
+	if m.InstallationMetadata() != nil {
+		if err := m.InstallationMetadata().Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *ScriptEventSource) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name()); err != nil {
@@ -557,11 +663,27 @@ func (m *ScriptEventSource) validateName(formats strfmt.Registry) error {
 func (m *ScriptEventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateChecksum(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateFilters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInstallationMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLineageID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -575,6 +697,24 @@ func (m *ScriptEventSource) ContextValidate(ctx context.Context, formats strfmt.
 	return nil
 }
 
+func (m *ScriptEventSource) contextValidateAuditVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "auditVersion", "body", int64(m.AuditVersion())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ScriptEventSource) contextValidateChecksum(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "checksum", "body", string(m.Checksum())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *ScriptEventSource) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Filters()); i++ {
@@ -583,6 +723,8 @@ func (m *ScriptEventSource) contextValidateFilters(ctx context.Context, formats 
 			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -596,6 +738,31 @@ func (m *ScriptEventSource) contextValidateFilters(ctx context.Context, formats 
 func (m *ScriptEventSource) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *ScriptEventSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InstallationMetadata() != nil {
+		if err := m.InstallationMetadata().ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *ScriptEventSource) contextValidateLineageID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lineageId", "body", string(m.LineageID())); err != nil {
 		return err
 	}
 

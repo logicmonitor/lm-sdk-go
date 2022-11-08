@@ -51,6 +51,8 @@ type SLAReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -59,8 +61,11 @@ type SLAReport struct {
 
 	userPermissionField string
 
+	// Calculation method: 0 = percent all resources available, 1 = average of all SLA metrics
+	CalculationMethod int32 `json:"calculationMethod,omitempty"`
+
 	// The columns displayed in the report
-	Columns []*DynamicColumn `json:"columns,omitempty"`
+	Columns []*DynamicColumn `json:"columns"`
 
 	// The Time Range configured for the report: Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 	DateRange string `json:"dateRange,omitempty"`
@@ -238,6 +243,16 @@ func (m *SLAReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *SLAReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *SLAReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *SLAReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -270,7 +285,7 @@ func (m *SLAReport) SetScheduleTimezone(val string) {
 
 // Type gets the type of this subtype
 func (m *SLAReport) Type() string {
-	return "Service Level Agreement"
+	return "SLAReport"
 }
 
 // SetType sets the type of this subtype
@@ -291,8 +306,11 @@ func (m *SLAReport) SetUserPermission(val string) {
 func (m *SLAReport) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
+		// Calculation method: 0 = percent all resources available, 1 = average of all SLA metrics
+		CalculationMethod int32 `json:"calculationMethod,omitempty"`
+
 		// The columns displayed in the report
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The Time Range configured for the report: Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 		DateRange string `json:"dateRange,omitempty"`
@@ -358,7 +376,9 @@ func (m *SLAReport) UnmarshalJSON(raw []byte) error {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -410,6 +430,8 @@ func (m *SLAReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -422,6 +444,7 @@ func (m *SLAReport) UnmarshalJSON(raw []byte) error {
 	}
 	result.userPermissionField = base.UserPermission
 
+	result.CalculationMethod = data.CalculationMethod
 	result.Columns = data.Columns
 	result.DateRange = data.DateRange
 	result.DayInOneWeek = data.DayInOneWeek
@@ -443,8 +466,11 @@ func (m SLAReport) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
+		// Calculation method: 0 = percent all resources available, 1 = average of all SLA metrics
+		CalculationMethod int32 `json:"calculationMethod,omitempty"`
+
 		// The columns displayed in the report
-		Columns []*DynamicColumn `json:"columns,omitempty"`
+		Columns []*DynamicColumn `json:"columns"`
 
 		// The Time Range configured for the report: Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 		DateRange string `json:"dateRange,omitempty"`
@@ -471,6 +497,8 @@ func (m SLAReport) MarshalJSON() ([]byte, error) {
 		// 0|1|2 - How the time we have no data for the device should be counted, where 1 = ignore no data (subtract from total time), 2 = count as violation (subtract from uptime), 3 = count as available (add to uptime)
 		UnmonitoredTime int32 `json:"unmonitoredTime,omitempty"`
 	}{
+
+		CalculationMethod: m.CalculationMethod,
 
 		Columns: m.Columns,
 
@@ -522,7 +550,9 @@ func (m SLAReport) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
-		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+		Recipients []*ReportRecipient `json:"recipients"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -564,6 +594,8 @@ func (m SLAReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 
@@ -632,6 +664,8 @@ func (m *SLAReport) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -657,6 +691,8 @@ func (m *SLAReport) validateColumns(formats strfmt.Registry) error {
 			if err := m.Columns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -682,6 +718,8 @@ func (m *SLAReport) validateMetrics(formats strfmt.Registry) error {
 			if err := m.Metrics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -847,6 +885,8 @@ func (m *SLAReport) contextValidateRecipients(ctx context.Context, formats strfm
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -883,6 +923,8 @@ func (m *SLAReport) contextValidateColumns(ctx context.Context, formats strfmt.R
 			if err := m.Columns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -901,6 +943,8 @@ func (m *SLAReport) contextValidateMetrics(ctx context.Context, formats strfmt.R
 			if err := m.Metrics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

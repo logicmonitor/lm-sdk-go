@@ -8,8 +8,10 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // GraphLine graph line
@@ -17,22 +19,23 @@ import (
 // swagger:model GraphLine
 type GraphLine struct {
 
-	// color name
+	// the graph line color name
 	ColorName string `json:"colorName,omitempty"`
 
-	// data point Id
+	// the graph line data point id
+	// Read Only: true
 	DataPointID int32 `json:"dataPointId,omitempty"`
 
-	// data point name
+	// the graph line data point name
 	DataPointName string `json:"dataPointName,omitempty"`
 
-	// is virtual data point
+	// if the graph line's data point is a virtual data point
 	IsVirtualDataPoint bool `json:"isVirtualDataPoint,omitempty"`
 
-	// legend
+	// the graph line legend
 	Legend string `json:"legend,omitempty"`
 
-	// type
+	// the graph line type, 1=line|2=area|3=stack|4=column
 	Type int32 `json:"type,omitempty"`
 }
 
@@ -41,8 +44,26 @@ func (m *GraphLine) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this graph line based on context it is used
+// ContextValidate validate this graph line based on the context it is used
 func (m *GraphLine) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDataPointID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *GraphLine) contextValidateDataPointID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "dataPointId", "body", int32(m.DataPointID)); err != nil {
+		return err
+	}
+
 	return nil
 }
 

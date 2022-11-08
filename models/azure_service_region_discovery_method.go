@@ -24,7 +24,7 @@ type AzureServiceRegionDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *AzureServiceRegionDiscoveryMethod) Name() string {
-	return "ad_azureserviceregion"
+	return "AzureServiceRegionDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

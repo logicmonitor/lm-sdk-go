@@ -24,7 +24,7 @@ type AzureRedisCacheDiscoveryMethod struct {
 
 // Name gets the name of this subtype
 func (m *AzureRedisCacheDiscoveryMethod) Name() string {
-	return "ad_azurerediscache"
+	return "AzureRedisCacheDiscoveryMethod"
 }
 
 // SetName sets the name of this subtype

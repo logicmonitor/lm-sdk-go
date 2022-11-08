@@ -12,6 +12,7 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // DeviceDataSourceAssociated device data source associated
@@ -25,17 +26,19 @@ type DeviceDataSourceAssociated struct {
 	// display name
 	DisplayName string `json:"displayName,omitempty"`
 
-	// has active instance
-	HasActiveInstance bool `json:"hasActiveInstance,omitempty"`
+	// Whether has active instance.
+	// Read Only: true
+	HasActiveInstance *bool `json:"hasActiveInstance,omitempty"`
 
-	// has more
+	// Whether has more instance. 0 no more, 1 has more
+	// Read Only: true
 	HasMore int32 `json:"hasMore,omitempty"`
 
 	// id
 	ID int32 `json:"id,omitempty"`
 
-	// instance
-	Instance []*DeviceDataSourceAssociatedInstance `json:"instance,omitempty"`
+	// The instance list associated to the datasource
+	Instance []*DeviceDataSourceAssociatedInstance `json:"instance"`
 
 	// name
 	Name string `json:"name,omitempty"`
@@ -69,6 +72,8 @@ func (m *DeviceDataSourceAssociated) validateInstance(formats strfmt.Registry) e
 			if err := m.Instance[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("instance" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("instance" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -83,6 +88,14 @@ func (m *DeviceDataSourceAssociated) validateInstance(formats strfmt.Registry) e
 func (m *DeviceDataSourceAssociated) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateHasActiveInstance(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateHasMore(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateInstance(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -90,6 +103,24 @@ func (m *DeviceDataSourceAssociated) ContextValidate(ctx context.Context, format
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *DeviceDataSourceAssociated) contextValidateHasActiveInstance(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "hasActiveInstance", "body", m.HasActiveInstance); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceAssociated) contextValidateHasMore(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "hasMore", "body", int32(m.HasMore)); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -101,6 +132,8 @@ func (m *DeviceDataSourceAssociated) contextValidateInstance(ctx context.Context
 			if err := m.Instance[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("instance" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("instance" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

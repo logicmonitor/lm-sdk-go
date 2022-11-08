@@ -25,7 +25,7 @@ type BatchJobWidgetData struct {
 
 	// items
 	// Read Only: true
-	Items []*BatchJobExecutionItem `json:"items,omitempty"`
+	Items []*BatchJobExecutionItem `json:"items"`
 }
 
 // Title gets the title of this subtype
@@ -40,7 +40,7 @@ func (m *BatchJobWidgetData) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *BatchJobWidgetData) Type() string {
-	return "batchjob"
+	return "BatchJobWidgetData"
 }
 
 // SetType sets the type of this subtype
@@ -53,7 +53,7 @@ func (m *BatchJobWidgetData) UnmarshalJSON(raw []byte) error {
 
 		// items
 		// Read Only: true
-		Items []*BatchJobExecutionItem `json:"items,omitempty"`
+		Items []*BatchJobExecutionItem `json:"items"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -102,7 +102,7 @@ func (m BatchJobWidgetData) MarshalJSON() ([]byte, error) {
 
 		// items
 		// Read Only: true
-		Items []*BatchJobExecutionItem `json:"items,omitempty"`
+		Items []*BatchJobExecutionItem `json:"items"`
 	}{
 
 		Items: m.Items,
@@ -156,6 +156,8 @@ func (m *BatchJobWidgetData) validateItems(formats strfmt.Registry) error {
 			if err := m.Items[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -201,6 +203,8 @@ func (m *BatchJobWidgetData) contextValidateItems(ctx context.Context, formats s
 			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

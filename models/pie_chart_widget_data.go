@@ -25,7 +25,7 @@ type PieChartWidgetData struct {
 
 	// data
 	// Read Only: true
-	Data []*PieChartData `json:"data,omitempty"`
+	Data []*PieChartData `json:"data"`
 
 	// group remaining as others
 	// Read Only: true
@@ -51,7 +51,7 @@ func (m *PieChartWidgetData) SetTitle(val string) {
 
 // Type gets the type of this subtype
 func (m *PieChartWidgetData) Type() string {
-	return "pieChart"
+	return "PieChartWidgetData"
 }
 
 // SetType sets the type of this subtype
@@ -64,7 +64,7 @@ func (m *PieChartWidgetData) UnmarshalJSON(raw []byte) error {
 
 		// data
 		// Read Only: true
-		Data []*PieChartData `json:"data,omitempty"`
+		Data []*PieChartData `json:"data"`
 
 		// group remaining as others
 		// Read Only: true
@@ -127,7 +127,7 @@ func (m PieChartWidgetData) MarshalJSON() ([]byte, error) {
 
 		// data
 		// Read Only: true
-		Data []*PieChartData `json:"data,omitempty"`
+		Data []*PieChartData `json:"data"`
 
 		// group remaining as others
 		// Read Only: true
@@ -198,6 +198,8 @@ func (m *PieChartWidgetData) validateData(formats strfmt.Registry) error {
 			if err := m.Data[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -251,6 +253,8 @@ func (m *PieChartWidgetData) contextValidateData(ctx context.Context, formats st
 			if err := m.Data[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("data" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("data" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

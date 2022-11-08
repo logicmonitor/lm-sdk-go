@@ -148,7 +148,7 @@ func (m *WebsiteGraphWidget) SetTimescale(val string) {
 
 // Type gets the type of this subtype
 func (m *WebsiteGraphWidget) Type() string {
-	return "sgraph"
+	return "WebsiteGraphWidget"
 }
 
 // SetType sets the type of this subtype
