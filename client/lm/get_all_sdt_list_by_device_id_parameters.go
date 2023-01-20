@@ -60,6 +60,11 @@ func NewGetAllSDTListByDeviceIDParamsWithHTTPClient(client *http.Client) *GetAll
 */
 type GetAllSDTListByDeviceIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// End.
 	//
 	// Format: int64
@@ -113,14 +118,17 @@ func (o *GetAllSDTListByDeviceIDParams) WithDefaults() *GetAllSDTListByDeviceIDP
 // All values with no default are reset to their zero value.
 func (o *GetAllSDTListByDeviceIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAllSDTListByDeviceIDParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -160,6 +168,17 @@ func (o *GetAllSDTListByDeviceIDParams) WithHTTPClient(client *http.Client) *Get
 // SetHTTPClient adds the HTTPClient to the get all SDT list by device Id params
 func (o *GetAllSDTListByDeviceIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get all SDT list by device Id params
+func (o *GetAllSDTListByDeviceIDParams) WithUserAgent(userAgent *string) *GetAllSDTListByDeviceIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get all SDT list by device Id params
+func (o *GetAllSDTListByDeviceIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithEnd adds the end to the get all SDT list by device Id params
@@ -257,6 +276,14 @@ func (o *GetAllSDTListByDeviceIDParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.End != nil {
 

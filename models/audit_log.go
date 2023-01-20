@@ -27,7 +27,7 @@ type AuditLog struct {
 	// Read Only: true
 	HappenedOn int64 `json:"happenedOn,omitempty"`
 
-	// The date and time that the action recorded in the access log entry occured
+	// The date and time that the action recorded in the access log entry occurred
 	// Read Only: true
 	HappenedOnLocal string `json:"happenedOnLocal,omitempty"`
 

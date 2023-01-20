@@ -25,7 +25,12 @@ type ExcludeDuplicateIps struct {
 	// Example: [\"Network Devices\"]
 	Groups []string `json:"groups,omitempty"`
 
-	// What types of duplicate IPs should be excluded. Options are 1 (matching any monitored devices), 2 (matching devices already discovered by this scan), 3 (matching devices in these groups), and 4 (matching devices assigned to these collectors)
+	// The types of duplicate IPs that should be excluded. The values can be 1|2|3|4 which denotes
+	// 1: matching any monitored devices
+	// 2: matching devices already discovered by this scan
+	// 3: matching devices in these groups
+	// 4: matching devices assigned to these collectors
+	//
 	// Example: 1
 	Type int32 `json:"type,omitempty"`
 }

@@ -60,6 +60,11 @@ func NewGetWebsiteGraphDataParamsWithHTTPClient(client *http.Client) *GetWebsite
 */
 type GetWebsiteGraphDataParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// CheckpointID.
 	//
 	// Format: int32
@@ -103,7 +108,18 @@ func (o *GetWebsiteGraphDataParams) WithDefaults() *GetWebsiteGraphDataParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetWebsiteGraphDataParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := GetWebsiteGraphDataParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get website graph data params
@@ -137,6 +153,17 @@ func (o *GetWebsiteGraphDataParams) WithHTTPClient(client *http.Client) *GetWebs
 // SetHTTPClient adds the HTTPClient to the get website graph data params
 func (o *GetWebsiteGraphDataParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get website graph data params
+func (o *GetWebsiteGraphDataParams) WithUserAgent(userAgent *string) *GetWebsiteGraphDataParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get website graph data params
+func (o *GetWebsiteGraphDataParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithCheckpointID adds the checkpointID to the get website graph data params
@@ -212,6 +239,14 @@ func (o *GetWebsiteGraphDataParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	// path param checkpointId
 	if err := r.SetPathParam("checkpointId", swag.FormatInt32(o.CheckpointID)); err != nil {

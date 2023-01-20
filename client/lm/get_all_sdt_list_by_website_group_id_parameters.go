@@ -60,6 +60,11 @@ func NewGetAllSDTListByWebsiteGroupIDParamsWithHTTPClient(client *http.Client) *
 */
 type GetAllSDTListByWebsiteGroupIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -100,14 +105,17 @@ func (o *GetAllSDTListByWebsiteGroupIDParams) WithDefaults() *GetAllSDTListByWeb
 // All values with no default are reset to their zero value.
 func (o *GetAllSDTListByWebsiteGroupIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAllSDTListByWebsiteGroupIDParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -147,6 +155,17 @@ func (o *GetAllSDTListByWebsiteGroupIDParams) WithHTTPClient(client *http.Client
 // SetHTTPClient adds the HTTPClient to the get all SDT list by website group Id params
 func (o *GetAllSDTListByWebsiteGroupIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get all SDT list by website group Id params
+func (o *GetAllSDTListByWebsiteGroupIDParams) WithUserAgent(userAgent *string) *GetAllSDTListByWebsiteGroupIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get all SDT list by website group Id params
+func (o *GetAllSDTListByWebsiteGroupIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get all SDT list by website group Id params
@@ -211,6 +230,14 @@ func (o *GetAllSDTListByWebsiteGroupIDParams) WriteToRequest(r runtime.ClientReq
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

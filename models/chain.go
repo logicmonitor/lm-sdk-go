@@ -20,14 +20,15 @@ import (
 // swagger:model Chain
 type Chain struct {
 
-	// period
+	// If type is timebased then effective time when recipient receive notification.
+	//
 	Period *Period `json:"period,omitempty"`
 
-	// stages
+	// List of recipients list
 	// Required: true
 	Stages [][]*Recipient `json:"stages"`
 
-	// single
+	// Type of stages in this chain. The values can be timebased|simple
 	// Required: true
 	Type *string `json:"type"`
 }

@@ -51,6 +51,8 @@ type InterfBandwidthReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -68,10 +70,26 @@ type InterfBandwidthReport struct {
 	// host | group. The type of entities specified in the hostsVal field
 	HostsValType string `json:"hostsValType,omitempty"`
 
+	// true | false
+	// false: Scale the number using 1000
+	// true: Scale the number using 1024
+	// Required: true
+	IsBase1024 *bool `json:"isBase1024"`
+
+	// The datapoint or calculation on a datapoint that will be included in the report, where each datapoint/calculation is specified by three fields: dataSourceId, instances (glob is okay)
+	// Required: true
+	Metrics []*Metric `json:"metrics"`
+
 	// 0 | 1
 	// 0: Text only - metrics will be displayed in a tabular format.
 	// 1: One graph per instance - metrics will be displayed in a tabular format and one graph will be displayed per instance
 	RowFormat int32 `json:"rowFormat,omitempty"`
+
+	// true | false
+	// false: Metrics will be displayed for all selected devices or groups
+	// true: Metrics will only be displayed for the top ten device or groups
+	// Required: true
+	Top10Only *bool `json:"top10Only"`
 }
 
 // CustomReportTypeID gets the custom report type Id of this subtype
@@ -224,6 +242,16 @@ func (m *InterfBandwidthReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *InterfBandwidthReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *InterfBandwidthReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *InterfBandwidthReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -286,10 +314,26 @@ func (m *InterfBandwidthReport) UnmarshalJSON(raw []byte) error {
 		// host | group. The type of entities specified in the hostsVal field
 		HostsValType string `json:"hostsValType,omitempty"`
 
+		// true | false
+		// false: Scale the number using 1000
+		// true: Scale the number using 1024
+		// Required: true
+		IsBase1024 *bool `json:"isBase1024"`
+
+		// The datapoint or calculation on a datapoint that will be included in the report, where each datapoint/calculation is specified by three fields: dataSourceId, instances (glob is okay)
+		// Required: true
+		Metrics []*Metric `json:"metrics"`
+
 		// 0 | 1
 		// 0: Text only - metrics will be displayed in a tabular format.
 		// 1: One graph per instance - metrics will be displayed in a tabular format and one graph will be displayed per instance
 		RowFormat int32 `json:"rowFormat,omitempty"`
+
+		// true | false
+		// false: Metrics will be displayed for all selected devices or groups
+		// true: Metrics will only be displayed for the top ten device or groups
+		// Required: true
+		Top10Only *bool `json:"top10Only"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -331,6 +375,8 @@ func (m *InterfBandwidthReport) UnmarshalJSON(raw []byte) error {
 		Name *string `json:"name"`
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -382,6 +428,8 @@ func (m *InterfBandwidthReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -397,7 +445,10 @@ func (m *InterfBandwidthReport) UnmarshalJSON(raw []byte) error {
 	result.DateRange = data.DateRange
 	result.HostsVal = data.HostsVal
 	result.HostsValType = data.HostsValType
+	result.IsBase1024 = data.IsBase1024
+	result.Metrics = data.Metrics
 	result.RowFormat = data.RowFormat
+	result.Top10Only = data.Top10Only
 
 	*m = result
 
@@ -419,10 +470,26 @@ func (m InterfBandwidthReport) MarshalJSON() ([]byte, error) {
 		// host | group. The type of entities specified in the hostsVal field
 		HostsValType string `json:"hostsValType,omitempty"`
 
+		// true | false
+		// false: Scale the number using 1000
+		// true: Scale the number using 1024
+		// Required: true
+		IsBase1024 *bool `json:"isBase1024"`
+
+		// The datapoint or calculation on a datapoint that will be included in the report, where each datapoint/calculation is specified by three fields: dataSourceId, instances (glob is okay)
+		// Required: true
+		Metrics []*Metric `json:"metrics"`
+
 		// 0 | 1
 		// 0: Text only - metrics will be displayed in a tabular format.
 		// 1: One graph per instance - metrics will be displayed in a tabular format and one graph will be displayed per instance
 		RowFormat int32 `json:"rowFormat,omitempty"`
+
+		// true | false
+		// false: Metrics will be displayed for all selected devices or groups
+		// true: Metrics will only be displayed for the top ten device or groups
+		// Required: true
+		Top10Only *bool `json:"top10Only"`
 	}{
 
 		DateRange: m.DateRange,
@@ -431,7 +498,13 @@ func (m InterfBandwidthReport) MarshalJSON() ([]byte, error) {
 
 		HostsValType: m.HostsValType,
 
+		IsBase1024: m.IsBase1024,
+
+		Metrics: m.Metrics,
+
 		RowFormat: m.RowFormat,
+
+		Top10Only: m.Top10Only,
 	})
 	if err != nil {
 		return nil, err
@@ -466,6 +539,8 @@ func (m InterfBandwidthReport) MarshalJSON() ([]byte, error) {
 		Name *string `json:"name"`
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
+
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -508,6 +583,8 @@ func (m InterfBandwidthReport) MarshalJSON() ([]byte, error) {
 
 		Recipients: m.Recipients(),
 
+		ReportLinkExpire: m.ReportLinkExpire(),
+
 		ReportLinkNum: m.ReportLinkNum(),
 
 		Schedule: m.Schedule(),
@@ -534,6 +611,18 @@ func (m *InterfBandwidthReport) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRecipients(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIsBase1024(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMetrics(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTop10Only(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -572,6 +661,49 @@ func (m *InterfBandwidthReport) validateRecipients(formats strfmt.Registry) erro
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *InterfBandwidthReport) validateIsBase1024(formats strfmt.Registry) error {
+
+	if err := validate.Required("isBase1024", "body", m.IsBase1024); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InterfBandwidthReport) validateMetrics(formats strfmt.Registry) error {
+
+	if err := validate.Required("metrics", "body", m.Metrics); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Metrics); i++ {
+		if swag.IsZero(m.Metrics[i]) { // not required
+			continue
+		}
+
+		if m.Metrics[i] != nil {
+			if err := m.Metrics[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *InterfBandwidthReport) validateTop10Only(formats strfmt.Registry) error {
+
+	if err := validate.Required("top10Only", "body", m.Top10Only); err != nil {
+		return err
 	}
 
 	return nil
@@ -626,6 +758,10 @@ func (m *InterfBandwidthReport) ContextValidate(ctx context.Context, formats str
 	}
 
 	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateMetrics(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -747,6 +883,24 @@ func (m *InterfBandwidthReport) contextValidateUserPermission(ctx context.Contex
 
 	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *InterfBandwidthReport) contextValidateMetrics(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Metrics); i++ {
+
+		if m.Metrics[i] != nil {
+			if err := m.Metrics[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

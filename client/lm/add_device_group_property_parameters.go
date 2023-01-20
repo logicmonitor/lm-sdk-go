@@ -62,6 +62,11 @@ func NewAddDeviceGroupPropertyParamsWithHTTPClient(client *http.Client) *AddDevi
 */
 type AddDeviceGroupPropertyParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.EntityProperty
 
@@ -90,7 +95,18 @@ func (o *AddDeviceGroupPropertyParams) WithDefaults() *AddDeviceGroupPropertyPar
 //
 // All values with no default are reset to their zero value.
 func (o *AddDeviceGroupPropertyParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := AddDeviceGroupPropertyParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the add device group property params
@@ -126,6 +142,17 @@ func (o *AddDeviceGroupPropertyParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the add device group property params
+func (o *AddDeviceGroupPropertyParams) WithUserAgent(userAgent *string) *AddDeviceGroupPropertyParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the add device group property params
+func (o *AddDeviceGroupPropertyParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the add device group property params
 func (o *AddDeviceGroupPropertyParams) WithBody(body *models.EntityProperty) *AddDeviceGroupPropertyParams {
 	o.SetBody(body)
@@ -155,6 +182,14 @@ func (o *AddDeviceGroupPropertyParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

@@ -24,31 +24,27 @@ import (
 // swagger:model AutoDiscoveryConfiguration
 type AutoDiscoveryConfiguration struct {
 
-	// data source name
-	// Read Only: true
-	DataSourceName string `json:"dataSourceName,omitempty"`
-
-	// delete inactive instance
+	// Delete inactive instance
 	DeleteInactiveInstance bool `json:"deleteInactiveInstance,omitempty"`
 
-	// disable instance
+	// Disable discovered instance
 	DisableInstance bool `json:"disableInstance,omitempty"`
 
 	// filters
 	Filters []*AutoDiscoveryFilter `json:"filters,omitempty"`
 
-	// instance auto group method
+	// Auto group method. The values can be none|netscaler|netscalerservicegroup|regex|esx|ilp
 	InstanceAutoGroupMethod string `json:"instanceAutoGroupMethod,omitempty"`
 
-	// instance auto group method params
+	// Auto group method's parameters
 	InstanceAutoGroupMethodParams string `json:"instanceAutoGroupMethodParams,omitempty"`
 
 	methodField AutoDiscoveryMethod
 
-	// persistent instance
+	// Persist discovered instance
 	PersistentInstance bool `json:"persistentInstance,omitempty"`
 
-	// schedule interval
+	// Auto discovery schedule interval in minutes. 0 means host or data source changed. The values can be 0|15|60|1440
 	ScheduleInterval int32 `json:"scheduleInterval,omitempty"`
 }
 
@@ -65,8 +61,6 @@ func (m *AutoDiscoveryConfiguration) SetMethod(val AutoDiscoveryMethod) {
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *AutoDiscoveryConfiguration) UnmarshalJSON(raw []byte) error {
 	var data struct {
-		DataSourceName string `json:"dataSourceName,omitempty"`
-
 		DeleteInactiveInstance bool `json:"deleteInactiveInstance,omitempty"`
 
 		DisableInstance bool `json:"disableInstance,omitempty"`
@@ -97,9 +91,6 @@ func (m *AutoDiscoveryConfiguration) UnmarshalJSON(raw []byte) error {
 	}
 
 	var result AutoDiscoveryConfiguration
-
-	// dataSourceName
-	result.DataSourceName = data.DataSourceName
 
 	// deleteInactiveInstance
 	result.DeleteInactiveInstance = data.DeleteInactiveInstance
@@ -135,8 +126,6 @@ func (m AutoDiscoveryConfiguration) MarshalJSON() ([]byte, error) {
 	var b1, b2, b3 []byte
 	var err error
 	b1, err = json.Marshal(struct {
-		DataSourceName string `json:"dataSourceName,omitempty"`
-
 		DeleteInactiveInstance bool `json:"deleteInactiveInstance,omitempty"`
 
 		DisableInstance bool `json:"disableInstance,omitempty"`
@@ -151,8 +140,6 @@ func (m AutoDiscoveryConfiguration) MarshalJSON() ([]byte, error) {
 
 		ScheduleInterval int32 `json:"scheduleInterval,omitempty"`
 	}{
-
-		DataSourceName: m.DataSourceName,
 
 		DeleteInactiveInstance: m.DeleteInactiveInstance,
 
@@ -246,10 +233,6 @@ func (m *AutoDiscoveryConfiguration) validateMethod(formats strfmt.Registry) err
 func (m *AutoDiscoveryConfiguration) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateDataSourceName(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateFilters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -261,15 +244,6 @@ func (m *AutoDiscoveryConfiguration) ContextValidate(ctx context.Context, format
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *AutoDiscoveryConfiguration) contextValidateDataSourceName(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "dataSourceName", "body", string(m.DataSourceName)); err != nil {
-		return err
-	}
-
 	return nil
 }
 

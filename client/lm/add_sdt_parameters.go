@@ -61,6 +61,11 @@ func NewAddSDTParamsWithHTTPClient(client *http.Client) *AddSDTParams {
 */
 type AddSDTParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body models.SDT
 
@@ -81,7 +86,18 @@ func (o *AddSDTParams) WithDefaults() *AddSDTParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddSDTParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := AddSDTParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the add SDT params
@@ -117,6 +133,17 @@ func (o *AddSDTParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the add SDT params
+func (o *AddSDTParams) WithUserAgent(userAgent *string) *AddSDTParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the add SDT params
+func (o *AddSDTParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the add SDT params
 func (o *AddSDTParams) WithBody(body models.SDT) *AddSDTParams {
 	o.SetBody(body)
@@ -135,6 +162,14 @@ func (o *AddSDTParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regist
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

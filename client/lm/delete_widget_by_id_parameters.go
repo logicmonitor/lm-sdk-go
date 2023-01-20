@@ -60,6 +60,11 @@ func NewDeleteWidgetByIDParamsWithHTTPClient(client *http.Client) *DeleteWidgetB
 */
 type DeleteWidgetByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// ID.
 	//
 	// Format: int32
@@ -82,7 +87,18 @@ func (o *DeleteWidgetByIDParams) WithDefaults() *DeleteWidgetByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteWidgetByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := DeleteWidgetByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the delete widget by Id params
@@ -118,6 +134,17 @@ func (o *DeleteWidgetByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the delete widget by Id params
+func (o *DeleteWidgetByIDParams) WithUserAgent(userAgent *string) *DeleteWidgetByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the delete widget by Id params
+func (o *DeleteWidgetByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithID adds the id to the delete widget by Id params
 func (o *DeleteWidgetByIDParams) WithID(id int32) *DeleteWidgetByIDParams {
 	o.SetID(id)
@@ -136,6 +163,14 @@ func (o *DeleteWidgetByIDParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {

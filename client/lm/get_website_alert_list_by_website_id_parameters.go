@@ -60,6 +60,11 @@ func NewGetWebsiteAlertListByWebsiteIDParamsWithHTTPClient(client *http.Client) 
 */
 type GetWebsiteAlertListByWebsiteIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// CustomColumns.
 	CustomColumns *string
 
@@ -106,6 +111,8 @@ func (o *GetWebsiteAlertListByWebsiteIDParams) WithDefaults() *GetWebsiteAlertLi
 // All values with no default are reset to their zero value.
 func (o *GetWebsiteAlertListByWebsiteIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		needMessageDefault = bool(false)
 
 		offsetDefault = int32(0)
@@ -114,6 +121,7 @@ func (o *GetWebsiteAlertListByWebsiteIDParams) SetDefaults() {
 	)
 
 	val := GetWebsiteAlertListByWebsiteIDParams{
+		UserAgent:   &userAgentDefault,
 		NeedMessage: &needMessageDefault,
 		Offset:      &offsetDefault,
 		Size:        &sizeDefault,
@@ -156,6 +164,17 @@ func (o *GetWebsiteAlertListByWebsiteIDParams) WithHTTPClient(client *http.Clien
 // SetHTTPClient adds the HTTPClient to the get website alert list by website Id params
 func (o *GetWebsiteAlertListByWebsiteIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get website alert list by website Id params
+func (o *GetWebsiteAlertListByWebsiteIDParams) WithUserAgent(userAgent *string) *GetWebsiteAlertListByWebsiteIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get website alert list by website Id params
+func (o *GetWebsiteAlertListByWebsiteIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithCustomColumns adds the customColumns to the get website alert list by website Id params
@@ -242,6 +261,14 @@ func (o *GetWebsiteAlertListByWebsiteIDParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.CustomColumns != nil {
 

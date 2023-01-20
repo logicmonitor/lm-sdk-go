@@ -59,6 +59,11 @@ func NewGetSDTByIDParamsWithHTTPClient(client *http.Client) *GetSDTByIDParams {
 */
 type GetSDTByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -82,7 +87,18 @@ func (o *GetSDTByIDParams) WithDefaults() *GetSDTByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetSDTByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := GetSDTByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get SDT by Id params
@@ -118,6 +134,17 @@ func (o *GetSDTByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the get SDT by Id params
+func (o *GetSDTByIDParams) WithUserAgent(userAgent *string) *GetSDTByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get SDT by Id params
+func (o *GetSDTByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithFields adds the fields to the get SDT by Id params
 func (o *GetSDTByIDParams) WithFields(fields *string) *GetSDTByIDParams {
 	o.SetFields(fields)
@@ -147,6 +174,14 @@ func (o *GetSDTByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

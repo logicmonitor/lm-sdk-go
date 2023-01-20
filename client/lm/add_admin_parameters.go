@@ -61,6 +61,11 @@ func NewAddAdminParamsWithHTTPClient(client *http.Client) *AddAdminParams {
 */
 type AddAdminParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.Admin
 
@@ -81,7 +86,18 @@ func (o *AddAdminParams) WithDefaults() *AddAdminParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddAdminParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := AddAdminParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the add admin params
@@ -117,6 +133,17 @@ func (o *AddAdminParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the add admin params
+func (o *AddAdminParams) WithUserAgent(userAgent *string) *AddAdminParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the add admin params
+func (o *AddAdminParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the add admin params
 func (o *AddAdminParams) WithBody(body *models.Admin) *AddAdminParams {
 	o.SetBody(body)
@@ -135,6 +162,14 @@ func (o *AddAdminParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Regi
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

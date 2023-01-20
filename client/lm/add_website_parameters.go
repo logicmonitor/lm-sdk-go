@@ -61,6 +61,11 @@ func NewAddWebsiteParamsWithHTTPClient(client *http.Client) *AddWebsiteParams {
 */
 type AddWebsiteParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body models.Website
 
@@ -81,7 +86,18 @@ func (o *AddWebsiteParams) WithDefaults() *AddWebsiteParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddWebsiteParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := AddWebsiteParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the add website params
@@ -117,6 +133,17 @@ func (o *AddWebsiteParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the add website params
+func (o *AddWebsiteParams) WithUserAgent(userAgent *string) *AddWebsiteParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the add website params
+func (o *AddWebsiteParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the add website params
 func (o *AddWebsiteParams) WithBody(body models.Website) *AddWebsiteParams {
 	o.SetBody(body)
@@ -135,6 +162,14 @@ func (o *AddWebsiteParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

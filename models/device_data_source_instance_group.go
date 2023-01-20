@@ -19,7 +19,7 @@ import (
 // swagger:model DeviceDataSourceInstanceGroup
 type DeviceDataSourceInstanceGroup struct {
 
-	// create on
+	// Time when the group was created.
 	// Read Only: true
 	CreateOn int64 `json:"createOn,omitempty"`
 
@@ -27,19 +27,19 @@ type DeviceDataSourceInstanceGroup struct {
 	// Example: Test the availability of HQ
 	Description string `json:"description,omitempty"`
 
-	// device data source Id
+	// The device datasource id
 	// Read Only: true
 	DeviceDataSourceID int32 `json:"deviceDataSourceId,omitempty"`
 
-	// device display name
+	// The display name of the device
 	// Read Only: true
 	DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
 
-	// device Id
+	// The id of associated device
 	// Read Only: true
 	DeviceID int32 `json:"deviceId,omitempty"`
 
-	// id
+	// The instance group id
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 

@@ -60,6 +60,11 @@ func NewDeleteDatasourceByIDParamsWithHTTPClient(client *http.Client) *DeleteDat
 */
 type DeleteDatasourceByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// ID.
 	//
 	// Format: int32
@@ -82,7 +87,18 @@ func (o *DeleteDatasourceByIDParams) WithDefaults() *DeleteDatasourceByIDParams 
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteDatasourceByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := DeleteDatasourceByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the delete datasource by Id params
@@ -118,6 +134,17 @@ func (o *DeleteDatasourceByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the delete datasource by Id params
+func (o *DeleteDatasourceByIDParams) WithUserAgent(userAgent *string) *DeleteDatasourceByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the delete datasource by Id params
+func (o *DeleteDatasourceByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithID adds the id to the delete datasource by Id params
 func (o *DeleteDatasourceByIDParams) WithID(id int32) *DeleteDatasourceByIDParams {
 	o.SetID(id)
@@ -136,6 +163,14 @@ func (o *DeleteDatasourceByIDParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {

@@ -293,6 +293,35 @@ func (a *Client) AddCollectorGroup(params *AddCollectorGroupParams) (*AddCollect
 }
 
 /*
+AddConfigsourceAuditVersion adds audit version
+*/
+func (a *Client) AddConfigsourceAuditVersion(params *AddConfigsourceAuditVersionParams) (*AddConfigsourceAuditVersionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddConfigsourceAuditVersionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addConfigsourceAuditVersion",
+		Method:             "POST",
+		PathPattern:        "/setting/configsources/{id}/audit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddConfigsourceAuditVersionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddConfigsourceAuditVersionOK), nil
+
+}
+
+/*
 AddDashboard adds dashboard
 */
 func (a *Client) AddDashboard(params *AddDashboardParams) (*AddDashboardOK, error) {
@@ -347,6 +376,35 @@ func (a *Client) AddDashboardGroup(params *AddDashboardGroupParams) (*AddDashboa
 		return nil, err
 	}
 	return result.(*AddDashboardGroupOK), nil
+
+}
+
+/*
+AddDatasourceAuditVersion adds audit version
+*/
+func (a *Client) AddDatasourceAuditVersion(params *AddDatasourceAuditVersionParams) (*AddDatasourceAuditVersionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddDatasourceAuditVersionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addDatasourceAuditVersion",
+		Method:             "POST",
+		PathPattern:        "/setting/datasources/{id}/audit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddDatasourceAuditVersionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddDatasourceAuditVersionOK), nil
 
 }
 
@@ -409,35 +467,6 @@ func (a *Client) AddDeviceDatasourceInstance(params *AddDeviceDatasourceInstance
 }
 
 /*
-AddDeviceDatasourceInstanceGroup adds device datasource instance group
-*/
-func (a *Client) AddDeviceDatasourceInstanceGroup(params *AddDeviceDatasourceInstanceGroupParams) (*AddDeviceDatasourceInstanceGroupOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAddDeviceDatasourceInstanceGroupParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "addDeviceDatasourceInstanceGroup",
-		Method:             "POST",
-		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AddDeviceDatasourceInstanceGroupReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*AddDeviceDatasourceInstanceGroupOK), nil
-
-}
-
-/*
 AddDeviceGroup adds device group
 */
 func (a *Client) AddDeviceGroup(params *AddDeviceGroupParams) (*AddDeviceGroupOK, error) {
@@ -463,35 +492,6 @@ func (a *Client) AddDeviceGroup(params *AddDeviceGroupParams) (*AddDeviceGroupOK
 		return nil, err
 	}
 	return result.(*AddDeviceGroupOK), nil
-
-}
-
-/*
-AddDeviceGroupClusterAlertConf adds cluster alert configuration
-*/
-func (a *Client) AddDeviceGroupClusterAlertConf(params *AddDeviceGroupClusterAlertConfParams) (*AddDeviceGroupClusterAlertConfOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAddDeviceGroupClusterAlertConfParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "addDeviceGroupClusterAlertConf",
-		Method:             "POST",
-		PathPattern:        "/device/groups/{deviceGroupId}/clusterAlertConf",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AddDeviceGroupClusterAlertConfReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*AddDeviceGroupClusterAlertConfOK), nil
 
 }
 
@@ -583,6 +583,35 @@ func (a *Client) AddEscalationChain(params *AddEscalationChainParams) (*AddEscal
 }
 
 /*
+AddEventsourceAuditVersion adds audit version
+*/
+func (a *Client) AddEventsourceAuditVersion(params *AddEventsourceAuditVersionParams) (*AddEventsourceAuditVersionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddEventsourceAuditVersionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addEventsourceAuditVersion",
+		Method:             "POST",
+		PathPattern:        "/setting/eventsources/{id}/audit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddEventsourceAuditVersionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddEventsourceAuditVersionOK), nil
+
+}
+
+/*
 AddNetscan adds a new netscan
 */
 func (a *Client) AddNetscan(params *AddNetscanParams) (*AddNetscanOK, error) {
@@ -637,6 +666,35 @@ func (a *Client) AddOpsNote(params *AddOpsNoteParams) (*AddOpsNoteOK, error) {
 		return nil, err
 	}
 	return result.(*AddOpsNoteOK), nil
+
+}
+
+/*
+AddPropertysourceAuditVersion adds audit version
+*/
+func (a *Client) AddPropertysourceAuditVersion(params *AddPropertysourceAuditVersionParams) (*AddPropertysourceAuditVersionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddPropertysourceAuditVersionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addPropertysourceAuditVersion",
+		Method:             "POST",
+		PathPattern:        "/setting/propertyrules/{id}/audit",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddPropertysourceAuditVersionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddPropertysourceAuditVersionOK), nil
 
 }
 
@@ -757,7 +815,7 @@ func (a *Client) AddRole(params *AddRoleParams) (*AddRoleOK, error) {
 }
 
 /*
-AddSDT adds SDT
+AddSDT adds SDT response may contain extra fields depending upon the type of SDT being added
 */
 func (a *Client) AddSDT(params *AddSDTParams) (*AddSDTOK, error) {
 	// TODO: Validate the params before sending
@@ -844,7 +902,7 @@ func (a *Client) AddWebsiteGroup(params *AddWebsiteGroupParams) (*AddWebsiteGrou
 }
 
 /*
-AddWidget adds widget
+AddWidget adds widget based upon widget type the request and response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
 */
 func (a *Client) AddWidget(params *AddWidgetParams) (*AddWidgetOK, error) {
 	// TODO: Validate the params before sending
@@ -883,8 +941,8 @@ func (a *Client) CollectDeviceConfigSourceConfig(params *CollectDeviceConfigSour
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "collectDeviceConfigSourceConfig",
-		Method:             "GET",
-		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/collectNow",
+		Method:             "POST",
+		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -956,64 +1014,6 @@ func (a *Client) DeleteAlertRuleByID(params *DeleteAlertRuleByIDParams) (*Delete
 		return nil, err
 	}
 	return result.(*DeleteAlertRuleByIDOK), nil
-
-}
-
-/*
-DeleteAPITokenByID deletes api token
-*/
-func (a *Client) DeleteAPITokenByID(params *DeleteAPITokenByIDParams) (*DeleteAPITokenByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteAPITokenByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteApiTokenById",
-		Method:             "DELETE",
-		PathPattern:        "/setting/admins/{adminId}/apitokens/{apitokenId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteAPITokenByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*DeleteAPITokenByIDOK), nil
-
-}
-
-/*
-DeleteAppliesToFunctionByID deletes applies to function
-*/
-func (a *Client) DeleteAppliesToFunctionByID(params *DeleteAppliesToFunctionByIDParams) (*DeleteAppliesToFunctionByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteAppliesToFunctionByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteAppliesToFunctionById",
-		Method:             "DELETE",
-		PathPattern:        "/setting/functions/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteAppliesToFunctionByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*DeleteAppliesToFunctionByIDOK), nil
 
 }
 
@@ -1250,35 +1250,6 @@ func (a *Client) DeleteDeviceGroupByID(params *DeleteDeviceGroupByIDParams) (*De
 }
 
 /*
-DeleteDeviceGroupClusterAlertConfByID deletes cluster alert configuration
-*/
-func (a *Client) DeleteDeviceGroupClusterAlertConfByID(params *DeleteDeviceGroupClusterAlertConfByIDParams) (*DeleteDeviceGroupClusterAlertConfByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteDeviceGroupClusterAlertConfByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteDeviceGroupClusterAlertConfById",
-		Method:             "DELETE",
-		PathPattern:        "/device/groups/{deviceGroupId}/clusterAlertConf/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteDeviceGroupClusterAlertConfByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*DeleteDeviceGroupClusterAlertConfByIDOK), nil
-
-}
-
-/*
 DeleteDeviceGroupPropertyByName deletes device group property
 */
 func (a *Client) DeleteDeviceGroupPropertyByName(params *DeleteDeviceGroupPropertyByNameParams) (*DeleteDeviceGroupPropertyByNameOK, error) {
@@ -1333,122 +1304,6 @@ func (a *Client) DeleteDevicePropertyByName(params *DeleteDevicePropertyByNamePa
 		return nil, err
 	}
 	return result.(*DeleteDevicePropertyByNameOK), nil
-
-}
-
-/*
-DeleteEscalationChainByID deletes escalation chain
-*/
-func (a *Client) DeleteEscalationChainByID(params *DeleteEscalationChainByIDParams) (*DeleteEscalationChainByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteEscalationChainByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteEscalationChainById",
-		Method:             "DELETE",
-		PathPattern:        "/setting/alert/chains/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteEscalationChainByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*DeleteEscalationChainByIDOK), nil
-
-}
-
-/*
-DeleteNetscanByID deletes a netscan
-*/
-func (a *Client) DeleteNetscanByID(params *DeleteNetscanByIDParams) (*DeleteNetscanByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteNetscanByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteNetscanById",
-		Method:             "DELETE",
-		PathPattern:        "/setting/netscans/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteNetscanByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*DeleteNetscanByIDOK), nil
-
-}
-
-/*
-DeleteOpsNoteByID deletes opsnote
-*/
-func (a *Client) DeleteOpsNoteByID(params *DeleteOpsNoteByIDParams) (*DeleteOpsNoteByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteOpsNoteByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteOpsNoteById",
-		Method:             "DELETE",
-		PathPattern:        "/setting/opsnotes/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteOpsNoteByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*DeleteOpsNoteByIDOK), nil
-
-}
-
-/*
-DeleteRecipientGroupByID deletes recipient group
-*/
-func (a *Client) DeleteRecipientGroupByID(params *DeleteRecipientGroupByIDParams) (*DeleteRecipientGroupByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewDeleteRecipientGroupByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteRecipientGroupById",
-		Method:             "DELETE",
-		PathPattern:        "/setting/recipientgroups/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &DeleteRecipientGroupByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*DeleteRecipientGroupByIDOK), nil
 
 }
 
@@ -1681,35 +1536,6 @@ func (a *Client) ExecuteDebugCommand(params *ExecuteDebugCommandParams) (*Execut
 		return nil, err
 	}
 	return result.(*ExecuteDebugCommandOK), nil
-
-}
-
-/*
-FetchDeviceInstancesData fetches device instances data
-*/
-func (a *Client) FetchDeviceInstancesData(params *FetchDeviceInstancesDataParams) (*FetchDeviceInstancesDataOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewFetchDeviceInstancesDataParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "fetchDeviceInstancesData",
-		Method:             "POST",
-		PathPattern:        "/device/instances/datafetch",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &FetchDeviceInstancesDataReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*FetchDeviceInstancesDataOK), nil
 
 }
 
@@ -2004,7 +1830,7 @@ func (a *Client) GetAllSDTListByDeviceID(params *GetAllSDTListByDeviceIDParams) 
 }
 
 /*
-GetAllSDTListByWebsiteGroupID gets a list of s d ts for a website group
+GetAllSDTListByWebsiteGroupID gets a list of s d ts for a website group response may contain extra fields depending upon the type of SDT
 */
 func (a *Client) GetAllSDTListByWebsiteGroupID(params *GetAllSDTListByWebsiteGroupIDParams) (*GetAllSDTListByWebsiteGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2178,35 +2004,6 @@ func (a *Client) GetAssociatedDeviceListByDataSourceID(params *GetAssociatedDevi
 }
 
 /*
-GetAuditLogByID gets audit log by id
-*/
-func (a *Client) GetAuditLogByID(params *GetAuditLogByIDParams) (*GetAuditLogByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetAuditLogByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getAuditLogById",
-		Method:             "GET",
-		PathPattern:        "/setting/accesslogs/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetAuditLogByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetAuditLogByIDOK), nil
-
-}
-
-/*
 GetAuditLogList gets audit logs
 */
 func (a *Client) GetAuditLogList(params *GetAuditLogListParams) (*GetAuditLogListOK, error) {
@@ -2261,6 +2058,35 @@ func (a *Client) GetAwsExternalID(params *GetAwsExternalIDParams) (*GetAwsExtern
 		return nil, err
 	}
 	return result.(*GetAwsExternalIDOK), nil
+
+}
+
+/*
+GetCollectorByHostName gets collector id for host name
+*/
+func (a *Client) GetCollectorByHostName(params *GetCollectorByHostNameParams) (*GetCollectorByHostNameOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetCollectorByHostNameParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getCollectorByHostName",
+		Method:             "GET",
+		PathPattern:        "/setting/collector/collectors/getCollectorByHostName",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetCollectorByHostNameReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetCollectorByHostNameOK), nil
 
 }
 
@@ -2555,35 +2381,6 @@ func (a *Client) GetDashboardList(params *GetDashboardListParams) (*GetDashboard
 }
 
 /*
-GetDataSourceOverviewGraphByID gets datasource overview graph by id
-*/
-func (a *Client) GetDataSourceOverviewGraphByID(params *GetDataSourceOverviewGraphByIDParams) (*GetDataSourceOverviewGraphByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetDataSourceOverviewGraphByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getDataSourceOverviewGraphById",
-		Method:             "GET",
-		PathPattern:        "/setting/datasources/{dsId}/ographs/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetDataSourceOverviewGraphByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetDataSourceOverviewGraphByIDOK), nil
-
-}
-
-/*
 GetDataSourceOverviewGraphList gets datasource overview graph list
 */
 func (a *Client) GetDataSourceOverviewGraphList(params *GetDataSourceOverviewGraphListParams) (*GetDataSourceOverviewGraphListOK, error) {
@@ -2671,7 +2468,7 @@ func (a *Client) GetDatasourceList(params *GetDatasourceListParams) (*GetDatasou
 }
 
 /*
-GetDebugCommandResult gets the result of a collector debug command
+GetDebugCommandResult gets the result of a collector debug command using session Id
 */
 func (a *Client) GetDebugCommandResult(params *GetDebugCommandResultParams) (*GetDebugCommandResultOK, error) {
 	// TODO: Validate the params before sending
@@ -2725,35 +2522,6 @@ func (a *Client) GetDeviceByID(params *GetDeviceByIDParams) (*GetDeviceByIDOK, e
 		return nil, err
 	}
 	return result.(*GetDeviceByIDOK), nil
-
-}
-
-/*
-GetDeviceConfigSourceConfigByID gets a config for a device
-*/
-func (a *Client) GetDeviceConfigSourceConfigByID(params *GetDeviceConfigSourceConfigByIDParams) (*GetDeviceConfigSourceConfigByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetDeviceConfigSourceConfigByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getDeviceConfigSourceConfigById",
-		Method:             "GET",
-		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetDeviceConfigSourceConfigByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetDeviceConfigSourceConfigByIDOK), nil
 
 }
 
@@ -2845,35 +2613,6 @@ func (a *Client) GetDeviceDatasourceDataByID(params *GetDeviceDatasourceDataByID
 }
 
 /*
-GetDeviceDatasourceInstanceAlertSettingByID gets device instance alert setting
-*/
-func (a *Client) GetDeviceDatasourceInstanceAlertSettingByID(params *GetDeviceDatasourceInstanceAlertSettingByIDParams) (*GetDeviceDatasourceInstanceAlertSettingByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetDeviceDatasourceInstanceAlertSettingByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getDeviceDatasourceInstanceAlertSettingById",
-		Method:             "GET",
-		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetDeviceDatasourceInstanceAlertSettingByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetDeviceDatasourceInstanceAlertSettingByIDOK), nil
-
-}
-
-/*
 GetDeviceDatasourceInstanceAlertSettingListOfDSI gets a list of alert settings for a device datasource instance
 */
 func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDSI(params *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) (*GetDeviceDatasourceInstanceAlertSettingListOfDSIOK, error) {
@@ -2899,35 +2638,6 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDSI(params *GetDev
 		return nil, err
 	}
 	return result.(*GetDeviceDatasourceInstanceAlertSettingListOfDSIOK), nil
-
-}
-
-/*
-GetDeviceDatasourceInstanceAlertSettingListOfDevice gets a list of alert settings for a device
-*/
-func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDevice(params *GetDeviceDatasourceInstanceAlertSettingListOfDeviceParams) (*GetDeviceDatasourceInstanceAlertSettingListOfDeviceOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetDeviceDatasourceInstanceAlertSettingListOfDeviceParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getDeviceDatasourceInstanceAlertSettingListOfDevice",
-		Method:             "GET",
-		PathPattern:        "/device/devices/{deviceId}/alertsettings",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetDeviceDatasourceInstanceAlertSettingListOfDeviceReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetDeviceDatasourceInstanceAlertSettingListOfDeviceOK), nil
 
 }
 
@@ -3015,35 +2725,6 @@ func (a *Client) GetDeviceDatasourceInstanceGraphData(params *GetDeviceDatasourc
 		return nil, err
 	}
 	return result.(*GetDeviceDatasourceInstanceGraphDataOK), nil
-
-}
-
-/*
-GetDeviceDatasourceInstanceGroupByID gets device datasource instance group
-*/
-func (a *Client) GetDeviceDatasourceInstanceGroupByID(params *GetDeviceDatasourceInstanceGroupByIDParams) (*GetDeviceDatasourceInstanceGroupByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetDeviceDatasourceInstanceGroupByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getDeviceDatasourceInstanceGroupById",
-		Method:             "GET",
-		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetDeviceDatasourceInstanceGroupByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetDeviceDatasourceInstanceGroupByIDOK), nil
 
 }
 
@@ -3218,64 +2899,6 @@ func (a *Client) GetDeviceGroupByID(params *GetDeviceGroupByIDParams) (*GetDevic
 		return nil, err
 	}
 	return result.(*GetDeviceGroupByIDOK), nil
-
-}
-
-/*
-GetDeviceGroupClusterAlertConfByID gets cluster alert configuration by id
-*/
-func (a *Client) GetDeviceGroupClusterAlertConfByID(params *GetDeviceGroupClusterAlertConfByIDParams) (*GetDeviceGroupClusterAlertConfByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetDeviceGroupClusterAlertConfByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getDeviceGroupClusterAlertConfById",
-		Method:             "GET",
-		PathPattern:        "/device/groups/{deviceGroupId}/clusterAlertConf/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetDeviceGroupClusterAlertConfByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetDeviceGroupClusterAlertConfByIDOK), nil
-
-}
-
-/*
-GetDeviceGroupClusterAlertConfList gets a list of cluster alert configurations for a device group
-*/
-func (a *Client) GetDeviceGroupClusterAlertConfList(params *GetDeviceGroupClusterAlertConfListParams) (*GetDeviceGroupClusterAlertConfListOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetDeviceGroupClusterAlertConfListParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getDeviceGroupClusterAlertConfList",
-		Method:             "GET",
-		PathPattern:        "/device/groups/{deviceGroupId}/clusterAlertConf",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetDeviceGroupClusterAlertConfListReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetDeviceGroupClusterAlertConfListOK), nil
 
 }
 
@@ -3773,7 +3396,7 @@ func (a *Client) GetImmediateDeviceListByDeviceGroupID(params *GetImmediateDevic
 }
 
 /*
-GetImmediateWebsiteListByWebsiteGroupID gets a list of websites for a group
+GetImmediateWebsiteListByWebsiteGroupID gets a list of websites for a group response may contain extra fields depending upon the type of check ping check pipe web check being added
 */
 func (a *Client) GetImmediateWebsiteListByWebsiteGroupID(params *GetImmediateWebsiteListByWebsiteGroupIDParams) (*GetImmediateWebsiteListByWebsiteGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3798,6 +3421,35 @@ func (a *Client) GetImmediateWebsiteListByWebsiteGroupID(params *GetImmediateWeb
 		return nil, err
 	}
 	return result.(*GetImmediateWebsiteListByWebsiteGroupIDOK), nil
+
+}
+
+/*
+GetIntegrationAuditLogs gets integration audit logs list
+*/
+func (a *Client) GetIntegrationAuditLogs(params *GetIntegrationAuditLogsParams) (*GetIntegrationAuditLogsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetIntegrationAuditLogsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getIntegrationAuditLogs",
+		Method:             "GET",
+		PathPattern:        "/setting/integrations/auditlogs",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetIntegrationAuditLogsReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetIntegrationAuditLogsOK), nil
 
 }
 
@@ -3831,36 +3483,7 @@ func (a *Client) GetMetricsUsage(params *GetMetricsUsageParams) (*GetMetricsUsag
 }
 
 /*
-GetNetflowEndpointList gets netflow endpoint list
-*/
-func (a *Client) GetNetflowEndpointList(params *GetNetflowEndpointListParams) (*GetNetflowEndpointListOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetNetflowEndpointListParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getNetflowEndpointList",
-		Method:             "GET",
-		PathPattern:        "/device/devices/{id}/endpoints",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetNetflowEndpointListReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetNetflowEndpointListOK), nil
-
-}
-
-/*
-GetNetflowFlowList gets netflow flow list
+GetNetflowFlowList gets netflow flows
 */
 func (a *Client) GetNetflowFlowList(params *GetNetflowFlowListParams) (*GetNetflowFlowListOK, error) {
 	// TODO: Validate the params before sending
@@ -3885,35 +3508,6 @@ func (a *Client) GetNetflowFlowList(params *GetNetflowFlowListParams) (*GetNetfl
 		return nil, err
 	}
 	return result.(*GetNetflowFlowListOK), nil
-
-}
-
-/*
-GetNetflowPortList gets netflow port list
-*/
-func (a *Client) GetNetflowPortList(params *GetNetflowPortListParams) (*GetNetflowPortListOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetNetflowPortListParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getNetflowPortList",
-		Method:             "GET",
-		PathPattern:        "/device/devices/{id}/ports",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetNetflowPortListReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetNetflowPortListOK), nil
 
 }
 
@@ -3972,35 +3566,6 @@ func (a *Client) GetNetscanList(params *GetNetscanListParams) (*GetNetscanListOK
 		return nil, err
 	}
 	return result.(*GetNetscanListOK), nil
-
-}
-
-/*
-GetOpsNoteByID gets opsnote by id
-*/
-func (a *Client) GetOpsNoteByID(params *GetOpsNoteByIDParams) (*GetOpsNoteByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetOpsNoteByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getOpsNoteById",
-		Method:             "GET",
-		PathPattern:        "/setting/opsnotes/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetOpsNoteByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetOpsNoteByIDOK), nil
 
 }
 
@@ -4266,7 +3831,7 @@ func (a *Client) GetRoleList(params *GetRoleListParams) (*GetRoleListOK, error) 
 }
 
 /*
-GetSDTByID gets SDT by id
+GetSDTByID gets SDT by id response may contain extra fields depending upon the type of SDT of given id
 */
 func (a *Client) GetSDTByID(params *GetSDTByIDParams) (*GetSDTByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4382,36 +3947,7 @@ func (a *Client) GetSDTHistoryByDeviceID(params *GetSDTHistoryByDeviceIDParams) 
 }
 
 /*
-GetSDTHistoryByWebsiteGroupID gets SDT history for the website group
-*/
-func (a *Client) GetSDTHistoryByWebsiteGroupID(params *GetSDTHistoryByWebsiteGroupIDParams) (*GetSDTHistoryByWebsiteGroupIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetSDTHistoryByWebsiteGroupIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getSDTHistoryByWebsiteGroupId",
-		Method:             "GET",
-		PathPattern:        "/website/groups/{id}/historysdts",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetSDTHistoryByWebsiteGroupIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetSDTHistoryByWebsiteGroupIDOK), nil
-
-}
-
-/*
-GetSDTHistoryByWebsiteID gets SDT history for the website
+GetSDTHistoryByWebsiteID gets SDT history for the website response may contain extra fields depending upon the type of SDT
 */
 func (a *Client) GetSDTHistoryByWebsiteID(params *GetSDTHistoryByWebsiteIDParams) (*GetSDTHistoryByWebsiteIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4875,7 +4411,7 @@ func (a *Client) GetWebsiteSDTListByWebsiteID(params *GetWebsiteSDTListByWebsite
 }
 
 /*
-GetWidgetByID gets widget by id
+GetWidgetByID gets widget by id based upon widget type the response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
 */
 func (a *Client) GetWidgetByID(params *GetWidgetByIDParams) (*GetWidgetByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4904,7 +4440,7 @@ func (a *Client) GetWidgetByID(params *GetWidgetByIDParams) (*GetWidgetByIDOK, e
 }
 
 /*
-GetWidgetDataByID gets widget data
+GetWidgetDataByID gets widget data based upon widget type the response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
 */
 func (a *Client) GetWidgetDataByID(params *GetWidgetDataByIDParams) (*GetWidgetDataByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4933,7 +4469,7 @@ func (a *Client) GetWidgetDataByID(params *GetWidgetDataByIDParams) (*GetWidgetD
 }
 
 /*
-GetWidgetList gets widget list
+GetWidgetList gets widget list based upon widget type the response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
 */
 func (a *Client) GetWidgetList(params *GetWidgetListParams) (*GetWidgetListOK, error) {
 	// TODO: Validate the params before sending
@@ -4987,151 +4523,6 @@ func (a *Client) GetWidgetListByDashboardID(params *GetWidgetListByDashboardIDPa
 		return nil, err
 	}
 	return result.(*GetWidgetListByDashboardIDOK), nil
-
-}
-
-/*
-ImportBatchJob imports batch job via xml
-*/
-func (a *Client) ImportBatchJob(params *ImportBatchJobParams) (*ImportBatchJobOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewImportBatchJobParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "importBatchJob",
-		Method:             "POST",
-		PathPattern:        "/setting/batchjobs/importxml",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ImportBatchJobReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*ImportBatchJobOK), nil
-
-}
-
-/*
-ImportConfigSource imports config source via xml
-*/
-func (a *Client) ImportConfigSource(params *ImportConfigSourceParams) (*ImportConfigSourceOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewImportConfigSourceParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "importConfigSource",
-		Method:             "POST",
-		PathPattern:        "/setting/configsources/importxml",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ImportConfigSourceReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*ImportConfigSourceOK), nil
-
-}
-
-/*
-ImportDNSMapping imports DNS mapping via c s v
-*/
-func (a *Client) ImportDNSMapping(params *ImportDNSMappingParams) (*ImportDNSMappingOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewImportDNSMappingParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "importDNSMapping",
-		Method:             "POST",
-		PathPattern:        "/setting/dnsmappings",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ImportDNSMappingReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*ImportDNSMappingOK), nil
-
-}
-
-/*
-ImportDataSource imports datasource via xml
-*/
-func (a *Client) ImportDataSource(params *ImportDataSourceParams) (*ImportDataSourceOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewImportDataSourceParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "importDataSource",
-		Method:             "POST",
-		PathPattern:        "/setting/datasources/importxml",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ImportDataSourceReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*ImportDataSourceOK), nil
-
-}
-
-/*
-ImportEventSource imports eventsource via xml
-*/
-func (a *Client) ImportEventSource(params *ImportEventSourceParams) (*ImportEventSourceOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewImportEventSourceParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "importEventSource",
-		Method:             "POST",
-		PathPattern:        "/setting/eventsources/importxml",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"multipart/form-data"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ImportEventSourceReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*ImportEventSourceOK), nil
 
 }
 
@@ -5190,35 +4581,6 @@ func (a *Client) PatchAlertRuleByID(params *PatchAlertRuleByIDParams) (*PatchAle
 		return nil, err
 	}
 	return result.(*PatchAlertRuleByIDOK), nil
-
-}
-
-/*
-PatchAPITokenByAdminID updates api tokens for a user
-*/
-func (a *Client) PatchAPITokenByAdminID(params *PatchAPITokenByAdminIDParams) (*PatchAPITokenByAdminIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPatchAPITokenByAdminIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "patchApiTokenByAdminId",
-		Method:             "PATCH",
-		PathPattern:        "/setting/admins/{adminId}/apitokens/{apitokenId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PatchAPITokenByAdminIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*PatchAPITokenByAdminIDOK), nil
 
 }
 
@@ -5459,35 +4821,6 @@ func (a *Client) PatchDeviceDatasourceInstanceByID(params *PatchDeviceDatasource
 }
 
 /*
-PatchDeviceDatasourceInstanceGroupByID updates device datasource instance group
-*/
-func (a *Client) PatchDeviceDatasourceInstanceGroupByID(params *PatchDeviceDatasourceInstanceGroupByIDParams) (*PatchDeviceDatasourceInstanceGroupByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPatchDeviceDatasourceInstanceGroupByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "patchDeviceDatasourceInstanceGroupById",
-		Method:             "PATCH",
-		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PatchDeviceDatasourceInstanceGroupByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*PatchDeviceDatasourceInstanceGroupByIDOK), nil
-
-}
-
-/*
 PatchDeviceGroupByID updates device group
 */
 func (a *Client) PatchDeviceGroupByID(params *PatchDeviceGroupByIDParams) (*PatchDeviceGroupByIDOK, error) {
@@ -5513,35 +4846,6 @@ func (a *Client) PatchDeviceGroupByID(params *PatchDeviceGroupByIDParams) (*Patc
 		return nil, err
 	}
 	return result.(*PatchDeviceGroupByIDOK), nil
-
-}
-
-/*
-PatchDeviceGroupClusterAlertConfByID updates cluster alert configuration
-*/
-func (a *Client) PatchDeviceGroupClusterAlertConfByID(params *PatchDeviceGroupClusterAlertConfByIDParams) (*PatchDeviceGroupClusterAlertConfByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPatchDeviceGroupClusterAlertConfByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "patchDeviceGroupClusterAlertConfById",
-		Method:             "PATCH",
-		PathPattern:        "/device/groups/{deviceGroupId}/clusterAlertConf/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PatchDeviceGroupClusterAlertConfByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*PatchDeviceGroupClusterAlertConfByIDOK), nil
 
 }
 
@@ -5691,64 +4995,6 @@ func (a *Client) PatchEscalationChainByID(params *PatchEscalationChainByIDParams
 }
 
 /*
-PatchNetscan updates a netscan
-*/
-func (a *Client) PatchNetscan(params *PatchNetscanParams) (*PatchNetscanOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPatchNetscanParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "patchNetscan",
-		Method:             "PATCH",
-		PathPattern:        "/setting/netscans/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PatchNetscanReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*PatchNetscanOK), nil
-
-}
-
-/*
-PatchOpsNoteByID updates opsnote
-*/
-func (a *Client) PatchOpsNoteByID(params *PatchOpsNoteByIDParams) (*PatchOpsNoteByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewPatchOpsNoteByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "patchOpsNoteById",
-		Method:             "PATCH",
-		PathPattern:        "/setting/opsnotes/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &PatchOpsNoteByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*PatchOpsNoteByIDOK), nil
-
-}
-
-/*
 PatchRecipientGroupByID updates recipient group
 */
 func (a *Client) PatchRecipientGroupByID(params *PatchRecipientGroupByIDParams) (*PatchRecipientGroupByIDOK, error) {
@@ -5865,7 +5111,7 @@ func (a *Client) PatchRoleByID(params *PatchRoleByIDParams) (*PatchRoleByIDOK, e
 }
 
 /*
-PatchSDTByID updates SDT
+PatchSDTByID updates SDT response may contain extra fields depending upon the type of SDT being updated
 */
 func (a *Client) PatchSDTByID(params *PatchSDTByIDParams) (*PatchSDTByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -5952,7 +5198,7 @@ func (a *Client) PatchWebsiteGroupByID(params *PatchWebsiteGroupByIDParams) (*Pa
 }
 
 /*
-PatchWidgetByID updates widget
+PatchWidgetByID updates widget based upon widget type the request and response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
 */
 func (a *Client) PatchWidgetByID(params *PatchWidgetByIDParams) (*PatchWidgetByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -6064,35 +5310,6 @@ func (a *Client) UpdateAlertRuleByID(params *UpdateAlertRuleByIDParams) (*Update
 		return nil, err
 	}
 	return result.(*UpdateAlertRuleByIDOK), nil
-
-}
-
-/*
-UpdateAPITokenByAdminID updates api tokens for a user
-*/
-func (a *Client) UpdateAPITokenByAdminID(params *UpdateAPITokenByAdminIDParams) (*UpdateAPITokenByAdminIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateAPITokenByAdminIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateApiTokenByAdminId",
-		Method:             "PUT",
-		PathPattern:        "/setting/admins/{adminId}/apitokens/{apitokenId}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateAPITokenByAdminIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*UpdateAPITokenByAdminIDOK), nil
 
 }
 
@@ -6333,35 +5550,6 @@ func (a *Client) UpdateDeviceDatasourceInstanceByID(params *UpdateDeviceDatasour
 }
 
 /*
-UpdateDeviceDatasourceInstanceGroupByID updates device datasource instance group
-*/
-func (a *Client) UpdateDeviceDatasourceInstanceGroupByID(params *UpdateDeviceDatasourceInstanceGroupByIDParams) (*UpdateDeviceDatasourceInstanceGroupByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateDeviceDatasourceInstanceGroupByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateDeviceDatasourceInstanceGroupById",
-		Method:             "PUT",
-		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateDeviceDatasourceInstanceGroupByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*UpdateDeviceDatasourceInstanceGroupByIDOK), nil
-
-}
-
-/*
 UpdateDeviceGroupByID updates device group
 */
 func (a *Client) UpdateDeviceGroupByID(params *UpdateDeviceGroupByIDParams) (*UpdateDeviceGroupByIDOK, error) {
@@ -6387,35 +5575,6 @@ func (a *Client) UpdateDeviceGroupByID(params *UpdateDeviceGroupByIDParams) (*Up
 		return nil, err
 	}
 	return result.(*UpdateDeviceGroupByIDOK), nil
-
-}
-
-/*
-UpdateDeviceGroupClusterAlertConfByID updates cluster alert configuration
-*/
-func (a *Client) UpdateDeviceGroupClusterAlertConfByID(params *UpdateDeviceGroupClusterAlertConfByIDParams) (*UpdateDeviceGroupClusterAlertConfByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateDeviceGroupClusterAlertConfByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateDeviceGroupClusterAlertConfById",
-		Method:             "PUT",
-		PathPattern:        "/device/groups/{deviceGroupId}/clusterAlertConf/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateDeviceGroupClusterAlertConfByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*UpdateDeviceGroupClusterAlertConfByIDOK), nil
 
 }
 
@@ -6565,64 +5724,6 @@ func (a *Client) UpdateEscalationChainByID(params *UpdateEscalationChainByIDPara
 }
 
 /*
-UpdateNetscan updates a netscan
-*/
-func (a *Client) UpdateNetscan(params *UpdateNetscanParams) (*UpdateNetscanOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateNetscanParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateNetscan",
-		Method:             "PUT",
-		PathPattern:        "/setting/netscans/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateNetscanReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*UpdateNetscanOK), nil
-
-}
-
-/*
-UpdateOpsNoteByID updates opsnote
-*/
-func (a *Client) UpdateOpsNoteByID(params *UpdateOpsNoteByIDParams) (*UpdateOpsNoteByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewUpdateOpsNoteByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateOpsNoteById",
-		Method:             "PUT",
-		PathPattern:        "/setting/opsnotes/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &UpdateOpsNoteByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*UpdateOpsNoteByIDOK), nil
-
-}
-
-/*
 UpdateRecipientGroupByID updates recipient group
 */
 func (a *Client) UpdateRecipientGroupByID(params *UpdateRecipientGroupByIDParams) (*UpdateRecipientGroupByIDOK, error) {
@@ -6739,7 +5840,7 @@ func (a *Client) UpdateRoleByID(params *UpdateRoleByIDParams) (*UpdateRoleByIDOK
 }
 
 /*
-UpdateSDTByID updates SDT
+UpdateSDTByID updates SDT response may contain extra fields depending upon the type of SDT being updated
 */
 func (a *Client) UpdateSDTByID(params *UpdateSDTByIDParams) (*UpdateSDTByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -6826,7 +5927,7 @@ func (a *Client) UpdateWebsiteGroupByID(params *UpdateWebsiteGroupByIDParams) (*
 }
 
 /*
-UpdateWidgetByID updates widget
+UpdateWidgetByID updates widget based upon widget type the request and response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
 */
 func (a *Client) UpdateWidgetByID(params *UpdateWidgetByIDParams) (*UpdateWidgetByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -6851,6 +5952,35 @@ func (a *Client) UpdateWidgetByID(params *UpdateWidgetByIDParams) (*UpdateWidget
 		return nil, err
 	}
 	return result.(*UpdateWidgetByIDOK), nil
+
+}
+
+/*
+ValidateCollectorConfig validates collector configuration
+*/
+func (a *Client) ValidateCollectorConfig(params *ValidateCollectorConfigParams) (*ValidateCollectorConfigOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewValidateCollectorConfigParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "validateCollectorConfig",
+		Method:             "POST",
+		PathPattern:        "/setting/collector/collectors/lmotel/validateconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ValidateCollectorConfigReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ValidateCollectorConfigOK), nil
 
 }
 

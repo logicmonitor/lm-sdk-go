@@ -50,17 +50,17 @@ type SDT interface {
 	EndDateTimeOnLocal() string
 	SetEndDateTimeOnLocal(string)
 
-	// 1 | 2....| 24 The hour that the SDT ends for a repeating SDT
+	// The values can be 1 | 2....| 24. Specifies the hour that the SDT ends for a repeating SDT
 	// Example: 5
 	EndHour() int32
 	SetEndHour(int32)
 
-	// 1 | 2....| 60 The minute of the hour that the SDT ends for a repeating SDT
+	// The values can be 1 | 2....| 60. Specifies the minute of the hour that the SDT ends for a repeating SDT
 	// Example: 18
 	EndMinute() int32
 	SetEndMinute(int32)
 
-	// 1 | 2....| 24 The hour that the SDT will start for a repeating SDT (daily, weekly, or monthly)
+	// The values can be 1 | 2....| 24. Specifies the hour that the SDT will start for a repeating SDT (daily, weekly, or monthly)
 	// Example: 3
 	Hour() int32
 	SetHour(int32)
@@ -70,23 +70,23 @@ type SDT interface {
 	ID() string
 	SetID(string)
 
-	// true: the SDT is currently actice
+	// The values can be true|false, where true: the SDT is currently active
 	// false: the SDT is currently inactive
 	// Read Only: true
 	IsEffective() *bool
 	SetIsEffective(*bool)
 
-	// 1 | 2....| 60 The minute of the hour that the SDT should begin for a repeating SDT
+	// The values can be 1 | 2....| 60. Specifies the minute of the hour that the SDT should begin for a repeating SDT
 	// Example: 6
 	Minute() int32
 	SetMinute(int32)
 
-	// 1 | 2....| 31 The day of the month that the SDT will be active for a monthly SDT
+	// The values can be 1 | 2....| 31. Specifies the day of the month that the SDT will be active for a monthly SDT
 	// Example: 7
 	MonthDay() int32
 	SetMonthDay(int32)
 
-	// sdt type
+	// The type of sdt. The values can be oneTime|weekly|monthly|daily|monthlyByWeek
 	// Example: oneTime
 	SDTType() string
 	SetSDTType(string)
@@ -106,18 +106,18 @@ type SDT interface {
 	Timezone() string
 	SetTimezone(string)
 
-	// The type resource that this SDT is for: ServiceSDT | CollectorSDT | DeviceDataSourceInstanceSDT | DeviceBatchJobSDT | DeviceClusterAlertDefSDT | DeviceDataSourceInstanceGroupSDT | DeviceDataSourceSDT | DeviceEventSourceSDT | DeviceGroupSDT | DeviceSDT | WebsiteCheckpointSDT | WebsiteGroupSDT | WebsiteSDT
-	// Example: DeviceGroupSDT
+	// The type of resource that this SDT is for. The values can be CollectorSDT | DeviceDataSourceInstanceSDT | DeviceBatchJobSDT | DeviceClusterAlertDefSDT | DeviceDataSourceInstanceGroupSDT | DeviceDataSourceSDT | DeviceEventSourceSDT | ResourceGroupSDT | ResourceSDT | WebsiteCheckpointSDT | WebsiteGroupSDT | WebsiteSDT | DeviceLogPipeLineResourceSDT
+	// Example: ResourceGroupSDT
 	// Required: true
 	Type() string
 	SetType(string)
 
-	// week day
+	// The week day of sdt. The values can be SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY
 	// Example: Sunday
 	WeekDay() string
 	SetWeekDay(string)
 
-	// The weel of the month that the SDT will be active for a monthly SDT
+	// The week of the month that the SDT will be active for a monthly SDT
 	// Example: 1
 	WeekOfMonth() string
 	SetWeekOfMonth(string)
@@ -443,26 +443,26 @@ func unmarshalSDT(data []byte, consumer runtime.Consumer) (SDT, error) {
 			return nil, err
 		}
 		return &result, nil
-	case "DeviceGroupSDT":
-		var result DeviceGroupSDT
+	case "DeviceLogPipeLineResourceSDT":
+		var result DeviceLogPipeLineResourceSDT
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "DeviceSDT":
-		var result DeviceSDT
+	case "ResourceGroupSDT":
+		var result ResourceGroupSDT
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "ResourceSDT":
+		var result ResourceSDT
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
 	case "SDT":
 		var result sdt
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "ServiceSDT":
-		var result ServiceSDT
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

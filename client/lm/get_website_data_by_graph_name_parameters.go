@@ -60,6 +60,11 @@ func NewGetWebsiteDataByGraphNameParamsWithHTTPClient(client *http.Client) *GetW
 */
 type GetWebsiteDataByGraphNameParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// End.
 	//
 	// Format: int64
@@ -99,14 +104,17 @@ func (o *GetWebsiteDataByGraphNameParams) WithDefaults() *GetWebsiteDataByGraphN
 // All values with no default are reset to their zero value.
 func (o *GetWebsiteDataByGraphNameParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		endDefault = int64(0)
 
 		startDefault = int64(0)
 	)
 
 	val := GetWebsiteDataByGraphNameParams{
-		End:   &endDefault,
-		Start: &startDefault,
+		UserAgent: &userAgentDefault,
+		End:       &endDefault,
+		Start:     &startDefault,
 	}
 
 	val.timeout = o.timeout
@@ -146,6 +154,17 @@ func (o *GetWebsiteDataByGraphNameParams) WithHTTPClient(client *http.Client) *G
 // SetHTTPClient adds the HTTPClient to the get website data by graph name params
 func (o *GetWebsiteDataByGraphNameParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get website data by graph name params
+func (o *GetWebsiteDataByGraphNameParams) WithUserAgent(userAgent *string) *GetWebsiteDataByGraphNameParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get website data by graph name params
+func (o *GetWebsiteDataByGraphNameParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithEnd adds the end to the get website data by graph name params
@@ -210,6 +229,14 @@ func (o *GetWebsiteDataByGraphNameParams) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.End != nil {
 

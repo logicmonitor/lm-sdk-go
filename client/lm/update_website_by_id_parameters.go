@@ -62,6 +62,11 @@ func NewUpdateWebsiteByIDParamsWithHTTPClient(client *http.Client) *UpdateWebsit
 */
 type UpdateWebsiteByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body models.Website
 
@@ -93,11 +98,14 @@ func (o *UpdateWebsiteByIDParams) WithDefaults() *UpdateWebsiteByIDParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateWebsiteByIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		opTypeDefault = string("refresh")
 	)
 
 	val := UpdateWebsiteByIDParams{
-		OpType: &opTypeDefault,
+		UserAgent: &userAgentDefault,
+		OpType:    &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -137,6 +145,17 @@ func (o *UpdateWebsiteByIDParams) WithHTTPClient(client *http.Client) *UpdateWeb
 // SetHTTPClient adds the HTTPClient to the update website by Id params
 func (o *UpdateWebsiteByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the update website by Id params
+func (o *UpdateWebsiteByIDParams) WithUserAgent(userAgent *string) *UpdateWebsiteByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the update website by Id params
+func (o *UpdateWebsiteByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the update website by Id params
@@ -179,6 +198,14 @@ func (o *UpdateWebsiteByIDParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

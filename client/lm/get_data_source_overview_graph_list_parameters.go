@@ -60,6 +60,11 @@ func NewGetDataSourceOverviewGraphListParamsWithHTTPClient(client *http.Client) 
 */
 type GetDataSourceOverviewGraphListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// DsID.
 	//
 	// Format: int32
@@ -100,14 +105,17 @@ func (o *GetDataSourceOverviewGraphListParams) WithDefaults() *GetDataSourceOver
 // All values with no default are reset to their zero value.
 func (o *GetDataSourceOverviewGraphListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDataSourceOverviewGraphListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -147,6 +155,17 @@ func (o *GetDataSourceOverviewGraphListParams) WithHTTPClient(client *http.Clien
 // SetHTTPClient adds the HTTPClient to the get data source overview graph list params
 func (o *GetDataSourceOverviewGraphListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get data source overview graph list params
+func (o *GetDataSourceOverviewGraphListParams) WithUserAgent(userAgent *string) *GetDataSourceOverviewGraphListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get data source overview graph list params
+func (o *GetDataSourceOverviewGraphListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithDsID adds the dsID to the get data source overview graph list params
@@ -211,6 +230,14 @@ func (o *GetDataSourceOverviewGraphListParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	// path param dsId
 	if err := r.SetPathParam("dsId", swag.FormatInt32(o.DsID)); err != nil {

@@ -60,6 +60,11 @@ func NewDeleteWebsiteGroupByIDParamsWithHTTPClient(client *http.Client) *DeleteW
 */
 type DeleteWebsiteGroupByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// DeleteChildren.
 	//
 	// Format: int32
@@ -88,10 +93,13 @@ func (o *DeleteWebsiteGroupByIDParams) WithDefaults() *DeleteWebsiteGroupByIDPar
 // All values with no default are reset to their zero value.
 func (o *DeleteWebsiteGroupByIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		deleteChildrenDefault = int32(0)
 	)
 
 	val := DeleteWebsiteGroupByIDParams{
+		UserAgent:      &userAgentDefault,
 		DeleteChildren: &deleteChildrenDefault,
 	}
 
@@ -134,6 +142,17 @@ func (o *DeleteWebsiteGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the delete website group by Id params
+func (o *DeleteWebsiteGroupByIDParams) WithUserAgent(userAgent *string) *DeleteWebsiteGroupByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the delete website group by Id params
+func (o *DeleteWebsiteGroupByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithDeleteChildren adds the deleteChildren to the delete website group by Id params
 func (o *DeleteWebsiteGroupByIDParams) WithDeleteChildren(deleteChildren *int32) *DeleteWebsiteGroupByIDParams {
 	o.SetDeleteChildren(deleteChildren)
@@ -163,6 +182,14 @@ func (o *DeleteWebsiteGroupByIDParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.DeleteChildren != nil {
 

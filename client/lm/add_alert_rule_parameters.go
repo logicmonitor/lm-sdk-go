@@ -61,6 +61,11 @@ func NewAddAlertRuleParamsWithHTTPClient(client *http.Client) *AddAlertRuleParam
 */
 type AddAlertRuleParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.AlertRule
 
@@ -81,7 +86,18 @@ func (o *AddAlertRuleParams) WithDefaults() *AddAlertRuleParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddAlertRuleParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := AddAlertRuleParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the add alert rule params
@@ -117,6 +133,17 @@ func (o *AddAlertRuleParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the add alert rule params
+func (o *AddAlertRuleParams) WithUserAgent(userAgent *string) *AddAlertRuleParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the add alert rule params
+func (o *AddAlertRuleParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the add alert rule params
 func (o *AddAlertRuleParams) WithBody(body *models.AlertRule) *AddAlertRuleParams {
 	o.SetBody(body)
@@ -135,6 +162,14 @@ func (o *AddAlertRuleParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

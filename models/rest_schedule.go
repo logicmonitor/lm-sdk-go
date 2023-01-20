@@ -33,7 +33,7 @@ type RestSchedule struct {
 	// Example: America/Los_Angeles
 	Timezone string `json:"timezone,omitempty"`
 
-	// The type of schedule. Possible values are manual (no schedule), hourly, daily, weekly, monthly
+	// The type of schedule. The values can be manual (no schedule)|hourly|daily|weekly|monthly
 	// Example: manual
 	Type string `json:"type,omitempty"`
 }

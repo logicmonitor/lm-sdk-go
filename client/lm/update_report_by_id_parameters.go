@@ -62,6 +62,11 @@ func NewUpdateReportByIDParamsWithHTTPClient(client *http.Client) *UpdateReportB
 */
 type UpdateReportByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body models.ReportBase
 
@@ -87,7 +92,18 @@ func (o *UpdateReportByIDParams) WithDefaults() *UpdateReportByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateReportByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := UpdateReportByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update report by Id params
@@ -123,6 +139,17 @@ func (o *UpdateReportByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the update report by Id params
+func (o *UpdateReportByIDParams) WithUserAgent(userAgent *string) *UpdateReportByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the update report by Id params
+func (o *UpdateReportByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the update report by Id params
 func (o *UpdateReportByIDParams) WithBody(body models.ReportBase) *UpdateReportByIDParams {
 	o.SetBody(body)
@@ -152,6 +179,14 @@ func (o *UpdateReportByIDParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

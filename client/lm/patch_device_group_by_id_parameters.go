@@ -62,6 +62,11 @@ func NewPatchDeviceGroupByIDParamsWithHTTPClient(client *http.Client) *PatchDevi
 */
 type PatchDeviceGroupByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.DeviceGroup
 
@@ -93,11 +98,14 @@ func (o *PatchDeviceGroupByIDParams) WithDefaults() *PatchDeviceGroupByIDParams 
 // All values with no default are reset to their zero value.
 func (o *PatchDeviceGroupByIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		opTypeDefault = string("refresh")
 	)
 
 	val := PatchDeviceGroupByIDParams{
-		OpType: &opTypeDefault,
+		UserAgent: &userAgentDefault,
+		OpType:    &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -137,6 +145,17 @@ func (o *PatchDeviceGroupByIDParams) WithHTTPClient(client *http.Client) *PatchD
 // SetHTTPClient adds the HTTPClient to the patch device group by Id params
 func (o *PatchDeviceGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the patch device group by Id params
+func (o *PatchDeviceGroupByIDParams) WithUserAgent(userAgent *string) *PatchDeviceGroupByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the patch device group by Id params
+func (o *PatchDeviceGroupByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the patch device group by Id params
@@ -179,6 +198,14 @@ func (o *PatchDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

@@ -60,6 +60,11 @@ func NewGetWidgetDataByIDParamsWithHTTPClient(client *http.Client) *GetWidgetDat
 */
 type GetWidgetDataByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// End.
 	//
 	// Format: int64
@@ -95,7 +100,18 @@ func (o *GetWidgetDataByIDParams) WithDefaults() *GetWidgetDataByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetWidgetDataByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := GetWidgetDataByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get widget data by Id params
@@ -129,6 +145,17 @@ func (o *GetWidgetDataByIDParams) WithHTTPClient(client *http.Client) *GetWidget
 // SetHTTPClient adds the HTTPClient to the get widget data by Id params
 func (o *GetWidgetDataByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get widget data by Id params
+func (o *GetWidgetDataByIDParams) WithUserAgent(userAgent *string) *GetWidgetDataByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get widget data by Id params
+func (o *GetWidgetDataByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithEnd adds the end to the get widget data by Id params
@@ -182,6 +209,14 @@ func (o *GetWidgetDataByIDParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.End != nil {
 

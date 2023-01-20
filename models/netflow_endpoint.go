@@ -6,7 +6,9 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -22,10 +24,6 @@ type NetflowEndpoint struct {
 	// IP
 	// Read Only: true
 	IP string `json:"IP,omitempty"`
-
-	// data type
-	// Read Only: true
-	DataType string `json:"dataType,omitempty"`
 
 	// dns
 	// Read Only: true
@@ -48,8 +46,149 @@ type NetflowEndpoint struct {
 	Usage float64 `json:"usage,omitempty"`
 }
 
+// DataType gets the data type of this subtype
+func (m *NetflowEndpoint) DataType() string {
+	return "endpoint"
+}
+
+// SetDataType sets the data type of this subtype
+func (m *NetflowEndpoint) SetDataType(val string) {
+}
+
+// UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
+func (m *NetflowEndpoint) UnmarshalJSON(raw []byte) error {
+	var data struct {
+
+		// IP
+		// Read Only: true
+		IP string `json:"IP,omitempty"`
+
+		// dns
+		// Read Only: true
+		DNS string `json:"dns,omitempty"`
+
+		// last seen
+		// Read Only: true
+		LastSeen int64 `json:"lastSeen,omitempty"`
+
+		// percent usage
+		// Read Only: true
+		PercentUsage float64 `json:"percentUsage,omitempty"`
+
+		// type
+		// Read Only: true
+		Type string `json:"type,omitempty"`
+
+		// usage
+		// Read Only: true
+		Usage float64 `json:"usage,omitempty"`
+	}
+	buf := bytes.NewBuffer(raw)
+	dec := json.NewDecoder(buf)
+	dec.UseNumber()
+
+	if err := dec.Decode(&data); err != nil {
+		return err
+	}
+
+	var base struct {
+		/* Just the base type fields. Used for unmashalling polymorphic types.*/
+
+		DataType string `json:"dataType,omitempty"`
+	}
+	buf = bytes.NewBuffer(raw)
+	dec = json.NewDecoder(buf)
+	dec.UseNumber()
+
+	if err := dec.Decode(&base); err != nil {
+		return err
+	}
+
+	var result NetflowEndpoint
+
+	if base.DataType != result.DataType() {
+		/* Not the type we're looking for. */
+		return errors.New(422, "invalid dataType value: %q", base.DataType)
+	}
+
+	result.IP = data.IP
+	result.DNS = data.DNS
+	result.LastSeen = data.LastSeen
+	result.PercentUsage = data.PercentUsage
+	result.Type = data.Type
+	result.Usage = data.Usage
+
+	*m = result
+
+	return nil
+}
+
+// MarshalJSON marshals this object with a polymorphic type to a JSON structure
+func (m NetflowEndpoint) MarshalJSON() ([]byte, error) {
+	var b1, b2, b3 []byte
+	var err error
+	b1, err = json.Marshal(struct {
+
+		// IP
+		// Read Only: true
+		IP string `json:"IP,omitempty"`
+
+		// dns
+		// Read Only: true
+		DNS string `json:"dns,omitempty"`
+
+		// last seen
+		// Read Only: true
+		LastSeen int64 `json:"lastSeen,omitempty"`
+
+		// percent usage
+		// Read Only: true
+		PercentUsage float64 `json:"percentUsage,omitempty"`
+
+		// type
+		// Read Only: true
+		Type string `json:"type,omitempty"`
+
+		// usage
+		// Read Only: true
+		Usage float64 `json:"usage,omitempty"`
+	}{
+
+		IP: m.IP,
+
+		DNS: m.DNS,
+
+		LastSeen: m.LastSeen,
+
+		PercentUsage: m.PercentUsage,
+
+		Type: m.Type,
+
+		Usage: m.Usage,
+	})
+	if err != nil {
+		return nil, err
+	}
+	b2, err = json.Marshal(struct {
+		DataType string `json:"dataType,omitempty"`
+	}{
+
+		DataType: m.DataType(),
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return swag.ConcatJSON(b1, b2, b3), nil
+}
+
 // Validate validates this netflow endpoint
 func (m *NetflowEndpoint) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
@@ -58,10 +197,6 @@ func (m *NetflowEndpoint) ContextValidate(ctx context.Context, formats strfmt.Re
 	var res []error
 
 	if err := m.contextValidateIP(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateDataType(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -91,18 +226,18 @@ func (m *NetflowEndpoint) ContextValidate(ctx context.Context, formats strfmt.Re
 	return nil
 }
 
-func (m *NetflowEndpoint) contextValidateIP(ctx context.Context, formats strfmt.Registry) error {
+func (m *NetflowEndpoint) contextValidateDataType(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "IP", "body", string(m.IP)); err != nil {
+	if err := validate.ReadOnly(ctx, "dataType", "body", string(m.DataType())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *NetflowEndpoint) contextValidateDataType(ctx context.Context, formats strfmt.Registry) error {
+func (m *NetflowEndpoint) contextValidateIP(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "dataType", "body", string(m.DataType)); err != nil {
+	if err := validate.ReadOnly(ctx, "IP", "body", string(m.IP)); err != nil {
 		return err
 	}
 

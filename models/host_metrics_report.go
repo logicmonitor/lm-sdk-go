@@ -51,6 +51,8 @@ type HostMetricsReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -71,6 +73,12 @@ type HostMetricsReport struct {
 	// host | group. The type of entities specified in the hostsVal field
 	// Required: true
 	HostsValType *string `json:"hostsValType"`
+
+	// true | false
+	// false: Scale the number using using default 1000
+	// true: Scale the number using 1024
+	// Required: true
+	IsBase1024 *bool `json:"isBase1024"`
 
 	// The datapoint or calculation on a datapoint that will be included in the report, where each datapoint/calculation is specified by three fields: dataSourceId, instances (glob is okay) and metric (no glob)
 	// Required: true
@@ -248,6 +256,16 @@ func (m *HostMetricsReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *HostMetricsReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *HostMetricsReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *HostMetricsReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -313,6 +331,12 @@ func (m *HostMetricsReport) UnmarshalJSON(raw []byte) error {
 		// host | group. The type of entities specified in the hostsVal field
 		// Required: true
 		HostsValType *string `json:"hostsValType"`
+
+		// true | false
+		// false: Scale the number using using default 1000
+		// true: Scale the number using 1024
+		// Required: true
+		IsBase1024 *bool `json:"isBase1024"`
 
 		// The datapoint or calculation on a datapoint that will be included in the report, where each datapoint/calculation is specified by three fields: dataSourceId, instances (glob is okay) and metric (no glob)
 		// Required: true
@@ -380,6 +404,8 @@ func (m *HostMetricsReport) UnmarshalJSON(raw []byte) error {
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
 
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
+
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
 		Schedule string `json:"schedule,omitempty"`
@@ -430,6 +456,8 @@ func (m *HostMetricsReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -446,6 +474,7 @@ func (m *HostMetricsReport) UnmarshalJSON(raw []byte) error {
 	result.DateRange = data.DateRange
 	result.HostsVal = data.HostsVal
 	result.HostsValType = data.HostsValType
+	result.IsBase1024 = data.IsBase1024
 	result.Metrics = data.Metrics
 	result.RowFormat = data.RowFormat
 	result.SortedBy = data.SortedBy
@@ -474,6 +503,12 @@ func (m HostMetricsReport) MarshalJSON() ([]byte, error) {
 		// host | group. The type of entities specified in the hostsVal field
 		// Required: true
 		HostsValType *string `json:"hostsValType"`
+
+		// true | false
+		// false: Scale the number using using default 1000
+		// true: Scale the number using 1024
+		// Required: true
+		IsBase1024 *bool `json:"isBase1024"`
 
 		// The datapoint or calculation on a datapoint that will be included in the report, where each datapoint/calculation is specified by three fields: dataSourceId, instances (glob is okay) and metric (no glob)
 		// Required: true
@@ -508,6 +543,8 @@ func (m HostMetricsReport) MarshalJSON() ([]byte, error) {
 		HostsVal: m.HostsVal,
 
 		HostsValType: m.HostsValType,
+
+		IsBase1024: m.IsBase1024,
 
 		Metrics: m.Metrics,
 
@@ -551,6 +588,8 @@ func (m HostMetricsReport) MarshalJSON() ([]byte, error) {
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
 
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
+
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
 		Schedule string `json:"schedule,omitempty"`
@@ -592,6 +631,8 @@ func (m HostMetricsReport) MarshalJSON() ([]byte, error) {
 
 		Recipients: m.Recipients(),
 
+		ReportLinkExpire: m.ReportLinkExpire(),
+
 		ReportLinkNum: m.ReportLinkNum(),
 
 		Schedule: m.Schedule(),
@@ -626,6 +667,10 @@ func (m *HostMetricsReport) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateHostsValType(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateIsBase1024(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -713,6 +758,15 @@ func (m *HostMetricsReport) validateColumns(formats strfmt.Registry) error {
 func (m *HostMetricsReport) validateHostsValType(formats strfmt.Registry) error {
 
 	if err := validate.Required("hostsValType", "body", m.HostsValType); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *HostMetricsReport) validateIsBase1024(formats strfmt.Registry) error {
+
+	if err := validate.Required("isBase1024", "body", m.IsBase1024); err != nil {
 		return err
 	}
 

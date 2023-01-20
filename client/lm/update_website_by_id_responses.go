@@ -9,8 +9,10 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 
 	"github.com/logicmonitor/lm-sdk-go/models"
 )
@@ -29,6 +31,12 @@ func (o *UpdateWebsiteByIDReader) ReadResponse(response runtime.ClientResponse, 
 			return nil, err
 		}
 		return result, nil
+	case 429:
+		result := NewUpdateWebsiteByIDTooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		result := NewUpdateWebsiteByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -69,6 +77,72 @@ func (o *UpdateWebsiteByIDOK) readResponse(response runtime.ClientResponse, cons
 		return err
 	}
 	o.Payload = payload
+
+	return nil
+}
+
+// NewUpdateWebsiteByIDTooManyRequests creates a UpdateWebsiteByIDTooManyRequests with default headers values
+func NewUpdateWebsiteByIDTooManyRequests() *UpdateWebsiteByIDTooManyRequests {
+	return &UpdateWebsiteByIDTooManyRequests{}
+}
+
+/* UpdateWebsiteByIDTooManyRequests describes a response with status code 429, with default header values.
+
+Too Many Requests
+*/
+type UpdateWebsiteByIDTooManyRequests struct {
+
+	/* Request limit per X-Rate-Limit-Window
+	 */
+	XRateLimitLimit int64
+
+	/* The number of requests left for the time window
+	 */
+	XRateLimitRemaining int64
+
+	/* The rolling time window length with the unit of second
+	 */
+	XRateLimitWindow int64
+}
+
+func (o *UpdateWebsiteByIDTooManyRequests) Error() string {
+	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteByIdTooManyRequests ", 429)
+}
+
+func (o *UpdateWebsiteByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header x-rate-limit-limit
+	hdrXRateLimitLimit := response.GetHeader("x-rate-limit-limit")
+
+	if hdrXRateLimitLimit != "" {
+		valxRateLimitLimit, err := swag.ConvertInt64(hdrXRateLimitLimit)
+		if err != nil {
+			return errors.InvalidType("x-rate-limit-limit", "header", "int64", hdrXRateLimitLimit)
+		}
+		o.XRateLimitLimit = valxRateLimitLimit
+	}
+
+	// hydrates response header x-rate-limit-remaining
+	hdrXRateLimitRemaining := response.GetHeader("x-rate-limit-remaining")
+
+	if hdrXRateLimitRemaining != "" {
+		valxRateLimitRemaining, err := swag.ConvertInt64(hdrXRateLimitRemaining)
+		if err != nil {
+			return errors.InvalidType("x-rate-limit-remaining", "header", "int64", hdrXRateLimitRemaining)
+		}
+		o.XRateLimitRemaining = valxRateLimitRemaining
+	}
+
+	// hydrates response header x-rate-limit-window
+	hdrXRateLimitWindow := response.GetHeader("x-rate-limit-window")
+
+	if hdrXRateLimitWindow != "" {
+		valxRateLimitWindow, err := swag.ConvertInt64(hdrXRateLimitWindow)
+		if err != nil {
+			return errors.InvalidType("x-rate-limit-window", "header", "int64", hdrXRateLimitWindow)
+		}
+		o.XRateLimitWindow = valxRateLimitWindow
+	}
 
 	return nil
 }

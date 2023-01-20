@@ -62,6 +62,11 @@ func NewPatchDeviceGroupPropertyByNameParamsWithHTTPClient(client *http.Client) 
 */
 type PatchDeviceGroupPropertyByNameParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.EntityProperty
 
@@ -93,7 +98,18 @@ func (o *PatchDeviceGroupPropertyByNameParams) WithDefaults() *PatchDeviceGroupP
 //
 // All values with no default are reset to their zero value.
 func (o *PatchDeviceGroupPropertyByNameParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := PatchDeviceGroupPropertyByNameParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the patch device group property by name params
@@ -127,6 +143,17 @@ func (o *PatchDeviceGroupPropertyByNameParams) WithHTTPClient(client *http.Clien
 // SetHTTPClient adds the HTTPClient to the patch device group property by name params
 func (o *PatchDeviceGroupPropertyByNameParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the patch device group property by name params
+func (o *PatchDeviceGroupPropertyByNameParams) WithUserAgent(userAgent *string) *PatchDeviceGroupPropertyByNameParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the patch device group property by name params
+func (o *PatchDeviceGroupPropertyByNameParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the patch device group property by name params
@@ -169,6 +196,14 @@ func (o *PatchDeviceGroupPropertyByNameParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

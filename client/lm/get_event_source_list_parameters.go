@@ -60,6 +60,11 @@ func NewGetEventSourceListParamsWithHTTPClient(client *http.Client) *GetEventSou
 */
 type GetEventSourceListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -100,6 +105,8 @@ func (o *GetEventSourceListParams) WithDefaults() *GetEventSourceListParams {
 // All values with no default are reset to their zero value.
 func (o *GetEventSourceListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		formatDefault = string("json")
 
 		offsetDefault = int32(0)
@@ -108,9 +115,10 @@ func (o *GetEventSourceListParams) SetDefaults() {
 	)
 
 	val := GetEventSourceListParams{
-		Format: &formatDefault,
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Format:    &formatDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,6 +158,17 @@ func (o *GetEventSourceListParams) WithHTTPClient(client *http.Client) *GetEvent
 // SetHTTPClient adds the HTTPClient to the get event source list params
 func (o *GetEventSourceListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get event source list params
+func (o *GetEventSourceListParams) WithUserAgent(userAgent *string) *GetEventSourceListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get event source list params
+func (o *GetEventSourceListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get event source list params
@@ -214,6 +233,14 @@ func (o *GetEventSourceListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

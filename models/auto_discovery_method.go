@@ -25,7 +25,8 @@ type AutoDiscoveryMethod interface {
 	runtime.Validatable
 	runtime.ContextValidatable
 
-	// name
+	// The auto discovery method name.
+	// The values can be ad_cim|ad_cloudwatch|ad_collector|ad_dummy|ad_ec2|ad_esx|ad_http|ad_ipmi|ad_jdbc|ad_jmx|ad_netapp|ad_pdh|ad_port|ad_script|ad_snmp|ad_wmi|ad_xen|ad_azurerediscache|ad_awsserviceregion|ad_awsec2reservedinstance|ad_awsec2reservedinstancecoverage|ad_awsecsservice|ad_awsec2scheduledevents|ad_azureserviceregion|ad_azuresubscription|ad_azurebackupjob|ad_azuresdk|ad_azurewebjob|ad_awsbillingreport|ad_awselasticache|ad_awsredshift|ad_azurebilling|ad_awslbtargetgroups|ad_gcpappengine|ad_gcpbilling|ad_awsvpntunnel|ad_gcpvpntunnel|ad_awsglobalwebacl|ad_gcplbbackendservice|ad_gcppubsubsubscription|ad_gcppubsubsnapshot|ad_azurereplicationjob|ad_azureexpressroutecircuitpeering|ad_awsapigatewaystage|ad_azureautomationaccountcertificate|ad_azurevngconnection|ad_azurewebappinstance|ad_azureappserviceenvironmentmultirolepool|ad_openmetrics|ad_awsmediaconnectoutput|ad_awsmediaconnectsource|ad_awswebaclwafv2|ad_saaso365sharepointsite|ad_awscognitoidentityproviders|ad_azureeabilling|ad_saaszoomplanusage|ad_saasstatus|ad_azuresynapse|ad_saasairbrake|ad_syntheticsselenium|ad_azurevirtualdesktopsessionhosts|ad_saaso365subscribedsku|ad_azuredimension|ad_azurecostmanagementdimensions|ad_saaso365servicehealth|ad_saaso365mailbox|ad_azurenetappvolumes|ad_azureloganalyticsworkspaces|ad_saaszoomstatus|ad_saassalesforcelicense|ad_saaszoomroom|ad_saaswebexlicenseusage|ad_azureloganalyticsreplicationjob|ad_paasjsonpath|ad_awsrabbitmqqueue
 	// Required: true
 	Name() string
 	SetName(string)
@@ -99,20 +100,284 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 			return nil, err
 		}
 		return &result, nil
+	case "AwsCognitoIdentityProvidersDiscoveryMethodV3":
+		var result AwsCognitoIdentityProvidersDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AwsGlobalWebACLDiscoveryMethodV3":
+		var result AwsGlobalWebACLDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AwsVpnTunnelDiscoveryMethodV3":
+		var result AwsVpnTunnelDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureActiveDirectoryAppSecretDiscoveryMethod":
+		var result AzureActiveDirectoryAppSecretDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureAppServiceEnvironmentMultiRolePoolDiscoverMethod":
+		var result AzureAppServiceEnvironmentMultiRolePoolDiscoverMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureAutomationAccountCertificateDiscoveryMethod":
+		var result AzureAutomationAccountCertificateDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureBackupJobDiscoveryMethod":
+		var result AzureBackupJobDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureBackupProtectedItemBackupJobDiscoveryMethod":
+		var result AzureBackupProtectedItemBackupJobDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureCostManagementDimensionsDiscoveryMethod":
+		var result AzureCostManagementDimensionsDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureCostManagementSubscriptionsDiscoveryMethod":
+		var result AzureCostManagementSubscriptionsDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureCostManagementTagsDiscoveryMethod":
+		var result AzureCostManagementTagsDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureDimensionDiscoveryMethod":
+		var result AzureDimensionDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureEABillingDiscoveryMethodV3":
+		var result AzureEABillingDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureExpressRouteCircuitPeeringDiscoveryMethod":
+		var result AzureExpressRouteCircuitPeeringDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureLogAnalyticsReplicationJobDiscoveryMethod":
+		var result AzureLogAnalyticsReplicationJobDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureLogAnalyticsWorkspacesDiscoveryMethod":
+		var result AzureLogAnalyticsWorkspacesDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureNetAppVolumesDiscoveryMethod":
+		var result AzureNetAppVolumesDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureRecoveryServiceRTODiscoveryMethod":
+		var result AzureRecoveryServiceRTODiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureReplicationJobDiscoveryMethod":
+		var result AzureReplicationJobDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureSynapseDiscoveryMethodV3":
+		var result AzureSynapseDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureVNGConnectionDiscoveryMethod":
+		var result AzureVNGConnectionDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureWebAppInstanceDiscoveryMethod":
+		var result AzureWebAppInstanceDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureWebJobDiscoveryMethod":
+		var result AzureWebJobDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "GcpAppEngineDiscoveryMethod":
 		var result GcpAppEngineDiscoveryMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "GcpBillingDiscoveryMethod":
-		var result GcpBillingDiscoveryMethod
+	case "GcpBillingBigQuerySourceDiscoveryMethodV3":
+		var result GcpBillingBigQuerySourceDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "GcpBillingDiscoveryMethodV3":
+		var result GcpBillingDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "GcpLBBackendServiceDiscoveryMethodV3":
+		var result GcpLBBackendServiceDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "GcpPubSubSnapshotDiscoveryMethodV3":
+		var result GcpPubSubSnapshotDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "GcpPubSubSubscriptionDiscoveryMethodV3":
+		var result GcpPubSubSubscriptionDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "GcpVpnTunnelDiscoveryMethodV3":
+		var result GcpVpnTunnelDiscoveryMethodV3
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
 	case "OpenMetricDiscoveryMethod":
 		var result OpenMetricDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "PaaSJsonPathDiscoveryMethod":
+		var result PaaSJSONPathDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RabbitMQQueueAutoDiscoveryMethod":
+		var result RabbitMQQueueAutoDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaaSO365SharePointSiteDiscoveryMethod":
+		var result SaaSO365SharePointSiteDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaaSSlackHealthDiscoveryMethod":
+		var result SaaSSlackHealthDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaaSWebexLicenseDiscoveryMethod":
+		var result SaaSWebexLicenseDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaaSZoomPlanUsageDiscoveryMethod":
+		var result SaaSZoomPlanUsageDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaaSZoomStatusDiscoveryMethod":
+		var result SaaSZoomStatusDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasAirbrakeDiscoveryMethod":
+		var result SaasAirbrakeDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasO365MailboxDiscoveryMethod":
+		var result SaasO365MailboxDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasO365ServiceHealthDiscoveryMethod":
+		var result SaasO365ServiceHealthDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasO365SkusDiscoveryMethod":
+		var result SaasO365SkusDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasSalesforceLicenseDiscoveryMethod":
+		var result SaasSalesforceLicenseDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasStatusDiscoveryMethod":
+		var result SaasStatusDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasZoomRoomDiscoveryMethod":
+		var result SaasZoomRoomDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SyntheticsSeleniumAutoDiscoveryMethodV3":
+		var result SyntheticsSeleniumAutoDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "ad_awsapigatewaystage":
+		var result AwsAPIGatewayStageDiscoveryMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -159,6 +424,18 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 			return nil, err
 		}
 		return &result, nil
+	case "ad_awsmediaconnectoutput":
+		var result AwsMediaConnectOutputDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "ad_awsmediaconnectsource":
+		var result AwsMediaConnectSourceDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "ad_awsredshift":
 		var result AwsRedShiftDiscoveryMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -167,6 +444,12 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 		return &result, nil
 	case "ad_awsserviceregion":
 		var result AwsServiceRegionDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "ad_awswebaclwafv2":
+		var result AwsWebACLWafV2DiscoveryMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -191,6 +474,12 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 		return &result, nil
 	case "ad_azuresubscription":
 		var result AzureSubscriptionDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "ad_azurevirtualdesktopsessionhosts":
+		var result AzureVirtualDesktopSessionHostsDiscoveryMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -251,12 +540,6 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 		return &result, nil
 	case "ad_jmx":
 		var result JMXAutoDiscoveryMethod
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "ad_mongo":
-		var result MongoAutoDiscoveryMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

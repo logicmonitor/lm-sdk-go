@@ -19,26 +19,26 @@ import (
 // swagger:model SiteMonitorCheckpoint
 type SiteMonitorCheckpoint struct {
 
-	// description
+	// Check point description
 	// Required: true
 	Description *string `json:"description"`
 
-	// display prio
+	// The display priority of the SiteMonitor Checkpoint in your LogicMonitor portal
 	DisplayPrio int32 `json:"displayPrio,omitempty"`
 
-	// geo info
+	// The geographical information (location) of the SiteMonitor Checkpoint
 	// Read Only: true
 	GeoInfo string `json:"geoInfo,omitempty"`
 
-	// id
+	// The Id of the SiteMonitor Checkpoint
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
-	// is enabled in root
+	// Checks if sitemonitor enabled in root service group
 	// Read Only: true
 	IsEnabledInRoot *bool `json:"isEnabledInRoot,omitempty"`
 
-	// name
+	// The SiteMonitor checkPoint name
 	// Read Only: true
 	Name string `json:"name,omitempty"`
 }

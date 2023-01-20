@@ -51,6 +51,8 @@ type WebsiteOverviewReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -234,6 +236,16 @@ func (m *WebsiteOverviewReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *WebsiteOverviewReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *WebsiteOverviewReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *WebsiteOverviewReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -352,6 +364,8 @@ func (m *WebsiteOverviewReport) UnmarshalJSON(raw []byte) error {
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
 
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
+
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
 		Schedule string `json:"schedule,omitempty"`
@@ -401,6 +415,8 @@ func (m *WebsiteOverviewReport) UnmarshalJSON(raw []byte) error {
 	result.nameField = base.Name
 
 	result.recipientsField = base.Recipients
+
+	result.reportLinkExpireField = base.ReportLinkExpire
 
 	result.reportLinkNumField = base.ReportLinkNum
 
@@ -506,6 +522,8 @@ func (m WebsiteOverviewReport) MarshalJSON() ([]byte, error) {
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
 
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
+
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
 		Schedule string `json:"schedule,omitempty"`
@@ -546,6 +564,8 @@ func (m WebsiteOverviewReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 

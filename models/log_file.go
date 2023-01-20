@@ -25,8 +25,11 @@ type LogFile struct {
 	// The regex or plain text to look for in the file and not trigger alert if found
 	Excludes []string `json:"excludes,omitempty"`
 
-	// matches
+	// The regex or plain text to look for in the file and trigger alert if found
 	Matches []*MatchPattern `json:"matches,omitempty"`
+
+	// origin Id
+	OriginID string `json:"originId,omitempty"`
 
 	// The path of the log file to monitor
 	Path string `json:"path,omitempty"`

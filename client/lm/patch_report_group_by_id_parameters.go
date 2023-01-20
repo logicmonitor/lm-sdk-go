@@ -62,6 +62,11 @@ func NewPatchReportGroupByIDParamsWithHTTPClient(client *http.Client) *PatchRepo
 */
 type PatchReportGroupByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.ReportGroup
 
@@ -87,7 +92,18 @@ func (o *PatchReportGroupByIDParams) WithDefaults() *PatchReportGroupByIDParams 
 //
 // All values with no default are reset to their zero value.
 func (o *PatchReportGroupByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := PatchReportGroupByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the patch report group by Id params
@@ -123,6 +139,17 @@ func (o *PatchReportGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the patch report group by Id params
+func (o *PatchReportGroupByIDParams) WithUserAgent(userAgent *string) *PatchReportGroupByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the patch report group by Id params
+func (o *PatchReportGroupByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the patch report group by Id params
 func (o *PatchReportGroupByIDParams) WithBody(body *models.ReportGroup) *PatchReportGroupByIDParams {
 	o.SetBody(body)
@@ -152,6 +179,14 @@ func (o *PatchReportGroupByIDParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

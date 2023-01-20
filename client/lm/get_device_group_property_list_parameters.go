@@ -60,6 +60,11 @@ func NewGetDeviceGroupPropertyListParamsWithHTTPClient(client *http.Client) *Get
 */
 type GetDeviceGroupPropertyListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -103,14 +108,17 @@ func (o *GetDeviceGroupPropertyListParams) WithDefaults() *GetDeviceGroupPropert
 // All values with no default are reset to their zero value.
 func (o *GetDeviceGroupPropertyListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceGroupPropertyListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,6 +158,17 @@ func (o *GetDeviceGroupPropertyListParams) WithHTTPClient(client *http.Client) *
 // SetHTTPClient adds the HTTPClient to the get device group property list params
 func (o *GetDeviceGroupPropertyListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get device group property list params
+func (o *GetDeviceGroupPropertyListParams) WithUserAgent(userAgent *string) *GetDeviceGroupPropertyListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get device group property list params
+func (o *GetDeviceGroupPropertyListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get device group property list params
@@ -214,6 +233,14 @@ func (o *GetDeviceGroupPropertyListParams) WriteToRequest(r runtime.ClientReques
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

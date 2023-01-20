@@ -9,8 +9,10 @@ import (
 	"fmt"
 	"io"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 
 	"github.com/logicmonitor/lm-sdk-go/models"
 )
@@ -29,6 +31,12 @@ func (o *CollectDeviceConfigSourceConfigReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
+	case 429:
+		result := NewCollectDeviceConfigSourceConfigTooManyRequests()
+		if err := result.readResponse(response, consumer, o.formats); err != nil {
+			return nil, err
+		}
+		return nil, result
 	default:
 		result := NewCollectDeviceConfigSourceConfigDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -55,7 +63,7 @@ type CollectDeviceConfigSourceConfigOK struct {
 }
 
 func (o *CollectDeviceConfigSourceConfigOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/collectNow][%d] collectDeviceConfigSourceConfigOK  %+v", 200, o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfigOK  %+v", 200, o.Payload)
 }
 func (o *CollectDeviceConfigSourceConfigOK) GetPayload() interface{} {
 	return o.Payload
@@ -66,6 +74,72 @@ func (o *CollectDeviceConfigSourceConfigOK) readResponse(response runtime.Client
 	// response payload
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
+	}
+
+	return nil
+}
+
+// NewCollectDeviceConfigSourceConfigTooManyRequests creates a CollectDeviceConfigSourceConfigTooManyRequests with default headers values
+func NewCollectDeviceConfigSourceConfigTooManyRequests() *CollectDeviceConfigSourceConfigTooManyRequests {
+	return &CollectDeviceConfigSourceConfigTooManyRequests{}
+}
+
+/* CollectDeviceConfigSourceConfigTooManyRequests describes a response with status code 429, with default header values.
+
+Too Many Requests
+*/
+type CollectDeviceConfigSourceConfigTooManyRequests struct {
+
+	/* Request limit per X-Rate-Limit-Window
+	 */
+	XRateLimitLimit int64
+
+	/* The number of requests left for the time window
+	 */
+	XRateLimitRemaining int64
+
+	/* The rolling time window length with the unit of second
+	 */
+	XRateLimitWindow int64
+}
+
+func (o *CollectDeviceConfigSourceConfigTooManyRequests) Error() string {
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfigTooManyRequests ", 429)
+}
+
+func (o *CollectDeviceConfigSourceConfigTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+
+	// hydrates response header x-rate-limit-limit
+	hdrXRateLimitLimit := response.GetHeader("x-rate-limit-limit")
+
+	if hdrXRateLimitLimit != "" {
+		valxRateLimitLimit, err := swag.ConvertInt64(hdrXRateLimitLimit)
+		if err != nil {
+			return errors.InvalidType("x-rate-limit-limit", "header", "int64", hdrXRateLimitLimit)
+		}
+		o.XRateLimitLimit = valxRateLimitLimit
+	}
+
+	// hydrates response header x-rate-limit-remaining
+	hdrXRateLimitRemaining := response.GetHeader("x-rate-limit-remaining")
+
+	if hdrXRateLimitRemaining != "" {
+		valxRateLimitRemaining, err := swag.ConvertInt64(hdrXRateLimitRemaining)
+		if err != nil {
+			return errors.InvalidType("x-rate-limit-remaining", "header", "int64", hdrXRateLimitRemaining)
+		}
+		o.XRateLimitRemaining = valxRateLimitRemaining
+	}
+
+	// hydrates response header x-rate-limit-window
+	hdrXRateLimitWindow := response.GetHeader("x-rate-limit-window")
+
+	if hdrXRateLimitWindow != "" {
+		valxRateLimitWindow, err := swag.ConvertInt64(hdrXRateLimitWindow)
+		if err != nil {
+			return errors.InvalidType("x-rate-limit-window", "header", "int64", hdrXRateLimitWindow)
+		}
+		o.XRateLimitWindow = valxRateLimitWindow
 	}
 
 	return nil
@@ -94,7 +168,7 @@ func (o *CollectDeviceConfigSourceConfigDefault) Code() int {
 }
 
 func (o *CollectDeviceConfigSourceConfigDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/collectNow][%d] collectDeviceConfigSourceConfig default  %+v", o._statusCode, o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfig default  %+v", o._statusCode, o.Payload)
 }
 func (o *CollectDeviceConfigSourceConfigDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload

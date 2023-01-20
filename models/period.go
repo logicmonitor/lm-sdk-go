@@ -19,19 +19,19 @@ import (
 // swagger:model Period
 type Period struct {
 
-	// end minutes
+	// The end minute of this period
 	// Required: true
 	EndMinutes *int32 `json:"endMinutes"`
 
-	// start minutes
+	// The start minute of this period
 	// Required: true
 	StartMinutes *int32 `json:"startMinutes"`
 
-	// timezone
+	// The timezone for this period
 	// Required: true
 	Timezone *string `json:"timezone"`
 
-	// week days
+	// The list of week day of this period
 	// Required: true
 	WeekDays []int32 `json:"weekDays"`
 }

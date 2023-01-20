@@ -102,6 +102,11 @@ type ReportBase interface {
 	Recipients() []*ReportRecipient
 	SetRecipients([]*ReportRecipient)
 
+	// The report link Expire. Allowable values are:High Flexibility,High Security
+	// Example: High Flexibility
+	ReportLinkExpire() string
+	SetReportLinkExpire(string)
+
 	// The number of links associated with the report, where each link corresponds to a generated report
 	// Read Only: true
 	ReportLinkNum() int32
@@ -162,6 +167,8 @@ type reportBase struct {
 	nameField *string
 
 	recipientsField []*ReportRecipient
+
+	reportLinkExpireField string
 
 	reportLinkNumField int32
 
@@ -322,6 +329,16 @@ func (m *reportBase) Recipients() []*ReportRecipient {
 // SetRecipients sets the recipients of this polymorphic type
 func (m *reportBase) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
+}
+
+// ReportLinkExpire gets the report link expire of this polymorphic type
+func (m *reportBase) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this polymorphic type
+func (m *reportBase) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
 }
 
 // ReportLinkNum gets the report link num of this polymorphic type

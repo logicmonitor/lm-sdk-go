@@ -60,6 +60,11 @@ func NewDeleteAlertRuleByIDParamsWithHTTPClient(client *http.Client) *DeleteAler
 */
 type DeleteAlertRuleByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// ID.
 	//
 	// Format: int32
@@ -82,7 +87,18 @@ func (o *DeleteAlertRuleByIDParams) WithDefaults() *DeleteAlertRuleByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteAlertRuleByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := DeleteAlertRuleByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the delete alert rule by Id params
@@ -118,6 +134,17 @@ func (o *DeleteAlertRuleByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the delete alert rule by Id params
+func (o *DeleteAlertRuleByIDParams) WithUserAgent(userAgent *string) *DeleteAlertRuleByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the delete alert rule by Id params
+func (o *DeleteAlertRuleByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithID adds the id to the delete alert rule by Id params
 func (o *DeleteAlertRuleByIDParams) WithID(id int32) *DeleteAlertRuleByIDParams {
 	o.SetID(id)
@@ -136,6 +163,14 @@ func (o *DeleteAlertRuleByIDParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {

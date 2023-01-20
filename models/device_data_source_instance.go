@@ -23,6 +23,10 @@ type DeviceDataSourceInstance struct {
 	// Any instance level auto properties assigned to the instance
 	AutoProperties []*NameAndValue `json:"autoProperties,omitempty"`
 
+	// The id of the collector the datasource instance is associated with
+	// Read Only: true
+	CollectorID int32 `json:"collectorId,omitempty"`
+
 	// Any instance level properties assigned to the instance
 	CustomProperties []*NameAndValue `json:"customProperties,omitempty"`
 
@@ -70,6 +74,10 @@ type DeviceDataSourceInstance struct {
 	// The Id of the datasource instance
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
+
+	// Whether or not UNC Monitoring enabled for device
+	// Example: true
+	IsUNCInstance bool `json:"isUNCInstance,omitempty"`
 
 	// Whether or not Active Discovery is enabled, and thus whether or not the instance description is editable
 	// Example: true
@@ -224,6 +232,10 @@ func (m *DeviceDataSourceInstance) ContextValidate(ctx context.Context, formats 
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateCollectorID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateCustomProperties(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -283,6 +295,15 @@ func (m *DeviceDataSourceInstance) contextValidateAutoProperties(ctx context.Con
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstance) contextValidateCollectorID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "collectorId", "body", int32(m.CollectorID)); err != nil {
+		return err
 	}
 
 	return nil

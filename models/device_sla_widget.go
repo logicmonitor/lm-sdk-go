@@ -44,11 +44,17 @@ type DeviceSLAWidget struct {
 	// The services that should be used to compute the SLA, where each service should include serviceGroup and service
 	BottomLabel string `json:"bottomLabel,omitempty"`
 
+	// Calculation method: 0 = percent all resources available, 1 = average of all SLA metrics
+	CalculationMethod int32 `json:"calculationMethod,omitempty"`
+
 	// The threshold of color changes
 	ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
 
 	// The days that SLA should be computed for, separated by commas. 1=Sunday, 2=Monday, 3=Tuesday, 4=Wednesday, 5=Thursday, 6=Friday, 7=Saturday.
 	DaysInWeek string `json:"daysInWeek,omitempty"`
+
+	// Whether a progress bar is displayed in list mode
+	DisplayPercentageBar bool `json:"displayPercentageBar,omitempty"`
 
 	// Whether or not selected metrics should be combined into one number (displayType:0) or should be displayed individually, up to four metrics (displayType:1)
 	DisplayType int32 `json:"displayType,omitempty"`
@@ -186,11 +192,17 @@ func (m *DeviceSLAWidget) UnmarshalJSON(raw []byte) error {
 		// The services that should be used to compute the SLA, where each service should include serviceGroup and service
 		BottomLabel string `json:"bottomLabel,omitempty"`
 
+		// Calculation method: 0 = percent all resources available, 1 = average of all SLA metrics
+		CalculationMethod int32 `json:"calculationMethod,omitempty"`
+
 		// The threshold of color changes
 		ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
 
 		// The days that SLA should be computed for, separated by commas. 1=Sunday, 2=Monday, 3=Tuesday, 4=Wednesday, 5=Thursday, 6=Friday, 7=Saturday.
 		DaysInWeek string `json:"daysInWeek,omitempty"`
+
+		// Whether a progress bar is displayed in list mode
+		DisplayPercentageBar bool `json:"displayPercentageBar,omitempty"`
 
 		// Whether or not selected metrics should be combined into one number (displayType:0) or should be displayed individually, up to four metrics (displayType:1)
 		DisplayType int32 `json:"displayType,omitempty"`
@@ -279,8 +291,10 @@ func (m *DeviceSLAWidget) UnmarshalJSON(raw []byte) error {
 	result.userPermissionField = base.UserPermission
 
 	result.BottomLabel = data.BottomLabel
+	result.CalculationMethod = data.CalculationMethod
 	result.ColorThresholds = data.ColorThresholds
 	result.DaysInWeek = data.DaysInWeek
+	result.DisplayPercentageBar = data.DisplayPercentageBar
 	result.DisplayType = data.DisplayType
 	result.Metrics = data.Metrics
 	result.PeriodInOneDay = data.PeriodInOneDay
@@ -302,11 +316,17 @@ func (m DeviceSLAWidget) MarshalJSON() ([]byte, error) {
 		// The services that should be used to compute the SLA, where each service should include serviceGroup and service
 		BottomLabel string `json:"bottomLabel,omitempty"`
 
+		// Calculation method: 0 = percent all resources available, 1 = average of all SLA metrics
+		CalculationMethod int32 `json:"calculationMethod,omitempty"`
+
 		// The threshold of color changes
 		ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
 
 		// The days that SLA should be computed for, separated by commas. 1=Sunday, 2=Monday, 3=Tuesday, 4=Wednesday, 5=Thursday, 6=Friday, 7=Saturday.
 		DaysInWeek string `json:"daysInWeek,omitempty"`
+
+		// Whether a progress bar is displayed in list mode
+		DisplayPercentageBar bool `json:"displayPercentageBar,omitempty"`
 
 		// Whether or not selected metrics should be combined into one number (displayType:0) or should be displayed individually, up to four metrics (displayType:1)
 		DisplayType int32 `json:"displayType,omitempty"`
@@ -330,9 +350,13 @@ func (m DeviceSLAWidget) MarshalJSON() ([]byte, error) {
 
 		BottomLabel: m.BottomLabel,
 
+		CalculationMethod: m.CalculationMethod,
+
 		ColorThresholds: m.ColorThresholds,
 
 		DaysInWeek: m.DaysInWeek,
+
+		DisplayPercentageBar: m.DisplayPercentageBar,
 
 		DisplayType: m.DisplayType,
 

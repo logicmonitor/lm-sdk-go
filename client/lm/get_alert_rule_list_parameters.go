@@ -60,6 +60,11 @@ func NewGetAlertRuleListParamsWithHTTPClient(client *http.Client) *GetAlertRuleL
 */
 type GetAlertRuleListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -95,14 +100,17 @@ func (o *GetAlertRuleListParams) WithDefaults() *GetAlertRuleListParams {
 // All values with no default are reset to their zero value.
 func (o *GetAlertRuleListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAlertRuleListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,6 +150,17 @@ func (o *GetAlertRuleListParams) WithHTTPClient(client *http.Client) *GetAlertRu
 // SetHTTPClient adds the HTTPClient to the get alert rule list params
 func (o *GetAlertRuleListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get alert rule list params
+func (o *GetAlertRuleListParams) WithUserAgent(userAgent *string) *GetAlertRuleListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get alert rule list params
+func (o *GetAlertRuleListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get alert rule list params
@@ -195,6 +214,14 @@ func (o *GetAlertRuleListParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

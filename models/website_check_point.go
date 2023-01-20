@@ -19,15 +19,15 @@ import (
 // swagger:model WebsiteCheckPoint
 type WebsiteCheckPoint struct {
 
-	// geo info
+	// The geographical information (location) of the SiteMonitor Checkpoint
 	// Read Only: true
 	GeoInfo string `json:"geoInfo,omitempty"`
 
-	// id
+	// The Id of the SiteMonitor Checkpoint
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
-	// smg Id
+	// The sitemonitor group id
 	// Read Only: true
 	SmgID int32 `json:"smgId,omitempty"`
 }

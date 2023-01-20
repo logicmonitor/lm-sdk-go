@@ -60,6 +60,11 @@ func NewGetDeviceGroupSDTListParamsWithHTTPClient(client *http.Client) *GetDevic
 */
 type GetDeviceGroupSDTListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -100,14 +105,17 @@ func (o *GetDeviceGroupSDTListParams) WithDefaults() *GetDeviceGroupSDTListParam
 // All values with no default are reset to their zero value.
 func (o *GetDeviceGroupSDTListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceGroupSDTListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -147,6 +155,17 @@ func (o *GetDeviceGroupSDTListParams) WithHTTPClient(client *http.Client) *GetDe
 // SetHTTPClient adds the HTTPClient to the get device group SDT list params
 func (o *GetDeviceGroupSDTListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get device group SDT list params
+func (o *GetDeviceGroupSDTListParams) WithUserAgent(userAgent *string) *GetDeviceGroupSDTListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get device group SDT list params
+func (o *GetDeviceGroupSDTListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get device group SDT list params
@@ -211,6 +230,14 @@ func (o *GetDeviceGroupSDTListParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

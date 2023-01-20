@@ -36,7 +36,7 @@ type EventSource interface {
 	AlertEffectiveIval() *int32
 	SetAlertEffectiveIval(*int32)
 
-	// The default alert level: warn | error |critical
+	// The default alert level. The values can be warn | error | critical | doMapping
 	AlertLevel() string
 	SetAlertLevel(string)
 
@@ -48,11 +48,21 @@ type EventSource interface {
 	AppliesTo() string
 	SetAppliesTo(string)
 
+	// The auditVersion of the EventSource
+	// Read Only: true
+	AuditVersion() int64
+	SetAuditVersion(int64)
+
+	// The metadata checksum for the LMModule content
+	// Read Only: true
+	Checksum() string
+	SetChecksum(string)
+
 	// Whether or not the alert should clear after acknowledgement
 	ClearAfterAck() bool
 	SetClearAfterAck(bool)
 
-	// The EventSource type: logfile | snmptrap | syslog | wineventlog | scriptevent
+	// The EventSource collector type. The values can be wineventlog | syslog | snmptrap | echo | logfile | scriptevent | awsrss | azurerss | azureadvisor | gcpatom | awsrdspievent | azureresourcehealthevent | azureemergingissue | azureloganalyticsworkspacesevent | awstrustedadvisor | awshealth | ipmievent
 	Collector() string
 	SetCollector(string)
 
@@ -69,17 +79,26 @@ type EventSource interface {
 	SetGroup(string)
 
 	// The ID of the LMModule
-	// Required: true
 	// Read Only: true
 	ID() int32
 	SetID(int32)
+
+	// The local module's IntegrationMetadata, readable for troubleshooting purposes
+	// Read Only: true
+	InstallationMetadata() *IntegrationMetadata
+	SetInstallationMetadata(*IntegrationMetadata)
+
+	// The lineageId the LMModule belongs to
+	// Read Only: true
+	LineageID() string
+	SetLineageID(string)
 
 	// The name of the EventSource
 	// Required: true
 	Name() *string
 	SetName(*string)
 
-	// Whether or not duplicate alerts should be suppressed at eventsource level
+	// Whether or not duplicate alerts have to be suppressed
 	SuppressDuplicatesES() bool
 	SetSuppressDuplicatesES(bool)
 
@@ -111,6 +130,10 @@ type eventSource struct {
 
 	appliesToField string
 
+	auditVersionField int64
+
+	checksumField string
+
 	clearAfterAckField bool
 
 	collectorField string
@@ -122,6 +145,10 @@ type eventSource struct {
 	groupField string
 
 	idField int32
+
+	installationMetadataField *IntegrationMetadata
+
+	lineageIdField string
 
 	nameField *string
 
@@ -184,6 +211,26 @@ func (m *eventSource) SetAppliesTo(val string) {
 	m.appliesToField = val
 }
 
+// AuditVersion gets the audit version of this polymorphic type
+func (m *eventSource) AuditVersion() int64 {
+	return m.auditVersionField
+}
+
+// SetAuditVersion sets the audit version of this polymorphic type
+func (m *eventSource) SetAuditVersion(val int64) {
+	m.auditVersionField = val
+}
+
+// Checksum gets the checksum of this polymorphic type
+func (m *eventSource) Checksum() string {
+	return m.checksumField
+}
+
+// SetChecksum sets the checksum of this polymorphic type
+func (m *eventSource) SetChecksum(val string) {
+	m.checksumField = val
+}
+
 // ClearAfterAck gets the clear after ack of this polymorphic type
 func (m *eventSource) ClearAfterAck() bool {
 	return m.clearAfterAckField
@@ -241,6 +288,26 @@ func (m *eventSource) ID() int32 {
 // SetID sets the id of this polymorphic type
 func (m *eventSource) SetID(val int32) {
 	m.idField = val
+}
+
+// InstallationMetadata gets the installation metadata of this polymorphic type
+func (m *eventSource) InstallationMetadata() *IntegrationMetadata {
+	return m.installationMetadataField
+}
+
+// SetInstallationMetadata sets the installation metadata of this polymorphic type
+func (m *eventSource) SetInstallationMetadata(val *IntegrationMetadata) {
+	m.installationMetadataField = val
+}
+
+// LineageID gets the lineage Id of this polymorphic type
+func (m *eventSource) LineageID() string {
+	return m.lineageIdField
+}
+
+// SetLineageID sets the lineage Id of this polymorphic type
+func (m *eventSource) SetLineageID(val string) {
+	m.lineageIdField = val
 }
 
 // Name gets the name of this polymorphic type
@@ -339,14 +406,56 @@ func unmarshalEventSource(data []byte, consumer runtime.Consumer) (EventSource, 
 
 	// The value of collector is used to determine which type to create and unmarshal the data into
 	switch getType.Collector {
+	case "AzureEmergingIssueEventSource":
+		var result AzureEmergingIssueEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "EventSource":
 		var result eventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
 		return &result, nil
-	case "RestIPMIEventSource":
-		var result RestIPMIEventSource
+	case "IPMIEventSource":
+		var result IPMIEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAwsHealthEventSource":
+		var result RestAwsHealthEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAwsRdsPerformanceInsightsEventSource":
+		var result RestAwsRdsPerformanceInsightsEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAwsTrustedAdvisorEventSource":
+		var result RestAwsTrustedAdvisorEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAzureAdvisorEventSource":
+		var result RestAzureAdvisorEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAzureResourceHealthEventSource":
+		var result RestAzureResourceHealthEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAzureResourceLogAnalyticsWorkspacesSource":
+		var result RestAzureResourceLogAnalyticsWorkspacesSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -421,7 +530,7 @@ func (m *eventSource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateID(formats); err != nil {
+	if err := m.validateInstallationMetadata(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -468,10 +577,18 @@ func (m *eventSource) validateFilters(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *eventSource) validateID(formats strfmt.Registry) error {
+func (m *eventSource) validateInstallationMetadata(formats strfmt.Registry) error {
+	if swag.IsZero(m.InstallationMetadata()) { // not required
+		return nil
+	}
 
-	if err := validate.Required("id", "body", int32(m.ID())); err != nil {
-		return err
+	if m.InstallationMetadata() != nil {
+		if err := m.InstallationMetadata().Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installationMetadata")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -490,11 +607,27 @@ func (m *eventSource) validateName(formats strfmt.Registry) error {
 func (m *eventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateChecksum(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateFilters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateInstallationMetadata(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLineageID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -505,6 +638,24 @@ func (m *eventSource) ContextValidate(ctx context.Context, formats strfmt.Regist
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *eventSource) contextValidateAuditVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "auditVersion", "body", int64(m.AuditVersion())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) contextValidateChecksum(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "checksum", "body", string(m.Checksum())); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -529,6 +680,29 @@ func (m *eventSource) contextValidateFilters(ctx context.Context, formats strfmt
 func (m *eventSource) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.InstallationMetadata() != nil {
+		if err := m.InstallationMetadata().ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("installationMetadata")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *eventSource) contextValidateLineageID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lineageId", "body", string(m.LineageID())); err != nil {
 		return err
 	}
 

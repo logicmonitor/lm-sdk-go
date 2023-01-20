@@ -24,6 +24,9 @@ type NetflowBandwidth struct {
 	// device display name
 	DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
 
+	// device Id
+	DeviceID int32 `json:"deviceId,omitempty"`
+
 	// receive
 	Receive float64 `json:"receive,omitempty"`
 
@@ -49,6 +52,9 @@ func (m *NetflowBandwidth) UnmarshalJSON(raw []byte) error {
 
 		// device display name
 		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
+
+		// device Id
+		DeviceID int32 `json:"deviceId,omitempty"`
 
 		// receive
 		Receive float64 `json:"receive,omitempty"`
@@ -88,6 +94,7 @@ func (m *NetflowBandwidth) UnmarshalJSON(raw []byte) error {
 	}
 
 	result.DeviceDisplayName = data.DeviceDisplayName
+	result.DeviceID = data.DeviceID
 	result.Receive = data.Receive
 	result.Send = data.Send
 	result.Usage = data.Usage
@@ -106,6 +113,9 @@ func (m NetflowBandwidth) MarshalJSON() ([]byte, error) {
 		// device display name
 		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
 
+		// device Id
+		DeviceID int32 `json:"deviceId,omitempty"`
+
 		// receive
 		Receive float64 `json:"receive,omitempty"`
 
@@ -117,6 +127,8 @@ func (m NetflowBandwidth) MarshalJSON() ([]byte, error) {
 	}{
 
 		DeviceDisplayName: m.DeviceDisplayName,
+
+		DeviceID: m.DeviceID,
 
 		Receive: m.Receive,
 

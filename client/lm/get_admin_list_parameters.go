@@ -60,22 +60,36 @@ func NewGetAdminListParamsWithHTTPClient(client *http.Client) *GetAdminListParam
 */
 type GetAdminListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
 	// Filter.
 	Filter *string
 
+	// FilterGroupString.
+	FilterGroupString *string
+
 	// Offset.
 	//
 	// Format: int32
 	Offset *int32
+
+	// Permission.
+	Permission *string
 
 	// Size.
 	//
 	// Format: int32
 	// Default: 50
 	Size *int32
+
+	// Type.
+	Type *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -95,14 +109,17 @@ func (o *GetAdminListParams) WithDefaults() *GetAdminListParams {
 // All values with no default are reset to their zero value.
 func (o *GetAdminListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAdminListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -144,6 +161,17 @@ func (o *GetAdminListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the get admin list params
+func (o *GetAdminListParams) WithUserAgent(userAgent *string) *GetAdminListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get admin list params
+func (o *GetAdminListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithFields adds the fields to the get admin list params
 func (o *GetAdminListParams) WithFields(fields *string) *GetAdminListParams {
 	o.SetFields(fields)
@@ -166,6 +194,17 @@ func (o *GetAdminListParams) SetFilter(filter *string) {
 	o.Filter = filter
 }
 
+// WithFilterGroupString adds the filterGroupString to the get admin list params
+func (o *GetAdminListParams) WithFilterGroupString(filterGroupString *string) *GetAdminListParams {
+	o.SetFilterGroupString(filterGroupString)
+	return o
+}
+
+// SetFilterGroupString adds the filterGroupString to the get admin list params
+func (o *GetAdminListParams) SetFilterGroupString(filterGroupString *string) {
+	o.FilterGroupString = filterGroupString
+}
+
 // WithOffset adds the offset to the get admin list params
 func (o *GetAdminListParams) WithOffset(offset *int32) *GetAdminListParams {
 	o.SetOffset(offset)
@@ -175,6 +214,17 @@ func (o *GetAdminListParams) WithOffset(offset *int32) *GetAdminListParams {
 // SetOffset adds the offset to the get admin list params
 func (o *GetAdminListParams) SetOffset(offset *int32) {
 	o.Offset = offset
+}
+
+// WithPermission adds the permission to the get admin list params
+func (o *GetAdminListParams) WithPermission(permission *string) *GetAdminListParams {
+	o.SetPermission(permission)
+	return o
+}
+
+// SetPermission adds the permission to the get admin list params
+func (o *GetAdminListParams) SetPermission(permission *string) {
+	o.Permission = permission
 }
 
 // WithSize adds the size to the get admin list params
@@ -188,6 +238,17 @@ func (o *GetAdminListParams) SetSize(size *int32) {
 	o.Size = size
 }
 
+// WithType adds the typeVar to the get admin list params
+func (o *GetAdminListParams) WithType(typeVar *string) *GetAdminListParams {
+	o.SetType(typeVar)
+	return o
+}
+
+// SetType adds the type to the get admin list params
+func (o *GetAdminListParams) SetType(typeVar *string) {
+	o.Type = typeVar
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetAdminListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -195,6 +256,14 @@ func (o *GetAdminListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 
@@ -230,6 +299,23 @@ func (o *GetAdminListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		}
 	}
 
+	if o.FilterGroupString != nil {
+
+		// query param filterGroupString
+		var qrFilterGroupString string
+
+		if o.FilterGroupString != nil {
+			qrFilterGroupString = *o.FilterGroupString
+		}
+		qFilterGroupString := qrFilterGroupString
+		if qFilterGroupString != "" {
+
+			if err := r.SetQueryParam("filterGroupString", qFilterGroupString); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.Offset != nil {
 
 		// query param offset
@@ -247,6 +333,23 @@ func (o *GetAdminListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		}
 	}
 
+	if o.Permission != nil {
+
+		// query param permission
+		var qrPermission string
+
+		if o.Permission != nil {
+			qrPermission = *o.Permission
+		}
+		qPermission := qrPermission
+		if qPermission != "" {
+
+			if err := r.SetQueryParam("permission", qPermission); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.Size != nil {
 
 		// query param size
@@ -259,6 +362,23 @@ func (o *GetAdminListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		if qSize != "" {
 
 			if err := r.SetQueryParam("size", qSize); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Type != nil {
+
+		// query param type
+		var qrType string
+
+		if o.Type != nil {
+			qrType = *o.Type
+		}
+		qType := qrType
+		if qType != "" {
+
+			if err := r.SetQueryParam("type", qType); err != nil {
 				return err
 			}
 		}

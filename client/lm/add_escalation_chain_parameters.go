@@ -61,6 +61,11 @@ func NewAddEscalationChainParamsWithHTTPClient(client *http.Client) *AddEscalati
 */
 type AddEscalationChainParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.EscalatingChain
 
@@ -81,7 +86,18 @@ func (o *AddEscalationChainParams) WithDefaults() *AddEscalationChainParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddEscalationChainParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := AddEscalationChainParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the add escalation chain params
@@ -117,6 +133,17 @@ func (o *AddEscalationChainParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the add escalation chain params
+func (o *AddEscalationChainParams) WithUserAgent(userAgent *string) *AddEscalationChainParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the add escalation chain params
+func (o *AddEscalationChainParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the add escalation chain params
 func (o *AddEscalationChainParams) WithBody(body *models.EscalatingChain) *AddEscalationChainParams {
 	o.SetBody(body)
@@ -135,6 +162,14 @@ func (o *AddEscalationChainParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

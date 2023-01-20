@@ -17,10 +17,10 @@ import (
 // swagger:model GraphVirtualDataPoint
 type GraphVirtualDataPoint struct {
 
-	// name
+	// The graph virtual data point name
 	Name string `json:"name,omitempty"`
 
-	// rpn
+	// The graph virtual data point rpn expression
 	Rpn string `json:"rpn,omitempty"`
 }
 

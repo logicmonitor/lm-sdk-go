@@ -60,6 +60,11 @@ func NewGetRoleByIDParamsWithHTTPClient(client *http.Client) *GetRoleByIDParams 
 */
 type GetRoleByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -85,7 +90,18 @@ func (o *GetRoleByIDParams) WithDefaults() *GetRoleByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetRoleByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := GetRoleByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get role by Id params
@@ -121,6 +137,17 @@ func (o *GetRoleByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the get role by Id params
+func (o *GetRoleByIDParams) WithUserAgent(userAgent *string) *GetRoleByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get role by Id params
+func (o *GetRoleByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithFields adds the fields to the get role by Id params
 func (o *GetRoleByIDParams) WithFields(fields *string) *GetRoleByIDParams {
 	o.SetFields(fields)
@@ -150,6 +177,14 @@ func (o *GetRoleByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

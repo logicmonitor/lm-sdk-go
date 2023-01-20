@@ -62,6 +62,11 @@ func NewPatchAppliesToFunctionParamsWithHTTPClient(client *http.Client) *PatchAp
 */
 type PatchAppliesToFunctionParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.AppliesToFunction
 
@@ -94,10 +99,13 @@ func (o *PatchAppliesToFunctionParams) WithDefaults() *PatchAppliesToFunctionPar
 // All values with no default are reset to their zero value.
 func (o *PatchAppliesToFunctionParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		ignoreReferenceDefault = bool(false)
 	)
 
 	val := PatchAppliesToFunctionParams{
+		UserAgent:       &userAgentDefault,
 		IgnoreReference: &ignoreReferenceDefault,
 	}
 
@@ -138,6 +146,17 @@ func (o *PatchAppliesToFunctionParams) WithHTTPClient(client *http.Client) *Patc
 // SetHTTPClient adds the HTTPClient to the patch applies to function params
 func (o *PatchAppliesToFunctionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the patch applies to function params
+func (o *PatchAppliesToFunctionParams) WithUserAgent(userAgent *string) *PatchAppliesToFunctionParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the patch applies to function params
+func (o *PatchAppliesToFunctionParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the patch applies to function params
@@ -191,6 +210,14 @@ func (o *PatchAppliesToFunctionParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

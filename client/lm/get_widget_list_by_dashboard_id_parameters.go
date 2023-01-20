@@ -60,6 +60,11 @@ func NewGetWidgetListByDashboardIDParamsWithHTTPClient(client *http.Client) *Get
 */
 type GetWidgetListByDashboardIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -100,14 +105,17 @@ func (o *GetWidgetListByDashboardIDParams) WithDefaults() *GetWidgetListByDashbo
 // All values with no default are reset to their zero value.
 func (o *GetWidgetListByDashboardIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetWidgetListByDashboardIDParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -147,6 +155,17 @@ func (o *GetWidgetListByDashboardIDParams) WithHTTPClient(client *http.Client) *
 // SetHTTPClient adds the HTTPClient to the get widget list by dashboard Id params
 func (o *GetWidgetListByDashboardIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get widget list by dashboard Id params
+func (o *GetWidgetListByDashboardIDParams) WithUserAgent(userAgent *string) *GetWidgetListByDashboardIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get widget list by dashboard Id params
+func (o *GetWidgetListByDashboardIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get widget list by dashboard Id params
@@ -211,6 +230,14 @@ func (o *GetWidgetListByDashboardIDParams) WriteToRequest(r runtime.ClientReques
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

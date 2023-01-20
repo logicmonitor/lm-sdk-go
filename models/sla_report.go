@@ -51,6 +51,8 @@ type SLAReport struct {
 
 	recipientsField []*ReportRecipient
 
+	reportLinkExpireField string
+
 	reportLinkNumField int32
 
 	scheduleField string
@@ -58,6 +60,9 @@ type SLAReport struct {
 	scheduleTimezoneField string
 
 	userPermissionField string
+
+	// Calculation method: 0 = percent all resources available, 1 = average of all SLA metrics
+	CalculationMethod int32 `json:"calculationMethod,omitempty"`
 
 	// The columns displayed in the report
 	Columns []*DynamicColumn `json:"columns,omitempty"`
@@ -238,6 +243,16 @@ func (m *SLAReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
+// ReportLinkExpire gets the report link expire of this subtype
+func (m *SLAReport) ReportLinkExpire() string {
+	return m.reportLinkExpireField
+}
+
+// SetReportLinkExpire sets the report link expire of this subtype
+func (m *SLAReport) SetReportLinkExpire(val string) {
+	m.reportLinkExpireField = val
+}
+
 // ReportLinkNum gets the report link num of this subtype
 func (m *SLAReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -290,6 +305,9 @@ func (m *SLAReport) SetUserPermission(val string) {
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *SLAReport) UnmarshalJSON(raw []byte) error {
 	var data struct {
+
+		// Calculation method: 0 = percent all resources available, 1 = average of all SLA metrics
+		CalculationMethod int32 `json:"calculationMethod,omitempty"`
 
 		// The columns displayed in the report
 		Columns []*DynamicColumn `json:"columns,omitempty"`
@@ -360,6 +378,8 @@ func (m *SLAReport) UnmarshalJSON(raw []byte) error {
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
 
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
+
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
 		Schedule string `json:"schedule,omitempty"`
@@ -410,6 +430,8 @@ func (m *SLAReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
+	result.reportLinkExpireField = base.ReportLinkExpire
+
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -422,6 +444,7 @@ func (m *SLAReport) UnmarshalJSON(raw []byte) error {
 	}
 	result.userPermissionField = base.UserPermission
 
+	result.CalculationMethod = data.CalculationMethod
 	result.Columns = data.Columns
 	result.DateRange = data.DateRange
 	result.DayInOneWeek = data.DayInOneWeek
@@ -442,6 +465,9 @@ func (m SLAReport) MarshalJSON() ([]byte, error) {
 	var b1, b2, b3 []byte
 	var err error
 	b1, err = json.Marshal(struct {
+
+		// Calculation method: 0 = percent all resources available, 1 = average of all SLA metrics
+		CalculationMethod int32 `json:"calculationMethod,omitempty"`
 
 		// The columns displayed in the report
 		Columns []*DynamicColumn `json:"columns,omitempty"`
@@ -471,6 +497,8 @@ func (m SLAReport) MarshalJSON() ([]byte, error) {
 		// 0|1|2 - How the time we have no data for the device should be counted, where 1 = ignore no data (subtract from total time), 2 = count as violation (subtract from uptime), 3 = count as available (add to uptime)
 		UnmonitoredTime int32 `json:"unmonitoredTime,omitempty"`
 	}{
+
+		CalculationMethod: m.CalculationMethod,
 
 		Columns: m.Columns,
 
@@ -524,6 +552,8 @@ func (m SLAReport) MarshalJSON() ([]byte, error) {
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
 
+		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
+
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
 		Schedule string `json:"schedule,omitempty"`
@@ -564,6 +594,8 @@ func (m SLAReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
+
+		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 

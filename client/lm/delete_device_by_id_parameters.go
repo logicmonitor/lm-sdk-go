@@ -60,6 +60,11 @@ func NewDeleteDeviceByIDParamsWithHTTPClient(client *http.Client) *DeleteDeviceB
 */
 type DeleteDeviceByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// DeleteHard.
 	//
 	// Default: true
@@ -101,10 +106,13 @@ func (o *DeleteDeviceByIDParams) WithDefaults() *DeleteDeviceByIDParams {
 // All values with no default are reset to their zero value.
 func (o *DeleteDeviceByIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		deleteHardDefault = bool(true)
 	)
 
 	val := DeleteDeviceByIDParams{
+		UserAgent:  &userAgentDefault,
 		DeleteHard: &deleteHardDefault,
 	}
 
@@ -145,6 +153,17 @@ func (o *DeleteDeviceByIDParams) WithHTTPClient(client *http.Client) *DeleteDevi
 // SetHTTPClient adds the HTTPClient to the delete device by Id params
 func (o *DeleteDeviceByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the delete device by Id params
+func (o *DeleteDeviceByIDParams) WithUserAgent(userAgent *string) *DeleteDeviceByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the delete device by Id params
+func (o *DeleteDeviceByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithDeleteHard adds the deleteHard to the delete device by Id params
@@ -209,6 +228,14 @@ func (o *DeleteDeviceByIDParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.DeleteHard != nil {
 

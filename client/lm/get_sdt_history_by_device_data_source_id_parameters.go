@@ -60,6 +60,11 @@ func NewGetSDTHistoryByDeviceDataSourceIDParamsWithHTTPClient(client *http.Clien
 */
 type GetSDTHistoryByDeviceDataSourceIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// DeviceID.
 	//
 	// Format: int32
@@ -105,14 +110,17 @@ func (o *GetSDTHistoryByDeviceDataSourceIDParams) WithDefaults() *GetSDTHistoryB
 // All values with no default are reset to their zero value.
 func (o *GetSDTHistoryByDeviceDataSourceIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetSDTHistoryByDeviceDataSourceIDParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -152,6 +160,17 @@ func (o *GetSDTHistoryByDeviceDataSourceIDParams) WithHTTPClient(client *http.Cl
 // SetHTTPClient adds the HTTPClient to the get SDT history by device data source Id params
 func (o *GetSDTHistoryByDeviceDataSourceIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get SDT history by device data source Id params
+func (o *GetSDTHistoryByDeviceDataSourceIDParams) WithUserAgent(userAgent *string) *GetSDTHistoryByDeviceDataSourceIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get SDT history by device data source Id params
+func (o *GetSDTHistoryByDeviceDataSourceIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithDeviceID adds the deviceID to the get SDT history by device data source Id params
@@ -227,6 +246,14 @@ func (o *GetSDTHistoryByDeviceDataSourceIDParams) WriteToRequest(r runtime.Clien
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	// path param deviceId
 	if err := r.SetPathParam("deviceId", swag.FormatInt32(o.DeviceID)); err != nil {

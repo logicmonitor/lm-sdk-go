@@ -61,6 +61,11 @@ func NewAddCollectorParamsWithHTTPClient(client *http.Client) *AddCollectorParam
 */
 type AddCollectorParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.Collector
 
@@ -81,7 +86,18 @@ func (o *AddCollectorParams) WithDefaults() *AddCollectorParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddCollectorParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := AddCollectorParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the add collector params
@@ -117,6 +133,17 @@ func (o *AddCollectorParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the add collector params
+func (o *AddCollectorParams) WithUserAgent(userAgent *string) *AddCollectorParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the add collector params
+func (o *AddCollectorParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the add collector params
 func (o *AddCollectorParams) WithBody(body *models.Collector) *AddCollectorParams {
 	o.SetBody(body)
@@ -135,6 +162,14 @@ func (o *AddCollectorParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

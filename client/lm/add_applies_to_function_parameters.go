@@ -61,6 +61,11 @@ func NewAddAppliesToFunctionParamsWithHTTPClient(client *http.Client) *AddApplie
 */
 type AddAppliesToFunctionParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.AppliesToFunction
 
@@ -81,7 +86,18 @@ func (o *AddAppliesToFunctionParams) WithDefaults() *AddAppliesToFunctionParams 
 //
 // All values with no default are reset to their zero value.
 func (o *AddAppliesToFunctionParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := AddAppliesToFunctionParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the add applies to function params
@@ -117,6 +133,17 @@ func (o *AddAppliesToFunctionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the add applies to function params
+func (o *AddAppliesToFunctionParams) WithUserAgent(userAgent *string) *AddAppliesToFunctionParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the add applies to function params
+func (o *AddAppliesToFunctionParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the add applies to function params
 func (o *AddAppliesToFunctionParams) WithBody(body *models.AppliesToFunction) *AddAppliesToFunctionParams {
 	o.SetBody(body)
@@ -135,6 +162,14 @@ func (o *AddAppliesToFunctionParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

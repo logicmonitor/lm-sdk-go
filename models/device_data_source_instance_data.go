@@ -19,19 +19,19 @@ import (
 // swagger:model DeviceDataSourceInstanceData
 type DeviceDataSourceInstanceData struct {
 
-	// data source name
+	// Datasource name
 	// Read Only: true
 	DataSourceName string `json:"dataSourceName,omitempty"`
 
-	// next page params
+	// The next page parameters
 	// Read Only: true
 	NextPageParams string `json:"nextPageParams,omitempty"`
 
-	// time
+	// Timestamp list
 	// Read Only: true
 	Time []int64 `json:"time,omitempty"`
 
-	// values
+	// Datapoint values 2-D list
 	// Read Only: true
 	Values [][]interface{} `json:"values,omitempty"`
 }

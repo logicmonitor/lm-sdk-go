@@ -62,6 +62,11 @@ func NewUpdateDashboardGroupByIDParamsWithHTTPClient(client *http.Client) *Updat
 */
 type UpdateDashboardGroupByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.DashboardGroup
 
@@ -87,7 +92,18 @@ func (o *UpdateDashboardGroupByIDParams) WithDefaults() *UpdateDashboardGroupByI
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateDashboardGroupByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := UpdateDashboardGroupByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update dashboard group by Id params
@@ -123,6 +139,17 @@ func (o *UpdateDashboardGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the update dashboard group by Id params
+func (o *UpdateDashboardGroupByIDParams) WithUserAgent(userAgent *string) *UpdateDashboardGroupByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the update dashboard group by Id params
+func (o *UpdateDashboardGroupByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the update dashboard group by Id params
 func (o *UpdateDashboardGroupByIDParams) WithBody(body *models.DashboardGroup) *UpdateDashboardGroupByIDParams {
 	o.SetBody(body)
@@ -152,6 +179,14 @@ func (o *UpdateDashboardGroupByIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

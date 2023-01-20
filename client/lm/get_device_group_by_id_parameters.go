@@ -60,6 +60,11 @@ func NewGetDeviceGroupByIDParamsWithHTTPClient(client *http.Client) *GetDeviceGr
 */
 type GetDeviceGroupByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -85,7 +90,18 @@ func (o *GetDeviceGroupByIDParams) WithDefaults() *GetDeviceGroupByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetDeviceGroupByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := GetDeviceGroupByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get device group by Id params
@@ -121,6 +137,17 @@ func (o *GetDeviceGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the get device group by Id params
+func (o *GetDeviceGroupByIDParams) WithUserAgent(userAgent *string) *GetDeviceGroupByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get device group by Id params
+func (o *GetDeviceGroupByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithFields adds the fields to the get device group by Id params
 func (o *GetDeviceGroupByIDParams) WithFields(fields *string) *GetDeviceGroupByIDParams {
 	o.SetFields(fields)
@@ -150,6 +177,14 @@ func (o *GetDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

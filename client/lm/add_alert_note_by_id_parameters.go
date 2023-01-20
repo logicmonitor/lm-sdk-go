@@ -61,6 +61,11 @@ func NewAddAlertNoteByIDParamsWithHTTPClient(client *http.Client) *AddAlertNoteB
 */
 type AddAlertNoteByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.AlertAck
 
@@ -84,7 +89,18 @@ func (o *AddAlertNoteByIDParams) WithDefaults() *AddAlertNoteByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddAlertNoteByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := AddAlertNoteByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the add alert note by Id params
@@ -120,6 +136,17 @@ func (o *AddAlertNoteByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the add alert note by Id params
+func (o *AddAlertNoteByIDParams) WithUserAgent(userAgent *string) *AddAlertNoteByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the add alert note by Id params
+func (o *AddAlertNoteByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the add alert note by Id params
 func (o *AddAlertNoteByIDParams) WithBody(body *models.AlertAck) *AddAlertNoteByIDParams {
 	o.SetBody(body)
@@ -149,6 +176,14 @@ func (o *AddAlertNoteByIDParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

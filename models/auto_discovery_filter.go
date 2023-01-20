@@ -19,18 +19,18 @@ import (
 // swagger:model AutoDiscoveryFilter
 type AutoDiscoveryFilter struct {
 
-	// attribute
+	// Attribute to filter
 	// Required: true
 	Attribute *string `json:"attribute"`
 
-	// comment
+	// The filter comment
 	Comment string `json:"comment,omitempty"`
 
-	// operation
+	// The filter's operation. The values can be : Equal|NotEqual|GreaterThan|GreaterEqual|LessThan|LessEqual|Contain|NotContain|NotExist|RegexMatch|RegexNotMatch
 	// Required: true
 	Operation *string `json:"operation"`
 
-	// value
+	// The operation value
 	Value string `json:"value,omitempty"`
 }
 

@@ -20,38 +20,58 @@ import (
 // swagger:model CollectorGroup
 type CollectorGroup struct {
 
-	// if the collector is autoBalance set as true or false
-	AutoBalance string `json:"autoBalance,omitempty"`
+	// Whether the collector has autoBalance set as true or false
+	AutoBalance bool `json:"autoBalance,omitempty"`
 
-	// threshold for instance count strategy to check if a collector has high load
+	// Threshold for instance count strategy to check if a collector has high load
 	AutoBalanceInstanceCountThreshold int32 `json:"autoBalanceInstanceCountThreshold,omitempty"`
 
-	// the auto balance strategy
+	// The auto balance strategy
 	AutoBalanceStrategy string `json:"autoBalanceStrategy,omitempty"`
 
-	// The time at which the group was created, in epoch format
+	// The time at which the group was created in epoch format
 	// Read Only: true
 	CreateOn int64 `json:"createOn,omitempty"`
 
-	// The custom properties defined for the Collector group
+	// The custom properties defined for the collector group
 	CustomProperties []*NameAndValue `json:"customProperties,omitempty"`
 
-	// The description of the Collector Group
+	// The description of the collector group
 	// Example: Group for collectors dedicated to Network Devices
 	Description string `json:"description,omitempty"`
+
+	// The status of the highest priority sub collector
+	// Read Only: true
+	HighestPriorityCollectorStatus *RestHighestPriorityCollectorStatus `json:"highestPriorityCollectorStatus,omitempty"`
 
 	// The id of the Collector Group
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
+
+	// Specifies if the version of all collectors in group is same
+	// Read Only: true
+	MismatchVersion *bool `json:"mismatchVersion,omitempty"`
 
 	// The name of the Collector Group
 	// Example: Collector (Network Devices)
 	// Required: true
 	Name *string `json:"name"`
 
-	// The number of Collectors that belong to the group
+	// The number of collectors that belong to the group
 	// Read Only: true
 	NumOfCollectors int32 `json:"numOfCollectors,omitempty"`
+
+	// The number of hosts that belong to the group
+	// Read Only: true
+	NumOfHosts int64 `json:"numOfHosts,omitempty"`
+
+	// The number of instances that belong to the group
+	// Read Only: true
+	NumOfInstances int64 `json:"numOfInstances,omitempty"`
+
+	// The platform limitation
+	// Read Only: true
+	Platform string `json:"platform,omitempty"`
 
 	// The permission level of the user that made the API request
 	// Read Only: true
@@ -63,6 +83,10 @@ func (m *CollectorGroup) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCustomProperties(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateHighestPriorityCollectorStatus(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -100,6 +124,23 @@ func (m *CollectorGroup) validateCustomProperties(formats strfmt.Registry) error
 	return nil
 }
 
+func (m *CollectorGroup) validateHighestPriorityCollectorStatus(formats strfmt.Registry) error {
+	if swag.IsZero(m.HighestPriorityCollectorStatus) { // not required
+		return nil
+	}
+
+	if m.HighestPriorityCollectorStatus != nil {
+		if err := m.HighestPriorityCollectorStatus.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("highestPriorityCollectorStatus")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *CollectorGroup) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
@@ -121,11 +162,31 @@ func (m *CollectorGroup) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateHighestPriorityCollectorStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateMismatchVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateNumOfCollectors(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfHosts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfInstances(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePlatform(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -166,6 +227,20 @@ func (m *CollectorGroup) contextValidateCustomProperties(ctx context.Context, fo
 	return nil
 }
 
+func (m *CollectorGroup) contextValidateHighestPriorityCollectorStatus(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.HighestPriorityCollectorStatus != nil {
+		if err := m.HighestPriorityCollectorStatus.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("highestPriorityCollectorStatus")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *CollectorGroup) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
@@ -175,9 +250,45 @@ func (m *CollectorGroup) contextValidateID(ctx context.Context, formats strfmt.R
 	return nil
 }
 
+func (m *CollectorGroup) contextValidateMismatchVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "mismatchVersion", "body", m.MismatchVersion); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *CollectorGroup) contextValidateNumOfCollectors(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "numOfCollectors", "body", int32(m.NumOfCollectors)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorGroup) contextValidateNumOfHosts(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfHosts", "body", int64(m.NumOfHosts)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorGroup) contextValidateNumOfInstances(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfInstances", "body", int64(m.NumOfInstances)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorGroup) contextValidatePlatform(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "platform", "body", string(m.Platform)); err != nil {
 		return err
 	}
 

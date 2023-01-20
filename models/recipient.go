@@ -19,19 +19,26 @@ import (
 // swagger:model Recipient
 type Recipient struct {
 
-	// the user name if method = admin, or the email address if method = arbitrary
+	// The recipient address.
+	// The value will be user name if method = admin, or the email address if method = arbitrary
 	// Example: john.doe@logicmonitor.com
 	Addr string `json:"addr,omitempty"`
 
-	// contact
+	// Contact details, email address or phone number
 	Contact string `json:"contact,omitempty"`
 
-	// Admin | Arbitrary, where Admin = a user, and Arbitrary = an arbitrary email
+	// Recipient method for each type.
+	// The values can be EMAIL|SMEMAIL|VOICE|SMS
+	//             group: "method" not used
+	//             arbitrary: The method should be email.
+	//             admin: The method should be email, smsEmail, voice, sms, or defaultMethod;
+	//
 	// Example: EMAIL
 	// Required: true
 	Method *string `json:"method"`
 
-	// email | sms | voice, where type must be email if method = arbitrary
+	// The recipient type.
+	// The values can be GROUP|ARBITRARY|ADMIN, where Admin = a user, and Arbitrary = an arbitrary email
 	// Example: Admin
 	// Required: true
 	Type *string `json:"type"`

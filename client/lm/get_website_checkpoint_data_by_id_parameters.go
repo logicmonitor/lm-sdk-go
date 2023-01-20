@@ -60,6 +60,11 @@ func NewGetWebsiteCheckpointDataByIDParamsWithHTTPClient(client *http.Client) *G
 */
 type GetWebsiteCheckpointDataByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	/* Aggregate.
 
 	   the aggregate option
@@ -120,6 +125,8 @@ func (o *GetWebsiteCheckpointDataByIDParams) WithDefaults() *GetWebsiteCheckpoin
 // All values with no default are reset to their zero value.
 func (o *GetWebsiteCheckpointDataByIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		aggregateDefault = string("none")
 
 		endDefault = int64(0)
@@ -132,6 +139,7 @@ func (o *GetWebsiteCheckpointDataByIDParams) SetDefaults() {
 	)
 
 	val := GetWebsiteCheckpointDataByIDParams{
+		UserAgent: &userAgentDefault,
 		Aggregate: &aggregateDefault,
 		End:       &endDefault,
 		Format:    &formatDefault,
@@ -176,6 +184,17 @@ func (o *GetWebsiteCheckpointDataByIDParams) WithHTTPClient(client *http.Client)
 // SetHTTPClient adds the HTTPClient to the get website checkpoint data by Id params
 func (o *GetWebsiteCheckpointDataByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get website checkpoint data by Id params
+func (o *GetWebsiteCheckpointDataByIDParams) WithUserAgent(userAgent *string) *GetWebsiteCheckpointDataByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get website checkpoint data by Id params
+func (o *GetWebsiteCheckpointDataByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithAggregate adds the aggregate to the get website checkpoint data by Id params
@@ -273,6 +292,14 @@ func (o *GetWebsiteCheckpointDataByIDParams) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Aggregate != nil {
 

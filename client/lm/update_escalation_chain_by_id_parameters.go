@@ -62,6 +62,11 @@ func NewUpdateEscalationChainByIDParamsWithHTTPClient(client *http.Client) *Upda
 */
 type UpdateEscalationChainByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.EscalatingChain
 
@@ -87,7 +92,18 @@ func (o *UpdateEscalationChainByIDParams) WithDefaults() *UpdateEscalationChainB
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateEscalationChainByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := UpdateEscalationChainByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the update escalation chain by Id params
@@ -123,6 +139,17 @@ func (o *UpdateEscalationChainByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the update escalation chain by Id params
+func (o *UpdateEscalationChainByIDParams) WithUserAgent(userAgent *string) *UpdateEscalationChainByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the update escalation chain by Id params
+func (o *UpdateEscalationChainByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the update escalation chain by Id params
 func (o *UpdateEscalationChainByIDParams) WithBody(body *models.EscalatingChain) *UpdateEscalationChainByIDParams {
 	o.SetBody(body)
@@ -152,6 +179,14 @@ func (o *UpdateEscalationChainByIDParams) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

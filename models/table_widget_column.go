@@ -39,6 +39,9 @@ type TableWidgetColumn struct {
 
 	// rpn
 	Rpn string `json:"rpn,omitempty"`
+
+	// The unit label
+	UnitLabel string `json:"unitLabel,omitempty"`
 }
 
 // Validate validates this table widget column

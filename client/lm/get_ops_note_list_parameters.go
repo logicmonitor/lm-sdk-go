@@ -60,6 +60,11 @@ func NewGetOpsNoteListParamsWithHTTPClient(client *http.Client) *GetOpsNoteListP
 */
 type GetOpsNoteListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -98,14 +103,17 @@ func (o *GetOpsNoteListParams) WithDefaults() *GetOpsNoteListParams {
 // All values with no default are reset to their zero value.
 func (o *GetOpsNoteListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetOpsNoteListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -145,6 +153,17 @@ func (o *GetOpsNoteListParams) WithHTTPClient(client *http.Client) *GetOpsNoteLi
 // SetHTTPClient adds the HTTPClient to the get ops note list params
 func (o *GetOpsNoteListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get ops note list params
+func (o *GetOpsNoteListParams) WithUserAgent(userAgent *string) *GetOpsNoteListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get ops note list params
+func (o *GetOpsNoteListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get ops note list params
@@ -198,6 +217,14 @@ func (o *GetOpsNoteListParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

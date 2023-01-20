@@ -60,6 +60,11 @@ func NewGetCollectorListParamsWithHTTPClient(client *http.Client) *GetCollectorL
 */
 type GetCollectorListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -95,14 +100,17 @@ func (o *GetCollectorListParams) WithDefaults() *GetCollectorListParams {
 // All values with no default are reset to their zero value.
 func (o *GetCollectorListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetCollectorListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,6 +150,17 @@ func (o *GetCollectorListParams) WithHTTPClient(client *http.Client) *GetCollect
 // SetHTTPClient adds the HTTPClient to the get collector list params
 func (o *GetCollectorListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get collector list params
+func (o *GetCollectorListParams) WithUserAgent(userAgent *string) *GetCollectorListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get collector list params
+func (o *GetCollectorListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get collector list params
@@ -195,6 +214,14 @@ func (o *GetCollectorListParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

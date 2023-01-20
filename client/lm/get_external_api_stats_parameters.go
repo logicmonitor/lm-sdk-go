@@ -58,6 +58,12 @@ func NewGetExternalAPIStatsParamsWithHTTPClient(client *http.Client) *GetExterna
    Typically these are written to a http.Request.
 */
 type GetExternalAPIStatsParams struct {
+
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -75,7 +81,18 @@ func (o *GetExternalAPIStatsParams) WithDefaults() *GetExternalAPIStatsParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetExternalAPIStatsParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := GetExternalAPIStatsParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the get external Api stats params
@@ -111,6 +128,17 @@ func (o *GetExternalAPIStatsParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the get external Api stats params
+func (o *GetExternalAPIStatsParams) WithUserAgent(userAgent *string) *GetExternalAPIStatsParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get external Api stats params
+func (o *GetExternalAPIStatsParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetExternalAPIStatsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -118,6 +146,14 @@ func (o *GetExternalAPIStatsParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

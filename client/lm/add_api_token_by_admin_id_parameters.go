@@ -62,6 +62,11 @@ func NewAddAPITokenByAdminIDParamsWithHTTPClient(client *http.Client) *AddAPITok
 */
 type AddAPITokenByAdminIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// AdminID.
 	//
 	// Format: int32
@@ -93,11 +98,14 @@ func (o *AddAPITokenByAdminIDParams) WithDefaults() *AddAPITokenByAdminIDParams 
 // All values with no default are reset to their zero value.
 func (o *AddAPITokenByAdminIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		typeVarDefault = string("API Token")
 	)
 
 	val := AddAPITokenByAdminIDParams{
-		Type: &typeVarDefault,
+		UserAgent: &userAgentDefault,
+		Type:      &typeVarDefault,
 	}
 
 	val.timeout = o.timeout
@@ -137,6 +145,17 @@ func (o *AddAPITokenByAdminIDParams) WithHTTPClient(client *http.Client) *AddAPI
 // SetHTTPClient adds the HTTPClient to the add Api token by admin Id params
 func (o *AddAPITokenByAdminIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the add Api token by admin Id params
+func (o *AddAPITokenByAdminIDParams) WithUserAgent(userAgent *string) *AddAPITokenByAdminIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the add Api token by admin Id params
+func (o *AddAPITokenByAdminIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithAdminID adds the adminID to the add Api token by admin Id params
@@ -179,6 +198,14 @@ func (o *AddAPITokenByAdminIDParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	// path param adminId
 	if err := r.SetPathParam("adminId", swag.FormatInt32(o.AdminID)); err != nil {

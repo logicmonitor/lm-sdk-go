@@ -41,11 +41,17 @@ type Website interface {
 	Description() string
 	SetDescription(string)
 
+	// The values can be true|false where
 	// true: alerting is disabled for the website
 	// false: alerting is enabled for the website
-	// If stopMonitoring=true, then alerting will also by default be disabled for the website
+	// If stopMonitoring=true, then alerting will also be disabled by default for the website
 	DisableAlerting() bool
 	SetDisableAlerting(bool)
+
+	// Required for type=webcheck , The domain of the service. This is the base URL of the service
+	// Example: www.ebay.com
+	Domain() string
+	SetDomain(string)
 
 	// The number of test locations that checks must fail at to trigger an alert, where the alert triggered will be consistent with the value of overallAlertLevel. Possible values and corresponding number of Site Monitor locations are
 	// 0 : all
@@ -67,12 +73,13 @@ type Website interface {
 	ID() int32
 	SetID(int32)
 
-	// warn | error | critical
+	// The values can be warn|error|critical
 	// The level of alert to trigger if the website fails a check from an individual test location
 	// Example: warn
 	IndividualAlertLevel() string
 	SetIndividualAlertLevel(string)
 
+	// The values can be true|false where
 	// true: an alert will be triggered if a check fails from an individual test location
 	// false: an alert will not be triggered if a check fails from an individual test location
 	// Example: false
@@ -95,13 +102,13 @@ type Website interface {
 	Name() *string
 	SetName(*string)
 
-	// warn | error | critical
+	// The values can be warn|error|critical
 	// The level of alert to trigger if the website fails the number of checks specified by transition from the test locations specified by globalSmAlertCond
 	// Example: warn
 	OverallAlertLevel() string
 	SetOverallAlertLevel(string)
 
-	// 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+	// The values can be 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
 	// The polling interval for the website, in units of minutes. This value indicates how often the website is checked. The minimum is 1 minute, and the maximum is 10 minutes
 	// Example: 5
 	PollingInterval() int32
@@ -112,17 +119,28 @@ type Website interface {
 	Properties() []*NameAndValue
 	SetProperties([]*NameAndValue)
 
-	// Whether is the website dead (the collector is down) or not
+	// The role privilege operation(s) for this website that are granted to the user who made the API request
+	// Read Only: true
+	RolePrivileges() []string
+	SetRolePrivileges([]string)
+
+	// Whether the website is dead (the collector is down) or not
 	// Read Only: true
 	Status() string
 	SetStatus(string)
 
+	// Required for type=webcheck , An object comprising one or more steps, see the table below for the properties included in each step
+	Steps() []*WebCheckStep
+	SetSteps([]*WebCheckStep)
+
+	// The values can be true|false where
 	// true: monitoring is disabled for the website
 	// false: monitoring is enabled for the website
-	// If stopMonitoring=true, then alerting will also by default be disabled for the website
+	// If stopMonitoring=true, then alerting will also be disabled by default for the website
 	StopMonitoring() bool
 	SetStopMonitoring(bool)
 
+	// The values can be true|false where
 	// true: monitoring is disabled for all services in the website's folder
 	// false: monitoring is not disabled for all services in website's folder
 	// Read Only: true
@@ -147,31 +165,34 @@ type Website interface {
 	TestLocation() *WebsiteLocation
 	SetTestLocation(*WebsiteLocation)
 
-	// 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 30 | 60
+	// The values can be 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 30 | 60
 	// The number of checks that must fail before an alert is triggered
 	// Example: 1
 	Transition() int32
 	SetTransition(int32)
 
-	// The type of the website. Acceptable values are: pingcheck, webcheck
+	// The values can be pingcheck|webcheck
+	// Specifies the type of service
 	// Example: webcheck
 	// Required: true
 	Type() string
 	SetType(string)
 
+	// The values can be true|false where
 	// true: The alert settings configured in the website Default Settings will be used
 	// false: Service Default Settings will not be used, and you will need to specify individualSMAlertEnable, individualAlertLevel, globalSmAlertConf, overallAlertLevel and pollingInterval
 	// Example: true
 	UseDefaultAlertSetting() bool
 	SetUseDefaultAlertSetting(bool)
 
+	// The values can be true|false where
 	// true: The checkpoint locations configured in the website Default Settings will be used
 	// false: The checkpoint locations specified in the testLocation will be used
 	// Example: false
 	UseDefaultLocationSetting() bool
 	SetUseDefaultLocationSetting(bool)
 
-	// write | read | ack. The permission level of the user that made the API request
+	// The values can be write|read|ack. The permission level of the user that made the API request
 	UserPermission() string
 	SetUserPermission(string)
 
@@ -187,6 +208,8 @@ type website struct {
 	descriptionField string
 
 	disableAlertingField bool
+
+	domainField string
 
 	globalSmAlertCondField int32
 
@@ -210,7 +233,11 @@ type website struct {
 
 	propertiesField []*NameAndValue
 
+	rolePrivilegesField []string
+
 	statusField string
+
+	stepsField []*WebCheckStep
 
 	stopMonitoringField bool
 
@@ -269,6 +296,16 @@ func (m *website) DisableAlerting() bool {
 // SetDisableAlerting sets the disable alerting of this polymorphic type
 func (m *website) SetDisableAlerting(val bool) {
 	m.disableAlertingField = val
+}
+
+// Domain gets the domain of this polymorphic type
+func (m *website) Domain() string {
+	return m.domainField
+}
+
+// SetDomain sets the domain of this polymorphic type
+func (m *website) SetDomain(val string) {
+	m.domainField = val
 }
 
 // GlobalSmAlertCond gets the global sm alert cond of this polymorphic type
@@ -381,6 +418,16 @@ func (m *website) SetProperties(val []*NameAndValue) {
 	m.propertiesField = val
 }
 
+// RolePrivileges gets the role privileges of this polymorphic type
+func (m *website) RolePrivileges() []string {
+	return m.rolePrivilegesField
+}
+
+// SetRolePrivileges sets the role privileges of this polymorphic type
+func (m *website) SetRolePrivileges(val []string) {
+	m.rolePrivilegesField = val
+}
+
 // Status gets the status of this polymorphic type
 func (m *website) Status() string {
 	return m.statusField
@@ -389,6 +436,16 @@ func (m *website) Status() string {
 // SetStatus sets the status of this polymorphic type
 func (m *website) SetStatus(val string) {
 	m.statusField = val
+}
+
+// Steps gets the steps of this polymorphic type
+func (m *website) Steps() []*WebCheckStep {
+	return m.stepsField
+}
+
+// SetSteps sets the steps of this polymorphic type
+func (m *website) SetSteps(val []*WebCheckStep) {
+	m.stepsField = val
 }
 
 // StopMonitoring gets the stop monitoring of this polymorphic type
@@ -568,6 +625,10 @@ func (m *website) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateSteps(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTestLocation(formats); err != nil {
 		res = append(res, err)
 	}
@@ -659,6 +720,30 @@ func (m *website) validateProperties(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *website) validateSteps(formats strfmt.Registry) error {
+	if swag.IsZero(m.Steps()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Steps()); i++ {
+		if swag.IsZero(m.stepsField[i]) { // not required
+			continue
+		}
+
+		if m.stepsField[i] != nil {
+			if err := m.stepsField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *website) validateTestLocation(formats strfmt.Registry) error {
 
 	if err := validate.Required("testLocation", "body", m.TestLocation()); err != nil {
@@ -705,7 +790,15 @@ func (m *website) ContextValidate(ctx context.Context, formats strfmt.Registry) 
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRolePrivileges(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSteps(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -812,10 +905,37 @@ func (m *website) contextValidateProperties(ctx context.Context, formats strfmt.
 	return nil
 }
 
+func (m *website) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *website) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "status", "body", string(m.Status())); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *website) contextValidateSteps(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Steps()); i++ {
+
+		if m.stepsField[i] != nil {
+			if err := m.stepsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

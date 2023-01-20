@@ -19,11 +19,11 @@ import (
 // swagger:model WidgetTokenInheritance
 type WidgetTokenInheritance struct {
 
-	// fullpath
+	// The fullpath for the widget token
 	// Read Only: true
 	Fullpath string `json:"fullpath,omitempty"`
 
-	// value
+	// The property value for the group
 	// Read Only: true
 	Value string `json:"value,omitempty"`
 }

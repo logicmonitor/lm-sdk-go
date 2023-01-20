@@ -62,6 +62,11 @@ func NewUpdateDashboardByIDParamsWithHTTPClient(client *http.Client) *UpdateDash
 */
 type UpdateDashboardByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.Dashboard
 
@@ -91,10 +96,13 @@ func (o *UpdateDashboardByIDParams) WithDefaults() *UpdateDashboardByIDParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateDashboardByIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		overwriteGroupFieldsDefault = bool(false)
 	)
 
 	val := UpdateDashboardByIDParams{
+		UserAgent:            &userAgentDefault,
 		OverwriteGroupFields: &overwriteGroupFieldsDefault,
 	}
 
@@ -137,6 +145,17 @@ func (o *UpdateDashboardByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the update dashboard by Id params
+func (o *UpdateDashboardByIDParams) WithUserAgent(userAgent *string) *UpdateDashboardByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the update dashboard by Id params
+func (o *UpdateDashboardByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the update dashboard by Id params
 func (o *UpdateDashboardByIDParams) WithBody(body *models.Dashboard) *UpdateDashboardByIDParams {
 	o.SetBody(body)
@@ -177,6 +196,14 @@ func (o *UpdateDashboardByIDParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

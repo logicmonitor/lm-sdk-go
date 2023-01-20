@@ -29,6 +29,8 @@ type WebCheck struct {
 
 	disableAlertingField bool
 
+	domainField string
+
 	globalSmAlertCondField int32
 
 	groupIdField int32
@@ -51,7 +53,11 @@ type WebCheck struct {
 
 	propertiesField []*NameAndValue
 
+	rolePrivilegesField []string
+
 	statusField string
+
+	stepsField []*WebCheckStep
 
 	stopMonitoringField bool
 
@@ -73,11 +79,6 @@ type WebCheck struct {
 	// Example: \u003c 200 100 50
 	AlertExpr string `json:"alertExpr,omitempty"`
 
-	// The domain of the service. This is the base URL of the service
-	// Example: www.ebay.com
-	// Required: true
-	Domain *string `json:"domain"`
-
 	// Whether or not SSL should be ignored, the default value is true
 	// Example: true
 	IgnoreSSL interface{} `json:"ignoreSSL,omitempty"`
@@ -89,9 +90,6 @@ type WebCheck struct {
 	// The scheme or protocol associated with the URL to check. Acceptable values are: http, https
 	// Example: https
 	Schema string `json:"schema,omitempty"`
-
-	// An object comprising one or more steps, see the table below for the properties included in each step
-	Steps []*WebCheckStep `json:"steps,omitempty"`
 
 	// Whether or not SSL expiration alerts should be triggered
 	// Example: false
@@ -140,6 +138,16 @@ func (m *WebCheck) DisableAlerting() bool {
 // SetDisableAlerting sets the disable alerting of this subtype
 func (m *WebCheck) SetDisableAlerting(val bool) {
 	m.disableAlertingField = val
+}
+
+// Domain gets the domain of this subtype
+func (m *WebCheck) Domain() string {
+	return m.domainField
+}
+
+// SetDomain sets the domain of this subtype
+func (m *WebCheck) SetDomain(val string) {
+	m.domainField = val
 }
 
 // GlobalSmAlertCond gets the global sm alert cond of this subtype
@@ -252,6 +260,16 @@ func (m *WebCheck) SetProperties(val []*NameAndValue) {
 	m.propertiesField = val
 }
 
+// RolePrivileges gets the role privileges of this subtype
+func (m *WebCheck) RolePrivileges() []string {
+	return m.rolePrivilegesField
+}
+
+// SetRolePrivileges sets the role privileges of this subtype
+func (m *WebCheck) SetRolePrivileges(val []string) {
+	m.rolePrivilegesField = val
+}
+
 // Status gets the status of this subtype
 func (m *WebCheck) Status() string {
 	return m.statusField
@@ -260,6 +278,16 @@ func (m *WebCheck) Status() string {
 // SetStatus sets the status of this subtype
 func (m *WebCheck) SetStatus(val string) {
 	m.statusField = val
+}
+
+// Steps gets the steps of this subtype
+func (m *WebCheck) Steps() []*WebCheckStep {
+	return m.stepsField
+}
+
+// SetSteps sets the steps of this subtype
+func (m *WebCheck) SetSteps(val []*WebCheckStep) {
+	m.stepsField = val
 }
 
 // StopMonitoring gets the stop monitoring of this subtype
@@ -359,11 +387,6 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 		// Example: \u003c 200 100 50
 		AlertExpr string `json:"alertExpr,omitempty"`
 
-		// The domain of the service. This is the base URL of the service
-		// Example: www.ebay.com
-		// Required: true
-		Domain *string `json:"domain"`
-
 		// Whether or not SSL should be ignored, the default value is true
 		// Example: true
 		IgnoreSSL interface{} `json:"ignoreSSL,omitempty"`
@@ -375,9 +398,6 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 		// The scheme or protocol associated with the URL to check. Acceptable values are: http, https
 		// Example: https
 		Schema string `json:"schema,omitempty"`
-
-		// An object comprising one or more steps, see the table below for the properties included in each step
-		Steps []*WebCheckStep `json:"steps,omitempty"`
 
 		// Whether or not SSL expiration alerts should be triggered
 		// Example: false
@@ -406,6 +426,8 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 
 		DisableAlerting bool `json:"disableAlerting,omitempty"`
 
+		Domain string `json:"domain,omitempty"`
+
 		GlobalSmAlertCond int32 `json:"globalSmAlertCond,omitempty"`
 
 		GroupID int32 `json:"groupId,omitempty"`
@@ -428,7 +450,11 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 
 		Properties []*NameAndValue `json:"properties,omitempty"`
 
+		RolePrivileges []string `json:"rolePrivileges,omitempty"`
+
 		Status string `json:"status,omitempty"`
+
+		Steps []*WebCheckStep `json:"steps,omitempty"`
 
 		StopMonitoring bool `json:"stopMonitoring,omitempty"`
 
@@ -466,6 +492,8 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 
 	result.disableAlertingField = base.DisableAlerting
 
+	result.domainField = base.Domain
+
 	result.globalSmAlertCondField = base.GlobalSmAlertCond
 
 	result.groupIdField = base.GroupID
@@ -488,7 +516,11 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 
 	result.propertiesField = base.Properties
 
+	result.rolePrivilegesField = base.RolePrivileges
+
 	result.statusField = base.Status
+
+	result.stepsField = base.Steps
 
 	result.stopMonitoringField = base.StopMonitoring
 
@@ -511,11 +543,9 @@ func (m *WebCheck) UnmarshalJSON(raw []byte) error {
 	result.userPermissionField = base.UserPermission
 
 	result.AlertExpr = data.AlertExpr
-	result.Domain = data.Domain
 	result.IgnoreSSL = data.IgnoreSSL
 	result.PageLoadAlertTimeInMS = data.PageLoadAlertTimeInMS
 	result.Schema = data.Schema
-	result.Steps = data.Steps
 	result.TriggerSSLExpirationAlert = data.TriggerSSLExpirationAlert
 	result.TriggerSSLStatusAlert = data.TriggerSSLStatusAlert
 
@@ -534,11 +564,6 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 		// Example: \u003c 200 100 50
 		AlertExpr string `json:"alertExpr,omitempty"`
 
-		// The domain of the service. This is the base URL of the service
-		// Example: www.ebay.com
-		// Required: true
-		Domain *string `json:"domain"`
-
 		// Whether or not SSL should be ignored, the default value is true
 		// Example: true
 		IgnoreSSL interface{} `json:"ignoreSSL,omitempty"`
@@ -551,9 +576,6 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 		// Example: https
 		Schema string `json:"schema,omitempty"`
 
-		// An object comprising one or more steps, see the table below for the properties included in each step
-		Steps []*WebCheckStep `json:"steps,omitempty"`
-
 		// Whether or not SSL expiration alerts should be triggered
 		// Example: false
 		TriggerSSLExpirationAlert bool `json:"triggerSSLExpirationAlert,omitempty"`
@@ -565,15 +587,11 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 
 		AlertExpr: m.AlertExpr,
 
-		Domain: m.Domain,
-
 		IgnoreSSL: m.IgnoreSSL,
 
 		PageLoadAlertTimeInMS: m.PageLoadAlertTimeInMS,
 
 		Schema: m.Schema,
-
-		Steps: m.Steps,
 
 		TriggerSSLExpirationAlert: m.TriggerSSLExpirationAlert,
 
@@ -590,6 +608,8 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 		Description string `json:"description,omitempty"`
 
 		DisableAlerting bool `json:"disableAlerting,omitempty"`
+
+		Domain string `json:"domain,omitempty"`
 
 		GlobalSmAlertCond int32 `json:"globalSmAlertCond,omitempty"`
 
@@ -613,7 +633,11 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 
 		Properties []*NameAndValue `json:"properties,omitempty"`
 
+		RolePrivileges []string `json:"rolePrivileges,omitempty"`
+
 		Status string `json:"status,omitempty"`
+
+		Steps []*WebCheckStep `json:"steps,omitempty"`
 
 		StopMonitoring bool `json:"stopMonitoring,omitempty"`
 
@@ -642,6 +666,8 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 
 		DisableAlerting: m.DisableAlerting(),
 
+		Domain: m.Domain(),
+
 		GlobalSmAlertCond: m.GlobalSmAlertCond(),
 
 		GroupID: m.GroupID(),
@@ -664,7 +690,11 @@ func (m WebCheck) MarshalJSON() ([]byte, error) {
 
 		Properties: m.Properties(),
 
+		RolePrivileges: m.RolePrivileges(),
+
 		Status: m.Status(),
+
+		Steps: m.Steps(),
 
 		StopMonitoring: m.StopMonitoring(),
 
@@ -711,15 +741,11 @@ func (m *WebCheck) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateTestLocation(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDomain(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateSteps(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTestLocation(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -813,6 +839,31 @@ func (m *WebCheck) validateProperties(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *WebCheck) validateSteps(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Steps()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Steps()); i++ {
+		if swag.IsZero(m.stepsField[i]) { // not required
+			continue
+		}
+
+		if m.stepsField[i] != nil {
+			if err := m.stepsField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *WebCheck) validateTestLocation(formats strfmt.Registry) error {
 
 	if err := validate.Required("testLocation", "body", m.TestLocation()); err != nil {
@@ -826,40 +877,6 @@ func (m *WebCheck) validateTestLocation(formats strfmt.Registry) error {
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *WebCheck) validateDomain(formats strfmt.Registry) error {
-
-	if err := validate.Required("domain", "body", m.Domain); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *WebCheck) validateSteps(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.Steps) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.Steps); i++ {
-		if swag.IsZero(m.Steps[i]) { // not required
-			continue
-		}
-
-		if m.Steps[i] != nil {
-			if err := m.Steps[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil
@@ -893,7 +910,15 @@ func (m *WebCheck) ContextValidate(ctx context.Context, formats strfmt.Registry)
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateRolePrivileges(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSteps(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -902,10 +927,6 @@ func (m *WebCheck) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	}
 
 	if err := m.contextValidateTestLocation(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSteps(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1004,10 +1025,37 @@ func (m *WebCheck) contextValidateProperties(ctx context.Context, formats strfmt
 	return nil
 }
 
+func (m *WebCheck) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *WebCheck) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "status", "body", string(m.Status())); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *WebCheck) contextValidateSteps(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Steps()); i++ {
+
+		if m.stepsField[i] != nil {
+			if err := m.stepsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -1031,24 +1079,6 @@ func (m *WebCheck) contextValidateTestLocation(ctx context.Context, formats strf
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *WebCheck) contextValidateSteps(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.Steps); i++ {
-
-		if m.Steps[i] != nil {
-			if err := m.Steps[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
 	}
 
 	return nil

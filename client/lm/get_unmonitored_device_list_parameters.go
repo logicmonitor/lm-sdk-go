@@ -60,6 +60,11 @@ func NewGetUnmonitoredDeviceListParamsWithHTTPClient(client *http.Client) *GetUn
 */
 type GetUnmonitoredDeviceListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -95,14 +100,17 @@ func (o *GetUnmonitoredDeviceListParams) WithDefaults() *GetUnmonitoredDeviceLis
 // All values with no default are reset to their zero value.
 func (o *GetUnmonitoredDeviceListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetUnmonitoredDeviceListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,6 +150,17 @@ func (o *GetUnmonitoredDeviceListParams) WithHTTPClient(client *http.Client) *Ge
 // SetHTTPClient adds the HTTPClient to the get unmonitored device list params
 func (o *GetUnmonitoredDeviceListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get unmonitored device list params
+func (o *GetUnmonitoredDeviceListParams) WithUserAgent(userAgent *string) *GetUnmonitoredDeviceListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get unmonitored device list params
+func (o *GetUnmonitoredDeviceListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get unmonitored device list params
@@ -195,6 +214,14 @@ func (o *GetUnmonitoredDeviceListParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

@@ -60,6 +60,11 @@ func NewDeleteDashboardGroupByIDParamsWithHTTPClient(client *http.Client) *Delet
 */
 type DeleteDashboardGroupByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// AllowNonEmptyGroup.
 	AllowNonEmptyGroup *bool
 
@@ -86,10 +91,13 @@ func (o *DeleteDashboardGroupByIDParams) WithDefaults() *DeleteDashboardGroupByI
 // All values with no default are reset to their zero value.
 func (o *DeleteDashboardGroupByIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		allowNonEmptyGroupDefault = bool(false)
 	)
 
 	val := DeleteDashboardGroupByIDParams{
+		UserAgent:          &userAgentDefault,
 		AllowNonEmptyGroup: &allowNonEmptyGroupDefault,
 	}
 
@@ -132,6 +140,17 @@ func (o *DeleteDashboardGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the delete dashboard group by Id params
+func (o *DeleteDashboardGroupByIDParams) WithUserAgent(userAgent *string) *DeleteDashboardGroupByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the delete dashboard group by Id params
+func (o *DeleteDashboardGroupByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithAllowNonEmptyGroup adds the allowNonEmptyGroup to the delete dashboard group by Id params
 func (o *DeleteDashboardGroupByIDParams) WithAllowNonEmptyGroup(allowNonEmptyGroup *bool) *DeleteDashboardGroupByIDParams {
 	o.SetAllowNonEmptyGroup(allowNonEmptyGroup)
@@ -161,6 +180,14 @@ func (o *DeleteDashboardGroupByIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.AllowNonEmptyGroup != nil {
 

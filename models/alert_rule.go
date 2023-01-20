@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -19,20 +20,20 @@ import (
 // swagger:model AlertRule
 type AlertRule struct {
 
-	// The datapoint the alert rule is configured to match
+	// The datapoint for which the alert rule is configured to match
 	// Example: *
 	Datapoint string `json:"datapoint,omitempty"`
 
-	// The datasource the alert rule is configured to match
+	// The datasource for which the alert rule is configured to match
 	// Example: Port-
 	Datasource string `json:"datasource,omitempty"`
 
-	// The device groups and service groups the alert rule is configured to match
+	// The device groups and service groups for which the alert rule is configured to match
 	// Example: [ \"Devices by Type\"]
 	// Unique: true
 	DeviceGroups []string `json:"deviceGroups,omitempty"`
 
-	// The device names and service names the alert rule is configured to match
+	// The device names and service names for which the alert rule is configured to match
 	// Example: [\"Cisco Router\"]
 	// Unique: true
 	Devices []string `json:"devices,omitempty"`
@@ -54,11 +55,12 @@ type AlertRule struct {
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
-	// The instance the alert rule is configured to match
+	// The instance for which the alert rule is configured to match
 	// Example: *
 	Instance string `json:"instance,omitempty"`
 
-	// The alert severity levels the alert rule is configured to match. Acceptable values are: All, Warn, Error, Critical
+	// The alert severity levels for which the alert rule is configured to match.
+	// The values can be All|Warn|Error|Critical
 	// Example: Warn
 	LevelStr string `json:"levelStr,omitempty"`
 
@@ -71,6 +73,14 @@ type AlertRule struct {
 	// Example: 100
 	// Required: true
 	Priority *int32 `json:"priority"`
+
+	// The resource property filters list
+	ResourceProperties []*DeviceProperty `json:"resourceProperties,omitempty"`
+
+	// Whether or not send anomaly suppressed alert
+	// Example: true
+	// Required: true
+	SendAnomalySuppressedAlert *bool `json:"sendAnomalySuppressedAlert"`
 
 	// Whether or not status notifications for acknowledgements and SDTs should be sent to the alert rule
 	// Example: true
@@ -102,6 +112,14 @@ func (m *AlertRule) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validatePriority(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateResourceProperties(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSendAnomalySuppressedAlert(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -162,11 +180,48 @@ func (m *AlertRule) validatePriority(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *AlertRule) validateResourceProperties(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResourceProperties) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.ResourceProperties); i++ {
+		if swag.IsZero(m.ResourceProperties[i]) { // not required
+			continue
+		}
+
+		if m.ResourceProperties[i] != nil {
+			if err := m.ResourceProperties[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("resourceProperties" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *AlertRule) validateSendAnomalySuppressedAlert(formats strfmt.Registry) error {
+
+	if err := validate.Required("sendAnomalySuppressedAlert", "body", m.SendAnomalySuppressedAlert); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // ContextValidate validate this alert rule based on the context it is used
 func (m *AlertRule) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateResourceProperties(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -180,6 +235,24 @@ func (m *AlertRule) contextValidateID(ctx context.Context, formats strfmt.Regist
 
 	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *AlertRule) contextValidateResourceProperties(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.ResourceProperties); i++ {
+
+		if m.ResourceProperties[i] != nil {
+			if err := m.ResourceProperties[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("resourceProperties" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

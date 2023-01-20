@@ -61,6 +61,11 @@ func NewAckAlertByIDParamsWithHTTPClient(client *http.Client) *AckAlertByIDParam
 */
 type AckAlertByIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Body.
 	Body *models.AlertAck
 
@@ -84,7 +89,18 @@ func (o *AckAlertByIDParams) WithDefaults() *AckAlertByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AckAlertByIDParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := AckAlertByIDParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the ack alert by Id params
@@ -120,6 +136,17 @@ func (o *AckAlertByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the ack alert by Id params
+func (o *AckAlertByIDParams) WithUserAgent(userAgent *string) *AckAlertByIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the ack alert by Id params
+func (o *AckAlertByIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithBody adds the body to the ack alert by Id params
 func (o *AckAlertByIDParams) WithBody(body *models.AlertAck) *AckAlertByIDParams {
 	o.SetBody(body)
@@ -149,6 +176,14 @@ func (o *AckAlertByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

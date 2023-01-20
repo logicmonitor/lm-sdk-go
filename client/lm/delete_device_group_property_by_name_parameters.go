@@ -60,6 +60,11 @@ func NewDeleteDeviceGroupPropertyByNameParamsWithHTTPClient(client *http.Client)
 */
 type DeleteDeviceGroupPropertyByNameParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	/* Gid.
 
 	   group ID
@@ -88,7 +93,18 @@ func (o *DeleteDeviceGroupPropertyByNameParams) WithDefaults() *DeleteDeviceGrou
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteDeviceGroupPropertyByNameParams) SetDefaults() {
-	// no default values defined for this parameter
+	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+	)
+
+	val := DeleteDeviceGroupPropertyByNameParams{
+		UserAgent: &userAgentDefault,
+	}
+
+	val.timeout = o.timeout
+	val.Context = o.Context
+	val.HTTPClient = o.HTTPClient
+	*o = val
 }
 
 // WithTimeout adds the timeout to the delete device group property by name params
@@ -124,6 +140,17 @@ func (o *DeleteDeviceGroupPropertyByNameParams) SetHTTPClient(client *http.Clien
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the delete device group property by name params
+func (o *DeleteDeviceGroupPropertyByNameParams) WithUserAgent(userAgent *string) *DeleteDeviceGroupPropertyByNameParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the delete device group property by name params
+func (o *DeleteDeviceGroupPropertyByNameParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithGid adds the gid to the delete device group property by name params
 func (o *DeleteDeviceGroupPropertyByNameParams) WithGid(gid int32) *DeleteDeviceGroupPropertyByNameParams {
 	o.SetGid(gid)
@@ -153,6 +180,14 @@ func (o *DeleteDeviceGroupPropertyByNameParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	// path param gid
 	if err := r.SetPathParam("gid", swag.FormatInt32(o.Gid)); err != nil {

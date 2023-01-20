@@ -60,6 +60,11 @@ func NewGetRecipientGroupListParamsWithHTTPClient(client *http.Client) *GetRecip
 */
 type GetRecipientGroupListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -95,14 +100,17 @@ func (o *GetRecipientGroupListParams) WithDefaults() *GetRecipientGroupListParam
 // All values with no default are reset to their zero value.
 func (o *GetRecipientGroupListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetRecipientGroupListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,6 +150,17 @@ func (o *GetRecipientGroupListParams) WithHTTPClient(client *http.Client) *GetRe
 // SetHTTPClient adds the HTTPClient to the get recipient group list params
 func (o *GetRecipientGroupListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get recipient group list params
+func (o *GetRecipientGroupListParams) WithUserAgent(userAgent *string) *GetRecipientGroupListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get recipient group list params
+func (o *GetRecipientGroupListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get recipient group list params
@@ -195,6 +214,14 @@ func (o *GetRecipientGroupListParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

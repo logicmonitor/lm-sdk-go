@@ -20,18 +20,19 @@ import (
 // swagger:model EntityProperty
 type EntityProperty struct {
 
-	// inherit list
+	// The inherit list of the property
+	// Read Only: true
 	InheritList []*InheritanceProp `json:"inheritList,omitempty"`
 
-	// name
+	// The name of the property
 	// Read Only: true
 	Name string `json:"name,omitempty"`
 
-	// type
+	// The type of property. The values can be Inherit|System|Custom
 	// Read Only: true
 	Type string `json:"type,omitempty"`
 
-	// value
+	// The value of the property
 	// Read Only: true
 	Value string `json:"value,omitempty"`
 }
@@ -101,6 +102,10 @@ func (m *EntityProperty) ContextValidate(ctx context.Context, formats strfmt.Reg
 }
 
 func (m *EntityProperty) contextValidateInheritList(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "inheritList", "body", []*InheritanceProp(m.InheritList)); err != nil {
+		return err
+	}
 
 	for i := 0; i < len(m.InheritList); i++ {
 

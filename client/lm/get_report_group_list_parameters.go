@@ -60,6 +60,11 @@ func NewGetReportGroupListParamsWithHTTPClient(client *http.Client) *GetReportGr
 */
 type GetReportGroupListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -95,14 +100,17 @@ func (o *GetReportGroupListParams) WithDefaults() *GetReportGroupListParams {
 // All values with no default are reset to their zero value.
 func (o *GetReportGroupListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetReportGroupListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,6 +150,17 @@ func (o *GetReportGroupListParams) WithHTTPClient(client *http.Client) *GetRepor
 // SetHTTPClient adds the HTTPClient to the get report group list params
 func (o *GetReportGroupListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get report group list params
+func (o *GetReportGroupListParams) WithUserAgent(userAgent *string) *GetReportGroupListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get report group list params
+func (o *GetReportGroupListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get report group list params
@@ -195,6 +214,14 @@ func (o *GetReportGroupListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

@@ -57,7 +57,7 @@ type DashboardGroup struct {
 	// Example: 1
 	ParentID int32 `json:"parentId,omitempty"`
 
-	// The template which is used for import dashboard group
+	// The template which is used for importing dashboard group
 	Template interface{} `json:"template,omitempty"`
 
 	// The permission of the user that made the API call

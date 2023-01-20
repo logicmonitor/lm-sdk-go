@@ -60,6 +60,11 @@ func NewGetSiteMonitorCheckPointListParamsWithHTTPClient(client *http.Client) *G
 */
 type GetSiteMonitorCheckPointListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -95,14 +100,17 @@ func (o *GetSiteMonitorCheckPointListParams) WithDefaults() *GetSiteMonitorCheck
 // All values with no default are reset to their zero value.
 func (o *GetSiteMonitorCheckPointListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetSiteMonitorCheckPointListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,6 +150,17 @@ func (o *GetSiteMonitorCheckPointListParams) WithHTTPClient(client *http.Client)
 // SetHTTPClient adds the HTTPClient to the get site monitor check point list params
 func (o *GetSiteMonitorCheckPointListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get site monitor check point list params
+func (o *GetSiteMonitorCheckPointListParams) WithUserAgent(userAgent *string) *GetSiteMonitorCheckPointListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get site monitor check point list params
+func (o *GetSiteMonitorCheckPointListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get site monitor check point list params
@@ -195,6 +214,14 @@ func (o *GetSiteMonitorCheckPointListParams) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 

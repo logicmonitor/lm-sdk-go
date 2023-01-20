@@ -60,6 +60,11 @@ func NewGetAPITokenListByAdminIDParamsWithHTTPClient(client *http.Client) *GetAP
 */
 type GetAPITokenListByAdminIDParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// AdminID.
 	//
 	// Format: int32
@@ -76,11 +81,17 @@ type GetAPITokenListByAdminIDParams struct {
 	// Format: int32
 	Offset *int32
 
+	// Permission.
+	Permission *string
+
 	// Size.
 	//
 	// Format: int32
 	// Default: 50
 	Size *int32
+
+	// Type.
+	Type *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -100,14 +111,17 @@ func (o *GetAPITokenListByAdminIDParams) WithDefaults() *GetAPITokenListByAdminI
 // All values with no default are reset to their zero value.
 func (o *GetAPITokenListByAdminIDParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAPITokenListByAdminIDParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -147,6 +161,17 @@ func (o *GetAPITokenListByAdminIDParams) WithHTTPClient(client *http.Client) *Ge
 // SetHTTPClient adds the HTTPClient to the get Api token list by admin Id params
 func (o *GetAPITokenListByAdminIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithUserAgent adds the userAgent to the get Api token list by admin Id params
+func (o *GetAPITokenListByAdminIDParams) WithUserAgent(userAgent *string) *GetAPITokenListByAdminIDParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get Api token list by admin Id params
+func (o *GetAPITokenListByAdminIDParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
 }
 
 // WithAdminID adds the adminID to the get Api token list by admin Id params
@@ -193,6 +218,17 @@ func (o *GetAPITokenListByAdminIDParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithPermission adds the permission to the get Api token list by admin Id params
+func (o *GetAPITokenListByAdminIDParams) WithPermission(permission *string) *GetAPITokenListByAdminIDParams {
+	o.SetPermission(permission)
+	return o
+}
+
+// SetPermission adds the permission to the get Api token list by admin Id params
+func (o *GetAPITokenListByAdminIDParams) SetPermission(permission *string) {
+	o.Permission = permission
+}
+
 // WithSize adds the size to the get Api token list by admin Id params
 func (o *GetAPITokenListByAdminIDParams) WithSize(size *int32) *GetAPITokenListByAdminIDParams {
 	o.SetSize(size)
@@ -204,6 +240,17 @@ func (o *GetAPITokenListByAdminIDParams) SetSize(size *int32) {
 	o.Size = size
 }
 
+// WithType adds the typeVar to the get Api token list by admin Id params
+func (o *GetAPITokenListByAdminIDParams) WithType(typeVar *string) *GetAPITokenListByAdminIDParams {
+	o.SetType(typeVar)
+	return o
+}
+
+// SetType adds the type to the get Api token list by admin Id params
+func (o *GetAPITokenListByAdminIDParams) SetType(typeVar *string) {
+	o.Type = typeVar
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetAPITokenListByAdminIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -211,6 +258,14 @@ func (o *GetAPITokenListByAdminIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	// path param adminId
 	if err := r.SetPathParam("adminId", swag.FormatInt32(o.AdminID)); err != nil {
@@ -268,6 +323,23 @@ func (o *GetAPITokenListByAdminIDParams) WriteToRequest(r runtime.ClientRequest,
 		}
 	}
 
+	if o.Permission != nil {
+
+		// query param permission
+		var qrPermission string
+
+		if o.Permission != nil {
+			qrPermission = *o.Permission
+		}
+		qPermission := qrPermission
+		if qPermission != "" {
+
+			if err := r.SetQueryParam("permission", qPermission); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.Size != nil {
 
 		// query param size
@@ -280,6 +352,23 @@ func (o *GetAPITokenListByAdminIDParams) WriteToRequest(r runtime.ClientRequest,
 		if qSize != "" {
 
 			if err := r.SetQueryParam("size", qSize); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Type != nil {
+
+		// query param type
+		var qrType string
+
+		if o.Type != nil {
+			qrType = *o.Type
+		}
+		qType := qrType
+		if qType != "" {
+
+			if err := r.SetQueryParam("type", qType); err != nil {
 				return err
 			}
 		}

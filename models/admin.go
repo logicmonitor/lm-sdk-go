@@ -28,18 +28,22 @@ type Admin struct {
 	// Read Only: true
 	AcceptEULAOn int64 `json:"acceptEULAOn,omitempty"`
 
+	// The Id(s) of the groups the admin is in, where multiple group ids are comma separated
+	// Example: [1,2,3]
+	AdminGroupIds []int32 `json:"adminGroupIds,omitempty"`
+
 	// Any API Tokens associated with the user
 	APITokens []*APIToken `json:"apiTokens,omitempty"`
 
-	// Whether it is a API only user
+	// Specifies whether the user is an API only user. The values can be true|false
 	// Example: false
 	Apionly bool `json:"apionly,omitempty"`
 
-	// email | smsemail
+	// The values can be email | smsemail. Specifies the contact method for this admin
 	// Example: email
 	ContactMethod string `json:"contactMethod,omitempty"`
 
-	// Who created the user. This may be another user, SAML or LogicMonitor
+	// Species who created the user. This may be another user, SAML or LogicMonitor
 	// Example: Chief Admin
 	CreatedBy string `json:"createdBy,omitempty"`
 
@@ -102,13 +106,18 @@ type Admin struct {
 	// Example: 8054445555@logicmonitor.com
 	SmsEmail string `json:"smsEmail,omitempty"`
 
-	// sms | fullText, where sms = 160 characters and fullText= all characters
+	// The values can be sms | fullText, where sms = 160 characters and fullText = all characters
 	// Example: sms
 	SmsEmailFormat string `json:"smsEmailFormat,omitempty"`
 
-	// The user's status. Should be one of active and suspended
+	// The user's status. The values can be active|suspended
 	// Example: active
 	Status string `json:"status,omitempty"`
+
+	// The tenant id of the user
+	// Example: 2
+	// Read Only: true
+	TenantID int32 `json:"tenantId,omitempty"`
 
 	// The timezone of the user
 	// Example: America/Los Angeles
@@ -122,13 +131,18 @@ type Admin struct {
 	// Example: false
 	TwoFAEnabled bool `json:"twoFAEnabled,omitempty"`
 
+	// The permission of current user with the admin. values can be write|read|none
+	// Example: read
+	// Read Only: true
+	UserPermission string `json:"userPermission,omitempty"`
+
 	// The username associated with the user
 	// Example: John
 	// Required: true
 	Username *string `json:"username"`
 
 	// The account tabs that will be visible to the user
-	// Example: {\n\n\"Hosts\" : true,\n\"Services\" : true,\n\"Reports\" : true,\n\"Dashboards\" : true,\n\"Alerts\" : true,\n\"Settings\" : true\n}
+	// Example: {\n\n\"Resources\" : true,\n\"Websites\" : true,\n\"Reports\" : true,\n\"Dashboards\" : true,\n\"Alerts\" : true,\n\"Settings\" : true,\n\"Maps\" : true,\n\"Logs\" : true,\n\"Traces\" : true\n}
 	ViewPermission interface{} `json:"viewPermission,omitempty"`
 }
 
@@ -278,7 +292,15 @@ func (m *Admin) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateTenantID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateTrainingEmail(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -378,9 +400,27 @@ func (m *Admin) contextValidateRoles(ctx context.Context, formats strfmt.Registr
 	return nil
 }
 
+func (m *Admin) contextValidateTenantID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "tenantId", "body", int32(m.TenantID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Admin) contextValidateTrainingEmail(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "trainingEmail", "body", string(m.TrainingEmail)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Admin) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission)); err != nil {
 		return err
 	}
 

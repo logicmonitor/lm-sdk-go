@@ -60,6 +60,11 @@ func NewGetAPITokenListParamsWithHTTPClient(client *http.Client) *GetAPITokenLis
 */
 type GetAPITokenListParams struct {
 
+	// UserAgent.
+	//
+	// Default: "Logicmonitor/GO-SDK"
+	UserAgent *string
+
 	// Fields.
 	Fields *string
 
@@ -71,11 +76,17 @@ type GetAPITokenListParams struct {
 	// Format: int32
 	Offset *int32
 
+	// Permission.
+	Permission *string
+
 	// Size.
 	//
 	// Format: int32
 	// Default: 50
 	Size *int32
+
+	// Type.
+	Type *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -95,14 +106,17 @@ func (o *GetAPITokenListParams) WithDefaults() *GetAPITokenListParams {
 // All values with no default are reset to their zero value.
 func (o *GetAPITokenListParams) SetDefaults() {
 	var (
+		userAgentDefault = string("Logicmonitor/GO-SDK")
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAPITokenListParams{
-		Offset: &offsetDefault,
-		Size:   &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -144,6 +158,17 @@ func (o *GetAPITokenListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithUserAgent adds the userAgent to the get Api token list params
+func (o *GetAPITokenListParams) WithUserAgent(userAgent *string) *GetAPITokenListParams {
+	o.SetUserAgent(userAgent)
+	return o
+}
+
+// SetUserAgent adds the userAgent to the get Api token list params
+func (o *GetAPITokenListParams) SetUserAgent(userAgent *string) {
+	o.UserAgent = userAgent
+}
+
 // WithFields adds the fields to the get Api token list params
 func (o *GetAPITokenListParams) WithFields(fields *string) *GetAPITokenListParams {
 	o.SetFields(fields)
@@ -177,6 +202,17 @@ func (o *GetAPITokenListParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithPermission adds the permission to the get Api token list params
+func (o *GetAPITokenListParams) WithPermission(permission *string) *GetAPITokenListParams {
+	o.SetPermission(permission)
+	return o
+}
+
+// SetPermission adds the permission to the get Api token list params
+func (o *GetAPITokenListParams) SetPermission(permission *string) {
+	o.Permission = permission
+}
+
 // WithSize adds the size to the get Api token list params
 func (o *GetAPITokenListParams) WithSize(size *int32) *GetAPITokenListParams {
 	o.SetSize(size)
@@ -188,6 +224,17 @@ func (o *GetAPITokenListParams) SetSize(size *int32) {
 	o.Size = size
 }
 
+// WithType adds the typeVar to the get Api token list params
+func (o *GetAPITokenListParams) WithType(typeVar *string) *GetAPITokenListParams {
+	o.SetType(typeVar)
+	return o
+}
+
+// SetType adds the type to the get Api token list params
+func (o *GetAPITokenListParams) SetType(typeVar *string) {
+	o.Type = typeVar
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetAPITokenListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -195,6 +242,14 @@ func (o *GetAPITokenListParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
+
+	if o.UserAgent != nil {
+
+		// header param User-Agent
+		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
+			return err
+		}
+	}
 
 	if o.Fields != nil {
 
@@ -247,6 +302,23 @@ func (o *GetAPITokenListParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		}
 	}
 
+	if o.Permission != nil {
+
+		// query param permission
+		var qrPermission string
+
+		if o.Permission != nil {
+			qrPermission = *o.Permission
+		}
+		qPermission := qrPermission
+		if qPermission != "" {
+
+			if err := r.SetQueryParam("permission", qPermission); err != nil {
+				return err
+			}
+		}
+	}
+
 	if o.Size != nil {
 
 		// query param size
@@ -259,6 +331,23 @@ func (o *GetAPITokenListParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		if qSize != "" {
 
 			if err := r.SetQueryParam("size", qSize); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Type != nil {
+
+		// query param type
+		var qrType string
+
+		if o.Type != nil {
+			qrType = *o.Type
+		}
+		qType := qrType
+		if qType != "" {
+
+			if err := r.SetQueryParam("type", qType); err != nil {
 				return err
 			}
 		}

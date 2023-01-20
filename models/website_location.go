@@ -19,17 +19,17 @@ import (
 // swagger:model WebsiteLocation
 type WebsiteLocation struct {
 
-	// all
+	// This field only for the SiteMonitor Groups, does not include Internal Service Groups
 	// Example: true
 	All interface{} `json:"all,omitempty"`
 
-	// collector ids
+	// The Internal Service Groups Ids
 	CollectorIds []int32 `json:"collectorIds,omitempty"`
 
-	// collectors
+	// The collector info of the services
 	Collectors []*WebsiteCollectorInfo `json:"collectors,omitempty"`
 
-	// smg ids
+	// The SiteMonitor Groups Ids
 	// Example: [1, 2, 4, 3, 5, 6]
 	SmgIds []int32 `json:"smgIds,omitempty"`
 }

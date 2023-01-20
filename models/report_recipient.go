@@ -28,11 +28,11 @@ type ReportRecipient struct {
 	// Required: true
 	Addr *string `json:"addr"`
 
-	// This should always be email
+	// Specifies the method to get the report. This should always be email
 	// Example: email
 	Method string `json:"method,omitempty"`
 
-	// Where admin refers to a user in the account and arbitrary refers to an email address not associated with a user account.Acceptable values are: admin, arbitrary
+	// Specifies the recipient type. The values can be admin|arbitrary|group, where admin refers to a user in the account and arbitrary refers to an email address not associated with a user account.
 	// Example: admin
 	// Required: true
 	Type *string `json:"type"`
