@@ -54,17 +54,14 @@ func NewAddDashboardParamsWithHTTPClient(client *http.Client) *AddDashboardParam
 	}
 }
 
-/* AddDashboardParams contains all the parameters to send to the API endpoint
-   for the add dashboard operation.
+/*
+AddDashboardParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add dashboard operation.
+
+	Typically these are written to a http.Request.
 */
 type AddDashboardParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.Dashboard
@@ -86,18 +83,7 @@ func (o *AddDashboardParams) WithDefaults() *AddDashboardParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddDashboardParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := AddDashboardParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add dashboard params
@@ -133,17 +119,6 @@ func (o *AddDashboardParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the add dashboard params
-func (o *AddDashboardParams) WithUserAgent(userAgent *string) *AddDashboardParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the add dashboard params
-func (o *AddDashboardParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the add dashboard params
 func (o *AddDashboardParams) WithBody(body *models.Dashboard) *AddDashboardParams {
 	o.SetBody(body)
@@ -162,14 +137,6 @@ func (o *AddDashboardParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

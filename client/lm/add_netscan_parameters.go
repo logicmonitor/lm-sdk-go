@@ -54,17 +54,14 @@ func NewAddNetscanParamsWithHTTPClient(client *http.Client) *AddNetscanParams {
 	}
 }
 
-/* AddNetscanParams contains all the parameters to send to the API endpoint
-   for the add netscan operation.
+/*
+AddNetscanParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add netscan operation.
+
+	Typically these are written to a http.Request.
 */
 type AddNetscanParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body models.Netscan
@@ -86,18 +83,7 @@ func (o *AddNetscanParams) WithDefaults() *AddNetscanParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddNetscanParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := AddNetscanParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add netscan params
@@ -133,17 +119,6 @@ func (o *AddNetscanParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the add netscan params
-func (o *AddNetscanParams) WithUserAgent(userAgent *string) *AddNetscanParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the add netscan params
-func (o *AddNetscanParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the add netscan params
 func (o *AddNetscanParams) WithBody(body models.Netscan) *AddNetscanParams {
 	o.SetBody(body)
@@ -162,14 +137,6 @@ func (o *AddNetscanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

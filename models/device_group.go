@@ -55,20 +55,9 @@ type DeviceGroup struct {
 	// The properties associated with this device group
 	CustomProperties []*NameAndValue `json:"customProperties,omitempty"`
 
-	// The id of the default Auto Balanced Collector Group assigned to the device group
-	DefaultAutoBalancedCollectorGroupID int32 `json:"defaultAutoBalancedCollectorGroupId,omitempty"`
-
 	// The description of the default collector assigned to the device group
 	// Read Only: true
 	DefaultCollectorDescription string `json:"defaultCollectorDescription,omitempty"`
-
-	// The description of the default collector group assigned to the device group
-	// Read Only: true
-	DefaultCollectorGroupDescription string `json:"defaultCollectorGroupDescription,omitempty"`
-
-	// The collector group id of the default collector assigned to the device group
-	// Read Only: true
-	DefaultCollectorGroupID int32 `json:"defaultCollectorGroupId,omitempty"`
 
 	// The Id of the default collector assigned to the device group
 	// Example: 1
@@ -155,25 +144,9 @@ type DeviceGroup struct {
 	// Read Only: true
 	NumOfHosts int64 `json:"numOfHosts,omitempty"`
 
-	// The number of kubernetes devices that belong to this device group (includes Kubernetes devices in sub groups)
-	// Read Only: true
-	NumOfKubernetesDevices int64 `json:"numOfKubernetesDevices,omitempty"`
-
 	// The id of the parent group for this device group (the root device group has an Id of 1)
 	// Example: 1
 	ParentID int32 `json:"parentId,omitempty"`
-
-	// The role privilege operations for the device group that are granted to the user that made this API request
-	// Read Only: true
-	RolePrivileges []string `json:"rolePrivileges,omitempty"`
-
-	// The result returned by the transaction that tests the SaaS credentials associated with the Saas group
-	// Read Only: true
-	SaasTestResult *SaasAccountTestResult `json:"saasTestResult,omitempty"`
-
-	// The Status code result returned by the transaction that tests the SaaS credentials associated with the SaaS group
-	// Read Only: true
-	SaasTestResultCode int32 `json:"saasTestResultCode,omitempty"`
 
 	// The child device groups within this device group
 	// Read Only: true
@@ -205,10 +178,6 @@ func (m *DeviceGroup) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateSaasTestResult(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -306,23 +275,6 @@ func (m *DeviceGroup) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *DeviceGroup) validateSaasTestResult(formats strfmt.Registry) error {
-	if swag.IsZero(m.SaasTestResult) { // not required
-		return nil
-	}
-
-	if m.SaasTestResult != nil {
-		if err := m.SaasTestResult.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("saasTestResult")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 func (m *DeviceGroup) validateSubGroups(formats strfmt.Registry) error {
 	if swag.IsZero(m.SubGroups) { // not required
 		return nil
@@ -387,14 +339,6 @@ func (m *DeviceGroup) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateDefaultCollectorGroupDescription(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateDefaultCollectorGroupID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateEffectiveAlertEnabled(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -448,22 +392,6 @@ func (m *DeviceGroup) ContextValidate(ctx context.Context, formats strfmt.Regist
 	}
 
 	if err := m.contextValidateNumOfHosts(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateNumOfKubernetesDevices(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateRolePrivileges(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSaasTestResult(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSaasTestResultCode(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -575,24 +503,6 @@ func (m *DeviceGroup) contextValidateCustomProperties(ctx context.Context, forma
 func (m *DeviceGroup) contextValidateDefaultCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "defaultCollectorDescription", "body", string(m.DefaultCollectorDescription)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceGroup) contextValidateDefaultCollectorGroupDescription(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "defaultCollectorGroupDescription", "body", string(m.DefaultCollectorGroupDescription)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceGroup) contextValidateDefaultCollectorGroupID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "defaultCollectorGroupId", "body", int32(m.DefaultCollectorGroupID)); err != nil {
 		return err
 	}
 
@@ -724,47 +634,6 @@ func (m *DeviceGroup) contextValidateNumOfGcpDevices(ctx context.Context, format
 func (m *DeviceGroup) contextValidateNumOfHosts(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "numOfHosts", "body", int64(m.NumOfHosts)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceGroup) contextValidateNumOfKubernetesDevices(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "numOfKubernetesDevices", "body", int64(m.NumOfKubernetesDevices)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceGroup) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceGroup) contextValidateSaasTestResult(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.SaasTestResult != nil {
-		if err := m.SaasTestResult.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("saasTestResult")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *DeviceGroup) contextValidateSaasTestResultCode(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "saasTestResultCode", "body", int32(m.SaasTestResultCode)); err != nil {
 		return err
 	}
 

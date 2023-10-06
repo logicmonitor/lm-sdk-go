@@ -8,10 +8,8 @@ package models
 import (
 	"context"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // GraphOpsNoteScope graph ops note scope
@@ -19,24 +17,19 @@ import (
 // swagger:model GraphOpsNoteScope
 type GraphOpsNoteScope struct {
 
-	// The device group Id
-	// Read Only: true
+	// device group ids
 	DeviceGroupIds []int32 `json:"deviceGroupIds,omitempty"`
 
-	// The device Id
-	// Read Only: true
+	// device Id
 	DeviceID int32 `json:"deviceId,omitempty"`
 
-	// The service group Id
-	// Read Only: true
+	// service group ids
 	ServiceGroupIds []int32 `json:"serviceGroupIds,omitempty"`
 
-	// The service Id
-	// Read Only: true
+	// service Id
 	ServiceID int32 `json:"serviceId,omitempty"`
 
-	// The values can be device | service | website
-	// Read Only: true
+	// type
 	Type string `json:"type,omitempty"`
 }
 
@@ -45,78 +38,8 @@ func (m *GraphOpsNoteScope) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this graph ops note scope based on the context it is used
+// ContextValidate validates this graph ops note scope based on context it is used
 func (m *GraphOpsNoteScope) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateDeviceGroupIds(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateDeviceID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateServiceGroupIds(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateServiceID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateType(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *GraphOpsNoteScope) contextValidateDeviceGroupIds(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "deviceGroupIds", "body", []int32(m.DeviceGroupIds)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphOpsNoteScope) contextValidateDeviceID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "deviceId", "body", int32(m.DeviceID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphOpsNoteScope) contextValidateServiceGroupIds(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "serviceGroupIds", "body", []int32(m.ServiceGroupIds)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphOpsNoteScope) contextValidateServiceID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "serviceId", "body", int32(m.ServiceID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GraphOpsNoteScope) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "type", "body", string(m.Type)); err != nil {
-		return err
-	}
-
 	return nil
 }
 

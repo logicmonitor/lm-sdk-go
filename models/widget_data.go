@@ -25,11 +25,11 @@ type WidgetData interface {
 	runtime.Validatable
 	runtime.ContextValidatable
 
-	// The widget title
+	// title
 	Title() string
 	SetTitle(string)
 
-	// The widget data type. The values can be noc|alert|batchjob|gmap|netflow|netflowGroup|bigNumber|serviceNOC|gauge|pieChart|table|deviceNOC|deviceSLA|serviceSLA|dynamicTable|graph|savedMap
+	// type
 	// Read Only: true
 	Type() string
 	SetType(string)

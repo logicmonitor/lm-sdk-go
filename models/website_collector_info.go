@@ -19,27 +19,27 @@ import (
 // swagger:model WebsiteCollectorInfo
 type WebsiteCollectorInfo struct {
 
-	// The group Id of the group the collector is present in
+	// collector group Id
 	// Read Only: true
 	CollectorGroupID int32 `json:"collectorGroupId,omitempty"`
 
-	// The group name of the group the collector is present in
+	// collector group name
 	// Read Only: true
 	CollectorGroupName string `json:"collectorGroupName,omitempty"`
 
-	// The description of the collector
+	// description
 	// Read Only: true
 	Description string `json:"description,omitempty"`
 
-	// The hostname of the collector
+	// hostname
 	// Read Only: true
 	Hostname string `json:"hostname,omitempty"`
 
-	// The collector id
+	// id
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
-	// The status of the collector
+	// status
 	// Read Only: true
 	Status string `json:"status,omitempty"`
 }

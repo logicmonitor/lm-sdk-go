@@ -53,17 +53,14 @@ func NewGetCollectorVersionListParamsWithHTTPClient(client *http.Client) *GetCol
 	}
 }
 
-/* GetCollectorVersionListParams contains all the parameters to send to the API endpoint
-   for the get collector version list operation.
+/*
+GetCollectorVersionListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get collector version list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetCollectorVersionListParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Fields.
 	Fields *string
@@ -100,17 +97,14 @@ func (o *GetCollectorVersionListParams) WithDefaults() *GetCollectorVersionListP
 // All values with no default are reset to their zero value.
 func (o *GetCollectorVersionListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetCollectorVersionListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,17 +144,6 @@ func (o *GetCollectorVersionListParams) WithHTTPClient(client *http.Client) *Get
 // SetHTTPClient adds the HTTPClient to the get collector version list params
 func (o *GetCollectorVersionListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get collector version list params
-func (o *GetCollectorVersionListParams) WithUserAgent(userAgent *string) *GetCollectorVersionListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get collector version list params
-func (o *GetCollectorVersionListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get collector version list params
@@ -214,14 +197,6 @@ func (o *GetCollectorVersionListParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

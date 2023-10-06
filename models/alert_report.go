@@ -51,8 +51,6 @@ type AlertReport struct {
 
 	recipientsField []*ReportRecipient
 
-	reportLinkExpireField string
-
 	reportLinkNumField int32
 
 	scheduleField string
@@ -71,13 +69,6 @@ type AlertReport struct {
 	// false: active alerts and cleared alerts will both be displayed in the report
 	ActiveOnly bool `json:"activeOnly,omitempty"`
 
-	// all|yes|no|yes,no|no,yes
-	// all: return all anomaly, non anomaly and unknown anomaly alerts
-	// yes: only alerts which has anomaly will be displayed
-	// no: only alerts which has no anomaly will be displayed
-	// yes,no:  return all anomaly and non anomaly alerts
-	Anomaly string `json:"anomaly,omitempty"`
-
 	// All alerts displayed in the report must have been routed to the Escalation Chains specified in this filter
 	Chain string `json:"chain,omitempty"`
 
@@ -95,12 +86,6 @@ type AlertReport struct {
 
 	// The Time Range configured for the report. Options include: Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 	DateRange string `json:"dateRange,omitempty"`
-
-	// dependency role
-	DependencyRole string `json:"dependencyRole,omitempty"`
-
-	// dependency routing state
-	DependencyRoutingState string `json:"dependencyRoutingState,omitempty"`
 
 	// The device filter used to determine which alerts will appear in the report. Glob expressions supported
 	DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
@@ -130,9 +115,6 @@ type AlertReport struct {
 
 	// count | host | dataPoint | level | startOn | ackedOn. How displayed alerts will be sorted in the report. Note that if summaryOnly is set to true, you are limited to sortedBy= count | host | dataPoint. If summaryOnly is set to false, you cannot set sortedBy = count
 	SortedBy string `json:"sortedBy,omitempty"`
-
-	// asc | desc
-	SortedDirection string `json:"sortedDirection,omitempty"`
 
 	// true: a column will be added to the report detailing the number of times each alert occurred
 	// false: the number of times each alert occurred will not be displayed in the report
@@ -292,16 +274,6 @@ func (m *AlertReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
-// ReportLinkExpire gets the report link expire of this subtype
-func (m *AlertReport) ReportLinkExpire() string {
-	return m.reportLinkExpireField
-}
-
-// SetReportLinkExpire sets the report link expire of this subtype
-func (m *AlertReport) SetReportLinkExpire(val string) {
-	m.reportLinkExpireField = val
-}
-
 // ReportLinkNum gets the report link num of this subtype
 func (m *AlertReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -365,13 +337,6 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 		// false: active alerts and cleared alerts will both be displayed in the report
 		ActiveOnly bool `json:"activeOnly,omitempty"`
 
-		// all|yes|no|yes,no|no,yes
-		// all: return all anomaly, non anomaly and unknown anomaly alerts
-		// yes: only alerts which has anomaly will be displayed
-		// no: only alerts which has no anomaly will be displayed
-		// yes,no:  return all anomaly and non anomaly alerts
-		Anomaly string `json:"anomaly,omitempty"`
-
 		// All alerts displayed in the report must have been routed to the Escalation Chains specified in this filter
 		Chain string `json:"chain,omitempty"`
 
@@ -389,12 +354,6 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 
 		// The Time Range configured for the report. Options include: Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 		DateRange string `json:"dateRange,omitempty"`
-
-		// dependency role
-		DependencyRole string `json:"dependencyRole,omitempty"`
-
-		// dependency routing state
-		DependencyRoutingState string `json:"dependencyRoutingState,omitempty"`
 
 		// The device filter used to determine which alerts will appear in the report. Glob expressions supported
 		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
@@ -424,9 +383,6 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 
 		// count | host | dataPoint | level | startOn | ackedOn. How displayed alerts will be sorted in the report. Note that if summaryOnly is set to true, you are limited to sortedBy= count | host | dataPoint. If summaryOnly is set to false, you cannot set sortedBy = count
 		SortedBy string `json:"sortedBy,omitempty"`
-
-		// asc | desc
-		SortedDirection string `json:"sortedDirection,omitempty"`
 
 		// true: a column will be added to the report detailing the number of times each alert occurred
 		// false: the number of times each alert occurred will not be displayed in the report
@@ -475,8 +431,6 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 		Name *string `json:"name"`
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
-
-		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -528,8 +482,6 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 
 	result.recipientsField = base.Recipients
 
-	result.reportLinkExpireField = base.ReportLinkExpire
-
 	result.reportLinkNumField = base.ReportLinkNum
 
 	result.scheduleField = base.Schedule
@@ -544,15 +496,12 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 
 	result.AckFilter = data.AckFilter
 	result.ActiveOnly = data.ActiveOnly
-	result.Anomaly = data.Anomaly
 	result.Chain = data.Chain
 	result.Columns = data.Columns
 	result.DataPoint = data.DataPoint
 	result.DataSource = data.DataSource
 	result.DataSourceInstanceName = data.DataSourceInstanceName
 	result.DateRange = data.DateRange
-	result.DependencyRole = data.DependencyRole
-	result.DependencyRoutingState = data.DependencyRoutingState
 	result.DeviceDisplayName = data.DeviceDisplayName
 	result.GroupFullPath = data.GroupFullPath
 	result.IncludePreexist = data.IncludePreexist
@@ -560,7 +509,6 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 	result.Rule = data.Rule
 	result.SDTFilter = data.SDTFilter
 	result.SortedBy = data.SortedBy
-	result.SortedDirection = data.SortedDirection
 	result.SummaryOnly = data.SummaryOnly
 	result.Timing = data.Timing
 
@@ -585,13 +533,6 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 		// false: active alerts and cleared alerts will both be displayed in the report
 		ActiveOnly bool `json:"activeOnly,omitempty"`
 
-		// all|yes|no|yes,no|no,yes
-		// all: return all anomaly, non anomaly and unknown anomaly alerts
-		// yes: only alerts which has anomaly will be displayed
-		// no: only alerts which has no anomaly will be displayed
-		// yes,no:  return all anomaly and non anomaly alerts
-		Anomaly string `json:"anomaly,omitempty"`
-
 		// All alerts displayed in the report must have been routed to the Escalation Chains specified in this filter
 		Chain string `json:"chain,omitempty"`
 
@@ -609,12 +550,6 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 
 		// The Time Range configured for the report. Options include: Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 		DateRange string `json:"dateRange,omitempty"`
-
-		// dependency role
-		DependencyRole string `json:"dependencyRole,omitempty"`
-
-		// dependency routing state
-		DependencyRoutingState string `json:"dependencyRoutingState,omitempty"`
 
 		// The device filter used to determine which alerts will appear in the report. Glob expressions supported
 		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
@@ -645,9 +580,6 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 		// count | host | dataPoint | level | startOn | ackedOn. How displayed alerts will be sorted in the report. Note that if summaryOnly is set to true, you are limited to sortedBy= count | host | dataPoint. If summaryOnly is set to false, you cannot set sortedBy = count
 		SortedBy string `json:"sortedBy,omitempty"`
 
-		// asc | desc
-		SortedDirection string `json:"sortedDirection,omitempty"`
-
 		// true: a column will be added to the report detailing the number of times each alert occurred
 		// false: the number of times each alert occurred will not be displayed in the report
 		SummaryOnly bool `json:"summaryOnly,omitempty"`
@@ -660,8 +592,6 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 
 		ActiveOnly: m.ActiveOnly,
 
-		Anomaly: m.Anomaly,
-
 		Chain: m.Chain,
 
 		Columns: m.Columns,
@@ -673,10 +603,6 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 		DataSourceInstanceName: m.DataSourceInstanceName,
 
 		DateRange: m.DateRange,
-
-		DependencyRole: m.DependencyRole,
-
-		DependencyRoutingState: m.DependencyRoutingState,
 
 		DeviceDisplayName: m.DeviceDisplayName,
 
@@ -691,8 +617,6 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 		SDTFilter: m.SDTFilter,
 
 		SortedBy: m.SortedBy,
-
-		SortedDirection: m.SortedDirection,
 
 		SummaryOnly: m.SummaryOnly,
 
@@ -731,8 +655,6 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 		Name *string `json:"name"`
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
-
-		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
 
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
@@ -774,8 +696,6 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
-
-		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 

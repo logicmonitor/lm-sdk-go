@@ -53,17 +53,14 @@ func NewGetWebsiteSDTListByWebsiteIDParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/* GetWebsiteSDTListByWebsiteIDParams contains all the parameters to send to the API endpoint
-   for the get website SDT list by website Id operation.
+/*
+GetWebsiteSDTListByWebsiteIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website SDT list by website Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteSDTListByWebsiteIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Fields.
 	Fields *string
@@ -105,17 +102,14 @@ func (o *GetWebsiteSDTListByWebsiteIDParams) WithDefaults() *GetWebsiteSDTListBy
 // All values with no default are reset to their zero value.
 func (o *GetWebsiteSDTListByWebsiteIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetWebsiteSDTListByWebsiteIDParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -155,17 +149,6 @@ func (o *GetWebsiteSDTListByWebsiteIDParams) WithHTTPClient(client *http.Client)
 // SetHTTPClient adds the HTTPClient to the get website SDT list by website Id params
 func (o *GetWebsiteSDTListByWebsiteIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get website SDT list by website Id params
-func (o *GetWebsiteSDTListByWebsiteIDParams) WithUserAgent(userAgent *string) *GetWebsiteSDTListByWebsiteIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get website SDT list by website Id params
-func (o *GetWebsiteSDTListByWebsiteIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get website SDT list by website Id params
@@ -230,14 +213,6 @@ func (o *GetWebsiteSDTListByWebsiteIDParams) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

@@ -9,10 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/logicmonitor/lm-sdk-go/models"
 )
@@ -31,12 +29,6 @@ func (o *GetDeviceDatasourceInstanceDataReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
-	case 429:
-		result := NewGetDeviceDatasourceInstanceDataTooManyRequests()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	default:
 		result := NewGetDeviceDatasourceInstanceDataDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,7 +46,8 @@ func NewGetDeviceDatasourceInstanceDataOK() *GetDeviceDatasourceInstanceDataOK {
 	return &GetDeviceDatasourceInstanceDataOK{}
 }
 
-/* GetDeviceDatasourceInstanceDataOK describes a response with status code 200, with default header values.
+/*
+	GetDeviceDatasourceInstanceDataOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -81,72 +74,6 @@ func (o *GetDeviceDatasourceInstanceDataOK) readResponse(response runtime.Client
 	return nil
 }
 
-// NewGetDeviceDatasourceInstanceDataTooManyRequests creates a GetDeviceDatasourceInstanceDataTooManyRequests with default headers values
-func NewGetDeviceDatasourceInstanceDataTooManyRequests() *GetDeviceDatasourceInstanceDataTooManyRequests {
-	return &GetDeviceDatasourceInstanceDataTooManyRequests{}
-}
-
-/* GetDeviceDatasourceInstanceDataTooManyRequests describes a response with status code 429, with default header values.
-
-Too Many Requests
-*/
-type GetDeviceDatasourceInstanceDataTooManyRequests struct {
-
-	/* Request limit per X-Rate-Limit-Window
-	 */
-	XRateLimitLimit int64
-
-	/* The number of requests left for the time window
-	 */
-	XRateLimitRemaining int64
-
-	/* The rolling time window length with the unit of second
-	 */
-	XRateLimitWindow int64
-}
-
-func (o *GetDeviceDatasourceInstanceDataTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/data][%d] getDeviceDatasourceInstanceDataTooManyRequests ", 429)
-}
-
-func (o *GetDeviceDatasourceInstanceDataTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// hydrates response header x-rate-limit-limit
-	hdrXRateLimitLimit := response.GetHeader("x-rate-limit-limit")
-
-	if hdrXRateLimitLimit != "" {
-		valxRateLimitLimit, err := swag.ConvertInt64(hdrXRateLimitLimit)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-limit", "header", "int64", hdrXRateLimitLimit)
-		}
-		o.XRateLimitLimit = valxRateLimitLimit
-	}
-
-	// hydrates response header x-rate-limit-remaining
-	hdrXRateLimitRemaining := response.GetHeader("x-rate-limit-remaining")
-
-	if hdrXRateLimitRemaining != "" {
-		valxRateLimitRemaining, err := swag.ConvertInt64(hdrXRateLimitRemaining)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-remaining", "header", "int64", hdrXRateLimitRemaining)
-		}
-		o.XRateLimitRemaining = valxRateLimitRemaining
-	}
-
-	// hydrates response header x-rate-limit-window
-	hdrXRateLimitWindow := response.GetHeader("x-rate-limit-window")
-
-	if hdrXRateLimitWindow != "" {
-		valxRateLimitWindow, err := swag.ConvertInt64(hdrXRateLimitWindow)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-window", "header", "int64", hdrXRateLimitWindow)
-		}
-		o.XRateLimitWindow = valxRateLimitWindow
-	}
-
-	return nil
-}
-
 // NewGetDeviceDatasourceInstanceDataDefault creates a GetDeviceDatasourceInstanceDataDefault with default headers values
 func NewGetDeviceDatasourceInstanceDataDefault(code int) *GetDeviceDatasourceInstanceDataDefault {
 	return &GetDeviceDatasourceInstanceDataDefault{
@@ -154,7 +81,8 @@ func NewGetDeviceDatasourceInstanceDataDefault(code int) *GetDeviceDatasourceIns
 	}
 }
 
-/* GetDeviceDatasourceInstanceDataDefault describes a response with status code -1, with default header values.
+/*
+	GetDeviceDatasourceInstanceDataDefault describes a response with status code -1, with default header values.
 
 Error
 */

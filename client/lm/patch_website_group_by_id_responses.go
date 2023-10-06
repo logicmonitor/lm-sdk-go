@@ -9,10 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/logicmonitor/lm-sdk-go/models"
 )
@@ -31,12 +29,6 @@ func (o *PatchWebsiteGroupByIDReader) ReadResponse(response runtime.ClientRespon
 			return nil, err
 		}
 		return result, nil
-	case 429:
-		result := NewPatchWebsiteGroupByIDTooManyRequests()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	default:
 		result := NewPatchWebsiteGroupByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,7 +46,8 @@ func NewPatchWebsiteGroupByIDOK() *PatchWebsiteGroupByIDOK {
 	return &PatchWebsiteGroupByIDOK{}
 }
 
-/* PatchWebsiteGroupByIDOK describes a response with status code 200, with default header values.
+/*
+	PatchWebsiteGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -81,72 +74,6 @@ func (o *PatchWebsiteGroupByIDOK) readResponse(response runtime.ClientResponse, 
 	return nil
 }
 
-// NewPatchWebsiteGroupByIDTooManyRequests creates a PatchWebsiteGroupByIDTooManyRequests with default headers values
-func NewPatchWebsiteGroupByIDTooManyRequests() *PatchWebsiteGroupByIDTooManyRequests {
-	return &PatchWebsiteGroupByIDTooManyRequests{}
-}
-
-/* PatchWebsiteGroupByIDTooManyRequests describes a response with status code 429, with default header values.
-
-Too Many Requests
-*/
-type PatchWebsiteGroupByIDTooManyRequests struct {
-
-	/* Request limit per X-Rate-Limit-Window
-	 */
-	XRateLimitLimit int64
-
-	/* The number of requests left for the time window
-	 */
-	XRateLimitRemaining int64
-
-	/* The rolling time window length with the unit of second
-	 */
-	XRateLimitWindow int64
-}
-
-func (o *PatchWebsiteGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupByIdTooManyRequests ", 429)
-}
-
-func (o *PatchWebsiteGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// hydrates response header x-rate-limit-limit
-	hdrXRateLimitLimit := response.GetHeader("x-rate-limit-limit")
-
-	if hdrXRateLimitLimit != "" {
-		valxRateLimitLimit, err := swag.ConvertInt64(hdrXRateLimitLimit)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-limit", "header", "int64", hdrXRateLimitLimit)
-		}
-		o.XRateLimitLimit = valxRateLimitLimit
-	}
-
-	// hydrates response header x-rate-limit-remaining
-	hdrXRateLimitRemaining := response.GetHeader("x-rate-limit-remaining")
-
-	if hdrXRateLimitRemaining != "" {
-		valxRateLimitRemaining, err := swag.ConvertInt64(hdrXRateLimitRemaining)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-remaining", "header", "int64", hdrXRateLimitRemaining)
-		}
-		o.XRateLimitRemaining = valxRateLimitRemaining
-	}
-
-	// hydrates response header x-rate-limit-window
-	hdrXRateLimitWindow := response.GetHeader("x-rate-limit-window")
-
-	if hdrXRateLimitWindow != "" {
-		valxRateLimitWindow, err := swag.ConvertInt64(hdrXRateLimitWindow)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-window", "header", "int64", hdrXRateLimitWindow)
-		}
-		o.XRateLimitWindow = valxRateLimitWindow
-	}
-
-	return nil
-}
-
 // NewPatchWebsiteGroupByIDDefault creates a PatchWebsiteGroupByIDDefault with default headers values
 func NewPatchWebsiteGroupByIDDefault(code int) *PatchWebsiteGroupByIDDefault {
 	return &PatchWebsiteGroupByIDDefault{
@@ -154,7 +81,8 @@ func NewPatchWebsiteGroupByIDDefault(code int) *PatchWebsiteGroupByIDDefault {
 	}
 }
 
-/* PatchWebsiteGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+	PatchWebsiteGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */

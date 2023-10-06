@@ -8,10 +8,8 @@ package models
 import (
 	"context"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // UpdateReason update reason
@@ -19,26 +17,22 @@ import (
 // swagger:model UpdateReason
 type UpdateReason struct {
 
-	// Client IP from which this update has been made
-	// Read Only: true
+	// client Ip
 	ClientIP string `json:"clientIp,omitempty"`
 
-	// ID of update reason
-	// Read Only: true
+	// id
 	ID int32 `json:"id,omitempty"`
 
-	// Update date epoch
-	// Read Only: true
+	// time epoch
 	TimeEpoch int64 `json:"timeEpoch,omitempty"`
 
-	// Update date in form 'YYYY-MM-DD HH:MM:SS'
-	// Read Only: true
+	// time str
 	TimeStr string `json:"timeStr,omitempty"`
 
-	// Update reason
+	// update reason
 	UpdateReason string `json:"updateReason,omitempty"`
 
-	// User who made this update
+	// user name
 	UserName string `json:"userName,omitempty"`
 }
 
@@ -47,65 +41,8 @@ func (m *UpdateReason) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validate this update reason based on the context it is used
+// ContextValidate validates this update reason based on context it is used
 func (m *UpdateReason) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateClientIP(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateTimeEpoch(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateTimeStr(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *UpdateReason) contextValidateClientIP(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "clientIp", "body", string(m.ClientIP)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UpdateReason) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UpdateReason) contextValidateTimeEpoch(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "timeEpoch", "body", int64(m.TimeEpoch)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *UpdateReason) contextValidateTimeStr(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "timeStr", "body", string(m.TimeStr)); err != nil {
-		return err
-	}
-
 	return nil
 }
 

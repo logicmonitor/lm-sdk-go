@@ -53,17 +53,14 @@ func NewGetDeviceDatasourceInstanceSDTHistoryParamsWithHTTPClient(client *http.C
 	}
 }
 
-/* GetDeviceDatasourceInstanceSDTHistoryParams contains all the parameters to send to the API endpoint
-   for the get device datasource instance SDT history operation.
+/*
+GetDeviceDatasourceInstanceSDTHistoryParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device datasource instance SDT history operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceInstanceSDTHistoryParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// DeviceID.
 	//
@@ -118,17 +115,14 @@ func (o *GetDeviceDatasourceInstanceSDTHistoryParams) WithDefaults() *GetDeviceD
 // All values with no default are reset to their zero value.
 func (o *GetDeviceDatasourceInstanceSDTHistoryParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceDatasourceInstanceSDTHistoryParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -168,17 +162,6 @@ func (o *GetDeviceDatasourceInstanceSDTHistoryParams) WithHTTPClient(client *htt
 // SetHTTPClient adds the HTTPClient to the get device datasource instance SDT history params
 func (o *GetDeviceDatasourceInstanceSDTHistoryParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device datasource instance SDT history params
-func (o *GetDeviceDatasourceInstanceSDTHistoryParams) WithUserAgent(userAgent *string) *GetDeviceDatasourceInstanceSDTHistoryParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device datasource instance SDT history params
-func (o *GetDeviceDatasourceInstanceSDTHistoryParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceID adds the deviceID to the get device datasource instance SDT history params
@@ -265,14 +248,6 @@ func (o *GetDeviceDatasourceInstanceSDTHistoryParams) WriteToRequest(r runtime.C
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceId
 	if err := r.SetPathParam("deviceId", swag.FormatInt32(o.DeviceID)); err != nil {

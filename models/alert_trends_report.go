@@ -51,8 +51,6 @@ type AlertTrendsReport struct {
 
 	recipientsField []*ReportRecipient
 
-	reportLinkExpireField string
-
 	reportLinkNumField int32
 
 	scheduleField string
@@ -219,16 +217,6 @@ func (m *AlertTrendsReport) SetRecipients(val []*ReportRecipient) {
 	m.recipientsField = val
 }
 
-// ReportLinkExpire gets the report link expire of this subtype
-func (m *AlertTrendsReport) ReportLinkExpire() string {
-	return m.reportLinkExpireField
-}
-
-// SetReportLinkExpire sets the report link expire of this subtype
-func (m *AlertTrendsReport) SetReportLinkExpire(val string) {
-	m.reportLinkExpireField = val
-}
-
 // ReportLinkNum gets the report link num of this subtype
 func (m *AlertTrendsReport) ReportLinkNum() int32 {
 	return m.reportLinkNumField
@@ -330,8 +318,6 @@ func (m *AlertTrendsReport) UnmarshalJSON(raw []byte) error {
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
 
-		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
-
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
 		Schedule string `json:"schedule,omitempty"`
@@ -381,8 +367,6 @@ func (m *AlertTrendsReport) UnmarshalJSON(raw []byte) error {
 	result.nameField = base.Name
 
 	result.recipientsField = base.Recipients
-
-	result.reportLinkExpireField = base.ReportLinkExpire
 
 	result.reportLinkNumField = base.ReportLinkNum
 
@@ -456,8 +440,6 @@ func (m AlertTrendsReport) MarshalJSON() ([]byte, error) {
 
 		Recipients []*ReportRecipient `json:"recipients,omitempty"`
 
-		ReportLinkExpire string `json:"reportLinkExpire,omitempty"`
-
 		ReportLinkNum int32 `json:"reportLinkNum,omitempty"`
 
 		Schedule string `json:"schedule,omitempty"`
@@ -498,8 +480,6 @@ func (m AlertTrendsReport) MarshalJSON() ([]byte, error) {
 		Name: m.Name(),
 
 		Recipients: m.Recipients(),
-
-		ReportLinkExpire: m.ReportLinkExpire(),
 
 		ReportLinkNum: m.ReportLinkNum(),
 

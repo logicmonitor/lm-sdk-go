@@ -40,10 +40,6 @@ type Collector struct {
 	// Read Only: true
 	AckedOnLocal string `json:"ackedOnLocal,omitempty"`
 
-	// This is key value pairs of collector config properties
-	// Read Only: true
-	AgentConfFields map[string]string `json:"agentConfFields,omitempty"`
-
 	// The collector architecture (Windows | Linux platform followed by 32 | 64 bit)
 	// Read Only: true
 	Arch string `json:"arch,omitempty"`
@@ -54,10 +50,6 @@ type Collector struct {
 	// The Id of the backup Collector assigned to the Collector
 	// Example: 75
 	BackupAgentID int32 `json:"backupAgentId,omitempty"`
-
-	// Bearer Token
-	// Read Only: true
-	BearerToken string `json:"bearerToken,omitempty"`
 
 	// The Collector version
 	// Read Only: true
@@ -95,22 +87,9 @@ type Collector struct {
 	// Read Only: true
 	CollectorSize string `json:"collectorSize,omitempty"`
 
-	// Collector type
-	// Example: external
-	// Read Only: true
-	CollectorType string `json:"collectorType,omitempty"`
-
 	// The version of the agent.conf configuration file
 	// Read Only: true
 	ConfVersion string `json:"confVersion,omitempty"`
-
-	// Collector Config
-	// Read Only: true
-	Config string `json:"config,omitempty"`
-
-	// Copy Command Url
-	// Read Only: true
-	CopyURL string `json:"copyUrl,omitempty"`
 
 	// The time that the Collector was created, in epoch format
 	// Read Only: true
@@ -127,10 +106,6 @@ type Collector struct {
 	// Example: Linux Collector
 	Description string `json:"description,omitempty"`
 
-	// Download Url
-	// Read Only: true
-	DownloadURL string `json:"downloadUrl,omitempty"`
-
 	// Whether the collector is in EA version
 	// Read Only: true
 	Ea *bool `json:"ea,omitempty"`
@@ -143,21 +118,9 @@ type Collector struct {
 	// Example: true
 	EnableFailOverOnCollectorDevice bool `json:"enableFailOverOnCollectorDevice,omitempty"`
 
-	// Usage of the Otel Collector - logging or tracing
-	// Read Only: true
-	EnableLMLogs *bool `json:"enableLMLogs,omitempty"`
-
-	// Base 64 encoded config data
-	// Read Only: true
-	EncodedConfigData string `json:"encodedConfigData,omitempty"`
-
 	// The Id of the escalation chain associated with this Collector
 	// Example: 80
 	EscalatingChainID int32 `json:"escalatingChainId,omitempty"`
-
-	// External collector installation format
-	// Read Only: true
-	Format string `json:"format,omitempty"`
 
 	// Whether the collector has failover devices
 	// Read Only: true
@@ -178,10 +141,6 @@ type Collector struct {
 	// Whether or not the Collector is currently down
 	// Read Only: true
 	IsDown *bool `json:"isDown,omitempty"`
-
-	// is encoded
-	// Read Only: true
-	IsEncoded *bool `json:"isEncoded,omitempty"`
 
 	// The time, in epoch format, that a notification was last sent for the Collector
 	// Read Only: true
@@ -224,14 +183,6 @@ type Collector struct {
 	// The details of the Collector's one time upgrade, if one has been scheduled
 	OnetimeUpgradeInfo *OnetimeUpgradeInfo `json:"onetimeUpgradeInfo,omitempty"`
 
-	// Collector Id
-	// Read Only: true
-	OtelID string `json:"otelId,omitempty"`
-
-	// Collector Version
-	// Read Only: true
-	OtelVersion string `json:"otelVersion,omitempty"`
-
 	// The OS of the Collector device (e.g. Linux, Windows)
 	// Read Only: true
 	Platform string `json:"platform,omitempty"`
@@ -263,10 +214,6 @@ type Collector struct {
 	// Whether alert clear notifications are suppressed for the Collector
 	// Example: true
 	SuppressAlertClear bool `json:"suppressAlertClear,omitempty"`
-
-	// Whether the collector can monitor Synthetic devices (Selenium grid property must be defined)
-	// Read Only: true
-	SyntheticsEnabled *bool `json:"syntheticsEnabled,omitempty"`
 
 	// The time the Collector has been up, in seconds
 	// Read Only: true
@@ -467,19 +414,11 @@ func (m *Collector) ContextValidate(ctx context.Context, formats strfmt.Registry
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateAgentConfFields(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateArch(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateAutomaticUpgradeInfo(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateBearerToken(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -515,19 +454,7 @@ func (m *Collector) ContextValidate(ctx context.Context, formats strfmt.Registry
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateCollectorType(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateConfVersion(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateConfig(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateCopyURL(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -543,23 +470,7 @@ func (m *Collector) ContextValidate(ctx context.Context, formats strfmt.Registry
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateDownloadURL(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateEa(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateEnableLMLogs(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateEncodedConfigData(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateFormat(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -580,10 +491,6 @@ func (m *Collector) ContextValidate(ctx context.Context, formats strfmt.Registry
 	}
 
 	if err := m.contextValidateIsDown(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateIsEncoded(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -623,14 +530,6 @@ func (m *Collector) ContextValidate(ctx context.Context, formats strfmt.Registry
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateOtelID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateOtelVersion(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidatePlatform(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -644,10 +543,6 @@ func (m *Collector) ContextValidate(ctx context.Context, formats strfmt.Registry
 	}
 
 	if err := m.contextValidateStatus(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSyntheticsEnabled(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -754,11 +649,6 @@ func (m *Collector) contextValidateAckedOnLocal(ctx context.Context, formats str
 	return nil
 }
 
-func (m *Collector) contextValidateAgentConfFields(ctx context.Context, formats strfmt.Registry) error {
-
-	return nil
-}
-
 func (m *Collector) contextValidateArch(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "arch", "body", string(m.Arch)); err != nil {
@@ -777,15 +667,6 @@ func (m *Collector) contextValidateAutomaticUpgradeInfo(ctx context.Context, for
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *Collector) contextValidateBearerToken(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "bearerToken", "body", string(m.BearerToken)); err != nil {
-		return err
 	}
 
 	return nil
@@ -863,36 +744,9 @@ func (m *Collector) contextValidateCollectorSize(ctx context.Context, formats st
 	return nil
 }
 
-func (m *Collector) contextValidateCollectorType(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "collectorType", "body", string(m.CollectorType)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Collector) contextValidateConfVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "confVersion", "body", string(m.ConfVersion)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Collector) contextValidateConfig(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "config", "body", string(m.Config)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Collector) contextValidateCopyURL(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "copyUrl", "body", string(m.CopyURL)); err != nil {
 		return err
 	}
 
@@ -935,45 +789,9 @@ func (m *Collector) contextValidateCustomProperties(ctx context.Context, formats
 	return nil
 }
 
-func (m *Collector) contextValidateDownloadURL(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "downloadUrl", "body", string(m.DownloadURL)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Collector) contextValidateEa(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "ea", "body", m.Ea); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Collector) contextValidateEnableLMLogs(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "enableLMLogs", "body", m.EnableLMLogs); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Collector) contextValidateEncodedConfigData(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "encodedConfigData", "body", string(m.EncodedConfigData)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Collector) contextValidateFormat(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "format", "body", string(m.Format)); err != nil {
 		return err
 	}
 
@@ -1019,15 +837,6 @@ func (m *Collector) contextValidateInSDT(ctx context.Context, formats strfmt.Reg
 func (m *Collector) contextValidateIsDown(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "isDown", "body", m.IsDown); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Collector) contextValidateIsEncoded(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "isEncoded", "body", m.IsEncoded); err != nil {
 		return err
 	}
 
@@ -1130,24 +939,6 @@ func (m *Collector) contextValidateOnetimeUpgradeInfo(ctx context.Context, forma
 	return nil
 }
 
-func (m *Collector) contextValidateOtelID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "otelId", "body", string(m.OtelID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Collector) contextValidateOtelVersion(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "otelVersion", "body", string(m.OtelVersion)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *Collector) contextValidatePlatform(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "platform", "body", string(m.Platform)); err != nil {
@@ -1178,15 +969,6 @@ func (m *Collector) contextValidateSbproxyConf(ctx context.Context, formats strf
 func (m *Collector) contextValidateStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "status", "body", int32(m.Status)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Collector) contextValidateSyntheticsEnabled(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "syntheticsEnabled", "body", m.SyntheticsEnabled); err != nil {
 		return err
 	}
 

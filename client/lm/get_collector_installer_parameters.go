@@ -53,17 +53,14 @@ func NewGetCollectorInstallerParamsWithHTTPClient(client *http.Client) *GetColle
 	}
 }
 
-/* GetCollectorInstallerParams contains all the parameters to send to the API endpoint
-   for the get collector installer operation.
+/*
+GetCollectorInstallerParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get collector installer operation.
+
+	Typically these are written to a http.Request.
 */
 type GetCollectorInstallerParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// CollectorID.
 	//
@@ -121,8 +118,6 @@ func (o *GetCollectorInstallerParams) WithDefaults() *GetCollectorInstallerParam
 // All values with no default are reset to their zero value.
 func (o *GetCollectorInstallerParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		collectorSizeDefault = string("medium")
 
 		monitorOthersDefault = bool(true)
@@ -131,7 +126,6 @@ func (o *GetCollectorInstallerParams) SetDefaults() {
 	)
 
 	val := GetCollectorInstallerParams{
-		UserAgent:     &userAgentDefault,
 		CollectorSize: &collectorSizeDefault,
 		MonitorOthers: &monitorOthersDefault,
 		UseEA:         &useEADefault,
@@ -174,17 +168,6 @@ func (o *GetCollectorInstallerParams) WithHTTPClient(client *http.Client) *GetCo
 // SetHTTPClient adds the HTTPClient to the get collector installer params
 func (o *GetCollectorInstallerParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get collector installer params
-func (o *GetCollectorInstallerParams) WithUserAgent(userAgent *string) *GetCollectorInstallerParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get collector installer params
-func (o *GetCollectorInstallerParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithCollectorID adds the collectorID to the get collector installer params
@@ -271,14 +254,6 @@ func (o *GetCollectorInstallerParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param collectorId
 	if err := r.SetPathParam("collectorId", swag.FormatInt32(o.CollectorID)); err != nil {

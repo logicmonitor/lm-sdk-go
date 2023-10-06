@@ -53,17 +53,14 @@ func NewGetNetscanListParamsWithHTTPClient(client *http.Client) *GetNetscanListP
 	}
 }
 
-/* GetNetscanListParams contains all the parameters to send to the API endpoint
-   for the get netscan list operation.
+/*
+GetNetscanListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get netscan list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetNetscanListParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Fields.
 	Fields *string
@@ -100,17 +97,14 @@ func (o *GetNetscanListParams) WithDefaults() *GetNetscanListParams {
 // All values with no default are reset to their zero value.
 func (o *GetNetscanListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetNetscanListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,17 +144,6 @@ func (o *GetNetscanListParams) WithHTTPClient(client *http.Client) *GetNetscanLi
 // SetHTTPClient adds the HTTPClient to the get netscan list params
 func (o *GetNetscanListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get netscan list params
-func (o *GetNetscanListParams) WithUserAgent(userAgent *string) *GetNetscanListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get netscan list params
-func (o *GetNetscanListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get netscan list params
@@ -214,14 +197,6 @@ func (o *GetNetscanListParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

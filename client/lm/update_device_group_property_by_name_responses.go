@@ -9,10 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/logicmonitor/lm-sdk-go/models"
 )
@@ -31,12 +29,6 @@ func (o *UpdateDeviceGroupPropertyByNameReader) ReadResponse(response runtime.Cl
 			return nil, err
 		}
 		return result, nil
-	case 429:
-		result := NewUpdateDeviceGroupPropertyByNameTooManyRequests()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	default:
 		result := NewUpdateDeviceGroupPropertyByNameDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,7 +46,8 @@ func NewUpdateDeviceGroupPropertyByNameOK() *UpdateDeviceGroupPropertyByNameOK {
 	return &UpdateDeviceGroupPropertyByNameOK{}
 }
 
-/* UpdateDeviceGroupPropertyByNameOK describes a response with status code 200, with default header values.
+/*
+	UpdateDeviceGroupPropertyByNameOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -81,72 +74,6 @@ func (o *UpdateDeviceGroupPropertyByNameOK) readResponse(response runtime.Client
 	return nil
 }
 
-// NewUpdateDeviceGroupPropertyByNameTooManyRequests creates a UpdateDeviceGroupPropertyByNameTooManyRequests with default headers values
-func NewUpdateDeviceGroupPropertyByNameTooManyRequests() *UpdateDeviceGroupPropertyByNameTooManyRequests {
-	return &UpdateDeviceGroupPropertyByNameTooManyRequests{}
-}
-
-/* UpdateDeviceGroupPropertyByNameTooManyRequests describes a response with status code 429, with default header values.
-
-Too Many Requests
-*/
-type UpdateDeviceGroupPropertyByNameTooManyRequests struct {
-
-	/* Request limit per X-Rate-Limit-Window
-	 */
-	XRateLimitLimit int64
-
-	/* The number of requests left for the time window
-	 */
-	XRateLimitRemaining int64
-
-	/* The rolling time window length with the unit of second
-	 */
-	XRateLimitWindow int64
-}
-
-func (o *UpdateDeviceGroupPropertyByNameTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /device/groups/{gid}/properties/{name}][%d] updateDeviceGroupPropertyByNameTooManyRequests ", 429)
-}
-
-func (o *UpdateDeviceGroupPropertyByNameTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// hydrates response header x-rate-limit-limit
-	hdrXRateLimitLimit := response.GetHeader("x-rate-limit-limit")
-
-	if hdrXRateLimitLimit != "" {
-		valxRateLimitLimit, err := swag.ConvertInt64(hdrXRateLimitLimit)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-limit", "header", "int64", hdrXRateLimitLimit)
-		}
-		o.XRateLimitLimit = valxRateLimitLimit
-	}
-
-	// hydrates response header x-rate-limit-remaining
-	hdrXRateLimitRemaining := response.GetHeader("x-rate-limit-remaining")
-
-	if hdrXRateLimitRemaining != "" {
-		valxRateLimitRemaining, err := swag.ConvertInt64(hdrXRateLimitRemaining)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-remaining", "header", "int64", hdrXRateLimitRemaining)
-		}
-		o.XRateLimitRemaining = valxRateLimitRemaining
-	}
-
-	// hydrates response header x-rate-limit-window
-	hdrXRateLimitWindow := response.GetHeader("x-rate-limit-window")
-
-	if hdrXRateLimitWindow != "" {
-		valxRateLimitWindow, err := swag.ConvertInt64(hdrXRateLimitWindow)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-window", "header", "int64", hdrXRateLimitWindow)
-		}
-		o.XRateLimitWindow = valxRateLimitWindow
-	}
-
-	return nil
-}
-
 // NewUpdateDeviceGroupPropertyByNameDefault creates a UpdateDeviceGroupPropertyByNameDefault with default headers values
 func NewUpdateDeviceGroupPropertyByNameDefault(code int) *UpdateDeviceGroupPropertyByNameDefault {
 	return &UpdateDeviceGroupPropertyByNameDefault{
@@ -154,7 +81,8 @@ func NewUpdateDeviceGroupPropertyByNameDefault(code int) *UpdateDeviceGroupPrope
 	}
 }
 
-/* UpdateDeviceGroupPropertyByNameDefault describes a response with status code -1, with default header values.
+/*
+	UpdateDeviceGroupPropertyByNameDefault describes a response with status code -1, with default header values.
 
 Error
 */

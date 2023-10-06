@@ -20,7 +20,7 @@ import (
 //
 // swagger:model NMapNetscan
 type NMapNetscan struct {
-	collectorField int32
+	collectorField *int32
 
 	collectorDescriptionField string
 
@@ -38,7 +38,7 @@ type NMapNetscan struct {
 
 	idField int32
 
-	ignoreSystemIPsDuplicatesField *bool
+	ignoreSystemIPsDuplicatesField bool
 
 	nameField *string
 
@@ -54,7 +54,7 @@ type NMapNetscan struct {
 
 	// The credentials to be used for the scan
 	// Example: 2
-	Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
+	Credentials *NMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
 	// Information related to including / excluding discovered devices in / from monitoring
 	Ddr *NMapDDR `json:"ddr,omitempty"`
@@ -63,13 +63,9 @@ type NMapNetscan struct {
 	// Example: 10.35.41.1-10.35.41.254
 	Exclude string `json:"exclude,omitempty"`
 
-	// Include Network & Broadcast Address for CIDR based netscan
-	// Example: false
-	// Required: true
-	IncludeNetworkAndBroadcast *bool `json:"includeNetworkAndBroadcast"`
-
 	// The ports that should be used in the Netscan
-	Ports *RestNetscanPorts `json:"ports,omitempty"`
+	// Required: true
+	Ports *NetscanPorts `json:"ports"`
 
 	// The subnet to scan for nmap scans
 	// Example: 10.35.41.1-10.35.41.254
@@ -78,12 +74,12 @@ type NMapNetscan struct {
 }
 
 // Collector gets the collector of this subtype
-func (m *NMapNetscan) Collector() int32 {
+func (m *NMapNetscan) Collector() *int32 {
 	return m.collectorField
 }
 
 // SetCollector sets the collector of this subtype
-func (m *NMapNetscan) SetCollector(val int32) {
+func (m *NMapNetscan) SetCollector(val *int32) {
 	m.collectorField = val
 }
 
@@ -168,12 +164,12 @@ func (m *NMapNetscan) SetID(val int32) {
 }
 
 // IgnoreSystemIPsDuplicates gets the ignore system i ps duplicates of this subtype
-func (m *NMapNetscan) IgnoreSystemIPsDuplicates() *bool {
+func (m *NMapNetscan) IgnoreSystemIPsDuplicates() bool {
 	return m.ignoreSystemIPsDuplicatesField
 }
 
 // SetIgnoreSystemIPsDuplicates sets the ignore system i ps duplicates of this subtype
-func (m *NMapNetscan) SetIgnoreSystemIPsDuplicates(val *bool) {
+func (m *NMapNetscan) SetIgnoreSystemIPsDuplicates(val bool) {
 	m.ignoreSystemIPsDuplicatesField = val
 }
 
@@ -252,7 +248,7 @@ func (m *NMapNetscan) UnmarshalJSON(raw []byte) error {
 
 		// The credentials to be used for the scan
 		// Example: 2
-		Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
+		Credentials *NMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
 		// Information related to including / excluding discovered devices in / from monitoring
 		Ddr *NMapDDR `json:"ddr,omitempty"`
@@ -261,13 +257,9 @@ func (m *NMapNetscan) UnmarshalJSON(raw []byte) error {
 		// Example: 10.35.41.1-10.35.41.254
 		Exclude string `json:"exclude,omitempty"`
 
-		// Include Network & Broadcast Address for CIDR based netscan
-		// Example: false
-		// Required: true
-		IncludeNetworkAndBroadcast *bool `json:"includeNetworkAndBroadcast"`
-
 		// The ports that should be used in the Netscan
-		Ports *RestNetscanPorts `json:"ports,omitempty"`
+		// Required: true
+		Ports *NetscanPorts `json:"ports"`
 
 		// The subnet to scan for nmap scans
 		// Example: 10.35.41.1-10.35.41.254
@@ -285,7 +277,7 @@ func (m *NMapNetscan) UnmarshalJSON(raw []byte) error {
 	var base struct {
 		/* Just the base type fields. Used for unmashalling polymorphic types.*/
 
-		Collector int32 `json:"collector,omitempty"`
+		Collector *int32 `json:"collector"`
 
 		CollectorDescription string `json:"collectorDescription,omitempty"`
 
@@ -303,7 +295,7 @@ func (m *NMapNetscan) UnmarshalJSON(raw []byte) error {
 
 		ID int32 `json:"id,omitempty"`
 
-		IgnoreSystemIPsDuplicates *bool `json:"ignoreSystemIPsDuplicates,omitempty"`
+		IgnoreSystemIPsDuplicates bool `json:"ignoreSystemIPsDuplicates,omitempty"`
 
 		Method string `json:"method"`
 
@@ -315,7 +307,7 @@ func (m *NMapNetscan) UnmarshalJSON(raw []byte) error {
 
 		NsgID int32 `json:"nsgId,omitempty"`
 
-		Schedule *RestSchedule `json:"schedule"`
+		Schedule *RestSchedule `json:"schedule,omitempty"`
 
 		Version int32 `json:"version,omitempty"`
 	}
@@ -368,7 +360,6 @@ func (m *NMapNetscan) UnmarshalJSON(raw []byte) error {
 	result.Credentials = data.Credentials
 	result.Ddr = data.Ddr
 	result.Exclude = data.Exclude
-	result.IncludeNetworkAndBroadcast = data.IncludeNetworkAndBroadcast
 	result.Ports = data.Ports
 	result.Subnet = data.Subnet
 
@@ -385,7 +376,7 @@ func (m NMapNetscan) MarshalJSON() ([]byte, error) {
 
 		// The credentials to be used for the scan
 		// Example: 2
-		Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
+		Credentials *NMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
 		// Information related to including / excluding discovered devices in / from monitoring
 		Ddr *NMapDDR `json:"ddr,omitempty"`
@@ -394,13 +385,9 @@ func (m NMapNetscan) MarshalJSON() ([]byte, error) {
 		// Example: 10.35.41.1-10.35.41.254
 		Exclude string `json:"exclude,omitempty"`
 
-		// Include Network & Broadcast Address for CIDR based netscan
-		// Example: false
-		// Required: true
-		IncludeNetworkAndBroadcast *bool `json:"includeNetworkAndBroadcast"`
-
 		// The ports that should be used in the Netscan
-		Ports *RestNetscanPorts `json:"ports,omitempty"`
+		// Required: true
+		Ports *NetscanPorts `json:"ports"`
 
 		// The subnet to scan for nmap scans
 		// Example: 10.35.41.1-10.35.41.254
@@ -414,8 +401,6 @@ func (m NMapNetscan) MarshalJSON() ([]byte, error) {
 
 		Exclude: m.Exclude,
 
-		IncludeNetworkAndBroadcast: m.IncludeNetworkAndBroadcast,
-
 		Ports: m.Ports,
 
 		Subnet: m.Subnet,
@@ -424,7 +409,7 @@ func (m NMapNetscan) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	b2, err = json.Marshal(struct {
-		Collector int32 `json:"collector,omitempty"`
+		Collector *int32 `json:"collector"`
 
 		CollectorDescription string `json:"collectorDescription,omitempty"`
 
@@ -442,7 +427,7 @@ func (m NMapNetscan) MarshalJSON() ([]byte, error) {
 
 		ID int32 `json:"id,omitempty"`
 
-		IgnoreSystemIPsDuplicates *bool `json:"ignoreSystemIPsDuplicates,omitempty"`
+		IgnoreSystemIPsDuplicates bool `json:"ignoreSystemIPsDuplicates,omitempty"`
 
 		Method string `json:"method"`
 
@@ -454,7 +439,7 @@ func (m NMapNetscan) MarshalJSON() ([]byte, error) {
 
 		NsgID int32 `json:"nsgId,omitempty"`
 
-		Schedule *RestSchedule `json:"schedule"`
+		Schedule *RestSchedule `json:"schedule,omitempty"`
 
 		Version int32 `json:"version,omitempty"`
 	}{
@@ -504,6 +489,10 @@ func (m NMapNetscan) MarshalJSON() ([]byte, error) {
 func (m *NMapNetscan) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCollector(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDuplicate(formats); err != nil {
 		res = append(res, err)
 	}
@@ -524,10 +513,6 @@ func (m *NMapNetscan) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateIncludeNetworkAndBroadcast(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validatePorts(formats); err != nil {
 		res = append(res, err)
 	}
@@ -539,6 +524,15 @@ func (m *NMapNetscan) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *NMapNetscan) validateCollector(formats strfmt.Registry) error {
+
+	if err := validate.Required("collector", "body", m.Collector()); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -571,8 +565,8 @@ func (m *NMapNetscan) validateName(formats strfmt.Registry) error {
 
 func (m *NMapNetscan) validateSchedule(formats strfmt.Registry) error {
 
-	if err := validate.Required("schedule", "body", m.Schedule()); err != nil {
-		return err
+	if swag.IsZero(m.Schedule()) { // not required
+		return nil
 	}
 
 	if m.Schedule() != nil {
@@ -623,19 +617,10 @@ func (m *NMapNetscan) validateDdr(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *NMapNetscan) validateIncludeNetworkAndBroadcast(formats strfmt.Registry) error {
-
-	if err := validate.Required("includeNetworkAndBroadcast", "body", m.IncludeNetworkAndBroadcast); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *NMapNetscan) validatePorts(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.Ports) { // not required
-		return nil
+	if err := validate.Required("ports", "body", m.Ports); err != nil {
+		return err
 	}
 
 	if m.Ports != nil {
@@ -663,39 +648,7 @@ func (m *NMapNetscan) validateSubnet(formats strfmt.Registry) error {
 func (m *NMapNetscan) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateCollectorDescription(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateCollectorGroup(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateCollectorGroupName(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateCreator(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateDuplicate(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateIgnoreSystemIPsDuplicates(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateNextStart(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateNextStartEpoch(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -721,42 +674,6 @@ func (m *NMapNetscan) ContextValidate(ctx context.Context, formats strfmt.Regist
 	return nil
 }
 
-func (m *NMapNetscan) contextValidateCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "collectorDescription", "body", string(m.CollectorDescription())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NMapNetscan) contextValidateCollectorGroup(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "collectorGroup", "body", int32(m.CollectorGroup())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NMapNetscan) contextValidateCollectorGroupName(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "collectorGroupName", "body", string(m.CollectorGroupName())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NMapNetscan) contextValidateCreator(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "creator", "body", string(m.Creator())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *NMapNetscan) contextValidateDuplicate(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Duplicate() != nil {
@@ -766,42 +683,6 @@ func (m *NMapNetscan) contextValidateDuplicate(ctx context.Context, formats strf
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *NMapNetscan) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NMapNetscan) contextValidateIgnoreSystemIPsDuplicates(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "ignoreSystemIPsDuplicates", "body", m.IgnoreSystemIPsDuplicates()); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NMapNetscan) contextValidateNextStart(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "nextStart", "body", string(m.NextStart())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *NMapNetscan) contextValidateNextStartEpoch(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "nextStartEpoch", "body", int64(m.NextStartEpoch())); err != nil {
-		return err
 	}
 
 	return nil

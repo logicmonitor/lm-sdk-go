@@ -53,17 +53,14 @@ func NewGetDeviceInstanceListParamsWithHTTPClient(client *http.Client) *GetDevic
 	}
 }
 
-/* GetDeviceInstanceListParams contains all the parameters to send to the API endpoint
-   for the get device instance list operation.
+/*
+GetDeviceInstanceListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device instance list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceInstanceListParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// End.
 	//
@@ -118,17 +115,14 @@ func (o *GetDeviceInstanceListParams) WithDefaults() *GetDeviceInstanceListParam
 // All values with no default are reset to their zero value.
 func (o *GetDeviceInstanceListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceInstanceListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -168,17 +162,6 @@ func (o *GetDeviceInstanceListParams) WithHTTPClient(client *http.Client) *GetDe
 // SetHTTPClient adds the HTTPClient to the get device instance list params
 func (o *GetDeviceInstanceListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device instance list params
-func (o *GetDeviceInstanceListParams) WithUserAgent(userAgent *string) *GetDeviceInstanceListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device instance list params
-func (o *GetDeviceInstanceListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithEnd adds the end to the get device instance list params
@@ -276,14 +259,6 @@ func (o *GetDeviceInstanceListParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.End != nil {
 

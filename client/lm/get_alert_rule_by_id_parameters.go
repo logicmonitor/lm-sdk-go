@@ -53,17 +53,14 @@ func NewGetAlertRuleByIDParamsWithHTTPClient(client *http.Client) *GetAlertRuleB
 	}
 }
 
-/* GetAlertRuleByIDParams contains all the parameters to send to the API endpoint
-   for the get alert rule by Id operation.
+/*
+GetAlertRuleByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get alert rule by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAlertRuleByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Fields.
 	Fields *string
@@ -90,18 +87,7 @@ func (o *GetAlertRuleByIDParams) WithDefaults() *GetAlertRuleByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetAlertRuleByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := GetAlertRuleByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get alert rule by Id params
@@ -137,17 +123,6 @@ func (o *GetAlertRuleByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the get alert rule by Id params
-func (o *GetAlertRuleByIDParams) WithUserAgent(userAgent *string) *GetAlertRuleByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get alert rule by Id params
-func (o *GetAlertRuleByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithFields adds the fields to the get alert rule by Id params
 func (o *GetAlertRuleByIDParams) WithFields(fields *string) *GetAlertRuleByIDParams {
 	o.SetFields(fields)
@@ -177,14 +152,6 @@ func (o *GetAlertRuleByIDParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

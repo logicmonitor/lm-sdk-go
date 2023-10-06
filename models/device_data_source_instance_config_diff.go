@@ -8,10 +8,8 @@ package models
 import (
 	"context"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // DeviceDataSourceInstanceConfigDiff device data source instance config diff
@@ -19,16 +17,13 @@ import (
 // swagger:model DeviceDataSourceInstanceConfigDiff
 type DeviceDataSourceInstanceConfigDiff struct {
 
-	// Configuration content
-	// Read Only: true
+	// content
 	Content string `json:"content,omitempty"`
 
-	// Diff row number
-	// Read Only: true
+	// row no
 	RowNo int32 `json:"rowNo,omitempty"`
 
-	// Diff type. The values can be : add|remove
-	// Read Only: true
+	// type
 	Type string `json:"type,omitempty"`
 }
 
@@ -37,52 +32,8 @@ func (m *DeviceDataSourceInstanceConfigDiff) Validate(formats strfmt.Registry) e
 	return nil
 }
 
-// ContextValidate validate this device data source instance config diff based on the context it is used
+// ContextValidate validates this device data source instance config diff based on context it is used
 func (m *DeviceDataSourceInstanceConfigDiff) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateContent(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateRowNo(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateType(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceConfigDiff) contextValidateContent(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "content", "body", string(m.Content)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceConfigDiff) contextValidateRowNo(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "rowNo", "body", int32(m.RowNo)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceConfigDiff) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "type", "body", string(m.Type)); err != nil {
-		return err
-	}
-
 	return nil
 }
 

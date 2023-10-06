@@ -9,10 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/logicmonitor/lm-sdk-go/models"
 )
@@ -31,12 +29,6 @@ func (o *GetImmediateDeviceListByDeviceGroupIDReader) ReadResponse(response runt
 			return nil, err
 		}
 		return result, nil
-	case 429:
-		result := NewGetImmediateDeviceListByDeviceGroupIDTooManyRequests()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	default:
 		result := NewGetImmediateDeviceListByDeviceGroupIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,7 +46,8 @@ func NewGetImmediateDeviceListByDeviceGroupIDOK() *GetImmediateDeviceListByDevic
 	return &GetImmediateDeviceListByDeviceGroupIDOK{}
 }
 
-/* GetImmediateDeviceListByDeviceGroupIDOK describes a response with status code 200, with default header values.
+/*
+	GetImmediateDeviceListByDeviceGroupIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -81,72 +74,6 @@ func (o *GetImmediateDeviceListByDeviceGroupIDOK) readResponse(response runtime.
 	return nil
 }
 
-// NewGetImmediateDeviceListByDeviceGroupIDTooManyRequests creates a GetImmediateDeviceListByDeviceGroupIDTooManyRequests with default headers values
-func NewGetImmediateDeviceListByDeviceGroupIDTooManyRequests() *GetImmediateDeviceListByDeviceGroupIDTooManyRequests {
-	return &GetImmediateDeviceListByDeviceGroupIDTooManyRequests{}
-}
-
-/* GetImmediateDeviceListByDeviceGroupIDTooManyRequests describes a response with status code 429, with default header values.
-
-Too Many Requests
-*/
-type GetImmediateDeviceListByDeviceGroupIDTooManyRequests struct {
-
-	/* Request limit per X-Rate-Limit-Window
-	 */
-	XRateLimitLimit int64
-
-	/* The number of requests left for the time window
-	 */
-	XRateLimitRemaining int64
-
-	/* The rolling time window length with the unit of second
-	 */
-	XRateLimitWindow int64
-}
-
-func (o *GetImmediateDeviceListByDeviceGroupIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/groups/{id}/devices][%d] getImmediateDeviceListByDeviceGroupIdTooManyRequests ", 429)
-}
-
-func (o *GetImmediateDeviceListByDeviceGroupIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// hydrates response header x-rate-limit-limit
-	hdrXRateLimitLimit := response.GetHeader("x-rate-limit-limit")
-
-	if hdrXRateLimitLimit != "" {
-		valxRateLimitLimit, err := swag.ConvertInt64(hdrXRateLimitLimit)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-limit", "header", "int64", hdrXRateLimitLimit)
-		}
-		o.XRateLimitLimit = valxRateLimitLimit
-	}
-
-	// hydrates response header x-rate-limit-remaining
-	hdrXRateLimitRemaining := response.GetHeader("x-rate-limit-remaining")
-
-	if hdrXRateLimitRemaining != "" {
-		valxRateLimitRemaining, err := swag.ConvertInt64(hdrXRateLimitRemaining)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-remaining", "header", "int64", hdrXRateLimitRemaining)
-		}
-		o.XRateLimitRemaining = valxRateLimitRemaining
-	}
-
-	// hydrates response header x-rate-limit-window
-	hdrXRateLimitWindow := response.GetHeader("x-rate-limit-window")
-
-	if hdrXRateLimitWindow != "" {
-		valxRateLimitWindow, err := swag.ConvertInt64(hdrXRateLimitWindow)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-window", "header", "int64", hdrXRateLimitWindow)
-		}
-		o.XRateLimitWindow = valxRateLimitWindow
-	}
-
-	return nil
-}
-
 // NewGetImmediateDeviceListByDeviceGroupIDDefault creates a GetImmediateDeviceListByDeviceGroupIDDefault with default headers values
 func NewGetImmediateDeviceListByDeviceGroupIDDefault(code int) *GetImmediateDeviceListByDeviceGroupIDDefault {
 	return &GetImmediateDeviceListByDeviceGroupIDDefault{
@@ -154,7 +81,8 @@ func NewGetImmediateDeviceListByDeviceGroupIDDefault(code int) *GetImmediateDevi
 	}
 }
 
-/* GetImmediateDeviceListByDeviceGroupIDDefault describes a response with status code -1, with default header values.
+/*
+	GetImmediateDeviceListByDeviceGroupIDDefault describes a response with status code -1, with default header values.
 
 Error
 */

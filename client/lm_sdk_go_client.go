@@ -41,7 +41,6 @@ type Config struct {
 	AccessKey    *string
 	AccessID     *string
 	TransportCfg *TransportConfig
-	UserAgent    *string
 }
 
 // NewConfig create a new empty client Config
@@ -61,11 +60,6 @@ func (c *Config) SetAccessKey(accessKey *string) {
 	c.AccessKey = accessKey
 }
 
-// SetUserAgent for the client Config
-func (c *Config) SetUserAgent(userAgent string) {
-	c.UserAgent = &userAgent
-}
-
 // SetAccountDomain for the client Config
 func (c *Config) SetAccountDomain(accountDomain *string) {
 	if c.TransportCfg == nil {
@@ -78,7 +72,7 @@ func (c *Config) SetAccountDomain(accountDomain *string) {
 // New creates a new LM sdk go client
 func New(c *Config) *LMSdkGo {
 	transport := httptransport.New(c.TransportCfg.Host, c.TransportCfg.BasePath, c.TransportCfg.Schemes)
-	authInfo := LMv1Auth(*c.AccessID, *c.AccessKey, c.UserAgent)
+	authInfo := LMv1Auth(*c.AccessID, *c.AccessKey)
 
 	cli := new(LMSdkGo)
 	cli.Transport = transport
@@ -142,7 +136,7 @@ func (c *LMSdkGo) SetTransport(transport runtime.ClientTransport) {
 
 }
 
-func LMv1Auth(accessId, accessKey string, userAgent *string) runtime.ClientAuthInfoWriter {
+func LMv1Auth(accessId, accessKey string) runtime.ClientAuthInfoWriter {
 	return runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
 		// get epoch
 		now := time.Now()
@@ -177,11 +171,6 @@ func LMv1Auth(accessId, accessKey string, userAgent *string) runtime.ClientAuthI
 		hexDigest := hex.EncodeToString(h.Sum(nil))
 		signature := base64.StdEncoding.EncodeToString([]byte(hexDigest))
 		r.SetHeaderParam("Authorization", fmt.Sprintf("LMv1 %s:%s:%s", accessId, signature, epoch))
-		if userAgent == nil {
-			r.SetHeaderParam("User-Agent", "Logicmonitor/GO-SDK")
-		} else {
-			r.SetHeaderParam("User-Agent", *userAgent)
-		}
-		return r.SetHeaderParam("X-version", "3")
+		return r.SetHeaderParam("X-version", "2")
 	})
 }

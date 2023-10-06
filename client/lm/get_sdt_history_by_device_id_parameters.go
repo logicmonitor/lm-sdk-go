@@ -53,17 +53,14 @@ func NewGetSDTHistoryByDeviceIDParamsWithHTTPClient(client *http.Client) *GetSDT
 	}
 }
 
-/* GetSDTHistoryByDeviceIDParams contains all the parameters to send to the API endpoint
-   for the get SDT history by device Id operation.
+/*
+GetSDTHistoryByDeviceIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get SDT history by device Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetSDTHistoryByDeviceIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// End.
 	//
@@ -118,17 +115,14 @@ func (o *GetSDTHistoryByDeviceIDParams) WithDefaults() *GetSDTHistoryByDeviceIDP
 // All values with no default are reset to their zero value.
 func (o *GetSDTHistoryByDeviceIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetSDTHistoryByDeviceIDParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -168,17 +162,6 @@ func (o *GetSDTHistoryByDeviceIDParams) WithHTTPClient(client *http.Client) *Get
 // SetHTTPClient adds the HTTPClient to the get SDT history by device Id params
 func (o *GetSDTHistoryByDeviceIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get SDT history by device Id params
-func (o *GetSDTHistoryByDeviceIDParams) WithUserAgent(userAgent *string) *GetSDTHistoryByDeviceIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get SDT history by device Id params
-func (o *GetSDTHistoryByDeviceIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithEnd adds the end to the get SDT history by device Id params
@@ -276,14 +259,6 @@ func (o *GetSDTHistoryByDeviceIDParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.End != nil {
 

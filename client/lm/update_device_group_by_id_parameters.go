@@ -55,17 +55,14 @@ func NewUpdateDeviceGroupByIDParamsWithHTTPClient(client *http.Client) *UpdateDe
 	}
 }
 
-/* UpdateDeviceGroupByIDParams contains all the parameters to send to the API endpoint
-   for the update device group by Id operation.
+/*
+UpdateDeviceGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update device group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateDeviceGroupByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.DeviceGroup
@@ -98,14 +95,11 @@ func (o *UpdateDeviceGroupByIDParams) WithDefaults() *UpdateDeviceGroupByIDParam
 // All values with no default are reset to their zero value.
 func (o *UpdateDeviceGroupByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		opTypeDefault = string("refresh")
 	)
 
 	val := UpdateDeviceGroupByIDParams{
-		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
+		OpType: &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -145,17 +139,6 @@ func (o *UpdateDeviceGroupByIDParams) WithHTTPClient(client *http.Client) *Updat
 // SetHTTPClient adds the HTTPClient to the update device group by Id params
 func (o *UpdateDeviceGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the update device group by Id params
-func (o *UpdateDeviceGroupByIDParams) WithUserAgent(userAgent *string) *UpdateDeviceGroupByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update device group by Id params
-func (o *UpdateDeviceGroupByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the update device group by Id params
@@ -198,14 +181,6 @@ func (o *UpdateDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

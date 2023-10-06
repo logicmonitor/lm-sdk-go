@@ -9,10 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/logicmonitor/lm-sdk-go/models"
 )
@@ -31,12 +29,6 @@ func (o *DeleteAdminByIDReader) ReadResponse(response runtime.ClientResponse, co
 			return nil, err
 		}
 		return result, nil
-	case 429:
-		result := NewDeleteAdminByIDTooManyRequests()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	default:
 		result := NewDeleteAdminByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,7 +46,8 @@ func NewDeleteAdminByIDOK() *DeleteAdminByIDOK {
 	return &DeleteAdminByIDOK{}
 }
 
-/* DeleteAdminByIDOK describes a response with status code 200, with default header values.
+/*
+	DeleteAdminByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -79,72 +72,6 @@ func (o *DeleteAdminByIDOK) readResponse(response runtime.ClientResponse, consum
 	return nil
 }
 
-// NewDeleteAdminByIDTooManyRequests creates a DeleteAdminByIDTooManyRequests with default headers values
-func NewDeleteAdminByIDTooManyRequests() *DeleteAdminByIDTooManyRequests {
-	return &DeleteAdminByIDTooManyRequests{}
-}
-
-/* DeleteAdminByIDTooManyRequests describes a response with status code 429, with default header values.
-
-Too Many Requests
-*/
-type DeleteAdminByIDTooManyRequests struct {
-
-	/* Request limit per X-Rate-Limit-Window
-	 */
-	XRateLimitLimit int64
-
-	/* The number of requests left for the time window
-	 */
-	XRateLimitRemaining int64
-
-	/* The rolling time window length with the unit of second
-	 */
-	XRateLimitWindow int64
-}
-
-func (o *DeleteAdminByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /setting/admins/{id}][%d] deleteAdminByIdTooManyRequests ", 429)
-}
-
-func (o *DeleteAdminByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// hydrates response header x-rate-limit-limit
-	hdrXRateLimitLimit := response.GetHeader("x-rate-limit-limit")
-
-	if hdrXRateLimitLimit != "" {
-		valxRateLimitLimit, err := swag.ConvertInt64(hdrXRateLimitLimit)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-limit", "header", "int64", hdrXRateLimitLimit)
-		}
-		o.XRateLimitLimit = valxRateLimitLimit
-	}
-
-	// hydrates response header x-rate-limit-remaining
-	hdrXRateLimitRemaining := response.GetHeader("x-rate-limit-remaining")
-
-	if hdrXRateLimitRemaining != "" {
-		valxRateLimitRemaining, err := swag.ConvertInt64(hdrXRateLimitRemaining)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-remaining", "header", "int64", hdrXRateLimitRemaining)
-		}
-		o.XRateLimitRemaining = valxRateLimitRemaining
-	}
-
-	// hydrates response header x-rate-limit-window
-	hdrXRateLimitWindow := response.GetHeader("x-rate-limit-window")
-
-	if hdrXRateLimitWindow != "" {
-		valxRateLimitWindow, err := swag.ConvertInt64(hdrXRateLimitWindow)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-window", "header", "int64", hdrXRateLimitWindow)
-		}
-		o.XRateLimitWindow = valxRateLimitWindow
-	}
-
-	return nil
-}
-
 // NewDeleteAdminByIDDefault creates a DeleteAdminByIDDefault with default headers values
 func NewDeleteAdminByIDDefault(code int) *DeleteAdminByIDDefault {
 	return &DeleteAdminByIDDefault{
@@ -152,7 +79,8 @@ func NewDeleteAdminByIDDefault(code int) *DeleteAdminByIDDefault {
 	}
 }
 
-/* DeleteAdminByIDDefault describes a response with status code -1, with default header values.
+/*
+	DeleteAdminByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */

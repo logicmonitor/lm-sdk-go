@@ -19,29 +19,20 @@ import (
 // swagger:model NetflowFilters
 type NetflowFilters struct {
 
-	// app type
-	AppType string `json:"appType,omitempty"`
-
 	// conversation
 	Conversation []*ConversationFilter `json:"conversation,omitempty"`
-
-	// device interfaces
-	DeviceInterfaces []*InterfacesFilter `json:"deviceInterfaces,omitempty"`
 
 	// direction
 	Direction string `json:"direction,omitempty"`
 
-	// if names
-	IfNames []string `json:"ifNames,omitempty"`
+	// if idx
+	IfIdx int32 `json:"ifIdx,omitempty"`
+
+	// if name
+	IfName string `json:"ifName,omitempty"`
 
 	// ip version
 	IPVersion string `json:"ipVersion,omitempty"`
-
-	// nbar application names
-	NbarApplicationNames []*NbarApplicationNames `json:"nbarApplicationNames,omitempty"`
-
-	// Netlow filter netflowDevices expression
-	NetflowDevices []*NetflowDeviceInfo `json:"netflowDevices,omitempty"`
 
 	// node a
 	NodeA string `json:"nodeA,omitempty"`
@@ -67,18 +58,6 @@ func (m *NetflowFilters) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateConversation(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateDeviceInterfaces(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateNbarApplicationNames(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateNetflowDevices(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -112,95 +91,11 @@ func (m *NetflowFilters) validateConversation(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *NetflowFilters) validateDeviceInterfaces(formats strfmt.Registry) error {
-	if swag.IsZero(m.DeviceInterfaces) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.DeviceInterfaces); i++ {
-		if swag.IsZero(m.DeviceInterfaces[i]) { // not required
-			continue
-		}
-
-		if m.DeviceInterfaces[i] != nil {
-			if err := m.DeviceInterfaces[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("deviceInterfaces" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *NetflowFilters) validateNbarApplicationNames(formats strfmt.Registry) error {
-	if swag.IsZero(m.NbarApplicationNames) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.NbarApplicationNames); i++ {
-		if swag.IsZero(m.NbarApplicationNames[i]) { // not required
-			continue
-		}
-
-		if m.NbarApplicationNames[i] != nil {
-			if err := m.NbarApplicationNames[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("nbarApplicationNames" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *NetflowFilters) validateNetflowDevices(formats strfmt.Registry) error {
-	if swag.IsZero(m.NetflowDevices) { // not required
-		return nil
-	}
-
-	for i := 0; i < len(m.NetflowDevices); i++ {
-		if swag.IsZero(m.NetflowDevices[i]) { // not required
-			continue
-		}
-
-		if m.NetflowDevices[i] != nil {
-			if err := m.NetflowDevices[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("netflowDevices" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
 // ContextValidate validate this netflow filters based on the context it is used
 func (m *NetflowFilters) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateConversation(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateDeviceInterfaces(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateNbarApplicationNames(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateNetflowDevices(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -218,60 +113,6 @@ func (m *NetflowFilters) contextValidateConversation(ctx context.Context, format
 			if err := m.Conversation[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("conversation" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *NetflowFilters) contextValidateDeviceInterfaces(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.DeviceInterfaces); i++ {
-
-		if m.DeviceInterfaces[i] != nil {
-			if err := m.DeviceInterfaces[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("deviceInterfaces" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *NetflowFilters) contextValidateNbarApplicationNames(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.NbarApplicationNames); i++ {
-
-		if m.NbarApplicationNames[i] != nil {
-			if err := m.NbarApplicationNames[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("nbarApplicationNames" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
-		}
-
-	}
-
-	return nil
-}
-
-func (m *NetflowFilters) contextValidateNetflowDevices(ctx context.Context, formats strfmt.Registry) error {
-
-	for i := 0; i < len(m.NetflowDevices); i++ {
-
-		if m.NetflowDevices[i] != nil {
-			if err := m.NetflowDevices[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("netflowDevices" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

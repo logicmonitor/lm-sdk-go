@@ -53,17 +53,14 @@ func NewGetDeviceGroupDatasourceListParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/* GetDeviceGroupDatasourceListParams contains all the parameters to send to the API endpoint
-   for the get device group datasource list operation.
+/*
+GetDeviceGroupDatasourceListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device group datasource list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceGroupDatasourceListParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// DeviceGroupID.
 	//
@@ -108,8 +105,6 @@ func (o *GetDeviceGroupDatasourceListParams) WithDefaults() *GetDeviceGroupDatas
 // All values with no default are reset to their zero value.
 func (o *GetDeviceGroupDatasourceListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		includeDisabledDataSourceWithoutInstanceDefault = bool(false)
 
 		offsetDefault = int32(0)
@@ -118,7 +113,6 @@ func (o *GetDeviceGroupDatasourceListParams) SetDefaults() {
 	)
 
 	val := GetDeviceGroupDatasourceListParams{
-		UserAgent:                                &userAgentDefault,
 		IncludeDisabledDataSourceWithoutInstance: &includeDisabledDataSourceWithoutInstanceDefault,
 		Offset:                                   &offsetDefault,
 		Size:                                     &sizeDefault,
@@ -161,17 +155,6 @@ func (o *GetDeviceGroupDatasourceListParams) WithHTTPClient(client *http.Client)
 // SetHTTPClient adds the HTTPClient to the get device group datasource list params
 func (o *GetDeviceGroupDatasourceListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device group datasource list params
-func (o *GetDeviceGroupDatasourceListParams) WithUserAgent(userAgent *string) *GetDeviceGroupDatasourceListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device group datasource list params
-func (o *GetDeviceGroupDatasourceListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceGroupID adds the deviceGroupID to the get device group datasource list params
@@ -247,14 +230,6 @@ func (o *GetDeviceGroupDatasourceListParams) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceGroupId
 	if err := r.SetPathParam("deviceGroupId", swag.FormatInt32(o.DeviceGroupID)); err != nil {

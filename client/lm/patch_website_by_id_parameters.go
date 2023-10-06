@@ -55,17 +55,14 @@ func NewPatchWebsiteByIDParamsWithHTTPClient(client *http.Client) *PatchWebsiteB
 	}
 }
 
-/* PatchWebsiteByIDParams contains all the parameters to send to the API endpoint
-   for the patch website by Id operation.
+/*
+PatchWebsiteByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch website by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchWebsiteByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body models.Website
@@ -98,14 +95,11 @@ func (o *PatchWebsiteByIDParams) WithDefaults() *PatchWebsiteByIDParams {
 // All values with no default are reset to their zero value.
 func (o *PatchWebsiteByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		opTypeDefault = string("refresh")
 	)
 
 	val := PatchWebsiteByIDParams{
-		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
+		OpType: &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -145,17 +139,6 @@ func (o *PatchWebsiteByIDParams) WithHTTPClient(client *http.Client) *PatchWebsi
 // SetHTTPClient adds the HTTPClient to the patch website by Id params
 func (o *PatchWebsiteByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the patch website by Id params
-func (o *PatchWebsiteByIDParams) WithUserAgent(userAgent *string) *PatchWebsiteByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch website by Id params
-func (o *PatchWebsiteByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the patch website by Id params
@@ -198,14 +181,6 @@ func (o *PatchWebsiteByIDParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

@@ -53,17 +53,14 @@ func NewGetWebsiteByIDParamsWithHTTPClient(client *http.Client) *GetWebsiteByIDP
 	}
 }
 
-/* GetWebsiteByIDParams contains all the parameters to send to the API endpoint
-   for the get website by Id operation.
+/*
+GetWebsiteByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Format.
 	//
@@ -93,14 +90,11 @@ func (o *GetWebsiteByIDParams) WithDefaults() *GetWebsiteByIDParams {
 // All values with no default are reset to their zero value.
 func (o *GetWebsiteByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		formatDefault = string("json")
 	)
 
 	val := GetWebsiteByIDParams{
-		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
+		Format: &formatDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,17 +136,6 @@ func (o *GetWebsiteByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the get website by Id params
-func (o *GetWebsiteByIDParams) WithUserAgent(userAgent *string) *GetWebsiteByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get website by Id params
-func (o *GetWebsiteByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithFormat adds the format to the get website by Id params
 func (o *GetWebsiteByIDParams) WithFormat(format *string) *GetWebsiteByIDParams {
 	o.SetFormat(format)
@@ -182,14 +165,6 @@ func (o *GetWebsiteByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Format != nil {
 

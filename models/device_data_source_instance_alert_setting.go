@@ -20,9 +20,6 @@ import (
 // swagger:model DeviceDataSourceInstanceAlertSetting
 type DeviceDataSourceInstanceAlertSetting struct {
 
-	// ad adv setting enabled
-	AdAdvSettingEnabled bool `json:"adAdvSettingEnabled,omitempty"`
-
 	// The interval of alert clear transition
 	// Read Only: true
 	AlertClearInterval int32 `json:"alertClearInterval,omitempty"`
@@ -42,13 +39,6 @@ type DeviceDataSourceInstanceAlertSetting struct {
 	// The datapoint is effected alert disabled by which group
 	// Read Only: true
 	AlertingDisabledOn string `json:"alertingDisabledOn,omitempty"`
-
-	// Collection Interval
-	// Read Only: true
-	CollectionInterval int64 `json:"collectionInterval,omitempty"`
-
-	// critical ad adv setting
-	CriticalAdAdvSetting string `json:"criticalAdAdvSetting,omitempty"`
 
 	// The description of the datapoint the alert settings apply to
 	// Read Only: true
@@ -86,31 +76,9 @@ type DeviceDataSourceInstanceAlertSetting struct {
 	// Read Only: true
 	DisableDpAlertHostGroups string `json:"disableDpAlertHostGroups,omitempty"`
 
-	// enable anomaly alert generation
-	// Read Only: true
-	EnableAnomalyAlertGeneration string `json:"enableAnomalyAlertGeneration,omitempty"`
-
-	// enable anomaly alert suppression
-	// Read Only: true
-	EnableAnomalyAlertSuppression string `json:"enableAnomalyAlertSuppression,omitempty"`
-
-	// error ad adv setting
-	ErrorAdAdvSetting string `json:"errorAdAdvSetting,omitempty"`
-
 	// The global alert expression for this datapoint
 	// Read Only: true
 	GlobalAlertExpr string `json:"globalAlertExpr,omitempty"`
-
-	// The global enable anomaly alert generation
-	// Read Only: true
-	GlobalEnableAnomalyAlertGeneration string `json:"globalEnableAnomalyAlertGeneration,omitempty"`
-
-	// The global enable anomaly alert suppression
-	// Read Only: true
-	GlobalEnableAnomalyAlertSuppression string `json:"globalEnableAnomalyAlertSuppression,omitempty"`
-
-	// The post processor parameters for complex DataPoints and global level configCheck threshold.
-	GlobalPostProcessorParam string `json:"globalPostProcessorParam,omitempty"`
 
 	// The id of this alert setting
 	// Read Only: true
@@ -119,16 +87,6 @@ type DeviceDataSourceInstanceAlertSetting struct {
 	// Device group alert expression list base on the priority. The first is the highest priority and effected on this instance
 	// Read Only: true
 	ParentDeviceGroupAlertExprList []*DeviceGroupAlertThresholdInfo `json:"parentDeviceGroupAlertExprList,omitempty"`
-
-	// Instance group alert expression list base on the priority. The first is the highest priority and effected on this instance
-	// Read Only: true
-	ParentInstanceGroupAlertExpr *InstanceGroupAlertThresholdInfo `json:"parentInstanceGroupAlertExpr,omitempty"`
-
-	// The post processor parameter for complex DataPoint and instance level configCheck threshold.
-	PostProcessorParam string `json:"postProcessorParam,omitempty"`
-
-	// warn ad adv setting
-	WarnAdAdvSetting string `json:"warnAdAdvSetting,omitempty"`
 }
 
 // Validate validates this device data source instance alert setting
@@ -136,10 +94,6 @@ func (m *DeviceDataSourceInstanceAlertSetting) Validate(formats strfmt.Registry)
 	var res []error
 
 	if err := m.validateParentDeviceGroupAlertExprList(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateParentInstanceGroupAlertExpr(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -173,23 +127,6 @@ func (m *DeviceDataSourceInstanceAlertSetting) validateParentDeviceGroupAlertExp
 	return nil
 }
 
-func (m *DeviceDataSourceInstanceAlertSetting) validateParentInstanceGroupAlertExpr(formats strfmt.Registry) error {
-	if swag.IsZero(m.ParentInstanceGroupAlertExpr) { // not required
-		return nil
-	}
-
-	if m.ParentInstanceGroupAlertExpr != nil {
-		if err := m.ParentInstanceGroupAlertExpr.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("parentInstanceGroupAlertExpr")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
 // ContextValidate validate this device data source instance alert setting based on the context it is used
 func (m *DeviceDataSourceInstanceAlertSetting) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -203,10 +140,6 @@ func (m *DeviceDataSourceInstanceAlertSetting) ContextValidate(ctx context.Conte
 	}
 
 	if err := m.contextValidateAlertingDisabledOn(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateCollectionInterval(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -242,23 +175,7 @@ func (m *DeviceDataSourceInstanceAlertSetting) ContextValidate(ctx context.Conte
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateEnableAnomalyAlertGeneration(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateEnableAnomalyAlertSuppression(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateGlobalAlertExpr(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateGlobalEnableAnomalyAlertGeneration(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateGlobalEnableAnomalyAlertSuppression(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -267,10 +184,6 @@ func (m *DeviceDataSourceInstanceAlertSetting) ContextValidate(ctx context.Conte
 	}
 
 	if err := m.contextValidateParentDeviceGroupAlertExprList(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateParentInstanceGroupAlertExpr(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -301,15 +214,6 @@ func (m *DeviceDataSourceInstanceAlertSetting) contextValidateAlertTransitionInt
 func (m *DeviceDataSourceInstanceAlertSetting) contextValidateAlertingDisabledOn(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "alertingDisabledOn", "body", string(m.AlertingDisabledOn)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceAlertSetting) contextValidateCollectionInterval(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "collectionInterval", "body", int64(m.CollectionInterval)); err != nil {
 		return err
 	}
 
@@ -388,45 +292,9 @@ func (m *DeviceDataSourceInstanceAlertSetting) contextValidateDisableDpAlertHost
 	return nil
 }
 
-func (m *DeviceDataSourceInstanceAlertSetting) contextValidateEnableAnomalyAlertGeneration(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "enableAnomalyAlertGeneration", "body", string(m.EnableAnomalyAlertGeneration)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceAlertSetting) contextValidateEnableAnomalyAlertSuppression(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "enableAnomalyAlertSuppression", "body", string(m.EnableAnomalyAlertSuppression)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *DeviceDataSourceInstanceAlertSetting) contextValidateGlobalAlertExpr(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "globalAlertExpr", "body", string(m.GlobalAlertExpr)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceAlertSetting) contextValidateGlobalEnableAnomalyAlertGeneration(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "globalEnableAnomalyAlertGeneration", "body", string(m.GlobalEnableAnomalyAlertGeneration)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceAlertSetting) contextValidateGlobalEnableAnomalyAlertSuppression(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "globalEnableAnomalyAlertSuppression", "body", string(m.GlobalEnableAnomalyAlertSuppression)); err != nil {
 		return err
 	}
 
@@ -459,20 +327,6 @@ func (m *DeviceDataSourceInstanceAlertSetting) contextValidateParentDeviceGroupA
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceAlertSetting) contextValidateParentInstanceGroupAlertExpr(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.ParentInstanceGroupAlertExpr != nil {
-		if err := m.ParentInstanceGroupAlertExpr.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("parentInstanceGroupAlertExpr")
-			}
-			return err
-		}
 	}
 
 	return nil

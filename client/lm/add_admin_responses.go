@@ -9,10 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/logicmonitor/lm-sdk-go/models"
 )
@@ -31,12 +29,6 @@ func (o *AddAdminReader) ReadResponse(response runtime.ClientResponse, consumer 
 			return nil, err
 		}
 		return result, nil
-	case 429:
-		result := NewAddAdminTooManyRequests()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	default:
 		result := NewAddAdminDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,7 +46,8 @@ func NewAddAdminOK() *AddAdminOK {
 	return &AddAdminOK{}
 }
 
-/* AddAdminOK describes a response with status code 200, with default header values.
+/*
+	AddAdminOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -81,72 +74,6 @@ func (o *AddAdminOK) readResponse(response runtime.ClientResponse, consumer runt
 	return nil
 }
 
-// NewAddAdminTooManyRequests creates a AddAdminTooManyRequests with default headers values
-func NewAddAdminTooManyRequests() *AddAdminTooManyRequests {
-	return &AddAdminTooManyRequests{}
-}
-
-/* AddAdminTooManyRequests describes a response with status code 429, with default header values.
-
-Too Many Requests
-*/
-type AddAdminTooManyRequests struct {
-
-	/* Request limit per X-Rate-Limit-Window
-	 */
-	XRateLimitLimit int64
-
-	/* The number of requests left for the time window
-	 */
-	XRateLimitRemaining int64
-
-	/* The rolling time window length with the unit of second
-	 */
-	XRateLimitWindow int64
-}
-
-func (o *AddAdminTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/admins][%d] addAdminTooManyRequests ", 429)
-}
-
-func (o *AddAdminTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// hydrates response header x-rate-limit-limit
-	hdrXRateLimitLimit := response.GetHeader("x-rate-limit-limit")
-
-	if hdrXRateLimitLimit != "" {
-		valxRateLimitLimit, err := swag.ConvertInt64(hdrXRateLimitLimit)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-limit", "header", "int64", hdrXRateLimitLimit)
-		}
-		o.XRateLimitLimit = valxRateLimitLimit
-	}
-
-	// hydrates response header x-rate-limit-remaining
-	hdrXRateLimitRemaining := response.GetHeader("x-rate-limit-remaining")
-
-	if hdrXRateLimitRemaining != "" {
-		valxRateLimitRemaining, err := swag.ConvertInt64(hdrXRateLimitRemaining)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-remaining", "header", "int64", hdrXRateLimitRemaining)
-		}
-		o.XRateLimitRemaining = valxRateLimitRemaining
-	}
-
-	// hydrates response header x-rate-limit-window
-	hdrXRateLimitWindow := response.GetHeader("x-rate-limit-window")
-
-	if hdrXRateLimitWindow != "" {
-		valxRateLimitWindow, err := swag.ConvertInt64(hdrXRateLimitWindow)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-window", "header", "int64", hdrXRateLimitWindow)
-		}
-		o.XRateLimitWindow = valxRateLimitWindow
-	}
-
-	return nil
-}
-
 // NewAddAdminDefault creates a AddAdminDefault with default headers values
 func NewAddAdminDefault(code int) *AddAdminDefault {
 	return &AddAdminDefault{
@@ -154,7 +81,8 @@ func NewAddAdminDefault(code int) *AddAdminDefault {
 	}
 }
 
-/* AddAdminDefault describes a response with status code -1, with default header values.
+/*
+	AddAdminDefault describes a response with status code -1, with default header values.
 
 Error
 */

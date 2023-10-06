@@ -55,17 +55,14 @@ func NewUpdateDeviceGroupDatasourceAlertSettingParamsWithHTTPClient(client *http
 	}
 }
 
-/* UpdateDeviceGroupDatasourceAlertSettingParams contains all the parameters to send to the API endpoint
-   for the update device group datasource alert setting operation.
+/*
+UpdateDeviceGroupDatasourceAlertSettingParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update device group datasource alert setting operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateDeviceGroupDatasourceAlertSettingParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.DeviceGroupDataSourceAlertConfig
@@ -97,18 +94,7 @@ func (o *UpdateDeviceGroupDatasourceAlertSettingParams) WithDefaults() *UpdateDe
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateDeviceGroupDatasourceAlertSettingParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := UpdateDeviceGroupDatasourceAlertSettingParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update device group datasource alert setting params
@@ -142,17 +128,6 @@ func (o *UpdateDeviceGroupDatasourceAlertSettingParams) WithHTTPClient(client *h
 // SetHTTPClient adds the HTTPClient to the update device group datasource alert setting params
 func (o *UpdateDeviceGroupDatasourceAlertSettingParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the update device group datasource alert setting params
-func (o *UpdateDeviceGroupDatasourceAlertSettingParams) WithUserAgent(userAgent *string) *UpdateDeviceGroupDatasourceAlertSettingParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update device group datasource alert setting params
-func (o *UpdateDeviceGroupDatasourceAlertSettingParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the update device group datasource alert setting params
@@ -195,14 +170,6 @@ func (o *UpdateDeviceGroupDatasourceAlertSettingParams) WriteToRequest(r runtime
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

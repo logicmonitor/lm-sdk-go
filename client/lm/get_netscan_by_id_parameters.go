@@ -53,17 +53,14 @@ func NewGetNetscanByIDParamsWithHTTPClient(client *http.Client) *GetNetscanByIDP
 	}
 }
 
-/* GetNetscanByIDParams contains all the parameters to send to the API endpoint
-   for the get netscan by Id operation.
+/*
+GetNetscanByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get netscan by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetNetscanByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// ID.
 	//
@@ -87,18 +84,7 @@ func (o *GetNetscanByIDParams) WithDefaults() *GetNetscanByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetNetscanByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := GetNetscanByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get netscan by Id params
@@ -134,17 +120,6 @@ func (o *GetNetscanByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the get netscan by Id params
-func (o *GetNetscanByIDParams) WithUserAgent(userAgent *string) *GetNetscanByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get netscan by Id params
-func (o *GetNetscanByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithID adds the id to the get netscan by Id params
 func (o *GetNetscanByIDParams) WithID(id int32) *GetNetscanByIDParams {
 	o.SetID(id)
@@ -163,14 +138,6 @@ func (o *GetNetscanByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {

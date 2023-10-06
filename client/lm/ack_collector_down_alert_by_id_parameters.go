@@ -55,17 +55,14 @@ func NewAckCollectorDownAlertByIDParamsWithHTTPClient(client *http.Client) *AckC
 	}
 }
 
-/* AckCollectorDownAlertByIDParams contains all the parameters to send to the API endpoint
-   for the ack collector down alert by Id operation.
+/*
+AckCollectorDownAlertByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the ack collector down alert by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type AckCollectorDownAlertByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.AckCollectorDown
@@ -92,18 +89,7 @@ func (o *AckCollectorDownAlertByIDParams) WithDefaults() *AckCollectorDownAlertB
 //
 // All values with no default are reset to their zero value.
 func (o *AckCollectorDownAlertByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := AckCollectorDownAlertByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the ack collector down alert by Id params
@@ -139,17 +125,6 @@ func (o *AckCollectorDownAlertByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the ack collector down alert by Id params
-func (o *AckCollectorDownAlertByIDParams) WithUserAgent(userAgent *string) *AckCollectorDownAlertByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the ack collector down alert by Id params
-func (o *AckCollectorDownAlertByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the ack collector down alert by Id params
 func (o *AckCollectorDownAlertByIDParams) WithBody(body *models.AckCollectorDown) *AckCollectorDownAlertByIDParams {
 	o.SetBody(body)
@@ -179,14 +154,6 @@ func (o *AckCollectorDownAlertByIDParams) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

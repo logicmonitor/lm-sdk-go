@@ -24,10 +24,9 @@ type WebsiteGroup struct {
 	// Example: Amazon web and ping checks
 	Description string `json:"description,omitempty"`
 
-	// The values can be true|false where
 	// true: alerting is disabled for the websites in the group
 	// false: alerting is enabled for the websites in the group
-	// If stopMonitoring=true, then alerting will also be disabled by default for the websites in the group
+	// If stopMonitoring=true, then alerting will also by default be disabled for the websites in the group
 	// Example: false
 	DisableAlerting bool `json:"disableAlerting,omitempty"`
 
@@ -35,7 +34,7 @@ type WebsiteGroup struct {
 	// Read Only: true
 	FullPath string `json:"fullPath,omitempty"`
 
-	// Indicates if there are websites disabled in this group
+	// has websites disabled
 	// Read Only: true
 	HasWebsitesDisabled *bool `json:"hasWebsitesDisabled,omitempty"`
 
@@ -48,40 +47,34 @@ type WebsiteGroup struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// The number of direct website groups in this group (excluding those in subgroups)
+	// The number of direct website groups in this group (exlcuding those in subgroups)
 	// Read Only: true
 	NumOfDirectSubGroups int32 `json:"numOfDirectSubGroups,omitempty"`
 
-	// The number of direct websites in this group
+	// num of direct websites
 	// Read Only: true
 	NumOfDirectWebsites int32 `json:"numOfDirectWebsites,omitempty"`
 
-	// The number of websites in the service group, including the websites in sub groups
+	// num of websites
 	// Read Only: true
 	NumOfWebsites int32 `json:"numOfWebsites,omitempty"`
 
-	// The Id of the parent group. If parentId=1 then the group exists under the root group
+	// The Id of the parent group. If parentId=1 then the group exists under the root  group
 	// Example: 1
 	ParentID int32 `json:"parentId,omitempty"`
 
-	// The website folder properties
+	// properties
 	Properties []*NameAndValue `json:"properties,omitempty"`
 
-	// The privilege operations of the user's role that made the API request.  The array can contain the values ack, sdt and/or threshold
-	// Read Only: true
-	RolePrivileges []string `json:"rolePrivileges,omitempty"`
-
-	// The values can be true|false where
 	// true: monitoring is disabled for the websites in the group
 	// false: monitoring is enabled for the websites in the group
-	// If stopMonitoring=true, then alerting will also be disabled by default for the websites in the group
+	// If stopMonitoring=true, then alerting will also by default be disabled for the websites in the group
 	StopMonitoring bool `json:"stopMonitoring,omitempty"`
 
-	// An object that indicates the websites locations.
-	// eg. {'all': false, smgId:[1,2,3], collectorIds:[14,16]}
+	// test location
 	TestLocation *WebsiteLocation `json:"testLocation,omitempty"`
 
-	// The permission level of the user that made the API request. The values can be write|read|ack
+	// The permission level of the user that made the API request. Acceptable values are: write, read, ack
 	// Read Only: true
 	UserPermission string `json:"userPermission,omitempty"`
 }
@@ -190,10 +183,6 @@ func (m *WebsiteGroup) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateRolePrivileges(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateTestLocation(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -275,15 +264,6 @@ func (m *WebsiteGroup) contextValidateProperties(ctx context.Context, formats st
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *WebsiteGroup) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges)); err != nil {
-		return err
 	}
 
 	return nil

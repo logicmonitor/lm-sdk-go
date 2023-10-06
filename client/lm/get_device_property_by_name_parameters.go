@@ -53,17 +53,14 @@ func NewGetDevicePropertyByNameParamsWithHTTPClient(client *http.Client) *GetDev
 	}
 }
 
-/* GetDevicePropertyByNameParams contains all the parameters to send to the API endpoint
-   for the get device property by name operation.
+/*
+GetDevicePropertyByNameParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device property by name operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDevicePropertyByNameParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// DeviceID.
 	//
@@ -93,18 +90,7 @@ func (o *GetDevicePropertyByNameParams) WithDefaults() *GetDevicePropertyByNameP
 //
 // All values with no default are reset to their zero value.
 func (o *GetDevicePropertyByNameParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := GetDevicePropertyByNameParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get device property by name params
@@ -138,17 +124,6 @@ func (o *GetDevicePropertyByNameParams) WithHTTPClient(client *http.Client) *Get
 // SetHTTPClient adds the HTTPClient to the get device property by name params
 func (o *GetDevicePropertyByNameParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device property by name params
-func (o *GetDevicePropertyByNameParams) WithUserAgent(userAgent *string) *GetDevicePropertyByNameParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device property by name params
-func (o *GetDevicePropertyByNameParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceID adds the deviceID to the get device property by name params
@@ -191,14 +166,6 @@ func (o *GetDevicePropertyByNameParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceId
 	if err := r.SetPathParam("deviceId", swag.FormatInt32(o.DeviceID)); err != nil {

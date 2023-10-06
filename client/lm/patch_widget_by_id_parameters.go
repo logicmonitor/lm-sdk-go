@@ -55,17 +55,14 @@ func NewPatchWidgetByIDParamsWithHTTPClient(client *http.Client) *PatchWidgetByI
 	}
 }
 
-/* PatchWidgetByIDParams contains all the parameters to send to the API endpoint
-   for the patch widget by Id operation.
+/*
+PatchWidgetByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch widget by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchWidgetByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body models.Widget
@@ -92,18 +89,7 @@ func (o *PatchWidgetByIDParams) WithDefaults() *PatchWidgetByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *PatchWidgetByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := PatchWidgetByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch widget by Id params
@@ -139,17 +125,6 @@ func (o *PatchWidgetByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the patch widget by Id params
-func (o *PatchWidgetByIDParams) WithUserAgent(userAgent *string) *PatchWidgetByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch widget by Id params
-func (o *PatchWidgetByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the patch widget by Id params
 func (o *PatchWidgetByIDParams) WithBody(body models.Widget) *PatchWidgetByIDParams {
 	o.SetBody(body)
@@ -179,14 +154,6 @@ func (o *PatchWidgetByIDParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

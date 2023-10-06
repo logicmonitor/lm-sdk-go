@@ -19,63 +19,59 @@ import (
 // swagger:model GraphPlotLine
 type GraphPlotLine struct {
 
-	// The average value of the datapoint or instance
+	// avg
 	// Read Only: true
 	Avg interface{} `json:"avg,omitempty"`
 
-	// The color of the graph
+	// color
 	// Read Only: true
 	Color string `json:"color,omitempty"`
 
-	// The color name
+	// color name
 	// Read Only: true
 	ColorName string `json:"colorName,omitempty"`
 
-	// The polled data used to plot the graph
+	// data
 	// Read Only: true
 	Data []interface{} `json:"data,omitempty"`
 
-	// The decimal value
-	// The values can be -1 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+	// decimal
 	// Read Only: true
 	Decimal int32 `json:"decimal,omitempty"`
 
-	// The description for the datapoint or instance
+	// description
 	// Read Only: true
 	Description string `json:"description,omitempty"`
 
-	// The label for the datapoint or instance
+	// label
 	// Read Only: true
 	Label string `json:"label,omitempty"`
 
-	// The legend of the datapoint or instance
+	// legend
 	// Read Only: true
 	Legend string `json:"legend,omitempty"`
 
-	// The max value of datapoint or instance
+	// max
 	// Read Only: true
 	Max interface{} `json:"max,omitempty"`
 
-	// The min value of the datapoint or instance
+	// min
 	// Read Only: true
 	Min interface{} `json:"min,omitempty"`
 
-	// The standard deviation value
+	// std
 	// Read Only: true
 	Std interface{} `json:"std,omitempty"`
 
-	// Specifies how the data of the datapoint or instance will be plotted
-	// The values can be line | area | stack | column | statusBar
+	// type
 	// Read Only: true
 	Type string `json:"type,omitempty"`
 
-	// true | false
-	// Specifies whether to use YMax or not
+	// use y max
 	// Read Only: true
 	UseYMax *bool `json:"useYMax,omitempty"`
 
-	// true | false
-	// Specifies whether the graph will be visible or not
+	// visible
 	// Read Only: true
 	Visible *bool `json:"visible,omitempty"`
 }

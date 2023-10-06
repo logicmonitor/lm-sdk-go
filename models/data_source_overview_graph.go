@@ -12,7 +12,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // DataSourceOverviewGraph data source overview graph
@@ -20,54 +19,52 @@ import (
 // swagger:model DataSourceOverviewGraph
 type DataSourceOverviewGraph struct {
 
-	// Whether the overview graph is aggregated
-	// Read Only: true
-	Aggregated *bool `json:"aggregated,omitempty"`
+	// aggregated
+	Aggregated bool `json:"aggregated,omitempty"`
 
-	// base1024 graph or not
+	// base1024
 	Base1024 bool `json:"base1024,omitempty"`
 
-	// The graph data point list
+	// data points
 	DataPoints []*OverviewGraphDataPoint `json:"dataPoints,omitempty"`
 
-	// The graph display priority
+	// display prio
 	DisplayPrio int32 `json:"displayPrio,omitempty"`
 
-	// The graph height
+	// height
 	Height int32 `json:"height,omitempty"`
 
-	// The graph Id
+	// id
 	ID int32 `json:"id,omitempty"`
 
-	// The graph lines
+	// lines
 	Lines []*GraphLine `json:"lines,omitempty"`
 
-	// The graph max value
+	// max value
 	MaxValue interface{} `json:"maxValue,omitempty"`
 
-	// The graph min value
+	// min value
 	MinValue interface{} `json:"minValue,omitempty"`
 
-	// The graph name
+	// name
 	Name string `json:"name,omitempty"`
 
-	// The rigid. The values can be true|false
+	// rigid
 	Rigid bool `json:"rigid,omitempty"`
 
-	// The graph time scale.
-	// The values can be 1hour|2hour|5hour|day|yesterday|week|lastweek|month|3month|year
+	// time scale
 	TimeScale string `json:"timeScale,omitempty"`
 
-	// The graph title
+	// title
 	Title string `json:"title,omitempty"`
 
-	// The graph vertical label
+	// vertical label
 	VerticalLabel string `json:"verticalLabel,omitempty"`
 
-	// The virtual data point list
+	// virtual data points
 	VirtualDataPoints []*GraphVirtualDataPoint `json:"virtualDataPoints,omitempty"`
 
-	// The graph width
+	// width
 	Width int32 `json:"width,omitempty"`
 }
 
@@ -169,10 +166,6 @@ func (m *DataSourceOverviewGraph) validateVirtualDataPoints(formats strfmt.Regis
 func (m *DataSourceOverviewGraph) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAggregated(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateDataPoints(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -188,15 +181,6 @@ func (m *DataSourceOverviewGraph) ContextValidate(ctx context.Context, formats s
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *DataSourceOverviewGraph) contextValidateAggregated(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "aggregated", "body", m.Aggregated); err != nil {
-		return err
-	}
-
 	return nil
 }
 

@@ -52,18 +52,14 @@ func NewGetAwsExternalIDParamsWithHTTPClient(client *http.Client) *GetAwsExterna
 	}
 }
 
-/* GetAwsExternalIDParams contains all the parameters to send to the API endpoint
-   for the get aws external Id operation.
+/*
+GetAwsExternalIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get aws external Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAwsExternalIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
-
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -81,18 +77,7 @@ func (o *GetAwsExternalIDParams) WithDefaults() *GetAwsExternalIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetAwsExternalIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := GetAwsExternalIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get aws external Id params
@@ -128,17 +113,6 @@ func (o *GetAwsExternalIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the get aws external Id params
-func (o *GetAwsExternalIDParams) WithUserAgent(userAgent *string) *GetAwsExternalIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get aws external Id params
-func (o *GetAwsExternalIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *GetAwsExternalIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -146,14 +120,6 @@ func (o *GetAwsExternalIDParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

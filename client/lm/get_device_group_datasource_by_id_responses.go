@@ -9,10 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/logicmonitor/lm-sdk-go/models"
 )
@@ -31,12 +29,6 @@ func (o *GetDeviceGroupDatasourceByIDReader) ReadResponse(response runtime.Clien
 			return nil, err
 		}
 		return result, nil
-	case 429:
-		result := NewGetDeviceGroupDatasourceByIDTooManyRequests()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	default:
 		result := NewGetDeviceGroupDatasourceByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,7 +46,8 @@ func NewGetDeviceGroupDatasourceByIDOK() *GetDeviceGroupDatasourceByIDOK {
 	return &GetDeviceGroupDatasourceByIDOK{}
 }
 
-/* GetDeviceGroupDatasourceByIDOK describes a response with status code 200, with default header values.
+/*
+	GetDeviceGroupDatasourceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -81,72 +74,6 @@ func (o *GetDeviceGroupDatasourceByIDOK) readResponse(response runtime.ClientRes
 	return nil
 }
 
-// NewGetDeviceGroupDatasourceByIDTooManyRequests creates a GetDeviceGroupDatasourceByIDTooManyRequests with default headers values
-func NewGetDeviceGroupDatasourceByIDTooManyRequests() *GetDeviceGroupDatasourceByIDTooManyRequests {
-	return &GetDeviceGroupDatasourceByIDTooManyRequests{}
-}
-
-/* GetDeviceGroupDatasourceByIDTooManyRequests describes a response with status code 429, with default header values.
-
-Too Many Requests
-*/
-type GetDeviceGroupDatasourceByIDTooManyRequests struct {
-
-	/* Request limit per X-Rate-Limit-Window
-	 */
-	XRateLimitLimit int64
-
-	/* The number of requests left for the time window
-	 */
-	XRateLimitRemaining int64
-
-	/* The rolling time window length with the unit of second
-	 */
-	XRateLimitWindow int64
-}
-
-func (o *GetDeviceGroupDatasourceByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/groups/{deviceGroupId}/datasources/{id}][%d] getDeviceGroupDatasourceByIdTooManyRequests ", 429)
-}
-
-func (o *GetDeviceGroupDatasourceByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// hydrates response header x-rate-limit-limit
-	hdrXRateLimitLimit := response.GetHeader("x-rate-limit-limit")
-
-	if hdrXRateLimitLimit != "" {
-		valxRateLimitLimit, err := swag.ConvertInt64(hdrXRateLimitLimit)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-limit", "header", "int64", hdrXRateLimitLimit)
-		}
-		o.XRateLimitLimit = valxRateLimitLimit
-	}
-
-	// hydrates response header x-rate-limit-remaining
-	hdrXRateLimitRemaining := response.GetHeader("x-rate-limit-remaining")
-
-	if hdrXRateLimitRemaining != "" {
-		valxRateLimitRemaining, err := swag.ConvertInt64(hdrXRateLimitRemaining)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-remaining", "header", "int64", hdrXRateLimitRemaining)
-		}
-		o.XRateLimitRemaining = valxRateLimitRemaining
-	}
-
-	// hydrates response header x-rate-limit-window
-	hdrXRateLimitWindow := response.GetHeader("x-rate-limit-window")
-
-	if hdrXRateLimitWindow != "" {
-		valxRateLimitWindow, err := swag.ConvertInt64(hdrXRateLimitWindow)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-window", "header", "int64", hdrXRateLimitWindow)
-		}
-		o.XRateLimitWindow = valxRateLimitWindow
-	}
-
-	return nil
-}
-
 // NewGetDeviceGroupDatasourceByIDDefault creates a GetDeviceGroupDatasourceByIDDefault with default headers values
 func NewGetDeviceGroupDatasourceByIDDefault(code int) *GetDeviceGroupDatasourceByIDDefault {
 	return &GetDeviceGroupDatasourceByIDDefault{
@@ -154,7 +81,8 @@ func NewGetDeviceGroupDatasourceByIDDefault(code int) *GetDeviceGroupDatasourceB
 	}
 }
 
-/* GetDeviceGroupDatasourceByIDDefault describes a response with status code -1, with default header values.
+/*
+	GetDeviceGroupDatasourceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */

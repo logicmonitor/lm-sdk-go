@@ -20,9 +20,6 @@ type AlertFilters struct {
 	// Displayed alerts must have an acknowledgement status that satisfies this criteria
 	Acked string `json:"acked,omitempty"`
 
-	// anomaly
-	Anomaly string `json:"anomaly,omitempty"`
-
 	// Displayed alerts must be routed to an escalation chain that satisfies this filter. Glob is accepted, and * and an empty string both match all escalation chains
 	Chain string `json:"chain,omitempty"`
 
@@ -34,12 +31,6 @@ type AlertFilters struct {
 
 	// Displayed alerts must be associated with datasources that meet this filter criteria. Glob is accepted, and * and an empty string both indicate all datasources
 	DataSource string `json:"dataSource,omitempty"`
-
-	// dependency role
-	DependencyRole string `json:"dependencyRole,omitempty"`
-
-	// dependency routing state
-	DependencyRoutingState string `json:"dependencyRoutingState,omitempty"`
 
 	// Displayed alerts must be associated with groups that meet this filter criteria. Glob is accepted, and * and an empty string both indicate all groups
 	Group string `json:"group,omitempty"`

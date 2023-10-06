@@ -19,19 +19,19 @@ import (
 // swagger:model InheritanceProp
 type InheritanceProp struct {
 
-	// The fullpath of the property
+	// fullpath
 	// Read Only: true
 	Fullpath string `json:"fullpath,omitempty"`
 
-	// Source id for the property. For example: group id or property rule
+	// id
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
-	// The parent property type from which it is inheriting
+	// type
 	// Read Only: true
 	Type string `json:"type,omitempty"`
 
-	// The property value for the group
+	// value
 	// Read Only: true
 	Value string `json:"value,omitempty"`
 }

@@ -21,20 +21,12 @@ import (
 // swagger:model GroupNetFlowRecord
 type GroupNetFlowRecord struct {
 
-	// dest asn name
-	// Read Only: true
-	DestAsnName string `json:"destAsnName,omitempty"`
-
 	// destination m bytes
 	// Read Only: true
 	DestinationMBytes float64 `json:"destinationMBytes,omitempty"`
 
 	// device display name
 	DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
-
-	// dst a s n
-	// Read Only: true
-	DstASN int64 `json:"dstASN,omitempty"`
 
 	// dst DNS
 	// Read Only: true
@@ -82,14 +74,6 @@ type GroupNetFlowRecord struct {
 	// Read Only: true
 	SourceMBytes float64 `json:"sourceMBytes,omitempty"`
 
-	// src a s n
-	// Read Only: true
-	SrcASN int64 `json:"srcASN,omitempty"`
-
-	// src asn name
-	// Read Only: true
-	SrcAsnName string `json:"srcAsnName,omitempty"`
-
 	// src DNS
 	// Read Only: true
 	SrcDNS string `json:"srcDNS,omitempty"`
@@ -120,20 +104,12 @@ func (m *GroupNetFlowRecord) SetDataType(val string) {
 func (m *GroupNetFlowRecord) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// dest asn name
-		// Read Only: true
-		DestAsnName string `json:"destAsnName,omitempty"`
-
 		// destination m bytes
 		// Read Only: true
 		DestinationMBytes float64 `json:"destinationMBytes,omitempty"`
 
 		// device display name
 		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
-
-		// dst a s n
-		// Read Only: true
-		DstASN int64 `json:"dstASN,omitempty"`
 
 		// dst DNS
 		// Read Only: true
@@ -180,14 +156,6 @@ func (m *GroupNetFlowRecord) UnmarshalJSON(raw []byte) error {
 		// source m bytes
 		// Read Only: true
 		SourceMBytes float64 `json:"sourceMBytes,omitempty"`
-
-		// src a s n
-		// Read Only: true
-		SrcASN int64 `json:"srcASN,omitempty"`
-
-		// src asn name
-		// Read Only: true
-		SrcAsnName string `json:"srcAsnName,omitempty"`
 
 		// src DNS
 		// Read Only: true
@@ -233,10 +201,8 @@ func (m *GroupNetFlowRecord) UnmarshalJSON(raw []byte) error {
 		return errors.New(422, "invalid dataType value: %q", base.DataType)
 	}
 
-	result.DestAsnName = data.DestAsnName
 	result.DestinationMBytes = data.DestinationMBytes
 	result.DeviceDisplayName = data.DeviceDisplayName
-	result.DstASN = data.DstASN
 	result.DstDNS = data.DstDNS
 	result.DstIP = data.DstIP
 	result.DstPort = data.DstPort
@@ -249,8 +215,6 @@ func (m *GroupNetFlowRecord) UnmarshalJSON(raw []byte) error {
 	result.PercentUsage = data.PercentUsage
 	result.Protocol = data.Protocol
 	result.SourceMBytes = data.SourceMBytes
-	result.SrcASN = data.SrcASN
-	result.SrcAsnName = data.SrcAsnName
 	result.SrcDNS = data.SrcDNS
 	result.SrcIP = data.SrcIP
 	result.SrcPort = data.SrcPort
@@ -267,20 +231,12 @@ func (m GroupNetFlowRecord) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// dest asn name
-		// Read Only: true
-		DestAsnName string `json:"destAsnName,omitempty"`
-
 		// destination m bytes
 		// Read Only: true
 		DestinationMBytes float64 `json:"destinationMBytes,omitempty"`
 
 		// device display name
 		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
-
-		// dst a s n
-		// Read Only: true
-		DstASN int64 `json:"dstASN,omitempty"`
 
 		// dst DNS
 		// Read Only: true
@@ -328,14 +284,6 @@ func (m GroupNetFlowRecord) MarshalJSON() ([]byte, error) {
 		// Read Only: true
 		SourceMBytes float64 `json:"sourceMBytes,omitempty"`
 
-		// src a s n
-		// Read Only: true
-		SrcASN int64 `json:"srcASN,omitempty"`
-
-		// src asn name
-		// Read Only: true
-		SrcAsnName string `json:"srcAsnName,omitempty"`
-
 		// src DNS
 		// Read Only: true
 		SrcDNS string `json:"srcDNS,omitempty"`
@@ -353,13 +301,9 @@ func (m GroupNetFlowRecord) MarshalJSON() ([]byte, error) {
 		Usage float64 `json:"usage,omitempty"`
 	}{
 
-		DestAsnName: m.DestAsnName,
-
 		DestinationMBytes: m.DestinationMBytes,
 
 		DeviceDisplayName: m.DeviceDisplayName,
-
-		DstASN: m.DstASN,
 
 		DstDNS: m.DstDNS,
 
@@ -384,10 +328,6 @@ func (m GroupNetFlowRecord) MarshalJSON() ([]byte, error) {
 		Protocol: m.Protocol,
 
 		SourceMBytes: m.SourceMBytes,
-
-		SrcASN: m.SrcASN,
-
-		SrcAsnName: m.SrcAsnName,
 
 		SrcDNS: m.SrcDNS,
 
@@ -427,15 +367,7 @@ func (m *GroupNetFlowRecord) Validate(formats strfmt.Registry) error {
 func (m *GroupNetFlowRecord) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateDestAsnName(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateDestinationMBytes(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateDstASN(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -479,14 +411,6 @@ func (m *GroupNetFlowRecord) ContextValidate(ctx context.Context, formats strfmt
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateSrcASN(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateSrcAsnName(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateSrcDNS(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -518,27 +442,9 @@ func (m *GroupNetFlowRecord) contextValidateDataType(ctx context.Context, format
 	return nil
 }
 
-func (m *GroupNetFlowRecord) contextValidateDestAsnName(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "destAsnName", "body", string(m.DestAsnName)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *GroupNetFlowRecord) contextValidateDestinationMBytes(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "destinationMBytes", "body", float64(m.DestinationMBytes)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GroupNetFlowRecord) contextValidateDstASN(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "dstASN", "body", int64(m.DstASN)); err != nil {
 		return err
 	}
 
@@ -629,24 +535,6 @@ func (m *GroupNetFlowRecord) contextValidateProtocol(ctx context.Context, format
 func (m *GroupNetFlowRecord) contextValidateSourceMBytes(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "sourceMBytes", "body", float64(m.SourceMBytes)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GroupNetFlowRecord) contextValidateSrcASN(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "srcASN", "body", int64(m.SrcASN)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GroupNetFlowRecord) contextValidateSrcAsnName(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "srcAsnName", "body", string(m.SrcAsnName)); err != nil {
 		return err
 	}
 

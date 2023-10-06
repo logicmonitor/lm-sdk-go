@@ -53,17 +53,14 @@ func NewGetDeviceInstanceGraphDataOnlyByInstanceIDParamsWithHTTPClient(client *h
 	}
 }
 
-/* GetDeviceInstanceGraphDataOnlyByInstanceIDParams contains all the parameters to send to the API endpoint
-   for the get device instance graph data only by instance Id operation.
+/*
+GetDeviceInstanceGraphDataOnlyByInstanceIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device instance graph data only by instance Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceInstanceGraphDataOnlyByInstanceIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// End.
 	//
@@ -105,18 +102,7 @@ func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDParams) WithDefaults() *GetDe
 //
 // All values with no default are reset to their zero value.
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := GetDeviceInstanceGraphDataOnlyByInstanceIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get device instance graph data only by instance Id params
@@ -150,17 +136,6 @@ func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDParams) WithHTTPClient(client
 // SetHTTPClient adds the HTTPClient to the get device instance graph data only by instance Id params
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device instance graph data only by instance Id params
-func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDParams) WithUserAgent(userAgent *string) *GetDeviceInstanceGraphDataOnlyByInstanceIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device instance graph data only by instance Id params
-func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithEnd adds the end to the get device instance graph data only by instance Id params
@@ -225,14 +200,6 @@ func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDParams) WriteToRequest(r runt
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.End != nil {
 

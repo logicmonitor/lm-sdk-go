@@ -55,17 +55,14 @@ func NewPatchDashboardByIDParamsWithHTTPClient(client *http.Client) *PatchDashbo
 	}
 }
 
-/* PatchDashboardByIDParams contains all the parameters to send to the API endpoint
-   for the patch dashboard by Id operation.
+/*
+PatchDashboardByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch dashboard by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDashboardByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.Dashboard
@@ -96,13 +93,10 @@ func (o *PatchDashboardByIDParams) WithDefaults() *PatchDashboardByIDParams {
 // All values with no default are reset to their zero value.
 func (o *PatchDashboardByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		overwriteGroupFieldsDefault = bool(false)
 	)
 
 	val := PatchDashboardByIDParams{
-		UserAgent:            &userAgentDefault,
 		OverwriteGroupFields: &overwriteGroupFieldsDefault,
 	}
 
@@ -145,17 +139,6 @@ func (o *PatchDashboardByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the patch dashboard by Id params
-func (o *PatchDashboardByIDParams) WithUserAgent(userAgent *string) *PatchDashboardByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch dashboard by Id params
-func (o *PatchDashboardByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the patch dashboard by Id params
 func (o *PatchDashboardByIDParams) WithBody(body *models.Dashboard) *PatchDashboardByIDParams {
 	o.SetBody(body)
@@ -196,14 +179,6 @@ func (o *PatchDashboardByIDParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

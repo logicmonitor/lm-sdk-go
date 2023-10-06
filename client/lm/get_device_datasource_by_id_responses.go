@@ -9,10 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/logicmonitor/lm-sdk-go/models"
 )
@@ -31,12 +29,6 @@ func (o *GetDeviceDatasourceByIDReader) ReadResponse(response runtime.ClientResp
 			return nil, err
 		}
 		return result, nil
-	case 429:
-		result := NewGetDeviceDatasourceByIDTooManyRequests()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	default:
 		result := NewGetDeviceDatasourceByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,7 +46,8 @@ func NewGetDeviceDatasourceByIDOK() *GetDeviceDatasourceByIDOK {
 	return &GetDeviceDatasourceByIDOK{}
 }
 
-/* GetDeviceDatasourceByIDOK describes a response with status code 200, with default header values.
+/*
+	GetDeviceDatasourceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -81,72 +74,6 @@ func (o *GetDeviceDatasourceByIDOK) readResponse(response runtime.ClientResponse
 	return nil
 }
 
-// NewGetDeviceDatasourceByIDTooManyRequests creates a GetDeviceDatasourceByIDTooManyRequests with default headers values
-func NewGetDeviceDatasourceByIDTooManyRequests() *GetDeviceDatasourceByIDTooManyRequests {
-	return &GetDeviceDatasourceByIDTooManyRequests{}
-}
-
-/* GetDeviceDatasourceByIDTooManyRequests describes a response with status code 429, with default header values.
-
-Too Many Requests
-*/
-type GetDeviceDatasourceByIDTooManyRequests struct {
-
-	/* Request limit per X-Rate-Limit-Window
-	 */
-	XRateLimitLimit int64
-
-	/* The number of requests left for the time window
-	 */
-	XRateLimitRemaining int64
-
-	/* The rolling time window length with the unit of second
-	 */
-	XRateLimitWindow int64
-}
-
-func (o *GetDeviceDatasourceByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}][%d] getDeviceDatasourceByIdTooManyRequests ", 429)
-}
-
-func (o *GetDeviceDatasourceByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// hydrates response header x-rate-limit-limit
-	hdrXRateLimitLimit := response.GetHeader("x-rate-limit-limit")
-
-	if hdrXRateLimitLimit != "" {
-		valxRateLimitLimit, err := swag.ConvertInt64(hdrXRateLimitLimit)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-limit", "header", "int64", hdrXRateLimitLimit)
-		}
-		o.XRateLimitLimit = valxRateLimitLimit
-	}
-
-	// hydrates response header x-rate-limit-remaining
-	hdrXRateLimitRemaining := response.GetHeader("x-rate-limit-remaining")
-
-	if hdrXRateLimitRemaining != "" {
-		valxRateLimitRemaining, err := swag.ConvertInt64(hdrXRateLimitRemaining)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-remaining", "header", "int64", hdrXRateLimitRemaining)
-		}
-		o.XRateLimitRemaining = valxRateLimitRemaining
-	}
-
-	// hydrates response header x-rate-limit-window
-	hdrXRateLimitWindow := response.GetHeader("x-rate-limit-window")
-
-	if hdrXRateLimitWindow != "" {
-		valxRateLimitWindow, err := swag.ConvertInt64(hdrXRateLimitWindow)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-window", "header", "int64", hdrXRateLimitWindow)
-		}
-		o.XRateLimitWindow = valxRateLimitWindow
-	}
-
-	return nil
-}
-
 // NewGetDeviceDatasourceByIDDefault creates a GetDeviceDatasourceByIDDefault with default headers values
 func NewGetDeviceDatasourceByIDDefault(code int) *GetDeviceDatasourceByIDDefault {
 	return &GetDeviceDatasourceByIDDefault{
@@ -154,7 +81,8 @@ func NewGetDeviceDatasourceByIDDefault(code int) *GetDeviceDatasourceByIDDefault
 	}
 }
 
-/* GetDeviceDatasourceByIDDefault describes a response with status code -1, with default header values.
+/*
+	GetDeviceDatasourceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */

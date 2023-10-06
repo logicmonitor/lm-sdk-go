@@ -9,10 +9,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 
 	"github.com/logicmonitor/lm-sdk-go/models"
 )
@@ -31,12 +29,6 @@ func (o *GetDashboardByIDReader) ReadResponse(response runtime.ClientResponse, c
 			return nil, err
 		}
 		return result, nil
-	case 429:
-		result := NewGetDashboardByIDTooManyRequests()
-		if err := result.readResponse(response, consumer, o.formats); err != nil {
-			return nil, err
-		}
-		return nil, result
 	default:
 		result := NewGetDashboardByIDDefault(response.Code())
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -54,7 +46,8 @@ func NewGetDashboardByIDOK() *GetDashboardByIDOK {
 	return &GetDashboardByIDOK{}
 }
 
-/* GetDashboardByIDOK describes a response with status code 200, with default header values.
+/*
+	GetDashboardByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -81,72 +74,6 @@ func (o *GetDashboardByIDOK) readResponse(response runtime.ClientResponse, consu
 	return nil
 }
 
-// NewGetDashboardByIDTooManyRequests creates a GetDashboardByIDTooManyRequests with default headers values
-func NewGetDashboardByIDTooManyRequests() *GetDashboardByIDTooManyRequests {
-	return &GetDashboardByIDTooManyRequests{}
-}
-
-/* GetDashboardByIDTooManyRequests describes a response with status code 429, with default header values.
-
-Too Many Requests
-*/
-type GetDashboardByIDTooManyRequests struct {
-
-	/* Request limit per X-Rate-Limit-Window
-	 */
-	XRateLimitLimit int64
-
-	/* The number of requests left for the time window
-	 */
-	XRateLimitRemaining int64
-
-	/* The rolling time window length with the unit of second
-	 */
-	XRateLimitWindow int64
-}
-
-func (o *GetDashboardByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /dashboard/dashboards/{id}][%d] getDashboardByIdTooManyRequests ", 429)
-}
-
-func (o *GetDashboardByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
-
-	// hydrates response header x-rate-limit-limit
-	hdrXRateLimitLimit := response.GetHeader("x-rate-limit-limit")
-
-	if hdrXRateLimitLimit != "" {
-		valxRateLimitLimit, err := swag.ConvertInt64(hdrXRateLimitLimit)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-limit", "header", "int64", hdrXRateLimitLimit)
-		}
-		o.XRateLimitLimit = valxRateLimitLimit
-	}
-
-	// hydrates response header x-rate-limit-remaining
-	hdrXRateLimitRemaining := response.GetHeader("x-rate-limit-remaining")
-
-	if hdrXRateLimitRemaining != "" {
-		valxRateLimitRemaining, err := swag.ConvertInt64(hdrXRateLimitRemaining)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-remaining", "header", "int64", hdrXRateLimitRemaining)
-		}
-		o.XRateLimitRemaining = valxRateLimitRemaining
-	}
-
-	// hydrates response header x-rate-limit-window
-	hdrXRateLimitWindow := response.GetHeader("x-rate-limit-window")
-
-	if hdrXRateLimitWindow != "" {
-		valxRateLimitWindow, err := swag.ConvertInt64(hdrXRateLimitWindow)
-		if err != nil {
-			return errors.InvalidType("x-rate-limit-window", "header", "int64", hdrXRateLimitWindow)
-		}
-		o.XRateLimitWindow = valxRateLimitWindow
-	}
-
-	return nil
-}
-
 // NewGetDashboardByIDDefault creates a GetDashboardByIDDefault with default headers values
 func NewGetDashboardByIDDefault(code int) *GetDashboardByIDDefault {
 	return &GetDashboardByIDDefault{
@@ -154,7 +81,8 @@ func NewGetDashboardByIDDefault(code int) *GetDashboardByIDDefault {
 	}
 }
 
-/* GetDashboardByIDDefault describes a response with status code -1, with default header values.
+/*
+	GetDashboardByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */

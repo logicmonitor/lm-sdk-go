@@ -8,10 +8,8 @@ package models
 import (
 	"context"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // DeviceDataSourceInstanceConfigAlert device data source instance config alert
@@ -19,24 +17,19 @@ import (
 // swagger:model DeviceDataSourceInstanceConfigAlert
 type DeviceDataSourceInstanceConfigAlert struct {
 
-	// Alert internal id
-	// Read Only: true
+	// alert Id
 	AlertID string `json:"alertId,omitempty"`
 
-	// Alert level, 0 - alert is cleared, 2 - warn alert, 3 - error alert, 4 - critical alert
-	// Read Only: true
+	// alert level
 	AlertLevel int32 `json:"alertLevel,omitempty"`
 
-	// Summary of this config source alert
-	// Read Only: true
+	// alert summary
 	AlertSummary string `json:"alertSummary,omitempty"`
 
-	// Alert id
-	// Read Only: true
+	// id
 	ID string `json:"id,omitempty"`
 
-	// Timestamp of alert start or clear
-	// Read Only: true
+	// timestamp
 	Timestamp int64 `json:"timestamp,omitempty"`
 }
 
@@ -45,78 +38,8 @@ func (m *DeviceDataSourceInstanceConfigAlert) Validate(formats strfmt.Registry) 
 	return nil
 }
 
-// ContextValidate validate this device data source instance config alert based on the context it is used
+// ContextValidate validates this device data source instance config alert based on context it is used
 func (m *DeviceDataSourceInstanceConfigAlert) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateAlertID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateAlertLevel(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateAlertSummary(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateTimestamp(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceConfigAlert) contextValidateAlertID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "alertId", "body", string(m.AlertID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceConfigAlert) contextValidateAlertLevel(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "alertLevel", "body", int32(m.AlertLevel)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceConfigAlert) contextValidateAlertSummary(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "alertSummary", "body", string(m.AlertSummary)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceConfigAlert) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "id", "body", string(m.ID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceConfigAlert) contextValidateTimestamp(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "timestamp", "body", int64(m.Timestamp)); err != nil {
-		return err
-	}
-
 	return nil
 }
 

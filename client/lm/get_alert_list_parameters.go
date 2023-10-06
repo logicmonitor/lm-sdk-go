@@ -53,20 +53,14 @@ func NewGetAlertListParamsWithHTTPClient(client *http.Client) *GetAlertListParam
 	}
 }
 
-/* GetAlertListParams contains all the parameters to send to the API endpoint
-   for the get alert list operation.
+/*
+GetAlertListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get alert list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAlertListParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
-
-	// CustomColumns.
-	CustomColumns *string
 
 	// Fields.
 	Fields *string
@@ -103,17 +97,14 @@ func (o *GetAlertListParams) WithDefaults() *GetAlertListParams {
 // All values with no default are reset to their zero value.
 func (o *GetAlertListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAlertListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -153,28 +144,6 @@ func (o *GetAlertListParams) WithHTTPClient(client *http.Client) *GetAlertListPa
 // SetHTTPClient adds the HTTPClient to the get alert list params
 func (o *GetAlertListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get alert list params
-func (o *GetAlertListParams) WithUserAgent(userAgent *string) *GetAlertListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get alert list params
-func (o *GetAlertListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
-// WithCustomColumns adds the customColumns to the get alert list params
-func (o *GetAlertListParams) WithCustomColumns(customColumns *string) *GetAlertListParams {
-	o.SetCustomColumns(customColumns)
-	return o
-}
-
-// SetCustomColumns adds the customColumns to the get alert list params
-func (o *GetAlertListParams) SetCustomColumns(customColumns *string) {
-	o.CustomColumns = customColumns
 }
 
 // WithFields adds the fields to the get alert list params
@@ -228,31 +197,6 @@ func (o *GetAlertListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
-
-	if o.CustomColumns != nil {
-
-		// query param customColumns
-		var qrCustomColumns string
-
-		if o.CustomColumns != nil {
-			qrCustomColumns = *o.CustomColumns
-		}
-		qCustomColumns := qrCustomColumns
-		if qCustomColumns != "" {
-
-			if err := r.SetQueryParam("customColumns", qCustomColumns); err != nil {
-				return err
-			}
-		}
-	}
 
 	if o.Fields != nil {
 

@@ -55,17 +55,14 @@ func NewPatchDashboardGroupByIDParamsWithHTTPClient(client *http.Client) *PatchD
 	}
 }
 
-/* PatchDashboardGroupByIDParams contains all the parameters to send to the API endpoint
-   for the patch dashboard group by Id operation.
+/*
+PatchDashboardGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch dashboard group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDashboardGroupByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.DashboardGroup
@@ -92,18 +89,7 @@ func (o *PatchDashboardGroupByIDParams) WithDefaults() *PatchDashboardGroupByIDP
 //
 // All values with no default are reset to their zero value.
 func (o *PatchDashboardGroupByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := PatchDashboardGroupByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch dashboard group by Id params
@@ -139,17 +125,6 @@ func (o *PatchDashboardGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the patch dashboard group by Id params
-func (o *PatchDashboardGroupByIDParams) WithUserAgent(userAgent *string) *PatchDashboardGroupByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch dashboard group by Id params
-func (o *PatchDashboardGroupByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the patch dashboard group by Id params
 func (o *PatchDashboardGroupByIDParams) WithBody(body *models.DashboardGroup) *PatchDashboardGroupByIDParams {
 	o.SetBody(body)
@@ -179,14 +154,6 @@ func (o *PatchDashboardGroupByIDParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

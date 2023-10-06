@@ -20,7 +20,7 @@ import (
 //
 // swagger:model ScriptNetscan
 type ScriptNetscan struct {
-	collectorField int32
+	collectorField *int32
 
 	collectorDescriptionField string
 
@@ -38,7 +38,7 @@ type ScriptNetscan struct {
 
 	idField int32
 
-	ignoreSystemIPsDuplicatesField *bool
+	ignoreSystemIPsDuplicatesField bool
 
 	nameField *string
 
@@ -58,7 +58,6 @@ type ScriptNetscan struct {
 
 	// The full path of the default group to add discovered devices to
 	// Example: lm/prod/servers
-	// Read Only: true
 	DefaultGroupFullPath string `json:"defaultGroupFullPath,omitempty"`
 
 	// For embedded script scans, the groovy script contents
@@ -96,12 +95,12 @@ type ScriptNetscan struct {
 }
 
 // Collector gets the collector of this subtype
-func (m *ScriptNetscan) Collector() int32 {
+func (m *ScriptNetscan) Collector() *int32 {
 	return m.collectorField
 }
 
 // SetCollector sets the collector of this subtype
-func (m *ScriptNetscan) SetCollector(val int32) {
+func (m *ScriptNetscan) SetCollector(val *int32) {
 	m.collectorField = val
 }
 
@@ -186,12 +185,12 @@ func (m *ScriptNetscan) SetID(val int32) {
 }
 
 // IgnoreSystemIPsDuplicates gets the ignore system i ps duplicates of this subtype
-func (m *ScriptNetscan) IgnoreSystemIPsDuplicates() *bool {
+func (m *ScriptNetscan) IgnoreSystemIPsDuplicates() bool {
 	return m.ignoreSystemIPsDuplicatesField
 }
 
 // SetIgnoreSystemIPsDuplicates sets the ignore system i ps duplicates of this subtype
-func (m *ScriptNetscan) SetIgnoreSystemIPsDuplicates(val *bool) {
+func (m *ScriptNetscan) SetIgnoreSystemIPsDuplicates(val bool) {
 	m.ignoreSystemIPsDuplicatesField = val
 }
 
@@ -274,7 +273,6 @@ func (m *ScriptNetscan) UnmarshalJSON(raw []byte) error {
 
 		// The full path of the default group to add discovered devices to
 		// Example: lm/prod/servers
-		// Read Only: true
 		DefaultGroupFullPath string `json:"defaultGroupFullPath,omitempty"`
 
 		// For embedded script scans, the groovy script contents
@@ -321,7 +319,7 @@ func (m *ScriptNetscan) UnmarshalJSON(raw []byte) error {
 	var base struct {
 		/* Just the base type fields. Used for unmashalling polymorphic types.*/
 
-		Collector int32 `json:"collector,omitempty"`
+		Collector *int32 `json:"collector"`
 
 		CollectorDescription string `json:"collectorDescription,omitempty"`
 
@@ -339,7 +337,7 @@ func (m *ScriptNetscan) UnmarshalJSON(raw []byte) error {
 
 		ID int32 `json:"id,omitempty"`
 
-		IgnoreSystemIPsDuplicates *bool `json:"ignoreSystemIPsDuplicates,omitempty"`
+		IgnoreSystemIPsDuplicates bool `json:"ignoreSystemIPsDuplicates,omitempty"`
 
 		Method string `json:"method"`
 
@@ -351,7 +349,7 @@ func (m *ScriptNetscan) UnmarshalJSON(raw []byte) error {
 
 		NsgID int32 `json:"nsgId,omitempty"`
 
-		Schedule *RestSchedule `json:"schedule"`
+		Schedule *RestSchedule `json:"schedule,omitempty"`
 
 		Version int32 `json:"version,omitempty"`
 	}
@@ -430,7 +428,6 @@ func (m ScriptNetscan) MarshalJSON() ([]byte, error) {
 
 		// The full path of the default group to add discovered devices to
 		// Example: lm/prod/servers
-		// Read Only: true
 		DefaultGroupFullPath string `json:"defaultGroupFullPath,omitempty"`
 
 		// For embedded script scans, the groovy script contents
@@ -493,7 +490,7 @@ func (m ScriptNetscan) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	b2, err = json.Marshal(struct {
-		Collector int32 `json:"collector,omitempty"`
+		Collector *int32 `json:"collector"`
 
 		CollectorDescription string `json:"collectorDescription,omitempty"`
 
@@ -511,7 +508,7 @@ func (m ScriptNetscan) MarshalJSON() ([]byte, error) {
 
 		ID int32 `json:"id,omitempty"`
 
-		IgnoreSystemIPsDuplicates *bool `json:"ignoreSystemIPsDuplicates,omitempty"`
+		IgnoreSystemIPsDuplicates bool `json:"ignoreSystemIPsDuplicates,omitempty"`
 
 		Method string `json:"method"`
 
@@ -523,7 +520,7 @@ func (m ScriptNetscan) MarshalJSON() ([]byte, error) {
 
 		NsgID int32 `json:"nsgId,omitempty"`
 
-		Schedule *RestSchedule `json:"schedule"`
+		Schedule *RestSchedule `json:"schedule,omitempty"`
 
 		Version int32 `json:"version,omitempty"`
 	}{
@@ -573,6 +570,10 @@ func (m ScriptNetscan) MarshalJSON() ([]byte, error) {
 func (m *ScriptNetscan) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateCollector(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDuplicate(formats); err != nil {
 		res = append(res, err)
 	}
@@ -592,6 +593,15 @@ func (m *ScriptNetscan) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ScriptNetscan) validateCollector(formats strfmt.Registry) error {
+
+	if err := validate.Required("collector", "body", m.Collector()); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -624,8 +634,8 @@ func (m *ScriptNetscan) validateName(formats strfmt.Registry) error {
 
 func (m *ScriptNetscan) validateSchedule(formats strfmt.Registry) error {
 
-	if err := validate.Required("schedule", "body", m.Schedule()); err != nil {
-		return err
+	if swag.IsZero(m.Schedule()) { // not required
+		return nil
 	}
 
 	if m.Schedule() != nil {
@@ -653,39 +663,7 @@ func (m *ScriptNetscan) validateScriptType(formats strfmt.Registry) error {
 func (m *ScriptNetscan) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateCollectorDescription(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateCollectorGroup(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateCollectorGroupName(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateCreator(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateDuplicate(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateIgnoreSystemIPsDuplicates(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateNextStart(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateNextStartEpoch(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -693,49 +671,9 @@ func (m *ScriptNetscan) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateDefaultGroupFullPath(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *ScriptNetscan) contextValidateCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "collectorDescription", "body", string(m.CollectorDescription())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ScriptNetscan) contextValidateCollectorGroup(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "collectorGroup", "body", int32(m.CollectorGroup())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ScriptNetscan) contextValidateCollectorGroupName(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "collectorGroupName", "body", string(m.CollectorGroupName())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ScriptNetscan) contextValidateCreator(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "creator", "body", string(m.Creator())); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -753,42 +691,6 @@ func (m *ScriptNetscan) contextValidateDuplicate(ctx context.Context, formats st
 	return nil
 }
 
-func (m *ScriptNetscan) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ScriptNetscan) contextValidateIgnoreSystemIPsDuplicates(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "ignoreSystemIPsDuplicates", "body", m.IgnoreSystemIPsDuplicates()); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ScriptNetscan) contextValidateNextStart(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "nextStart", "body", string(m.NextStart())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ScriptNetscan) contextValidateNextStartEpoch(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "nextStartEpoch", "body", int64(m.NextStartEpoch())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *ScriptNetscan) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Schedule() != nil {
@@ -798,15 +700,6 @@ func (m *ScriptNetscan) contextValidateSchedule(ctx context.Context, formats str
 			}
 			return err
 		}
-	}
-
-	return nil
-}
-
-func (m *ScriptNetscan) contextValidateDefaultGroupFullPath(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "defaultGroupFullPath", "body", string(m.DefaultGroupFullPath)); err != nil {
-		return err
 	}
 
 	return nil

@@ -55,17 +55,14 @@ func NewPatchDeviceDatasourceInstanceAlertSettingByIDParamsWithHTTPClient(client
 	}
 }
 
-/* PatchDeviceDatasourceInstanceAlertSettingByIDParams contains all the parameters to send to the API endpoint
-   for the patch device datasource instance alert setting by Id operation.
+/*
+PatchDeviceDatasourceInstanceAlertSettingByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch device datasource instance alert setting by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDeviceDatasourceInstanceAlertSettingByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.DeviceDataSourceInstanceAlertSetting
@@ -110,18 +107,7 @@ func (o *PatchDeviceDatasourceInstanceAlertSettingByIDParams) WithDefaults() *Pa
 //
 // All values with no default are reset to their zero value.
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := PatchDeviceDatasourceInstanceAlertSettingByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch device datasource instance alert setting by Id params
@@ -155,17 +141,6 @@ func (o *PatchDeviceDatasourceInstanceAlertSettingByIDParams) WithHTTPClient(cli
 // SetHTTPClient adds the HTTPClient to the patch device datasource instance alert setting by Id params
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the patch device datasource instance alert setting by Id params
-func (o *PatchDeviceDatasourceInstanceAlertSettingByIDParams) WithUserAgent(userAgent *string) *PatchDeviceDatasourceInstanceAlertSettingByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch device datasource instance alert setting by Id params
-func (o *PatchDeviceDatasourceInstanceAlertSettingByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the patch device datasource instance alert setting by Id params
@@ -230,14 +205,6 @@ func (o *PatchDeviceDatasourceInstanceAlertSettingByIDParams) WriteToRequest(r r
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

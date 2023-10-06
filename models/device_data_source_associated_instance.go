@@ -8,10 +8,8 @@ package models
 import (
 	"context"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // DeviceDataSourceAssociatedInstance device data source associated instance
@@ -19,16 +17,13 @@ import (
 // swagger:model DeviceDataSourceAssociatedInstance
 type DeviceDataSourceAssociatedInstance struct {
 
-	// Instance alias
-	// Read Only: true
+	// alias
 	Alias string `json:"alias,omitempty"`
 
-	// Instance id
-	// Read Only: true
+	// id
 	ID int32 `json:"id,omitempty"`
 
-	// Instance name
-	// Read Only: true
+	// name
 	Name string `json:"name,omitempty"`
 }
 
@@ -37,52 +32,8 @@ func (m *DeviceDataSourceAssociatedInstance) Validate(formats strfmt.Registry) e
 	return nil
 }
 
-// ContextValidate validate this device data source associated instance based on the context it is used
+// ContextValidate validates this device data source associated instance based on context it is used
 func (m *DeviceDataSourceAssociatedInstance) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateAlias(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateName(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DeviceDataSourceAssociatedInstance) contextValidateAlias(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "alias", "body", string(m.Alias)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceAssociatedInstance) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceAssociatedInstance) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "name", "body", string(m.Name)); err != nil {
-		return err
-	}
-
 	return nil
 }
 

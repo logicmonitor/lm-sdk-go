@@ -53,17 +53,14 @@ func NewGetAlertByIDParamsWithHTTPClient(client *http.Client) *GetAlertByIDParam
 	}
 }
 
-/* GetAlertByIDParams contains all the parameters to send to the API endpoint
-   for the get alert by Id operation.
+/*
+GetAlertByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get alert by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAlertByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// CustomColumns.
 	CustomColumns *string
@@ -95,13 +92,10 @@ func (o *GetAlertByIDParams) WithDefaults() *GetAlertByIDParams {
 // All values with no default are reset to their zero value.
 func (o *GetAlertByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		needMessageDefault = bool(false)
 	)
 
 	val := GetAlertByIDParams{
-		UserAgent:   &userAgentDefault,
 		NeedMessage: &needMessageDefault,
 	}
 
@@ -142,17 +136,6 @@ func (o *GetAlertByIDParams) WithHTTPClient(client *http.Client) *GetAlertByIDPa
 // SetHTTPClient adds the HTTPClient to the get alert by Id params
 func (o *GetAlertByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get alert by Id params
-func (o *GetAlertByIDParams) WithUserAgent(userAgent *string) *GetAlertByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get alert by Id params
-func (o *GetAlertByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithCustomColumns adds the customColumns to the get alert by Id params
@@ -206,14 +189,6 @@ func (o *GetAlertByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.CustomColumns != nil {
 

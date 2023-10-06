@@ -50,10 +50,6 @@ type Dashboard struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// Overwrite existing Resource/Website Group fields with ##defaultResourceGroup## and/or ##defaultWebsiteGroup## tokens. This value of this attribute is only considered while updating the Dashboard configuration. While creating the new Dashboard, this value will always be considered as false irrespective of the passed value.
-	// Read Only: true
-	OverwriteGroupFields *bool `json:"overwriteGroupFields,omitempty"`
-
 	// This field will be empty unless the dashboard is a private dashboard, in which case the owner will be listed
 	Owner string `json:"owner,omitempty"`
 
@@ -61,7 +57,7 @@ type Dashboard struct {
 	// Example: true
 	Sharable bool `json:"sharable,omitempty"`
 
-	// The template which is used for importing dashboard
+	// The template which is used for import dashboard
 	Template interface{} `json:"template,omitempty"`
 
 	// The permission of the user that made the API call
@@ -143,10 +139,6 @@ func (m *Dashboard) ContextValidate(ctx context.Context, formats strfmt.Registry
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateOverwriteGroupFields(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -182,15 +174,6 @@ func (m *Dashboard) contextValidateGroupFullPath(ctx context.Context, formats st
 func (m *Dashboard) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Dashboard) contextValidateOverwriteGroupFields(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "overwriteGroupFields", "body", m.OverwriteGroupFields); err != nil {
 		return err
 	}
 

@@ -19,98 +19,74 @@ import (
 // swagger:model DataPoint
 type DataPoint struct {
 
-	// The AD advance setting enable flag
-	AdAdvSettingEnabled bool `json:"adAdvSettingEnabled,omitempty"`
-
-	// The customized alert message body define.  Empty string mean we will use the define in default template
+	// alert body
 	AlertBody string `json:"alertBody,omitempty"`
 
-	// The count that the alert must exist for this many poll cycles before the alert will be cleared
+	// alert clear transition interval
 	AlertClearTransitionInterval int32 `json:"alertClearTransitionInterval,omitempty"`
 
-	// The alert threshold define for the datapoint. e.g. '> 60 80 90' mean it will:
-	// trigger warn alert if value > 60
-	// trigger error alert if value > 80
-	// trigger critical alert if value > 90
+	// alert expr
 	AlertExpr string `json:"alertExpr,omitempty"`
 
-	// alert expression note
+	// alert expr note
 	AlertExprNote string `json:"alertExprNote,omitempty"`
 
-	// The triggered alert level if we cannot collect data for this datapoint. The values can be 0-4 (0:unused alert, 1:alert ok, 2:warn alert, 2:error alert, 4:critical alert)
+	// alert for no data
 	AlertForNoData int32 `json:"alertForNoData,omitempty"`
 
-	// The customized alert message subject define. Empty string mean we will use the define in default template
+	// alert subject
 	AlertSubject string `json:"alertSubject,omitempty"`
 
-	// The count that the alert must exist for this many poll cycles before it will be triggered
+	// alert transition interval
 	AlertTransitionInterval int32 `json:"alertTransitionInterval,omitempty"`
 
-	// Enable anomaly detection advance setting for CRITICAL severity
-	CriticalAdAdvSetting string `json:"criticalAdAdvSetting,omitempty"`
-
-	// The datasource id
+	// data source Id
 	// Read Only: true
 	DataSourceID int32 `json:"dataSourceId,omitempty"`
 
-	// The data value type. The values can be 1-8 (1:boolean, 2:byte, 3:short, 4:int, 5:long, 6:float, 7:double, 8:ulong)
+	// data type
 	DataType int32 `json:"dataType,omitempty"`
 
-	// The datapoint description
+	// description
 	Description string `json:"description,omitempty"`
 
-	// Expression of anomaly detection setting, split by comma
-	// 0 means off,  1 means on, -1 means invalid
-	// 1,0,1 =   warn : ON     error: OFF   critical: ON
-	// Empty value on this parameter means : 0,0,0
-	EnableAnomalyAlertSuppression string `json:"enableAnomalyAlertSuppression,omitempty"`
-
-	// Enable anomaly detection advance setting for ERROR severity
-	ErrorAdAdvSetting string `json:"errorAdAdvSetting,omitempty"`
-
-	// The datapoint id
+	// id
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
-	// The max digits of the data value
+	// max digits
 	MaxDigits int32 `json:"maxDigits,omitempty"`
 
-	// The max value of the datapoint value range
+	// max value
 	MaxValue string `json:"maxValue,omitempty"`
 
-	// The minimum value of the datapoint value range
+	// min value
 	MinValue string `json:"minValue,omitempty"`
 
-	// The datapoint name
+	// name
 	// Required: true
 	Name *string `json:"name"`
 
-	// Portable id for origin tracking
-	OriginID string `json:"originId,omitempty"`
-
-	// The post processor method for the data value. Currently support complex expression and groovy.
+	// post processor method
 	PostProcessorMethod string `json:"postProcessorMethod,omitempty"`
 
-	// The post processor parameter, e.g. dataPoint1*2
+	// post processor param
 	PostProcessorParam string `json:"postProcessorParam,omitempty"`
 
-	// The name of the raw data field name used to fetch value, e.g. avgrtt, output
+	// raw data field name
 	RawDataFieldName string `json:"rawDataFieldName,omitempty"`
 
-	// The data metric type. The values can be 0-7 (0:unknown, 1:counter, 2:gauge, 3:derive, 5:status, 6:compute, 7:counter32, 8:counter64)
+	// type
 	Type int32 `json:"type,omitempty"`
 
-	// The first user parameter will be used to fetch the datapoint value. e.g. snmp oid
+	// user param1
 	UserParam1 string `json:"userParam1,omitempty"`
 
-	// The second user parameter will be used to fetch the datapoint value. e.g. jmx attribute name
+	// user param2
 	UserParam2 string `json:"userParam2,omitempty"`
 
-	// The third user parameter will be used to fetch the datapoint value.
+	// user param3
 	UserParam3 string `json:"userParam3,omitempty"`
-
-	// Enable anomaly detection advance setting for WARN severity
-	WarnAdAdvSetting string `json:"warnAdAdvSetting,omitempty"`
 }
 
 // Validate validates this data point

@@ -55,17 +55,14 @@ func NewUpdateRoleByIDParamsWithHTTPClient(client *http.Client) *UpdateRoleByIDP
 	}
 }
 
-/* UpdateRoleByIDParams contains all the parameters to send to the API endpoint
-   for the update role by Id operation.
+/*
+UpdateRoleByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update role by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateRoleByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.Role
@@ -92,18 +89,7 @@ func (o *UpdateRoleByIDParams) WithDefaults() *UpdateRoleByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateRoleByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := UpdateRoleByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update role by Id params
@@ -139,17 +125,6 @@ func (o *UpdateRoleByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the update role by Id params
-func (o *UpdateRoleByIDParams) WithUserAgent(userAgent *string) *UpdateRoleByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update role by Id params
-func (o *UpdateRoleByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the update role by Id params
 func (o *UpdateRoleByIDParams) WithBody(body *models.Role) *UpdateRoleByIDParams {
 	o.SetBody(body)
@@ -179,14 +154,6 @@ func (o *UpdateRoleByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

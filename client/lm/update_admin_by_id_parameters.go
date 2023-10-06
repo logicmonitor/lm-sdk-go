@@ -55,17 +55,14 @@ func NewUpdateAdminByIDParamsWithHTTPClient(client *http.Client) *UpdateAdminByI
 	}
 }
 
-/* UpdateAdminByIDParams contains all the parameters to send to the API endpoint
-   for the update admin by Id operation.
+/*
+UpdateAdminByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update admin by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateAdminByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.Admin
@@ -96,13 +93,10 @@ func (o *UpdateAdminByIDParams) WithDefaults() *UpdateAdminByIDParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateAdminByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		changePasswordDefault = bool(false)
 	)
 
 	val := UpdateAdminByIDParams{
-		UserAgent:      &userAgentDefault,
 		ChangePassword: &changePasswordDefault,
 	}
 
@@ -145,17 +139,6 @@ func (o *UpdateAdminByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the update admin by Id params
-func (o *UpdateAdminByIDParams) WithUserAgent(userAgent *string) *UpdateAdminByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update admin by Id params
-func (o *UpdateAdminByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the update admin by Id params
 func (o *UpdateAdminByIDParams) WithBody(body *models.Admin) *UpdateAdminByIDParams {
 	o.SetBody(body)
@@ -196,14 +179,6 @@ func (o *UpdateAdminByIDParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

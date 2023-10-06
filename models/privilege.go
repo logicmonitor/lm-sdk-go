@@ -19,26 +19,26 @@ import (
 // swagger:model Privilege
 type Privilege struct {
 
-	// The privilege object identifier
+	// object Id
 	// Example: 123
 	// Required: true
 	ObjectID *string `json:"objectId"`
 
-	// The privilege object name
+	// object name
 	// Read Only: true
 	ObjectName string `json:"objectName,omitempty"`
 
-	// The privilege object type. The values can be dashboard_group|dashboard|host_group|service_group|website_group|report_group|remoteSession|chat|setting|device_dashboard|help|logs|configNeedDeviceManagePermission|map|resourceMapTab|tracesManageTab
+	// object type
 	// Example: dashboard group
 	// Required: true
 	ObjectType *string `json:"objectType"`
 
-	// The privilege operation
+	// operation
 	// Example: write
 	// Required: true
 	Operation *string `json:"operation"`
 
-	// The highest privilege operation on its children operations
+	// sub operation
 	// Read Only: true
 	SubOperation string `json:"subOperation,omitempty"`
 }

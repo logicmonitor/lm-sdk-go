@@ -20,19 +20,18 @@ import (
 // swagger:model WidgetToken
 type WidgetToken struct {
 
-	// The widget token inherit list
+	// inherit list
 	InheritList []*WidgetTokenInheritance `json:"inheritList,omitempty"`
 
 	// This is the name of the parent group of devices, if there is one established
 	// Example: Default Device Group
 	Name string `json:"name,omitempty"`
 
-	// The values can be owned | inherit
-	// Specifies the type of the widget
+	// type
 	// Read Only: true
 	Type string `json:"type,omitempty"`
 
-	// This is the name of the child group of devices, if there is one
+	// this is the name of the child group of devices, if there is one
 	// Example: Devices by Type/Network
 	Value string `json:"value,omitempty"`
 }

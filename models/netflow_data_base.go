@@ -93,20 +93,8 @@ func unmarshalNetflowDataBase(data []byte, consumer runtime.Consumer) (NetflowDa
 
 	// The value of dataType is used to determine which type to create and unmarshal the data into
 	switch getType.DataType {
-	case "NetflowBgpTable":
-		var result NetflowBgpTable
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
 	case "NetflowDataBase":
 		var result netflowDataBase
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "NetflowNbarApplication":
-		var result NetflowNbarApplication
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -123,20 +111,8 @@ func unmarshalNetflowDataBase(data []byte, consumer runtime.Consumer) (NetflowDa
 			return nil, err
 		}
 		return &result, nil
-	case "endpoint":
-		var result NetflowEndpoint
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
 	case "groupFlowRecord":
 		var result GroupNetFlowRecord
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "port":
-		var result NetflowPort
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

@@ -55,17 +55,14 @@ func NewPatchDeviceParamsWithHTTPClient(client *http.Client) *PatchDeviceParams 
 	}
 }
 
-/* PatchDeviceParams contains all the parameters to send to the API endpoint
-   for the patch device operation.
+/*
+PatchDeviceParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch device operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDeviceParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.Device
@@ -111,14 +108,11 @@ func (o *PatchDeviceParams) WithDefaults() *PatchDeviceParams {
 // All values with no default are reset to their zero value.
 func (o *PatchDeviceParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		opTypeDefault = string("refresh")
 	)
 
 	val := PatchDeviceParams{
-		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
+		OpType: &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -158,17 +152,6 @@ func (o *PatchDeviceParams) WithHTTPClient(client *http.Client) *PatchDevicePara
 // SetHTTPClient adds the HTTPClient to the patch device params
 func (o *PatchDeviceParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the patch device params
-func (o *PatchDeviceParams) WithUserAgent(userAgent *string) *PatchDeviceParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch device params
-func (o *PatchDeviceParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the patch device params
@@ -244,14 +227,6 @@ func (o *PatchDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

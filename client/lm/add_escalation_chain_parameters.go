@@ -54,17 +54,14 @@ func NewAddEscalationChainParamsWithHTTPClient(client *http.Client) *AddEscalati
 	}
 }
 
-/* AddEscalationChainParams contains all the parameters to send to the API endpoint
-   for the add escalation chain operation.
+/*
+AddEscalationChainParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add escalation chain operation.
+
+	Typically these are written to a http.Request.
 */
 type AddEscalationChainParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.EscalatingChain
@@ -86,18 +83,7 @@ func (o *AddEscalationChainParams) WithDefaults() *AddEscalationChainParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddEscalationChainParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := AddEscalationChainParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add escalation chain params
@@ -133,17 +119,6 @@ func (o *AddEscalationChainParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the add escalation chain params
-func (o *AddEscalationChainParams) WithUserAgent(userAgent *string) *AddEscalationChainParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the add escalation chain params
-func (o *AddEscalationChainParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the add escalation chain params
 func (o *AddEscalationChainParams) WithBody(body *models.EscalatingChain) *AddEscalationChainParams {
 	o.SetBody(body)
@@ -162,14 +137,6 @@ func (o *AddEscalationChainParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

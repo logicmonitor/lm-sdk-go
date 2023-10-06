@@ -55,20 +55,14 @@ func NewUpdateCollectorByIDParamsWithHTTPClient(client *http.Client) *UpdateColl
 	}
 }
 
-/* UpdateCollectorByIDParams contains all the parameters to send to the API endpoint
-   for the update collector by Id operation.
+/*
+UpdateCollectorByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update collector by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateCollectorByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
-
-	// AutoBalanceMonitoredDevices.
-	AutoBalanceMonitoredDevices *bool
 
 	// Body.
 	Body *models.Collector
@@ -80,11 +74,6 @@ type UpdateCollectorByIDParams struct {
 	//
 	// Format: int32
 	ID int32
-
-	// OpType.
-	//
-	// Default: "refresh"
-	OpType *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -104,20 +93,11 @@ func (o *UpdateCollectorByIDParams) WithDefaults() *UpdateCollectorByIDParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateCollectorByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		autoBalanceMonitoredDevicesDefault = bool(false)
-
 		forceUpdateFailedOverDevicesDefault = bool(false)
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := UpdateCollectorByIDParams{
-		UserAgent:                    &userAgentDefault,
-		AutoBalanceMonitoredDevices:  &autoBalanceMonitoredDevicesDefault,
 		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
-		OpType:                       &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -159,28 +139,6 @@ func (o *UpdateCollectorByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the update collector by Id params
-func (o *UpdateCollectorByIDParams) WithUserAgent(userAgent *string) *UpdateCollectorByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update collector by Id params
-func (o *UpdateCollectorByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
-// WithAutoBalanceMonitoredDevices adds the autoBalanceMonitoredDevices to the update collector by Id params
-func (o *UpdateCollectorByIDParams) WithAutoBalanceMonitoredDevices(autoBalanceMonitoredDevices *bool) *UpdateCollectorByIDParams {
-	o.SetAutoBalanceMonitoredDevices(autoBalanceMonitoredDevices)
-	return o
-}
-
-// SetAutoBalanceMonitoredDevices adds the autoBalanceMonitoredDevices to the update collector by Id params
-func (o *UpdateCollectorByIDParams) SetAutoBalanceMonitoredDevices(autoBalanceMonitoredDevices *bool) {
-	o.AutoBalanceMonitoredDevices = autoBalanceMonitoredDevices
-}
-
 // WithBody adds the body to the update collector by Id params
 func (o *UpdateCollectorByIDParams) WithBody(body *models.Collector) *UpdateCollectorByIDParams {
 	o.SetBody(body)
@@ -214,17 +172,6 @@ func (o *UpdateCollectorByIDParams) SetID(id int32) {
 	o.ID = id
 }
 
-// WithOpType adds the opType to the update collector by Id params
-func (o *UpdateCollectorByIDParams) WithOpType(opType *string) *UpdateCollectorByIDParams {
-	o.SetOpType(opType)
-	return o
-}
-
-// SetOpType adds the opType to the update collector by Id params
-func (o *UpdateCollectorByIDParams) SetOpType(opType *string) {
-	o.OpType = opType
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *UpdateCollectorByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -232,31 +179,6 @@ func (o *UpdateCollectorByIDParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
-
-	if o.AutoBalanceMonitoredDevices != nil {
-
-		// query param autoBalanceMonitoredDevices
-		var qrAutoBalanceMonitoredDevices bool
-
-		if o.AutoBalanceMonitoredDevices != nil {
-			qrAutoBalanceMonitoredDevices = *o.AutoBalanceMonitoredDevices
-		}
-		qAutoBalanceMonitoredDevices := swag.FormatBool(qrAutoBalanceMonitoredDevices)
-		if qAutoBalanceMonitoredDevices != "" {
-
-			if err := r.SetQueryParam("autoBalanceMonitoredDevices", qAutoBalanceMonitoredDevices); err != nil {
-				return err
-			}
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
@@ -283,23 +205,6 @@ func (o *UpdateCollectorByIDParams) WriteToRequest(r runtime.ClientRequest, reg 
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {
 		return err
-	}
-
-	if o.OpType != nil {
-
-		// query param opType
-		var qrOpType string
-
-		if o.OpType != nil {
-			qrOpType = *o.OpType
-		}
-		qOpType := qrOpType
-		if qOpType != "" {
-
-			if err := r.SetQueryParam("opType", qOpType); err != nil {
-				return err
-			}
-		}
 	}
 
 	if len(res) > 0 {

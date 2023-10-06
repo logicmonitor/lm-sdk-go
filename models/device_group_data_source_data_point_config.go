@@ -19,22 +19,12 @@ import (
 // swagger:model DeviceGroupDataSourceDataPointConfig
 type DeviceGroupDataSourceDataPointConfig struct {
 
-	// ad adv setting enabled
-	AdAdvSettingEnabled bool `json:"adAdvSettingEnabled,omitempty"`
-
 	// alert expr
 	// Required: true
 	AlertExpr *string `json:"alertExpr"`
 
 	// alert expr note
 	AlertExprNote string `json:"alertExprNote,omitempty"`
-
-	// Collection Interval
-	// Read Only: true
-	CollectionInterval int64 `json:"collectionInterval,omitempty"`
-
-	// critical ad adv setting
-	CriticalAdAdvSetting string `json:"criticalAdAdvSetting,omitempty"`
 
 	// data point description
 	// Read Only: true
@@ -51,27 +41,9 @@ type DeviceGroupDataSourceDataPointConfig struct {
 	// disable alerting
 	DisableAlerting bool `json:"disableAlerting,omitempty"`
 
-	// enable anomaly alert generation
-	EnableAnomalyAlertGeneration string `json:"enableAnomalyAlertGeneration,omitempty"`
-
-	// enable anomaly alert suppression
-	EnableAnomalyAlertSuppression string `json:"enableAnomalyAlertSuppression,omitempty"`
-
-	// error ad adv setting
-	ErrorAdAdvSetting string `json:"errorAdAdvSetting,omitempty"`
-
 	// global alert expr
 	// Read Only: true
 	GlobalAlertExpr string `json:"globalAlertExpr,omitempty"`
-
-	// global enable anomaly alert generation
-	GlobalEnableAnomalyAlertGeneration string `json:"globalEnableAnomalyAlertGeneration,omitempty"`
-
-	// global enable anomaly alert suppression
-	GlobalEnableAnomalyAlertSuppression string `json:"globalEnableAnomalyAlertSuppression,omitempty"`
-
-	// warn ad adv setting
-	WarnAdAdvSetting string `json:"warnAdAdvSetting,omitempty"`
 }
 
 // Validate validates this device group data source data point config
@@ -127,10 +99,6 @@ func (m *DeviceGroupDataSourceDataPointConfig) validateDataPointName(formats str
 func (m *DeviceGroupDataSourceDataPointConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateCollectionInterval(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateDataPointDescription(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -142,15 +110,6 @@ func (m *DeviceGroupDataSourceDataPointConfig) ContextValidate(ctx context.Conte
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *DeviceGroupDataSourceDataPointConfig) contextValidateCollectionInterval(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "collectionInterval", "body", int64(m.CollectionInterval)); err != nil {
-		return err
-	}
-
 	return nil
 }
 

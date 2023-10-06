@@ -53,17 +53,14 @@ func NewGetDeviceGroupDatasourceAlertSettingParamsWithHTTPClient(client *http.Cl
 	}
 }
 
-/* GetDeviceGroupDatasourceAlertSettingParams contains all the parameters to send to the API endpoint
-   for the get device group datasource alert setting operation.
+/*
+GetDeviceGroupDatasourceAlertSettingParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device group datasource alert setting operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceGroupDatasourceAlertSettingParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// DeviceGroupID.
 	//
@@ -95,18 +92,7 @@ func (o *GetDeviceGroupDatasourceAlertSettingParams) WithDefaults() *GetDeviceGr
 //
 // All values with no default are reset to their zero value.
 func (o *GetDeviceGroupDatasourceAlertSettingParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := GetDeviceGroupDatasourceAlertSettingParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get device group datasource alert setting params
@@ -140,17 +126,6 @@ func (o *GetDeviceGroupDatasourceAlertSettingParams) WithHTTPClient(client *http
 // SetHTTPClient adds the HTTPClient to the get device group datasource alert setting params
 func (o *GetDeviceGroupDatasourceAlertSettingParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device group datasource alert setting params
-func (o *GetDeviceGroupDatasourceAlertSettingParams) WithUserAgent(userAgent *string) *GetDeviceGroupDatasourceAlertSettingParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device group datasource alert setting params
-func (o *GetDeviceGroupDatasourceAlertSettingParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceGroupID adds the deviceGroupID to the get device group datasource alert setting params
@@ -193,14 +168,6 @@ func (o *GetDeviceGroupDatasourceAlertSettingParams) WriteToRequest(r runtime.Cl
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceGroupId
 	if err := r.SetPathParam("deviceGroupId", swag.FormatInt32(o.DeviceGroupID)); err != nil {

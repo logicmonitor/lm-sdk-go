@@ -8,10 +8,8 @@ package models
 import (
 	"context"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // ReportGroup report group
@@ -19,117 +17,32 @@ import (
 // swagger:model ReportGroup
 type ReportGroup struct {
 
-	// The report group description
-	// Example: This is daily firewall report
+	// description
 	Description string `json:"description,omitempty"`
 
-	// The report group id
-	// Read Only: true
+	// id
 	ID int32 `json:"id,omitempty"`
 
-	// The matched reports count of this group
-	// Example: 2
-	// Read Only: true
+	// matched report count
 	MatchedReportCount int32 `json:"matchedReportCount,omitempty"`
 
-	// The report group name
-	// Example: Firewall Reports
-	// Required: true
-	Name *string `json:"name"`
+	// name
+	Name string `json:"name,omitempty"`
 
-	// The reports count of this group
-	// Example: 5
-	// Read Only: true
+	// reports count
 	ReportsCount int32 `json:"reportsCount,omitempty"`
 
-	// The user permission on the report group
-	// Example: read
-	// Read Only: true
+	// user permission
 	UserPermission string `json:"userPermission,omitempty"`
 }
 
 // Validate validates this report group
 func (m *ReportGroup) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
 	return nil
 }
 
-func (m *ReportGroup) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", m.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validate this report group based on the context it is used
+// ContextValidate validates this report group based on context it is used
 func (m *ReportGroup) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateMatchedReportCount(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateReportsCount(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ReportGroup) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ReportGroup) contextValidateMatchedReportCount(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "matchedReportCount", "body", int32(m.MatchedReportCount)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ReportGroup) contextValidateReportsCount(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "reportsCount", "body", int32(m.ReportsCount)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ReportGroup) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission)); err != nil {
-		return err
-	}
-
 	return nil
 }
 

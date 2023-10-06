@@ -55,17 +55,14 @@ func NewAddDeviceParamsWithHTTPClient(client *http.Client) *AddDeviceParams {
 	}
 }
 
-/* AddDeviceParams contains all the parameters to send to the API endpoint
-   for the add device operation.
+/*
+AddDeviceParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add device operation.
+
+	Typically these are written to a http.Request.
 */
 type AddDeviceParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// AddFromWizard.
 	AddFromWizard *bool
@@ -104,13 +101,10 @@ func (o *AddDeviceParams) WithDefaults() *AddDeviceParams {
 // All values with no default are reset to their zero value.
 func (o *AddDeviceParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		addFromWizardDefault = bool(false)
 	)
 
 	val := AddDeviceParams{
-		UserAgent:     &userAgentDefault,
 		AddFromWizard: &addFromWizardDefault,
 	}
 
@@ -151,17 +145,6 @@ func (o *AddDeviceParams) WithHTTPClient(client *http.Client) *AddDeviceParams {
 // SetHTTPClient adds the HTTPClient to the add device params
 func (o *AddDeviceParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the add device params
-func (o *AddDeviceParams) WithUserAgent(userAgent *string) *AddDeviceParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the add device params
-func (o *AddDeviceParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithAddFromWizard adds the addFromWizard to the add device params
@@ -226,14 +209,6 @@ func (o *AddDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.AddFromWizard != nil {
 

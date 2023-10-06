@@ -25,18 +25,18 @@ type Authentication interface {
 	runtime.Validatable
 	runtime.ContextValidatable
 
-	// NTLM authentication password
+	// password
 	// Required: true
 	Password() *string
 	SetPassword(*string)
 
-	// Authentication type
+	// type
 	// Example: basic
 	// Required: true
 	Type() string
 	SetType(string)
 
-	// NTLM  authentication userName
+	// user name
 	// Required: true
 	UserName() *string
 	SetUserName(*string)

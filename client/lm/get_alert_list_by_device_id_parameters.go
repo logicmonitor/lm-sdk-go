@@ -53,17 +53,14 @@ func NewGetAlertListByDeviceIDParamsWithHTTPClient(client *http.Client) *GetAler
 	}
 }
 
-/* GetAlertListByDeviceIDParams contains all the parameters to send to the API endpoint
-   for the get alert list by device Id operation.
+/*
+GetAlertListByDeviceIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get alert list by device Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAlertListByDeviceIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Bound.
 	//
@@ -129,8 +126,6 @@ func (o *GetAlertListByDeviceIDParams) WithDefaults() *GetAlertListByDeviceIDPar
 // All values with no default are reset to their zero value.
 func (o *GetAlertListByDeviceIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		boundDefault = string("instances")
 
 		needMessageDefault = bool(false)
@@ -141,7 +136,6 @@ func (o *GetAlertListByDeviceIDParams) SetDefaults() {
 	)
 
 	val := GetAlertListByDeviceIDParams{
-		UserAgent:   &userAgentDefault,
 		Bound:       &boundDefault,
 		NeedMessage: &needMessageDefault,
 		Offset:      &offsetDefault,
@@ -185,17 +179,6 @@ func (o *GetAlertListByDeviceIDParams) WithHTTPClient(client *http.Client) *GetA
 // SetHTTPClient adds the HTTPClient to the get alert list by device Id params
 func (o *GetAlertListByDeviceIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get alert list by device Id params
-func (o *GetAlertListByDeviceIDParams) WithUserAgent(userAgent *string) *GetAlertListByDeviceIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get alert list by device Id params
-func (o *GetAlertListByDeviceIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBound adds the bound to the get alert list by device Id params
@@ -326,14 +309,6 @@ func (o *GetAlertListByDeviceIDParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Bound != nil {
 

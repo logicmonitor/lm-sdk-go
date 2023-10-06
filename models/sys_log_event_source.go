@@ -31,10 +31,6 @@ type SysLogEventSource struct {
 
 	appliesToField string
 
-	auditVersionField int64
-
-	checksumField string
-
 	clearAfterAckField bool
 
 	descriptionField string
@@ -44,10 +40,6 @@ type SysLogEventSource struct {
 	groupField string
 
 	idField int32
-
-	installationMetadataField *IntegrationMetadata
-
-	lineageIdField string
 
 	nameField *string
 
@@ -112,26 +104,6 @@ func (m *SysLogEventSource) SetAppliesTo(val string) {
 	m.appliesToField = val
 }
 
-// AuditVersion gets the audit version of this subtype
-func (m *SysLogEventSource) AuditVersion() int64 {
-	return m.auditVersionField
-}
-
-// SetAuditVersion sets the audit version of this subtype
-func (m *SysLogEventSource) SetAuditVersion(val int64) {
-	m.auditVersionField = val
-}
-
-// Checksum gets the checksum of this subtype
-func (m *SysLogEventSource) Checksum() string {
-	return m.checksumField
-}
-
-// SetChecksum sets the checksum of this subtype
-func (m *SysLogEventSource) SetChecksum(val string) {
-	m.checksumField = val
-}
-
 // ClearAfterAck gets the clear after ack of this subtype
 func (m *SysLogEventSource) ClearAfterAck() bool {
 	return m.clearAfterAckField
@@ -189,26 +161,6 @@ func (m *SysLogEventSource) ID() int32 {
 // SetID sets the id of this subtype
 func (m *SysLogEventSource) SetID(val int32) {
 	m.idField = val
-}
-
-// InstallationMetadata gets the installation metadata of this subtype
-func (m *SysLogEventSource) InstallationMetadata() *IntegrationMetadata {
-	return m.installationMetadataField
-}
-
-// SetInstallationMetadata sets the installation metadata of this subtype
-func (m *SysLogEventSource) SetInstallationMetadata(val *IntegrationMetadata) {
-	m.installationMetadataField = val
-}
-
-// LineageID gets the lineage Id of this subtype
-func (m *SysLogEventSource) LineageID() string {
-	return m.lineageIdField
-}
-
-// SetLineageID sets the lineage Id of this subtype
-func (m *SysLogEventSource) SetLineageID(val string) {
-	m.lineageIdField = val
 }
 
 // Name gets the name of this subtype
@@ -287,10 +239,6 @@ func (m *SysLogEventSource) UnmarshalJSON(raw []byte) error {
 
 		AppliesTo string `json:"appliesTo,omitempty"`
 
-		AuditVersion int64 `json:"auditVersion,omitempty"`
-
-		Checksum string `json:"checksum,omitempty"`
-
 		ClearAfterAck bool `json:"clearAfterAck,omitempty"`
 
 		Collector string `json:"collector,omitempty"`
@@ -301,11 +249,7 @@ func (m *SysLogEventSource) UnmarshalJSON(raw []byte) error {
 
 		Group string `json:"group,omitempty"`
 
-		ID int32 `json:"id,omitempty"`
-
-		InstallationMetadata *IntegrationMetadata `json:"installationMetadata,omitempty"`
-
-		LineageID string `json:"lineageId,omitempty"`
+		ID int32 `json:"id"`
 
 		Name *string `json:"name"`
 
@@ -337,10 +281,6 @@ func (m *SysLogEventSource) UnmarshalJSON(raw []byte) error {
 
 	result.appliesToField = base.AppliesTo
 
-	result.auditVersionField = base.AuditVersion
-
-	result.checksumField = base.Checksum
-
 	result.clearAfterAckField = base.ClearAfterAck
 
 	if base.Collector != result.Collector() {
@@ -354,10 +294,6 @@ func (m *SysLogEventSource) UnmarshalJSON(raw []byte) error {
 	result.groupField = base.Group
 
 	result.idField = base.ID
-
-	result.installationMetadataField = base.InstallationMetadata
-
-	result.lineageIdField = base.LineageID
 
 	result.nameField = base.Name
 
@@ -400,10 +336,6 @@ func (m SysLogEventSource) MarshalJSON() ([]byte, error) {
 
 		AppliesTo string `json:"appliesTo,omitempty"`
 
-		AuditVersion int64 `json:"auditVersion,omitempty"`
-
-		Checksum string `json:"checksum,omitempty"`
-
 		ClearAfterAck bool `json:"clearAfterAck,omitempty"`
 
 		Collector string `json:"collector,omitempty"`
@@ -414,11 +346,7 @@ func (m SysLogEventSource) MarshalJSON() ([]byte, error) {
 
 		Group string `json:"group,omitempty"`
 
-		ID int32 `json:"id,omitempty"`
-
-		InstallationMetadata *IntegrationMetadata `json:"installationMetadata,omitempty"`
-
-		LineageID string `json:"lineageId,omitempty"`
+		ID int32 `json:"id"`
 
 		Name *string `json:"name"`
 
@@ -441,10 +369,6 @@ func (m SysLogEventSource) MarshalJSON() ([]byte, error) {
 
 		AppliesTo: m.AppliesTo(),
 
-		AuditVersion: m.AuditVersion(),
-
-		Checksum: m.Checksum(),
-
 		ClearAfterAck: m.ClearAfterAck(),
 
 		Collector: m.Collector(),
@@ -456,10 +380,6 @@ func (m SysLogEventSource) MarshalJSON() ([]byte, error) {
 		Group: m.Group(),
 
 		ID: m.ID(),
-
-		InstallationMetadata: m.InstallationMetadata(),
-
-		LineageID: m.LineageID(),
 
 		Name: m.Name(),
 
@@ -490,7 +410,7 @@ func (m *SysLogEventSource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateInstallationMetadata(formats); err != nil {
+	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -540,19 +460,10 @@ func (m *SysLogEventSource) validateFilters(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *SysLogEventSource) validateInstallationMetadata(formats strfmt.Registry) error {
+func (m *SysLogEventSource) validateID(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.InstallationMetadata()) { // not required
-		return nil
-	}
-
-	if m.InstallationMetadata() != nil {
-		if err := m.InstallationMetadata().Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("installationMetadata")
-			}
-			return err
-		}
+	if err := validate.Required("id", "body", int32(m.ID())); err != nil {
+		return err
 	}
 
 	return nil
@@ -571,27 +482,11 @@ func (m *SysLogEventSource) validateName(formats strfmt.Registry) error {
 func (m *SysLogEventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateChecksum(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateFilters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateInstallationMetadata(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateLineageID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -604,24 +499,6 @@ func (m *SysLogEventSource) ContextValidate(ctx context.Context, formats strfmt.
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *SysLogEventSource) contextValidateAuditVersion(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "auditVersion", "body", int64(m.AuditVersion())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *SysLogEventSource) contextValidateChecksum(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "checksum", "body", string(m.Checksum())); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -646,29 +523,6 @@ func (m *SysLogEventSource) contextValidateFilters(ctx context.Context, formats 
 func (m *SysLogEventSource) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *SysLogEventSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.InstallationMetadata() != nil {
-		if err := m.InstallationMetadata().ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("installationMetadata")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *SysLogEventSource) contextValidateLineageID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "lineageId", "body", string(m.LineageID())); err != nil {
 		return err
 	}
 

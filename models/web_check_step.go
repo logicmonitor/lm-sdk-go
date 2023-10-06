@@ -23,107 +23,95 @@ import (
 // swagger:model WebCheckStep
 type WebCheckStep struct {
 
-	// HTTP Body
+	// HTTP body
 	HTTPBody string `json:"HTTPBody,omitempty"`
 
-	// HTTP header
+	// HTTP headers
 	HTTPHeaders string `json:"HTTPHeaders,omitempty"`
 
-	// The values can be GET|HEAD|POST
-	// Specifies the type of HTTP method
+	// HTTP method
 	// Example: GET
 	HTTPMethod string `json:"HTTPMethod,omitempty"`
 
-	// The values can be 1.1|1
-	// Specifies HTTP version
+	// HTTP version
 	// Example: 1.1
 	HTTPVersion string `json:"HTTPVersion,omitempty"`
 
 	authField Authentication
 
-	// The description of the Step
+	// description
 	Description string `json:"description,omitempty"`
 
-	// The values can be true|false
-	// Specifies whether to enable step or not
+	// enable
 	Enable interface{} `json:"enable,omitempty"`
 
-	// The values can be true|false
-	// Specifies whether to follow redirection or not
+	// follow redirection
 	// Example: true
 	FollowRedirection interface{} `json:"followRedirection,omitempty"`
 
-	// The values can be true|false
-	// Checks if full page should be loaded or not
+	// fullpage load
 	// Example: false
 	FullpageLoad bool `json:"fullpageLoad,omitempty"`
 
-	// The values can be true|false
-	// Checks if invert matches or not
+	// invert match
 	// Example: false
 	InvertMatch bool `json:"invertMatch,omitempty"`
 
-	// Keyword that matches the body
+	// keyword
 	Keyword string `json:"keyword,omitempty"`
 
-	// The Label of the Step
+	// label
 	Label string `json:"label,omitempty"`
 
-	// Body match type
+	// match type
 	// Example: plain
 	MatchType string `json:"matchType,omitempty"`
 
-	// The name of the Step
+	// name
 	Name string `json:"name,omitempty"`
 
-	// Path for JSON, XPATH
+	// path
 	Path string `json:"path,omitempty"`
 
-	// The values can be Raw|Formatted Data
-	// Specifies POST data type
+	// post data edit type
 	// Example: raw
 	PostDataEditType string `json:"postDataEditType,omitempty"`
 
-	// The Request Script
+	// req script
 	ReqScript string `json:"reqScript,omitempty"`
 
-	// The values can be script|config
-	// Step Request Type
+	// req type
 	ReqType string `json:"reqType,omitempty"`
 
-	// The values can be true|false
-	// Checks if authorization required or not
+	// require auth
 	// Example: false
 	RequireAuth bool `json:"requireAuth,omitempty"`
 
-	// The Step Response Script
+	// resp script
 	RespScript string `json:"respScript,omitempty"`
 
-	// The values can be Plain Text/String|Glob expression|JSON|XML|Multi line key value pair
-	// Step Response Type
+	// resp type
 	RespType string `json:"respType,omitempty"`
 
-	// HTTP schema
+	// schema
 	Schema string `json:"schema,omitempty"`
 
-	// The expected status code
+	// status code
 	StatusCode string `json:"statusCode,omitempty"`
 
-	// Request timeout measured in seconds
+	// timeout
 	Timeout int32 `json:"timeout,omitempty"`
 
-	// The values can be script|config
-	// The type of service step
+	// type
 	// Example: config
 	// Read Only: true
 	Type string `json:"type,omitempty"`
 
-	// The URL of service step
+	// url
 	// Example: /
 	URL string `json:"url,omitempty"`
 
-	// The values can be true|false
-	// Check if using the default root
+	// use default root
 	// Example: true
 	UseDefaultRoot interface{} `json:"useDefaultRoot,omitempty"`
 }

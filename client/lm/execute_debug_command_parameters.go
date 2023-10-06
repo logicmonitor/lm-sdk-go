@@ -55,17 +55,14 @@ func NewExecuteDebugCommandParamsWithHTTPClient(client *http.Client) *ExecuteDeb
 	}
 }
 
-/* ExecuteDebugCommandParams contains all the parameters to send to the API endpoint
-   for the execute debug command operation.
+/*
+ExecuteDebugCommandParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the execute debug command operation.
+
+	Typically these are written to a http.Request.
 */
 type ExecuteDebugCommandParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.Debug
@@ -94,13 +91,10 @@ func (o *ExecuteDebugCommandParams) WithDefaults() *ExecuteDebugCommandParams {
 // All values with no default are reset to their zero value.
 func (o *ExecuteDebugCommandParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		collectorIDDefault = int32(-1)
 	)
 
 	val := ExecuteDebugCommandParams{
-		UserAgent:   &userAgentDefault,
 		CollectorID: &collectorIDDefault,
 	}
 
@@ -143,17 +137,6 @@ func (o *ExecuteDebugCommandParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the execute debug command params
-func (o *ExecuteDebugCommandParams) WithUserAgent(userAgent *string) *ExecuteDebugCommandParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the execute debug command params
-func (o *ExecuteDebugCommandParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the execute debug command params
 func (o *ExecuteDebugCommandParams) WithBody(body *models.Debug) *ExecuteDebugCommandParams {
 	o.SetBody(body)
@@ -183,14 +166,6 @@ func (o *ExecuteDebugCommandParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

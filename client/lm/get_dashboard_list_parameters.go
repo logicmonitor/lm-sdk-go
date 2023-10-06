@@ -53,17 +53,14 @@ func NewGetDashboardListParamsWithHTTPClient(client *http.Client) *GetDashboardL
 	}
 }
 
-/* GetDashboardListParams contains all the parameters to send to the API endpoint
-   for the get dashboard list operation.
+/*
+GetDashboardListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get dashboard list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDashboardListParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Fields.
 	Fields *string
@@ -100,17 +97,14 @@ func (o *GetDashboardListParams) WithDefaults() *GetDashboardListParams {
 // All values with no default are reset to their zero value.
 func (o *GetDashboardListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDashboardListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,17 +144,6 @@ func (o *GetDashboardListParams) WithHTTPClient(client *http.Client) *GetDashboa
 // SetHTTPClient adds the HTTPClient to the get dashboard list params
 func (o *GetDashboardListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get dashboard list params
-func (o *GetDashboardListParams) WithUserAgent(userAgent *string) *GetDashboardListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get dashboard list params
-func (o *GetDashboardListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get dashboard list params
@@ -214,14 +197,6 @@ func (o *GetDashboardListParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

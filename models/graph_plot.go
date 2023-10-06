@@ -23,114 +23,112 @@ import (
 type GraphPlot struct {
 	titleField string
 
-	// The Base of the graph
+	// base
 	// Read Only: true
 	Base int64 `json:"base,omitempty"`
 
-	// true | false
-	// Changes base scale from 1000 to 1024 if value is set to true
+	// base1024
 	// Read Only: true
 	Base1024 *bool `json:"base1024,omitempty"`
 
-	// The display priority of the graph in your LogicMonitor portal
+	// display prio
 	// Read Only: true
 	DisplayPrio int32 `json:"displayPrio,omitempty"`
 
-	// The name of the DataSource to be used to plot the graph
+	// ds name
 	// Read Only: true
 	DsName string `json:"dsName,omitempty"`
 
-	// Specifies the end TimeZone Offset of the graph
+	// end t z offset
 	// Read Only: true
 	EndTZOffset int32 `json:"endTZOffset,omitempty"`
 
-	// Specifies the end-time of the graph
+	// end time
 	// Read Only: true
 	EndTime int64 `json:"endTime,omitempty"`
 
-	// The export file name
+	// export file name
 	// Read Only: true
 	ExportFileName string `json:"exportFileName,omitempty"`
 
-	// Specifies the height of graph
+	// height
 	// Read Only: true
 	Height int32 `json:"height,omitempty"`
 
-	// The Id of the graph
+	// id
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
-	// The matched instances of graph
+	// instances
 	// Read Only: true
 	// Unique: true
 	Instances []int32 `json:"instances,omitempty"`
 
-	// The properties of the graph and graph lines
+	// lines
 	// Read Only: true
 	Lines []*GraphPlotLine `json:"lines,omitempty"`
 
-	// Specifies the maximum value of the graph
+	// max value
 	// Read Only: true
 	MaxValue interface{} `json:"maxValue,omitempty"`
 
-	// Specifies the minimum value of the graph
+	// min value
 	// Read Only: true
 	MinValue interface{} `json:"minValue,omitempty"`
 
-	// The Missing lines of the graph
+	// missinglines
 	// Read Only: true
 	Missinglines []string `json:"missinglines,omitempty"`
 
-	// The Name of the Graph
+	// name
 	// Read Only: true
 	Name string `json:"name,omitempty"`
 
-	// true | false
-	// Specifies if the graph is rigid or not
+	// rigid
 	// Read Only: true
 	Rigid *bool `json:"rigid,omitempty"`
 
-	// Scopes: use this field to find match opsnote
+	// scopes
 	// Read Only: true
 	Scopes []*GraphOpsNoteScope `json:"scopes,omitempty"`
 
-	// Specifies the start TimeZone Offset of the graph
+	// start t z offset
 	// Read Only: true
 	StartTZOffset int32 `json:"startTZOffset,omitempty"`
 
-	// Specifies the start-time of the graph
+	// start time
 	// Read Only: true
 	StartTime int64 `json:"startTime,omitempty"`
 
-	// The Step of the graph
+	// step
 	// Read Only: true
 	Step int64 `json:"step,omitempty"`
 
-	// The specified timescale for the graph
+	// time scale
 	// Read Only: true
 	TimeScale string `json:"timeScale,omitempty"`
 
-	// The selected timezone for the graph
+	// time zone
 	// Read Only: true
 	TimeZone string `json:"timeZone,omitempty"`
 
-	// The Id of selected Time Zone
+	// time zone Id
 	// Read Only: true
 	TimeZoneID string `json:"timeZoneId,omitempty"`
 
-	// The timestamps of the graph
+	// timestamps
 	// Read Only: true
 	Timestamps []int64 `json:"timestamps,omitempty"`
 
-	// The label that will be displayed along the y axis (Vertical Label)
+	// vertical label
 	// Read Only: true
 	VerticalLabel string `json:"verticalLabel,omitempty"`
 
-	// Specifies the width of graph
+	// width
 	// Read Only: true
 	Width int32 `json:"width,omitempty"`
 
-	// The label that will be displayed along the X axis
+	// x axis name
 	// Read Only: true
 	XAxisName string `json:"xAxisName,omitempty"`
 }
@@ -158,114 +156,112 @@ func (m *GraphPlot) SetType(val string) {
 func (m *GraphPlot) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// The Base of the graph
+		// base
 		// Read Only: true
 		Base int64 `json:"base,omitempty"`
 
-		// true | false
-		// Changes base scale from 1000 to 1024 if value is set to true
+		// base1024
 		// Read Only: true
 		Base1024 *bool `json:"base1024,omitempty"`
 
-		// The display priority of the graph in your LogicMonitor portal
+		// display prio
 		// Read Only: true
 		DisplayPrio int32 `json:"displayPrio,omitempty"`
 
-		// The name of the DataSource to be used to plot the graph
+		// ds name
 		// Read Only: true
 		DsName string `json:"dsName,omitempty"`
 
-		// Specifies the end TimeZone Offset of the graph
+		// end t z offset
 		// Read Only: true
 		EndTZOffset int32 `json:"endTZOffset,omitempty"`
 
-		// Specifies the end-time of the graph
+		// end time
 		// Read Only: true
 		EndTime int64 `json:"endTime,omitempty"`
 
-		// The export file name
+		// export file name
 		// Read Only: true
 		ExportFileName string `json:"exportFileName,omitempty"`
 
-		// Specifies the height of graph
+		// height
 		// Read Only: true
 		Height int32 `json:"height,omitempty"`
 
-		// The Id of the graph
+		// id
 		// Read Only: true
 		ID int32 `json:"id,omitempty"`
 
-		// The matched instances of graph
+		// instances
 		// Read Only: true
 		// Unique: true
 		Instances []int32 `json:"instances,omitempty"`
 
-		// The properties of the graph and graph lines
+		// lines
 		// Read Only: true
 		Lines []*GraphPlotLine `json:"lines,omitempty"`
 
-		// Specifies the maximum value of the graph
+		// max value
 		// Read Only: true
 		MaxValue interface{} `json:"maxValue,omitempty"`
 
-		// Specifies the minimum value of the graph
+		// min value
 		// Read Only: true
 		MinValue interface{} `json:"minValue,omitempty"`
 
-		// The Missing lines of the graph
+		// missinglines
 		// Read Only: true
 		Missinglines []string `json:"missinglines,omitempty"`
 
-		// The Name of the Graph
+		// name
 		// Read Only: true
 		Name string `json:"name,omitempty"`
 
-		// true | false
-		// Specifies if the graph is rigid or not
+		// rigid
 		// Read Only: true
 		Rigid *bool `json:"rigid,omitempty"`
 
-		// Scopes: use this field to find match opsnote
+		// scopes
 		// Read Only: true
 		Scopes []*GraphOpsNoteScope `json:"scopes,omitempty"`
 
-		// Specifies the start TimeZone Offset of the graph
+		// start t z offset
 		// Read Only: true
 		StartTZOffset int32 `json:"startTZOffset,omitempty"`
 
-		// Specifies the start-time of the graph
+		// start time
 		// Read Only: true
 		StartTime int64 `json:"startTime,omitempty"`
 
-		// The Step of the graph
+		// step
 		// Read Only: true
 		Step int64 `json:"step,omitempty"`
 
-		// The specified timescale for the graph
+		// time scale
 		// Read Only: true
 		TimeScale string `json:"timeScale,omitempty"`
 
-		// The selected timezone for the graph
+		// time zone
 		// Read Only: true
 		TimeZone string `json:"timeZone,omitempty"`
 
-		// The Id of selected Time Zone
+		// time zone Id
 		// Read Only: true
 		TimeZoneID string `json:"timeZoneId,omitempty"`
 
-		// The timestamps of the graph
+		// timestamps
 		// Read Only: true
 		Timestamps []int64 `json:"timestamps,omitempty"`
 
-		// The label that will be displayed along the y axis (Vertical Label)
+		// vertical label
 		// Read Only: true
 		VerticalLabel string `json:"verticalLabel,omitempty"`
 
-		// Specifies the width of graph
+		// width
 		// Read Only: true
 		Width int32 `json:"width,omitempty"`
 
-		// The label that will be displayed along the X axis
+		// x axis name
 		// Read Only: true
 		XAxisName string `json:"xAxisName,omitempty"`
 	}
@@ -340,114 +336,112 @@ func (m GraphPlot) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// The Base of the graph
+		// base
 		// Read Only: true
 		Base int64 `json:"base,omitempty"`
 
-		// true | false
-		// Changes base scale from 1000 to 1024 if value is set to true
+		// base1024
 		// Read Only: true
 		Base1024 *bool `json:"base1024,omitempty"`
 
-		// The display priority of the graph in your LogicMonitor portal
+		// display prio
 		// Read Only: true
 		DisplayPrio int32 `json:"displayPrio,omitempty"`
 
-		// The name of the DataSource to be used to plot the graph
+		// ds name
 		// Read Only: true
 		DsName string `json:"dsName,omitempty"`
 
-		// Specifies the end TimeZone Offset of the graph
+		// end t z offset
 		// Read Only: true
 		EndTZOffset int32 `json:"endTZOffset,omitempty"`
 
-		// Specifies the end-time of the graph
+		// end time
 		// Read Only: true
 		EndTime int64 `json:"endTime,omitempty"`
 
-		// The export file name
+		// export file name
 		// Read Only: true
 		ExportFileName string `json:"exportFileName,omitempty"`
 
-		// Specifies the height of graph
+		// height
 		// Read Only: true
 		Height int32 `json:"height,omitempty"`
 
-		// The Id of the graph
+		// id
 		// Read Only: true
 		ID int32 `json:"id,omitempty"`
 
-		// The matched instances of graph
+		// instances
 		// Read Only: true
 		// Unique: true
 		Instances []int32 `json:"instances,omitempty"`
 
-		// The properties of the graph and graph lines
+		// lines
 		// Read Only: true
 		Lines []*GraphPlotLine `json:"lines,omitempty"`
 
-		// Specifies the maximum value of the graph
+		// max value
 		// Read Only: true
 		MaxValue interface{} `json:"maxValue,omitempty"`
 
-		// Specifies the minimum value of the graph
+		// min value
 		// Read Only: true
 		MinValue interface{} `json:"minValue,omitempty"`
 
-		// The Missing lines of the graph
+		// missinglines
 		// Read Only: true
 		Missinglines []string `json:"missinglines,omitempty"`
 
-		// The Name of the Graph
+		// name
 		// Read Only: true
 		Name string `json:"name,omitempty"`
 
-		// true | false
-		// Specifies if the graph is rigid or not
+		// rigid
 		// Read Only: true
 		Rigid *bool `json:"rigid,omitempty"`
 
-		// Scopes: use this field to find match opsnote
+		// scopes
 		// Read Only: true
 		Scopes []*GraphOpsNoteScope `json:"scopes,omitempty"`
 
-		// Specifies the start TimeZone Offset of the graph
+		// start t z offset
 		// Read Only: true
 		StartTZOffset int32 `json:"startTZOffset,omitempty"`
 
-		// Specifies the start-time of the graph
+		// start time
 		// Read Only: true
 		StartTime int64 `json:"startTime,omitempty"`
 
-		// The Step of the graph
+		// step
 		// Read Only: true
 		Step int64 `json:"step,omitempty"`
 
-		// The specified timescale for the graph
+		// time scale
 		// Read Only: true
 		TimeScale string `json:"timeScale,omitempty"`
 
-		// The selected timezone for the graph
+		// time zone
 		// Read Only: true
 		TimeZone string `json:"timeZone,omitempty"`
 
-		// The Id of selected Time Zone
+		// time zone Id
 		// Read Only: true
 		TimeZoneID string `json:"timeZoneId,omitempty"`
 
-		// The timestamps of the graph
+		// timestamps
 		// Read Only: true
 		Timestamps []int64 `json:"timestamps,omitempty"`
 
-		// The label that will be displayed along the y axis (Vertical Label)
+		// vertical label
 		// Read Only: true
 		VerticalLabel string `json:"verticalLabel,omitempty"`
 
-		// Specifies the width of graph
+		// width
 		// Read Only: true
 		Width int32 `json:"width,omitempty"`
 
-		// The label that will be displayed along the X axis
+		// x axis name
 		// Read Only: true
 		XAxisName string `json:"xAxisName,omitempty"`
 	}{

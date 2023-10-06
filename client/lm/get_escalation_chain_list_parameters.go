@@ -53,17 +53,14 @@ func NewGetEscalationChainListParamsWithHTTPClient(client *http.Client) *GetEsca
 	}
 }
 
-/* GetEscalationChainListParams contains all the parameters to send to the API endpoint
-   for the get escalation chain list operation.
+/*
+GetEscalationChainListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get escalation chain list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetEscalationChainListParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Fields.
 	Fields *string
@@ -100,17 +97,14 @@ func (o *GetEscalationChainListParams) WithDefaults() *GetEscalationChainListPar
 // All values with no default are reset to their zero value.
 func (o *GetEscalationChainListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetEscalationChainListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,17 +144,6 @@ func (o *GetEscalationChainListParams) WithHTTPClient(client *http.Client) *GetE
 // SetHTTPClient adds the HTTPClient to the get escalation chain list params
 func (o *GetEscalationChainListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get escalation chain list params
-func (o *GetEscalationChainListParams) WithUserAgent(userAgent *string) *GetEscalationChainListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get escalation chain list params
-func (o *GetEscalationChainListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get escalation chain list params
@@ -214,14 +197,6 @@ func (o *GetEscalationChainListParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

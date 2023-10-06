@@ -28,11 +28,11 @@ type Role struct {
 	// Read Only: true
 	AssociatedUserCount int32 `json:"associatedUserCount,omitempty"`
 
-	// The label for the custom help URL as it will appear in the 'Help & Support' dropdown menu
+	// The label for the custom help URL as it will appear in the Help & Support dropdown menu
 	// Example: Internal Support Resources
 	CustomHelpLabel string `json:"customHelpLabel,omitempty"`
 
-	// The URL that should be added to the 'Help & Support' dropdown menu
+	// The URL that should be added to the Help & Support dropdown menu
 	// Example: https://logicmonitor.com/support
 	CustomHelpURL string `json:"customHelpURL,omitempty"`
 
@@ -61,18 +61,9 @@ type Role struct {
 	// Example: true
 	RequireEULA bool `json:"requireEULA,omitempty"`
 
-	// The group Id of the role
-	// Example: 3
-	RoleGroupID int32 `json:"roleGroupId,omitempty"`
-
 	// Whether Two-Factor Authentication should be required for this role
 	// Example: true
 	TwoFARequired bool `json:"twoFARequired,omitempty"`
-
-	// The permission of current role with the admin. The values can be write|read|none
-	// Example: read
-	// Read Only: true
-	UserPermission string `json:"userPermission,omitempty"`
 }
 
 // Validate validates this role
@@ -151,10 +142,6 @@ func (m *Role) ContextValidate(ctx context.Context, formats strfmt.Registry) err
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -210,15 +197,6 @@ func (m *Role) contextValidatePrivileges(ctx context.Context, formats strfmt.Reg
 			}
 		}
 
-	}
-
-	return nil
-}
-
-func (m *Role) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission)); err != nil {
-		return err
 	}
 
 	return nil

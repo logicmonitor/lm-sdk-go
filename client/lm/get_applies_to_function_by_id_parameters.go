@@ -53,17 +53,14 @@ func NewGetAppliesToFunctionByIDParamsWithHTTPClient(client *http.Client) *GetAp
 	}
 }
 
-/* GetAppliesToFunctionByIDParams contains all the parameters to send to the API endpoint
-   for the get applies to function by Id operation.
+/*
+GetAppliesToFunctionByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get applies to function by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAppliesToFunctionByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// ID.
 	//
@@ -87,18 +84,7 @@ func (o *GetAppliesToFunctionByIDParams) WithDefaults() *GetAppliesToFunctionByI
 //
 // All values with no default are reset to their zero value.
 func (o *GetAppliesToFunctionByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := GetAppliesToFunctionByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get applies to function by Id params
@@ -134,17 +120,6 @@ func (o *GetAppliesToFunctionByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the get applies to function by Id params
-func (o *GetAppliesToFunctionByIDParams) WithUserAgent(userAgent *string) *GetAppliesToFunctionByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get applies to function by Id params
-func (o *GetAppliesToFunctionByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithID adds the id to the get applies to function by Id params
 func (o *GetAppliesToFunctionByIDParams) WithID(id int32) *GetAppliesToFunctionByIDParams {
 	o.SetID(id)
@@ -163,14 +138,6 @@ func (o *GetAppliesToFunctionByIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {

@@ -39,10 +39,10 @@ type CustomGraph struct {
 	ID int32 `json:"id,omitempty"`
 
 	// The maximum value that should be displayed on the y-axis
-	MaxValue float64 `json:"maxValue,omitempty"`
+	MaxValue interface{} `json:"maxValue,omitempty"`
 
 	// The minimum value that should be displayed on the y-axis
-	MinValue float64 `json:"minValue,omitempty"`
+	MinValue interface{} `json:"minValue,omitempty"`
 
 	// The base scale unit (1000 or 1024)
 	ScaleUnit int32 `json:"scaleUnit,omitempty"`

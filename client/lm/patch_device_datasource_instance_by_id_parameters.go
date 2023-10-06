@@ -55,17 +55,14 @@ func NewPatchDeviceDatasourceInstanceByIDParamsWithHTTPClient(client *http.Clien
 	}
 }
 
-/* PatchDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
-   for the patch device datasource instance by Id operation.
+/*
+PatchDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch device datasource instance by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDeviceDatasourceInstanceByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.DeviceDataSourceInstance
@@ -111,14 +108,11 @@ func (o *PatchDeviceDatasourceInstanceByIDParams) WithDefaults() *PatchDeviceDat
 // All values with no default are reset to their zero value.
 func (o *PatchDeviceDatasourceInstanceByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		opTypeDefault = string("refresh")
 	)
 
 	val := PatchDeviceDatasourceInstanceByIDParams{
-		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
+		OpType: &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -158,17 +152,6 @@ func (o *PatchDeviceDatasourceInstanceByIDParams) WithHTTPClient(client *http.Cl
 // SetHTTPClient adds the HTTPClient to the patch device datasource instance by Id params
 func (o *PatchDeviceDatasourceInstanceByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the patch device datasource instance by Id params
-func (o *PatchDeviceDatasourceInstanceByIDParams) WithUserAgent(userAgent *string) *PatchDeviceDatasourceInstanceByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch device datasource instance by Id params
-func (o *PatchDeviceDatasourceInstanceByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the patch device datasource instance by Id params
@@ -233,14 +216,6 @@ func (o *PatchDeviceDatasourceInstanceByIDParams) WriteToRequest(r runtime.Clien
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

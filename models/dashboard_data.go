@@ -19,19 +19,19 @@ import (
 // swagger:model DashboardData
 type DashboardData struct {
 
-	// The Id of the dashboard
+	// id
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
-	// The name of the dashboard
+	// name
 	// Read Only: true
 	Name string `json:"name,omitempty"`
 
-	// Whether or not the dashboard is sharable. This value will always be true unless the dashboard is a private dashboard
+	// sharable
 	// Read Only: true
 	Sharable *bool `json:"sharable,omitempty"`
 
-	// The permission of the user that made the API call
+	// user permission
 	// Read Only: true
 	UserPermission string `json:"userPermission,omitempty"`
 }

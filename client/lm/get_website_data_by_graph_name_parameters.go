@@ -53,17 +53,14 @@ func NewGetWebsiteDataByGraphNameParamsWithHTTPClient(client *http.Client) *GetW
 	}
 }
 
-/* GetWebsiteDataByGraphNameParams contains all the parameters to send to the API endpoint
-   for the get website data by graph name operation.
+/*
+GetWebsiteDataByGraphNameParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website data by graph name operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteDataByGraphNameParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// End.
 	//
@@ -104,17 +101,14 @@ func (o *GetWebsiteDataByGraphNameParams) WithDefaults() *GetWebsiteDataByGraphN
 // All values with no default are reset to their zero value.
 func (o *GetWebsiteDataByGraphNameParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		endDefault = int64(0)
 
 		startDefault = int64(0)
 	)
 
 	val := GetWebsiteDataByGraphNameParams{
-		UserAgent: &userAgentDefault,
-		End:       &endDefault,
-		Start:     &startDefault,
+		End:   &endDefault,
+		Start: &startDefault,
 	}
 
 	val.timeout = o.timeout
@@ -154,17 +148,6 @@ func (o *GetWebsiteDataByGraphNameParams) WithHTTPClient(client *http.Client) *G
 // SetHTTPClient adds the HTTPClient to the get website data by graph name params
 func (o *GetWebsiteDataByGraphNameParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get website data by graph name params
-func (o *GetWebsiteDataByGraphNameParams) WithUserAgent(userAgent *string) *GetWebsiteDataByGraphNameParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get website data by graph name params
-func (o *GetWebsiteDataByGraphNameParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithEnd adds the end to the get website data by graph name params
@@ -229,14 +212,6 @@ func (o *GetWebsiteDataByGraphNameParams) WriteToRequest(r runtime.ClientRequest
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.End != nil {
 

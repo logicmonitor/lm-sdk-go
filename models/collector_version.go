@@ -19,10 +19,6 @@ import (
 // swagger:model CollectorVersion
 type CollectorVersion struct {
 
-	// Specifies if this is a feature version
-	// Read Only: true
-	Feature *bool `json:"feature,omitempty"`
-
 	// True if Linux collector available
 	// Read Only: true
 	Has32bitLinux *bool `json:"has32bitLinux,omitempty"`
@@ -61,10 +57,6 @@ func (m *CollectorVersion) Validate(formats strfmt.Registry) error {
 func (m *CollectorVersion) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateFeature(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateHas32bitLinux(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -96,15 +88,6 @@ func (m *CollectorVersion) ContextValidate(ctx context.Context, formats strfmt.R
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *CollectorVersion) contextValidateFeature(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "feature", "body", m.Feature); err != nil {
-		return err
-	}
-
 	return nil
 }
 

@@ -53,17 +53,14 @@ func NewGetDevicePropertyListParamsWithHTTPClient(client *http.Client) *GetDevic
 	}
 }
 
-/* GetDevicePropertyListParams contains all the parameters to send to the API endpoint
-   for the get device property list operation.
+/*
+GetDevicePropertyListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device property list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDevicePropertyListParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// DeviceID.
 	//
@@ -105,17 +102,14 @@ func (o *GetDevicePropertyListParams) WithDefaults() *GetDevicePropertyListParam
 // All values with no default are reset to their zero value.
 func (o *GetDevicePropertyListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDevicePropertyListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -155,17 +149,6 @@ func (o *GetDevicePropertyListParams) WithHTTPClient(client *http.Client) *GetDe
 // SetHTTPClient adds the HTTPClient to the get device property list params
 func (o *GetDevicePropertyListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device property list params
-func (o *GetDevicePropertyListParams) WithUserAgent(userAgent *string) *GetDevicePropertyListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device property list params
-func (o *GetDevicePropertyListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceID adds the deviceID to the get device property list params
@@ -230,14 +213,6 @@ func (o *GetDevicePropertyListParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceId
 	if err := r.SetPathParam("deviceId", swag.FormatInt32(o.DeviceID)); err != nil {

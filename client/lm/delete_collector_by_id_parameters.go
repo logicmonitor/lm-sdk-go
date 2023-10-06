@@ -53,17 +53,14 @@ func NewDeleteCollectorByIDParamsWithHTTPClient(client *http.Client) *DeleteColl
 	}
 }
 
-/* DeleteCollectorByIDParams contains all the parameters to send to the API endpoint
-   for the delete collector by Id operation.
+/*
+DeleteCollectorByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete collector by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteCollectorByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// ID.
 	//
@@ -87,18 +84,7 @@ func (o *DeleteCollectorByIDParams) WithDefaults() *DeleteCollectorByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteCollectorByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := DeleteCollectorByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete collector by Id params
@@ -134,17 +120,6 @@ func (o *DeleteCollectorByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the delete collector by Id params
-func (o *DeleteCollectorByIDParams) WithUserAgent(userAgent *string) *DeleteCollectorByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the delete collector by Id params
-func (o *DeleteCollectorByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithID adds the id to the delete collector by Id params
 func (o *DeleteCollectorByIDParams) WithID(id int32) *DeleteCollectorByIDParams {
 	o.SetID(id)
@@ -163,14 +138,6 @@ func (o *DeleteCollectorByIDParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {

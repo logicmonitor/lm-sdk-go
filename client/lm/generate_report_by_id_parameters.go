@@ -55,17 +55,14 @@ func NewGenerateReportByIDParamsWithHTTPClient(client *http.Client) *GenerateRep
 	}
 }
 
-/* GenerateReportByIDParams contains all the parameters to send to the API endpoint
-   for the generate report by Id operation.
+/*
+GenerateReportByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the generate report by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GenerateReportByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.GenerateReportRequest
@@ -92,18 +89,7 @@ func (o *GenerateReportByIDParams) WithDefaults() *GenerateReportByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GenerateReportByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := GenerateReportByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the generate report by Id params
@@ -139,17 +125,6 @@ func (o *GenerateReportByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the generate report by Id params
-func (o *GenerateReportByIDParams) WithUserAgent(userAgent *string) *GenerateReportByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the generate report by Id params
-func (o *GenerateReportByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the generate report by Id params
 func (o *GenerateReportByIDParams) WithBody(body *models.GenerateReportRequest) *GenerateReportByIDParams {
 	o.SetBody(body)
@@ -179,14 +154,6 @@ func (o *GenerateReportByIDParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

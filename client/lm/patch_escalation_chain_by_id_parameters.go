@@ -55,17 +55,14 @@ func NewPatchEscalationChainByIDParamsWithHTTPClient(client *http.Client) *Patch
 	}
 }
 
-/* PatchEscalationChainByIDParams contains all the parameters to send to the API endpoint
-   for the patch escalation chain by Id operation.
+/*
+PatchEscalationChainByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch escalation chain by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchEscalationChainByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.EscalatingChain
@@ -92,18 +89,7 @@ func (o *PatchEscalationChainByIDParams) WithDefaults() *PatchEscalationChainByI
 //
 // All values with no default are reset to their zero value.
 func (o *PatchEscalationChainByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := PatchEscalationChainByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch escalation chain by Id params
@@ -139,17 +125,6 @@ func (o *PatchEscalationChainByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the patch escalation chain by Id params
-func (o *PatchEscalationChainByIDParams) WithUserAgent(userAgent *string) *PatchEscalationChainByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch escalation chain by Id params
-func (o *PatchEscalationChainByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the patch escalation chain by Id params
 func (o *PatchEscalationChainByIDParams) WithBody(body *models.EscalatingChain) *PatchEscalationChainByIDParams {
 	o.SetBody(body)
@@ -179,14 +154,6 @@ func (o *PatchEscalationChainByIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

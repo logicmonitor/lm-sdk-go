@@ -53,17 +53,14 @@ func NewGetDeviceDatasourceInstanceByIDParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* GetDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
-   for the get device datasource instance by Id operation.
+/*
+GetDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device datasource instance by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceInstanceByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// DeviceID.
 	//
@@ -103,18 +100,7 @@ func (o *GetDeviceDatasourceInstanceByIDParams) WithDefaults() *GetDeviceDatasou
 //
 // All values with no default are reset to their zero value.
 func (o *GetDeviceDatasourceInstanceByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := GetDeviceDatasourceInstanceByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get device datasource instance by Id params
@@ -148,17 +134,6 @@ func (o *GetDeviceDatasourceInstanceByIDParams) WithHTTPClient(client *http.Clie
 // SetHTTPClient adds the HTTPClient to the get device datasource instance by Id params
 func (o *GetDeviceDatasourceInstanceByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device datasource instance by Id params
-func (o *GetDeviceDatasourceInstanceByIDParams) WithUserAgent(userAgent *string) *GetDeviceDatasourceInstanceByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device datasource instance by Id params
-func (o *GetDeviceDatasourceInstanceByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceID adds the deviceID to the get device datasource instance by Id params
@@ -212,14 +187,6 @@ func (o *GetDeviceDatasourceInstanceByIDParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceId
 	if err := r.SetPathParam("deviceId", swag.FormatInt32(o.DeviceID)); err != nil {

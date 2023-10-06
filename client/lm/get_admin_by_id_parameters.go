@@ -53,17 +53,14 @@ func NewGetAdminByIDParamsWithHTTPClient(client *http.Client) *GetAdminByIDParam
 	}
 }
 
-/* GetAdminByIDParams contains all the parameters to send to the API endpoint
-   for the get admin by Id operation.
+/*
+GetAdminByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get admin by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAdminByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Fields.
 	Fields *string
@@ -90,18 +87,7 @@ func (o *GetAdminByIDParams) WithDefaults() *GetAdminByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetAdminByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := GetAdminByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get admin by Id params
@@ -137,17 +123,6 @@ func (o *GetAdminByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the get admin by Id params
-func (o *GetAdminByIDParams) WithUserAgent(userAgent *string) *GetAdminByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get admin by Id params
-func (o *GetAdminByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithFields adds the fields to the get admin by Id params
 func (o *GetAdminByIDParams) WithFields(fields *string) *GetAdminByIDParams {
 	o.SetFields(fields)
@@ -177,14 +152,6 @@ func (o *GetAdminByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

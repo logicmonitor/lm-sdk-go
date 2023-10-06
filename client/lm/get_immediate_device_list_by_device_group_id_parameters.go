@@ -53,17 +53,14 @@ func NewGetImmediateDeviceListByDeviceGroupIDParamsWithHTTPClient(client *http.C
 	}
 }
 
-/* GetImmediateDeviceListByDeviceGroupIDParams contains all the parameters to send to the API endpoint
-   for the get immediate device list by device group Id operation.
+/*
+GetImmediateDeviceListByDeviceGroupIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get immediate device list by device group Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetImmediateDeviceListByDeviceGroupIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Fields.
 	Fields *string
@@ -105,17 +102,14 @@ func (o *GetImmediateDeviceListByDeviceGroupIDParams) WithDefaults() *GetImmedia
 // All values with no default are reset to their zero value.
 func (o *GetImmediateDeviceListByDeviceGroupIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetImmediateDeviceListByDeviceGroupIDParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -155,17 +149,6 @@ func (o *GetImmediateDeviceListByDeviceGroupIDParams) WithHTTPClient(client *htt
 // SetHTTPClient adds the HTTPClient to the get immediate device list by device group Id params
 func (o *GetImmediateDeviceListByDeviceGroupIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get immediate device list by device group Id params
-func (o *GetImmediateDeviceListByDeviceGroupIDParams) WithUserAgent(userAgent *string) *GetImmediateDeviceListByDeviceGroupIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get immediate device list by device group Id params
-func (o *GetImmediateDeviceListByDeviceGroupIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get immediate device list by device group Id params
@@ -230,14 +213,6 @@ func (o *GetImmediateDeviceListByDeviceGroupIDParams) WriteToRequest(r runtime.C
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

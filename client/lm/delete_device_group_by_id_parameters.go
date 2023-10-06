@@ -53,17 +53,14 @@ func NewDeleteDeviceGroupByIDParamsWithHTTPClient(client *http.Client) *DeleteDe
 	}
 }
 
-/* DeleteDeviceGroupByIDParams contains all the parameters to send to the API endpoint
-   for the delete device group by Id operation.
+/*
+DeleteDeviceGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete device group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteDeviceGroupByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// DeleteChildren.
 	DeleteChildren *bool
@@ -96,15 +93,12 @@ func (o *DeleteDeviceGroupByIDParams) WithDefaults() *DeleteDeviceGroupByIDParam
 // All values with no default are reset to their zero value.
 func (o *DeleteDeviceGroupByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		deleteChildrenDefault = bool(false)
 
 		deleteHardDefault = bool(true)
 	)
 
 	val := DeleteDeviceGroupByIDParams{
-		UserAgent:      &userAgentDefault,
 		DeleteChildren: &deleteChildrenDefault,
 		DeleteHard:     &deleteHardDefault,
 	}
@@ -148,17 +142,6 @@ func (o *DeleteDeviceGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the delete device group by Id params
-func (o *DeleteDeviceGroupByIDParams) WithUserAgent(userAgent *string) *DeleteDeviceGroupByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the delete device group by Id params
-func (o *DeleteDeviceGroupByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithDeleteChildren adds the deleteChildren to the delete device group by Id params
 func (o *DeleteDeviceGroupByIDParams) WithDeleteChildren(deleteChildren *bool) *DeleteDeviceGroupByIDParams {
 	o.SetDeleteChildren(deleteChildren)
@@ -199,14 +182,6 @@ func (o *DeleteDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.DeleteChildren != nil {
 

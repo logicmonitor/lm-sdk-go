@@ -53,17 +53,14 @@ func NewDeleteDeviceDatasourceInstanceByIDParamsWithHTTPClient(client *http.Clie
 	}
 }
 
-/* DeleteDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
-   for the delete device datasource instance by Id operation.
+/*
+DeleteDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete device datasource instance by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteDeviceDatasourceInstanceByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// DeviceID.
 	//
@@ -100,18 +97,7 @@ func (o *DeleteDeviceDatasourceInstanceByIDParams) WithDefaults() *DeleteDeviceD
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteDeviceDatasourceInstanceByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-	)
-
-	val := DeleteDeviceDatasourceInstanceByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete device datasource instance by Id params
@@ -145,17 +131,6 @@ func (o *DeleteDeviceDatasourceInstanceByIDParams) WithHTTPClient(client *http.C
 // SetHTTPClient adds the HTTPClient to the delete device datasource instance by Id params
 func (o *DeleteDeviceDatasourceInstanceByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the delete device datasource instance by Id params
-func (o *DeleteDeviceDatasourceInstanceByIDParams) WithUserAgent(userAgent *string) *DeleteDeviceDatasourceInstanceByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the delete device datasource instance by Id params
-func (o *DeleteDeviceDatasourceInstanceByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceID adds the deviceID to the delete device datasource instance by Id params
@@ -198,14 +173,6 @@ func (o *DeleteDeviceDatasourceInstanceByIDParams) WriteToRequest(r runtime.Clie
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceId
 	if err := r.SetPathParam("deviceId", swag.FormatInt32(o.DeviceID)); err != nil {

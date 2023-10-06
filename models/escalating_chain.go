@@ -20,39 +20,39 @@ import (
 // swagger:model EscalatingChain
 type EscalatingChain struct {
 
-	// The chain's cc destinations
+	// cc destinations
 	CcDestinations []*Recipient `json:"ccDestinations,omitempty"`
 
-	// The description for chain
+	// description
 	// Example: For alerts escalated to the NOC Team
 	Description string `json:"description,omitempty"`
 
-	// The chain destinations
+	// destinations
 	// Required: true
 	Destinations []*Chain `json:"destinations"`
 
-	// If throttle needs to be enabled then true if not then false.
+	// enable throttling
 	// Example: true
 	EnableThrottling bool `json:"enableThrottling,omitempty"`
 
-	// The Id of the chain
+	// id
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
-	// Whether or not chain in alerting
+	// in alerting
 	// Read Only: true
 	InAlerting *bool `json:"inAlerting,omitempty"`
 
-	// The chain name
+	// name
 	// Example: NOC Team
 	// Required: true
 	Name *string `json:"name"`
 
-	// Maximum number of alerts can be sent during a throttle period
+	// throttling alerts
 	// Example: 40
 	ThrottlingAlerts int32 `json:"throttlingAlerts,omitempty"`
 
-	// The throttle period
+	// throttling period
 	// Example: 30
 	ThrottlingPeriod int32 `json:"throttlingPeriod,omitempty"`
 }

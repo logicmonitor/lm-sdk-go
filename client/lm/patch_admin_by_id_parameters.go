@@ -55,17 +55,14 @@ func NewPatchAdminByIDParamsWithHTTPClient(client *http.Client) *PatchAdminByIDP
 	}
 }
 
-/* PatchAdminByIDParams contains all the parameters to send to the API endpoint
-   for the patch admin by Id operation.
+/*
+PatchAdminByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch admin by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchAdminByIDParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/GO-SDK"
-	UserAgent *string
 
 	// Body.
 	Body *models.Admin
@@ -96,13 +93,10 @@ func (o *PatchAdminByIDParams) WithDefaults() *PatchAdminByIDParams {
 // All values with no default are reset to their zero value.
 func (o *PatchAdminByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/GO-SDK")
-
 		changePasswordDefault = bool(false)
 	)
 
 	val := PatchAdminByIDParams{
-		UserAgent:      &userAgentDefault,
 		ChangePassword: &changePasswordDefault,
 	}
 
@@ -145,17 +139,6 @@ func (o *PatchAdminByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the patch admin by Id params
-func (o *PatchAdminByIDParams) WithUserAgent(userAgent *string) *PatchAdminByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch admin by Id params
-func (o *PatchAdminByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the patch admin by Id params
 func (o *PatchAdminByIDParams) WithBody(body *models.Admin) *PatchAdminByIDParams {
 	o.SetBody(body)
@@ -196,14 +179,6 @@ func (o *PatchAdminByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
