@@ -60,11 +60,6 @@ func NewGetDashboardGroupListParamsWithHTTPClient(client *http.Client) *GetDashb
 */
 type GetDashboardGroupListParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Fields.
 	Fields *string
 
@@ -100,17 +95,14 @@ func (o *GetDashboardGroupListParams) WithDefaults() *GetDashboardGroupListParam
 // All values with no default are reset to their zero value.
 func (o *GetDashboardGroupListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDashboardGroupListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,17 +142,6 @@ func (o *GetDashboardGroupListParams) WithHTTPClient(client *http.Client) *GetDa
 // SetHTTPClient adds the HTTPClient to the get dashboard group list params
 func (o *GetDashboardGroupListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get dashboard group list params
-func (o *GetDashboardGroupListParams) WithUserAgent(userAgent *string) *GetDashboardGroupListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get dashboard group list params
-func (o *GetDashboardGroupListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get dashboard group list params
@@ -214,14 +195,6 @@ func (o *GetDashboardGroupListParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

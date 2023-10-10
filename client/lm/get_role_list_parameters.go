@@ -60,11 +60,6 @@ func NewGetRoleListParamsWithHTTPClient(client *http.Client) *GetRoleListParams 
 */
 type GetRoleListParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Fields.
 	Fields *string
 
@@ -100,17 +95,14 @@ func (o *GetRoleListParams) WithDefaults() *GetRoleListParams {
 // All values with no default are reset to their zero value.
 func (o *GetRoleListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetRoleListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,17 +142,6 @@ func (o *GetRoleListParams) WithHTTPClient(client *http.Client) *GetRoleListPara
 // SetHTTPClient adds the HTTPClient to the get role list params
 func (o *GetRoleListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get role list params
-func (o *GetRoleListParams) WithUserAgent(userAgent *string) *GetRoleListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get role list params
-func (o *GetRoleListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get role list params
@@ -214,14 +195,6 @@ func (o *GetRoleListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

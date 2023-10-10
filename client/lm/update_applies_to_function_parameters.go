@@ -62,11 +62,6 @@ func NewUpdateAppliesToFunctionParamsWithHTTPClient(client *http.Client) *Update
 */
 type UpdateAppliesToFunctionParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.AppliesToFunction
 
@@ -99,13 +94,10 @@ func (o *UpdateAppliesToFunctionParams) WithDefaults() *UpdateAppliesToFunctionP
 // All values with no default are reset to their zero value.
 func (o *UpdateAppliesToFunctionParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		ignoreReferenceDefault = bool(false)
 	)
 
 	val := UpdateAppliesToFunctionParams{
-		UserAgent:       &userAgentDefault,
 		IgnoreReference: &ignoreReferenceDefault,
 	}
 
@@ -146,17 +138,6 @@ func (o *UpdateAppliesToFunctionParams) WithHTTPClient(client *http.Client) *Upd
 // SetHTTPClient adds the HTTPClient to the update applies to function params
 func (o *UpdateAppliesToFunctionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the update applies to function params
-func (o *UpdateAppliesToFunctionParams) WithUserAgent(userAgent *string) *UpdateAppliesToFunctionParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update applies to function params
-func (o *UpdateAppliesToFunctionParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the update applies to function params
@@ -210,14 +191,6 @@ func (o *UpdateAppliesToFunctionParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

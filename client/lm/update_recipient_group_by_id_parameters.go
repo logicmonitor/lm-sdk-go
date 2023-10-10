@@ -62,11 +62,6 @@ func NewUpdateRecipientGroupByIDParamsWithHTTPClient(client *http.Client) *Updat
 */
 type UpdateRecipientGroupByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.RecipientGroup
 
@@ -92,18 +87,7 @@ func (o *UpdateRecipientGroupByIDParams) WithDefaults() *UpdateRecipientGroupByI
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateRecipientGroupByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := UpdateRecipientGroupByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update recipient group by Id params
@@ -139,17 +123,6 @@ func (o *UpdateRecipientGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the update recipient group by Id params
-func (o *UpdateRecipientGroupByIDParams) WithUserAgent(userAgent *string) *UpdateRecipientGroupByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update recipient group by Id params
-func (o *UpdateRecipientGroupByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the update recipient group by Id params
 func (o *UpdateRecipientGroupByIDParams) WithBody(body *models.RecipientGroup) *UpdateRecipientGroupByIDParams {
 	o.SetBody(body)
@@ -179,14 +152,6 @@ func (o *UpdateRecipientGroupByIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

@@ -60,11 +60,6 @@ func NewGetDeviceDatasourceDataByIDParamsWithHTTPClient(client *http.Client) *Ge
 */
 type GetDeviceDatasourceDataByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	/* Aggregate.
 
 	   the aggregate option
@@ -125,8 +120,6 @@ func (o *GetDeviceDatasourceDataByIDParams) WithDefaults() *GetDeviceDatasourceD
 // All values with no default are reset to their zero value.
 func (o *GetDeviceDatasourceDataByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		aggregateDefault = string("none")
 
 		endDefault = int64(0)
@@ -139,7 +132,6 @@ func (o *GetDeviceDatasourceDataByIDParams) SetDefaults() {
 	)
 
 	val := GetDeviceDatasourceDataByIDParams{
-		UserAgent: &userAgentDefault,
 		Aggregate: &aggregateDefault,
 		End:       &endDefault,
 		Format:    &formatDefault,
@@ -184,17 +176,6 @@ func (o *GetDeviceDatasourceDataByIDParams) WithHTTPClient(client *http.Client) 
 // SetHTTPClient adds the HTTPClient to the get device datasource data by Id params
 func (o *GetDeviceDatasourceDataByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device datasource data by Id params
-func (o *GetDeviceDatasourceDataByIDParams) WithUserAgent(userAgent *string) *GetDeviceDatasourceDataByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device datasource data by Id params
-func (o *GetDeviceDatasourceDataByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithAggregate adds the aggregate to the get device datasource data by Id params
@@ -292,14 +273,6 @@ func (o *GetDeviceDatasourceDataByIDParams) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Aggregate != nil {
 

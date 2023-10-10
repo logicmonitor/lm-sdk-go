@@ -60,11 +60,6 @@ func NewGetDeviceDatasourceInstanceAlertSettingListOfDSIParamsWithHTTPClient(cli
 */
 type GetDeviceDatasourceInstanceAlertSettingListOfDSIParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// DeviceID.
 	//
 	// Format: int32
@@ -112,17 +107,14 @@ func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) WithDefaults() 
 // All values with no default are reset to their zero value.
 func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceDatasourceInstanceAlertSettingListOfDSIParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -162,17 +154,6 @@ func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) WithHTTPClient(
 // SetHTTPClient adds the HTTPClient to the get device datasource instance alert setting list of d s i params
 func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device datasource instance alert setting list of d s i params
-func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) WithUserAgent(userAgent *string) *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device datasource instance alert setting list of d s i params
-func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceID adds the deviceID to the get device datasource instance alert setting list of d s i params
@@ -237,14 +218,6 @@ func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) WriteToRequest(
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceId
 	if err := r.SetPathParam("deviceId", swag.FormatInt32(o.DeviceID)); err != nil {

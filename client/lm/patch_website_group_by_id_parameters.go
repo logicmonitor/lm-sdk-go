@@ -62,14 +62,6 @@ func NewPatchWebsiteGroupByIDParamsWithHTTPClient(client *http.Client) *PatchWeb
 */
 type PatchWebsiteGroupByIDParams struct {
 
-	// PatchFields.
-	PatchFields *string
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.WebsiteGroup
 
@@ -101,14 +93,11 @@ func (o *PatchWebsiteGroupByIDParams) WithDefaults() *PatchWebsiteGroupByIDParam
 // All values with no default are reset to their zero value.
 func (o *PatchWebsiteGroupByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		opTypeDefault = string("refresh")
 	)
 
 	val := PatchWebsiteGroupByIDParams{
-		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
+		OpType: &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -148,28 +137,6 @@ func (o *PatchWebsiteGroupByIDParams) WithHTTPClient(client *http.Client) *Patch
 // SetHTTPClient adds the HTTPClient to the patch website group by Id params
 func (o *PatchWebsiteGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithPatchFields adds the patchFields to the patch website group by Id params
-func (o *PatchWebsiteGroupByIDParams) WithPatchFields(patchFields *string) *PatchWebsiteGroupByIDParams {
-	o.SetPatchFields(patchFields)
-	return o
-}
-
-// SetPatchFields adds the patchFields to the patch website group by Id params
-func (o *PatchWebsiteGroupByIDParams) SetPatchFields(patchFields *string) {
-	o.PatchFields = patchFields
-}
-
-// WithUserAgent adds the userAgent to the patch website group by Id params
-func (o *PatchWebsiteGroupByIDParams) WithUserAgent(userAgent *string) *PatchWebsiteGroupByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch website group by Id params
-func (o *PatchWebsiteGroupByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the patch website group by Id params
@@ -212,31 +179,6 @@ func (o *PatchWebsiteGroupByIDParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
-
-	if o.PatchFields != nil {
-
-		// query param PatchFields
-		var qrPatchFields string
-
-		if o.PatchFields != nil {
-			qrPatchFields = *o.PatchFields
-		}
-		qPatchFields := qrPatchFields
-		if qPatchFields != "" {
-
-			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

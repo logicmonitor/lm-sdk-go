@@ -62,11 +62,6 @@ func NewFetchDeviceInstancesDataParamsWithHTTPClient(client *http.Client) *Fetch
 */
 type FetchDeviceInstancesDataParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	/* Aggregate.
 
 	   the aggregate option
@@ -112,8 +107,6 @@ func (o *FetchDeviceInstancesDataParams) WithDefaults() *FetchDeviceInstancesDat
 // All values with no default are reset to their zero value.
 func (o *FetchDeviceInstancesDataParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		aggregateDefault = string("none")
 
 		endDefault = int64(0)
@@ -124,7 +117,6 @@ func (o *FetchDeviceInstancesDataParams) SetDefaults() {
 	)
 
 	val := FetchDeviceInstancesDataParams{
-		UserAgent: &userAgentDefault,
 		Aggregate: &aggregateDefault,
 		End:       &endDefault,
 		Period:    &periodDefault,
@@ -168,17 +160,6 @@ func (o *FetchDeviceInstancesDataParams) WithHTTPClient(client *http.Client) *Fe
 // SetHTTPClient adds the HTTPClient to the fetch device instances data params
 func (o *FetchDeviceInstancesDataParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the fetch device instances data params
-func (o *FetchDeviceInstancesDataParams) WithUserAgent(userAgent *string) *FetchDeviceInstancesDataParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the fetch device instances data params
-func (o *FetchDeviceInstancesDataParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithAggregate adds the aggregate to the fetch device instances data params
@@ -243,14 +224,6 @@ func (o *FetchDeviceInstancesDataParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Aggregate != nil {
 

@@ -60,11 +60,6 @@ func NewGetDeviceConfigSourceConfigByIDParamsWithHTTPClient(client *http.Client)
 */
 type GetDeviceConfigSourceConfigByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// DeviceID.
 	//
 	// Format: int32
@@ -114,15 +109,12 @@ func (o *GetDeviceConfigSourceConfigByIDParams) WithDefaults() *GetDeviceConfigS
 // All values with no default are reset to their zero value.
 func (o *GetDeviceConfigSourceConfigByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		formatDefault = string("json")
 
 		startEpochDefault = int64(0)
 	)
 
 	val := GetDeviceConfigSourceConfigByIDParams{
-		UserAgent:  &userAgentDefault,
 		Format:     &formatDefault,
 		StartEpoch: &startEpochDefault,
 	}
@@ -164,17 +156,6 @@ func (o *GetDeviceConfigSourceConfigByIDParams) WithHTTPClient(client *http.Clie
 // SetHTTPClient adds the HTTPClient to the get device config source config by Id params
 func (o *GetDeviceConfigSourceConfigByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device config source config by Id params
-func (o *GetDeviceConfigSourceConfigByIDParams) WithUserAgent(userAgent *string) *GetDeviceConfigSourceConfigByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device config source config by Id params
-func (o *GetDeviceConfigSourceConfigByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceID adds the deviceID to the get device config source config by Id params
@@ -261,14 +242,6 @@ func (o *GetDeviceConfigSourceConfigByIDParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceId
 	if err := r.SetPathParam("deviceId", swag.FormatInt32(o.DeviceID)); err != nil {

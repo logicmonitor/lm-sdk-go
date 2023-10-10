@@ -62,14 +62,6 @@ func NewPatchDeviceGroupByIDParamsWithHTTPClient(client *http.Client) *PatchDevi
 */
 type PatchDeviceGroupByIDParams struct {
 
-	// PatchFields.
-	PatchFields *string
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.DeviceGroup
 
@@ -77,6 +69,11 @@ type PatchDeviceGroupByIDParams struct {
 	//
 	// Format: int32
 	ID int32
+
+	// OpType.
+	//
+	// Default: "refresh"
+	OpType *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -96,11 +93,11 @@ func (o *PatchDeviceGroupByIDParams) WithDefaults() *PatchDeviceGroupByIDParams 
 // All values with no default are reset to their zero value.
 func (o *PatchDeviceGroupByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
+		opTypeDefault = string("refresh")
 	)
 
 	val := PatchDeviceGroupByIDParams{
-		UserAgent: &userAgentDefault,
+		OpType: &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -142,28 +139,6 @@ func (o *PatchDeviceGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithPatchFields adds the patchFields to the patch device group by Id params
-func (o *PatchDeviceGroupByIDParams) WithPatchFields(patchFields *string) *PatchDeviceGroupByIDParams {
-	o.SetPatchFields(patchFields)
-	return o
-}
-
-// SetPatchFields adds the patchFields to the patch device group by Id params
-func (o *PatchDeviceGroupByIDParams) SetPatchFields(patchFields *string) {
-	o.PatchFields = patchFields
-}
-
-// WithUserAgent adds the userAgent to the patch device group by Id params
-func (o *PatchDeviceGroupByIDParams) WithUserAgent(userAgent *string) *PatchDeviceGroupByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch device group by Id params
-func (o *PatchDeviceGroupByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the patch device group by Id params
 func (o *PatchDeviceGroupByIDParams) WithBody(body *models.DeviceGroup) *PatchDeviceGroupByIDParams {
 	o.SetBody(body)
@@ -186,6 +161,17 @@ func (o *PatchDeviceGroupByIDParams) SetID(id int32) {
 	o.ID = id
 }
 
+// WithOpType adds the opType to the patch device group by Id params
+func (o *PatchDeviceGroupByIDParams) WithOpType(opType *string) *PatchDeviceGroupByIDParams {
+	o.SetOpType(opType)
+	return o
+}
+
+// SetOpType adds the opType to the patch device group by Id params
+func (o *PatchDeviceGroupByIDParams) SetOpType(opType *string) {
+	o.OpType = opType
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PatchDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -193,31 +179,6 @@ func (o *PatchDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, reg
 		return err
 	}
 	var res []error
-
-	if o.PatchFields != nil {
-
-		// query param PatchFields
-		var qrPatchFields string
-
-		if o.PatchFields != nil {
-			qrPatchFields = *o.PatchFields
-		}
-		qPatchFields := qrPatchFields
-		if qPatchFields != "" {
-
-			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
@@ -227,6 +188,23 @@ func (o *PatchDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, reg
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {
 		return err
+	}
+
+	if o.OpType != nil {
+
+		// query param opType
+		var qrOpType string
+
+		if o.OpType != nil {
+			qrOpType = *o.OpType
+		}
+		qOpType := qrOpType
+		if qOpType != "" {
+
+			if err := r.SetQueryParam("opType", qOpType); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

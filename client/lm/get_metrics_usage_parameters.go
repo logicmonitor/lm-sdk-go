@@ -58,12 +58,6 @@ func NewGetMetricsUsageParamsWithHTTPClient(client *http.Client) *GetMetricsUsag
    Typically these are written to a http.Request.
 */
 type GetMetricsUsageParams struct {
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -81,18 +75,7 @@ func (o *GetMetricsUsageParams) WithDefaults() *GetMetricsUsageParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetMetricsUsageParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := GetMetricsUsageParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get metrics usage params
@@ -128,17 +111,6 @@ func (o *GetMetricsUsageParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the get metrics usage params
-func (o *GetMetricsUsageParams) WithUserAgent(userAgent *string) *GetMetricsUsageParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get metrics usage params
-func (o *GetMetricsUsageParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WriteToRequest writes these params to a swagger request
 func (o *GetMetricsUsageParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -146,14 +118,6 @@ func (o *GetMetricsUsageParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)

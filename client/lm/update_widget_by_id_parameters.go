@@ -62,11 +62,6 @@ func NewUpdateWidgetByIDParamsWithHTTPClient(client *http.Client) *UpdateWidgetB
 */
 type UpdateWidgetByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body models.Widget
 
@@ -92,18 +87,7 @@ func (o *UpdateWidgetByIDParams) WithDefaults() *UpdateWidgetByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateWidgetByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := UpdateWidgetByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update widget by Id params
@@ -139,17 +123,6 @@ func (o *UpdateWidgetByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the update widget by Id params
-func (o *UpdateWidgetByIDParams) WithUserAgent(userAgent *string) *UpdateWidgetByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update widget by Id params
-func (o *UpdateWidgetByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the update widget by Id params
 func (o *UpdateWidgetByIDParams) WithBody(body models.Widget) *UpdateWidgetByIDParams {
 	o.SetBody(body)
@@ -179,14 +152,6 @@ func (o *UpdateWidgetByIDParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

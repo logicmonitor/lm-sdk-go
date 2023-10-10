@@ -60,11 +60,6 @@ func NewGetAPITokenListByAdminIDParamsWithHTTPClient(client *http.Client) *GetAP
 */
 type GetAPITokenListByAdminIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// AdminID.
 	//
 	// Format: int32
@@ -105,17 +100,14 @@ func (o *GetAPITokenListByAdminIDParams) WithDefaults() *GetAPITokenListByAdminI
 // All values with no default are reset to their zero value.
 func (o *GetAPITokenListByAdminIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAPITokenListByAdminIDParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -155,17 +147,6 @@ func (o *GetAPITokenListByAdminIDParams) WithHTTPClient(client *http.Client) *Ge
 // SetHTTPClient adds the HTTPClient to the get Api token list by admin Id params
 func (o *GetAPITokenListByAdminIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get Api token list by admin Id params
-func (o *GetAPITokenListByAdminIDParams) WithUserAgent(userAgent *string) *GetAPITokenListByAdminIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get Api token list by admin Id params
-func (o *GetAPITokenListByAdminIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithAdminID adds the adminID to the get Api token list by admin Id params
@@ -230,14 +211,6 @@ func (o *GetAPITokenListByAdminIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param adminId
 	if err := r.SetPathParam("adminId", swag.FormatInt32(o.AdminID)); err != nil {

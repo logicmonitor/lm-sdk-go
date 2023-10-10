@@ -62,11 +62,6 @@ func NewUpdateDeviceGroupClusterAlertConfByIDParamsWithHTTPClient(client *http.C
 */
 type UpdateDeviceGroupClusterAlertConfByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.DeviceClusterAlertConfig
 
@@ -97,18 +92,7 @@ func (o *UpdateDeviceGroupClusterAlertConfByIDParams) WithDefaults() *UpdateDevi
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateDeviceGroupClusterAlertConfByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := UpdateDeviceGroupClusterAlertConfByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update device group cluster alert conf by Id params
@@ -142,17 +126,6 @@ func (o *UpdateDeviceGroupClusterAlertConfByIDParams) WithHTTPClient(client *htt
 // SetHTTPClient adds the HTTPClient to the update device group cluster alert conf by Id params
 func (o *UpdateDeviceGroupClusterAlertConfByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the update device group cluster alert conf by Id params
-func (o *UpdateDeviceGroupClusterAlertConfByIDParams) WithUserAgent(userAgent *string) *UpdateDeviceGroupClusterAlertConfByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update device group cluster alert conf by Id params
-func (o *UpdateDeviceGroupClusterAlertConfByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the update device group cluster alert conf by Id params
@@ -195,14 +168,6 @@ func (o *UpdateDeviceGroupClusterAlertConfByIDParams) WriteToRequest(r runtime.C
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

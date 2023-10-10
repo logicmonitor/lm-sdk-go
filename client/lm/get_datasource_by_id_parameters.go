@@ -60,11 +60,6 @@ func NewGetDatasourceByIDParamsWithHTTPClient(client *http.Client) *GetDatasourc
 */
 type GetDatasourceByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Fields.
 	Fields *string
 
@@ -96,14 +91,11 @@ func (o *GetDatasourceByIDParams) WithDefaults() *GetDatasourceByIDParams {
 // All values with no default are reset to their zero value.
 func (o *GetDatasourceByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		formatDefault = string("json")
 	)
 
 	val := GetDatasourceByIDParams{
-		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
+		Format: &formatDefault,
 	}
 
 	val.timeout = o.timeout
@@ -143,17 +135,6 @@ func (o *GetDatasourceByIDParams) WithHTTPClient(client *http.Client) *GetDataso
 // SetHTTPClient adds the HTTPClient to the get datasource by Id params
 func (o *GetDatasourceByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get datasource by Id params
-func (o *GetDatasourceByIDParams) WithUserAgent(userAgent *string) *GetDatasourceByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get datasource by Id params
-func (o *GetDatasourceByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get datasource by Id params
@@ -196,14 +177,6 @@ func (o *GetDatasourceByIDParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

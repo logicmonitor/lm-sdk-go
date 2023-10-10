@@ -59,11 +59,6 @@ func NewImportDNSMappingParamsWithHTTPClient(client *http.Client) *ImportDNSMapp
 */
 type ImportDNSMappingParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	/* File.
 
 	   the csv mapping to be uploaded
@@ -87,18 +82,7 @@ func (o *ImportDNSMappingParams) WithDefaults() *ImportDNSMappingParams {
 //
 // All values with no default are reset to their zero value.
 func (o *ImportDNSMappingParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := ImportDNSMappingParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the import DNS mapping params
@@ -134,17 +118,6 @@ func (o *ImportDNSMappingParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the import DNS mapping params
-func (o *ImportDNSMappingParams) WithUserAgent(userAgent *string) *ImportDNSMappingParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the import DNS mapping params
-func (o *ImportDNSMappingParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithFile adds the file to the import DNS mapping params
 func (o *ImportDNSMappingParams) WithFile(file runtime.NamedReadCloser) *ImportDNSMappingParams {
 	o.SetFile(file)
@@ -163,14 +136,6 @@ func (o *ImportDNSMappingParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	// form file param file
 	if err := r.SetFileParam("file", o.File); err != nil {
 		return err

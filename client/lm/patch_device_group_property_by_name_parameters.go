@@ -62,14 +62,6 @@ func NewPatchDeviceGroupPropertyByNameParamsWithHTTPClient(client *http.Client) 
 */
 type PatchDeviceGroupPropertyByNameParams struct {
 
-	// PatchFields.
-	PatchFields *string
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.EntityProperty
 
@@ -101,18 +93,7 @@ func (o *PatchDeviceGroupPropertyByNameParams) WithDefaults() *PatchDeviceGroupP
 //
 // All values with no default are reset to their zero value.
 func (o *PatchDeviceGroupPropertyByNameParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := PatchDeviceGroupPropertyByNameParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch device group property by name params
@@ -146,28 +127,6 @@ func (o *PatchDeviceGroupPropertyByNameParams) WithHTTPClient(client *http.Clien
 // SetHTTPClient adds the HTTPClient to the patch device group property by name params
 func (o *PatchDeviceGroupPropertyByNameParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithPatchFields adds the patchFields to the patch device group property by name params
-func (o *PatchDeviceGroupPropertyByNameParams) WithPatchFields(patchFields *string) *PatchDeviceGroupPropertyByNameParams {
-	o.SetPatchFields(patchFields)
-	return o
-}
-
-// SetPatchFields adds the patchFields to the patch device group property by name params
-func (o *PatchDeviceGroupPropertyByNameParams) SetPatchFields(patchFields *string) {
-	o.PatchFields = patchFields
-}
-
-// WithUserAgent adds the userAgent to the patch device group property by name params
-func (o *PatchDeviceGroupPropertyByNameParams) WithUserAgent(userAgent *string) *PatchDeviceGroupPropertyByNameParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch device group property by name params
-func (o *PatchDeviceGroupPropertyByNameParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the patch device group property by name params
@@ -210,31 +169,6 @@ func (o *PatchDeviceGroupPropertyByNameParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 	var res []error
-
-	if o.PatchFields != nil {
-
-		// query param PatchFields
-		var qrPatchFields string
-
-		if o.PatchFields != nil {
-			qrPatchFields = *o.PatchFields
-		}
-		qPatchFields := qrPatchFields
-		if qPatchFields != "" {
-
-			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

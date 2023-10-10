@@ -62,14 +62,6 @@ func NewPatchDashboardGroupByIDParamsWithHTTPClient(client *http.Client) *PatchD
 */
 type PatchDashboardGroupByIDParams struct {
 
-	// PatchFields.
-	PatchFields *string
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.DashboardGroup
 
@@ -95,18 +87,7 @@ func (o *PatchDashboardGroupByIDParams) WithDefaults() *PatchDashboardGroupByIDP
 //
 // All values with no default are reset to their zero value.
 func (o *PatchDashboardGroupByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := PatchDashboardGroupByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch dashboard group by Id params
@@ -142,28 +123,6 @@ func (o *PatchDashboardGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithPatchFields adds the patchFields to the patch dashboard group by Id params
-func (o *PatchDashboardGroupByIDParams) WithPatchFields(patchFields *string) *PatchDashboardGroupByIDParams {
-	o.SetPatchFields(patchFields)
-	return o
-}
-
-// SetPatchFields adds the patchFields to the patch dashboard group by Id params
-func (o *PatchDashboardGroupByIDParams) SetPatchFields(patchFields *string) {
-	o.PatchFields = patchFields
-}
-
-// WithUserAgent adds the userAgent to the patch dashboard group by Id params
-func (o *PatchDashboardGroupByIDParams) WithUserAgent(userAgent *string) *PatchDashboardGroupByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch dashboard group by Id params
-func (o *PatchDashboardGroupByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the patch dashboard group by Id params
 func (o *PatchDashboardGroupByIDParams) WithBody(body *models.DashboardGroup) *PatchDashboardGroupByIDParams {
 	o.SetBody(body)
@@ -193,31 +152,6 @@ func (o *PatchDashboardGroupByIDParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
-	if o.PatchFields != nil {
-
-		// query param PatchFields
-		var qrPatchFields string
-
-		if o.PatchFields != nil {
-			qrPatchFields = *o.PatchFields
-		}
-		qPatchFields := qrPatchFields
-		if qPatchFields != "" {
-
-			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

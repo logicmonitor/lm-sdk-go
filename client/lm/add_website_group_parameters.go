@@ -61,11 +61,6 @@ func NewAddWebsiteGroupParamsWithHTTPClient(client *http.Client) *AddWebsiteGrou
 */
 type AddWebsiteGroupParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.WebsiteGroup
 
@@ -86,18 +81,7 @@ func (o *AddWebsiteGroupParams) WithDefaults() *AddWebsiteGroupParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddWebsiteGroupParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := AddWebsiteGroupParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add website group params
@@ -133,17 +117,6 @@ func (o *AddWebsiteGroupParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the add website group params
-func (o *AddWebsiteGroupParams) WithUserAgent(userAgent *string) *AddWebsiteGroupParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the add website group params
-func (o *AddWebsiteGroupParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the add website group params
 func (o *AddWebsiteGroupParams) WithBody(body *models.WebsiteGroup) *AddWebsiteGroupParams {
 	o.SetBody(body)
@@ -162,14 +135,6 @@ func (o *AddWebsiteGroupParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

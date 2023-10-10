@@ -60,11 +60,6 @@ func NewGetDeviceGroupListParamsWithHTTPClient(client *http.Client) *GetDeviceGr
 */
 type GetDeviceGroupListParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Fields.
 	Fields *string
 
@@ -100,17 +95,14 @@ func (o *GetDeviceGroupListParams) WithDefaults() *GetDeviceGroupListParams {
 // All values with no default are reset to their zero value.
 func (o *GetDeviceGroupListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceGroupListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,17 +142,6 @@ func (o *GetDeviceGroupListParams) WithHTTPClient(client *http.Client) *GetDevic
 // SetHTTPClient adds the HTTPClient to the get device group list params
 func (o *GetDeviceGroupListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device group list params
-func (o *GetDeviceGroupListParams) WithUserAgent(userAgent *string) *GetDeviceGroupListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device group list params
-func (o *GetDeviceGroupListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get device group list params
@@ -214,14 +195,6 @@ func (o *GetDeviceGroupListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

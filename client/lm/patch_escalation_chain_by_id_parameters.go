@@ -62,14 +62,6 @@ func NewPatchEscalationChainByIDParamsWithHTTPClient(client *http.Client) *Patch
 */
 type PatchEscalationChainByIDParams struct {
 
-	// PatchFields.
-	PatchFields *string
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.EscalatingChain
 
@@ -95,18 +87,7 @@ func (o *PatchEscalationChainByIDParams) WithDefaults() *PatchEscalationChainByI
 //
 // All values with no default are reset to their zero value.
 func (o *PatchEscalationChainByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := PatchEscalationChainByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch escalation chain by Id params
@@ -142,28 +123,6 @@ func (o *PatchEscalationChainByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithPatchFields adds the patchFields to the patch escalation chain by Id params
-func (o *PatchEscalationChainByIDParams) WithPatchFields(patchFields *string) *PatchEscalationChainByIDParams {
-	o.SetPatchFields(patchFields)
-	return o
-}
-
-// SetPatchFields adds the patchFields to the patch escalation chain by Id params
-func (o *PatchEscalationChainByIDParams) SetPatchFields(patchFields *string) {
-	o.PatchFields = patchFields
-}
-
-// WithUserAgent adds the userAgent to the patch escalation chain by Id params
-func (o *PatchEscalationChainByIDParams) WithUserAgent(userAgent *string) *PatchEscalationChainByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch escalation chain by Id params
-func (o *PatchEscalationChainByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the patch escalation chain by Id params
 func (o *PatchEscalationChainByIDParams) WithBody(body *models.EscalatingChain) *PatchEscalationChainByIDParams {
 	o.SetBody(body)
@@ -193,31 +152,6 @@ func (o *PatchEscalationChainByIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
-	if o.PatchFields != nil {
-
-		// query param PatchFields
-		var qrPatchFields string
-
-		if o.PatchFields != nil {
-			qrPatchFields = *o.PatchFields
-		}
-		qPatchFields := qrPatchFields
-		if qPatchFields != "" {
-
-			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

@@ -60,11 +60,6 @@ func NewDeleteDeviceGroupClusterAlertConfByIDParamsWithHTTPClient(client *http.C
 */
 type DeleteDeviceGroupClusterAlertConfByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// DeviceGroupID.
 	//
 	// Format: int32
@@ -92,18 +87,7 @@ func (o *DeleteDeviceGroupClusterAlertConfByIDParams) WithDefaults() *DeleteDevi
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteDeviceGroupClusterAlertConfByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := DeleteDeviceGroupClusterAlertConfByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete device group cluster alert conf by Id params
@@ -139,17 +123,6 @@ func (o *DeleteDeviceGroupClusterAlertConfByIDParams) SetHTTPClient(client *http
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the delete device group cluster alert conf by Id params
-func (o *DeleteDeviceGroupClusterAlertConfByIDParams) WithUserAgent(userAgent *string) *DeleteDeviceGroupClusterAlertConfByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the delete device group cluster alert conf by Id params
-func (o *DeleteDeviceGroupClusterAlertConfByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithDeviceGroupID adds the deviceGroupID to the delete device group cluster alert conf by Id params
 func (o *DeleteDeviceGroupClusterAlertConfByIDParams) WithDeviceGroupID(deviceGroupID int32) *DeleteDeviceGroupClusterAlertConfByIDParams {
 	o.SetDeviceGroupID(deviceGroupID)
@@ -179,14 +152,6 @@ func (o *DeleteDeviceGroupClusterAlertConfByIDParams) WriteToRequest(r runtime.C
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceGroupId
 	if err := r.SetPathParam("deviceGroupId", swag.FormatInt32(o.DeviceGroupID)); err != nil {

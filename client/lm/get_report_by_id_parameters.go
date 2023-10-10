@@ -60,11 +60,6 @@ func NewGetReportByIDParamsWithHTTPClient(client *http.Client) *GetReportByIDPar
 */
 type GetReportByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Fields.
 	Fields *string
 
@@ -90,18 +85,7 @@ func (o *GetReportByIDParams) WithDefaults() *GetReportByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetReportByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := GetReportByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get report by Id params
@@ -137,17 +121,6 @@ func (o *GetReportByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the get report by Id params
-func (o *GetReportByIDParams) WithUserAgent(userAgent *string) *GetReportByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get report by Id params
-func (o *GetReportByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithFields adds the fields to the get report by Id params
 func (o *GetReportByIDParams) WithFields(fields *string) *GetReportByIDParams {
 	o.SetFields(fields)
@@ -177,14 +150,6 @@ func (o *GetReportByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

@@ -60,11 +60,6 @@ func NewGetDeviceDatasourceInstanceGroupOverviewGraphDataParamsWithHTTPClient(cl
 */
 type GetDeviceDatasourceInstanceGroupOverviewGraphDataParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	/* DeviceDsID.
 
 	   The device-datasource ID you'd like to add an instance group for
@@ -118,18 +113,7 @@ func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataParams) WithDefaults()
 //
 // All values with no default are reset to their zero value.
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := GetDeviceDatasourceInstanceGroupOverviewGraphDataParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get device datasource instance group overview graph data params
@@ -163,17 +147,6 @@ func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataParams) WithHTTPClient
 // SetHTTPClient adds the HTTPClient to the get device datasource instance group overview graph data params
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device datasource instance group overview graph data params
-func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataParams) WithUserAgent(userAgent *string) *GetDeviceDatasourceInstanceGroupOverviewGraphDataParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device datasource instance group overview graph data params
-func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceDsID adds the deviceDsID to the get device datasource instance group overview graph data params
@@ -260,14 +233,6 @@ func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataParams) WriteToRequest
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceDsId
 	if err := r.SetPathParam("deviceDsId", swag.FormatInt32(o.DeviceDsID)); err != nil {

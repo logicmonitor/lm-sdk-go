@@ -60,11 +60,6 @@ func NewDeleteDevicePropertyByNameParamsWithHTTPClient(client *http.Client) *Del
 */
 type DeleteDevicePropertyByNameParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// DeviceID.
 	//
 	// Format: int32
@@ -90,18 +85,7 @@ func (o *DeleteDevicePropertyByNameParams) WithDefaults() *DeleteDevicePropertyB
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteDevicePropertyByNameParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := DeleteDevicePropertyByNameParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete device property by name params
@@ -137,17 +121,6 @@ func (o *DeleteDevicePropertyByNameParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the delete device property by name params
-func (o *DeleteDevicePropertyByNameParams) WithUserAgent(userAgent *string) *DeleteDevicePropertyByNameParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the delete device property by name params
-func (o *DeleteDevicePropertyByNameParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithDeviceID adds the deviceID to the delete device property by name params
 func (o *DeleteDevicePropertyByNameParams) WithDeviceID(deviceID int32) *DeleteDevicePropertyByNameParams {
 	o.SetDeviceID(deviceID)
@@ -177,14 +150,6 @@ func (o *DeleteDevicePropertyByNameParams) WriteToRequest(r runtime.ClientReques
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceId
 	if err := r.SetPathParam("deviceId", swag.FormatInt32(o.DeviceID)); err != nil {

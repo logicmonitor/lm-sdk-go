@@ -62,11 +62,6 @@ func NewExecuteDebugCommandParamsWithHTTPClient(client *http.Client) *ExecuteDeb
 */
 type ExecuteDebugCommandParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.Debug
 
@@ -94,13 +89,10 @@ func (o *ExecuteDebugCommandParams) WithDefaults() *ExecuteDebugCommandParams {
 // All values with no default are reset to their zero value.
 func (o *ExecuteDebugCommandParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		collectorIDDefault = int32(-1)
 	)
 
 	val := ExecuteDebugCommandParams{
-		UserAgent:   &userAgentDefault,
 		CollectorID: &collectorIDDefault,
 	}
 
@@ -143,17 +135,6 @@ func (o *ExecuteDebugCommandParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the execute debug command params
-func (o *ExecuteDebugCommandParams) WithUserAgent(userAgent *string) *ExecuteDebugCommandParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the execute debug command params
-func (o *ExecuteDebugCommandParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the execute debug command params
 func (o *ExecuteDebugCommandParams) WithBody(body *models.Debug) *ExecuteDebugCommandParams {
 	o.SetBody(body)
@@ -183,14 +164,6 @@ func (o *ExecuteDebugCommandParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

@@ -60,11 +60,6 @@ func NewGetNetflowEndpointListParamsWithHTTPClient(client *http.Client) *GetNetf
 */
 type GetNetflowEndpointListParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// End.
 	//
 	// Format: int64
@@ -121,17 +116,14 @@ func (o *GetNetflowEndpointListParams) WithDefaults() *GetNetflowEndpointListPar
 // All values with no default are reset to their zero value.
 func (o *GetNetflowEndpointListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetNetflowEndpointListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -171,17 +163,6 @@ func (o *GetNetflowEndpointListParams) WithHTTPClient(client *http.Client) *GetN
 // SetHTTPClient adds the HTTPClient to the get netflow endpoint list params
 func (o *GetNetflowEndpointListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get netflow endpoint list params
-func (o *GetNetflowEndpointListParams) WithUserAgent(userAgent *string) *GetNetflowEndpointListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get netflow endpoint list params
-func (o *GetNetflowEndpointListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithEnd adds the end to the get netflow endpoint list params
@@ -290,14 +271,6 @@ func (o *GetNetflowEndpointListParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.End != nil {
 

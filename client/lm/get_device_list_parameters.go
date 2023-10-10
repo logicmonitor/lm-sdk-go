@@ -60,11 +60,6 @@ func NewGetDeviceListParamsWithHTTPClient(client *http.Client) *GetDeviceListPar
 */
 type GetDeviceListParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// End.
 	//
 	// Format: int64
@@ -113,17 +108,14 @@ func (o *GetDeviceListParams) WithDefaults() *GetDeviceListParams {
 // All values with no default are reset to their zero value.
 func (o *GetDeviceListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -163,17 +155,6 @@ func (o *GetDeviceListParams) WithHTTPClient(client *http.Client) *GetDeviceList
 // SetHTTPClient adds the HTTPClient to the get device list params
 func (o *GetDeviceListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device list params
-func (o *GetDeviceListParams) WithUserAgent(userAgent *string) *GetDeviceListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device list params
-func (o *GetDeviceListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithEnd adds the end to the get device list params
@@ -260,14 +241,6 @@ func (o *GetDeviceListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.End != nil {
 

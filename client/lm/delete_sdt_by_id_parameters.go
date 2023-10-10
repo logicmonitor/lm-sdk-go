@@ -59,11 +59,6 @@ func NewDeleteSDTByIDParamsWithHTTPClient(client *http.Client) *DeleteSDTByIDPar
 */
 type DeleteSDTByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// ID.
 	ID string
 
@@ -84,18 +79,7 @@ func (o *DeleteSDTByIDParams) WithDefaults() *DeleteSDTByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteSDTByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := DeleteSDTByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete SDT by Id params
@@ -131,17 +115,6 @@ func (o *DeleteSDTByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the delete SDT by Id params
-func (o *DeleteSDTByIDParams) WithUserAgent(userAgent *string) *DeleteSDTByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the delete SDT by Id params
-func (o *DeleteSDTByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithID adds the id to the delete SDT by Id params
 func (o *DeleteSDTByIDParams) WithID(id string) *DeleteSDTByIDParams {
 	o.SetID(id)
@@ -160,14 +133,6 @@ func (o *DeleteSDTByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param id
 	if err := r.SetPathParam("id", o.ID); err != nil {

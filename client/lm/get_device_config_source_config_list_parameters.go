@@ -60,11 +60,6 @@ func NewGetDeviceConfigSourceConfigListParamsWithHTTPClient(client *http.Client)
 */
 type GetDeviceConfigSourceConfigListParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// DeviceID.
 	//
 	// Format: int32
@@ -115,17 +110,14 @@ func (o *GetDeviceConfigSourceConfigListParams) WithDefaults() *GetDeviceConfigS
 // All values with no default are reset to their zero value.
 func (o *GetDeviceConfigSourceConfigListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceConfigSourceConfigListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -165,17 +157,6 @@ func (o *GetDeviceConfigSourceConfigListParams) WithHTTPClient(client *http.Clie
 // SetHTTPClient adds the HTTPClient to the get device config source config list params
 func (o *GetDeviceConfigSourceConfigListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device config source config list params
-func (o *GetDeviceConfigSourceConfigListParams) WithUserAgent(userAgent *string) *GetDeviceConfigSourceConfigListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device config source config list params
-func (o *GetDeviceConfigSourceConfigListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceID adds the deviceID to the get device config source config list params
@@ -262,14 +243,6 @@ func (o *GetDeviceConfigSourceConfigListParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceId
 	if err := r.SetPathParam("deviceId", swag.FormatInt32(o.DeviceID)); err != nil {

@@ -59,11 +59,6 @@ func NewImportBatchJobParamsWithHTTPClient(client *http.Client) *ImportBatchJobP
 */
 type ImportBatchJobParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// File.
 	File runtime.NamedReadCloser
 
@@ -84,18 +79,7 @@ func (o *ImportBatchJobParams) WithDefaults() *ImportBatchJobParams {
 //
 // All values with no default are reset to their zero value.
 func (o *ImportBatchJobParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := ImportBatchJobParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the import batch job params
@@ -131,17 +115,6 @@ func (o *ImportBatchJobParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the import batch job params
-func (o *ImportBatchJobParams) WithUserAgent(userAgent *string) *ImportBatchJobParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the import batch job params
-func (o *ImportBatchJobParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithFile adds the file to the import batch job params
 func (o *ImportBatchJobParams) WithFile(file runtime.NamedReadCloser) *ImportBatchJobParams {
 	o.SetFile(file)
@@ -160,14 +133,6 @@ func (o *ImportBatchJobParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	// form file param file
 	if err := r.SetFileParam("file", o.File); err != nil {
 		return err

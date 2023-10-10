@@ -62,11 +62,6 @@ func NewAddDeviceGroupClusterAlertConfParamsWithHTTPClient(client *http.Client) 
 */
 type AddDeviceGroupClusterAlertConfParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.DeviceClusterAlertConfig
 
@@ -92,18 +87,7 @@ func (o *AddDeviceGroupClusterAlertConfParams) WithDefaults() *AddDeviceGroupClu
 //
 // All values with no default are reset to their zero value.
 func (o *AddDeviceGroupClusterAlertConfParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := AddDeviceGroupClusterAlertConfParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add device group cluster alert conf params
@@ -139,17 +123,6 @@ func (o *AddDeviceGroupClusterAlertConfParams) SetHTTPClient(client *http.Client
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the add device group cluster alert conf params
-func (o *AddDeviceGroupClusterAlertConfParams) WithUserAgent(userAgent *string) *AddDeviceGroupClusterAlertConfParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the add device group cluster alert conf params
-func (o *AddDeviceGroupClusterAlertConfParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the add device group cluster alert conf params
 func (o *AddDeviceGroupClusterAlertConfParams) WithBody(body *models.DeviceClusterAlertConfig) *AddDeviceGroupClusterAlertConfParams {
 	o.SetBody(body)
@@ -179,14 +152,6 @@ func (o *AddDeviceGroupClusterAlertConfParams) WriteToRequest(r runtime.ClientRe
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

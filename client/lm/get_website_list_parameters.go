@@ -60,11 +60,6 @@ func NewGetWebsiteListParamsWithHTTPClient(client *http.Client) *GetWebsiteListP
 */
 type GetWebsiteListParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// CollectorIds.
 	CollectorIds *string
 
@@ -103,17 +98,14 @@ func (o *GetWebsiteListParams) WithDefaults() *GetWebsiteListParams {
 // All values with no default are reset to their zero value.
 func (o *GetWebsiteListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetWebsiteListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -153,17 +145,6 @@ func (o *GetWebsiteListParams) WithHTTPClient(client *http.Client) *GetWebsiteLi
 // SetHTTPClient adds the HTTPClient to the get website list params
 func (o *GetWebsiteListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get website list params
-func (o *GetWebsiteListParams) WithUserAgent(userAgent *string) *GetWebsiteListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get website list params
-func (o *GetWebsiteListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithCollectorIds adds the collectorIds to the get website list params
@@ -228,14 +209,6 @@ func (o *GetWebsiteListParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.CollectorIds != nil {
 

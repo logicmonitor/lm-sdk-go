@@ -60,11 +60,6 @@ func NewGetAssociatedDeviceListByDataSourceIDParamsWithHTTPClient(client *http.C
 */
 type GetAssociatedDeviceListByDataSourceIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Fields.
 	Fields *string
 
@@ -105,17 +100,14 @@ func (o *GetAssociatedDeviceListByDataSourceIDParams) WithDefaults() *GetAssocia
 // All values with no default are reset to their zero value.
 func (o *GetAssociatedDeviceListByDataSourceIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAssociatedDeviceListByDataSourceIDParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -155,17 +147,6 @@ func (o *GetAssociatedDeviceListByDataSourceIDParams) WithHTTPClient(client *htt
 // SetHTTPClient adds the HTTPClient to the get associated device list by data source Id params
 func (o *GetAssociatedDeviceListByDataSourceIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get associated device list by data source Id params
-func (o *GetAssociatedDeviceListByDataSourceIDParams) WithUserAgent(userAgent *string) *GetAssociatedDeviceListByDataSourceIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get associated device list by data source Id params
-func (o *GetAssociatedDeviceListByDataSourceIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get associated device list by data source Id params
@@ -230,14 +211,6 @@ func (o *GetAssociatedDeviceListByDataSourceIDParams) WriteToRequest(r runtime.C
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

@@ -60,11 +60,6 @@ func NewGetAlertListByDeviceGroupIDParamsWithHTTPClient(client *http.Client) *Ge
 */
 type GetAlertListByDeviceGroupIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// CustomColumns.
 	CustomColumns *string
 
@@ -111,8 +106,6 @@ func (o *GetAlertListByDeviceGroupIDParams) WithDefaults() *GetAlertListByDevice
 // All values with no default are reset to their zero value.
 func (o *GetAlertListByDeviceGroupIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		needMessageDefault = bool(false)
 
 		offsetDefault = int32(0)
@@ -121,7 +114,6 @@ func (o *GetAlertListByDeviceGroupIDParams) SetDefaults() {
 	)
 
 	val := GetAlertListByDeviceGroupIDParams{
-		UserAgent:   &userAgentDefault,
 		NeedMessage: &needMessageDefault,
 		Offset:      &offsetDefault,
 		Size:        &sizeDefault,
@@ -164,17 +156,6 @@ func (o *GetAlertListByDeviceGroupIDParams) WithHTTPClient(client *http.Client) 
 // SetHTTPClient adds the HTTPClient to the get alert list by device group Id params
 func (o *GetAlertListByDeviceGroupIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get alert list by device group Id params
-func (o *GetAlertListByDeviceGroupIDParams) WithUserAgent(userAgent *string) *GetAlertListByDeviceGroupIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get alert list by device group Id params
-func (o *GetAlertListByDeviceGroupIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithCustomColumns adds the customColumns to the get alert list by device group Id params
@@ -261,14 +242,6 @@ func (o *GetAlertListByDeviceGroupIDParams) WriteToRequest(r runtime.ClientReque
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.CustomColumns != nil {
 

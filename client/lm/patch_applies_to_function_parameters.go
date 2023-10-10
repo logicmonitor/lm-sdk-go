@@ -62,14 +62,6 @@ func NewPatchAppliesToFunctionParamsWithHTTPClient(client *http.Client) *PatchAp
 */
 type PatchAppliesToFunctionParams struct {
 
-	// PatchFields.
-	PatchFields *string
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.AppliesToFunction
 
@@ -102,13 +94,10 @@ func (o *PatchAppliesToFunctionParams) WithDefaults() *PatchAppliesToFunctionPar
 // All values with no default are reset to their zero value.
 func (o *PatchAppliesToFunctionParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		ignoreReferenceDefault = bool(false)
 	)
 
 	val := PatchAppliesToFunctionParams{
-		UserAgent:       &userAgentDefault,
 		IgnoreReference: &ignoreReferenceDefault,
 	}
 
@@ -149,28 +138,6 @@ func (o *PatchAppliesToFunctionParams) WithHTTPClient(client *http.Client) *Patc
 // SetHTTPClient adds the HTTPClient to the patch applies to function params
 func (o *PatchAppliesToFunctionParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithPatchFields adds the patchFields to the patch applies to function params
-func (o *PatchAppliesToFunctionParams) WithPatchFields(patchFields *string) *PatchAppliesToFunctionParams {
-	o.SetPatchFields(patchFields)
-	return o
-}
-
-// SetPatchFields adds the patchFields to the patch applies to function params
-func (o *PatchAppliesToFunctionParams) SetPatchFields(patchFields *string) {
-	o.PatchFields = patchFields
-}
-
-// WithUserAgent adds the userAgent to the patch applies to function params
-func (o *PatchAppliesToFunctionParams) WithUserAgent(userAgent *string) *PatchAppliesToFunctionParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch applies to function params
-func (o *PatchAppliesToFunctionParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the patch applies to function params
@@ -224,31 +191,6 @@ func (o *PatchAppliesToFunctionParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
-
-	if o.PatchFields != nil {
-
-		// query param PatchFields
-		var qrPatchFields string
-
-		if o.PatchFields != nil {
-			qrPatchFields = *o.PatchFields
-		}
-		qPatchFields := qrPatchFields
-		if qPatchFields != "" {
-
-			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

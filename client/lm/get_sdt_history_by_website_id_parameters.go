@@ -60,11 +60,6 @@ func NewGetSDTHistoryByWebsiteIDParamsWithHTTPClient(client *http.Client) *GetSD
 */
 type GetSDTHistoryByWebsiteIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Fields.
 	Fields *string
 
@@ -105,17 +100,14 @@ func (o *GetSDTHistoryByWebsiteIDParams) WithDefaults() *GetSDTHistoryByWebsiteI
 // All values with no default are reset to their zero value.
 func (o *GetSDTHistoryByWebsiteIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetSDTHistoryByWebsiteIDParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -155,17 +147,6 @@ func (o *GetSDTHistoryByWebsiteIDParams) WithHTTPClient(client *http.Client) *Ge
 // SetHTTPClient adds the HTTPClient to the get SDT history by website Id params
 func (o *GetSDTHistoryByWebsiteIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get SDT history by website Id params
-func (o *GetSDTHistoryByWebsiteIDParams) WithUserAgent(userAgent *string) *GetSDTHistoryByWebsiteIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get SDT history by website Id params
-func (o *GetSDTHistoryByWebsiteIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get SDT history by website Id params
@@ -230,14 +211,6 @@ func (o *GetSDTHistoryByWebsiteIDParams) WriteToRequest(r runtime.ClientRequest,
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

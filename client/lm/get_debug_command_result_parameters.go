@@ -60,11 +60,6 @@ func NewGetDebugCommandResultParamsWithHTTPClient(client *http.Client) *GetDebug
 */
 type GetDebugCommandResultParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// CollectorID.
 	//
 	// Format: int32
@@ -92,13 +87,10 @@ func (o *GetDebugCommandResultParams) WithDefaults() *GetDebugCommandResultParam
 // All values with no default are reset to their zero value.
 func (o *GetDebugCommandResultParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		collectorIDDefault = int32(-1)
 	)
 
 	val := GetDebugCommandResultParams{
-		UserAgent:   &userAgentDefault,
 		CollectorID: &collectorIDDefault,
 	}
 
@@ -141,17 +133,6 @@ func (o *GetDebugCommandResultParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the get debug command result params
-func (o *GetDebugCommandResultParams) WithUserAgent(userAgent *string) *GetDebugCommandResultParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get debug command result params
-func (o *GetDebugCommandResultParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithCollectorID adds the collectorID to the get debug command result params
 func (o *GetDebugCommandResultParams) WithCollectorID(collectorID *int32) *GetDebugCommandResultParams {
 	o.SetCollectorID(collectorID)
@@ -181,14 +162,6 @@ func (o *GetDebugCommandResultParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.CollectorID != nil {
 

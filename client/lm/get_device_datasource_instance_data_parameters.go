@@ -60,11 +60,6 @@ func NewGetDeviceDatasourceInstanceDataParamsWithHTTPClient(client *http.Client)
 */
 type GetDeviceDatasourceInstanceDataParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Datapoints.
 	Datapoints *string
 
@@ -125,8 +120,6 @@ func (o *GetDeviceDatasourceInstanceDataParams) WithDefaults() *GetDeviceDatasou
 // All values with no default are reset to their zero value.
 func (o *GetDeviceDatasourceInstanceDataParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		endDefault = int64(0)
 
 		formatDefault = string("json")
@@ -137,11 +130,10 @@ func (o *GetDeviceDatasourceInstanceDataParams) SetDefaults() {
 	)
 
 	val := GetDeviceDatasourceInstanceDataParams{
-		UserAgent: &userAgentDefault,
-		End:       &endDefault,
-		Format:    &formatDefault,
-		Period:    &periodDefault,
-		Start:     &startDefault,
+		End:    &endDefault,
+		Format: &formatDefault,
+		Period: &periodDefault,
+		Start:  &startDefault,
 	}
 
 	val.timeout = o.timeout
@@ -181,17 +173,6 @@ func (o *GetDeviceDatasourceInstanceDataParams) WithHTTPClient(client *http.Clie
 // SetHTTPClient adds the HTTPClient to the get device datasource instance data params
 func (o *GetDeviceDatasourceInstanceDataParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device datasource instance data params
-func (o *GetDeviceDatasourceInstanceDataParams) WithUserAgent(userAgent *string) *GetDeviceDatasourceInstanceDataParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device datasource instance data params
-func (o *GetDeviceDatasourceInstanceDataParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDatapoints adds the datapoints to the get device datasource instance data params
@@ -289,14 +270,6 @@ func (o *GetDeviceDatasourceInstanceDataParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Datapoints != nil {
 

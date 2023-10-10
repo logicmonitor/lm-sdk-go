@@ -62,14 +62,6 @@ func NewPatchNetscanParamsWithHTTPClient(client *http.Client) *PatchNetscanParam
 */
 type PatchNetscanParams struct {
 
-	// PatchFields.
-	PatchFields *string
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body models.Netscan
 
@@ -98,18 +90,7 @@ func (o *PatchNetscanParams) WithDefaults() *PatchNetscanParams {
 //
 // All values with no default are reset to their zero value.
 func (o *PatchNetscanParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := PatchNetscanParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the patch netscan params
@@ -143,28 +124,6 @@ func (o *PatchNetscanParams) WithHTTPClient(client *http.Client) *PatchNetscanPa
 // SetHTTPClient adds the HTTPClient to the patch netscan params
 func (o *PatchNetscanParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithPatchFields adds the patchFields to the patch netscan params
-func (o *PatchNetscanParams) WithPatchFields(patchFields *string) *PatchNetscanParams {
-	o.SetPatchFields(patchFields)
-	return o
-}
-
-// SetPatchFields adds the patchFields to the patch netscan params
-func (o *PatchNetscanParams) SetPatchFields(patchFields *string) {
-	o.PatchFields = patchFields
-}
-
-// WithUserAgent adds the userAgent to the patch netscan params
-func (o *PatchNetscanParams) WithUserAgent(userAgent *string) *PatchNetscanParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch netscan params
-func (o *PatchNetscanParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the patch netscan params
@@ -207,31 +166,6 @@ func (o *PatchNetscanParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		return err
 	}
 	var res []error
-
-	if o.PatchFields != nil {
-
-		// query param PatchFields
-		var qrPatchFields string
-
-		if o.PatchFields != nil {
-			qrPatchFields = *o.PatchFields
-		}
-		qPatchFields := qrPatchFields
-		if qPatchFields != "" {
-
-			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}

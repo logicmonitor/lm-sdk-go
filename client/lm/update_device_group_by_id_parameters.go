@@ -62,11 +62,6 @@ func NewUpdateDeviceGroupByIDParamsWithHTTPClient(client *http.Client) *UpdateDe
 */
 type UpdateDeviceGroupByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.DeviceGroup
 
@@ -74,6 +69,11 @@ type UpdateDeviceGroupByIDParams struct {
 	//
 	// Format: int32
 	ID int32
+
+	// OpType.
+	//
+	// Default: "refresh"
+	OpType *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -93,11 +93,11 @@ func (o *UpdateDeviceGroupByIDParams) WithDefaults() *UpdateDeviceGroupByIDParam
 // All values with no default are reset to their zero value.
 func (o *UpdateDeviceGroupByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
+		opTypeDefault = string("refresh")
 	)
 
 	val := UpdateDeviceGroupByIDParams{
-		UserAgent: &userAgentDefault,
+		OpType: &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -139,17 +139,6 @@ func (o *UpdateDeviceGroupByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the update device group by Id params
-func (o *UpdateDeviceGroupByIDParams) WithUserAgent(userAgent *string) *UpdateDeviceGroupByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update device group by Id params
-func (o *UpdateDeviceGroupByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the update device group by Id params
 func (o *UpdateDeviceGroupByIDParams) WithBody(body *models.DeviceGroup) *UpdateDeviceGroupByIDParams {
 	o.SetBody(body)
@@ -172,6 +161,17 @@ func (o *UpdateDeviceGroupByIDParams) SetID(id int32) {
 	o.ID = id
 }
 
+// WithOpType adds the opType to the update device group by Id params
+func (o *UpdateDeviceGroupByIDParams) WithOpType(opType *string) *UpdateDeviceGroupByIDParams {
+	o.SetOpType(opType)
+	return o
+}
+
+// SetOpType adds the opType to the update device group by Id params
+func (o *UpdateDeviceGroupByIDParams) SetOpType(opType *string) {
+	o.OpType = opType
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *UpdateDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -179,14 +179,6 @@ func (o *UpdateDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, re
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
@@ -196,6 +188,23 @@ func (o *UpdateDeviceGroupByIDParams) WriteToRequest(r runtime.ClientRequest, re
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {
 		return err
+	}
+
+	if o.OpType != nil {
+
+		// query param opType
+		var qrOpType string
+
+		if o.OpType != nil {
+			qrOpType = *o.OpType
+		}
+		qOpType := qrOpType
+		if qOpType != "" {
+
+			if err := r.SetQueryParam("opType", qOpType); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

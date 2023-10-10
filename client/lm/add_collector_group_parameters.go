@@ -61,11 +61,6 @@ func NewAddCollectorGroupParamsWithHTTPClient(client *http.Client) *AddCollector
 */
 type AddCollectorGroupParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.CollectorGroup
 
@@ -86,18 +81,7 @@ func (o *AddCollectorGroupParams) WithDefaults() *AddCollectorGroupParams {
 //
 // All values with no default are reset to their zero value.
 func (o *AddCollectorGroupParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := AddCollectorGroupParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add collector group params
@@ -133,17 +117,6 @@ func (o *AddCollectorGroupParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the add collector group params
-func (o *AddCollectorGroupParams) WithUserAgent(userAgent *string) *AddCollectorGroupParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the add collector group params
-func (o *AddCollectorGroupParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the add collector group params
 func (o *AddCollectorGroupParams) WithBody(body *models.CollectorGroup) *AddCollectorGroupParams {
 	o.SetBody(body)
@@ -162,14 +135,6 @@ func (o *AddCollectorGroupParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

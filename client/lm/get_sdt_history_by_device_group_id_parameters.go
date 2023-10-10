@@ -60,11 +60,6 @@ func NewGetSDTHistoryByDeviceGroupIDParamsWithHTTPClient(client *http.Client) *G
 */
 type GetSDTHistoryByDeviceGroupIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Fields.
 	Fields *string
 
@@ -105,17 +100,14 @@ func (o *GetSDTHistoryByDeviceGroupIDParams) WithDefaults() *GetSDTHistoryByDevi
 // All values with no default are reset to their zero value.
 func (o *GetSDTHistoryByDeviceGroupIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetSDTHistoryByDeviceGroupIDParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -155,17 +147,6 @@ func (o *GetSDTHistoryByDeviceGroupIDParams) WithHTTPClient(client *http.Client)
 // SetHTTPClient adds the HTTPClient to the get SDT history by device group Id params
 func (o *GetSDTHistoryByDeviceGroupIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get SDT history by device group Id params
-func (o *GetSDTHistoryByDeviceGroupIDParams) WithUserAgent(userAgent *string) *GetSDTHistoryByDeviceGroupIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get SDT history by device group Id params
-func (o *GetSDTHistoryByDeviceGroupIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get SDT history by device group Id params
@@ -230,14 +211,6 @@ func (o *GetSDTHistoryByDeviceGroupIDParams) WriteToRequest(r runtime.ClientRequ
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

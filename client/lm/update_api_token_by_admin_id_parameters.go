@@ -62,11 +62,6 @@ func NewUpdateAPITokenByAdminIDParamsWithHTTPClient(client *http.Client) *Update
 */
 type UpdateAPITokenByAdminIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// AdminID.
 	//
 	// Format: int32
@@ -97,18 +92,7 @@ func (o *UpdateAPITokenByAdminIDParams) WithDefaults() *UpdateAPITokenByAdminIDP
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateAPITokenByAdminIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := UpdateAPITokenByAdminIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update Api token by admin Id params
@@ -142,17 +126,6 @@ func (o *UpdateAPITokenByAdminIDParams) WithHTTPClient(client *http.Client) *Upd
 // SetHTTPClient adds the HTTPClient to the update Api token by admin Id params
 func (o *UpdateAPITokenByAdminIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the update Api token by admin Id params
-func (o *UpdateAPITokenByAdminIDParams) WithUserAgent(userAgent *string) *UpdateAPITokenByAdminIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update Api token by admin Id params
-func (o *UpdateAPITokenByAdminIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithAdminID adds the adminID to the update Api token by admin Id params
@@ -195,14 +168,6 @@ func (o *UpdateAPITokenByAdminIDParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param adminId
 	if err := r.SetPathParam("adminId", swag.FormatInt32(o.AdminID)); err != nil {

@@ -60,11 +60,6 @@ func NewGetNetflowPortListParamsWithHTTPClient(client *http.Client) *GetNetflowP
 */
 type GetNetflowPortListParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// End.
 	//
 	// Format: int64
@@ -121,17 +116,14 @@ func (o *GetNetflowPortListParams) WithDefaults() *GetNetflowPortListParams {
 // All values with no default are reset to their zero value.
 func (o *GetNetflowPortListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetNetflowPortListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -171,17 +163,6 @@ func (o *GetNetflowPortListParams) WithHTTPClient(client *http.Client) *GetNetfl
 // SetHTTPClient adds the HTTPClient to the get netflow port list params
 func (o *GetNetflowPortListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get netflow port list params
-func (o *GetNetflowPortListParams) WithUserAgent(userAgent *string) *GetNetflowPortListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get netflow port list params
-func (o *GetNetflowPortListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithEnd adds the end to the get netflow port list params
@@ -290,14 +271,6 @@ func (o *GetNetflowPortListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.End != nil {
 

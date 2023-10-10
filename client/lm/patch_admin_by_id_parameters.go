@@ -62,14 +62,6 @@ func NewPatchAdminByIDParamsWithHTTPClient(client *http.Client) *PatchAdminByIDP
 */
 type PatchAdminByIDParams struct {
 
-	// PatchFields.
-	PatchFields *string
-
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.Admin
 
@@ -99,13 +91,10 @@ func (o *PatchAdminByIDParams) WithDefaults() *PatchAdminByIDParams {
 // All values with no default are reset to their zero value.
 func (o *PatchAdminByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		changePasswordDefault = bool(false)
 	)
 
 	val := PatchAdminByIDParams{
-		UserAgent:      &userAgentDefault,
 		ChangePassword: &changePasswordDefault,
 	}
 
@@ -148,28 +137,6 @@ func (o *PatchAdminByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithPatchFields adds the patchFields to the patch admin by Id params
-func (o *PatchAdminByIDParams) WithPatchFields(patchFields *string) *PatchAdminByIDParams {
-	o.SetPatchFields(patchFields)
-	return o
-}
-
-// SetPatchFields adds the patchFields to the patch admin by Id params
-func (o *PatchAdminByIDParams) SetPatchFields(patchFields *string) {
-	o.PatchFields = patchFields
-}
-
-// WithUserAgent adds the userAgent to the patch admin by Id params
-func (o *PatchAdminByIDParams) WithUserAgent(userAgent *string) *PatchAdminByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the patch admin by Id params
-func (o *PatchAdminByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the patch admin by Id params
 func (o *PatchAdminByIDParams) WithBody(body *models.Admin) *PatchAdminByIDParams {
 	o.SetBody(body)
@@ -210,31 +177,6 @@ func (o *PatchAdminByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
-	if o.PatchFields != nil {
-
-		// query param PatchFields
-		var qrPatchFields string
-
-		if o.PatchFields != nil {
-			qrPatchFields = *o.PatchFields
-		}
-		qPatchFields := qrPatchFields
-		if qPatchFields != "" {
-
-			if err := r.SetQueryParam("PatchFields", qPatchFields); err != nil {
-				return err
-			}
-		}
-	}
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

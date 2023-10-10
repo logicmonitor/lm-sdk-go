@@ -60,11 +60,6 @@ func NewGetDeviceDatasourceInstanceGraphDataParamsWithHTTPClient(client *http.Cl
 */
 type GetDeviceDatasourceInstanceGraphDataParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// DeviceID.
 	//
 	// Format: int32
@@ -118,18 +113,7 @@ func (o *GetDeviceDatasourceInstanceGraphDataParams) WithDefaults() *GetDeviceDa
 //
 // All values with no default are reset to their zero value.
 func (o *GetDeviceDatasourceInstanceGraphDataParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := GetDeviceDatasourceInstanceGraphDataParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get device datasource instance graph data params
@@ -163,17 +147,6 @@ func (o *GetDeviceDatasourceInstanceGraphDataParams) WithHTTPClient(client *http
 // SetHTTPClient adds the HTTPClient to the get device datasource instance graph data params
 func (o *GetDeviceDatasourceInstanceGraphDataParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device datasource instance graph data params
-func (o *GetDeviceDatasourceInstanceGraphDataParams) WithUserAgent(userAgent *string) *GetDeviceDatasourceInstanceGraphDataParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device datasource instance graph data params
-func (o *GetDeviceDatasourceInstanceGraphDataParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceID adds the deviceID to the get device datasource instance graph data params
@@ -260,14 +233,6 @@ func (o *GetDeviceDatasourceInstanceGraphDataParams) WriteToRequest(r runtime.Cl
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceId
 	if err := r.SetPathParam("deviceId", swag.FormatInt32(o.DeviceID)); err != nil {

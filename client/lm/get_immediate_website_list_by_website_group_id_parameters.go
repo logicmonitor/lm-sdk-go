@@ -60,11 +60,6 @@ func NewGetImmediateWebsiteListByWebsiteGroupIDParamsWithHTTPClient(client *http
 */
 type GetImmediateWebsiteListByWebsiteGroupIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Fields.
 	Fields *string
 
@@ -105,17 +100,14 @@ func (o *GetImmediateWebsiteListByWebsiteGroupIDParams) WithDefaults() *GetImmed
 // All values with no default are reset to their zero value.
 func (o *GetImmediateWebsiteListByWebsiteGroupIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetImmediateWebsiteListByWebsiteGroupIDParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -155,17 +147,6 @@ func (o *GetImmediateWebsiteListByWebsiteGroupIDParams) WithHTTPClient(client *h
 // SetHTTPClient adds the HTTPClient to the get immediate website list by website group Id params
 func (o *GetImmediateWebsiteListByWebsiteGroupIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get immediate website list by website group Id params
-func (o *GetImmediateWebsiteListByWebsiteGroupIDParams) WithUserAgent(userAgent *string) *GetImmediateWebsiteListByWebsiteGroupIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get immediate website list by website group Id params
-func (o *GetImmediateWebsiteListByWebsiteGroupIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get immediate website list by website group Id params
@@ -230,14 +211,6 @@ func (o *GetImmediateWebsiteListByWebsiteGroupIDParams) WriteToRequest(r runtime
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

@@ -62,11 +62,6 @@ func NewUpdateAlertRuleByIDParamsWithHTTPClient(client *http.Client) *UpdateAler
 */
 type UpdateAlertRuleByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.AlertRule
 
@@ -92,18 +87,7 @@ func (o *UpdateAlertRuleByIDParams) WithDefaults() *UpdateAlertRuleByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateAlertRuleByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := UpdateAlertRuleByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update alert rule by Id params
@@ -139,17 +123,6 @@ func (o *UpdateAlertRuleByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the update alert rule by Id params
-func (o *UpdateAlertRuleByIDParams) WithUserAgent(userAgent *string) *UpdateAlertRuleByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update alert rule by Id params
-func (o *UpdateAlertRuleByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the update alert rule by Id params
 func (o *UpdateAlertRuleByIDParams) WithBody(body *models.AlertRule) *UpdateAlertRuleByIDParams {
 	o.SetBody(body)
@@ -179,14 +152,6 @@ func (o *UpdateAlertRuleByIDParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

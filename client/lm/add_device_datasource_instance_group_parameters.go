@@ -62,11 +62,6 @@ func NewAddDeviceDatasourceInstanceGroupParamsWithHTTPClient(client *http.Client
 */
 type AddDeviceDatasourceInstanceGroupParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.DeviceDataSourceInstanceGroup
 
@@ -100,18 +95,7 @@ func (o *AddDeviceDatasourceInstanceGroupParams) WithDefaults() *AddDeviceDataso
 //
 // All values with no default are reset to their zero value.
 func (o *AddDeviceDatasourceInstanceGroupParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := AddDeviceDatasourceInstanceGroupParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the add device datasource instance group params
@@ -145,17 +129,6 @@ func (o *AddDeviceDatasourceInstanceGroupParams) WithHTTPClient(client *http.Cli
 // SetHTTPClient adds the HTTPClient to the add device datasource instance group params
 func (o *AddDeviceDatasourceInstanceGroupParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the add device datasource instance group params
-func (o *AddDeviceDatasourceInstanceGroupParams) WithUserAgent(userAgent *string) *AddDeviceDatasourceInstanceGroupParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the add device datasource instance group params
-func (o *AddDeviceDatasourceInstanceGroupParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithBody adds the body to the add device datasource instance group params
@@ -198,14 +171,6 @@ func (o *AddDeviceDatasourceInstanceGroupParams) WriteToRequest(r runtime.Client
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

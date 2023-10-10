@@ -60,11 +60,6 @@ func NewGetWebsiteGroupListParamsWithHTTPClient(client *http.Client) *GetWebsite
 */
 type GetWebsiteGroupListParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Fields.
 	Fields *string
 
@@ -100,17 +95,14 @@ func (o *GetWebsiteGroupListParams) WithDefaults() *GetWebsiteGroupListParams {
 // All values with no default are reset to their zero value.
 func (o *GetWebsiteGroupListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetWebsiteGroupListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,17 +142,6 @@ func (o *GetWebsiteGroupListParams) WithHTTPClient(client *http.Client) *GetWebs
 // SetHTTPClient adds the HTTPClient to the get website group list params
 func (o *GetWebsiteGroupListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get website group list params
-func (o *GetWebsiteGroupListParams) WithUserAgent(userAgent *string) *GetWebsiteGroupListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get website group list params
-func (o *GetWebsiteGroupListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get website group list params
@@ -214,14 +195,6 @@ func (o *GetWebsiteGroupListParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

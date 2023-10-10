@@ -60,11 +60,6 @@ func NewGetDeviceGroupClusterAlertConfListParamsWithHTTPClient(client *http.Clie
 */
 type GetDeviceGroupClusterAlertConfListParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// DeviceGroupID.
 	//
 	// Format: int32
@@ -105,17 +100,14 @@ func (o *GetDeviceGroupClusterAlertConfListParams) WithDefaults() *GetDeviceGrou
 // All values with no default are reset to their zero value.
 func (o *GetDeviceGroupClusterAlertConfListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceGroupClusterAlertConfListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -155,17 +147,6 @@ func (o *GetDeviceGroupClusterAlertConfListParams) WithHTTPClient(client *http.C
 // SetHTTPClient adds the HTTPClient to the get device group cluster alert conf list params
 func (o *GetDeviceGroupClusterAlertConfListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get device group cluster alert conf list params
-func (o *GetDeviceGroupClusterAlertConfListParams) WithUserAgent(userAgent *string) *GetDeviceGroupClusterAlertConfListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get device group cluster alert conf list params
-func (o *GetDeviceGroupClusterAlertConfListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithDeviceGroupID adds the deviceGroupID to the get device group cluster alert conf list params
@@ -230,14 +211,6 @@ func (o *GetDeviceGroupClusterAlertConfListParams) WriteToRequest(r runtime.Clie
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param deviceGroupId
 	if err := r.SetPathParam("deviceGroupId", swag.FormatInt32(o.DeviceGroupID)); err != nil {

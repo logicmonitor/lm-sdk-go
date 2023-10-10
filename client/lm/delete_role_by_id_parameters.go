@@ -60,11 +60,6 @@ func NewDeleteRoleByIDParamsWithHTTPClient(client *http.Client) *DeleteRoleByIDP
 */
 type DeleteRoleByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// ID.
 	//
 	// Format: int32
@@ -87,18 +82,7 @@ func (o *DeleteRoleByIDParams) WithDefaults() *DeleteRoleByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteRoleByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := DeleteRoleByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete role by Id params
@@ -134,17 +118,6 @@ func (o *DeleteRoleByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the delete role by Id params
-func (o *DeleteRoleByIDParams) WithUserAgent(userAgent *string) *DeleteRoleByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the delete role by Id params
-func (o *DeleteRoleByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithID adds the id to the delete role by Id params
 func (o *DeleteRoleByIDParams) WithID(id int32) *DeleteRoleByIDParams {
 	o.SetID(id)
@@ -163,14 +136,6 @@ func (o *DeleteRoleByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {

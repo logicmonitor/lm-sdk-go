@@ -62,11 +62,6 @@ func NewUpdateAdminByIDParamsWithHTTPClient(client *http.Client) *UpdateAdminByI
 */
 type UpdateAdminByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.Admin
 
@@ -96,13 +91,10 @@ func (o *UpdateAdminByIDParams) WithDefaults() *UpdateAdminByIDParams {
 // All values with no default are reset to their zero value.
 func (o *UpdateAdminByIDParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		changePasswordDefault = bool(false)
 	)
 
 	val := UpdateAdminByIDParams{
-		UserAgent:      &userAgentDefault,
 		ChangePassword: &changePasswordDefault,
 	}
 
@@ -145,17 +137,6 @@ func (o *UpdateAdminByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the update admin by Id params
-func (o *UpdateAdminByIDParams) WithUserAgent(userAgent *string) *UpdateAdminByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update admin by Id params
-func (o *UpdateAdminByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the update admin by Id params
 func (o *UpdateAdminByIDParams) WithBody(body *models.Admin) *UpdateAdminByIDParams {
 	o.SetBody(body)
@@ -196,14 +177,6 @@ func (o *UpdateAdminByIDParams) WriteToRequest(r runtime.ClientRequest, reg strf
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

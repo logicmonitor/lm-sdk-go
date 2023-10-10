@@ -59,11 +59,6 @@ func NewImportDataSourceParamsWithHTTPClient(client *http.Client) *ImportDataSou
 */
 type ImportDataSourceParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// File.
 	File runtime.NamedReadCloser
 
@@ -84,18 +79,7 @@ func (o *ImportDataSourceParams) WithDefaults() *ImportDataSourceParams {
 //
 // All values with no default are reset to their zero value.
 func (o *ImportDataSourceParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := ImportDataSourceParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the import data source params
@@ -131,17 +115,6 @@ func (o *ImportDataSourceParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the import data source params
-func (o *ImportDataSourceParams) WithUserAgent(userAgent *string) *ImportDataSourceParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the import data source params
-func (o *ImportDataSourceParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithFile adds the file to the import data source params
 func (o *ImportDataSourceParams) WithFile(file runtime.NamedReadCloser) *ImportDataSourceParams {
 	o.SetFile(file)
@@ -160,14 +133,6 @@ func (o *ImportDataSourceParams) WriteToRequest(r runtime.ClientRequest, reg str
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	// form file param file
 	if err := r.SetFileParam("file", o.File); err != nil {
 		return err

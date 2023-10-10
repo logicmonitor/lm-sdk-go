@@ -60,11 +60,6 @@ func NewGetTopTalkersGraphParamsWithHTTPClient(client *http.Client) *GetTopTalke
 */
 type GetTopTalkersGraphParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// End.
 	//
 	// Format: int64
@@ -106,18 +101,7 @@ func (o *GetTopTalkersGraphParams) WithDefaults() *GetTopTalkersGraphParams {
 //
 // All values with no default are reset to their zero value.
 func (o *GetTopTalkersGraphParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := GetTopTalkersGraphParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the get top talkers graph params
@@ -151,17 +135,6 @@ func (o *GetTopTalkersGraphParams) WithHTTPClient(client *http.Client) *GetTopTa
 // SetHTTPClient adds the HTTPClient to the get top talkers graph params
 func (o *GetTopTalkersGraphParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get top talkers graph params
-func (o *GetTopTalkersGraphParams) WithUserAgent(userAgent *string) *GetTopTalkersGraphParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get top talkers graph params
-func (o *GetTopTalkersGraphParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithEnd adds the end to the get top talkers graph params
@@ -237,14 +210,6 @@ func (o *GetTopTalkersGraphParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.End != nil {
 

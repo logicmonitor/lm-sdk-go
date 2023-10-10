@@ -60,11 +60,6 @@ func NewDeleteDashboardByIDParamsWithHTTPClient(client *http.Client) *DeleteDash
 */
 type DeleteDashboardByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// ID.
 	//
 	// Format: int32
@@ -87,18 +82,7 @@ func (o *DeleteDashboardByIDParams) WithDefaults() *DeleteDashboardByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteDashboardByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := DeleteDashboardByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete dashboard by Id params
@@ -134,17 +118,6 @@ func (o *DeleteDashboardByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the delete dashboard by Id params
-func (o *DeleteDashboardByIDParams) WithUserAgent(userAgent *string) *DeleteDashboardByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the delete dashboard by Id params
-func (o *DeleteDashboardByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithID adds the id to the delete dashboard by Id params
 func (o *DeleteDashboardByIDParams) WithID(id int32) *DeleteDashboardByIDParams {
 	o.SetID(id)
@@ -163,14 +136,6 @@ func (o *DeleteDashboardByIDParams) WriteToRequest(r runtime.ClientRequest, reg 
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {

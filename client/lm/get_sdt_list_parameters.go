@@ -60,11 +60,6 @@ func NewGetSDTListParamsWithHTTPClient(client *http.Client) *GetSDTListParams {
 */
 type GetSDTListParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Fields.
 	Fields *string
 
@@ -100,17 +95,14 @@ func (o *GetSDTListParams) WithDefaults() *GetSDTListParams {
 // All values with no default are reset to their zero value.
 func (o *GetSDTListParams) SetDefaults() {
 	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetSDTListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		Offset: &offsetDefault,
+		Size:   &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -150,17 +142,6 @@ func (o *GetSDTListParams) WithHTTPClient(client *http.Client) *GetSDTListParams
 // SetHTTPClient adds the HTTPClient to the get SDT list params
 func (o *GetSDTListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
-}
-
-// WithUserAgent adds the userAgent to the get SDT list params
-func (o *GetSDTListParams) WithUserAgent(userAgent *string) *GetSDTListParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the get SDT list params
-func (o *GetSDTListParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
 }
 
 // WithFields adds the fields to the get SDT list params
@@ -214,14 +195,6 @@ func (o *GetSDTListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	if o.Fields != nil {
 

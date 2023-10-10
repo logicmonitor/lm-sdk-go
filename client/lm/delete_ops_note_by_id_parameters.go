@@ -59,11 +59,6 @@ func NewDeleteOpsNoteByIDParamsWithHTTPClient(client *http.Client) *DeleteOpsNot
 */
 type DeleteOpsNoteByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// ID.
 	ID string
 
@@ -84,18 +79,7 @@ func (o *DeleteOpsNoteByIDParams) WithDefaults() *DeleteOpsNoteByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteOpsNoteByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := DeleteOpsNoteByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the delete ops note by Id params
@@ -131,17 +115,6 @@ func (o *DeleteOpsNoteByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the delete ops note by Id params
-func (o *DeleteOpsNoteByIDParams) WithUserAgent(userAgent *string) *DeleteOpsNoteByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the delete ops note by Id params
-func (o *DeleteOpsNoteByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithID adds the id to the delete ops note by Id params
 func (o *DeleteOpsNoteByIDParams) WithID(id string) *DeleteOpsNoteByIDParams {
 	o.SetID(id)
@@ -160,14 +133,6 @@ func (o *DeleteOpsNoteByIDParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 
 	// path param id
 	if err := r.SetPathParam("id", o.ID); err != nil {

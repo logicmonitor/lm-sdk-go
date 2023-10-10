@@ -61,11 +61,6 @@ func NewUpdateOpsNoteByIDParamsWithHTTPClient(client *http.Client) *UpdateOpsNot
 */
 type UpdateOpsNoteByIDParams struct {
 
-	// UserAgent.
-	//
-	// Default: "Logicmonitor/SDK: Argus Dist-v1.0.0-argus1"
-	UserAgent *string
-
 	// Body.
 	Body *models.OpsNote
 
@@ -89,18 +84,7 @@ func (o *UpdateOpsNoteByIDParams) WithDefaults() *UpdateOpsNoteByIDParams {
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateOpsNoteByIDParams) SetDefaults() {
-	var (
-		userAgentDefault = string("Logicmonitor/SDK: Argus Dist-v1.0.0-argus1")
-	)
-
-	val := UpdateOpsNoteByIDParams{
-		UserAgent: &userAgentDefault,
-	}
-
-	val.timeout = o.timeout
-	val.Context = o.Context
-	val.HTTPClient = o.HTTPClient
-	*o = val
+	// no default values defined for this parameter
 }
 
 // WithTimeout adds the timeout to the update ops note by Id params
@@ -136,17 +120,6 @@ func (o *UpdateOpsNoteByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the update ops note by Id params
-func (o *UpdateOpsNoteByIDParams) WithUserAgent(userAgent *string) *UpdateOpsNoteByIDParams {
-	o.SetUserAgent(userAgent)
-	return o
-}
-
-// SetUserAgent adds the userAgent to the update ops note by Id params
-func (o *UpdateOpsNoteByIDParams) SetUserAgent(userAgent *string) {
-	o.UserAgent = userAgent
-}
-
 // WithBody adds the body to the update ops note by Id params
 func (o *UpdateOpsNoteByIDParams) WithBody(body *models.OpsNote) *UpdateOpsNoteByIDParams {
 	o.SetBody(body)
@@ -176,14 +149,6 @@ func (o *UpdateOpsNoteByIDParams) WriteToRequest(r runtime.ClientRequest, reg st
 		return err
 	}
 	var res []error
-
-	if o.UserAgent != nil {
-
-		// header param User-Agent
-		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
-			return err
-		}
-	}
 	if o.Body != nil {
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err

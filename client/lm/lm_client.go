@@ -7,7 +7,6 @@ package lm
 
 import (
 	"io"
-	"reflect"
 
 	"github.com/go-openapi/runtime"
 
@@ -20,7 +19,6 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry, authInfo ru
 		transport: transport,
 		formats:   formats,
 		authInfo:  authInfo,
-		userAgent: nil,
 	}
 }
 
@@ -31,7 +29,6 @@ type Client struct {
 	transport runtime.ClientTransport
 	formats   strfmt.Registry
 	authInfo  runtime.ClientAuthInfoWriter
-	userAgent *string
 }
 
 /*
@@ -42,7 +39,6 @@ func (a *Client) AckAlertByID(params *AckAlertByIDParams) (*AckAlertByIDOK, erro
 	if params == nil {
 		params = NewAckAlertByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ackAlertById",
@@ -72,7 +68,6 @@ func (a *Client) AckCollectorDownAlertByID(params *AckCollectorDownAlertByIDPara
 	if params == nil {
 		params = NewAckCollectorDownAlertByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "ackCollectorDownAlertById",
@@ -102,7 +97,6 @@ func (a *Client) AddAdmin(params *AddAdminParams) (*AddAdminOK, error) {
 	if params == nil {
 		params = NewAddAdminParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addAdmin",
@@ -132,7 +126,6 @@ func (a *Client) AddAlertNoteByID(params *AddAlertNoteByIDParams) (*AddAlertNote
 	if params == nil {
 		params = NewAddAlertNoteByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addAlertNoteById",
@@ -162,7 +155,6 @@ func (a *Client) AddAlertRule(params *AddAlertRuleParams) (*AddAlertRuleOK, erro
 	if params == nil {
 		params = NewAddAlertRuleParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addAlertRule",
@@ -192,7 +184,6 @@ func (a *Client) AddAPITokenByAdminID(params *AddAPITokenByAdminIDParams) (*AddA
 	if params == nil {
 		params = NewAddAPITokenByAdminIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addApiTokenByAdminId",
@@ -222,7 +213,6 @@ func (a *Client) AddAppliesToFunction(params *AddAppliesToFunctionParams) (*AddA
 	if params == nil {
 		params = NewAddAppliesToFunctionParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addAppliesToFunction",
@@ -252,7 +242,6 @@ func (a *Client) AddCollector(params *AddCollectorParams) (*AddCollectorOK, erro
 	if params == nil {
 		params = NewAddCollectorParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addCollector",
@@ -282,7 +271,6 @@ func (a *Client) AddCollectorGroup(params *AddCollectorGroupParams) (*AddCollect
 	if params == nil {
 		params = NewAddCollectorGroupParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addCollectorGroup",
@@ -312,7 +300,6 @@ func (a *Client) AddDashboard(params *AddDashboardParams) (*AddDashboardOK, erro
 	if params == nil {
 		params = NewAddDashboardParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addDashboard",
@@ -342,7 +329,6 @@ func (a *Client) AddDashboardGroup(params *AddDashboardGroupParams) (*AddDashboa
 	if params == nil {
 		params = NewAddDashboardGroupParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addDashboardGroup",
@@ -372,7 +358,6 @@ func (a *Client) AddDevice(params *AddDeviceParams) (*AddDeviceOK, error) {
 	if params == nil {
 		params = NewAddDeviceParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addDevice",
@@ -402,7 +387,6 @@ func (a *Client) AddDeviceDatasourceInstance(params *AddDeviceDatasourceInstance
 	if params == nil {
 		params = NewAddDeviceDatasourceInstanceParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addDeviceDatasourceInstance",
@@ -432,7 +416,6 @@ func (a *Client) AddDeviceDatasourceInstanceGroup(params *AddDeviceDatasourceIns
 	if params == nil {
 		params = NewAddDeviceDatasourceInstanceGroupParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addDeviceDatasourceInstanceGroup",
@@ -462,7 +445,6 @@ func (a *Client) AddDeviceGroup(params *AddDeviceGroupParams) (*AddDeviceGroupOK
 	if params == nil {
 		params = NewAddDeviceGroupParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addDeviceGroup",
@@ -492,7 +474,6 @@ func (a *Client) AddDeviceGroupClusterAlertConf(params *AddDeviceGroupClusterAle
 	if params == nil {
 		params = NewAddDeviceGroupClusterAlertConfParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addDeviceGroupClusterAlertConf",
@@ -522,7 +503,6 @@ func (a *Client) AddDeviceGroupProperty(params *AddDeviceGroupPropertyParams) (*
 	if params == nil {
 		params = NewAddDeviceGroupPropertyParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addDeviceGroupProperty",
@@ -552,7 +532,6 @@ func (a *Client) AddDeviceProperty(params *AddDevicePropertyParams) (*AddDeviceP
 	if params == nil {
 		params = NewAddDevicePropertyParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addDeviceProperty",
@@ -582,7 +561,6 @@ func (a *Client) AddEscalationChain(params *AddEscalationChainParams) (*AddEscal
 	if params == nil {
 		params = NewAddEscalationChainParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addEscalationChain",
@@ -612,7 +590,6 @@ func (a *Client) AddNetscan(params *AddNetscanParams) (*AddNetscanOK, error) {
 	if params == nil {
 		params = NewAddNetscanParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addNetscan",
@@ -642,7 +619,6 @@ func (a *Client) AddOpsNote(params *AddOpsNoteParams) (*AddOpsNoteOK, error) {
 	if params == nil {
 		params = NewAddOpsNoteParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addOpsNote",
@@ -672,7 +648,6 @@ func (a *Client) AddRecipientGroup(params *AddRecipientGroupParams) (*AddRecipie
 	if params == nil {
 		params = NewAddRecipientGroupParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addRecipientGroup",
@@ -702,7 +677,6 @@ func (a *Client) AddReport(params *AddReportParams) (*AddReportOK, error) {
 	if params == nil {
 		params = NewAddReportParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addReport",
@@ -732,7 +706,6 @@ func (a *Client) AddReportGroup(params *AddReportGroupParams) (*AddReportGroupOK
 	if params == nil {
 		params = NewAddReportGroupParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addReportGroup",
@@ -762,7 +735,6 @@ func (a *Client) AddRole(params *AddRoleParams) (*AddRoleOK, error) {
 	if params == nil {
 		params = NewAddRoleParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addRole",
@@ -792,7 +764,6 @@ func (a *Client) AddSDT(params *AddSDTParams) (*AddSDTOK, error) {
 	if params == nil {
 		params = NewAddSDTParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addSDT",
@@ -822,7 +793,6 @@ func (a *Client) AddWebsite(params *AddWebsiteParams) (*AddWebsiteOK, error) {
 	if params == nil {
 		params = NewAddWebsiteParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addWebsite",
@@ -852,7 +822,6 @@ func (a *Client) AddWebsiteGroup(params *AddWebsiteGroupParams) (*AddWebsiteGrou
 	if params == nil {
 		params = NewAddWebsiteGroupParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addWebsiteGroup",
@@ -882,7 +851,6 @@ func (a *Client) AddWidget(params *AddWidgetParams) (*AddWidgetOK, error) {
 	if params == nil {
 		params = NewAddWidgetParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "addWidget",
@@ -912,7 +880,6 @@ func (a *Client) CollectDeviceConfigSourceConfig(params *CollectDeviceConfigSour
 	if params == nil {
 		params = NewCollectDeviceConfigSourceConfigParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "collectDeviceConfigSourceConfig",
@@ -942,7 +909,6 @@ func (a *Client) DeleteAdminByID(params *DeleteAdminByIDParams) (*DeleteAdminByI
 	if params == nil {
 		params = NewDeleteAdminByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteAdminById",
@@ -972,7 +938,6 @@ func (a *Client) DeleteAlertRuleByID(params *DeleteAlertRuleByIDParams) (*Delete
 	if params == nil {
 		params = NewDeleteAlertRuleByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteAlertRuleById",
@@ -1002,7 +967,6 @@ func (a *Client) DeleteAPITokenByID(params *DeleteAPITokenByIDParams) (*DeleteAP
 	if params == nil {
 		params = NewDeleteAPITokenByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteApiTokenById",
@@ -1032,7 +996,6 @@ func (a *Client) DeleteAppliesToFunctionByID(params *DeleteAppliesToFunctionByID
 	if params == nil {
 		params = NewDeleteAppliesToFunctionByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteAppliesToFunctionById",
@@ -1062,7 +1025,6 @@ func (a *Client) DeleteCollectorByID(params *DeleteCollectorByIDParams) (*Delete
 	if params == nil {
 		params = NewDeleteCollectorByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCollectorById",
@@ -1092,7 +1054,6 @@ func (a *Client) DeleteCollectorGroupByID(params *DeleteCollectorGroupByIDParams
 	if params == nil {
 		params = NewDeleteCollectorGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteCollectorGroupById",
@@ -1122,7 +1083,6 @@ func (a *Client) DeleteDashboardByID(params *DeleteDashboardByIDParams) (*Delete
 	if params == nil {
 		params = NewDeleteDashboardByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDashboardById",
@@ -1152,7 +1112,6 @@ func (a *Client) DeleteDashboardGroupByID(params *DeleteDashboardGroupByIDParams
 	if params == nil {
 		params = NewDeleteDashboardGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDashboardGroupById",
@@ -1182,7 +1141,6 @@ func (a *Client) DeleteDatasourceByID(params *DeleteDatasourceByIDParams) (*Dele
 	if params == nil {
 		params = NewDeleteDatasourceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDatasourceById",
@@ -1212,7 +1170,6 @@ func (a *Client) DeleteDeviceByID(params *DeleteDeviceByIDParams) (*DeleteDevice
 	if params == nil {
 		params = NewDeleteDeviceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDeviceById",
@@ -1242,7 +1199,6 @@ func (a *Client) DeleteDeviceDatasourceInstanceByID(params *DeleteDeviceDatasour
 	if params == nil {
 		params = NewDeleteDeviceDatasourceInstanceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDeviceDatasourceInstanceById",
@@ -1272,7 +1228,6 @@ func (a *Client) DeleteDeviceGroupByID(params *DeleteDeviceGroupByIDParams) (*De
 	if params == nil {
 		params = NewDeleteDeviceGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDeviceGroupById",
@@ -1302,7 +1257,6 @@ func (a *Client) DeleteDeviceGroupClusterAlertConfByID(params *DeleteDeviceGroup
 	if params == nil {
 		params = NewDeleteDeviceGroupClusterAlertConfByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDeviceGroupClusterAlertConfById",
@@ -1332,7 +1286,6 @@ func (a *Client) DeleteDeviceGroupPropertyByName(params *DeleteDeviceGroupProper
 	if params == nil {
 		params = NewDeleteDeviceGroupPropertyByNameParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDeviceGroupPropertyByName",
@@ -1362,7 +1315,6 @@ func (a *Client) DeleteDevicePropertyByName(params *DeleteDevicePropertyByNamePa
 	if params == nil {
 		params = NewDeleteDevicePropertyByNameParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteDevicePropertyByName",
@@ -1392,7 +1344,6 @@ func (a *Client) DeleteEscalationChainByID(params *DeleteEscalationChainByIDPara
 	if params == nil {
 		params = NewDeleteEscalationChainByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteEscalationChainById",
@@ -1422,7 +1373,6 @@ func (a *Client) DeleteNetscanByID(params *DeleteNetscanByIDParams) (*DeleteNets
 	if params == nil {
 		params = NewDeleteNetscanByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteNetscanById",
@@ -1452,7 +1402,6 @@ func (a *Client) DeleteOpsNoteByID(params *DeleteOpsNoteByIDParams) (*DeleteOpsN
 	if params == nil {
 		params = NewDeleteOpsNoteByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteOpsNoteById",
@@ -1482,7 +1431,6 @@ func (a *Client) DeleteRecipientGroupByID(params *DeleteRecipientGroupByIDParams
 	if params == nil {
 		params = NewDeleteRecipientGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteRecipientGroupById",
@@ -1512,7 +1460,6 @@ func (a *Client) DeleteReportByID(params *DeleteReportByIDParams) (*DeleteReport
 	if params == nil {
 		params = NewDeleteReportByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteReportById",
@@ -1542,7 +1489,6 @@ func (a *Client) DeleteReportGroupByID(params *DeleteReportGroupByIDParams) (*De
 	if params == nil {
 		params = NewDeleteReportGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteReportGroupById",
@@ -1572,7 +1518,6 @@ func (a *Client) DeleteRoleByID(params *DeleteRoleByIDParams) (*DeleteRoleByIDOK
 	if params == nil {
 		params = NewDeleteRoleByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteRoleById",
@@ -1602,7 +1547,6 @@ func (a *Client) DeleteSDTByID(params *DeleteSDTByIDParams) (*DeleteSDTByIDOK, e
 	if params == nil {
 		params = NewDeleteSDTByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteSDTById",
@@ -1632,7 +1576,6 @@ func (a *Client) DeleteWebsiteByID(params *DeleteWebsiteByIDParams) (*DeleteWebs
 	if params == nil {
 		params = NewDeleteWebsiteByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteWebsiteById",
@@ -1662,7 +1605,6 @@ func (a *Client) DeleteWebsiteGroupByID(params *DeleteWebsiteGroupByIDParams) (*
 	if params == nil {
 		params = NewDeleteWebsiteGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteWebsiteGroupById",
@@ -1692,7 +1634,6 @@ func (a *Client) DeleteWidgetByID(params *DeleteWidgetByIDParams) (*DeleteWidget
 	if params == nil {
 		params = NewDeleteWidgetByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "deleteWidgetById",
@@ -1722,7 +1663,6 @@ func (a *Client) ExecuteDebugCommand(params *ExecuteDebugCommandParams) (*Execut
 	if params == nil {
 		params = NewExecuteDebugCommandParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "executeDebugCommand",
@@ -1752,7 +1692,6 @@ func (a *Client) FetchDeviceInstancesData(params *FetchDeviceInstancesDataParams
 	if params == nil {
 		params = NewFetchDeviceInstancesDataParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "fetchDeviceInstancesData",
@@ -1782,7 +1721,6 @@ func (a *Client) GenerateReportByID(params *GenerateReportByIDParams) (*Generate
 	if params == nil {
 		params = NewGenerateReportByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "generateReportById",
@@ -1812,7 +1750,6 @@ func (a *Client) GetAdminByID(params *GetAdminByIDParams) (*GetAdminByIDOK, erro
 	if params == nil {
 		params = NewGetAdminByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAdminById",
@@ -1842,7 +1779,6 @@ func (a *Client) GetAdminList(params *GetAdminListParams) (*GetAdminListOK, erro
 	if params == nil {
 		params = NewGetAdminListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAdminList",
@@ -1872,7 +1808,6 @@ func (a *Client) GetAlertByID(params *GetAlertByIDParams) (*GetAlertByIDOK, erro
 	if params == nil {
 		params = NewGetAlertByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAlertById",
@@ -1902,7 +1837,6 @@ func (a *Client) GetAlertList(params *GetAlertListParams) (*GetAlertListOK, erro
 	if params == nil {
 		params = NewGetAlertListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAlertList",
@@ -1932,7 +1866,6 @@ func (a *Client) GetAlertListByDeviceGroupID(params *GetAlertListByDeviceGroupID
 	if params == nil {
 		params = NewGetAlertListByDeviceGroupIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAlertListByDeviceGroupId",
@@ -1962,7 +1895,6 @@ func (a *Client) GetAlertListByDeviceID(params *GetAlertListByDeviceIDParams) (*
 	if params == nil {
 		params = NewGetAlertListByDeviceIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAlertListByDeviceId",
@@ -1992,7 +1924,6 @@ func (a *Client) GetAlertRuleByID(params *GetAlertRuleByIDParams) (*GetAlertRule
 	if params == nil {
 		params = NewGetAlertRuleByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAlertRuleById",
@@ -2022,7 +1953,6 @@ func (a *Client) GetAlertRuleList(params *GetAlertRuleListParams) (*GetAlertRule
 	if params == nil {
 		params = NewGetAlertRuleListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAlertRuleList",
@@ -2052,7 +1982,6 @@ func (a *Client) GetAllSDTListByDeviceID(params *GetAllSDTListByDeviceIDParams) 
 	if params == nil {
 		params = NewGetAllSDTListByDeviceIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAllSDTListByDeviceId",
@@ -2082,7 +2011,6 @@ func (a *Client) GetAllSDTListByWebsiteGroupID(params *GetAllSDTListByWebsiteGro
 	if params == nil {
 		params = NewGetAllSDTListByWebsiteGroupIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAllSDTListByWebsiteGroupId",
@@ -2112,7 +2040,6 @@ func (a *Client) GetAPITokenList(params *GetAPITokenListParams) (*GetAPITokenLis
 	if params == nil {
 		params = NewGetAPITokenListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getApiTokenList",
@@ -2142,7 +2069,6 @@ func (a *Client) GetAPITokenListByAdminID(params *GetAPITokenListByAdminIDParams
 	if params == nil {
 		params = NewGetAPITokenListByAdminIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getApiTokenListByAdminId",
@@ -2172,7 +2098,6 @@ func (a *Client) GetAppliesToFunctionByID(params *GetAppliesToFunctionByIDParams
 	if params == nil {
 		params = NewGetAppliesToFunctionByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAppliesToFunctionById",
@@ -2202,7 +2127,6 @@ func (a *Client) GetAppliesToFunctionList(params *GetAppliesToFunctionListParams
 	if params == nil {
 		params = NewGetAppliesToFunctionListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAppliesToFunctionList",
@@ -2232,7 +2156,6 @@ func (a *Client) GetAssociatedDeviceListByDataSourceID(params *GetAssociatedDevi
 	if params == nil {
 		params = NewGetAssociatedDeviceListByDataSourceIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAssociatedDeviceListByDataSourceId",
@@ -2262,7 +2185,6 @@ func (a *Client) GetAuditLogByID(params *GetAuditLogByIDParams) (*GetAuditLogByI
 	if params == nil {
 		params = NewGetAuditLogByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAuditLogById",
@@ -2292,7 +2214,6 @@ func (a *Client) GetAuditLogList(params *GetAuditLogListParams) (*GetAuditLogLis
 	if params == nil {
 		params = NewGetAuditLogListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAuditLogList",
@@ -2322,7 +2243,6 @@ func (a *Client) GetAwsExternalID(params *GetAwsExternalIDParams) (*GetAwsExtern
 	if params == nil {
 		params = NewGetAwsExternalIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getAwsExternalId",
@@ -2352,7 +2272,6 @@ func (a *Client) GetCollectorByID(params *GetCollectorByIDParams) (*GetCollector
 	if params == nil {
 		params = NewGetCollectorByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCollectorById",
@@ -2382,7 +2301,6 @@ func (a *Client) GetCollectorGroupByID(params *GetCollectorGroupByIDParams) (*Ge
 	if params == nil {
 		params = NewGetCollectorGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCollectorGroupById",
@@ -2412,7 +2330,6 @@ func (a *Client) GetCollectorGroupList(params *GetCollectorGroupListParams) (*Ge
 	if params == nil {
 		params = NewGetCollectorGroupListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCollectorGroupList",
@@ -2442,7 +2359,6 @@ func (a *Client) GetCollectorInstaller(params *GetCollectorInstallerParams, writ
 	if params == nil {
 		params = NewGetCollectorInstallerParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCollectorInstaller",
@@ -2472,7 +2388,6 @@ func (a *Client) GetCollectorList(params *GetCollectorListParams) (*GetCollector
 	if params == nil {
 		params = NewGetCollectorListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCollectorList",
@@ -2502,7 +2417,6 @@ func (a *Client) GetCollectorVersionList(params *GetCollectorVersionListParams) 
 	if params == nil {
 		params = NewGetCollectorVersionListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getCollectorVersionList",
@@ -2532,7 +2446,6 @@ func (a *Client) GetDashboardByID(params *GetDashboardByIDParams) (*GetDashboard
 	if params == nil {
 		params = NewGetDashboardByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDashboardById",
@@ -2562,7 +2475,6 @@ func (a *Client) GetDashboardGroupByID(params *GetDashboardGroupByIDParams) (*Ge
 	if params == nil {
 		params = NewGetDashboardGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDashboardGroupById",
@@ -2592,7 +2504,6 @@ func (a *Client) GetDashboardGroupList(params *GetDashboardGroupListParams) (*Ge
 	if params == nil {
 		params = NewGetDashboardGroupListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDashboardGroupList",
@@ -2622,7 +2533,6 @@ func (a *Client) GetDashboardList(params *GetDashboardListParams) (*GetDashboard
 	if params == nil {
 		params = NewGetDashboardListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDashboardList",
@@ -2652,7 +2562,6 @@ func (a *Client) GetDataSourceOverviewGraphByID(params *GetDataSourceOverviewGra
 	if params == nil {
 		params = NewGetDataSourceOverviewGraphByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDataSourceOverviewGraphById",
@@ -2682,7 +2591,6 @@ func (a *Client) GetDataSourceOverviewGraphList(params *GetDataSourceOverviewGra
 	if params == nil {
 		params = NewGetDataSourceOverviewGraphListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDataSourceOverviewGraphList",
@@ -2712,7 +2620,6 @@ func (a *Client) GetDatasourceByID(params *GetDatasourceByIDParams) (*GetDatasou
 	if params == nil {
 		params = NewGetDatasourceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDatasourceById",
@@ -2742,7 +2649,6 @@ func (a *Client) GetDatasourceList(params *GetDatasourceListParams) (*GetDatasou
 	if params == nil {
 		params = NewGetDatasourceListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDatasourceList",
@@ -2772,7 +2678,6 @@ func (a *Client) GetDebugCommandResult(params *GetDebugCommandResultParams) (*Ge
 	if params == nil {
 		params = NewGetDebugCommandResultParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDebugCommandResult",
@@ -2802,7 +2707,6 @@ func (a *Client) GetDeviceByID(params *GetDeviceByIDParams) (*GetDeviceByIDOK, e
 	if params == nil {
 		params = NewGetDeviceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceById",
@@ -2832,7 +2736,6 @@ func (a *Client) GetDeviceConfigSourceConfigByID(params *GetDeviceConfigSourceCo
 	if params == nil {
 		params = NewGetDeviceConfigSourceConfigByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceConfigSourceConfigById",
@@ -2862,7 +2765,6 @@ func (a *Client) GetDeviceConfigSourceConfigList(params *GetDeviceConfigSourceCo
 	if params == nil {
 		params = NewGetDeviceConfigSourceConfigListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceConfigSourceConfigList",
@@ -2892,7 +2794,6 @@ func (a *Client) GetDeviceDatasourceByID(params *GetDeviceDatasourceByIDParams) 
 	if params == nil {
 		params = NewGetDeviceDatasourceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceById",
@@ -2922,7 +2823,6 @@ func (a *Client) GetDeviceDatasourceDataByID(params *GetDeviceDatasourceDataByID
 	if params == nil {
 		params = NewGetDeviceDatasourceDataByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceDataById",
@@ -2952,7 +2852,6 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingByID(params *GetDeviceDa
 	if params == nil {
 		params = NewGetDeviceDatasourceInstanceAlertSettingByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceInstanceAlertSettingById",
@@ -2982,7 +2881,6 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDSI(params *GetDev
 	if params == nil {
 		params = NewGetDeviceDatasourceInstanceAlertSettingListOfDSIParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceInstanceAlertSettingListOfDSI",
@@ -3012,7 +2910,6 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDevice(params *Get
 	if params == nil {
 		params = NewGetDeviceDatasourceInstanceAlertSettingListOfDeviceParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceInstanceAlertSettingListOfDevice",
@@ -3042,7 +2939,6 @@ func (a *Client) GetDeviceDatasourceInstanceByID(params *GetDeviceDatasourceInst
 	if params == nil {
 		params = NewGetDeviceDatasourceInstanceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceInstanceById",
@@ -3072,7 +2968,6 @@ func (a *Client) GetDeviceDatasourceInstanceData(params *GetDeviceDatasourceInst
 	if params == nil {
 		params = NewGetDeviceDatasourceInstanceDataParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceInstanceData",
@@ -3102,7 +2997,6 @@ func (a *Client) GetDeviceDatasourceInstanceGraphData(params *GetDeviceDatasourc
 	if params == nil {
 		params = NewGetDeviceDatasourceInstanceGraphDataParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceInstanceGraphData",
@@ -3132,7 +3026,6 @@ func (a *Client) GetDeviceDatasourceInstanceGroupByID(params *GetDeviceDatasourc
 	if params == nil {
 		params = NewGetDeviceDatasourceInstanceGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceInstanceGroupById",
@@ -3162,7 +3055,6 @@ func (a *Client) GetDeviceDatasourceInstanceGroupList(params *GetDeviceDatasourc
 	if params == nil {
 		params = NewGetDeviceDatasourceInstanceGroupListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceInstanceGroupList",
@@ -3192,7 +3084,6 @@ func (a *Client) GetDeviceDatasourceInstanceGroupOverviewGraphData(params *GetDe
 	if params == nil {
 		params = NewGetDeviceDatasourceInstanceGroupOverviewGraphDataParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceInstanceGroupOverviewGraphData",
@@ -3222,7 +3113,6 @@ func (a *Client) GetDeviceDatasourceInstanceList(params *GetDeviceDatasourceInst
 	if params == nil {
 		params = NewGetDeviceDatasourceInstanceListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceInstanceList",
@@ -3252,7 +3142,6 @@ func (a *Client) GetDeviceDatasourceInstanceSDTHistory(params *GetDeviceDatasour
 	if params == nil {
 		params = NewGetDeviceDatasourceInstanceSDTHistoryParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceInstanceSDTHistory",
@@ -3282,7 +3171,6 @@ func (a *Client) GetDeviceDatasourceList(params *GetDeviceDatasourceListParams) 
 	if params == nil {
 		params = NewGetDeviceDatasourceListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceDatasourceList",
@@ -3312,7 +3200,6 @@ func (a *Client) GetDeviceGroupByID(params *GetDeviceGroupByIDParams) (*GetDevic
 	if params == nil {
 		params = NewGetDeviceGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceGroupById",
@@ -3342,7 +3229,6 @@ func (a *Client) GetDeviceGroupClusterAlertConfByID(params *GetDeviceGroupCluste
 	if params == nil {
 		params = NewGetDeviceGroupClusterAlertConfByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceGroupClusterAlertConfById",
@@ -3372,7 +3258,6 @@ func (a *Client) GetDeviceGroupClusterAlertConfList(params *GetDeviceGroupCluste
 	if params == nil {
 		params = NewGetDeviceGroupClusterAlertConfListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceGroupClusterAlertConfList",
@@ -3402,7 +3287,6 @@ func (a *Client) GetDeviceGroupDatasourceAlertSetting(params *GetDeviceGroupData
 	if params == nil {
 		params = NewGetDeviceGroupDatasourceAlertSettingParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceGroupDatasourceAlertSetting",
@@ -3432,7 +3316,6 @@ func (a *Client) GetDeviceGroupDatasourceByID(params *GetDeviceGroupDatasourceBy
 	if params == nil {
 		params = NewGetDeviceGroupDatasourceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceGroupDatasourceById",
@@ -3462,7 +3345,6 @@ func (a *Client) GetDeviceGroupDatasourceList(params *GetDeviceGroupDatasourceLi
 	if params == nil {
 		params = NewGetDeviceGroupDatasourceListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceGroupDatasourceList",
@@ -3492,7 +3374,6 @@ func (a *Client) GetDeviceGroupList(params *GetDeviceGroupListParams) (*GetDevic
 	if params == nil {
 		params = NewGetDeviceGroupListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceGroupList",
@@ -3522,7 +3403,6 @@ func (a *Client) GetDeviceGroupPropertyByName(params *GetDeviceGroupPropertyByNa
 	if params == nil {
 		params = NewGetDeviceGroupPropertyByNameParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceGroupPropertyByName",
@@ -3552,7 +3432,6 @@ func (a *Client) GetDeviceGroupPropertyList(params *GetDeviceGroupPropertyListPa
 	if params == nil {
 		params = NewGetDeviceGroupPropertyListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceGroupPropertyList",
@@ -3582,7 +3461,6 @@ func (a *Client) GetDeviceGroupSDTList(params *GetDeviceGroupSDTListParams) (*Ge
 	if params == nil {
 		params = NewGetDeviceGroupSDTListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceGroupSDTList",
@@ -3612,7 +3490,6 @@ func (a *Client) GetDeviceInstanceGraphDataOnlyByInstanceID(params *GetDeviceIns
 	if params == nil {
 		params = NewGetDeviceInstanceGraphDataOnlyByInstanceIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceInstanceGraphDataOnlyByInstanceId",
@@ -3642,7 +3519,6 @@ func (a *Client) GetDeviceInstanceList(params *GetDeviceInstanceListParams) (*Ge
 	if params == nil {
 		params = NewGetDeviceInstanceListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceInstanceList",
@@ -3672,7 +3548,6 @@ func (a *Client) GetDeviceList(params *GetDeviceListParams) (*GetDeviceListOK, e
 	if params == nil {
 		params = NewGetDeviceListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDeviceList",
@@ -3702,7 +3577,6 @@ func (a *Client) GetDevicePropertyByName(params *GetDevicePropertyByNameParams) 
 	if params == nil {
 		params = NewGetDevicePropertyByNameParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDevicePropertyByName",
@@ -3732,7 +3606,6 @@ func (a *Client) GetDevicePropertyList(params *GetDevicePropertyListParams) (*Ge
 	if params == nil {
 		params = NewGetDevicePropertyListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getDevicePropertyList",
@@ -3762,7 +3635,6 @@ func (a *Client) GetEscalationChainByID(params *GetEscalationChainByIDParams) (*
 	if params == nil {
 		params = NewGetEscalationChainByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getEscalationChainById",
@@ -3792,7 +3664,6 @@ func (a *Client) GetEscalationChainList(params *GetEscalationChainListParams) (*
 	if params == nil {
 		params = NewGetEscalationChainListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getEscalationChainList",
@@ -3822,7 +3693,6 @@ func (a *Client) GetEventSourceList(params *GetEventSourceListParams) (*GetEvent
 	if params == nil {
 		params = NewGetEventSourceListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getEventSourceList",
@@ -3852,7 +3722,6 @@ func (a *Client) GetExternalAPIStats(params *GetExternalAPIStatsParams) (*GetExt
 	if params == nil {
 		params = NewGetExternalAPIStatsParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getExternalApiStats",
@@ -3882,7 +3751,6 @@ func (a *Client) GetImmediateDeviceListByDeviceGroupID(params *GetImmediateDevic
 	if params == nil {
 		params = NewGetImmediateDeviceListByDeviceGroupIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getImmediateDeviceListByDeviceGroupId",
@@ -3912,7 +3780,6 @@ func (a *Client) GetImmediateWebsiteListByWebsiteGroupID(params *GetImmediateWeb
 	if params == nil {
 		params = NewGetImmediateWebsiteListByWebsiteGroupIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getImmediateWebsiteListByWebsiteGroupId",
@@ -3942,7 +3809,6 @@ func (a *Client) GetMetricsUsage(params *GetMetricsUsageParams) (*GetMetricsUsag
 	if params == nil {
 		params = NewGetMetricsUsageParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getMetricsUsage",
@@ -3972,7 +3838,6 @@ func (a *Client) GetNetflowEndpointList(params *GetNetflowEndpointListParams) (*
 	if params == nil {
 		params = NewGetNetflowEndpointListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNetflowEndpointList",
@@ -4002,7 +3867,6 @@ func (a *Client) GetNetflowFlowList(params *GetNetflowFlowListParams) (*GetNetfl
 	if params == nil {
 		params = NewGetNetflowFlowListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNetflowFlowList",
@@ -4032,7 +3896,6 @@ func (a *Client) GetNetflowPortList(params *GetNetflowPortListParams) (*GetNetfl
 	if params == nil {
 		params = NewGetNetflowPortListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNetflowPortList",
@@ -4062,7 +3925,6 @@ func (a *Client) GetNetscanByID(params *GetNetscanByIDParams) (*GetNetscanByIDOK
 	if params == nil {
 		params = NewGetNetscanByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNetscanById",
@@ -4092,7 +3954,6 @@ func (a *Client) GetNetscanList(params *GetNetscanListParams) (*GetNetscanListOK
 	if params == nil {
 		params = NewGetNetscanListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getNetscanList",
@@ -4122,7 +3983,6 @@ func (a *Client) GetOpsNoteByID(params *GetOpsNoteByIDParams) (*GetOpsNoteByIDOK
 	if params == nil {
 		params = NewGetOpsNoteByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOpsNoteById",
@@ -4152,7 +4012,6 @@ func (a *Client) GetOpsNoteList(params *GetOpsNoteListParams) (*GetOpsNoteListOK
 	if params == nil {
 		params = NewGetOpsNoteListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getOpsNoteList",
@@ -4182,7 +4041,6 @@ func (a *Client) GetRecipientGroupByID(params *GetRecipientGroupByIDParams) (*Ge
 	if params == nil {
 		params = NewGetRecipientGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRecipientGroupById",
@@ -4212,7 +4070,6 @@ func (a *Client) GetRecipientGroupList(params *GetRecipientGroupListParams) (*Ge
 	if params == nil {
 		params = NewGetRecipientGroupListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRecipientGroupList",
@@ -4242,7 +4099,6 @@ func (a *Client) GetReportByID(params *GetReportByIDParams) (*GetReportByIDOK, e
 	if params == nil {
 		params = NewGetReportByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getReportById",
@@ -4272,7 +4128,6 @@ func (a *Client) GetReportGroupByID(params *GetReportGroupByIDParams) (*GetRepor
 	if params == nil {
 		params = NewGetReportGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getReportGroupById",
@@ -4302,7 +4157,6 @@ func (a *Client) GetReportGroupList(params *GetReportGroupListParams) (*GetRepor
 	if params == nil {
 		params = NewGetReportGroupListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getReportGroupList",
@@ -4332,7 +4186,6 @@ func (a *Client) GetReportList(params *GetReportListParams) (*GetReportListOK, e
 	if params == nil {
 		params = NewGetReportListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getReportList",
@@ -4362,7 +4215,6 @@ func (a *Client) GetRoleByID(params *GetRoleByIDParams) (*GetRoleByIDOK, error) 
 	if params == nil {
 		params = NewGetRoleByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRoleById",
@@ -4392,7 +4244,6 @@ func (a *Client) GetRoleList(params *GetRoleListParams) (*GetRoleListOK, error) 
 	if params == nil {
 		params = NewGetRoleListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getRoleList",
@@ -4422,7 +4273,6 @@ func (a *Client) GetSDTByID(params *GetSDTByIDParams) (*GetSDTByIDOK, error) {
 	if params == nil {
 		params = NewGetSDTByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSDTById",
@@ -4452,7 +4302,6 @@ func (a *Client) GetSDTHistoryByDeviceDataSourceID(params *GetSDTHistoryByDevice
 	if params == nil {
 		params = NewGetSDTHistoryByDeviceDataSourceIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSDTHistoryByDeviceDataSourceId",
@@ -4482,7 +4331,6 @@ func (a *Client) GetSDTHistoryByDeviceGroupID(params *GetSDTHistoryByDeviceGroup
 	if params == nil {
 		params = NewGetSDTHistoryByDeviceGroupIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSDTHistoryByDeviceGroupId",
@@ -4512,7 +4360,6 @@ func (a *Client) GetSDTHistoryByDeviceID(params *GetSDTHistoryByDeviceIDParams) 
 	if params == nil {
 		params = NewGetSDTHistoryByDeviceIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSDTHistoryByDeviceId",
@@ -4542,7 +4389,6 @@ func (a *Client) GetSDTHistoryByWebsiteGroupID(params *GetSDTHistoryByWebsiteGro
 	if params == nil {
 		params = NewGetSDTHistoryByWebsiteGroupIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSDTHistoryByWebsiteGroupId",
@@ -4572,7 +4418,6 @@ func (a *Client) GetSDTHistoryByWebsiteID(params *GetSDTHistoryByWebsiteIDParams
 	if params == nil {
 		params = NewGetSDTHistoryByWebsiteIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSDTHistoryByWebsiteId",
@@ -4602,7 +4447,6 @@ func (a *Client) GetSDTList(params *GetSDTListParams) (*GetSDTListOK, error) {
 	if params == nil {
 		params = NewGetSDTListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSDTList",
@@ -4632,7 +4476,6 @@ func (a *Client) GetSiteMonitorCheckPointList(params *GetSiteMonitorCheckPointLi
 	if params == nil {
 		params = NewGetSiteMonitorCheckPointListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getSiteMonitorCheckPointList",
@@ -4662,7 +4505,6 @@ func (a *Client) GetTopTalkersGraph(params *GetTopTalkersGraphParams) (*GetTopTa
 	if params == nil {
 		params = NewGetTopTalkersGraphParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getTopTalkersGraph",
@@ -4692,7 +4534,6 @@ func (a *Client) GetUnmonitoredDeviceList(params *GetUnmonitoredDeviceListParams
 	if params == nil {
 		params = NewGetUnmonitoredDeviceListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUnmonitoredDeviceList",
@@ -4722,7 +4563,6 @@ func (a *Client) GetUpdateReasonListByDataSourceID(params *GetUpdateReasonListBy
 	if params == nil {
 		params = NewGetUpdateReasonListByDataSourceIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getUpdateReasonListByDataSourceId",
@@ -4752,7 +4592,6 @@ func (a *Client) GetWebsiteAlertListByWebsiteID(params *GetWebsiteAlertListByWeb
 	if params == nil {
 		params = NewGetWebsiteAlertListByWebsiteIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWebsiteAlertListByWebsiteId",
@@ -4782,7 +4621,6 @@ func (a *Client) GetWebsiteByID(params *GetWebsiteByIDParams) (*GetWebsiteByIDOK
 	if params == nil {
 		params = NewGetWebsiteByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWebsiteById",
@@ -4812,7 +4650,6 @@ func (a *Client) GetWebsiteCheckpointDataByID(params *GetWebsiteCheckpointDataBy
 	if params == nil {
 		params = NewGetWebsiteCheckpointDataByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWebsiteCheckpointDataById",
@@ -4842,7 +4679,6 @@ func (a *Client) GetWebsiteDataByGraphName(params *GetWebsiteDataByGraphNamePara
 	if params == nil {
 		params = NewGetWebsiteDataByGraphNameParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWebsiteDataByGraphName",
@@ -4872,7 +4708,6 @@ func (a *Client) GetWebsiteGraphData(params *GetWebsiteGraphDataParams) (*GetWeb
 	if params == nil {
 		params = NewGetWebsiteGraphDataParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWebsiteGraphData",
@@ -4902,7 +4737,6 @@ func (a *Client) GetWebsiteGroupByID(params *GetWebsiteGroupByIDParams) (*GetWeb
 	if params == nil {
 		params = NewGetWebsiteGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWebsiteGroupById",
@@ -4932,7 +4766,6 @@ func (a *Client) GetWebsiteGroupList(params *GetWebsiteGroupListParams) (*GetWeb
 	if params == nil {
 		params = NewGetWebsiteGroupListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWebsiteGroupList",
@@ -4962,7 +4795,6 @@ func (a *Client) GetWebsiteList(params *GetWebsiteListParams) (*GetWebsiteListOK
 	if params == nil {
 		params = NewGetWebsiteListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWebsiteList",
@@ -4992,7 +4824,6 @@ func (a *Client) GetWebsitePropertyListByWebsiteID(params *GetWebsitePropertyLis
 	if params == nil {
 		params = NewGetWebsitePropertyListByWebsiteIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWebsitePropertyListByWebsiteId",
@@ -5022,7 +4853,6 @@ func (a *Client) GetWebsiteSDTListByWebsiteID(params *GetWebsiteSDTListByWebsite
 	if params == nil {
 		params = NewGetWebsiteSDTListByWebsiteIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWebsiteSDTListByWebsiteId",
@@ -5052,7 +4882,6 @@ func (a *Client) GetWidgetByID(params *GetWidgetByIDParams) (*GetWidgetByIDOK, e
 	if params == nil {
 		params = NewGetWidgetByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWidgetById",
@@ -5082,7 +4911,6 @@ func (a *Client) GetWidgetDataByID(params *GetWidgetDataByIDParams) (*GetWidgetD
 	if params == nil {
 		params = NewGetWidgetDataByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWidgetDataById",
@@ -5112,7 +4940,6 @@ func (a *Client) GetWidgetList(params *GetWidgetListParams) (*GetWidgetListOK, e
 	if params == nil {
 		params = NewGetWidgetListParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWidgetList",
@@ -5142,7 +4969,6 @@ func (a *Client) GetWidgetListByDashboardID(params *GetWidgetListByDashboardIDPa
 	if params == nil {
 		params = NewGetWidgetListByDashboardIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "getWidgetListByDashboardId",
@@ -5172,7 +4998,6 @@ func (a *Client) ImportBatchJob(params *ImportBatchJobParams) (*ImportBatchJobOK
 	if params == nil {
 		params = NewImportBatchJobParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importBatchJob",
@@ -5202,7 +5027,6 @@ func (a *Client) ImportConfigSource(params *ImportConfigSourceParams) (*ImportCo
 	if params == nil {
 		params = NewImportConfigSourceParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importConfigSource",
@@ -5232,7 +5056,6 @@ func (a *Client) ImportDNSMapping(params *ImportDNSMappingParams) (*ImportDNSMap
 	if params == nil {
 		params = NewImportDNSMappingParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importDNSMapping",
@@ -5262,7 +5085,6 @@ func (a *Client) ImportDataSource(params *ImportDataSourceParams) (*ImportDataSo
 	if params == nil {
 		params = NewImportDataSourceParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importDataSource",
@@ -5292,7 +5114,6 @@ func (a *Client) ImportEventSource(params *ImportEventSourceParams) (*ImportEven
 	if params == nil {
 		params = NewImportEventSourceParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "importEventSource",
@@ -5322,7 +5143,6 @@ func (a *Client) PatchAdminByID(params *PatchAdminByIDParams) (*PatchAdminByIDOK
 	if params == nil {
 		params = NewPatchAdminByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchAdminById",
@@ -5352,7 +5172,6 @@ func (a *Client) PatchAlertRuleByID(params *PatchAlertRuleByIDParams) (*PatchAle
 	if params == nil {
 		params = NewPatchAlertRuleByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchAlertRuleById",
@@ -5382,7 +5201,6 @@ func (a *Client) PatchAPITokenByAdminID(params *PatchAPITokenByAdminIDParams) (*
 	if params == nil {
 		params = NewPatchAPITokenByAdminIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchApiTokenByAdminId",
@@ -5412,7 +5230,6 @@ func (a *Client) PatchAppliesToFunction(params *PatchAppliesToFunctionParams) (*
 	if params == nil {
 		params = NewPatchAppliesToFunctionParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchAppliesToFunction",
@@ -5442,7 +5259,6 @@ func (a *Client) PatchCollectorByID(params *PatchCollectorByIDParams) (*PatchCol
 	if params == nil {
 		params = NewPatchCollectorByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchCollectorById",
@@ -5472,7 +5288,6 @@ func (a *Client) PatchCollectorGroupByID(params *PatchCollectorGroupByIDParams) 
 	if params == nil {
 		params = NewPatchCollectorGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchCollectorGroupById",
@@ -5504,7 +5319,6 @@ func (a *Client) PatchDashboardByID(params *PatchDashboardByIDParams) (*PatchDas
 	if params == nil {
 		params = NewPatchDashboardByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDashboardById",
@@ -5536,7 +5350,6 @@ func (a *Client) PatchDashboardGroupByID(params *PatchDashboardGroupByIDParams) 
 	if params == nil {
 		params = NewPatchDashboardGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDashboardGroupById",
@@ -5566,7 +5379,6 @@ func (a *Client) PatchDevice(params *PatchDeviceParams) (*PatchDeviceOK, error) 
 	if params == nil {
 		params = NewPatchDeviceParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDevice",
@@ -5596,7 +5408,6 @@ func (a *Client) PatchDeviceDatasourceInstanceAlertSettingByID(params *PatchDevi
 	if params == nil {
 		params = NewPatchDeviceDatasourceInstanceAlertSettingByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDeviceDatasourceInstanceAlertSettingById",
@@ -5626,7 +5437,6 @@ func (a *Client) PatchDeviceDatasourceInstanceByID(params *PatchDeviceDatasource
 	if params == nil {
 		params = NewPatchDeviceDatasourceInstanceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDeviceDatasourceInstanceById",
@@ -5656,7 +5466,6 @@ func (a *Client) PatchDeviceDatasourceInstanceGroupByID(params *PatchDeviceDatas
 	if params == nil {
 		params = NewPatchDeviceDatasourceInstanceGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDeviceDatasourceInstanceGroupById",
@@ -5686,7 +5495,6 @@ func (a *Client) PatchDeviceGroupByID(params *PatchDeviceGroupByIDParams) (*Patc
 	if params == nil {
 		params = NewPatchDeviceGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDeviceGroupById",
@@ -5716,7 +5524,6 @@ func (a *Client) PatchDeviceGroupClusterAlertConfByID(params *PatchDeviceGroupCl
 	if params == nil {
 		params = NewPatchDeviceGroupClusterAlertConfByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDeviceGroupClusterAlertConfById",
@@ -5746,7 +5553,6 @@ func (a *Client) PatchDeviceGroupDatasourceAlertSetting(params *PatchDeviceGroup
 	if params == nil {
 		params = NewPatchDeviceGroupDatasourceAlertSettingParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDeviceGroupDatasourceAlertSetting",
@@ -5776,7 +5582,6 @@ func (a *Client) PatchDeviceGroupDatasourceByID(params *PatchDeviceGroupDatasour
 	if params == nil {
 		params = NewPatchDeviceGroupDatasourceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDeviceGroupDatasourceById",
@@ -5806,7 +5611,6 @@ func (a *Client) PatchDeviceGroupPropertyByName(params *PatchDeviceGroupProperty
 	if params == nil {
 		params = NewPatchDeviceGroupPropertyByNameParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDeviceGroupPropertyByName",
@@ -5836,7 +5640,6 @@ func (a *Client) PatchDevicePropertyByName(params *PatchDevicePropertyByNamePara
 	if params == nil {
 		params = NewPatchDevicePropertyByNameParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchDevicePropertyByName",
@@ -5866,7 +5669,6 @@ func (a *Client) PatchEscalationChainByID(params *PatchEscalationChainByIDParams
 	if params == nil {
 		params = NewPatchEscalationChainByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchEscalationChainById",
@@ -5896,7 +5698,6 @@ func (a *Client) PatchNetscan(params *PatchNetscanParams) (*PatchNetscanOK, erro
 	if params == nil {
 		params = NewPatchNetscanParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchNetscan",
@@ -5926,7 +5727,6 @@ func (a *Client) PatchOpsNoteByID(params *PatchOpsNoteByIDParams) (*PatchOpsNote
 	if params == nil {
 		params = NewPatchOpsNoteByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchOpsNoteById",
@@ -5956,7 +5756,6 @@ func (a *Client) PatchRecipientGroupByID(params *PatchRecipientGroupByIDParams) 
 	if params == nil {
 		params = NewPatchRecipientGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchRecipientGroupById",
@@ -5986,7 +5785,6 @@ func (a *Client) PatchReportByID(params *PatchReportByIDParams) (*PatchReportByI
 	if params == nil {
 		params = NewPatchReportByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchReportById",
@@ -6016,7 +5814,6 @@ func (a *Client) PatchReportGroupByID(params *PatchReportGroupByIDParams) (*Patc
 	if params == nil {
 		params = NewPatchReportGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchReportGroupById",
@@ -6046,7 +5843,6 @@ func (a *Client) PatchRoleByID(params *PatchRoleByIDParams) (*PatchRoleByIDOK, e
 	if params == nil {
 		params = NewPatchRoleByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchRoleById",
@@ -6076,7 +5872,6 @@ func (a *Client) PatchSDTByID(params *PatchSDTByIDParams) (*PatchSDTByIDOK, erro
 	if params == nil {
 		params = NewPatchSDTByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchSDTById",
@@ -6106,7 +5901,6 @@ func (a *Client) PatchWebsiteByID(params *PatchWebsiteByIDParams) (*PatchWebsite
 	if params == nil {
 		params = NewPatchWebsiteByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchWebsiteById",
@@ -6136,7 +5930,6 @@ func (a *Client) PatchWebsiteGroupByID(params *PatchWebsiteGroupByIDParams) (*Pa
 	if params == nil {
 		params = NewPatchWebsiteGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchWebsiteGroupById",
@@ -6166,7 +5959,6 @@ func (a *Client) PatchWidgetByID(params *PatchWidgetByIDParams) (*PatchWidgetByI
 	if params == nil {
 		params = NewPatchWidgetByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchWidgetById",
@@ -6196,7 +5988,6 @@ func (a *Client) ScheduleAutoDiscoveryByDeviceID(params *ScheduleAutoDiscoveryBy
 	if params == nil {
 		params = NewScheduleAutoDiscoveryByDeviceIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "scheduleAutoDiscoveryByDeviceId",
@@ -6226,7 +6017,6 @@ func (a *Client) UpdateAdminByID(params *UpdateAdminByIDParams) (*UpdateAdminByI
 	if params == nil {
 		params = NewUpdateAdminByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateAdminById",
@@ -6256,7 +6046,6 @@ func (a *Client) UpdateAlertRuleByID(params *UpdateAlertRuleByIDParams) (*Update
 	if params == nil {
 		params = NewUpdateAlertRuleByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateAlertRuleById",
@@ -6286,7 +6075,6 @@ func (a *Client) UpdateAPITokenByAdminID(params *UpdateAPITokenByAdminIDParams) 
 	if params == nil {
 		params = NewUpdateAPITokenByAdminIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateApiTokenByAdminId",
@@ -6316,7 +6104,6 @@ func (a *Client) UpdateAppliesToFunction(params *UpdateAppliesToFunctionParams) 
 	if params == nil {
 		params = NewUpdateAppliesToFunctionParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateAppliesToFunction",
@@ -6346,7 +6133,6 @@ func (a *Client) UpdateCollectorByID(params *UpdateCollectorByIDParams) (*Update
 	if params == nil {
 		params = NewUpdateCollectorByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCollectorById",
@@ -6376,7 +6162,6 @@ func (a *Client) UpdateCollectorGroupByID(params *UpdateCollectorGroupByIDParams
 	if params == nil {
 		params = NewUpdateCollectorGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateCollectorGroupById",
@@ -6408,7 +6193,6 @@ func (a *Client) UpdateDashboardByID(params *UpdateDashboardByIDParams) (*Update
 	if params == nil {
 		params = NewUpdateDashboardByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDashboardById",
@@ -6440,7 +6224,6 @@ func (a *Client) UpdateDashboardGroupByID(params *UpdateDashboardGroupByIDParams
 	if params == nil {
 		params = NewUpdateDashboardGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDashboardGroupById",
@@ -6470,7 +6253,6 @@ func (a *Client) UpdateDevice(params *UpdateDeviceParams) (*UpdateDeviceOK, erro
 	if params == nil {
 		params = NewUpdateDeviceParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDevice",
@@ -6500,7 +6282,6 @@ func (a *Client) UpdateDeviceDatasourceInstanceAlertSettingByID(params *UpdateDe
 	if params == nil {
 		params = NewUpdateDeviceDatasourceInstanceAlertSettingByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDeviceDatasourceInstanceAlertSettingById",
@@ -6530,7 +6311,6 @@ func (a *Client) UpdateDeviceDatasourceInstanceByID(params *UpdateDeviceDatasour
 	if params == nil {
 		params = NewUpdateDeviceDatasourceInstanceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDeviceDatasourceInstanceById",
@@ -6560,7 +6340,6 @@ func (a *Client) UpdateDeviceDatasourceInstanceGroupByID(params *UpdateDeviceDat
 	if params == nil {
 		params = NewUpdateDeviceDatasourceInstanceGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDeviceDatasourceInstanceGroupById",
@@ -6590,7 +6369,6 @@ func (a *Client) UpdateDeviceGroupByID(params *UpdateDeviceGroupByIDParams) (*Up
 	if params == nil {
 		params = NewUpdateDeviceGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDeviceGroupById",
@@ -6620,7 +6398,6 @@ func (a *Client) UpdateDeviceGroupClusterAlertConfByID(params *UpdateDeviceGroup
 	if params == nil {
 		params = NewUpdateDeviceGroupClusterAlertConfByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDeviceGroupClusterAlertConfById",
@@ -6650,7 +6427,6 @@ func (a *Client) UpdateDeviceGroupDatasourceAlertSetting(params *UpdateDeviceGro
 	if params == nil {
 		params = NewUpdateDeviceGroupDatasourceAlertSettingParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDeviceGroupDatasourceAlertSetting",
@@ -6680,7 +6456,6 @@ func (a *Client) UpdateDeviceGroupDatasourceByID(params *UpdateDeviceGroupDataso
 	if params == nil {
 		params = NewUpdateDeviceGroupDatasourceByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDeviceGroupDatasourceById",
@@ -6710,7 +6485,6 @@ func (a *Client) UpdateDeviceGroupPropertyByName(params *UpdateDeviceGroupProper
 	if params == nil {
 		params = NewUpdateDeviceGroupPropertyByNameParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDeviceGroupPropertyByName",
@@ -6740,7 +6514,6 @@ func (a *Client) UpdateDevicePropertyByName(params *UpdateDevicePropertyByNamePa
 	if params == nil {
 		params = NewUpdateDevicePropertyByNameParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateDevicePropertyByName",
@@ -6770,7 +6543,6 @@ func (a *Client) UpdateEscalationChainByID(params *UpdateEscalationChainByIDPara
 	if params == nil {
 		params = NewUpdateEscalationChainByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateEscalationChainById",
@@ -6800,7 +6572,6 @@ func (a *Client) UpdateNetscan(params *UpdateNetscanParams) (*UpdateNetscanOK, e
 	if params == nil {
 		params = NewUpdateNetscanParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateNetscan",
@@ -6830,7 +6601,6 @@ func (a *Client) UpdateOpsNoteByID(params *UpdateOpsNoteByIDParams) (*UpdateOpsN
 	if params == nil {
 		params = NewUpdateOpsNoteByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateOpsNoteById",
@@ -6860,7 +6630,6 @@ func (a *Client) UpdateRecipientGroupByID(params *UpdateRecipientGroupByIDParams
 	if params == nil {
 		params = NewUpdateRecipientGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateRecipientGroupById",
@@ -6890,7 +6659,6 @@ func (a *Client) UpdateReportByID(params *UpdateReportByIDParams) (*UpdateReport
 	if params == nil {
 		params = NewUpdateReportByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateReportById",
@@ -6920,7 +6688,6 @@ func (a *Client) UpdateReportGroupByID(params *UpdateReportGroupByIDParams) (*Up
 	if params == nil {
 		params = NewUpdateReportGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateReportGroupById",
@@ -6950,7 +6717,6 @@ func (a *Client) UpdateRoleByID(params *UpdateRoleByIDParams) (*UpdateRoleByIDOK
 	if params == nil {
 		params = NewUpdateRoleByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateRoleById",
@@ -6980,7 +6746,6 @@ func (a *Client) UpdateSDTByID(params *UpdateSDTByIDParams) (*UpdateSDTByIDOK, e
 	if params == nil {
 		params = NewUpdateSDTByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateSDTById",
@@ -7010,7 +6775,6 @@ func (a *Client) UpdateWebsiteByID(params *UpdateWebsiteByIDParams) (*UpdateWebs
 	if params == nil {
 		params = NewUpdateWebsiteByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateWebsiteById",
@@ -7040,7 +6804,6 @@ func (a *Client) UpdateWebsiteGroupByID(params *UpdateWebsiteGroupByIDParams) (*
 	if params == nil {
 		params = NewUpdateWebsiteGroupByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateWebsiteGroupById",
@@ -7070,7 +6833,6 @@ func (a *Client) UpdateWidgetByID(params *UpdateWidgetByIDParams) (*UpdateWidget
 	if params == nil {
 		params = NewUpdateWidgetByIDParams()
 	}
-	reflect.ValueOf(params).MethodByName("SetUserAgent").Call([]reflect.Value{reflect.ValueOf(a.userAgent)})
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateWidgetById",
@@ -7095,9 +6857,4 @@ func (a *Client) UpdateWidgetByID(params *UpdateWidgetByIDParams) (*UpdateWidget
 // SetTransport changes the transport on the client
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
 	a.transport = transport
-}
-
-// SetUserAgent changes the userAgent on the client
-func (a *Client) SetUserAgent(userAgent *string) {
-	a.userAgent = userAgent
 }
