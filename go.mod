@@ -8,7 +8,6 @@ require (
 	github.com/go-openapi/strfmt v0.21.8
 	github.com/go-openapi/swag v0.22.4
 	github.com/go-openapi/validate v0.22.3
-	github.com/logicmonitor/lm-sdk-go/v3 v3.2.0-temp
 )
 
 require (
