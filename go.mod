@@ -1,4 +1,4 @@
-module github.com/logicmonitor/lm-sdk-go
+module github.com/logicmonitor/lm-sdk-go/v3
 
 go 1.19
 
