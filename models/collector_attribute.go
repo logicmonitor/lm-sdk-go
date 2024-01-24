@@ -117,6 +117,12 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 			return nil, err
 		}
 		return &result, nil
+	case "AwsRoute53ResolverIPAddressCollectorAttribute":
+		var result AwsRoute53ResolverIPAddressCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "AzureActiveDirectoryAppSecretCollectorAttribute":
 		var result AzureActiveDirectoryAppSecretCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -137,6 +143,12 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 		return &result, nil
 	case "AzureAppServiceEnvironmentMultiRolePoolCollectorAttributeV3":
 		var result AzureAppServiceEnvironmentMultiRolePoolCollectorAttributeV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureAuthenticationAttribute":
+		var result AzureAuthenticationAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -225,6 +237,12 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 			return nil, err
 		}
 		return &result, nil
+	case "AzureResourceUsageCollectorAttribute":
+		var result AzureResourceUsageCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "AzureVMBackupStatusCollectorAttributeV3":
 		var result AzureVMBackupStatusCollectorAttributeV3
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -251,6 +269,12 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 		return &result, nil
 	case "AzureVirtualDesktopSessionHostsCollectorAttributeV3":
 		var result AzureVirtualDesktopSessionHostsCollectorAttributeV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureVwanVpnConnectionCollectorAttribute":
+		var result AzureVwanVpnConnectionCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -441,12 +465,6 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 			return nil, err
 		}
 		return &result, nil
-	case "awsdynamodb":
-		var result AwsDynamodbCollectorAttribute
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
 	case "awsec2reservedinstance":
 		var result AwsEC2ReservedInstanceCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -477,12 +495,6 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 			return nil, err
 		}
 		return &result, nil
-	case "awss3":
-		var result AwsS3CollectorAttribute
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
 	case "awsservicelimitsfromtrustedadvisor":
 		var result AwsServiceLimitsFromTrustedAdvisorCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -491,12 +503,6 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 		return &result, nil
 	case "awssesservicelimits":
 		var result AwsSesServiceLimitsCollectorAttribute
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "awssqs":
-		var result AwsSqsCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

@@ -21,88 +21,88 @@ import (
 // swagger:model GroupNetFlowRecord
 type GroupNetFlowRecord struct {
 
-	// dest asn name
+	// the name of dest ASN number
 	// Read Only: true
 	DestAsnName string `json:"destAsnName,omitempty"`
 
-	// destination m bytes
+	// the destination byte of this flow record
 	// Read Only: true
 	DestinationMBytes float64 `json:"destinationMBytes,omitempty"`
 
 	// device display name
 	DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
 
-	// dst a s n
+	// destination autonomous system number
 	// Read Only: true
 	DstASN int64 `json:"dstASN,omitempty"`
 
-	// dst DNS
+	// the dns name of destination ip
 	// Read Only: true
 	DstDNS string `json:"dstDNS,omitempty"`
 
-	// dst IP
+	// the destination ip of the flow record
 	// Read Only: true
 	DstIP string `json:"dstIP,omitempty"`
 
-	// dst port
+	// the destination port
 	// Read Only: true
 	DstPort int32 `json:"dstPort,omitempty"`
 
-	// first epoch in sec
+	// the start time of this flow record
 	// Read Only: true
 	FirstEpochInSec int64 `json:"firstEpochInSec,omitempty"`
 
-	// if in
+	// the in interface of this flow record
 	// Read Only: true
 	IfIn int64 `json:"ifIn,omitempty"`
 
 	// if in display name
 	IfInDisplayName string `json:"ifInDisplayName,omitempty"`
 
-	// if out
+	// the out interface of this flow record
 	// Read Only: true
 	IfOut int64 `json:"ifOut,omitempty"`
 
 	// if out display name
 	IfOutDisplayName string `json:"ifOutDisplayName,omitempty"`
 
-	// last epoch in sec
+	// the end time  of this flow record
 	// Read Only: true
 	LastEpochInSec int64 `json:"lastEpochInSec,omitempty"`
 
-	// percent usage
+	// the percent traffic of the flow record
 	// Read Only: true
 	PercentUsage float64 `json:"percentUsage,omitempty"`
 
-	// protocol
+	// the protocol name of this flow record
 	// Read Only: true
 	Protocol string `json:"protocol,omitempty"`
 
-	// source m bytes
+	// the source bytes of this flow record
 	// Read Only: true
 	SourceMBytes float64 `json:"sourceMBytes,omitempty"`
 
-	// src a s n
+	// source autonomous system number
 	// Read Only: true
 	SrcASN int64 `json:"srcASN,omitempty"`
 
-	// src asn name
+	// the name of src ASN number
 	// Read Only: true
 	SrcAsnName string `json:"srcAsnName,omitempty"`
 
-	// src DNS
+	// the dns name of source ip
 	// Read Only: true
 	SrcDNS string `json:"srcDNS,omitempty"`
 
-	// src IP
+	// the source ip of flow record
 	// Read Only: true
 	SrcIP string `json:"srcIP,omitempty"`
 
-	// src port
+	// the source port of the flow record
 	// Read Only: true
 	SrcPort int32 `json:"srcPort,omitempty"`
 
-	// usage
+	// the total bytes of this flow record (source bytes + destination bytes)
 	// Read Only: true
 	Usage float64 `json:"usage,omitempty"`
 }
@@ -120,88 +120,88 @@ func (m *GroupNetFlowRecord) SetDataType(val string) {
 func (m *GroupNetFlowRecord) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// dest asn name
+		// the name of dest ASN number
 		// Read Only: true
 		DestAsnName string `json:"destAsnName,omitempty"`
 
-		// destination m bytes
+		// the destination byte of this flow record
 		// Read Only: true
 		DestinationMBytes float64 `json:"destinationMBytes,omitempty"`
 
 		// device display name
 		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
 
-		// dst a s n
+		// destination autonomous system number
 		// Read Only: true
 		DstASN int64 `json:"dstASN,omitempty"`
 
-		// dst DNS
+		// the dns name of destination ip
 		// Read Only: true
 		DstDNS string `json:"dstDNS,omitempty"`
 
-		// dst IP
+		// the destination ip of the flow record
 		// Read Only: true
 		DstIP string `json:"dstIP,omitempty"`
 
-		// dst port
+		// the destination port
 		// Read Only: true
 		DstPort int32 `json:"dstPort,omitempty"`
 
-		// first epoch in sec
+		// the start time of this flow record
 		// Read Only: true
 		FirstEpochInSec int64 `json:"firstEpochInSec,omitempty"`
 
-		// if in
+		// the in interface of this flow record
 		// Read Only: true
 		IfIn int64 `json:"ifIn,omitempty"`
 
 		// if in display name
 		IfInDisplayName string `json:"ifInDisplayName,omitempty"`
 
-		// if out
+		// the out interface of this flow record
 		// Read Only: true
 		IfOut int64 `json:"ifOut,omitempty"`
 
 		// if out display name
 		IfOutDisplayName string `json:"ifOutDisplayName,omitempty"`
 
-		// last epoch in sec
+		// the end time  of this flow record
 		// Read Only: true
 		LastEpochInSec int64 `json:"lastEpochInSec,omitempty"`
 
-		// percent usage
+		// the percent traffic of the flow record
 		// Read Only: true
 		PercentUsage float64 `json:"percentUsage,omitempty"`
 
-		// protocol
+		// the protocol name of this flow record
 		// Read Only: true
 		Protocol string `json:"protocol,omitempty"`
 
-		// source m bytes
+		// the source bytes of this flow record
 		// Read Only: true
 		SourceMBytes float64 `json:"sourceMBytes,omitempty"`
 
-		// src a s n
+		// source autonomous system number
 		// Read Only: true
 		SrcASN int64 `json:"srcASN,omitempty"`
 
-		// src asn name
+		// the name of src ASN number
 		// Read Only: true
 		SrcAsnName string `json:"srcAsnName,omitempty"`
 
-		// src DNS
+		// the dns name of source ip
 		// Read Only: true
 		SrcDNS string `json:"srcDNS,omitempty"`
 
-		// src IP
+		// the source ip of flow record
 		// Read Only: true
 		SrcIP string `json:"srcIP,omitempty"`
 
-		// src port
+		// the source port of the flow record
 		// Read Only: true
 		SrcPort int32 `json:"srcPort,omitempty"`
 
-		// usage
+		// the total bytes of this flow record (source bytes + destination bytes)
 		// Read Only: true
 		Usage float64 `json:"usage,omitempty"`
 	}
@@ -267,88 +267,88 @@ func (m GroupNetFlowRecord) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// dest asn name
+		// the name of dest ASN number
 		// Read Only: true
 		DestAsnName string `json:"destAsnName,omitempty"`
 
-		// destination m bytes
+		// the destination byte of this flow record
 		// Read Only: true
 		DestinationMBytes float64 `json:"destinationMBytes,omitempty"`
 
 		// device display name
 		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
 
-		// dst a s n
+		// destination autonomous system number
 		// Read Only: true
 		DstASN int64 `json:"dstASN,omitempty"`
 
-		// dst DNS
+		// the dns name of destination ip
 		// Read Only: true
 		DstDNS string `json:"dstDNS,omitempty"`
 
-		// dst IP
+		// the destination ip of the flow record
 		// Read Only: true
 		DstIP string `json:"dstIP,omitempty"`
 
-		// dst port
+		// the destination port
 		// Read Only: true
 		DstPort int32 `json:"dstPort,omitempty"`
 
-		// first epoch in sec
+		// the start time of this flow record
 		// Read Only: true
 		FirstEpochInSec int64 `json:"firstEpochInSec,omitempty"`
 
-		// if in
+		// the in interface of this flow record
 		// Read Only: true
 		IfIn int64 `json:"ifIn,omitempty"`
 
 		// if in display name
 		IfInDisplayName string `json:"ifInDisplayName,omitempty"`
 
-		// if out
+		// the out interface of this flow record
 		// Read Only: true
 		IfOut int64 `json:"ifOut,omitempty"`
 
 		// if out display name
 		IfOutDisplayName string `json:"ifOutDisplayName,omitempty"`
 
-		// last epoch in sec
+		// the end time  of this flow record
 		// Read Only: true
 		LastEpochInSec int64 `json:"lastEpochInSec,omitempty"`
 
-		// percent usage
+		// the percent traffic of the flow record
 		// Read Only: true
 		PercentUsage float64 `json:"percentUsage,omitempty"`
 
-		// protocol
+		// the protocol name of this flow record
 		// Read Only: true
 		Protocol string `json:"protocol,omitempty"`
 
-		// source m bytes
+		// the source bytes of this flow record
 		// Read Only: true
 		SourceMBytes float64 `json:"sourceMBytes,omitempty"`
 
-		// src a s n
+		// source autonomous system number
 		// Read Only: true
 		SrcASN int64 `json:"srcASN,omitempty"`
 
-		// src asn name
+		// the name of src ASN number
 		// Read Only: true
 		SrcAsnName string `json:"srcAsnName,omitempty"`
 
-		// src DNS
+		// the dns name of source ip
 		// Read Only: true
 		SrcDNS string `json:"srcDNS,omitempty"`
 
-		// src IP
+		// the source ip of flow record
 		// Read Only: true
 		SrcIP string `json:"srcIP,omitempty"`
 
-		// src port
+		// the source port of the flow record
 		// Read Only: true
 		SrcPort int32 `json:"srcPort,omitempty"`
 
-		// usage
+		// the total bytes of this flow record (source bytes + destination bytes)
 		// Read Only: true
 		Usage float64 `json:"usage,omitempty"`
 	}{

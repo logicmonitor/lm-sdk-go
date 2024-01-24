@@ -183,6 +183,10 @@ type Collector struct {
 	// Read Only: true
 	IsEncoded *bool `json:"isEncoded,omitempty"`
 
+	// Whether collector has isLmlogsSyslogEnabled flag set as true
+	// Read Only: true
+	IsLmlogsSyslogEnabled *bool `json:"isLmlogsSyslogEnabled,omitempty"`
+
 	// The time, in epoch format, that a notification was last sent for the Collector
 	// Read Only: true
 	LastSentNotificationOn int64 `json:"lastSentNotificationOn,omitempty"`
@@ -584,6 +588,10 @@ func (m *Collector) ContextValidate(ctx context.Context, formats strfmt.Registry
 	}
 
 	if err := m.contextValidateIsEncoded(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIsLmlogsSyslogEnabled(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1028,6 +1036,15 @@ func (m *Collector) contextValidateIsDown(ctx context.Context, formats strfmt.Re
 func (m *Collector) contextValidateIsEncoded(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "isEncoded", "body", m.IsEncoded); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Collector) contextValidateIsLmlogsSyslogEnabled(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "isLmlogsSyslogEnabled", "body", m.IsLmlogsSyslogEnabled); err != nil {
 		return err
 	}
 

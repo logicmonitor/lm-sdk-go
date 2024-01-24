@@ -293,35 +293,6 @@ func (a *Client) AddCollectorGroup(params *AddCollectorGroupParams) (*AddCollect
 }
 
 /*
-AddConfigsourceAuditVersion adds audit version
-*/
-func (a *Client) AddConfigsourceAuditVersion(params *AddConfigsourceAuditVersionParams) (*AddConfigsourceAuditVersionOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAddConfigsourceAuditVersionParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "addConfigsourceAuditVersion",
-		Method:             "POST",
-		PathPattern:        "/setting/configsources/{id}/audit",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AddConfigsourceAuditVersionReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*AddConfigsourceAuditVersionOK), nil
-
-}
-
-/*
 AddDashboard adds dashboard
 */
 func (a *Client) AddDashboard(params *AddDashboardParams) (*AddDashboardOK, error) {
@@ -380,23 +351,23 @@ func (a *Client) AddDashboardGroup(params *AddDashboardGroupParams) (*AddDashboa
 }
 
 /*
-AddDatasourceAuditVersion adds audit version
+AddDashboardGroupAsynchronously adds dashboard group asynchronously
 */
-func (a *Client) AddDatasourceAuditVersion(params *AddDatasourceAuditVersionParams) (*AddDatasourceAuditVersionOK, error) {
+func (a *Client) AddDashboardGroupAsynchronously(params *AddDashboardGroupAsynchronouslyParams) (*AddDashboardGroupAsynchronouslyOK, error) {
 	// TODO: Validate the params before sending
 	if params == nil {
-		params = NewAddDatasourceAuditVersionParams()
+		params = NewAddDashboardGroupAsynchronouslyParams()
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "addDatasourceAuditVersion",
+		ID:                 "addDashboardGroupAsynchronously",
 		Method:             "POST",
-		PathPattern:        "/setting/datasources/{id}/audit",
+		PathPattern:        "/dashboard/groups/{id}/asyncclone",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
 		Params:             params,
-		Reader:             &AddDatasourceAuditVersionReader{formats: a.formats},
+		Reader:             &AddDashboardGroupAsynchronouslyReader{formats: a.formats},
 		AuthInfo:           a.authInfo,
 		Context:            params.Context,
 		Client:             params.HTTPClient,
@@ -404,7 +375,36 @@ func (a *Client) AddDatasourceAuditVersion(params *AddDatasourceAuditVersionPara
 	if err != nil {
 		return nil, err
 	}
-	return result.(*AddDatasourceAuditVersionOK), nil
+	return result.(*AddDashboardGroupAsynchronouslyOK), nil
+
+}
+
+/*
+AddDatasourceByID adds datasource
+*/
+func (a *Client) AddDatasourceByID(params *AddDatasourceByIDParams) (*AddDatasourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddDatasourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addDatasourceById",
+		Method:             "POST",
+		PathPattern:        "/setting/datasources",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddDatasourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddDatasourceByIDOK), nil
 
 }
 
@@ -463,6 +463,35 @@ func (a *Client) AddDeviceDatasourceInstance(params *AddDeviceDatasourceInstance
 		return nil, err
 	}
 	return result.(*AddDeviceDatasourceInstanceOK), nil
+
+}
+
+/*
+AddDeviceDatasourceInstanceGroup adds device datasource instance group
+*/
+func (a *Client) AddDeviceDatasourceInstanceGroup(params *AddDeviceDatasourceInstanceGroupParams) (*AddDeviceDatasourceInstanceGroupOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddDeviceDatasourceInstanceGroupParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addDeviceDatasourceInstanceGroup",
+		Method:             "POST",
+		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddDeviceDatasourceInstanceGroupReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddDeviceDatasourceInstanceGroupOK), nil
 
 }
 
@@ -583,35 +612,6 @@ func (a *Client) AddEscalationChain(params *AddEscalationChainParams) (*AddEscal
 }
 
 /*
-AddEventsourceAuditVersion adds audit version
-*/
-func (a *Client) AddEventsourceAuditVersion(params *AddEventsourceAuditVersionParams) (*AddEventsourceAuditVersionOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAddEventsourceAuditVersionParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "addEventsourceAuditVersion",
-		Method:             "POST",
-		PathPattern:        "/setting/eventsources/{id}/audit",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AddEventsourceAuditVersionReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*AddEventsourceAuditVersionOK), nil
-
-}
-
-/*
 AddNetscan adds a new netscan
 */
 func (a *Client) AddNetscan(params *AddNetscanParams) (*AddNetscanOK, error) {
@@ -666,35 +666,6 @@ func (a *Client) AddOpsNote(params *AddOpsNoteParams) (*AddOpsNoteOK, error) {
 		return nil, err
 	}
 	return result.(*AddOpsNoteOK), nil
-
-}
-
-/*
-AddPropertysourceAuditVersion adds audit version
-*/
-func (a *Client) AddPropertysourceAuditVersion(params *AddPropertysourceAuditVersionParams) (*AddPropertysourceAuditVersionOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewAddPropertysourceAuditVersionParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "addPropertysourceAuditVersion",
-		Method:             "POST",
-		PathPattern:        "/setting/propertyrules/{id}/audit",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &AddPropertysourceAuditVersionReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*AddPropertysourceAuditVersionOK), nil
 
 }
 
@@ -1511,6 +1482,35 @@ func (a *Client) DeleteWidgetByID(params *DeleteWidgetByIDParams) (*DeleteWidget
 }
 
 /*
+DiscoverSubscriptions views subscriptions
+*/
+func (a *Client) DiscoverSubscriptions(params *DiscoverSubscriptionsParams) (*DiscoverSubscriptionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDiscoverSubscriptionsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "discoverSubscriptions",
+		Method:             "POST",
+		PathPattern:        "/azure/functions/discoverSubscriptions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DiscoverSubscriptionsReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DiscoverSubscriptionsOK), nil
+
+}
+
+/*
 ExecuteDebugCommand executes a collector debug command
 */
 func (a *Client) ExecuteDebugCommand(params *ExecuteDebugCommandParams) (*ExecuteDebugCommandOK, error) {
@@ -1536,6 +1536,64 @@ func (a *Client) ExecuteDebugCommand(params *ExecuteDebugCommandParams) (*Execut
 		return nil, err
 	}
 	return result.(*ExecuteDebugCommandOK), nil
+
+}
+
+/*
+FetchDeviceInstancesData fetches device instances data
+*/
+func (a *Client) FetchDeviceInstancesData(params *FetchDeviceInstancesDataParams) (*FetchDeviceInstancesDataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFetchDeviceInstancesDataParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "fetchDeviceInstancesData",
+		Method:             "POST",
+		PathPattern:        "/device/instances/datafetch",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FetchDeviceInstancesDataReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*FetchDeviceInstancesDataOK), nil
+
+}
+
+/*
+FetchReportUsingTaskID gets report for task Id
+*/
+func (a *Client) FetchReportUsingTaskID(params *FetchReportUsingTaskIDParams) (*FetchReportUsingTaskIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewFetchReportUsingTaskIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "fetchReportUsingTaskId",
+		Method:             "GET",
+		PathPattern:        "/report/reports/{id}/tasks/{taskId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &FetchReportUsingTaskIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*FetchReportUsingTaskIDOK), nil
 
 }
 
@@ -2033,7 +2091,36 @@ func (a *Client) GetAuditLogList(params *GetAuditLogListParams) (*GetAuditLogLis
 }
 
 /*
-GetAwsExternalID gets a w s external id
+GetAwsAccountID gets a w s account ID
+*/
+func (a *Client) GetAwsAccountID(params *GetAwsAccountIDParams) (*GetAwsAccountIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAwsAccountIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAwsAccountId",
+		Method:             "GET",
+		PathPattern:        "/aws/accountId",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAwsAccountIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAwsAccountIDOK), nil
+
+}
+
+/*
+GetAwsExternalID gets a w s external ID
 */
 func (a *Client) GetAwsExternalID(params *GetAwsExternalIDParams) (*GetAwsExternalIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2058,35 +2145,6 @@ func (a *Client) GetAwsExternalID(params *GetAwsExternalIDParams) (*GetAwsExtern
 		return nil, err
 	}
 	return result.(*GetAwsExternalIDOK), nil
-
-}
-
-/*
-GetCollectorByHostName gets collector id for host name
-*/
-func (a *Client) GetCollectorByHostName(params *GetCollectorByHostNameParams) (*GetCollectorByHostNameOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetCollectorByHostNameParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getCollectorByHostName",
-		Method:             "GET",
-		PathPattern:        "/setting/collector/collectors/getCollectorByHostName",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetCollectorByHostNameReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetCollectorByHostNameOK), nil
 
 }
 
@@ -2493,6 +2551,64 @@ func (a *Client) GetDebugCommandResult(params *GetDebugCommandResultParams) (*Ge
 		return nil, err
 	}
 	return result.(*GetDebugCommandResultOK), nil
+
+}
+
+/*
+GetDeltaDevices gets delta devices using delta Id
+*/
+func (a *Client) GetDeltaDevices(params *GetDeltaDevicesParams) (*GetDeltaDevicesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeltaDevicesParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDeltaDevices",
+		Method:             "GET",
+		PathPattern:        "/device/devices/delta/{deltaId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeltaDevicesReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDeltaDevicesOK), nil
+
+}
+
+/*
+GetDeltaIDWithDevices gets filter matched devices with new delta Id
+*/
+func (a *Client) GetDeltaIDWithDevices(params *GetDeltaIDWithDevicesParams) (*GetDeltaIDWithDevicesOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeltaIDWithDevicesParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDeltaIdWithDevices",
+		Method:             "GET",
+		PathPattern:        "/device/devices/delta",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeltaIDWithDevicesReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDeltaIDWithDevicesOK), nil
 
 }
 
@@ -4092,6 +4208,35 @@ func (a *Client) GetUnmonitoredDeviceList(params *GetUnmonitoredDeviceListParams
 }
 
 /*
+GetUpdateReasonListByConfigSourceID gets update history for a config source
+*/
+func (a *Client) GetUpdateReasonListByConfigSourceID(params *GetUpdateReasonListByConfigSourceIDParams) (*GetUpdateReasonListByConfigSourceIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetUpdateReasonListByConfigSourceIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getUpdateReasonListByConfigSourceId",
+		Method:             "GET",
+		PathPattern:        "/setting/configsources/{id}/updatereasons",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetUpdateReasonListByConfigSourceIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetUpdateReasonListByConfigSourceIDOK), nil
+
+}
+
+/*
 GetUpdateReasonListByDataSourceID gets update history for a datasource
 */
 func (a *Client) GetUpdateReasonListByDataSourceID(params *GetUpdateReasonListByDataSourceIDParams) (*GetUpdateReasonListByDataSourceIDOK, error) {
@@ -4734,6 +4879,64 @@ func (a *Client) PatchDashboardGroupByID(params *PatchDashboardGroupByIDParams) 
 }
 
 /*
+PatchDatasourceByID updates datasource
+*/
+func (a *Client) PatchDatasourceByID(params *PatchDatasourceByIDParams) (*PatchDatasourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchDatasourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchDatasourceById",
+		Method:             "PATCH",
+		PathPattern:        "/setting/datasources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchDatasourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchDatasourceByIDOK), nil
+
+}
+
+/*
+PatchDefaultDashboard updates default dashboard
+*/
+func (a *Client) PatchDefaultDashboard(params *PatchDefaultDashboardParams) (*PatchDefaultDashboardOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchDefaultDashboardParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchDefaultDashboard",
+		Method:             "PATCH",
+		PathPattern:        "/setting/userdata/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchDefaultDashboardReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchDefaultDashboardOK), nil
+
+}
+
+/*
 PatchDevice updates a device
 */
 func (a *Client) PatchDevice(params *PatchDeviceParams) (*PatchDeviceOK, error) {
@@ -4817,6 +5020,35 @@ func (a *Client) PatchDeviceDatasourceInstanceByID(params *PatchDeviceDatasource
 		return nil, err
 	}
 	return result.(*PatchDeviceDatasourceInstanceByIDOK), nil
+
+}
+
+/*
+PatchDeviceDatasourceInstanceGroupByID updates device datasource instance group
+*/
+func (a *Client) PatchDeviceDatasourceInstanceGroupByID(params *PatchDeviceDatasourceInstanceGroupByIDParams) (*PatchDeviceDatasourceInstanceGroupByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchDeviceDatasourceInstanceGroupByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchDeviceDatasourceInstanceGroupById",
+		Method:             "PATCH",
+		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchDeviceDatasourceInstanceGroupByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchDeviceDatasourceInstanceGroupByIDOK), nil
 
 }
 
@@ -4991,6 +5223,35 @@ func (a *Client) PatchEscalationChainByID(params *PatchEscalationChainByIDParams
 		return nil, err
 	}
 	return result.(*PatchEscalationChainByIDOK), nil
+
+}
+
+/*
+PatchInstancesAlertThreshold updates instances alert threshold setting the threshold at default group is not allowed
+*/
+func (a *Client) PatchInstancesAlertThreshold(params *PatchInstancesAlertThresholdParams) (*PatchInstancesAlertThresholdOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchInstancesAlertThresholdParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchInstancesAlertThreshold",
+		Method:             "PATCH",
+		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/datapoints/{dpId}/alertconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchInstancesAlertThresholdReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchInstancesAlertThresholdOK), nil
 
 }
 
@@ -5256,6 +5517,122 @@ func (a *Client) ScheduleAutoDiscoveryByDeviceID(params *ScheduleAutoDiscoveryBy
 }
 
 /*
+TestAWSAccount tests a w s account
+*/
+func (a *Client) TestAWSAccount(params *TestAWSAccountParams) (*TestAWSAccountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestAWSAccountParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testAWSAccount",
+		Method:             "POST",
+		PathPattern:        "/aws/functions/testAccount",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestAWSAccountReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*TestAWSAccountOK), nil
+
+}
+
+/*
+TestAzureAccount tests azure account
+*/
+func (a *Client) TestAzureAccount(params *TestAzureAccountParams) (*TestAzureAccountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestAzureAccountParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testAzureAccount",
+		Method:             "POST",
+		PathPattern:        "/azure/functions/testAccount",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestAzureAccountReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*TestAzureAccountOK), nil
+
+}
+
+/*
+TestGCPAccount tests g c p account
+*/
+func (a *Client) TestGCPAccount(params *TestGCPAccountParams) (*TestGCPAccountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestGCPAccountParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testGCPAccount",
+		Method:             "POST",
+		PathPattern:        "/gcp/functions/testAccount",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestGCPAccountReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*TestGCPAccountOK), nil
+
+}
+
+/*
+TestSaaSAccount tests saa s account
+*/
+func (a *Client) TestSaaSAccount(params *TestSaaSAccountParams) (*TestSaaSAccountOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTestSaaSAccountParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "testSaaSAccount",
+		Method:             "POST",
+		PathPattern:        "/saas/functions/testAccount",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TestSaaSAccountReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*TestSaaSAccountOK), nil
+
+}
+
+/*
 UpdateAdminByID updates user
 */
 func (a *Client) UpdateAdminByID(params *UpdateAdminByIDParams) (*UpdateAdminByIDOK, error) {
@@ -5463,6 +5840,64 @@ func (a *Client) UpdateDashboardGroupByID(params *UpdateDashboardGroupByIDParams
 }
 
 /*
+UpdateDatasourceByID updates datasource
+*/
+func (a *Client) UpdateDatasourceByID(params *UpdateDatasourceByIDParams) (*UpdateDatasourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateDatasourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateDatasourceById",
+		Method:             "PUT",
+		PathPattern:        "/setting/datasources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateDatasourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateDatasourceByIDOK), nil
+
+}
+
+/*
+UpdateDefaultDashboard updates default dashboard
+*/
+func (a *Client) UpdateDefaultDashboard(params *UpdateDefaultDashboardParams) (*UpdateDefaultDashboardOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateDefaultDashboardParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateDefaultDashboard",
+		Method:             "PUT",
+		PathPattern:        "/setting/userdata/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateDefaultDashboardReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateDefaultDashboardOK), nil
+
+}
+
+/*
 UpdateDevice updates a device
 */
 func (a *Client) UpdateDevice(params *UpdateDeviceParams) (*UpdateDeviceOK, error) {
@@ -5546,6 +5981,35 @@ func (a *Client) UpdateDeviceDatasourceInstanceByID(params *UpdateDeviceDatasour
 		return nil, err
 	}
 	return result.(*UpdateDeviceDatasourceInstanceByIDOK), nil
+
+}
+
+/*
+UpdateDeviceDatasourceInstanceGroupByID updates device datasource instance group
+*/
+func (a *Client) UpdateDeviceDatasourceInstanceGroupByID(params *UpdateDeviceDatasourceInstanceGroupByIDParams) (*UpdateDeviceDatasourceInstanceGroupByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateDeviceDatasourceInstanceGroupByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateDeviceDatasourceInstanceGroupById",
+		Method:             "PUT",
+		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateDeviceDatasourceInstanceGroupByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateDeviceDatasourceInstanceGroupByIDOK), nil
 
 }
 
@@ -5720,6 +6184,35 @@ func (a *Client) UpdateEscalationChainByID(params *UpdateEscalationChainByIDPara
 		return nil, err
 	}
 	return result.(*UpdateEscalationChainByIDOK), nil
+
+}
+
+/*
+UpdateInstancesAlertThreshold updates instances alert threshold setting the threshold at default group is not allowed
+*/
+func (a *Client) UpdateInstancesAlertThreshold(params *UpdateInstancesAlertThresholdParams) (*UpdateInstancesAlertThresholdOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateInstancesAlertThresholdParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateInstancesAlertThreshold",
+		Method:             "PUT",
+		PathPattern:        "/device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/datapoints/{dpId}/alertconfig",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateInstancesAlertThresholdReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateInstancesAlertThresholdOK), nil
 
 }
 
@@ -5952,35 +6445,6 @@ func (a *Client) UpdateWidgetByID(params *UpdateWidgetByIDParams) (*UpdateWidget
 		return nil, err
 	}
 	return result.(*UpdateWidgetByIDOK), nil
-
-}
-
-/*
-ValidateCollectorConfig validates collector configuration
-*/
-func (a *Client) ValidateCollectorConfig(params *ValidateCollectorConfigParams) (*ValidateCollectorConfigOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewValidateCollectorConfigParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "validateCollectorConfig",
-		Method:             "POST",
-		PathPattern:        "/setting/collector/collectors/lmotel/validateconfig",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &ValidateCollectorConfigReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*ValidateCollectorConfigOK), nil
 
 }
 

@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/v3/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetDashboardByIDReader is a Reader for the GetDashboardByID structure.

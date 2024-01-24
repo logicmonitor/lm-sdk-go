@@ -64,6 +64,9 @@ type GetIntegrationAuditLogsParams struct {
 	// Default: "Logicmonitor/GO-SDK"
 	UserAgent *string
 
+	// Format.
+	Format *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -139,6 +142,17 @@ func (o *GetIntegrationAuditLogsParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
 }
 
+// WithFormat adds the format to the get integration audit logs params
+func (o *GetIntegrationAuditLogsParams) WithFormat(format *string) *GetIntegrationAuditLogsParams {
+	o.SetFormat(format)
+	return o
+}
+
+// SetFormat adds the format to the get integration audit logs params
+func (o *GetIntegrationAuditLogsParams) SetFormat(format *string) {
+	o.Format = format
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetIntegrationAuditLogsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -152,6 +166,23 @@ func (o *GetIntegrationAuditLogsParams) WriteToRequest(r runtime.ClientRequest, 
 		// header param User-Agent
 		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
 			return err
+		}
+	}
+
+	if o.Format != nil {
+
+		// query param format
+		var qrFormat string
+
+		if o.Format != nil {
+			qrFormat = *o.Format
+		}
+		qFormat := qrFormat
+		if qFormat != "" {
+
+			if err := r.SetQueryParam("format", qFormat); err != nil {
+				return err
+			}
 		}
 	}
 

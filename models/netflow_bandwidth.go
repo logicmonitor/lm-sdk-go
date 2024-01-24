@@ -21,19 +21,28 @@ import (
 // swagger:model NetflowBandwidth
 type NetflowBandwidth struct {
 
-	// device display name
+	// the device display name
+	// Read Only: true
 	DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
 
-	// device Id
+	// this is device id
+	// Read Only: true
 	DeviceID int32 `json:"deviceId,omitempty"`
 
-	// receive
+	// the total bytes of send and received in percentage
+	// Read Only: true
+	PercentUsage float64 `json:"percentUsage,omitempty"`
+
+	// the total bytes of received
+	// Read Only: true
 	Receive float64 `json:"receive,omitempty"`
 
-	// send
+	// the total bytes of the endpoint sends
+	// Read Only: true
 	Send float64 `json:"send,omitempty"`
 
-	// usage
+	// the total bytes of send and received
+	// Read Only: true
 	Usage float64 `json:"usage,omitempty"`
 }
 
@@ -50,19 +59,28 @@ func (m *NetflowBandwidth) SetDataType(val string) {
 func (m *NetflowBandwidth) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// device display name
+		// the device display name
+		// Read Only: true
 		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
 
-		// device Id
+		// this is device id
+		// Read Only: true
 		DeviceID int32 `json:"deviceId,omitempty"`
 
-		// receive
+		// the total bytes of send and received in percentage
+		// Read Only: true
+		PercentUsage float64 `json:"percentUsage,omitempty"`
+
+		// the total bytes of received
+		// Read Only: true
 		Receive float64 `json:"receive,omitempty"`
 
-		// send
+		// the total bytes of the endpoint sends
+		// Read Only: true
 		Send float64 `json:"send,omitempty"`
 
-		// usage
+		// the total bytes of send and received
+		// Read Only: true
 		Usage float64 `json:"usage,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
@@ -95,6 +113,7 @@ func (m *NetflowBandwidth) UnmarshalJSON(raw []byte) error {
 
 	result.DeviceDisplayName = data.DeviceDisplayName
 	result.DeviceID = data.DeviceID
+	result.PercentUsage = data.PercentUsage
 	result.Receive = data.Receive
 	result.Send = data.Send
 	result.Usage = data.Usage
@@ -110,25 +129,36 @@ func (m NetflowBandwidth) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// device display name
+		// the device display name
+		// Read Only: true
 		DeviceDisplayName string `json:"deviceDisplayName,omitempty"`
 
-		// device Id
+		// this is device id
+		// Read Only: true
 		DeviceID int32 `json:"deviceId,omitempty"`
 
-		// receive
+		// the total bytes of send and received in percentage
+		// Read Only: true
+		PercentUsage float64 `json:"percentUsage,omitempty"`
+
+		// the total bytes of received
+		// Read Only: true
 		Receive float64 `json:"receive,omitempty"`
 
-		// send
+		// the total bytes of the endpoint sends
+		// Read Only: true
 		Send float64 `json:"send,omitempty"`
 
-		// usage
+		// the total bytes of send and received
+		// Read Only: true
 		Usage float64 `json:"usage,omitempty"`
 	}{
 
 		DeviceDisplayName: m.DeviceDisplayName,
 
 		DeviceID: m.DeviceID,
+
+		PercentUsage: m.PercentUsage,
 
 		Receive: m.Receive,
 
@@ -166,6 +196,30 @@ func (m *NetflowBandwidth) Validate(formats strfmt.Registry) error {
 func (m *NetflowBandwidth) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateDeviceDisplayName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateDeviceID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePercentUsage(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateReceive(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSend(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateUsage(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -175,6 +229,60 @@ func (m *NetflowBandwidth) ContextValidate(ctx context.Context, formats strfmt.R
 func (m *NetflowBandwidth) contextValidateDataType(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "dataType", "body", string(m.DataType())); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowBandwidth) contextValidateDeviceDisplayName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "deviceDisplayName", "body", string(m.DeviceDisplayName)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowBandwidth) contextValidateDeviceID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "deviceId", "body", int32(m.DeviceID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowBandwidth) contextValidatePercentUsage(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "percentUsage", "body", float64(m.PercentUsage)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowBandwidth) contextValidateReceive(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "receive", "body", float64(m.Receive)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowBandwidth) contextValidateSend(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "send", "body", float64(m.Send)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *NetflowBandwidth) contextValidateUsage(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "usage", "body", float64(m.Usage)); err != nil {
 		return err
 	}
 

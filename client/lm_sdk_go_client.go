@@ -13,15 +13,18 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"io"
 	"strconv"
+	"strings"
 	"time"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	httptransport "github.com/go-openapi/runtime/client"
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/v3/client/lm"
+	"github.com/logicmonitor/lm-sdk-go/client/lm"
 )
 
 const (
@@ -33,6 +36,13 @@ const (
 	DefaultBasePath string = "/santaba/rest"
 )
 
+type TokenType int
+
+const (
+	LMv1AuthToken TokenType = iota
+	BearerToken
+)
+
 // DefaultSchemes are the default schemes found in Meta (info) section of spec file
 var DefaultSchemes = []string{"https"}
 
@@ -42,6 +52,8 @@ type Config struct {
 	AccessID     *string
 	TransportCfg *TransportConfig
 	UserAgent    *string
+	TokenType    TokenType
+	BearerToken  *string
 }
 
 // NewConfig create a new empty client Config
@@ -49,6 +61,20 @@ func NewConfig() *Config {
 	return &Config{
 		TransportCfg: DefaultTransportConfig(),
 	}
+}
+
+// SetTokenType for the client Config
+func (c *Config) SetTokenType(tokenType TokenType) {
+	c.TokenType = tokenType
+}
+
+// SetBearerToken for the client Config
+func (c *Config) SetBearerToken(bearerToken *string) {
+	if !strings.HasPrefix(*bearerToken, "Bearer ") {
+		*bearerToken = "Bearer " + *bearerToken
+	}
+	c.BearerToken = bearerToken
+	c.TokenType = BearerToken
 }
 
 // SetAccessID for the client Config
@@ -78,9 +104,29 @@ func (c *Config) SetAccountDomain(accountDomain *string) {
 // New creates a new LM sdk go client
 func New(c *Config) *LMSdkGo {
 	transport := httptransport.New(c.TransportCfg.Host, c.TransportCfg.BasePath, c.TransportCfg.Schemes)
-	authInfo := LMv1Auth(*c.AccessID, *c.AccessKey, c.UserAgent)
+
+	defaultAccessKey := ""
+	defaultAccessID := ""
+	defaultBearerToken := ""
+	defaultUserAgent := "Logicmonitor/GO-SDK"
+
+	if c.AccessID == nil {
+		c.AccessID = &defaultAccessID
+	}
+	if c.AccessKey == nil {
+		c.AccessKey = &defaultAccessKey
+	}
+	if c.BearerToken == nil {
+		c.BearerToken = &defaultBearerToken
+	}
+	if c.UserAgent == nil {
+		c.UserAgent = &defaultUserAgent
+	}
+
+	authInfo := GetAuthInfo(c.TokenType, *c.AccessID, *c.AccessKey, *c.BearerToken, *c.UserAgent)
 
 	cli := new(LMSdkGo)
+	transport.Consumers["application/binary"] = LMBinaryFileConsumer()
 	cli.Transport = transport
 
 	cli.LM = lm.New(transport, strfmt.Default, authInfo)
@@ -142,7 +188,7 @@ func (c *LMSdkGo) SetTransport(transport runtime.ClientTransport) {
 
 }
 
-func LMv1Auth(accessId, accessKey string, userAgent *string) runtime.ClientAuthInfoWriter {
+func LMv1Auth(accessId, accessKey, userAgent string) runtime.ClientAuthInfoWriter {
 	return runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
 		// get epoch
 		now := time.Now()
@@ -177,11 +223,55 @@ func LMv1Auth(accessId, accessKey string, userAgent *string) runtime.ClientAuthI
 		hexDigest := hex.EncodeToString(h.Sum(nil))
 		signature := base64.StdEncoding.EncodeToString([]byte(hexDigest))
 		r.SetHeaderParam("Authorization", fmt.Sprintf("LMv1 %s:%s:%s", accessId, signature, epoch))
-		if userAgent == nil {
-			r.SetHeaderParam("User-Agent", "Logicmonitor/GO-SDK")
-		} else {
-			r.SetHeaderParam("User-Agent", *userAgent)
-		}
+		r.SetHeaderParam("User-Agent", fmt.Sprintf(userAgent))
 		return r.SetHeaderParam("X-version", "3")
+	})
+}
+
+func BearerAuth(bearerToken, userAgent string) runtime.ClientAuthInfoWriter {
+	return runtime.ClientAuthInfoWriterFunc(func(r runtime.ClientRequest, _ strfmt.Registry) error {
+		r.SetHeaderParam("Authorization", fmt.Sprintf(bearerToken))
+		r.SetHeaderParam("User-Agent", fmt.Sprintf(userAgent))
+		return r.SetHeaderParam("X-version", "3")
+	})
+}
+
+func GetAuthInfo(tokenType TokenType, accessID, accessKey, bearerToken, userAgent string) runtime.ClientAuthInfoWriter {
+	switch tokenType {
+	case BearerToken:
+		return BearerAuth(bearerToken, userAgent)
+	case LMv1AuthToken:
+		return LMv1Auth(accessID, accessKey, userAgent)
+	default:
+		return LMv1Auth(accessID, accessKey, userAgent)
+	}
+	return nil
+}
+
+func LMBinaryFileConsumer() runtime.Consumer {
+	return runtime.ConsumerFunc(func(reader io.Reader, data interface{}) error {
+		if reader == nil {
+			return errors.New(1, "LMBinaryFileConsumer requires a reader", data) // early exit
+		}
+		buf := new(bytes.Buffer)
+		_, err := buf.ReadFrom(reader)
+		if err != nil {
+			return err
+		}
+		b := buf.Bytes()
+		w, ok := data.(io.Writer)
+		if !ok {
+			return errors.New(1, "provided output object is not of type io.writer", data)
+			// the assertion failed.
+		}
+		_, err = w.Write(b)
+		if err != nil {
+			return err
+		}
+		c, ok := w.(interface{ Close() })
+		if ok {
+			c.Close()
+		}
+		return nil
 	})
 }

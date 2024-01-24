@@ -71,10 +71,6 @@ type Alert struct {
 	// Read Only: true
 	Cleared *bool `json:"cleared,omitempty"`
 
-	// The property or token values that should display with the alert details. Note that if referencing tokens, you'll need to URL encode the # symbol.
-	// Read Only: true
-	CustomColumns interface{} `json:"customColumns,omitempty"`
-
 	// The id of the datapoint in alert
 	// Read Only: true
 	DataPointID int32 `json:"dataPointId,omitempty"`

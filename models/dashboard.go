@@ -69,7 +69,7 @@ type Dashboard struct {
 	UserPermission string `json:"userPermission,omitempty"`
 
 	// If useDynamicWidget=true, this field must at least contain tokens defaultDeviceGroup and defaultServiceGroup
-	// Example: \"widgetTokens\":[{\"name\":\"defaultDeviceGroup\",\"value\":\"*\"},{\"name\":\"defaultServiceGroup\",\"value\":\"*\"}]
+	// Example: [{\"name\":\"defaultDeviceGroup\",\"value\":\"*\"},{\"name\":\"defaultServiceGroup\",\"value\":\"*\"}]
 	WidgetTokens []*WidgetToken `json:"widgetTokens,omitempty"`
 
 	// Information about widget configuration used by the UI

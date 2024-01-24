@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/v3/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetAlertListReader is a Reader for the GetAlertList structure.
@@ -59,19 +59,19 @@ func NewGetAlertListOK() *GetAlertListOK {
 successful operation
 */
 type GetAlertListOK struct {
-	Payload *models.AlertPaginationResponse
+	Payload *models.AlertListPaginationResponse
 }
 
 func (o *GetAlertListOK) Error() string {
 	return fmt.Sprintf("[GET /alert/alerts][%d] getAlertListOK  %+v", 200, o.Payload)
 }
-func (o *GetAlertListOK) GetPayload() *models.AlertPaginationResponse {
+func (o *GetAlertListOK) GetPayload() *models.AlertListPaginationResponse {
 	return o.Payload
 }
 
 func (o *GetAlertListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.AlertPaginationResponse)
+	o.Payload = new(models.AlertListPaginationResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

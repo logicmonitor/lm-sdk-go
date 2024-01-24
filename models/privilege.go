@@ -28,7 +28,7 @@ type Privilege struct {
 	// Read Only: true
 	ObjectName string `json:"objectName,omitempty"`
 
-	// The privilege object type. The values can be dashboard_group|dashboard|host_group|service_group|website_group|report_group|remoteSession|chat|setting|device_dashboard|help|logs|configNeedDeviceManagePermission|map|resourceMapTab|tracesManageTab
+	// The privilege object type. The values can be dashboard_group|dashboard|host_group|service_group|website_group|report_group|remoteSession|chat|setting|device_dashboard|help|logs|configNeedDeviceManagePermission|map|resourceMapTab|tracesManageTab|dexda|lmSupportAccess
 	// Example: dashboard group
 	// Required: true
 	ObjectType *string `json:"objectType"`

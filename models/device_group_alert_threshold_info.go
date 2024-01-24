@@ -19,6 +19,10 @@ import (
 // swagger:model DeviceGroupAlertThresholdInfo
 type DeviceGroupAlertThresholdInfo struct {
 
+	// The count that the alert must exist for this many poll cycles before the alert will be cleared
+	// Format: byte
+	AlertClearTransitionInterval strfmt.Base64 `json:"alertClearTransitionInterval,omitempty"`
+
 	// alert enabled
 	// Read Only: true
 	AlertEnabled *bool `json:"alertEnabled,omitempty"`
@@ -26,6 +30,14 @@ type DeviceGroupAlertThresholdInfo struct {
 	// alert expr
 	// Read Only: true
 	AlertExpr string `json:"alertExpr,omitempty"`
+
+	// The triggered alert level if we cannot collect data for this datapoint. The values can be 0-4 (0:unused alert, 1:alert ok, 2:warn alert, 2:error alert, 4:critical alert)
+	// Format: byte
+	AlertForNoData strfmt.Base64 `json:"alertForNoData,omitempty"`
+
+	// The count that the alert must exist for this many poll cycles before it will be triggered
+	// Format: byte
+	AlertTransitionInterval strfmt.Base64 `json:"alertTransitionInterval,omitempty"`
 
 	// enable anomaly alert generation
 	// Read Only: true

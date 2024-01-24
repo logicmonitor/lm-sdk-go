@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/v3/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // GetSDTHistoryByDeviceGroupIDReader is a Reader for the GetSDTHistoryByDeviceGroupID structure.

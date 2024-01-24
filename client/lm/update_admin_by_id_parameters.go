@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/v3/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // NewUpdateAdminByIDParams creates a new UpdateAdminByIDParams object,
@@ -78,6 +78,9 @@ type UpdateAdminByIDParams struct {
 	// Format: int32
 	ID int32
 
+	// ValidationOnly.
+	ValidationOnly *bool
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -99,11 +102,14 @@ func (o *UpdateAdminByIDParams) SetDefaults() {
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
 		changePasswordDefault = bool(false)
+
+		validationOnlyDefault = bool(false)
 	)
 
 	val := UpdateAdminByIDParams{
 		UserAgent:      &userAgentDefault,
 		ChangePassword: &changePasswordDefault,
+		ValidationOnly: &validationOnlyDefault,
 	}
 
 	val.timeout = o.timeout
@@ -189,6 +195,17 @@ func (o *UpdateAdminByIDParams) SetID(id int32) {
 	o.ID = id
 }
 
+// WithValidationOnly adds the validationOnly to the update admin by Id params
+func (o *UpdateAdminByIDParams) WithValidationOnly(validationOnly *bool) *UpdateAdminByIDParams {
+	o.SetValidationOnly(validationOnly)
+	return o
+}
+
+// SetValidationOnly adds the validationOnly to the update admin by Id params
+func (o *UpdateAdminByIDParams) SetValidationOnly(validationOnly *bool) {
+	o.ValidationOnly = validationOnly
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *UpdateAdminByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -230,6 +247,23 @@ func (o *UpdateAdminByIDParams) WriteToRequest(r runtime.ClientRequest, reg strf
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {
 		return err
+	}
+
+	if o.ValidationOnly != nil {
+
+		// query param validationOnly
+		var qrValidationOnly bool
+
+		if o.ValidationOnly != nil {
+			qrValidationOnly = *o.ValidationOnly
+		}
+		qValidationOnly := swag.FormatBool(qrValidationOnly)
+		if qValidationOnly != "" {
+
+			if err := r.SetQueryParam("validationOnly", qValidationOnly); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

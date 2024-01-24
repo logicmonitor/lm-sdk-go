@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/v3/models"
+	"github.com/logicmonitor/lm-sdk-go/models"
 )
 
 // NewPatchAdminByIDParams creates a new PatchAdminByIDParams object,
@@ -78,6 +78,9 @@ type PatchAdminByIDParams struct {
 	// Format: int32
 	ID int32
 
+	// ValidationOnly.
+	ValidationOnly *bool
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -99,11 +102,14 @@ func (o *PatchAdminByIDParams) SetDefaults() {
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
 		changePasswordDefault = bool(false)
+
+		validationOnlyDefault = bool(false)
 	)
 
 	val := PatchAdminByIDParams{
 		UserAgent:      &userAgentDefault,
 		ChangePassword: &changePasswordDefault,
+		ValidationOnly: &validationOnlyDefault,
 	}
 
 	val.timeout = o.timeout
@@ -189,6 +195,17 @@ func (o *PatchAdminByIDParams) SetID(id int32) {
 	o.ID = id
 }
 
+// WithValidationOnly adds the validationOnly to the patch admin by Id params
+func (o *PatchAdminByIDParams) WithValidationOnly(validationOnly *bool) *PatchAdminByIDParams {
+	o.SetValidationOnly(validationOnly)
+	return o
+}
+
+// SetValidationOnly adds the validationOnly to the patch admin by Id params
+func (o *PatchAdminByIDParams) SetValidationOnly(validationOnly *bool) {
+	o.ValidationOnly = validationOnly
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PatchAdminByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -230,6 +247,23 @@ func (o *PatchAdminByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {
 		return err
+	}
+
+	if o.ValidationOnly != nil {
+
+		// query param validationOnly
+		var qrValidationOnly bool
+
+		if o.ValidationOnly != nil {
+			qrValidationOnly = *o.ValidationOnly
+		}
+		qValidationOnly := swag.FormatBool(qrValidationOnly)
+		if qValidationOnly != "" {
+
+			if err := r.SetQueryParam("validationOnly", qValidationOnly); err != nil {
+				return err
+			}
+		}
 	}
 
 	if len(res) > 0 {

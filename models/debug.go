@@ -20,6 +20,7 @@ import (
 type Debug struct {
 
 	// The session prefix name
+	// Read Only: true
 	CmdContext string `json:"cmdContext,omitempty"`
 
 	// The debug command to execute
@@ -43,6 +44,10 @@ func (m *Debug) Validate(formats strfmt.Registry) error {
 func (m *Debug) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateCmdContext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateOutput(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -54,6 +59,15 @@ func (m *Debug) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Debug) contextValidateCmdContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "cmdContext", "body", string(m.CmdContext)); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -35,6 +35,10 @@ type DeviceDataSourceInstanceAlertSetting struct {
 	// Example: Router 1 Ping Check
 	AlertExprNote string `json:"alertExprNote,omitempty"`
 
+	// alert for no data
+	// Read Only: true
+	AlertForNoData int32 `json:"alertForNoData,omitempty"`
+
 	// The interval of alert transition
 	// Read Only: true
 	AlertTransitionInterval int32 `json:"alertTransitionInterval,omitempty"`
@@ -97,9 +101,21 @@ type DeviceDataSourceInstanceAlertSetting struct {
 	// error ad adv setting
 	ErrorAdAdvSetting string `json:"errorAdAdvSetting,omitempty"`
 
+	// global alert clear transition interval
+	// Format: byte
+	GlobalAlertClearTransitionInterval strfmt.Base64 `json:"globalAlertClearTransitionInterval,omitempty"`
+
 	// The global alert expression for this datapoint
 	// Read Only: true
 	GlobalAlertExpr string `json:"globalAlertExpr,omitempty"`
+
+	// global alert for no data
+	// Format: byte
+	GlobalAlertForNoData strfmt.Base64 `json:"globalAlertForNoData,omitempty"`
+
+	// global alert transition interval
+	// Format: byte
+	GlobalAlertTransitionInterval strfmt.Base64 `json:"globalAlertTransitionInterval,omitempty"`
 
 	// The global enable anomaly alert generation
 	// Read Only: true
@@ -198,6 +214,10 @@ func (m *DeviceDataSourceInstanceAlertSetting) ContextValidate(ctx context.Conte
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAlertForNoData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAlertTransitionInterval(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -283,6 +303,15 @@ func (m *DeviceDataSourceInstanceAlertSetting) ContextValidate(ctx context.Conte
 func (m *DeviceDataSourceInstanceAlertSetting) contextValidateAlertClearInterval(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "alertClearInterval", "body", int32(m.AlertClearInterval)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceAlertSetting) contextValidateAlertForNoData(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "alertForNoData", "body", int32(m.AlertForNoData)); err != nil {
 		return err
 	}
 

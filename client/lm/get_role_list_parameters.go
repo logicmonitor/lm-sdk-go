@@ -65,6 +65,9 @@ type GetRoleListParams struct {
 	// Default: "Logicmonitor/GO-SDK"
 	UserAgent *string
 
+	// ExcludeAdmin.
+	ExcludeAdmin *bool
+
 	// Fields.
 	Fields *string
 
@@ -102,15 +105,18 @@ func (o *GetRoleListParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
+		excludeAdminDefault = bool(false)
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetRoleListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		UserAgent:    &userAgentDefault,
+		ExcludeAdmin: &excludeAdminDefault,
+		Offset:       &offsetDefault,
+		Size:         &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -161,6 +167,17 @@ func (o *GetRoleListParams) WithUserAgent(userAgent *string) *GetRoleListParams 
 // SetUserAgent adds the userAgent to the get role list params
 func (o *GetRoleListParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
+}
+
+// WithExcludeAdmin adds the excludeAdmin to the get role list params
+func (o *GetRoleListParams) WithExcludeAdmin(excludeAdmin *bool) *GetRoleListParams {
+	o.SetExcludeAdmin(excludeAdmin)
+	return o
+}
+
+// SetExcludeAdmin adds the excludeAdmin to the get role list params
+func (o *GetRoleListParams) SetExcludeAdmin(excludeAdmin *bool) {
+	o.ExcludeAdmin = excludeAdmin
 }
 
 // WithFields adds the fields to the get role list params
@@ -220,6 +237,23 @@ func (o *GetRoleListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		// header param User-Agent
 		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
 			return err
+		}
+	}
+
+	if o.ExcludeAdmin != nil {
+
+		// query param excludeAdmin
+		var qrExcludeAdmin bool
+
+		if o.ExcludeAdmin != nil {
+			qrExcludeAdmin = *o.ExcludeAdmin
+		}
+		qExcludeAdmin := swag.FormatBool(qrExcludeAdmin)
+		if qExcludeAdmin != "" {
+
+			if err := r.SetQueryParam("excludeAdmin", qExcludeAdmin); err != nil {
+				return err
+			}
 		}
 	}
 

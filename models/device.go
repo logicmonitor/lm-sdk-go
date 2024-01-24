@@ -70,7 +70,7 @@ type Device struct {
 	// Example: This is a Cisco Router
 	Description string `json:"description,omitempty"`
 
-	// The type of device: 0 indicates a regular device, 2 indicates an AWS device, 4 indicates an Azure device
+	// The type of device: 0 indicates a regular device, 1 indicates an APPGROUP device, 2 indicates an AWS device, 3 indicates a service device, 4 indicates an Azure device, 6 indicates a biz_service device, 7 indicates a GCP device, 8 indicates K8S device
 	// Example: 0
 	DeviceType int32 `json:"deviceType,omitempty"`
 
@@ -159,6 +159,9 @@ type Device struct {
 	// The Id of the netflow collector associated with the device
 	// Example: 1
 	NetflowCollectorID int32 `json:"netflowCollectorId,omitempty"`
+
+	// whether to use AND or OR for device matching
+	Op string `json:"op,omitempty"`
 
 	// The id of the Collector Group associated with the device's preferred collector
 	// Read Only: true
