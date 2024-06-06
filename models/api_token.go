@@ -47,6 +47,10 @@ type APIToken struct {
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
 
+	// The IP from which the API Tokens were last used
+	// Read Only: true
+	LastAuthIP string `json:"lastAuthIp,omitempty"`
+
 	// The epoch at which the API Tokens were last used
 	// Read Only: true
 	LastUsedOn int64 `json:"lastUsedOn,omitempty"`
@@ -128,6 +132,10 @@ func (m *APIToken) ContextValidate(ctx context.Context, formats strfmt.Registry)
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateLastAuthIP(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateLastUsedOn(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -203,6 +211,15 @@ func (m *APIToken) contextValidateCreatedOn(ctx context.Context, formats strfmt.
 func (m *APIToken) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIToken) contextValidateLastAuthIP(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastAuthIp", "body", string(m.LastAuthIP)); err != nil {
 		return err
 	}
 

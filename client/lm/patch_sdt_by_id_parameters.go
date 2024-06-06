@@ -54,10 +54,12 @@ func NewPatchSDTByIDParamsWithHTTPClient(client *http.Client) *PatchSDTByIDParam
 	}
 }
 
-/* PatchSDTByIDParams contains all the parameters to send to the API endpoint
-   for the patch SDT by Id operation.
+/*
+PatchSDTByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch SDT by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchSDTByIDParams struct {
 

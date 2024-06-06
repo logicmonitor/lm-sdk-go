@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetSDTHistoryByDeviceGroupIDOK() *GetSDTHistoryByDeviceGroupIDOK {
 	return &GetSDTHistoryByDeviceGroupIDOK{}
 }
 
-/* GetSDTHistoryByDeviceGroupIDOK describes a response with status code 200, with default header values.
+/*
+GetSDTHistoryByDeviceGroupIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetSDTHistoryByDeviceGroupIDOK struct {
 	Payload *models.DeviceGroupSDTHistoryPaginationResponse
 }
 
-func (o *GetSDTHistoryByDeviceGroupIDOK) Error() string {
-	return fmt.Sprintf("[GET /device/groups/{id}/historysdts][%d] getSdtHistoryByDeviceGroupIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get Sdt history by device group Id o k response has a 2xx status code
+func (o *GetSDTHistoryByDeviceGroupIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get Sdt history by device group Id o k response has a 3xx status code
+func (o *GetSDTHistoryByDeviceGroupIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get Sdt history by device group Id o k response has a 4xx status code
+func (o *GetSDTHistoryByDeviceGroupIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get Sdt history by device group Id o k response has a 5xx status code
+func (o *GetSDTHistoryByDeviceGroupIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get Sdt history by device group Id o k response a status code equal to that given
+func (o *GetSDTHistoryByDeviceGroupIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get Sdt history by device group Id o k response
+func (o *GetSDTHistoryByDeviceGroupIDOK) Code() int {
+	return 200
+}
+
+func (o *GetSDTHistoryByDeviceGroupIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/groups/{id}/historysdts][%d] getSdtHistoryByDeviceGroupIdOK %s", 200, payload)
+}
+
+func (o *GetSDTHistoryByDeviceGroupIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/groups/{id}/historysdts][%d] getSdtHistoryByDeviceGroupIdOK %s", 200, payload)
+}
+
 func (o *GetSDTHistoryByDeviceGroupIDOK) GetPayload() *models.DeviceGroupSDTHistoryPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetSDTHistoryByDeviceGroupIDTooManyRequests() *GetSDTHistoryByDeviceGrou
 	return &GetSDTHistoryByDeviceGroupIDTooManyRequests{}
 }
 
-/* GetSDTHistoryByDeviceGroupIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetSDTHistoryByDeviceGroupIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetSDTHistoryByDeviceGroupIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get Sdt history by device group Id too many requests response has a 2xx status code
+func (o *GetSDTHistoryByDeviceGroupIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get Sdt history by device group Id too many requests response has a 3xx status code
+func (o *GetSDTHistoryByDeviceGroupIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get Sdt history by device group Id too many requests response has a 4xx status code
+func (o *GetSDTHistoryByDeviceGroupIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get Sdt history by device group Id too many requests response has a 5xx status code
+func (o *GetSDTHistoryByDeviceGroupIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get Sdt history by device group Id too many requests response a status code equal to that given
+func (o *GetSDTHistoryByDeviceGroupIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get Sdt history by device group Id too many requests response
+func (o *GetSDTHistoryByDeviceGroupIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetSDTHistoryByDeviceGroupIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/groups/{id}/historysdts][%d] getSdtHistoryByDeviceGroupIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/groups/{id}/historysdts][%d] getSdtHistoryByDeviceGroupIdTooManyRequests", 429)
+}
+
+func (o *GetSDTHistoryByDeviceGroupIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/groups/{id}/historysdts][%d] getSdtHistoryByDeviceGroupIdTooManyRequests", 429)
 }
 
 func (o *GetSDTHistoryByDeviceGroupIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetSDTHistoryByDeviceGroupIDDefault(code int) *GetSDTHistoryByDeviceGrou
 	}
 }
 
-/* GetSDTHistoryByDeviceGroupIDDefault describes a response with status code -1, with default header values.
+/*
+GetSDTHistoryByDeviceGroupIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetSDTHistoryByDeviceGroupIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get SDT history by device group Id default response has a 2xx status code
+func (o *GetSDTHistoryByDeviceGroupIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get SDT history by device group Id default response has a 3xx status code
+func (o *GetSDTHistoryByDeviceGroupIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get SDT history by device group Id default response has a 4xx status code
+func (o *GetSDTHistoryByDeviceGroupIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get SDT history by device group Id default response has a 5xx status code
+func (o *GetSDTHistoryByDeviceGroupIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get SDT history by device group Id default response a status code equal to that given
+func (o *GetSDTHistoryByDeviceGroupIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get SDT history by device group Id default response
 func (o *GetSDTHistoryByDeviceGroupIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetSDTHistoryByDeviceGroupIDDefault) Error() string {
-	return fmt.Sprintf("[GET /device/groups/{id}/historysdts][%d] getSDTHistoryByDeviceGroupId default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/groups/{id}/historysdts][%d] getSDTHistoryByDeviceGroupId default %s", o._statusCode, payload)
 }
+
+func (o *GetSDTHistoryByDeviceGroupIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/groups/{id}/historysdts][%d] getSDTHistoryByDeviceGroupId default %s", o._statusCode, payload)
+}
+
 func (o *GetSDTHistoryByDeviceGroupIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

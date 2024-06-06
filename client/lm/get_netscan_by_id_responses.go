@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetNetscanByIDOK() *GetNetscanByIDOK {
 	return &GetNetscanByIDOK{}
 }
 
-/* GetNetscanByIDOK describes a response with status code 200, with default header values.
+/*
+GetNetscanByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetNetscanByIDOK struct {
 	Payload models.Netscan
 }
 
-func (o *GetNetscanByIDOK) Error() string {
-	return fmt.Sprintf("[GET /setting/netscans/{id}][%d] getNetscanByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get netscan by Id o k response has a 2xx status code
+func (o *GetNetscanByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get netscan by Id o k response has a 3xx status code
+func (o *GetNetscanByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get netscan by Id o k response has a 4xx status code
+func (o *GetNetscanByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get netscan by Id o k response has a 5xx status code
+func (o *GetNetscanByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get netscan by Id o k response a status code equal to that given
+func (o *GetNetscanByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get netscan by Id o k response
+func (o *GetNetscanByIDOK) Code() int {
+	return 200
+}
+
+func (o *GetNetscanByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/netscans/{id}][%d] getNetscanByIdOK %s", 200, payload)
+}
+
+func (o *GetNetscanByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/netscans/{id}][%d] getNetscanByIdOK %s", 200, payload)
+}
+
 func (o *GetNetscanByIDOK) GetPayload() models.Netscan {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetNetscanByIDTooManyRequests() *GetNetscanByIDTooManyRequests {
 	return &GetNetscanByIDTooManyRequests{}
 }
 
-/* GetNetscanByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetNetscanByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetNetscanByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get netscan by Id too many requests response has a 2xx status code
+func (o *GetNetscanByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get netscan by Id too many requests response has a 3xx status code
+func (o *GetNetscanByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get netscan by Id too many requests response has a 4xx status code
+func (o *GetNetscanByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get netscan by Id too many requests response has a 5xx status code
+func (o *GetNetscanByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get netscan by Id too many requests response a status code equal to that given
+func (o *GetNetscanByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get netscan by Id too many requests response
+func (o *GetNetscanByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetNetscanByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/netscans/{id}][%d] getNetscanByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/netscans/{id}][%d] getNetscanByIdTooManyRequests", 429)
+}
+
+func (o *GetNetscanByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/netscans/{id}][%d] getNetscanByIdTooManyRequests", 429)
 }
 
 func (o *GetNetscanByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetNetscanByIDDefault(code int) *GetNetscanByIDDefault {
 	}
 }
 
-/* GetNetscanByIDDefault describes a response with status code -1, with default header values.
+/*
+GetNetscanByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetNetscanByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get netscan by Id default response has a 2xx status code
+func (o *GetNetscanByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get netscan by Id default response has a 3xx status code
+func (o *GetNetscanByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get netscan by Id default response has a 4xx status code
+func (o *GetNetscanByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get netscan by Id default response has a 5xx status code
+func (o *GetNetscanByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get netscan by Id default response a status code equal to that given
+func (o *GetNetscanByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get netscan by Id default response
 func (o *GetNetscanByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetNetscanByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/netscans/{id}][%d] getNetscanById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/netscans/{id}][%d] getNetscanById default %s", o._statusCode, payload)
 }
+
+func (o *GetNetscanByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/netscans/{id}][%d] getNetscanById default %s", o._statusCode, payload)
+}
+
 func (o *GetNetscanByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

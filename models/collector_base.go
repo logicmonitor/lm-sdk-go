@@ -183,6 +183,10 @@ type CollectorBase struct {
 	// Read Only: true
 	IsEncoded *bool `json:"isEncoded,omitempty"`
 
+	// Whether collector has isLmlogsSyslogEnabled flag set as true
+	// Read Only: true
+	IsLmlogsSyslogEnabled *bool `json:"isLmlogsSyslogEnabled,omitempty"`
+
 	// The time, in epoch format, that a notification was last sent for the Collector
 	// Read Only: true
 	LastSentNotificationOn int64 `json:"lastSentNotificationOn,omitempty"`
@@ -348,6 +352,8 @@ func (m *CollectorBase) validateAutomaticUpgradeInfo(formats strfmt.Registry) er
 		if err := m.AutomaticUpgradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("automaticUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("automaticUpgradeInfo")
 			}
 			return err
 		}
@@ -370,6 +376,8 @@ func (m *CollectorBase) validateCustomProperties(formats strfmt.Registry) error 
 			if err := m.CustomProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -389,6 +397,8 @@ func (m *CollectorBase) validateNextUpgradeInfo(formats strfmt.Registry) error {
 		if err := m.NextUpgradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nextUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nextUpgradeInfo")
 			}
 			return err
 		}
@@ -406,6 +416,8 @@ func (m *CollectorBase) validateOnetimeDowngradeInfo(formats strfmt.Registry) er
 		if err := m.OnetimeDowngradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeDowngradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeDowngradeInfo")
 			}
 			return err
 		}
@@ -423,6 +435,8 @@ func (m *CollectorBase) validateOnetimeUpgradeInfo(formats strfmt.Registry) erro
 		if err := m.OnetimeUpgradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeUpgradeInfo")
 			}
 			return err
 		}
@@ -572,6 +586,10 @@ func (m *CollectorBase) ContextValidate(ctx context.Context, formats strfmt.Regi
 	}
 
 	if err := m.contextValidateIsEncoded(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIsLmlogsSyslogEnabled(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -747,9 +765,16 @@ func (m *CollectorBase) contextValidateArch(ctx context.Context, formats strfmt.
 func (m *CollectorBase) contextValidateAutomaticUpgradeInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AutomaticUpgradeInfo != nil {
+
+		if swag.IsZero(m.AutomaticUpgradeInfo) { // not required
+			return nil
+		}
+
 		if err := m.AutomaticUpgradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("automaticUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("automaticUpgradeInfo")
 			}
 			return err
 		}
@@ -898,9 +923,16 @@ func (m *CollectorBase) contextValidateCustomProperties(ctx context.Context, for
 	for i := 0; i < len(m.CustomProperties); i++ {
 
 		if m.CustomProperties[i] != nil {
+
+			if swag.IsZero(m.CustomProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.CustomProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1010,6 +1042,15 @@ func (m *CollectorBase) contextValidateIsEncoded(ctx context.Context, formats st
 	return nil
 }
 
+func (m *CollectorBase) contextValidateIsLmlogsSyslogEnabled(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "isLmlogsSyslogEnabled", "body", m.IsLmlogsSyslogEnabled); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *CollectorBase) contextValidateLastSentNotificationOn(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "lastSentNotificationOn", "body", int64(m.LastSentNotificationOn)); err != nil {
@@ -1049,9 +1090,16 @@ func (m *CollectorBase) contextValidateNextRecipient(ctx context.Context, format
 func (m *CollectorBase) contextValidateNextUpgradeInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NextUpgradeInfo != nil {
+
+		if swag.IsZero(m.NextUpgradeInfo) { // not required
+			return nil
+		}
+
 		if err := m.NextUpgradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nextUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nextUpgradeInfo")
 			}
 			return err
 		}
@@ -1072,9 +1120,16 @@ func (m *CollectorBase) contextValidateNumberOfHosts(ctx context.Context, format
 func (m *CollectorBase) contextValidateOnetimeDowngradeInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OnetimeDowngradeInfo != nil {
+
+		if swag.IsZero(m.OnetimeDowngradeInfo) { // not required
+			return nil
+		}
+
 		if err := m.OnetimeDowngradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeDowngradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeDowngradeInfo")
 			}
 			return err
 		}
@@ -1086,9 +1141,16 @@ func (m *CollectorBase) contextValidateOnetimeDowngradeInfo(ctx context.Context,
 func (m *CollectorBase) contextValidateOnetimeUpgradeInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OnetimeUpgradeInfo != nil {
+
+		if swag.IsZero(m.OnetimeUpgradeInfo) { // not required
+			return nil
+		}
+
 		if err := m.OnetimeUpgradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeUpgradeInfo")
 			}
 			return err
 		}

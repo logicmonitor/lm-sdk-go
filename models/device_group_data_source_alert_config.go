@@ -12,7 +12,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // DeviceGroupDataSourceAlertConfig device group data source alert config
@@ -21,11 +20,9 @@ import (
 type DeviceGroupDataSourceAlertConfig struct {
 
 	// datasource type
-	// Read Only: true
 	DatasourceType string `json:"datasourceType,omitempty"`
 
 	// dp config
-	// Read Only: true
 	DpConfig []*DeviceGroupDataSourceDataPointConfig `json:"dpConfig,omitempty"`
 }
 
@@ -57,6 +54,8 @@ func (m *DeviceGroupDataSourceAlertConfig) validateDpConfig(formats strfmt.Regis
 			if err := m.DpConfig[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dpConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dpConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -71,10 +70,6 @@ func (m *DeviceGroupDataSourceAlertConfig) validateDpConfig(formats strfmt.Regis
 func (m *DeviceGroupDataSourceAlertConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateDatasourceType(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.contextValidateDpConfig(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -85,27 +80,21 @@ func (m *DeviceGroupDataSourceAlertConfig) ContextValidate(ctx context.Context, 
 	return nil
 }
 
-func (m *DeviceGroupDataSourceAlertConfig) contextValidateDatasourceType(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "datasourceType", "body", string(m.DatasourceType)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *DeviceGroupDataSourceAlertConfig) contextValidateDpConfig(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "dpConfig", "body", []*DeviceGroupDataSourceDataPointConfig(m.DpConfig)); err != nil {
-		return err
-	}
 
 	for i := 0; i < len(m.DpConfig); i++ {
 
 		if m.DpConfig[i] != nil {
+
+			if swag.IsZero(m.DpConfig[i]) { // not required
+				return nil
+			}
+
 			if err := m.DpConfig[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dpConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dpConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

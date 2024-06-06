@@ -175,6 +175,8 @@ func (m *TableWidgetData) validateColumnHeaders(formats strfmt.Registry) error {
 			if err := m.ColumnHeaders[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columnHeaders" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columnHeaders" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -200,6 +202,8 @@ func (m *TableWidgetData) validateRows(formats strfmt.Registry) error {
 			if err := m.Rows[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rows" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rows" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -246,9 +250,16 @@ func (m *TableWidgetData) contextValidateColumnHeaders(ctx context.Context, form
 	for i := 0; i < len(m.ColumnHeaders); i++ {
 
 		if m.ColumnHeaders[i] != nil {
+
+			if swag.IsZero(m.ColumnHeaders[i]) { // not required
+				return nil
+			}
+
 			if err := m.ColumnHeaders[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columnHeaders" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columnHeaders" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -268,9 +279,16 @@ func (m *TableWidgetData) contextValidateRows(ctx context.Context, formats strfm
 	for i := 0; i < len(m.Rows); i++ {
 
 		if m.Rows[i] != nil {
+
+			if swag.IsZero(m.Rows[i]) { // not required
+				return nil
+			}
+
 			if err := m.Rows[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("rows" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("rows" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

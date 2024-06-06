@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetWebsiteGroupByIDOK() *GetWebsiteGroupByIDOK {
 	return &GetWebsiteGroupByIDOK{}
 }
 
-/* GetWebsiteGroupByIDOK describes a response with status code 200, with default header values.
+/*
+GetWebsiteGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetWebsiteGroupByIDOK struct {
 	Payload *models.WebsiteGroup
 }
 
-func (o *GetWebsiteGroupByIDOK) Error() string {
-	return fmt.Sprintf("[GET /website/groups/{id}][%d] getWebsiteGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get website group by Id o k response has a 2xx status code
+func (o *GetWebsiteGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get website group by Id o k response has a 3xx status code
+func (o *GetWebsiteGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website group by Id o k response has a 4xx status code
+func (o *GetWebsiteGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get website group by Id o k response has a 5xx status code
+func (o *GetWebsiteGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website group by Id o k response a status code equal to that given
+func (o *GetWebsiteGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get website group by Id o k response
+func (o *GetWebsiteGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *GetWebsiteGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups/{id}][%d] getWebsiteGroupByIdOK %s", 200, payload)
+}
+
+func (o *GetWebsiteGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups/{id}][%d] getWebsiteGroupByIdOK %s", 200, payload)
+}
+
 func (o *GetWebsiteGroupByIDOK) GetPayload() *models.WebsiteGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetWebsiteGroupByIDTooManyRequests() *GetWebsiteGroupByIDTooManyRequests
 	return &GetWebsiteGroupByIDTooManyRequests{}
 }
 
-/* GetWebsiteGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetWebsiteGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetWebsiteGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get website group by Id too many requests response has a 2xx status code
+func (o *GetWebsiteGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get website group by Id too many requests response has a 3xx status code
+func (o *GetWebsiteGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website group by Id too many requests response has a 4xx status code
+func (o *GetWebsiteGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get website group by Id too many requests response has a 5xx status code
+func (o *GetWebsiteGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website group by Id too many requests response a status code equal to that given
+func (o *GetWebsiteGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get website group by Id too many requests response
+func (o *GetWebsiteGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetWebsiteGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /website/groups/{id}][%d] getWebsiteGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /website/groups/{id}][%d] getWebsiteGroupByIdTooManyRequests", 429)
+}
+
+func (o *GetWebsiteGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /website/groups/{id}][%d] getWebsiteGroupByIdTooManyRequests", 429)
 }
 
 func (o *GetWebsiteGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetWebsiteGroupByIDDefault(code int) *GetWebsiteGroupByIDDefault {
 	}
 }
 
-/* GetWebsiteGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+GetWebsiteGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetWebsiteGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get website group by Id default response has a 2xx status code
+func (o *GetWebsiteGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get website group by Id default response has a 3xx status code
+func (o *GetWebsiteGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get website group by Id default response has a 4xx status code
+func (o *GetWebsiteGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get website group by Id default response has a 5xx status code
+func (o *GetWebsiteGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get website group by Id default response a status code equal to that given
+func (o *GetWebsiteGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get website group by Id default response
 func (o *GetWebsiteGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetWebsiteGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /website/groups/{id}][%d] getWebsiteGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups/{id}][%d] getWebsiteGroupById default %s", o._statusCode, payload)
 }
+
+func (o *GetWebsiteGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups/{id}][%d] getWebsiteGroupById default %s", o._statusCode, payload)
+}
+
 func (o *GetWebsiteGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

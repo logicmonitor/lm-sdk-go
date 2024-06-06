@@ -55,10 +55,12 @@ func NewPatchWebsiteByIDParamsWithHTTPClient(client *http.Client) *PatchWebsiteB
 	}
 }
 
-/* PatchWebsiteByIDParams contains all the parameters to send to the API endpoint
-   for the patch website by Id operation.
+/*
+PatchWebsiteByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch website by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchWebsiteByIDParams struct {
 

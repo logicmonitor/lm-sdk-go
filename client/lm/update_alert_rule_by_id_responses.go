@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewUpdateAlertRuleByIDOK() *UpdateAlertRuleByIDOK {
 	return &UpdateAlertRuleByIDOK{}
 }
 
-/* UpdateAlertRuleByIDOK describes a response with status code 200, with default header values.
+/*
+UpdateAlertRuleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type UpdateAlertRuleByIDOK struct {
 	Payload *models.AlertRule
 }
 
-func (o *UpdateAlertRuleByIDOK) Error() string {
-	return fmt.Sprintf("[PUT /setting/alert/rules/{id}][%d] updateAlertRuleByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this update alert rule by Id o k response has a 2xx status code
+func (o *UpdateAlertRuleByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this update alert rule by Id o k response has a 3xx status code
+func (o *UpdateAlertRuleByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update alert rule by Id o k response has a 4xx status code
+func (o *UpdateAlertRuleByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update alert rule by Id o k response has a 5xx status code
+func (o *UpdateAlertRuleByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update alert rule by Id o k response a status code equal to that given
+func (o *UpdateAlertRuleByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the update alert rule by Id o k response
+func (o *UpdateAlertRuleByIDOK) Code() int {
+	return 200
+}
+
+func (o *UpdateAlertRuleByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/alert/rules/{id}][%d] updateAlertRuleByIdOK %s", 200, payload)
+}
+
+func (o *UpdateAlertRuleByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/alert/rules/{id}][%d] updateAlertRuleByIdOK %s", 200, payload)
+}
+
 func (o *UpdateAlertRuleByIDOK) GetPayload() *models.AlertRule {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewUpdateAlertRuleByIDTooManyRequests() *UpdateAlertRuleByIDTooManyRequests
 	return &UpdateAlertRuleByIDTooManyRequests{}
 }
 
-/* UpdateAlertRuleByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateAlertRuleByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type UpdateAlertRuleByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this update alert rule by Id too many requests response has a 2xx status code
+func (o *UpdateAlertRuleByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update alert rule by Id too many requests response has a 3xx status code
+func (o *UpdateAlertRuleByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update alert rule by Id too many requests response has a 4xx status code
+func (o *UpdateAlertRuleByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update alert rule by Id too many requests response has a 5xx status code
+func (o *UpdateAlertRuleByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update alert rule by Id too many requests response a status code equal to that given
+func (o *UpdateAlertRuleByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the update alert rule by Id too many requests response
+func (o *UpdateAlertRuleByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *UpdateAlertRuleByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /setting/alert/rules/{id}][%d] updateAlertRuleByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PUT /setting/alert/rules/{id}][%d] updateAlertRuleByIdTooManyRequests", 429)
+}
+
+func (o *UpdateAlertRuleByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /setting/alert/rules/{id}][%d] updateAlertRuleByIdTooManyRequests", 429)
 }
 
 func (o *UpdateAlertRuleByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewUpdateAlertRuleByIDDefault(code int) *UpdateAlertRuleByIDDefault {
 	}
 }
 
-/* UpdateAlertRuleByIDDefault describes a response with status code -1, with default header values.
+/*
+UpdateAlertRuleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type UpdateAlertRuleByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this update alert rule by Id default response has a 2xx status code
+func (o *UpdateAlertRuleByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this update alert rule by Id default response has a 3xx status code
+func (o *UpdateAlertRuleByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this update alert rule by Id default response has a 4xx status code
+func (o *UpdateAlertRuleByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this update alert rule by Id default response has a 5xx status code
+func (o *UpdateAlertRuleByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this update alert rule by Id default response a status code equal to that given
+func (o *UpdateAlertRuleByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the update alert rule by Id default response
 func (o *UpdateAlertRuleByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateAlertRuleByIDDefault) Error() string {
-	return fmt.Sprintf("[PUT /setting/alert/rules/{id}][%d] updateAlertRuleById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/alert/rules/{id}][%d] updateAlertRuleById default %s", o._statusCode, payload)
 }
+
+func (o *UpdateAlertRuleByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/alert/rules/{id}][%d] updateAlertRuleById default %s", o._statusCode, payload)
+}
+
 func (o *UpdateAlertRuleByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

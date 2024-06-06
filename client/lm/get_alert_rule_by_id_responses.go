@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetAlertRuleByIDOK() *GetAlertRuleByIDOK {
 	return &GetAlertRuleByIDOK{}
 }
 
-/* GetAlertRuleByIDOK describes a response with status code 200, with default header values.
+/*
+GetAlertRuleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAlertRuleByIDOK struct {
 	Payload *models.AlertRule
 }
 
-func (o *GetAlertRuleByIDOK) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/rules/{id}][%d] getAlertRuleByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get alert rule by Id o k response has a 2xx status code
+func (o *GetAlertRuleByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get alert rule by Id o k response has a 3xx status code
+func (o *GetAlertRuleByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get alert rule by Id o k response has a 4xx status code
+func (o *GetAlertRuleByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get alert rule by Id o k response has a 5xx status code
+func (o *GetAlertRuleByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get alert rule by Id o k response a status code equal to that given
+func (o *GetAlertRuleByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get alert rule by Id o k response
+func (o *GetAlertRuleByIDOK) Code() int {
+	return 200
+}
+
+func (o *GetAlertRuleByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/rules/{id}][%d] getAlertRuleByIdOK %s", 200, payload)
+}
+
+func (o *GetAlertRuleByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/rules/{id}][%d] getAlertRuleByIdOK %s", 200, payload)
+}
+
 func (o *GetAlertRuleByIDOK) GetPayload() *models.AlertRule {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetAlertRuleByIDTooManyRequests() *GetAlertRuleByIDTooManyRequests {
 	return &GetAlertRuleByIDTooManyRequests{}
 }
 
-/* GetAlertRuleByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAlertRuleByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetAlertRuleByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get alert rule by Id too many requests response has a 2xx status code
+func (o *GetAlertRuleByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get alert rule by Id too many requests response has a 3xx status code
+func (o *GetAlertRuleByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get alert rule by Id too many requests response has a 4xx status code
+func (o *GetAlertRuleByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get alert rule by Id too many requests response has a 5xx status code
+func (o *GetAlertRuleByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get alert rule by Id too many requests response a status code equal to that given
+func (o *GetAlertRuleByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get alert rule by Id too many requests response
+func (o *GetAlertRuleByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAlertRuleByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/rules/{id}][%d] getAlertRuleByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/alert/rules/{id}][%d] getAlertRuleByIdTooManyRequests", 429)
+}
+
+func (o *GetAlertRuleByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/alert/rules/{id}][%d] getAlertRuleByIdTooManyRequests", 429)
 }
 
 func (o *GetAlertRuleByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetAlertRuleByIDDefault(code int) *GetAlertRuleByIDDefault {
 	}
 }
 
-/* GetAlertRuleByIDDefault describes a response with status code -1, with default header values.
+/*
+GetAlertRuleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetAlertRuleByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get alert rule by Id default response has a 2xx status code
+func (o *GetAlertRuleByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get alert rule by Id default response has a 3xx status code
+func (o *GetAlertRuleByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get alert rule by Id default response has a 4xx status code
+func (o *GetAlertRuleByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get alert rule by Id default response has a 5xx status code
+func (o *GetAlertRuleByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get alert rule by Id default response a status code equal to that given
+func (o *GetAlertRuleByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get alert rule by Id default response
 func (o *GetAlertRuleByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAlertRuleByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/rules/{id}][%d] getAlertRuleById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/rules/{id}][%d] getAlertRuleById default %s", o._statusCode, payload)
 }
+
+func (o *GetAlertRuleByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/rules/{id}][%d] getAlertRuleById default %s", o._statusCode, payload)
+}
+
 func (o *GetAlertRuleByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

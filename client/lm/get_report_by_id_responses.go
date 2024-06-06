@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetReportByIDOK() *GetReportByIDOK {
 	return &GetReportByIDOK{}
 }
 
-/* GetReportByIDOK describes a response with status code 200, with default header values.
+/*
+GetReportByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetReportByIDOK struct {
 	Payload models.ReportBase
 }
 
-func (o *GetReportByIDOK) Error() string {
-	return fmt.Sprintf("[GET /report/reports/{id}][%d] getReportByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get report by Id o k response has a 2xx status code
+func (o *GetReportByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get report by Id o k response has a 3xx status code
+func (o *GetReportByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get report by Id o k response has a 4xx status code
+func (o *GetReportByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get report by Id o k response has a 5xx status code
+func (o *GetReportByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get report by Id o k response a status code equal to that given
+func (o *GetReportByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get report by Id o k response
+func (o *GetReportByIDOK) Code() int {
+	return 200
+}
+
+func (o *GetReportByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports/{id}][%d] getReportByIdOK %s", 200, payload)
+}
+
+func (o *GetReportByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports/{id}][%d] getReportByIdOK %s", 200, payload)
+}
+
 func (o *GetReportByIDOK) GetPayload() models.ReportBase {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetReportByIDTooManyRequests() *GetReportByIDTooManyRequests {
 	return &GetReportByIDTooManyRequests{}
 }
 
-/* GetReportByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetReportByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetReportByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get report by Id too many requests response has a 2xx status code
+func (o *GetReportByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get report by Id too many requests response has a 3xx status code
+func (o *GetReportByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get report by Id too many requests response has a 4xx status code
+func (o *GetReportByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get report by Id too many requests response has a 5xx status code
+func (o *GetReportByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get report by Id too many requests response a status code equal to that given
+func (o *GetReportByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get report by Id too many requests response
+func (o *GetReportByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetReportByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /report/reports/{id}][%d] getReportByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /report/reports/{id}][%d] getReportByIdTooManyRequests", 429)
+}
+
+func (o *GetReportByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /report/reports/{id}][%d] getReportByIdTooManyRequests", 429)
 }
 
 func (o *GetReportByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetReportByIDDefault(code int) *GetReportByIDDefault {
 	}
 }
 
-/* GetReportByIDDefault describes a response with status code -1, with default header values.
+/*
+GetReportByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetReportByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get report by Id default response has a 2xx status code
+func (o *GetReportByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get report by Id default response has a 3xx status code
+func (o *GetReportByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get report by Id default response has a 4xx status code
+func (o *GetReportByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get report by Id default response has a 5xx status code
+func (o *GetReportByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get report by Id default response a status code equal to that given
+func (o *GetReportByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get report by Id default response
 func (o *GetReportByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetReportByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /report/reports/{id}][%d] getReportById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports/{id}][%d] getReportById default %s", o._statusCode, payload)
 }
+
+func (o *GetReportByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports/{id}][%d] getReportById default %s", o._statusCode, payload)
+}
+
 func (o *GetReportByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

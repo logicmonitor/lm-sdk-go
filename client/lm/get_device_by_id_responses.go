@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetDeviceByIDOK() *GetDeviceByIDOK {
 	return &GetDeviceByIDOK{}
 }
 
-/* GetDeviceByIDOK describes a response with status code 200, with default header values.
+/*
+GetDeviceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeviceByIDOK struct {
 	Payload *models.Device
 }
 
-func (o *GetDeviceByIDOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device by Id o k response has a 2xx status code
+func (o *GetDeviceByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device by Id o k response has a 3xx status code
+func (o *GetDeviceByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device by Id o k response has a 4xx status code
+func (o *GetDeviceByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device by Id o k response has a 5xx status code
+func (o *GetDeviceByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device by Id o k response a status code equal to that given
+func (o *GetDeviceByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device by Id o k response
+func (o *GetDeviceByIDOK) Code() int {
+	return 200
+}
+
+func (o *GetDeviceByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceByIdOK %s", 200, payload)
+}
+
+func (o *GetDeviceByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceByIdOK %s", 200, payload)
+}
+
 func (o *GetDeviceByIDOK) GetPayload() *models.Device {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDeviceByIDTooManyRequests() *GetDeviceByIDTooManyRequests {
 	return &GetDeviceByIDTooManyRequests{}
 }
 
-/* GetDeviceByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeviceByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDeviceByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device by Id too many requests response has a 2xx status code
+func (o *GetDeviceByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device by Id too many requests response has a 3xx status code
+func (o *GetDeviceByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device by Id too many requests response has a 4xx status code
+func (o *GetDeviceByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device by Id too many requests response has a 5xx status code
+func (o *GetDeviceByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device by Id too many requests response a status code equal to that given
+func (o *GetDeviceByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device by Id too many requests response
+func (o *GetDeviceByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeviceByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceByIdTooManyRequests", 429)
+}
+
+func (o *GetDeviceByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceByIdTooManyRequests", 429)
 }
 
 func (o *GetDeviceByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDeviceByIDDefault(code int) *GetDeviceByIDDefault {
 	}
 }
 
-/* GetDeviceByIDDefault describes a response with status code -1, with default header values.
+/*
+GetDeviceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDeviceByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device by Id default response has a 2xx status code
+func (o *GetDeviceByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device by Id default response has a 3xx status code
+func (o *GetDeviceByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device by Id default response has a 4xx status code
+func (o *GetDeviceByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device by Id default response has a 5xx status code
+func (o *GetDeviceByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device by Id default response a status code equal to that given
+func (o *GetDeviceByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device by Id default response
 func (o *GetDeviceByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeviceByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceById default %s", o._statusCode, payload)
 }
+
+func (o *GetDeviceByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceById default %s", o._statusCode, payload)
+}
+
 func (o *GetDeviceByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

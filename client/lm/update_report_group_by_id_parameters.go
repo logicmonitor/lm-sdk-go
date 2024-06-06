@@ -55,10 +55,12 @@ func NewUpdateReportGroupByIDParamsWithHTTPClient(client *http.Client) *UpdateRe
 	}
 }
 
-/* UpdateReportGroupByIDParams contains all the parameters to send to the API endpoint
-   for the update report group by Id operation.
+/*
+UpdateReportGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update report group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateReportGroupByIDParams struct {
 

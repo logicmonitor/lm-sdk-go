@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewUpdateWebsiteByIDOK() *UpdateWebsiteByIDOK {
 	return &UpdateWebsiteByIDOK{}
 }
 
-/* UpdateWebsiteByIDOK describes a response with status code 200, with default header values.
+/*
+UpdateWebsiteByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type UpdateWebsiteByIDOK struct {
 	Payload models.Website
 }
 
-func (o *UpdateWebsiteByIDOK) Error() string {
-	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this update website by Id o k response has a 2xx status code
+func (o *UpdateWebsiteByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this update website by Id o k response has a 3xx status code
+func (o *UpdateWebsiteByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update website by Id o k response has a 4xx status code
+func (o *UpdateWebsiteByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update website by Id o k response has a 5xx status code
+func (o *UpdateWebsiteByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update website by Id o k response a status code equal to that given
+func (o *UpdateWebsiteByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the update website by Id o k response
+func (o *UpdateWebsiteByIDOK) Code() int {
+	return 200
+}
+
+func (o *UpdateWebsiteByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteByIdOK %s", 200, payload)
+}
+
+func (o *UpdateWebsiteByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteByIdOK %s", 200, payload)
+}
+
 func (o *UpdateWebsiteByIDOK) GetPayload() models.Website {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewUpdateWebsiteByIDTooManyRequests() *UpdateWebsiteByIDTooManyRequests {
 	return &UpdateWebsiteByIDTooManyRequests{}
 }
 
-/* UpdateWebsiteByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateWebsiteByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type UpdateWebsiteByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this update website by Id too many requests response has a 2xx status code
+func (o *UpdateWebsiteByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update website by Id too many requests response has a 3xx status code
+func (o *UpdateWebsiteByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update website by Id too many requests response has a 4xx status code
+func (o *UpdateWebsiteByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update website by Id too many requests response has a 5xx status code
+func (o *UpdateWebsiteByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update website by Id too many requests response a status code equal to that given
+func (o *UpdateWebsiteByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the update website by Id too many requests response
+func (o *UpdateWebsiteByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *UpdateWebsiteByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteByIdTooManyRequests", 429)
+}
+
+func (o *UpdateWebsiteByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteByIdTooManyRequests", 429)
 }
 
 func (o *UpdateWebsiteByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewUpdateWebsiteByIDDefault(code int) *UpdateWebsiteByIDDefault {
 	}
 }
 
-/* UpdateWebsiteByIDDefault describes a response with status code -1, with default header values.
+/*
+UpdateWebsiteByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type UpdateWebsiteByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this update website by Id default response has a 2xx status code
+func (o *UpdateWebsiteByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this update website by Id default response has a 3xx status code
+func (o *UpdateWebsiteByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this update website by Id default response has a 4xx status code
+func (o *UpdateWebsiteByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this update website by Id default response has a 5xx status code
+func (o *UpdateWebsiteByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this update website by Id default response a status code equal to that given
+func (o *UpdateWebsiteByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the update website by Id default response
 func (o *UpdateWebsiteByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateWebsiteByIDDefault) Error() string {
-	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteById default %s", o._statusCode, payload)
 }
+
+func (o *UpdateWebsiteByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /website/websites/{id}][%d] updateWebsiteById default %s", o._statusCode, payload)
+}
+
 func (o *UpdateWebsiteByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

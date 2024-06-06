@@ -57,6 +57,8 @@ func (m *CustomVirtualDataPoint) validateDisplay(formats strfmt.Registry) error 
 		if err := m.Display.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("display")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("display")
 			}
 			return err
 		}
@@ -82,9 +84,16 @@ func (m *CustomVirtualDataPoint) ContextValidate(ctx context.Context, formats st
 func (m *CustomVirtualDataPoint) contextValidateDisplay(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Display != nil {
+
+		if swag.IsZero(m.Display) { // not required
+			return nil
+		}
+
 		if err := m.Display.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("display")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("display")
 			}
 			return err
 		}

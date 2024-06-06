@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddDashboardOK() *AddDashboardOK {
 	return &AddDashboardOK{}
 }
 
-/* AddDashboardOK describes a response with status code 200, with default header values.
+/*
+AddDashboardOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddDashboardOK struct {
 	Payload *models.Dashboard
 }
 
-func (o *AddDashboardOK) Error() string {
-	return fmt.Sprintf("[POST /dashboard/dashboards][%d] addDashboardOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add dashboard o k response has a 2xx status code
+func (o *AddDashboardOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add dashboard o k response has a 3xx status code
+func (o *AddDashboardOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add dashboard o k response has a 4xx status code
+func (o *AddDashboardOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add dashboard o k response has a 5xx status code
+func (o *AddDashboardOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add dashboard o k response a status code equal to that given
+func (o *AddDashboardOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add dashboard o k response
+func (o *AddDashboardOK) Code() int {
+	return 200
+}
+
+func (o *AddDashboardOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/dashboards][%d] addDashboardOK %s", 200, payload)
+}
+
+func (o *AddDashboardOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/dashboards][%d] addDashboardOK %s", 200, payload)
+}
+
 func (o *AddDashboardOK) GetPayload() *models.Dashboard {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddDashboardTooManyRequests() *AddDashboardTooManyRequests {
 	return &AddDashboardTooManyRequests{}
 }
 
-/* AddDashboardTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddDashboardTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddDashboardTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add dashboard too many requests response has a 2xx status code
+func (o *AddDashboardTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add dashboard too many requests response has a 3xx status code
+func (o *AddDashboardTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add dashboard too many requests response has a 4xx status code
+func (o *AddDashboardTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add dashboard too many requests response has a 5xx status code
+func (o *AddDashboardTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add dashboard too many requests response a status code equal to that given
+func (o *AddDashboardTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add dashboard too many requests response
+func (o *AddDashboardTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddDashboardTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /dashboard/dashboards][%d] addDashboardTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /dashboard/dashboards][%d] addDashboardTooManyRequests", 429)
+}
+
+func (o *AddDashboardTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /dashboard/dashboards][%d] addDashboardTooManyRequests", 429)
 }
 
 func (o *AddDashboardTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddDashboardDefault(code int) *AddDashboardDefault {
 	}
 }
 
-/* AddDashboardDefault describes a response with status code -1, with default header values.
+/*
+AddDashboardDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddDashboardDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add dashboard default response has a 2xx status code
+func (o *AddDashboardDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add dashboard default response has a 3xx status code
+func (o *AddDashboardDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add dashboard default response has a 4xx status code
+func (o *AddDashboardDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add dashboard default response has a 5xx status code
+func (o *AddDashboardDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add dashboard default response a status code equal to that given
+func (o *AddDashboardDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add dashboard default response
 func (o *AddDashboardDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddDashboardDefault) Error() string {
-	return fmt.Sprintf("[POST /dashboard/dashboards][%d] addDashboard default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/dashboards][%d] addDashboard default %s", o._statusCode, payload)
 }
+
+func (o *AddDashboardDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/dashboards][%d] addDashboard default %s", o._statusCode, payload)
+}
+
 func (o *AddDashboardDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

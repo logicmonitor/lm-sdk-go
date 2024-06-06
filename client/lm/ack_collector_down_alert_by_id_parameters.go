@@ -55,10 +55,12 @@ func NewAckCollectorDownAlertByIDParamsWithHTTPClient(client *http.Client) *AckC
 	}
 }
 
-/* AckCollectorDownAlertByIDParams contains all the parameters to send to the API endpoint
-   for the ack collector down alert by Id operation.
+/*
+AckCollectorDownAlertByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the ack collector down alert by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type AckCollectorDownAlertByIDParams struct {
 

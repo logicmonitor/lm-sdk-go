@@ -52,10 +52,12 @@ func NewDeleteSDTByIDParamsWithHTTPClient(client *http.Client) *DeleteSDTByIDPar
 	}
 }
 
-/* DeleteSDTByIDParams contains all the parameters to send to the API endpoint
-   for the delete SDT by Id operation.
+/*
+DeleteSDTByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete SDT by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteSDTByIDParams struct {
 

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetWidgetDataByIDOK() *GetWidgetDataByIDOK {
 	return &GetWidgetDataByIDOK{}
 }
 
-/* GetWidgetDataByIDOK describes a response with status code 200, with default header values.
+/*
+GetWidgetDataByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetWidgetDataByIDOK struct {
 	Payload models.WidgetData
 }
 
-func (o *GetWidgetDataByIDOK) Error() string {
-	return fmt.Sprintf("[GET /dashboard/widgets/{id}/data][%d] getWidgetDataByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get widget data by Id o k response has a 2xx status code
+func (o *GetWidgetDataByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get widget data by Id o k response has a 3xx status code
+func (o *GetWidgetDataByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get widget data by Id o k response has a 4xx status code
+func (o *GetWidgetDataByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get widget data by Id o k response has a 5xx status code
+func (o *GetWidgetDataByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get widget data by Id o k response a status code equal to that given
+func (o *GetWidgetDataByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get widget data by Id o k response
+func (o *GetWidgetDataByIDOK) Code() int {
+	return 200
+}
+
+func (o *GetWidgetDataByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/widgets/{id}/data][%d] getWidgetDataByIdOK %s", 200, payload)
+}
+
+func (o *GetWidgetDataByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/widgets/{id}/data][%d] getWidgetDataByIdOK %s", 200, payload)
+}
+
 func (o *GetWidgetDataByIDOK) GetPayload() models.WidgetData {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetWidgetDataByIDTooManyRequests() *GetWidgetDataByIDTooManyRequests {
 	return &GetWidgetDataByIDTooManyRequests{}
 }
 
-/* GetWidgetDataByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetWidgetDataByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetWidgetDataByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get widget data by Id too many requests response has a 2xx status code
+func (o *GetWidgetDataByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get widget data by Id too many requests response has a 3xx status code
+func (o *GetWidgetDataByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get widget data by Id too many requests response has a 4xx status code
+func (o *GetWidgetDataByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get widget data by Id too many requests response has a 5xx status code
+func (o *GetWidgetDataByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get widget data by Id too many requests response a status code equal to that given
+func (o *GetWidgetDataByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get widget data by Id too many requests response
+func (o *GetWidgetDataByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetWidgetDataByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /dashboard/widgets/{id}/data][%d] getWidgetDataByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /dashboard/widgets/{id}/data][%d] getWidgetDataByIdTooManyRequests", 429)
+}
+
+func (o *GetWidgetDataByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /dashboard/widgets/{id}/data][%d] getWidgetDataByIdTooManyRequests", 429)
 }
 
 func (o *GetWidgetDataByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetWidgetDataByIDDefault(code int) *GetWidgetDataByIDDefault {
 	}
 }
 
-/* GetWidgetDataByIDDefault describes a response with status code -1, with default header values.
+/*
+GetWidgetDataByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetWidgetDataByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get widget data by Id default response has a 2xx status code
+func (o *GetWidgetDataByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get widget data by Id default response has a 3xx status code
+func (o *GetWidgetDataByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get widget data by Id default response has a 4xx status code
+func (o *GetWidgetDataByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get widget data by Id default response has a 5xx status code
+func (o *GetWidgetDataByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get widget data by Id default response a status code equal to that given
+func (o *GetWidgetDataByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get widget data by Id default response
 func (o *GetWidgetDataByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetWidgetDataByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /dashboard/widgets/{id}/data][%d] getWidgetDataById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/widgets/{id}/data][%d] getWidgetDataById default %s", o._statusCode, payload)
 }
+
+func (o *GetWidgetDataByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/widgets/{id}/data][%d] getWidgetDataById default %s", o._statusCode, payload)
+}
+
 func (o *GetWidgetDataByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -55,10 +55,12 @@ func NewPatchCollectorByIDParamsWithHTTPClient(client *http.Client) *PatchCollec
 	}
 }
 
-/* PatchCollectorByIDParams contains all the parameters to send to the API endpoint
-   for the patch collector by Id operation.
+/*
+PatchCollectorByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch collector by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchCollectorByIDParams struct {
 

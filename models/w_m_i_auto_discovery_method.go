@@ -255,6 +255,8 @@ func (m *WMIAutoDiscoveryMethod) validateILP(formats strfmt.Registry) error {
 			if err := m.ILP[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ILP" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ILP" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -280,6 +282,8 @@ func (m *WMIAutoDiscoveryMethod) validateLinkedClasses(formats strfmt.Registry) 
 			if err := m.LinkedClasses[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("linkedClasses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("linkedClasses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -340,9 +344,16 @@ func (m *WMIAutoDiscoveryMethod) contextValidateILP(ctx context.Context, formats
 	for i := 0; i < len(m.ILP); i++ {
 
 		if m.ILP[i] != nil {
+
+			if swag.IsZero(m.ILP[i]) { // not required
+				return nil
+			}
+
 			if err := m.ILP[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ILP" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ILP" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -358,9 +369,16 @@ func (m *WMIAutoDiscoveryMethod) contextValidateLinkedClasses(ctx context.Contex
 	for i := 0; i < len(m.LinkedClasses); i++ {
 
 		if m.LinkedClasses[i] != nil {
+
+			if swag.IsZero(m.LinkedClasses[i]) { // not required
+				return nil
+			}
+
 			if err := m.LinkedClasses[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("linkedClasses" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("linkedClasses" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

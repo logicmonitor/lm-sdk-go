@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetAlertListByDeviceIDOK() *GetAlertListByDeviceIDOK {
 	return &GetAlertListByDeviceIDOK{}
 }
 
-/* GetAlertListByDeviceIDOK describes a response with status code 200, with default header values.
+/*
+GetAlertListByDeviceIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAlertListByDeviceIDOK struct {
 	Payload *models.AlertPaginationResponse
 }
 
-func (o *GetAlertListByDeviceIDOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/alerts][%d] getAlertListByDeviceIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get alert list by device Id o k response has a 2xx status code
+func (o *GetAlertListByDeviceIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get alert list by device Id o k response has a 3xx status code
+func (o *GetAlertListByDeviceIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get alert list by device Id o k response has a 4xx status code
+func (o *GetAlertListByDeviceIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get alert list by device Id o k response has a 5xx status code
+func (o *GetAlertListByDeviceIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get alert list by device Id o k response a status code equal to that given
+func (o *GetAlertListByDeviceIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get alert list by device Id o k response
+func (o *GetAlertListByDeviceIDOK) Code() int {
+	return 200
+}
+
+func (o *GetAlertListByDeviceIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/alerts][%d] getAlertListByDeviceIdOK %s", 200, payload)
+}
+
+func (o *GetAlertListByDeviceIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/alerts][%d] getAlertListByDeviceIdOK %s", 200, payload)
+}
+
 func (o *GetAlertListByDeviceIDOK) GetPayload() *models.AlertPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetAlertListByDeviceIDTooManyRequests() *GetAlertListByDeviceIDTooManyRe
 	return &GetAlertListByDeviceIDTooManyRequests{}
 }
 
-/* GetAlertListByDeviceIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAlertListByDeviceIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetAlertListByDeviceIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get alert list by device Id too many requests response has a 2xx status code
+func (o *GetAlertListByDeviceIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get alert list by device Id too many requests response has a 3xx status code
+func (o *GetAlertListByDeviceIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get alert list by device Id too many requests response has a 4xx status code
+func (o *GetAlertListByDeviceIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get alert list by device Id too many requests response has a 5xx status code
+func (o *GetAlertListByDeviceIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get alert list by device Id too many requests response a status code equal to that given
+func (o *GetAlertListByDeviceIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get alert list by device Id too many requests response
+func (o *GetAlertListByDeviceIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAlertListByDeviceIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/alerts][%d] getAlertListByDeviceIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{id}/alerts][%d] getAlertListByDeviceIdTooManyRequests", 429)
+}
+
+func (o *GetAlertListByDeviceIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{id}/alerts][%d] getAlertListByDeviceIdTooManyRequests", 429)
 }
 
 func (o *GetAlertListByDeviceIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetAlertListByDeviceIDDefault(code int) *GetAlertListByDeviceIDDefault {
 	}
 }
 
-/* GetAlertListByDeviceIDDefault describes a response with status code -1, with default header values.
+/*
+GetAlertListByDeviceIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetAlertListByDeviceIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get alert list by device Id default response has a 2xx status code
+func (o *GetAlertListByDeviceIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get alert list by device Id default response has a 3xx status code
+func (o *GetAlertListByDeviceIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get alert list by device Id default response has a 4xx status code
+func (o *GetAlertListByDeviceIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get alert list by device Id default response has a 5xx status code
+func (o *GetAlertListByDeviceIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get alert list by device Id default response a status code equal to that given
+func (o *GetAlertListByDeviceIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get alert list by device Id default response
 func (o *GetAlertListByDeviceIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAlertListByDeviceIDDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/alerts][%d] getAlertListByDeviceId default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/alerts][%d] getAlertListByDeviceId default %s", o._statusCode, payload)
 }
+
+func (o *GetAlertListByDeviceIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/alerts][%d] getAlertListByDeviceId default %s", o._statusCode, payload)
+}
+
 func (o *GetAlertListByDeviceIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

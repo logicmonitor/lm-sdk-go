@@ -194,6 +194,8 @@ func (m *AlertRule) validateResourceProperties(formats strfmt.Registry) error {
 			if err := m.ResourceProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resourceProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resourceProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -245,9 +247,16 @@ func (m *AlertRule) contextValidateResourceProperties(ctx context.Context, forma
 	for i := 0; i < len(m.ResourceProperties); i++ {
 
 		if m.ResourceProperties[i] != nil {
+
+			if swag.IsZero(m.ResourceProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.ResourceProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resourceProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resourceProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

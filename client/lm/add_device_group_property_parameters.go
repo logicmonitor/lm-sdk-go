@@ -55,10 +55,12 @@ func NewAddDeviceGroupPropertyParamsWithHTTPClient(client *http.Client) *AddDevi
 	}
 }
 
-/* AddDeviceGroupPropertyParams contains all the parameters to send to the API endpoint
-   for the add device group property operation.
+/*
+AddDeviceGroupPropertyParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add device group property operation.
+
+	Typically these are written to a http.Request.
 */
 type AddDeviceGroupPropertyParams struct {
 

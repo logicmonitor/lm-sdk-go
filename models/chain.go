@@ -64,6 +64,8 @@ func (m *Chain) validatePeriod(formats strfmt.Registry) error {
 		if err := m.Period.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("period")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("period")
 			}
 			return err
 		}
@@ -89,6 +91,8 @@ func (m *Chain) validateStages(formats strfmt.Registry) error {
 				if err := m.Stages[i][ii].Validate(formats); err != nil {
 					if ve, ok := err.(*errors.Validation); ok {
 						return ve.ValidateName("stages" + "." + strconv.Itoa(i) + "." + strconv.Itoa(ii))
+					} else if ce, ok := err.(*errors.CompositeError); ok {
+						return ce.ValidateName("stages" + "." + strconv.Itoa(i) + "." + strconv.Itoa(ii))
 					}
 					return err
 				}
@@ -131,9 +135,16 @@ func (m *Chain) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 func (m *Chain) contextValidatePeriod(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Period != nil {
+
+		if swag.IsZero(m.Period) { // not required
+			return nil
+		}
+
 		if err := m.Period.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("period")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("period")
 			}
 			return err
 		}
@@ -149,9 +160,16 @@ func (m *Chain) contextValidateStages(ctx context.Context, formats strfmt.Regist
 		for ii := 0; ii < len(m.Stages[i]); ii++ {
 
 			if m.Stages[i][ii] != nil {
+
+				if swag.IsZero(m.Stages[i][ii]) { // not required
+					return nil
+				}
+
 				if err := m.Stages[i][ii].ContextValidate(ctx, formats); err != nil {
 					if ve, ok := err.(*errors.Validation); ok {
 						return ve.ValidateName("stages" + "." + strconv.Itoa(i) + "." + strconv.Itoa(ii))
+					} else if ce, ok := err.(*errors.CompositeError); ok {
+						return ce.ValidateName("stages" + "." + strconv.Itoa(i) + "." + strconv.Itoa(ii))
 					}
 					return err
 				}

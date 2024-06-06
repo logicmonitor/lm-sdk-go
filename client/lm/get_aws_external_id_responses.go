@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetAwsExternalIDOK() *GetAwsExternalIDOK {
 	return &GetAwsExternalIDOK{}
 }
 
-/* GetAwsExternalIDOK describes a response with status code 200, with default header values.
+/*
+GetAwsExternalIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAwsExternalIDOK struct {
 	Payload *models.AwsExternalID
 }
 
-func (o *GetAwsExternalIDOK) Error() string {
-	return fmt.Sprintf("[GET /aws/externalId][%d] getAwsExternalIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get aws external Id o k response has a 2xx status code
+func (o *GetAwsExternalIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get aws external Id o k response has a 3xx status code
+func (o *GetAwsExternalIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get aws external Id o k response has a 4xx status code
+func (o *GetAwsExternalIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get aws external Id o k response has a 5xx status code
+func (o *GetAwsExternalIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get aws external Id o k response a status code equal to that given
+func (o *GetAwsExternalIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get aws external Id o k response
+func (o *GetAwsExternalIDOK) Code() int {
+	return 200
+}
+
+func (o *GetAwsExternalIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /aws/externalId][%d] getAwsExternalIdOK %s", 200, payload)
+}
+
+func (o *GetAwsExternalIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /aws/externalId][%d] getAwsExternalIdOK %s", 200, payload)
+}
+
 func (o *GetAwsExternalIDOK) GetPayload() *models.AwsExternalID {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetAwsExternalIDTooManyRequests() *GetAwsExternalIDTooManyRequests {
 	return &GetAwsExternalIDTooManyRequests{}
 }
 
-/* GetAwsExternalIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAwsExternalIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetAwsExternalIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get aws external Id too many requests response has a 2xx status code
+func (o *GetAwsExternalIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get aws external Id too many requests response has a 3xx status code
+func (o *GetAwsExternalIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get aws external Id too many requests response has a 4xx status code
+func (o *GetAwsExternalIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get aws external Id too many requests response has a 5xx status code
+func (o *GetAwsExternalIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get aws external Id too many requests response a status code equal to that given
+func (o *GetAwsExternalIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get aws external Id too many requests response
+func (o *GetAwsExternalIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAwsExternalIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /aws/externalId][%d] getAwsExternalIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /aws/externalId][%d] getAwsExternalIdTooManyRequests", 429)
+}
+
+func (o *GetAwsExternalIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /aws/externalId][%d] getAwsExternalIdTooManyRequests", 429)
 }
 
 func (o *GetAwsExternalIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetAwsExternalIDDefault(code int) *GetAwsExternalIDDefault {
 	}
 }
 
-/* GetAwsExternalIDDefault describes a response with status code -1, with default header values.
+/*
+GetAwsExternalIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetAwsExternalIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get aws external Id default response has a 2xx status code
+func (o *GetAwsExternalIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get aws external Id default response has a 3xx status code
+func (o *GetAwsExternalIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get aws external Id default response has a 4xx status code
+func (o *GetAwsExternalIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get aws external Id default response has a 5xx status code
+func (o *GetAwsExternalIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get aws external Id default response a status code equal to that given
+func (o *GetAwsExternalIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get aws external Id default response
 func (o *GetAwsExternalIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAwsExternalIDDefault) Error() string {
-	return fmt.Sprintf("[GET /aws/externalId][%d] getAwsExternalId default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /aws/externalId][%d] getAwsExternalId default %s", o._statusCode, payload)
 }
+
+func (o *GetAwsExternalIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /aws/externalId][%d] getAwsExternalId default %s", o._statusCode, payload)
+}
+
 func (o *GetAwsExternalIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

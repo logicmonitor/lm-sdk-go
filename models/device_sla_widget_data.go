@@ -156,6 +156,8 @@ func (m *DeviceSLAWidgetData) validateResultList(formats strfmt.Registry) error 
 			if err := m.ResultList[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resultList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resultList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -198,9 +200,16 @@ func (m *DeviceSLAWidgetData) contextValidateResultList(ctx context.Context, for
 	for i := 0; i < len(m.ResultList); i++ {
 
 		if m.ResultList[i] != nil {
+
+			if swag.IsZero(m.ResultList[i]) { // not required
+				return nil
+			}
+
 			if err := m.ResultList[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resultList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resultList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

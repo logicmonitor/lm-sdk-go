@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetEscalationChainListOK() *GetEscalationChainListOK {
 	return &GetEscalationChainListOK{}
 }
 
-/* GetEscalationChainListOK describes a response with status code 200, with default header values.
+/*
+GetEscalationChainListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetEscalationChainListOK struct {
 	Payload *models.EscalationChainPaginationResponse
 }
 
-func (o *GetEscalationChainListOK) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/chains][%d] getEscalationChainListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get escalation chain list o k response has a 2xx status code
+func (o *GetEscalationChainListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get escalation chain list o k response has a 3xx status code
+func (o *GetEscalationChainListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get escalation chain list o k response has a 4xx status code
+func (o *GetEscalationChainListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get escalation chain list o k response has a 5xx status code
+func (o *GetEscalationChainListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get escalation chain list o k response a status code equal to that given
+func (o *GetEscalationChainListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get escalation chain list o k response
+func (o *GetEscalationChainListOK) Code() int {
+	return 200
+}
+
+func (o *GetEscalationChainListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/chains][%d] getEscalationChainListOK %s", 200, payload)
+}
+
+func (o *GetEscalationChainListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/chains][%d] getEscalationChainListOK %s", 200, payload)
+}
+
 func (o *GetEscalationChainListOK) GetPayload() *models.EscalationChainPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetEscalationChainListTooManyRequests() *GetEscalationChainListTooManyRe
 	return &GetEscalationChainListTooManyRequests{}
 }
 
-/* GetEscalationChainListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetEscalationChainListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetEscalationChainListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get escalation chain list too many requests response has a 2xx status code
+func (o *GetEscalationChainListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get escalation chain list too many requests response has a 3xx status code
+func (o *GetEscalationChainListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get escalation chain list too many requests response has a 4xx status code
+func (o *GetEscalationChainListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get escalation chain list too many requests response has a 5xx status code
+func (o *GetEscalationChainListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get escalation chain list too many requests response a status code equal to that given
+func (o *GetEscalationChainListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get escalation chain list too many requests response
+func (o *GetEscalationChainListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetEscalationChainListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/chains][%d] getEscalationChainListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/alert/chains][%d] getEscalationChainListTooManyRequests", 429)
+}
+
+func (o *GetEscalationChainListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/alert/chains][%d] getEscalationChainListTooManyRequests", 429)
 }
 
 func (o *GetEscalationChainListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetEscalationChainListDefault(code int) *GetEscalationChainListDefault {
 	}
 }
 
-/* GetEscalationChainListDefault describes a response with status code -1, with default header values.
+/*
+GetEscalationChainListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetEscalationChainListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get escalation chain list default response has a 2xx status code
+func (o *GetEscalationChainListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get escalation chain list default response has a 3xx status code
+func (o *GetEscalationChainListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get escalation chain list default response has a 4xx status code
+func (o *GetEscalationChainListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get escalation chain list default response has a 5xx status code
+func (o *GetEscalationChainListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get escalation chain list default response a status code equal to that given
+func (o *GetEscalationChainListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get escalation chain list default response
 func (o *GetEscalationChainListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetEscalationChainListDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/chains][%d] getEscalationChainList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/chains][%d] getEscalationChainList default %s", o._statusCode, payload)
 }
+
+func (o *GetEscalationChainListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/chains][%d] getEscalationChainList default %s", o._statusCode, payload)
+}
+
 func (o *GetEscalationChainListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

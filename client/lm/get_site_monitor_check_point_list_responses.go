@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetSiteMonitorCheckPointListOK() *GetSiteMonitorCheckPointListOK {
 	return &GetSiteMonitorCheckPointListOK{}
 }
 
-/* GetSiteMonitorCheckPointListOK describes a response with status code 200, with default header values.
+/*
+GetSiteMonitorCheckPointListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetSiteMonitorCheckPointListOK struct {
 	Payload *models.SiteMonitorCheckPointPaginationResponse
 }
 
-func (o *GetSiteMonitorCheckPointListOK) Error() string {
-	return fmt.Sprintf("[GET /website/smcheckpoints][%d] getSiteMonitorCheckPointListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get site monitor check point list o k response has a 2xx status code
+func (o *GetSiteMonitorCheckPointListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get site monitor check point list o k response has a 3xx status code
+func (o *GetSiteMonitorCheckPointListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get site monitor check point list o k response has a 4xx status code
+func (o *GetSiteMonitorCheckPointListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get site monitor check point list o k response has a 5xx status code
+func (o *GetSiteMonitorCheckPointListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get site monitor check point list o k response a status code equal to that given
+func (o *GetSiteMonitorCheckPointListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get site monitor check point list o k response
+func (o *GetSiteMonitorCheckPointListOK) Code() int {
+	return 200
+}
+
+func (o *GetSiteMonitorCheckPointListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/smcheckpoints][%d] getSiteMonitorCheckPointListOK %s", 200, payload)
+}
+
+func (o *GetSiteMonitorCheckPointListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/smcheckpoints][%d] getSiteMonitorCheckPointListOK %s", 200, payload)
+}
+
 func (o *GetSiteMonitorCheckPointListOK) GetPayload() *models.SiteMonitorCheckPointPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetSiteMonitorCheckPointListTooManyRequests() *GetSiteMonitorCheckPointL
 	return &GetSiteMonitorCheckPointListTooManyRequests{}
 }
 
-/* GetSiteMonitorCheckPointListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetSiteMonitorCheckPointListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetSiteMonitorCheckPointListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get site monitor check point list too many requests response has a 2xx status code
+func (o *GetSiteMonitorCheckPointListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get site monitor check point list too many requests response has a 3xx status code
+func (o *GetSiteMonitorCheckPointListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get site monitor check point list too many requests response has a 4xx status code
+func (o *GetSiteMonitorCheckPointListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get site monitor check point list too many requests response has a 5xx status code
+func (o *GetSiteMonitorCheckPointListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get site monitor check point list too many requests response a status code equal to that given
+func (o *GetSiteMonitorCheckPointListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get site monitor check point list too many requests response
+func (o *GetSiteMonitorCheckPointListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetSiteMonitorCheckPointListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /website/smcheckpoints][%d] getSiteMonitorCheckPointListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /website/smcheckpoints][%d] getSiteMonitorCheckPointListTooManyRequests", 429)
+}
+
+func (o *GetSiteMonitorCheckPointListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /website/smcheckpoints][%d] getSiteMonitorCheckPointListTooManyRequests", 429)
 }
 
 func (o *GetSiteMonitorCheckPointListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetSiteMonitorCheckPointListDefault(code int) *GetSiteMonitorCheckPointL
 	}
 }
 
-/* GetSiteMonitorCheckPointListDefault describes a response with status code -1, with default header values.
+/*
+GetSiteMonitorCheckPointListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetSiteMonitorCheckPointListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get site monitor check point list default response has a 2xx status code
+func (o *GetSiteMonitorCheckPointListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get site monitor check point list default response has a 3xx status code
+func (o *GetSiteMonitorCheckPointListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get site monitor check point list default response has a 4xx status code
+func (o *GetSiteMonitorCheckPointListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get site monitor check point list default response has a 5xx status code
+func (o *GetSiteMonitorCheckPointListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get site monitor check point list default response a status code equal to that given
+func (o *GetSiteMonitorCheckPointListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get site monitor check point list default response
 func (o *GetSiteMonitorCheckPointListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetSiteMonitorCheckPointListDefault) Error() string {
-	return fmt.Sprintf("[GET /website/smcheckpoints][%d] getSiteMonitorCheckPointList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/smcheckpoints][%d] getSiteMonitorCheckPointList default %s", o._statusCode, payload)
 }
+
+func (o *GetSiteMonitorCheckPointListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/smcheckpoints][%d] getSiteMonitorCheckPointList default %s", o._statusCode, payload)
+}
+
 func (o *GetSiteMonitorCheckPointListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

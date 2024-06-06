@@ -52,10 +52,12 @@ func NewGetSDTByIDParamsWithHTTPClient(client *http.Client) *GetSDTByIDParams {
 	}
 }
 
-/* GetSDTByIDParams contains all the parameters to send to the API endpoint
-   for the get SDT by Id operation.
+/*
+GetSDTByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get SDT by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetSDTByIDParams struct {
 

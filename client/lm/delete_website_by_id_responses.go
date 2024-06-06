@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewDeleteWebsiteByIDOK() *DeleteWebsiteByIDOK {
 	return &DeleteWebsiteByIDOK{}
 }
 
-/* DeleteWebsiteByIDOK describes a response with status code 200, with default header values.
+/*
+DeleteWebsiteByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DeleteWebsiteByIDOK struct {
 	Payload interface{}
 }
 
-func (o *DeleteWebsiteByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /website/websites/{id}][%d] deleteWebsiteByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this delete website by Id o k response has a 2xx status code
+func (o *DeleteWebsiteByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this delete website by Id o k response has a 3xx status code
+func (o *DeleteWebsiteByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete website by Id o k response has a 4xx status code
+func (o *DeleteWebsiteByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete website by Id o k response has a 5xx status code
+func (o *DeleteWebsiteByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete website by Id o k response a status code equal to that given
+func (o *DeleteWebsiteByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the delete website by Id o k response
+func (o *DeleteWebsiteByIDOK) Code() int {
+	return 200
+}
+
+func (o *DeleteWebsiteByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /website/websites/{id}][%d] deleteWebsiteByIdOK %s", 200, payload)
+}
+
+func (o *DeleteWebsiteByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /website/websites/{id}][%d] deleteWebsiteByIdOK %s", 200, payload)
+}
+
 func (o *DeleteWebsiteByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewDeleteWebsiteByIDTooManyRequests() *DeleteWebsiteByIDTooManyRequests {
 	return &DeleteWebsiteByIDTooManyRequests{}
 }
 
-/* DeleteWebsiteByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteWebsiteByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type DeleteWebsiteByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this delete website by Id too many requests response has a 2xx status code
+func (o *DeleteWebsiteByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete website by Id too many requests response has a 3xx status code
+func (o *DeleteWebsiteByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete website by Id too many requests response has a 4xx status code
+func (o *DeleteWebsiteByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete website by Id too many requests response has a 5xx status code
+func (o *DeleteWebsiteByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete website by Id too many requests response a status code equal to that given
+func (o *DeleteWebsiteByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the delete website by Id too many requests response
+func (o *DeleteWebsiteByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DeleteWebsiteByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /website/websites/{id}][%d] deleteWebsiteByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /website/websites/{id}][%d] deleteWebsiteByIdTooManyRequests", 429)
+}
+
+func (o *DeleteWebsiteByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /website/websites/{id}][%d] deleteWebsiteByIdTooManyRequests", 429)
 }
 
 func (o *DeleteWebsiteByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewDeleteWebsiteByIDDefault(code int) *DeleteWebsiteByIDDefault {
 	}
 }
 
-/* DeleteWebsiteByIDDefault describes a response with status code -1, with default header values.
+/*
+DeleteWebsiteByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type DeleteWebsiteByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete website by Id default response has a 2xx status code
+func (o *DeleteWebsiteByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this delete website by Id default response has a 3xx status code
+func (o *DeleteWebsiteByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this delete website by Id default response has a 4xx status code
+func (o *DeleteWebsiteByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this delete website by Id default response has a 5xx status code
+func (o *DeleteWebsiteByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this delete website by Id default response a status code equal to that given
+func (o *DeleteWebsiteByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the delete website by Id default response
 func (o *DeleteWebsiteByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DeleteWebsiteByIDDefault) Error() string {
-	return fmt.Sprintf("[DELETE /website/websites/{id}][%d] deleteWebsiteById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /website/websites/{id}][%d] deleteWebsiteById default %s", o._statusCode, payload)
 }
+
+func (o *DeleteWebsiteByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /website/websites/{id}][%d] deleteWebsiteById default %s", o._statusCode, payload)
+}
+
 func (o *DeleteWebsiteByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

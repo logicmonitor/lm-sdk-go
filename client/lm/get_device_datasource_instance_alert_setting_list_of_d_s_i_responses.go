@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetDeviceDatasourceInstanceAlertSettingListOfDSIOK() *GetDeviceDatasourc
 	return &GetDeviceDatasourceInstanceAlertSettingListOfDSIOK{}
 }
 
-/* GetDeviceDatasourceInstanceAlertSettingListOfDSIOK describes a response with status code 200, with default header values.
+/*
+GetDeviceDatasourceInstanceAlertSettingListOfDSIOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeviceDatasourceInstanceAlertSettingListOfDSIOK struct {
 	Payload *models.DeviceDataSourceInstanceAlertSettingPaginationResponse
 }
 
-func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings][%d] getDeviceDatasourceInstanceAlertSettingListOfDSIOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device datasource instance alert setting list of d s i o k response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device datasource instance alert setting list of d s i o k response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device datasource instance alert setting list of d s i o k response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device datasource instance alert setting list of d s i o k response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device datasource instance alert setting list of d s i o k response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device datasource instance alert setting list of d s i o k response
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIOK) Code() int {
+	return 200
+}
+
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings][%d] getDeviceDatasourceInstanceAlertSettingListOfDSIOK %s", 200, payload)
+}
+
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings][%d] getDeviceDatasourceInstanceAlertSettingListOfDSIOK %s", 200, payload)
+}
+
 func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIOK) GetPayload() *models.DeviceDataSourceInstanceAlertSettingPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests() *GetDe
 	return &GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests{}
 }
 
-/* GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device datasource instance alert setting list of d s i too many requests response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device datasource instance alert setting list of d s i too many requests response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device datasource instance alert setting list of d s i too many requests response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device datasource instance alert setting list of d s i too many requests response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device datasource instance alert setting list of d s i too many requests response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device datasource instance alert setting list of d s i too many requests response
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings][%d] getDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings][%d] getDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests", 429)
+}
+
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings][%d] getDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests", 429)
 }
 
 func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSITooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDeviceDatasourceInstanceAlertSettingListOfDSIDefault(code int) *GetDe
 	}
 }
 
-/* GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault describes a response with status code -1, with default header values.
+/*
+GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device datasource instance alert setting list of d s i default response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device datasource instance alert setting list of d s i default response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device datasource instance alert setting list of d s i default response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device datasource instance alert setting list of d s i default response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device datasource instance alert setting list of d s i default response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device datasource instance alert setting list of d s i default response
 func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings][%d] getDeviceDatasourceInstanceAlertSettingListOfDSI default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings][%d] getDeviceDatasourceInstanceAlertSettingListOfDSI default %s", o._statusCode, payload)
 }
+
+func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings][%d] getDeviceDatasourceInstanceAlertSettingListOfDSI default %s", o._statusCode, payload)
+}
+
 func (o *GetDeviceDatasourceInstanceAlertSettingListOfDSIDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -561,6 +561,8 @@ func (m *RoleReport) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -586,6 +588,8 @@ func (m *RoleReport) validateColumns(formats strfmt.Registry) error {
 			if err := m.Columns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -744,9 +748,16 @@ func (m *RoleReport) contextValidateRecipients(ctx context.Context, formats strf
 	for i := 0; i < len(m.Recipients()); i++ {
 
 		if m.recipientsField[i] != nil {
+
+			if swag.IsZero(m.recipientsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -780,9 +791,16 @@ func (m *RoleReport) contextValidateColumns(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.Columns); i++ {
 
 		if m.Columns[i] != nil {
+
+			if swag.IsZero(m.Columns[i]) { // not required
+				return nil
+			}
+
 			if err := m.Columns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,24 +55,62 @@ func NewGetAlertListOK() *GetAlertListOK {
 	return &GetAlertListOK{}
 }
 
-/* GetAlertListOK describes a response with status code 200, with default header values.
+/*
+GetAlertListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
 type GetAlertListOK struct {
-	Payload *models.AlertPaginationResponse
+	Payload *models.AlertListPaginationResponse
+}
+
+// IsSuccess returns true when this get alert list o k response has a 2xx status code
+func (o *GetAlertListOK) IsSuccess() bool {
+	return true
+}
+
+// IsRedirect returns true when this get alert list o k response has a 3xx status code
+func (o *GetAlertListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get alert list o k response has a 4xx status code
+func (o *GetAlertListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get alert list o k response has a 5xx status code
+func (o *GetAlertListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get alert list o k response a status code equal to that given
+func (o *GetAlertListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get alert list o k response
+func (o *GetAlertListOK) Code() int {
+	return 200
 }
 
 func (o *GetAlertListOK) Error() string {
-	return fmt.Sprintf("[GET /alert/alerts][%d] getAlertListOK  %+v", 200, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert/alerts][%d] getAlertListOK %s", 200, payload)
 }
-func (o *GetAlertListOK) GetPayload() *models.AlertPaginationResponse {
+
+func (o *GetAlertListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert/alerts][%d] getAlertListOK %s", 200, payload)
+}
+
+func (o *GetAlertListOK) GetPayload() *models.AlertListPaginationResponse {
 	return o.Payload
 }
 
 func (o *GetAlertListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.AlertPaginationResponse)
+	o.Payload = new(models.AlertListPaginationResponse)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
@@ -86,7 +125,8 @@ func NewGetAlertListTooManyRequests() *GetAlertListTooManyRequests {
 	return &GetAlertListTooManyRequests{}
 }
 
-/* GetAlertListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAlertListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetAlertListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get alert list too many requests response has a 2xx status code
+func (o *GetAlertListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get alert list too many requests response has a 3xx status code
+func (o *GetAlertListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get alert list too many requests response has a 4xx status code
+func (o *GetAlertListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get alert list too many requests response has a 5xx status code
+func (o *GetAlertListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get alert list too many requests response a status code equal to that given
+func (o *GetAlertListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get alert list too many requests response
+func (o *GetAlertListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAlertListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /alert/alerts][%d] getAlertListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /alert/alerts][%d] getAlertListTooManyRequests", 429)
+}
+
+func (o *GetAlertListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /alert/alerts][%d] getAlertListTooManyRequests", 429)
 }
 
 func (o *GetAlertListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetAlertListDefault(code int) *GetAlertListDefault {
 	}
 }
 
-/* GetAlertListDefault describes a response with status code -1, with default header values.
+/*
+GetAlertListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetAlertListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get alert list default response has a 2xx status code
+func (o *GetAlertListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get alert list default response has a 3xx status code
+func (o *GetAlertListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get alert list default response has a 4xx status code
+func (o *GetAlertListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get alert list default response has a 5xx status code
+func (o *GetAlertListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get alert list default response a status code equal to that given
+func (o *GetAlertListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get alert list default response
 func (o *GetAlertListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAlertListDefault) Error() string {
-	return fmt.Sprintf("[GET /alert/alerts][%d] getAlertList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert/alerts][%d] getAlertList default %s", o._statusCode, payload)
 }
+
+func (o *GetAlertListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert/alerts][%d] getAlertList default %s", o._statusCode, payload)
+}
+
 func (o *GetAlertListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

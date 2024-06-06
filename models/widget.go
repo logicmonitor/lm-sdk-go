@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -240,7 +239,7 @@ func UnmarshalWidgetSlice(reader io.Reader, consumer runtime.Consumer) ([]Widget
 // UnmarshalWidget unmarshals polymorphic Widget
 func UnmarshalWidget(reader io.Reader, consumer runtime.Consumer) (Widget, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}

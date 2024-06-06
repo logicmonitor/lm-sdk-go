@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddReportOK() *AddReportOK {
 	return &AddReportOK{}
 }
 
-/* AddReportOK describes a response with status code 200, with default header values.
+/*
+AddReportOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddReportOK struct {
 	Payload models.ReportBase
 }
 
-func (o *AddReportOK) Error() string {
-	return fmt.Sprintf("[POST /report/reports][%d] addReportOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add report o k response has a 2xx status code
+func (o *AddReportOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add report o k response has a 3xx status code
+func (o *AddReportOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add report o k response has a 4xx status code
+func (o *AddReportOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add report o k response has a 5xx status code
+func (o *AddReportOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add report o k response a status code equal to that given
+func (o *AddReportOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add report o k response
+func (o *AddReportOK) Code() int {
+	return 200
+}
+
+func (o *AddReportOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /report/reports][%d] addReportOK %s", 200, payload)
+}
+
+func (o *AddReportOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /report/reports][%d] addReportOK %s", 200, payload)
+}
+
 func (o *AddReportOK) GetPayload() models.ReportBase {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddReportTooManyRequests() *AddReportTooManyRequests {
 	return &AddReportTooManyRequests{}
 }
 
-/* AddReportTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddReportTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddReportTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add report too many requests response has a 2xx status code
+func (o *AddReportTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add report too many requests response has a 3xx status code
+func (o *AddReportTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add report too many requests response has a 4xx status code
+func (o *AddReportTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add report too many requests response has a 5xx status code
+func (o *AddReportTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add report too many requests response a status code equal to that given
+func (o *AddReportTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add report too many requests response
+func (o *AddReportTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddReportTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /report/reports][%d] addReportTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /report/reports][%d] addReportTooManyRequests", 429)
+}
+
+func (o *AddReportTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /report/reports][%d] addReportTooManyRequests", 429)
 }
 
 func (o *AddReportTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddReportDefault(code int) *AddReportDefault {
 	}
 }
 
-/* AddReportDefault describes a response with status code -1, with default header values.
+/*
+AddReportDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddReportDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add report default response has a 2xx status code
+func (o *AddReportDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add report default response has a 3xx status code
+func (o *AddReportDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add report default response has a 4xx status code
+func (o *AddReportDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add report default response has a 5xx status code
+func (o *AddReportDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add report default response a status code equal to that given
+func (o *AddReportDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add report default response
 func (o *AddReportDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddReportDefault) Error() string {
-	return fmt.Sprintf("[POST /report/reports][%d] addReport default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /report/reports][%d] addReport default %s", o._statusCode, payload)
 }
+
+func (o *AddReportDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /report/reports][%d] addReport default %s", o._statusCode, payload)
+}
+
 func (o *AddReportDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

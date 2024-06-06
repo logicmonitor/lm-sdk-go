@@ -641,6 +641,8 @@ func (m *EnhancedScriptNetscan) validateDuplicate(formats strfmt.Registry) error
 		if err := m.Duplicate().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
@@ -668,6 +670,8 @@ func (m *EnhancedScriptNetscan) validateSchedule(formats strfmt.Registry) error 
 		if err := m.Schedule().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}
@@ -686,6 +690,8 @@ func (m *EnhancedScriptNetscan) validateCredentials(formats strfmt.Registry) err
 		if err := m.Credentials.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("credentials")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credentials")
 			}
 			return err
 		}
@@ -709,6 +715,8 @@ func (m *EnhancedScriptNetscan) validateFilters(formats strfmt.Registry) error {
 			if err := m.Filters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -829,9 +837,12 @@ func (m *EnhancedScriptNetscan) contextValidateCreator(ctx context.Context, form
 func (m *EnhancedScriptNetscan) contextValidateDuplicate(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Duplicate() != nil {
+
 		if err := m.Duplicate().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
@@ -879,9 +890,12 @@ func (m *EnhancedScriptNetscan) contextValidateNextStartEpoch(ctx context.Contex
 func (m *EnhancedScriptNetscan) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Schedule() != nil {
+
 		if err := m.Schedule().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}
@@ -893,9 +907,16 @@ func (m *EnhancedScriptNetscan) contextValidateSchedule(ctx context.Context, for
 func (m *EnhancedScriptNetscan) contextValidateCredentials(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Credentials != nil {
+
+		if swag.IsZero(m.Credentials) { // not required
+			return nil
+		}
+
 		if err := m.Credentials.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("credentials")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credentials")
 			}
 			return err
 		}
@@ -918,9 +939,16 @@ func (m *EnhancedScriptNetscan) contextValidateFilters(ctx context.Context, form
 	for i := 0; i < len(m.Filters); i++ {
 
 		if m.Filters[i] != nil {
+
+			if swag.IsZero(m.Filters[i]) { // not required
+				return nil
+			}
+
 			if err := m.Filters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

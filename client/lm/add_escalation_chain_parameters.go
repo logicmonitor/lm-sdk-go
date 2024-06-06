@@ -54,10 +54,12 @@ func NewAddEscalationChainParamsWithHTTPClient(client *http.Client) *AddEscalati
 	}
 }
 
-/* AddEscalationChainParams contains all the parameters to send to the API endpoint
-   for the add escalation chain operation.
+/*
+AddEscalationChainParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add escalation chain operation.
+
+	Typically these are written to a http.Request.
 */
 type AddEscalationChainParams struct {
 

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchWebsiteGroupByIDOK() *PatchWebsiteGroupByIDOK {
 	return &PatchWebsiteGroupByIDOK{}
 }
 
-/* PatchWebsiteGroupByIDOK describes a response with status code 200, with default header values.
+/*
+PatchWebsiteGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchWebsiteGroupByIDOK struct {
 	Payload *models.WebsiteGroup
 }
 
-func (o *PatchWebsiteGroupByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch website group by Id o k response has a 2xx status code
+func (o *PatchWebsiteGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch website group by Id o k response has a 3xx status code
+func (o *PatchWebsiteGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch website group by Id o k response has a 4xx status code
+func (o *PatchWebsiteGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch website group by Id o k response has a 5xx status code
+func (o *PatchWebsiteGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch website group by Id o k response a status code equal to that given
+func (o *PatchWebsiteGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch website group by Id o k response
+func (o *PatchWebsiteGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchWebsiteGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupByIdOK %s", 200, payload)
+}
+
+func (o *PatchWebsiteGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupByIdOK %s", 200, payload)
+}
+
 func (o *PatchWebsiteGroupByIDOK) GetPayload() *models.WebsiteGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchWebsiteGroupByIDTooManyRequests() *PatchWebsiteGroupByIDTooManyRequ
 	return &PatchWebsiteGroupByIDTooManyRequests{}
 }
 
-/* PatchWebsiteGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchWebsiteGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchWebsiteGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch website group by Id too many requests response has a 2xx status code
+func (o *PatchWebsiteGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch website group by Id too many requests response has a 3xx status code
+func (o *PatchWebsiteGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch website group by Id too many requests response has a 4xx status code
+func (o *PatchWebsiteGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch website group by Id too many requests response has a 5xx status code
+func (o *PatchWebsiteGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch website group by Id too many requests response a status code equal to that given
+func (o *PatchWebsiteGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch website group by Id too many requests response
+func (o *PatchWebsiteGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchWebsiteGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupByIdTooManyRequests", 429)
+}
+
+func (o *PatchWebsiteGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupByIdTooManyRequests", 429)
 }
 
 func (o *PatchWebsiteGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchWebsiteGroupByIDDefault(code int) *PatchWebsiteGroupByIDDefault {
 	}
 }
 
-/* PatchWebsiteGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchWebsiteGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchWebsiteGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch website group by Id default response has a 2xx status code
+func (o *PatchWebsiteGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch website group by Id default response has a 3xx status code
+func (o *PatchWebsiteGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch website group by Id default response has a 4xx status code
+func (o *PatchWebsiteGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch website group by Id default response has a 5xx status code
+func (o *PatchWebsiteGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch website group by Id default response a status code equal to that given
+func (o *PatchWebsiteGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch website group by Id default response
 func (o *PatchWebsiteGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchWebsiteGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupById default %s", o._statusCode, payload)
 }
+
+func (o *PatchWebsiteGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /website/groups/{id}][%d] patchWebsiteGroupById default %s", o._statusCode, payload)
+}
+
 func (o *PatchWebsiteGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

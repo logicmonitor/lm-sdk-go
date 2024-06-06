@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetAdminByIDOK() *GetAdminByIDOK {
 	return &GetAdminByIDOK{}
 }
 
-/* GetAdminByIDOK describes a response with status code 200, with default header values.
+/*
+GetAdminByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAdminByIDOK struct {
 	Payload *models.Admin
 }
 
-func (o *GetAdminByIDOK) Error() string {
-	return fmt.Sprintf("[GET /setting/admins/{id}][%d] getAdminByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get admin by Id o k response has a 2xx status code
+func (o *GetAdminByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get admin by Id o k response has a 3xx status code
+func (o *GetAdminByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get admin by Id o k response has a 4xx status code
+func (o *GetAdminByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get admin by Id o k response has a 5xx status code
+func (o *GetAdminByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get admin by Id o k response a status code equal to that given
+func (o *GetAdminByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get admin by Id o k response
+func (o *GetAdminByIDOK) Code() int {
+	return 200
+}
+
+func (o *GetAdminByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins/{id}][%d] getAdminByIdOK %s", 200, payload)
+}
+
+func (o *GetAdminByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins/{id}][%d] getAdminByIdOK %s", 200, payload)
+}
+
 func (o *GetAdminByIDOK) GetPayload() *models.Admin {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetAdminByIDTooManyRequests() *GetAdminByIDTooManyRequests {
 	return &GetAdminByIDTooManyRequests{}
 }
 
-/* GetAdminByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAdminByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetAdminByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get admin by Id too many requests response has a 2xx status code
+func (o *GetAdminByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get admin by Id too many requests response has a 3xx status code
+func (o *GetAdminByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get admin by Id too many requests response has a 4xx status code
+func (o *GetAdminByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get admin by Id too many requests response has a 5xx status code
+func (o *GetAdminByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get admin by Id too many requests response a status code equal to that given
+func (o *GetAdminByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get admin by Id too many requests response
+func (o *GetAdminByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAdminByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/admins/{id}][%d] getAdminByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/admins/{id}][%d] getAdminByIdTooManyRequests", 429)
+}
+
+func (o *GetAdminByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/admins/{id}][%d] getAdminByIdTooManyRequests", 429)
 }
 
 func (o *GetAdminByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetAdminByIDDefault(code int) *GetAdminByIDDefault {
 	}
 }
 
-/* GetAdminByIDDefault describes a response with status code -1, with default header values.
+/*
+GetAdminByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetAdminByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get admin by Id default response has a 2xx status code
+func (o *GetAdminByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get admin by Id default response has a 3xx status code
+func (o *GetAdminByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get admin by Id default response has a 4xx status code
+func (o *GetAdminByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get admin by Id default response has a 5xx status code
+func (o *GetAdminByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get admin by Id default response a status code equal to that given
+func (o *GetAdminByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get admin by Id default response
 func (o *GetAdminByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAdminByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/admins/{id}][%d] getAdminById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins/{id}][%d] getAdminById default %s", o._statusCode, payload)
 }
+
+func (o *GetAdminByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins/{id}][%d] getAdminById default %s", o._statusCode, payload)
+}
+
 func (o *GetAdminByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddAdminOK() *AddAdminOK {
 	return &AddAdminOK{}
 }
 
-/* AddAdminOK describes a response with status code 200, with default header values.
+/*
+AddAdminOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddAdminOK struct {
 	Payload *models.Admin
 }
 
-func (o *AddAdminOK) Error() string {
-	return fmt.Sprintf("[POST /setting/admins][%d] addAdminOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add admin o k response has a 2xx status code
+func (o *AddAdminOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add admin o k response has a 3xx status code
+func (o *AddAdminOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add admin o k response has a 4xx status code
+func (o *AddAdminOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add admin o k response has a 5xx status code
+func (o *AddAdminOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add admin o k response a status code equal to that given
+func (o *AddAdminOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add admin o k response
+func (o *AddAdminOK) Code() int {
+	return 200
+}
+
+func (o *AddAdminOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/admins][%d] addAdminOK %s", 200, payload)
+}
+
+func (o *AddAdminOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/admins][%d] addAdminOK %s", 200, payload)
+}
+
 func (o *AddAdminOK) GetPayload() *models.Admin {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddAdminTooManyRequests() *AddAdminTooManyRequests {
 	return &AddAdminTooManyRequests{}
 }
 
-/* AddAdminTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddAdminTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddAdminTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add admin too many requests response has a 2xx status code
+func (o *AddAdminTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add admin too many requests response has a 3xx status code
+func (o *AddAdminTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add admin too many requests response has a 4xx status code
+func (o *AddAdminTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add admin too many requests response has a 5xx status code
+func (o *AddAdminTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add admin too many requests response a status code equal to that given
+func (o *AddAdminTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add admin too many requests response
+func (o *AddAdminTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddAdminTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/admins][%d] addAdminTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /setting/admins][%d] addAdminTooManyRequests", 429)
+}
+
+func (o *AddAdminTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /setting/admins][%d] addAdminTooManyRequests", 429)
 }
 
 func (o *AddAdminTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddAdminDefault(code int) *AddAdminDefault {
 	}
 }
 
-/* AddAdminDefault describes a response with status code -1, with default header values.
+/*
+AddAdminDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddAdminDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add admin default response has a 2xx status code
+func (o *AddAdminDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add admin default response has a 3xx status code
+func (o *AddAdminDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add admin default response has a 4xx status code
+func (o *AddAdminDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add admin default response has a 5xx status code
+func (o *AddAdminDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add admin default response a status code equal to that given
+func (o *AddAdminDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add admin default response
 func (o *AddAdminDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddAdminDefault) Error() string {
-	return fmt.Sprintf("[POST /setting/admins][%d] addAdmin default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/admins][%d] addAdmin default %s", o._statusCode, payload)
 }
+
+func (o *AddAdminDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/admins][%d] addAdmin default %s", o._statusCode, payload)
+}
+
 func (o *AddAdminDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

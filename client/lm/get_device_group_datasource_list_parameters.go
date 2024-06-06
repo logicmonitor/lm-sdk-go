@@ -53,10 +53,12 @@ func NewGetDeviceGroupDatasourceListParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/* GetDeviceGroupDatasourceListParams contains all the parameters to send to the API endpoint
-   for the get device group datasource list operation.
+/*
+GetDeviceGroupDatasourceListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device group datasource list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceGroupDatasourceListParams struct {
 

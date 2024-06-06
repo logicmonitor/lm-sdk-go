@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddDeviceOK() *AddDeviceOK {
 	return &AddDeviceOK{}
 }
 
-/* AddDeviceOK describes a response with status code 200, with default header values.
+/*
+AddDeviceOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddDeviceOK struct {
 	Payload *models.Device
 }
 
-func (o *AddDeviceOK) Error() string {
-	return fmt.Sprintf("[POST /device/devices][%d] addDeviceOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add device o k response has a 2xx status code
+func (o *AddDeviceOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add device o k response has a 3xx status code
+func (o *AddDeviceOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add device o k response has a 4xx status code
+func (o *AddDeviceOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add device o k response has a 5xx status code
+func (o *AddDeviceOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add device o k response a status code equal to that given
+func (o *AddDeviceOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add device o k response
+func (o *AddDeviceOK) Code() int {
+	return 200
+}
+
+func (o *AddDeviceOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices][%d] addDeviceOK %s", 200, payload)
+}
+
+func (o *AddDeviceOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices][%d] addDeviceOK %s", 200, payload)
+}
+
 func (o *AddDeviceOK) GetPayload() *models.Device {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddDeviceTooManyRequests() *AddDeviceTooManyRequests {
 	return &AddDeviceTooManyRequests{}
 }
 
-/* AddDeviceTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddDeviceTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddDeviceTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add device too many requests response has a 2xx status code
+func (o *AddDeviceTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add device too many requests response has a 3xx status code
+func (o *AddDeviceTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add device too many requests response has a 4xx status code
+func (o *AddDeviceTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add device too many requests response has a 5xx status code
+func (o *AddDeviceTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add device too many requests response a status code equal to that given
+func (o *AddDeviceTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add device too many requests response
+func (o *AddDeviceTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddDeviceTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /device/devices][%d] addDeviceTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /device/devices][%d] addDeviceTooManyRequests", 429)
+}
+
+func (o *AddDeviceTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /device/devices][%d] addDeviceTooManyRequests", 429)
 }
 
 func (o *AddDeviceTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddDeviceDefault(code int) *AddDeviceDefault {
 	}
 }
 
-/* AddDeviceDefault describes a response with status code -1, with default header values.
+/*
+AddDeviceDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddDeviceDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add device default response has a 2xx status code
+func (o *AddDeviceDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add device default response has a 3xx status code
+func (o *AddDeviceDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add device default response has a 4xx status code
+func (o *AddDeviceDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add device default response has a 5xx status code
+func (o *AddDeviceDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add device default response a status code equal to that given
+func (o *AddDeviceDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add device default response
 func (o *AddDeviceDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddDeviceDefault) Error() string {
-	return fmt.Sprintf("[POST /device/devices][%d] addDevice default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices][%d] addDevice default %s", o._statusCode, payload)
 }
+
+func (o *AddDeviceDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices][%d] addDevice default %s", o._statusCode, payload)
+}
+
 func (o *AddDeviceDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

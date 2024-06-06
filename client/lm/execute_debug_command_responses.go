@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewExecuteDebugCommandOK() *ExecuteDebugCommandOK {
 	return &ExecuteDebugCommandOK{}
 }
 
-/* ExecuteDebugCommandOK describes a response with status code 200, with default header values.
+/*
+ExecuteDebugCommandOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type ExecuteDebugCommandOK struct {
 	Payload *models.Debug
 }
 
-func (o *ExecuteDebugCommandOK) Error() string {
-	return fmt.Sprintf("[POST /debug][%d] executeDebugCommandOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this execute debug command o k response has a 2xx status code
+func (o *ExecuteDebugCommandOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this execute debug command o k response has a 3xx status code
+func (o *ExecuteDebugCommandOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this execute debug command o k response has a 4xx status code
+func (o *ExecuteDebugCommandOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this execute debug command o k response has a 5xx status code
+func (o *ExecuteDebugCommandOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this execute debug command o k response a status code equal to that given
+func (o *ExecuteDebugCommandOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the execute debug command o k response
+func (o *ExecuteDebugCommandOK) Code() int {
+	return 200
+}
+
+func (o *ExecuteDebugCommandOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /debug][%d] executeDebugCommandOK %s", 200, payload)
+}
+
+func (o *ExecuteDebugCommandOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /debug][%d] executeDebugCommandOK %s", 200, payload)
+}
+
 func (o *ExecuteDebugCommandOK) GetPayload() *models.Debug {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewExecuteDebugCommandTooManyRequests() *ExecuteDebugCommandTooManyRequests
 	return &ExecuteDebugCommandTooManyRequests{}
 }
 
-/* ExecuteDebugCommandTooManyRequests describes a response with status code 429, with default header values.
+/*
+ExecuteDebugCommandTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type ExecuteDebugCommandTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this execute debug command too many requests response has a 2xx status code
+func (o *ExecuteDebugCommandTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this execute debug command too many requests response has a 3xx status code
+func (o *ExecuteDebugCommandTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this execute debug command too many requests response has a 4xx status code
+func (o *ExecuteDebugCommandTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this execute debug command too many requests response has a 5xx status code
+func (o *ExecuteDebugCommandTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this execute debug command too many requests response a status code equal to that given
+func (o *ExecuteDebugCommandTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the execute debug command too many requests response
+func (o *ExecuteDebugCommandTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *ExecuteDebugCommandTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /debug][%d] executeDebugCommandTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /debug][%d] executeDebugCommandTooManyRequests", 429)
+}
+
+func (o *ExecuteDebugCommandTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /debug][%d] executeDebugCommandTooManyRequests", 429)
 }
 
 func (o *ExecuteDebugCommandTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewExecuteDebugCommandDefault(code int) *ExecuteDebugCommandDefault {
 	}
 }
 
-/* ExecuteDebugCommandDefault describes a response with status code -1, with default header values.
+/*
+ExecuteDebugCommandDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type ExecuteDebugCommandDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this execute debug command default response has a 2xx status code
+func (o *ExecuteDebugCommandDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this execute debug command default response has a 3xx status code
+func (o *ExecuteDebugCommandDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this execute debug command default response has a 4xx status code
+func (o *ExecuteDebugCommandDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this execute debug command default response has a 5xx status code
+func (o *ExecuteDebugCommandDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this execute debug command default response a status code equal to that given
+func (o *ExecuteDebugCommandDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the execute debug command default response
 func (o *ExecuteDebugCommandDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *ExecuteDebugCommandDefault) Error() string {
-	return fmt.Sprintf("[POST /debug][%d] executeDebugCommand default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /debug][%d] executeDebugCommand default %s", o._statusCode, payload)
 }
+
+func (o *ExecuteDebugCommandDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /debug][%d] executeDebugCommand default %s", o._statusCode, payload)
+}
+
 func (o *ExecuteDebugCommandDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGenerateReportByIDOK() *GenerateReportByIDOK {
 	return &GenerateReportByIDOK{}
 }
 
-/* GenerateReportByIDOK describes a response with status code 200, with default header values.
+/*
+GenerateReportByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GenerateReportByIDOK struct {
 	Payload *models.GenerateReportResult
 }
 
-func (o *GenerateReportByIDOK) Error() string {
-	return fmt.Sprintf("[POST /report/reports/{id}/executions][%d] generateReportByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this generate report by Id o k response has a 2xx status code
+func (o *GenerateReportByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this generate report by Id o k response has a 3xx status code
+func (o *GenerateReportByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this generate report by Id o k response has a 4xx status code
+func (o *GenerateReportByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this generate report by Id o k response has a 5xx status code
+func (o *GenerateReportByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this generate report by Id o k response a status code equal to that given
+func (o *GenerateReportByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the generate report by Id o k response
+func (o *GenerateReportByIDOK) Code() int {
+	return 200
+}
+
+func (o *GenerateReportByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /report/reports/{id}/executions][%d] generateReportByIdOK %s", 200, payload)
+}
+
+func (o *GenerateReportByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /report/reports/{id}/executions][%d] generateReportByIdOK %s", 200, payload)
+}
+
 func (o *GenerateReportByIDOK) GetPayload() *models.GenerateReportResult {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGenerateReportByIDTooManyRequests() *GenerateReportByIDTooManyRequests {
 	return &GenerateReportByIDTooManyRequests{}
 }
 
-/* GenerateReportByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GenerateReportByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GenerateReportByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this generate report by Id too many requests response has a 2xx status code
+func (o *GenerateReportByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this generate report by Id too many requests response has a 3xx status code
+func (o *GenerateReportByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this generate report by Id too many requests response has a 4xx status code
+func (o *GenerateReportByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this generate report by Id too many requests response has a 5xx status code
+func (o *GenerateReportByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this generate report by Id too many requests response a status code equal to that given
+func (o *GenerateReportByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the generate report by Id too many requests response
+func (o *GenerateReportByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GenerateReportByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /report/reports/{id}/executions][%d] generateReportByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /report/reports/{id}/executions][%d] generateReportByIdTooManyRequests", 429)
+}
+
+func (o *GenerateReportByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /report/reports/{id}/executions][%d] generateReportByIdTooManyRequests", 429)
 }
 
 func (o *GenerateReportByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGenerateReportByIDDefault(code int) *GenerateReportByIDDefault {
 	}
 }
 
-/* GenerateReportByIDDefault describes a response with status code -1, with default header values.
+/*
+GenerateReportByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GenerateReportByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this generate report by Id default response has a 2xx status code
+func (o *GenerateReportByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this generate report by Id default response has a 3xx status code
+func (o *GenerateReportByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this generate report by Id default response has a 4xx status code
+func (o *GenerateReportByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this generate report by Id default response has a 5xx status code
+func (o *GenerateReportByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this generate report by Id default response a status code equal to that given
+func (o *GenerateReportByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the generate report by Id default response
 func (o *GenerateReportByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GenerateReportByIDDefault) Error() string {
-	return fmt.Sprintf("[POST /report/reports/{id}/executions][%d] generateReportById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /report/reports/{id}/executions][%d] generateReportById default %s", o._statusCode, payload)
 }
+
+func (o *GenerateReportByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /report/reports/{id}/executions][%d] generateReportById default %s", o._statusCode, payload)
+}
+
 func (o *GenerateReportByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

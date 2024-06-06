@@ -19,6 +19,11 @@ import (
 // swagger:model InstanceGroupAlertThresholdInfo
 type InstanceGroupAlertThresholdInfo struct {
 
+	// The count that the alert must exist for this many poll cycles before the alert will be cleared
+	// Example: 0
+	// Read Only: true
+	AlertClearTransitionInterval int32 `json:"alertClearTransitionInterval,omitempty"`
+
 	// alert enabled
 	// Read Only: true
 	AlertEnabled *bool `json:"alertEnabled,omitempty"`
@@ -26,6 +31,16 @@ type InstanceGroupAlertThresholdInfo struct {
 	// alert expr
 	// Read Only: true
 	AlertExpr string `json:"alertExpr,omitempty"`
+
+	// The triggered alert level if we cannot collect data for this datapoint. The values can be 1-4 ( 1:no alert, 2:warn alert, 3:error alert, 4:critical alert)
+	// Example: 1
+	// Read Only: true
+	AlertForNoData int32 `json:"alertForNoData,omitempty"`
+
+	// The count that the alert must exist for this many poll cycles before it will be triggered
+	// Example: 0
+	// Read Only: true
+	AlertTransitionInterval int32 `json:"alertTransitionInterval,omitempty"`
 
 	// enable anomaly alert generation
 	// Read Only: true
@@ -49,11 +64,23 @@ func (m *InstanceGroupAlertThresholdInfo) Validate(formats strfmt.Registry) erro
 func (m *InstanceGroupAlertThresholdInfo) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAlertClearTransitionInterval(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAlertEnabled(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateAlertExpr(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAlertForNoData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAlertTransitionInterval(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -75,6 +102,15 @@ func (m *InstanceGroupAlertThresholdInfo) ContextValidate(ctx context.Context, f
 	return nil
 }
 
+func (m *InstanceGroupAlertThresholdInfo) contextValidateAlertClearTransitionInterval(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "alertClearTransitionInterval", "body", int32(m.AlertClearTransitionInterval)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *InstanceGroupAlertThresholdInfo) contextValidateAlertEnabled(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "alertEnabled", "body", m.AlertEnabled); err != nil {
@@ -87,6 +123,24 @@ func (m *InstanceGroupAlertThresholdInfo) contextValidateAlertEnabled(ctx contex
 func (m *InstanceGroupAlertThresholdInfo) contextValidateAlertExpr(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "alertExpr", "body", string(m.AlertExpr)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InstanceGroupAlertThresholdInfo) contextValidateAlertForNoData(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "alertForNoData", "body", int32(m.AlertForNoData)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *InstanceGroupAlertThresholdInfo) contextValidateAlertTransitionInterval(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "alertTransitionInterval", "body", int32(m.AlertTransitionInterval)); err != nil {
 		return err
 	}
 

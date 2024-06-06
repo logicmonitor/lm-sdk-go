@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddAlertNoteByIDOK() *AddAlertNoteByIDOK {
 	return &AddAlertNoteByIDOK{}
 }
 
-/* AddAlertNoteByIDOK describes a response with status code 200, with default header values.
+/*
+AddAlertNoteByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddAlertNoteByIDOK struct {
 	Payload interface{}
 }
 
-func (o *AddAlertNoteByIDOK) Error() string {
-	return fmt.Sprintf("[POST /alert/alerts/{id}/note][%d] addAlertNoteByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add alert note by Id o k response has a 2xx status code
+func (o *AddAlertNoteByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add alert note by Id o k response has a 3xx status code
+func (o *AddAlertNoteByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add alert note by Id o k response has a 4xx status code
+func (o *AddAlertNoteByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add alert note by Id o k response has a 5xx status code
+func (o *AddAlertNoteByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add alert note by Id o k response a status code equal to that given
+func (o *AddAlertNoteByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add alert note by Id o k response
+func (o *AddAlertNoteByIDOK) Code() int {
+	return 200
+}
+
+func (o *AddAlertNoteByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert/alerts/{id}/note][%d] addAlertNoteByIdOK %s", 200, payload)
+}
+
+func (o *AddAlertNoteByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert/alerts/{id}/note][%d] addAlertNoteByIdOK %s", 200, payload)
+}
+
 func (o *AddAlertNoteByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewAddAlertNoteByIDTooManyRequests() *AddAlertNoteByIDTooManyRequests {
 	return &AddAlertNoteByIDTooManyRequests{}
 }
 
-/* AddAlertNoteByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddAlertNoteByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type AddAlertNoteByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add alert note by Id too many requests response has a 2xx status code
+func (o *AddAlertNoteByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add alert note by Id too many requests response has a 3xx status code
+func (o *AddAlertNoteByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add alert note by Id too many requests response has a 4xx status code
+func (o *AddAlertNoteByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add alert note by Id too many requests response has a 5xx status code
+func (o *AddAlertNoteByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add alert note by Id too many requests response a status code equal to that given
+func (o *AddAlertNoteByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add alert note by Id too many requests response
+func (o *AddAlertNoteByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddAlertNoteByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /alert/alerts/{id}/note][%d] addAlertNoteByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /alert/alerts/{id}/note][%d] addAlertNoteByIdTooManyRequests", 429)
+}
+
+func (o *AddAlertNoteByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /alert/alerts/{id}/note][%d] addAlertNoteByIdTooManyRequests", 429)
 }
 
 func (o *AddAlertNoteByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewAddAlertNoteByIDDefault(code int) *AddAlertNoteByIDDefault {
 	}
 }
 
-/* AddAlertNoteByIDDefault describes a response with status code -1, with default header values.
+/*
+AddAlertNoteByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type AddAlertNoteByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add alert note by Id default response has a 2xx status code
+func (o *AddAlertNoteByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add alert note by Id default response has a 3xx status code
+func (o *AddAlertNoteByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add alert note by Id default response has a 4xx status code
+func (o *AddAlertNoteByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add alert note by Id default response has a 5xx status code
+func (o *AddAlertNoteByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add alert note by Id default response a status code equal to that given
+func (o *AddAlertNoteByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add alert note by Id default response
 func (o *AddAlertNoteByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddAlertNoteByIDDefault) Error() string {
-	return fmt.Sprintf("[POST /alert/alerts/{id}/note][%d] addAlertNoteById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert/alerts/{id}/note][%d] addAlertNoteById default %s", o._statusCode, payload)
 }
+
+func (o *AddAlertNoteByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert/alerts/{id}/note][%d] addAlertNoteById default %s", o._statusCode, payload)
+}
+
 func (o *AddAlertNoteByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

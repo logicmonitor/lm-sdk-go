@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddDeviceGroupPropertyOK() *AddDeviceGroupPropertyOK {
 	return &AddDeviceGroupPropertyOK{}
 }
 
-/* AddDeviceGroupPropertyOK describes a response with status code 200, with default header values.
+/*
+AddDeviceGroupPropertyOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddDeviceGroupPropertyOK struct {
 	Payload *models.EntityProperty
 }
 
-func (o *AddDeviceGroupPropertyOK) Error() string {
-	return fmt.Sprintf("[POST /device/groups/{gid}/properties][%d] addDeviceGroupPropertyOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add device group property o k response has a 2xx status code
+func (o *AddDeviceGroupPropertyOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add device group property o k response has a 3xx status code
+func (o *AddDeviceGroupPropertyOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add device group property o k response has a 4xx status code
+func (o *AddDeviceGroupPropertyOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add device group property o k response has a 5xx status code
+func (o *AddDeviceGroupPropertyOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add device group property o k response a status code equal to that given
+func (o *AddDeviceGroupPropertyOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add device group property o k response
+func (o *AddDeviceGroupPropertyOK) Code() int {
+	return 200
+}
+
+func (o *AddDeviceGroupPropertyOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/groups/{gid}/properties][%d] addDeviceGroupPropertyOK %s", 200, payload)
+}
+
+func (o *AddDeviceGroupPropertyOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/groups/{gid}/properties][%d] addDeviceGroupPropertyOK %s", 200, payload)
+}
+
 func (o *AddDeviceGroupPropertyOK) GetPayload() *models.EntityProperty {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddDeviceGroupPropertyTooManyRequests() *AddDeviceGroupPropertyTooManyRe
 	return &AddDeviceGroupPropertyTooManyRequests{}
 }
 
-/* AddDeviceGroupPropertyTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddDeviceGroupPropertyTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddDeviceGroupPropertyTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add device group property too many requests response has a 2xx status code
+func (o *AddDeviceGroupPropertyTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add device group property too many requests response has a 3xx status code
+func (o *AddDeviceGroupPropertyTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add device group property too many requests response has a 4xx status code
+func (o *AddDeviceGroupPropertyTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add device group property too many requests response has a 5xx status code
+func (o *AddDeviceGroupPropertyTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add device group property too many requests response a status code equal to that given
+func (o *AddDeviceGroupPropertyTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add device group property too many requests response
+func (o *AddDeviceGroupPropertyTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddDeviceGroupPropertyTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /device/groups/{gid}/properties][%d] addDeviceGroupPropertyTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /device/groups/{gid}/properties][%d] addDeviceGroupPropertyTooManyRequests", 429)
+}
+
+func (o *AddDeviceGroupPropertyTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /device/groups/{gid}/properties][%d] addDeviceGroupPropertyTooManyRequests", 429)
 }
 
 func (o *AddDeviceGroupPropertyTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddDeviceGroupPropertyDefault(code int) *AddDeviceGroupPropertyDefault {
 	}
 }
 
-/* AddDeviceGroupPropertyDefault describes a response with status code -1, with default header values.
+/*
+AddDeviceGroupPropertyDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddDeviceGroupPropertyDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add device group property default response has a 2xx status code
+func (o *AddDeviceGroupPropertyDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add device group property default response has a 3xx status code
+func (o *AddDeviceGroupPropertyDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add device group property default response has a 4xx status code
+func (o *AddDeviceGroupPropertyDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add device group property default response has a 5xx status code
+func (o *AddDeviceGroupPropertyDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add device group property default response a status code equal to that given
+func (o *AddDeviceGroupPropertyDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add device group property default response
 func (o *AddDeviceGroupPropertyDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddDeviceGroupPropertyDefault) Error() string {
-	return fmt.Sprintf("[POST /device/groups/{gid}/properties][%d] addDeviceGroupProperty default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/groups/{gid}/properties][%d] addDeviceGroupProperty default %s", o._statusCode, payload)
 }
+
+func (o *AddDeviceGroupPropertyDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/groups/{gid}/properties][%d] addDeviceGroupProperty default %s", o._statusCode, payload)
+}
+
 func (o *AddDeviceGroupPropertyDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

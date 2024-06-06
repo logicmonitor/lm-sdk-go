@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewUpdateDeviceDatasourceInstanceByIDOK() *UpdateDeviceDatasourceInstanceBy
 	return &UpdateDeviceDatasourceInstanceByIDOK{}
 }
 
-/* UpdateDeviceDatasourceInstanceByIDOK describes a response with status code 200, with default header values.
+/*
+UpdateDeviceDatasourceInstanceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type UpdateDeviceDatasourceInstanceByIDOK struct {
 	Payload *models.DeviceDataSourceInstance
 }
 
-func (o *UpdateDeviceDatasourceInstanceByIDOK) Error() string {
-	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] updateDeviceDatasourceInstanceByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this update device datasource instance by Id o k response has a 2xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this update device datasource instance by Id o k response has a 3xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update device datasource instance by Id o k response has a 4xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update device datasource instance by Id o k response has a 5xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update device datasource instance by Id o k response a status code equal to that given
+func (o *UpdateDeviceDatasourceInstanceByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the update device datasource instance by Id o k response
+func (o *UpdateDeviceDatasourceInstanceByIDOK) Code() int {
+	return 200
+}
+
+func (o *UpdateDeviceDatasourceInstanceByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] updateDeviceDatasourceInstanceByIdOK %s", 200, payload)
+}
+
+func (o *UpdateDeviceDatasourceInstanceByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] updateDeviceDatasourceInstanceByIdOK %s", 200, payload)
+}
+
 func (o *UpdateDeviceDatasourceInstanceByIDOK) GetPayload() *models.DeviceDataSourceInstance {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewUpdateDeviceDatasourceInstanceByIDTooManyRequests() *UpdateDeviceDatasou
 	return &UpdateDeviceDatasourceInstanceByIDTooManyRequests{}
 }
 
-/* UpdateDeviceDatasourceInstanceByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateDeviceDatasourceInstanceByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type UpdateDeviceDatasourceInstanceByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this update device datasource instance by Id too many requests response has a 2xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update device datasource instance by Id too many requests response has a 3xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update device datasource instance by Id too many requests response has a 4xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update device datasource instance by Id too many requests response has a 5xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update device datasource instance by Id too many requests response a status code equal to that given
+func (o *UpdateDeviceDatasourceInstanceByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the update device datasource instance by Id too many requests response
+func (o *UpdateDeviceDatasourceInstanceByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *UpdateDeviceDatasourceInstanceByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] updateDeviceDatasourceInstanceByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] updateDeviceDatasourceInstanceByIdTooManyRequests", 429)
+}
+
+func (o *UpdateDeviceDatasourceInstanceByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] updateDeviceDatasourceInstanceByIdTooManyRequests", 429)
 }
 
 func (o *UpdateDeviceDatasourceInstanceByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewUpdateDeviceDatasourceInstanceByIDDefault(code int) *UpdateDeviceDatasou
 	}
 }
 
-/* UpdateDeviceDatasourceInstanceByIDDefault describes a response with status code -1, with default header values.
+/*
+UpdateDeviceDatasourceInstanceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type UpdateDeviceDatasourceInstanceByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this update device datasource instance by Id default response has a 2xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this update device datasource instance by Id default response has a 3xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this update device datasource instance by Id default response has a 4xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this update device datasource instance by Id default response has a 5xx status code
+func (o *UpdateDeviceDatasourceInstanceByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this update device datasource instance by Id default response a status code equal to that given
+func (o *UpdateDeviceDatasourceInstanceByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the update device datasource instance by Id default response
 func (o *UpdateDeviceDatasourceInstanceByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateDeviceDatasourceInstanceByIDDefault) Error() string {
-	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] updateDeviceDatasourceInstanceById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] updateDeviceDatasourceInstanceById default %s", o._statusCode, payload)
 }
+
+func (o *UpdateDeviceDatasourceInstanceByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] updateDeviceDatasourceInstanceById default %s", o._statusCode, payload)
+}
+
 func (o *UpdateDeviceDatasourceInstanceByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

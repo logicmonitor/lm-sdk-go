@@ -104,6 +104,8 @@ func (m *AppliesToFunction) validateInstallationMetadata(formats strfmt.Registry
 		if err := m.InstallationMetadata.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}
@@ -168,9 +170,16 @@ func (m *AppliesToFunction) contextValidateID(ctx context.Context, formats strfm
 func (m *AppliesToFunction) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstallationMetadata != nil {
+
+		if swag.IsZero(m.InstallationMetadata) { // not required
+			return nil
+		}
+
 		if err := m.InstallationMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}

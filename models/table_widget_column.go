@@ -80,6 +80,8 @@ func (m *TableWidgetColumn) validateAlternateDataPoints(formats strfmt.Registry)
 			if err := m.AlternateDataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alternateDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alternateDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -109,6 +111,8 @@ func (m *TableWidgetColumn) validateDataPoint(formats strfmt.Registry) error {
 		if err := m.DataPoint.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("dataPoint")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dataPoint")
 			}
 			return err
 		}
@@ -140,9 +144,16 @@ func (m *TableWidgetColumn) contextValidateAlternateDataPoints(ctx context.Conte
 	for i := 0; i < len(m.AlternateDataPoints); i++ {
 
 		if m.AlternateDataPoints[i] != nil {
+
+			if swag.IsZero(m.AlternateDataPoints[i]) { // not required
+				return nil
+			}
+
 			if err := m.AlternateDataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alternateDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alternateDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -156,9 +167,12 @@ func (m *TableWidgetColumn) contextValidateAlternateDataPoints(ctx context.Conte
 func (m *TableWidgetColumn) contextValidateDataPoint(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.DataPoint != nil {
+
 		if err := m.DataPoint.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("dataPoint")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("dataPoint")
 			}
 			return err
 		}

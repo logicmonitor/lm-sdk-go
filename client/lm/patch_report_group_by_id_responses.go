@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchReportGroupByIDOK() *PatchReportGroupByIDOK {
 	return &PatchReportGroupByIDOK{}
 }
 
-/* PatchReportGroupByIDOK describes a response with status code 200, with default header values.
+/*
+PatchReportGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchReportGroupByIDOK struct {
 	Payload *models.ReportGroup
 }
 
-func (o *PatchReportGroupByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /report/groups/{id}][%d] patchReportGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch report group by Id o k response has a 2xx status code
+func (o *PatchReportGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch report group by Id o k response has a 3xx status code
+func (o *PatchReportGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch report group by Id o k response has a 4xx status code
+func (o *PatchReportGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch report group by Id o k response has a 5xx status code
+func (o *PatchReportGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch report group by Id o k response a status code equal to that given
+func (o *PatchReportGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch report group by Id o k response
+func (o *PatchReportGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchReportGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /report/groups/{id}][%d] patchReportGroupByIdOK %s", 200, payload)
+}
+
+func (o *PatchReportGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /report/groups/{id}][%d] patchReportGroupByIdOK %s", 200, payload)
+}
+
 func (o *PatchReportGroupByIDOK) GetPayload() *models.ReportGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchReportGroupByIDTooManyRequests() *PatchReportGroupByIDTooManyReques
 	return &PatchReportGroupByIDTooManyRequests{}
 }
 
-/* PatchReportGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchReportGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchReportGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch report group by Id too many requests response has a 2xx status code
+func (o *PatchReportGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch report group by Id too many requests response has a 3xx status code
+func (o *PatchReportGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch report group by Id too many requests response has a 4xx status code
+func (o *PatchReportGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch report group by Id too many requests response has a 5xx status code
+func (o *PatchReportGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch report group by Id too many requests response a status code equal to that given
+func (o *PatchReportGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch report group by Id too many requests response
+func (o *PatchReportGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchReportGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /report/groups/{id}][%d] patchReportGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /report/groups/{id}][%d] patchReportGroupByIdTooManyRequests", 429)
+}
+
+func (o *PatchReportGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /report/groups/{id}][%d] patchReportGroupByIdTooManyRequests", 429)
 }
 
 func (o *PatchReportGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchReportGroupByIDDefault(code int) *PatchReportGroupByIDDefault {
 	}
 }
 
-/* PatchReportGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchReportGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchReportGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch report group by Id default response has a 2xx status code
+func (o *PatchReportGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch report group by Id default response has a 3xx status code
+func (o *PatchReportGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch report group by Id default response has a 4xx status code
+func (o *PatchReportGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch report group by Id default response has a 5xx status code
+func (o *PatchReportGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch report group by Id default response a status code equal to that given
+func (o *PatchReportGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch report group by Id default response
 func (o *PatchReportGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchReportGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /report/groups/{id}][%d] patchReportGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /report/groups/{id}][%d] patchReportGroupById default %s", o._statusCode, payload)
 }
+
+func (o *PatchReportGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /report/groups/{id}][%d] patchReportGroupById default %s", o._statusCode, payload)
+}
+
 func (o *PatchReportGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

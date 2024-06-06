@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetUpdateReasonListByDataSourceIDOK() *GetUpdateReasonListByDataSourceID
 	return &GetUpdateReasonListByDataSourceIDOK{}
 }
 
-/* GetUpdateReasonListByDataSourceIDOK describes a response with status code 200, with default header values.
+/*
+GetUpdateReasonListByDataSourceIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetUpdateReasonListByDataSourceIDOK struct {
 	Payload *models.DataSourceUpdateReasonsPaginationResponse
 }
 
-func (o *GetUpdateReasonListByDataSourceIDOK) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{id}/updatereasons][%d] getUpdateReasonListByDataSourceIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get update reason list by data source Id o k response has a 2xx status code
+func (o *GetUpdateReasonListByDataSourceIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get update reason list by data source Id o k response has a 3xx status code
+func (o *GetUpdateReasonListByDataSourceIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get update reason list by data source Id o k response has a 4xx status code
+func (o *GetUpdateReasonListByDataSourceIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get update reason list by data source Id o k response has a 5xx status code
+func (o *GetUpdateReasonListByDataSourceIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get update reason list by data source Id o k response a status code equal to that given
+func (o *GetUpdateReasonListByDataSourceIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get update reason list by data source Id o k response
+func (o *GetUpdateReasonListByDataSourceIDOK) Code() int {
+	return 200
+}
+
+func (o *GetUpdateReasonListByDataSourceIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}/updatereasons][%d] getUpdateReasonListByDataSourceIdOK %s", 200, payload)
+}
+
+func (o *GetUpdateReasonListByDataSourceIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}/updatereasons][%d] getUpdateReasonListByDataSourceIdOK %s", 200, payload)
+}
+
 func (o *GetUpdateReasonListByDataSourceIDOK) GetPayload() *models.DataSourceUpdateReasonsPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetUpdateReasonListByDataSourceIDTooManyRequests() *GetUpdateReasonListB
 	return &GetUpdateReasonListByDataSourceIDTooManyRequests{}
 }
 
-/* GetUpdateReasonListByDataSourceIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetUpdateReasonListByDataSourceIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetUpdateReasonListByDataSourceIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get update reason list by data source Id too many requests response has a 2xx status code
+func (o *GetUpdateReasonListByDataSourceIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get update reason list by data source Id too many requests response has a 3xx status code
+func (o *GetUpdateReasonListByDataSourceIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get update reason list by data source Id too many requests response has a 4xx status code
+func (o *GetUpdateReasonListByDataSourceIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get update reason list by data source Id too many requests response has a 5xx status code
+func (o *GetUpdateReasonListByDataSourceIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get update reason list by data source Id too many requests response a status code equal to that given
+func (o *GetUpdateReasonListByDataSourceIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get update reason list by data source Id too many requests response
+func (o *GetUpdateReasonListByDataSourceIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetUpdateReasonListByDataSourceIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{id}/updatereasons][%d] getUpdateReasonListByDataSourceIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/datasources/{id}/updatereasons][%d] getUpdateReasonListByDataSourceIdTooManyRequests", 429)
+}
+
+func (o *GetUpdateReasonListByDataSourceIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/datasources/{id}/updatereasons][%d] getUpdateReasonListByDataSourceIdTooManyRequests", 429)
 }
 
 func (o *GetUpdateReasonListByDataSourceIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetUpdateReasonListByDataSourceIDDefault(code int) *GetUpdateReasonListB
 	}
 }
 
-/* GetUpdateReasonListByDataSourceIDDefault describes a response with status code -1, with default header values.
+/*
+GetUpdateReasonListByDataSourceIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetUpdateReasonListByDataSourceIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get update reason list by data source Id default response has a 2xx status code
+func (o *GetUpdateReasonListByDataSourceIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get update reason list by data source Id default response has a 3xx status code
+func (o *GetUpdateReasonListByDataSourceIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get update reason list by data source Id default response has a 4xx status code
+func (o *GetUpdateReasonListByDataSourceIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get update reason list by data source Id default response has a 5xx status code
+func (o *GetUpdateReasonListByDataSourceIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get update reason list by data source Id default response a status code equal to that given
+func (o *GetUpdateReasonListByDataSourceIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get update reason list by data source Id default response
 func (o *GetUpdateReasonListByDataSourceIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetUpdateReasonListByDataSourceIDDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{id}/updatereasons][%d] getUpdateReasonListByDataSourceId default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}/updatereasons][%d] getUpdateReasonListByDataSourceId default %s", o._statusCode, payload)
 }
+
+func (o *GetUpdateReasonListByDataSourceIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}/updatereasons][%d] getUpdateReasonListByDataSourceId default %s", o._statusCode, payload)
+}
+
 func (o *GetUpdateReasonListByDataSourceIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

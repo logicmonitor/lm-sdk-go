@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetDataSourceOverviewGraphListOK() *GetDataSourceOverviewGraphListOK {
 	return &GetDataSourceOverviewGraphListOK{}
 }
 
-/* GetDataSourceOverviewGraphListOK describes a response with status code 200, with default header values.
+/*
+GetDataSourceOverviewGraphListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDataSourceOverviewGraphListOK struct {
 	Payload *models.DatasourceOverviewGraphPaginationResponse
 }
 
-func (o *GetDataSourceOverviewGraphListOK) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{dsId}/ographs][%d] getDataSourceOverviewGraphListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get data source overview graph list o k response has a 2xx status code
+func (o *GetDataSourceOverviewGraphListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get data source overview graph list o k response has a 3xx status code
+func (o *GetDataSourceOverviewGraphListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data source overview graph list o k response has a 4xx status code
+func (o *GetDataSourceOverviewGraphListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get data source overview graph list o k response has a 5xx status code
+func (o *GetDataSourceOverviewGraphListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get data source overview graph list o k response a status code equal to that given
+func (o *GetDataSourceOverviewGraphListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get data source overview graph list o k response
+func (o *GetDataSourceOverviewGraphListOK) Code() int {
+	return 200
+}
+
+func (o *GetDataSourceOverviewGraphListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{dsId}/ographs][%d] getDataSourceOverviewGraphListOK %s", 200, payload)
+}
+
+func (o *GetDataSourceOverviewGraphListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{dsId}/ographs][%d] getDataSourceOverviewGraphListOK %s", 200, payload)
+}
+
 func (o *GetDataSourceOverviewGraphListOK) GetPayload() *models.DatasourceOverviewGraphPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDataSourceOverviewGraphListTooManyRequests() *GetDataSourceOverviewGr
 	return &GetDataSourceOverviewGraphListTooManyRequests{}
 }
 
-/* GetDataSourceOverviewGraphListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDataSourceOverviewGraphListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDataSourceOverviewGraphListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get data source overview graph list too many requests response has a 2xx status code
+func (o *GetDataSourceOverviewGraphListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get data source overview graph list too many requests response has a 3xx status code
+func (o *GetDataSourceOverviewGraphListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get data source overview graph list too many requests response has a 4xx status code
+func (o *GetDataSourceOverviewGraphListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get data source overview graph list too many requests response has a 5xx status code
+func (o *GetDataSourceOverviewGraphListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get data source overview graph list too many requests response a status code equal to that given
+func (o *GetDataSourceOverviewGraphListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get data source overview graph list too many requests response
+func (o *GetDataSourceOverviewGraphListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDataSourceOverviewGraphListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{dsId}/ographs][%d] getDataSourceOverviewGraphListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/datasources/{dsId}/ographs][%d] getDataSourceOverviewGraphListTooManyRequests", 429)
+}
+
+func (o *GetDataSourceOverviewGraphListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/datasources/{dsId}/ographs][%d] getDataSourceOverviewGraphListTooManyRequests", 429)
 }
 
 func (o *GetDataSourceOverviewGraphListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDataSourceOverviewGraphListDefault(code int) *GetDataSourceOverviewGr
 	}
 }
 
-/* GetDataSourceOverviewGraphListDefault describes a response with status code -1, with default header values.
+/*
+GetDataSourceOverviewGraphListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDataSourceOverviewGraphListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get data source overview graph list default response has a 2xx status code
+func (o *GetDataSourceOverviewGraphListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get data source overview graph list default response has a 3xx status code
+func (o *GetDataSourceOverviewGraphListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get data source overview graph list default response has a 4xx status code
+func (o *GetDataSourceOverviewGraphListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get data source overview graph list default response has a 5xx status code
+func (o *GetDataSourceOverviewGraphListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get data source overview graph list default response a status code equal to that given
+func (o *GetDataSourceOverviewGraphListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get data source overview graph list default response
 func (o *GetDataSourceOverviewGraphListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDataSourceOverviewGraphListDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{dsId}/ographs][%d] getDataSourceOverviewGraphList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{dsId}/ographs][%d] getDataSourceOverviewGraphList default %s", o._statusCode, payload)
 }
+
+func (o *GetDataSourceOverviewGraphListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{dsId}/ographs][%d] getDataSourceOverviewGraphList default %s", o._statusCode, payload)
+}
+
 func (o *GetDataSourceOverviewGraphListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

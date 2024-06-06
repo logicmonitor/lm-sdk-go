@@ -438,6 +438,8 @@ func (m *DataSource) validateAutoDiscoveryConfig(formats strfmt.Registry) error 
 		if err := m.AutoDiscoveryConfig.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("autoDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("autoDiscoveryConfig")
 			}
 			return err
 		}
@@ -473,6 +475,8 @@ func (m *DataSource) validateCollectorAttribute(formats strfmt.Registry) error {
 	if err := m.CollectorAttribute().Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("collectorAttribute")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("collectorAttribute")
 		}
 		return err
 	}
@@ -494,6 +498,8 @@ func (m *DataSource) validateDataPoints(formats strfmt.Registry) error {
 			if err := m.DataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -513,6 +519,8 @@ func (m *DataSource) validateEriDiscoveryConfig(formats strfmt.Registry) error {
 		if err := m.EriDiscoveryConfig.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("eriDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("eriDiscoveryConfig")
 			}
 			return err
 		}
@@ -530,6 +538,8 @@ func (m *DataSource) validateInstallationMetadata(formats strfmt.Registry) error
 		if err := m.InstallationMetadata.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}
@@ -621,9 +631,16 @@ func (m *DataSource) contextValidateAuditVersion(ctx context.Context, formats st
 func (m *DataSource) contextValidateAutoDiscoveryConfig(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AutoDiscoveryConfig != nil {
+
+		if swag.IsZero(m.AutoDiscoveryConfig) { // not required
+			return nil
+		}
+
 		if err := m.AutoDiscoveryConfig.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("autoDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("autoDiscoveryConfig")
 			}
 			return err
 		}
@@ -646,6 +663,8 @@ func (m *DataSource) contextValidateCollectorAttribute(ctx context.Context, form
 	if err := m.CollectorAttribute().ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("collectorAttribute")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("collectorAttribute")
 		}
 		return err
 	}
@@ -658,9 +677,16 @@ func (m *DataSource) contextValidateDataPoints(ctx context.Context, formats strf
 	for i := 0; i < len(m.DataPoints); i++ {
 
 		if m.DataPoints[i] != nil {
+
+			if swag.IsZero(m.DataPoints[i]) { // not required
+				return nil
+			}
+
 			if err := m.DataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -674,9 +700,16 @@ func (m *DataSource) contextValidateDataPoints(ctx context.Context, formats strf
 func (m *DataSource) contextValidateEriDiscoveryConfig(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.EriDiscoveryConfig != nil {
+
+		if swag.IsZero(m.EriDiscoveryConfig) { // not required
+			return nil
+		}
+
 		if err := m.EriDiscoveryConfig.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("eriDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("eriDiscoveryConfig")
 			}
 			return err
 		}
@@ -706,9 +739,16 @@ func (m *DataSource) contextValidateID(ctx context.Context, formats strfmt.Regis
 func (m *DataSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstallationMetadata != nil {
+
+		if swag.IsZero(m.InstallationMetadata) { // not required
+			return nil
+		}
+
 		if err := m.InstallationMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}

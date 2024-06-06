@@ -53,10 +53,12 @@ func NewGetSDTHistoryByDeviceDataSourceIDParamsWithHTTPClient(client *http.Clien
 	}
 }
 
-/* GetSDTHistoryByDeviceDataSourceIDParams contains all the parameters to send to the API endpoint
-   for the get SDT history by device data source Id operation.
+/*
+GetSDTHistoryByDeviceDataSourceIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get SDT history by device data source Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetSDTHistoryByDeviceDataSourceIDParams struct {
 

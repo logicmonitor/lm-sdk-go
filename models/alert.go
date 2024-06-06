@@ -47,6 +47,14 @@ type Alert struct {
 	// Read Only: true
 	AdAlertDesc string `json:"adAlertDesc,omitempty"`
 
+	// The alert external ticket urls
+	// Read Only: true
+	AlertExternalTicketURL *JSONObject `json:"alertExternalTicketUrl,omitempty"`
+
+	// Alert group entity value for stateful log alerts
+	// Read Only: true
+	AlertGroupEntityValue string `json:"alertGroupEntityValue,omitempty"`
+
 	// The value that triggered the alert
 	// Read Only: true
 	AlertValue string `json:"alertValue,omitempty"`
@@ -70,10 +78,6 @@ type Alert struct {
 	// Whether or not the alert has cleared
 	// Read Only: true
 	Cleared *bool `json:"cleared,omitempty"`
-
-	// The property or token values that should display with the alert details. Note that if referencing tokens, you'll need to URL encode the # symbol.
-	// Read Only: true
-	CustomColumns interface{} `json:"customColumns,omitempty"`
 
 	// The id of the datapoint in alert
 	// Read Only: true
@@ -132,6 +136,10 @@ type Alert struct {
 	// The internal id for the alert
 	// Read Only: true
 	InternalID string `json:"internalId,omitempty"`
+
+	// Specified log alert metadata fields value
+	// Read Only: true
+	LogMetaData string `json:"logMetaData,omitempty"`
 
 	// Information about the groups the object is a member of
 	// Read Only: true
@@ -220,6 +228,34 @@ type Alert struct {
 
 // Validate validates this alert
 func (m *Alert) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateAlertExternalTicketURL(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Alert) validateAlertExternalTicketURL(formats strfmt.Registry) error {
+	if swag.IsZero(m.AlertExternalTicketURL) { // not required
+		return nil
+	}
+
+	if m.AlertExternalTicketURL != nil {
+		if err := m.AlertExternalTicketURL.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alertExternalTicketUrl")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alertExternalTicketUrl")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -248,6 +284,14 @@ func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	}
 
 	if err := m.contextValidateAdAlertDesc(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAlertExternalTicketURL(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateAlertGroupEntityValue(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -320,6 +364,10 @@ func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	}
 
 	if err := m.contextValidateInternalID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLogMetaData(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -457,6 +505,36 @@ func (m *Alert) contextValidateAdAlert(ctx context.Context, formats strfmt.Regis
 func (m *Alert) contextValidateAdAlertDesc(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "adAlertDesc", "body", string(m.AdAlertDesc)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateAlertExternalTicketURL(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AlertExternalTicketURL != nil {
+
+		if swag.IsZero(m.AlertExternalTicketURL) { // not required
+			return nil
+		}
+
+		if err := m.AlertExternalTicketURL.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("alertExternalTicketUrl")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("alertExternalTicketUrl")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateAlertGroupEntityValue(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "alertGroupEntityValue", "body", string(m.AlertGroupEntityValue)); err != nil {
 		return err
 	}
 
@@ -619,6 +697,15 @@ func (m *Alert) contextValidateInstanceName(ctx context.Context, formats strfmt.
 func (m *Alert) contextValidateInternalID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "internalId", "body", string(m.InternalID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateLogMetaData(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "logMetaData", "body", string(m.LogMetaData)); err != nil {
 		return err
 	}
 

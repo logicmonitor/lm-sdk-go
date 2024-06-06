@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewDeleteAdminByIDOK() *DeleteAdminByIDOK {
 	return &DeleteAdminByIDOK{}
 }
 
-/* DeleteAdminByIDOK describes a response with status code 200, with default header values.
+/*
+DeleteAdminByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DeleteAdminByIDOK struct {
 	Payload interface{}
 }
 
-func (o *DeleteAdminByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /setting/admins/{id}][%d] deleteAdminByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this delete admin by Id o k response has a 2xx status code
+func (o *DeleteAdminByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this delete admin by Id o k response has a 3xx status code
+func (o *DeleteAdminByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete admin by Id o k response has a 4xx status code
+func (o *DeleteAdminByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete admin by Id o k response has a 5xx status code
+func (o *DeleteAdminByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete admin by Id o k response a status code equal to that given
+func (o *DeleteAdminByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the delete admin by Id o k response
+func (o *DeleteAdminByIDOK) Code() int {
+	return 200
+}
+
+func (o *DeleteAdminByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/admins/{id}][%d] deleteAdminByIdOK %s", 200, payload)
+}
+
+func (o *DeleteAdminByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/admins/{id}][%d] deleteAdminByIdOK %s", 200, payload)
+}
+
 func (o *DeleteAdminByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewDeleteAdminByIDTooManyRequests() *DeleteAdminByIDTooManyRequests {
 	return &DeleteAdminByIDTooManyRequests{}
 }
 
-/* DeleteAdminByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteAdminByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type DeleteAdminByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this delete admin by Id too many requests response has a 2xx status code
+func (o *DeleteAdminByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete admin by Id too many requests response has a 3xx status code
+func (o *DeleteAdminByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete admin by Id too many requests response has a 4xx status code
+func (o *DeleteAdminByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete admin by Id too many requests response has a 5xx status code
+func (o *DeleteAdminByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete admin by Id too many requests response a status code equal to that given
+func (o *DeleteAdminByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the delete admin by Id too many requests response
+func (o *DeleteAdminByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DeleteAdminByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /setting/admins/{id}][%d] deleteAdminByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /setting/admins/{id}][%d] deleteAdminByIdTooManyRequests", 429)
+}
+
+func (o *DeleteAdminByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /setting/admins/{id}][%d] deleteAdminByIdTooManyRequests", 429)
 }
 
 func (o *DeleteAdminByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewDeleteAdminByIDDefault(code int) *DeleteAdminByIDDefault {
 	}
 }
 
-/* DeleteAdminByIDDefault describes a response with status code -1, with default header values.
+/*
+DeleteAdminByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type DeleteAdminByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete admin by Id default response has a 2xx status code
+func (o *DeleteAdminByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this delete admin by Id default response has a 3xx status code
+func (o *DeleteAdminByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this delete admin by Id default response has a 4xx status code
+func (o *DeleteAdminByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this delete admin by Id default response has a 5xx status code
+func (o *DeleteAdminByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this delete admin by Id default response a status code equal to that given
+func (o *DeleteAdminByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the delete admin by Id default response
 func (o *DeleteAdminByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DeleteAdminByIDDefault) Error() string {
-	return fmt.Sprintf("[DELETE /setting/admins/{id}][%d] deleteAdminById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/admins/{id}][%d] deleteAdminById default %s", o._statusCode, payload)
 }
+
+func (o *DeleteAdminByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/admins/{id}][%d] deleteAdminById default %s", o._statusCode, payload)
+}
+
 func (o *DeleteAdminByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

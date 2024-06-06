@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewDeleteDatasourceByIDOK() *DeleteDatasourceByIDOK {
 	return &DeleteDatasourceByIDOK{}
 }
 
-/* DeleteDatasourceByIDOK describes a response with status code 200, with default header values.
+/*
+DeleteDatasourceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DeleteDatasourceByIDOK struct {
 	Payload interface{}
 }
 
-func (o *DeleteDatasourceByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /setting/datasources/{id}][%d] deleteDatasourceByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this delete datasource by Id o k response has a 2xx status code
+func (o *DeleteDatasourceByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this delete datasource by Id o k response has a 3xx status code
+func (o *DeleteDatasourceByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete datasource by Id o k response has a 4xx status code
+func (o *DeleteDatasourceByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete datasource by Id o k response has a 5xx status code
+func (o *DeleteDatasourceByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete datasource by Id o k response a status code equal to that given
+func (o *DeleteDatasourceByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the delete datasource by Id o k response
+func (o *DeleteDatasourceByIDOK) Code() int {
+	return 200
+}
+
+func (o *DeleteDatasourceByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/datasources/{id}][%d] deleteDatasourceByIdOK %s", 200, payload)
+}
+
+func (o *DeleteDatasourceByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/datasources/{id}][%d] deleteDatasourceByIdOK %s", 200, payload)
+}
+
 func (o *DeleteDatasourceByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewDeleteDatasourceByIDTooManyRequests() *DeleteDatasourceByIDTooManyReques
 	return &DeleteDatasourceByIDTooManyRequests{}
 }
 
-/* DeleteDatasourceByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteDatasourceByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type DeleteDatasourceByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this delete datasource by Id too many requests response has a 2xx status code
+func (o *DeleteDatasourceByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete datasource by Id too many requests response has a 3xx status code
+func (o *DeleteDatasourceByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete datasource by Id too many requests response has a 4xx status code
+func (o *DeleteDatasourceByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete datasource by Id too many requests response has a 5xx status code
+func (o *DeleteDatasourceByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete datasource by Id too many requests response a status code equal to that given
+func (o *DeleteDatasourceByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the delete datasource by Id too many requests response
+func (o *DeleteDatasourceByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DeleteDatasourceByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /setting/datasources/{id}][%d] deleteDatasourceByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /setting/datasources/{id}][%d] deleteDatasourceByIdTooManyRequests", 429)
+}
+
+func (o *DeleteDatasourceByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /setting/datasources/{id}][%d] deleteDatasourceByIdTooManyRequests", 429)
 }
 
 func (o *DeleteDatasourceByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewDeleteDatasourceByIDDefault(code int) *DeleteDatasourceByIDDefault {
 	}
 }
 
-/* DeleteDatasourceByIDDefault describes a response with status code -1, with default header values.
+/*
+DeleteDatasourceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type DeleteDatasourceByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete datasource by Id default response has a 2xx status code
+func (o *DeleteDatasourceByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this delete datasource by Id default response has a 3xx status code
+func (o *DeleteDatasourceByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this delete datasource by Id default response has a 4xx status code
+func (o *DeleteDatasourceByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this delete datasource by Id default response has a 5xx status code
+func (o *DeleteDatasourceByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this delete datasource by Id default response a status code equal to that given
+func (o *DeleteDatasourceByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the delete datasource by Id default response
 func (o *DeleteDatasourceByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DeleteDatasourceByIDDefault) Error() string {
-	return fmt.Sprintf("[DELETE /setting/datasources/{id}][%d] deleteDatasourceById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/datasources/{id}][%d] deleteDatasourceById default %s", o._statusCode, payload)
 }
+
+func (o *DeleteDatasourceByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/datasources/{id}][%d] deleteDatasourceById default %s", o._statusCode, payload)
+}
+
 func (o *DeleteDatasourceByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

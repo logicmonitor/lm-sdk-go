@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetExternalAPIStatsOK() *GetExternalAPIStatsOK {
 	return &GetExternalAPIStatsOK{}
 }
 
-/* GetExternalAPIStatsOK describes a response with status code 200, with default header values.
+/*
+GetExternalAPIStatsOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetExternalAPIStatsOK struct {
 	Payload *models.APIPerfMetrics
 }
 
-func (o *GetExternalAPIStatsOK) Error() string {
-	return fmt.Sprintf("[GET /apiStats/externalApis][%d] getExternalApiStatsOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get external Api stats o k response has a 2xx status code
+func (o *GetExternalAPIStatsOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get external Api stats o k response has a 3xx status code
+func (o *GetExternalAPIStatsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get external Api stats o k response has a 4xx status code
+func (o *GetExternalAPIStatsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get external Api stats o k response has a 5xx status code
+func (o *GetExternalAPIStatsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get external Api stats o k response a status code equal to that given
+func (o *GetExternalAPIStatsOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get external Api stats o k response
+func (o *GetExternalAPIStatsOK) Code() int {
+	return 200
+}
+
+func (o *GetExternalAPIStatsOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apiStats/externalApis][%d] getExternalApiStatsOK %s", 200, payload)
+}
+
+func (o *GetExternalAPIStatsOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apiStats/externalApis][%d] getExternalApiStatsOK %s", 200, payload)
+}
+
 func (o *GetExternalAPIStatsOK) GetPayload() *models.APIPerfMetrics {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetExternalAPIStatsTooManyRequests() *GetExternalAPIStatsTooManyRequests
 	return &GetExternalAPIStatsTooManyRequests{}
 }
 
-/* GetExternalAPIStatsTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetExternalAPIStatsTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetExternalAPIStatsTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get external Api stats too many requests response has a 2xx status code
+func (o *GetExternalAPIStatsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get external Api stats too many requests response has a 3xx status code
+func (o *GetExternalAPIStatsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get external Api stats too many requests response has a 4xx status code
+func (o *GetExternalAPIStatsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get external Api stats too many requests response has a 5xx status code
+func (o *GetExternalAPIStatsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get external Api stats too many requests response a status code equal to that given
+func (o *GetExternalAPIStatsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get external Api stats too many requests response
+func (o *GetExternalAPIStatsTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetExternalAPIStatsTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /apiStats/externalApis][%d] getExternalApiStatsTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /apiStats/externalApis][%d] getExternalApiStatsTooManyRequests", 429)
+}
+
+func (o *GetExternalAPIStatsTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /apiStats/externalApis][%d] getExternalApiStatsTooManyRequests", 429)
 }
 
 func (o *GetExternalAPIStatsTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetExternalAPIStatsDefault(code int) *GetExternalAPIStatsDefault {
 	}
 }
 
-/* GetExternalAPIStatsDefault describes a response with status code -1, with default header values.
+/*
+GetExternalAPIStatsDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetExternalAPIStatsDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get external Api stats default response has a 2xx status code
+func (o *GetExternalAPIStatsDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get external Api stats default response has a 3xx status code
+func (o *GetExternalAPIStatsDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get external Api stats default response has a 4xx status code
+func (o *GetExternalAPIStatsDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get external Api stats default response has a 5xx status code
+func (o *GetExternalAPIStatsDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get external Api stats default response a status code equal to that given
+func (o *GetExternalAPIStatsDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get external Api stats default response
 func (o *GetExternalAPIStatsDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetExternalAPIStatsDefault) Error() string {
-	return fmt.Sprintf("[GET /apiStats/externalApis][%d] getExternalApiStats default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apiStats/externalApis][%d] getExternalApiStats default %s", o._statusCode, payload)
 }
+
+func (o *GetExternalAPIStatsDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /apiStats/externalApis][%d] getExternalApiStats default %s", o._statusCode, payload)
+}
+
 func (o *GetExternalAPIStatsDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

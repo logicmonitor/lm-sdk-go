@@ -29,6 +29,9 @@ type ScriptCollectorAttribute struct {
 	// linux script
 	LinuxScript string `json:"linuxScript,omitempty"`
 
+	// manual
+	ManualConnections string `json:"manualConnections,omitempty"`
+
 	// property based
 	Properties string `json:"properties,omitempty"`
 
@@ -63,6 +66,9 @@ func (m *ScriptCollectorAttribute) UnmarshalJSON(raw []byte) error {
 
 		// linux script
 		LinuxScript string `json:"linuxScript,omitempty"`
+
+		// manual
+		ManualConnections string `json:"manualConnections,omitempty"`
 
 		// property based
 		Properties string `json:"properties,omitempty"`
@@ -107,6 +113,7 @@ func (m *ScriptCollectorAttribute) UnmarshalJSON(raw []byte) error {
 	result.GroovyScript = data.GroovyScript
 	result.LinuxCmdline = data.LinuxCmdline
 	result.LinuxScript = data.LinuxScript
+	result.ManualConnections = data.ManualConnections
 	result.Properties = data.Properties
 	result.ScriptType = data.ScriptType
 	result.WindowsCmdline = data.WindowsCmdline
@@ -132,6 +139,9 @@ func (m ScriptCollectorAttribute) MarshalJSON() ([]byte, error) {
 		// linux script
 		LinuxScript string `json:"linuxScript,omitempty"`
 
+		// manual
+		ManualConnections string `json:"manualConnections,omitempty"`
+
 		// property based
 		Properties string `json:"properties,omitempty"`
 
@@ -150,6 +160,8 @@ func (m ScriptCollectorAttribute) MarshalJSON() ([]byte, error) {
 		LinuxCmdline: m.LinuxCmdline,
 
 		LinuxScript: m.LinuxScript,
+
+		ManualConnections: m.ManualConnections,
 
 		Properties: m.Properties,
 

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchDeviceDatasourceInstanceAlertSettingByIDOK() *PatchDeviceDatasource
 	return &PatchDeviceDatasourceInstanceAlertSettingByIDOK{}
 }
 
-/* PatchDeviceDatasourceInstanceAlertSettingByIDOK describes a response with status code 200, with default header values.
+/*
+PatchDeviceDatasourceInstanceAlertSettingByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchDeviceDatasourceInstanceAlertSettingByIDOK struct {
 	Payload *models.DeviceDataSourceInstanceAlertSetting
 }
 
-func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] patchDeviceDatasourceInstanceAlertSettingByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch device datasource instance alert setting by Id o k response has a 2xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch device datasource instance alert setting by Id o k response has a 3xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch device datasource instance alert setting by Id o k response has a 4xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch device datasource instance alert setting by Id o k response has a 5xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch device datasource instance alert setting by Id o k response a status code equal to that given
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch device datasource instance alert setting by Id o k response
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] patchDeviceDatasourceInstanceAlertSettingByIdOK %s", 200, payload)
+}
+
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] patchDeviceDatasourceInstanceAlertSettingByIdOK %s", 200, payload)
+}
+
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDOK) GetPayload() *models.DeviceDataSourceInstanceAlertSetting {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests() *PatchDev
 	return &PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests{}
 }
 
-/* PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch device datasource instance alert setting by Id too many requests response has a 2xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch device datasource instance alert setting by Id too many requests response has a 3xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch device datasource instance alert setting by Id too many requests response has a 4xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch device datasource instance alert setting by Id too many requests response has a 5xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch device datasource instance alert setting by Id too many requests response a status code equal to that given
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch device datasource instance alert setting by Id too many requests response
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] patchDeviceDatasourceInstanceAlertSettingByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] patchDeviceDatasourceInstanceAlertSettingByIdTooManyRequests", 429)
+}
+
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] patchDeviceDatasourceInstanceAlertSettingByIdTooManyRequests", 429)
 }
 
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchDeviceDatasourceInstanceAlertSettingByIDDefault(code int) *PatchDev
 	}
 }
 
-/* PatchDeviceDatasourceInstanceAlertSettingByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchDeviceDatasourceInstanceAlertSettingByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchDeviceDatasourceInstanceAlertSettingByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch device datasource instance alert setting by Id default response has a 2xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch device datasource instance alert setting by Id default response has a 3xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch device datasource instance alert setting by Id default response has a 4xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch device datasource instance alert setting by Id default response has a 5xx status code
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch device datasource instance alert setting by Id default response a status code equal to that given
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch device datasource instance alert setting by Id default response
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] patchDeviceDatasourceInstanceAlertSettingById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] patchDeviceDatasourceInstanceAlertSettingById default %s", o._statusCode, payload)
 }
+
+func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/alertsettings/{id}][%d] patchDeviceDatasourceInstanceAlertSettingById default %s", o._statusCode, payload)
+}
+
 func (o *PatchDeviceDatasourceInstanceAlertSettingByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

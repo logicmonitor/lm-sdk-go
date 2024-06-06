@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetAllSDTListByDeviceIDOK() *GetAllSDTListByDeviceIDOK {
 	return &GetAllSDTListByDeviceIDOK{}
 }
 
-/* GetAllSDTListByDeviceIDOK describes a response with status code 200, with default header values.
+/*
+GetAllSDTListByDeviceIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAllSDTListByDeviceIDOK struct {
 	Payload *models.SDTPaginationResponse
 }
 
-func (o *GetAllSDTListByDeviceIDOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/sdts][%d] getAllSdtListByDeviceIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get all Sdt list by device Id o k response has a 2xx status code
+func (o *GetAllSDTListByDeviceIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get all Sdt list by device Id o k response has a 3xx status code
+func (o *GetAllSDTListByDeviceIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get all Sdt list by device Id o k response has a 4xx status code
+func (o *GetAllSDTListByDeviceIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get all Sdt list by device Id o k response has a 5xx status code
+func (o *GetAllSDTListByDeviceIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get all Sdt list by device Id o k response a status code equal to that given
+func (o *GetAllSDTListByDeviceIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get all Sdt list by device Id o k response
+func (o *GetAllSDTListByDeviceIDOK) Code() int {
+	return 200
+}
+
+func (o *GetAllSDTListByDeviceIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/sdts][%d] getAllSdtListByDeviceIdOK %s", 200, payload)
+}
+
+func (o *GetAllSDTListByDeviceIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/sdts][%d] getAllSdtListByDeviceIdOK %s", 200, payload)
+}
+
 func (o *GetAllSDTListByDeviceIDOK) GetPayload() *models.SDTPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetAllSDTListByDeviceIDTooManyRequests() *GetAllSDTListByDeviceIDTooMany
 	return &GetAllSDTListByDeviceIDTooManyRequests{}
 }
 
-/* GetAllSDTListByDeviceIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAllSDTListByDeviceIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetAllSDTListByDeviceIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get all Sdt list by device Id too many requests response has a 2xx status code
+func (o *GetAllSDTListByDeviceIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get all Sdt list by device Id too many requests response has a 3xx status code
+func (o *GetAllSDTListByDeviceIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get all Sdt list by device Id too many requests response has a 4xx status code
+func (o *GetAllSDTListByDeviceIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get all Sdt list by device Id too many requests response has a 5xx status code
+func (o *GetAllSDTListByDeviceIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get all Sdt list by device Id too many requests response a status code equal to that given
+func (o *GetAllSDTListByDeviceIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get all Sdt list by device Id too many requests response
+func (o *GetAllSDTListByDeviceIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAllSDTListByDeviceIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/sdts][%d] getAllSdtListByDeviceIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{id}/sdts][%d] getAllSdtListByDeviceIdTooManyRequests", 429)
+}
+
+func (o *GetAllSDTListByDeviceIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{id}/sdts][%d] getAllSdtListByDeviceIdTooManyRequests", 429)
 }
 
 func (o *GetAllSDTListByDeviceIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetAllSDTListByDeviceIDDefault(code int) *GetAllSDTListByDeviceIDDefault
 	}
 }
 
-/* GetAllSDTListByDeviceIDDefault describes a response with status code -1, with default header values.
+/*
+GetAllSDTListByDeviceIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetAllSDTListByDeviceIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get all SDT list by device Id default response has a 2xx status code
+func (o *GetAllSDTListByDeviceIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get all SDT list by device Id default response has a 3xx status code
+func (o *GetAllSDTListByDeviceIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get all SDT list by device Id default response has a 4xx status code
+func (o *GetAllSDTListByDeviceIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get all SDT list by device Id default response has a 5xx status code
+func (o *GetAllSDTListByDeviceIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get all SDT list by device Id default response a status code equal to that given
+func (o *GetAllSDTListByDeviceIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get all SDT list by device Id default response
 func (o *GetAllSDTListByDeviceIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAllSDTListByDeviceIDDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/sdts][%d] getAllSDTListByDeviceId default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/sdts][%d] getAllSDTListByDeviceId default %s", o._statusCode, payload)
 }
+
+func (o *GetAllSDTListByDeviceIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/sdts][%d] getAllSDTListByDeviceId default %s", o._statusCode, payload)
+}
+
 func (o *GetAllSDTListByDeviceIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

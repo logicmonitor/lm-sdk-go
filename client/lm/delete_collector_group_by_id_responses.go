@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewDeleteCollectorGroupByIDOK() *DeleteCollectorGroupByIDOK {
 	return &DeleteCollectorGroupByIDOK{}
 }
 
-/* DeleteCollectorGroupByIDOK describes a response with status code 200, with default header values.
+/*
+DeleteCollectorGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DeleteCollectorGroupByIDOK struct {
 	Payload interface{}
 }
 
-func (o *DeleteCollectorGroupByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /setting/collector/groups/{id}][%d] deleteCollectorGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this delete collector group by Id o k response has a 2xx status code
+func (o *DeleteCollectorGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this delete collector group by Id o k response has a 3xx status code
+func (o *DeleteCollectorGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete collector group by Id o k response has a 4xx status code
+func (o *DeleteCollectorGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete collector group by Id o k response has a 5xx status code
+func (o *DeleteCollectorGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete collector group by Id o k response a status code equal to that given
+func (o *DeleteCollectorGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the delete collector group by Id o k response
+func (o *DeleteCollectorGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *DeleteCollectorGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/collector/groups/{id}][%d] deleteCollectorGroupByIdOK %s", 200, payload)
+}
+
+func (o *DeleteCollectorGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/collector/groups/{id}][%d] deleteCollectorGroupByIdOK %s", 200, payload)
+}
+
 func (o *DeleteCollectorGroupByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewDeleteCollectorGroupByIDTooManyRequests() *DeleteCollectorGroupByIDTooMa
 	return &DeleteCollectorGroupByIDTooManyRequests{}
 }
 
-/* DeleteCollectorGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteCollectorGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type DeleteCollectorGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this delete collector group by Id too many requests response has a 2xx status code
+func (o *DeleteCollectorGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete collector group by Id too many requests response has a 3xx status code
+func (o *DeleteCollectorGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete collector group by Id too many requests response has a 4xx status code
+func (o *DeleteCollectorGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete collector group by Id too many requests response has a 5xx status code
+func (o *DeleteCollectorGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete collector group by Id too many requests response a status code equal to that given
+func (o *DeleteCollectorGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the delete collector group by Id too many requests response
+func (o *DeleteCollectorGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DeleteCollectorGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /setting/collector/groups/{id}][%d] deleteCollectorGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /setting/collector/groups/{id}][%d] deleteCollectorGroupByIdTooManyRequests", 429)
+}
+
+func (o *DeleteCollectorGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /setting/collector/groups/{id}][%d] deleteCollectorGroupByIdTooManyRequests", 429)
 }
 
 func (o *DeleteCollectorGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewDeleteCollectorGroupByIDDefault(code int) *DeleteCollectorGroupByIDDefau
 	}
 }
 
-/* DeleteCollectorGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+DeleteCollectorGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type DeleteCollectorGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete collector group by Id default response has a 2xx status code
+func (o *DeleteCollectorGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this delete collector group by Id default response has a 3xx status code
+func (o *DeleteCollectorGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this delete collector group by Id default response has a 4xx status code
+func (o *DeleteCollectorGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this delete collector group by Id default response has a 5xx status code
+func (o *DeleteCollectorGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this delete collector group by Id default response a status code equal to that given
+func (o *DeleteCollectorGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the delete collector group by Id default response
 func (o *DeleteCollectorGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DeleteCollectorGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[DELETE /setting/collector/groups/{id}][%d] deleteCollectorGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/collector/groups/{id}][%d] deleteCollectorGroupById default %s", o._statusCode, payload)
 }
+
+func (o *DeleteCollectorGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/collector/groups/{id}][%d] deleteCollectorGroupById default %s", o._statusCode, payload)
+}
+
 func (o *DeleteCollectorGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

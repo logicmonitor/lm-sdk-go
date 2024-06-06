@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetEscalationChainByIDOK() *GetEscalationChainByIDOK {
 	return &GetEscalationChainByIDOK{}
 }
 
-/* GetEscalationChainByIDOK describes a response with status code 200, with default header values.
+/*
+GetEscalationChainByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetEscalationChainByIDOK struct {
 	Payload *models.EscalatingChain
 }
 
-func (o *GetEscalationChainByIDOK) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/chains/{id}][%d] getEscalationChainByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get escalation chain by Id o k response has a 2xx status code
+func (o *GetEscalationChainByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get escalation chain by Id o k response has a 3xx status code
+func (o *GetEscalationChainByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get escalation chain by Id o k response has a 4xx status code
+func (o *GetEscalationChainByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get escalation chain by Id o k response has a 5xx status code
+func (o *GetEscalationChainByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get escalation chain by Id o k response a status code equal to that given
+func (o *GetEscalationChainByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get escalation chain by Id o k response
+func (o *GetEscalationChainByIDOK) Code() int {
+	return 200
+}
+
+func (o *GetEscalationChainByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/chains/{id}][%d] getEscalationChainByIdOK %s", 200, payload)
+}
+
+func (o *GetEscalationChainByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/chains/{id}][%d] getEscalationChainByIdOK %s", 200, payload)
+}
+
 func (o *GetEscalationChainByIDOK) GetPayload() *models.EscalatingChain {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetEscalationChainByIDTooManyRequests() *GetEscalationChainByIDTooManyRe
 	return &GetEscalationChainByIDTooManyRequests{}
 }
 
-/* GetEscalationChainByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetEscalationChainByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetEscalationChainByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get escalation chain by Id too many requests response has a 2xx status code
+func (o *GetEscalationChainByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get escalation chain by Id too many requests response has a 3xx status code
+func (o *GetEscalationChainByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get escalation chain by Id too many requests response has a 4xx status code
+func (o *GetEscalationChainByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get escalation chain by Id too many requests response has a 5xx status code
+func (o *GetEscalationChainByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get escalation chain by Id too many requests response a status code equal to that given
+func (o *GetEscalationChainByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get escalation chain by Id too many requests response
+func (o *GetEscalationChainByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetEscalationChainByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/chains/{id}][%d] getEscalationChainByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/alert/chains/{id}][%d] getEscalationChainByIdTooManyRequests", 429)
+}
+
+func (o *GetEscalationChainByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/alert/chains/{id}][%d] getEscalationChainByIdTooManyRequests", 429)
 }
 
 func (o *GetEscalationChainByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetEscalationChainByIDDefault(code int) *GetEscalationChainByIDDefault {
 	}
 }
 
-/* GetEscalationChainByIDDefault describes a response with status code -1, with default header values.
+/*
+GetEscalationChainByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetEscalationChainByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get escalation chain by Id default response has a 2xx status code
+func (o *GetEscalationChainByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get escalation chain by Id default response has a 3xx status code
+func (o *GetEscalationChainByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get escalation chain by Id default response has a 4xx status code
+func (o *GetEscalationChainByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get escalation chain by Id default response has a 5xx status code
+func (o *GetEscalationChainByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get escalation chain by Id default response a status code equal to that given
+func (o *GetEscalationChainByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get escalation chain by Id default response
 func (o *GetEscalationChainByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetEscalationChainByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/chains/{id}][%d] getEscalationChainById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/chains/{id}][%d] getEscalationChainById default %s", o._statusCode, payload)
 }
+
+func (o *GetEscalationChainByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/chains/{id}][%d] getEscalationChainById default %s", o._statusCode, payload)
+}
+
 func (o *GetEscalationChainByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

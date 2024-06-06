@@ -53,10 +53,12 @@ func NewDeleteRoleByIDParamsWithHTTPClient(client *http.Client) *DeleteRoleByIDP
 	}
 }
 
-/* DeleteRoleByIDParams contains all the parameters to send to the API endpoint
-   for the delete role by Id operation.
+/*
+DeleteRoleByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete role by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteRoleByIDParams struct {
 

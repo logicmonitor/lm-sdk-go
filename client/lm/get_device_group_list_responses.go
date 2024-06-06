@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetDeviceGroupListOK() *GetDeviceGroupListOK {
 	return &GetDeviceGroupListOK{}
 }
 
-/* GetDeviceGroupListOK describes a response with status code 200, with default header values.
+/*
+GetDeviceGroupListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeviceGroupListOK struct {
 	Payload *models.DeviceGroupPaginationResponse
 }
 
-func (o *GetDeviceGroupListOK) Error() string {
-	return fmt.Sprintf("[GET /device/groups][%d] getDeviceGroupListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device group list o k response has a 2xx status code
+func (o *GetDeviceGroupListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device group list o k response has a 3xx status code
+func (o *GetDeviceGroupListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device group list o k response has a 4xx status code
+func (o *GetDeviceGroupListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device group list o k response has a 5xx status code
+func (o *GetDeviceGroupListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device group list o k response a status code equal to that given
+func (o *GetDeviceGroupListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device group list o k response
+func (o *GetDeviceGroupListOK) Code() int {
+	return 200
+}
+
+func (o *GetDeviceGroupListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/groups][%d] getDeviceGroupListOK %s", 200, payload)
+}
+
+func (o *GetDeviceGroupListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/groups][%d] getDeviceGroupListOK %s", 200, payload)
+}
+
 func (o *GetDeviceGroupListOK) GetPayload() *models.DeviceGroupPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDeviceGroupListTooManyRequests() *GetDeviceGroupListTooManyRequests {
 	return &GetDeviceGroupListTooManyRequests{}
 }
 
-/* GetDeviceGroupListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeviceGroupListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDeviceGroupListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device group list too many requests response has a 2xx status code
+func (o *GetDeviceGroupListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device group list too many requests response has a 3xx status code
+func (o *GetDeviceGroupListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device group list too many requests response has a 4xx status code
+func (o *GetDeviceGroupListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device group list too many requests response has a 5xx status code
+func (o *GetDeviceGroupListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device group list too many requests response a status code equal to that given
+func (o *GetDeviceGroupListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device group list too many requests response
+func (o *GetDeviceGroupListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeviceGroupListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/groups][%d] getDeviceGroupListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/groups][%d] getDeviceGroupListTooManyRequests", 429)
+}
+
+func (o *GetDeviceGroupListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/groups][%d] getDeviceGroupListTooManyRequests", 429)
 }
 
 func (o *GetDeviceGroupListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDeviceGroupListDefault(code int) *GetDeviceGroupListDefault {
 	}
 }
 
-/* GetDeviceGroupListDefault describes a response with status code -1, with default header values.
+/*
+GetDeviceGroupListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDeviceGroupListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device group list default response has a 2xx status code
+func (o *GetDeviceGroupListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device group list default response has a 3xx status code
+func (o *GetDeviceGroupListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device group list default response has a 4xx status code
+func (o *GetDeviceGroupListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device group list default response has a 5xx status code
+func (o *GetDeviceGroupListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device group list default response a status code equal to that given
+func (o *GetDeviceGroupListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device group list default response
 func (o *GetDeviceGroupListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeviceGroupListDefault) Error() string {
-	return fmt.Sprintf("[GET /device/groups][%d] getDeviceGroupList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/groups][%d] getDeviceGroupList default %s", o._statusCode, payload)
 }
+
+func (o *GetDeviceGroupListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/groups][%d] getDeviceGroupList default %s", o._statusCode, payload)
+}
+
 func (o *GetDeviceGroupListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

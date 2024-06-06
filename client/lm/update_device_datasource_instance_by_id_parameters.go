@@ -55,10 +55,12 @@ func NewUpdateDeviceDatasourceInstanceByIDParamsWithHTTPClient(client *http.Clie
 	}
 }
 
-/* UpdateDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
-   for the update device datasource instance by Id operation.
+/*
+UpdateDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update device datasource instance by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateDeviceDatasourceInstanceByIDParams struct {
 

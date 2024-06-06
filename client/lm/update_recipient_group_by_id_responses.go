@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewUpdateRecipientGroupByIDOK() *UpdateRecipientGroupByIDOK {
 	return &UpdateRecipientGroupByIDOK{}
 }
 
-/* UpdateRecipientGroupByIDOK describes a response with status code 200, with default header values.
+/*
+UpdateRecipientGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type UpdateRecipientGroupByIDOK struct {
 	Payload *models.RecipientGroup
 }
 
-func (o *UpdateRecipientGroupByIDOK) Error() string {
-	return fmt.Sprintf("[PUT /setting/recipientgroups/{id}][%d] updateRecipientGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this update recipient group by Id o k response has a 2xx status code
+func (o *UpdateRecipientGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this update recipient group by Id o k response has a 3xx status code
+func (o *UpdateRecipientGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update recipient group by Id o k response has a 4xx status code
+func (o *UpdateRecipientGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update recipient group by Id o k response has a 5xx status code
+func (o *UpdateRecipientGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update recipient group by Id o k response a status code equal to that given
+func (o *UpdateRecipientGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the update recipient group by Id o k response
+func (o *UpdateRecipientGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *UpdateRecipientGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/recipientgroups/{id}][%d] updateRecipientGroupByIdOK %s", 200, payload)
+}
+
+func (o *UpdateRecipientGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/recipientgroups/{id}][%d] updateRecipientGroupByIdOK %s", 200, payload)
+}
+
 func (o *UpdateRecipientGroupByIDOK) GetPayload() *models.RecipientGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewUpdateRecipientGroupByIDTooManyRequests() *UpdateRecipientGroupByIDTooMa
 	return &UpdateRecipientGroupByIDTooManyRequests{}
 }
 
-/* UpdateRecipientGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateRecipientGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type UpdateRecipientGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this update recipient group by Id too many requests response has a 2xx status code
+func (o *UpdateRecipientGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update recipient group by Id too many requests response has a 3xx status code
+func (o *UpdateRecipientGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update recipient group by Id too many requests response has a 4xx status code
+func (o *UpdateRecipientGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update recipient group by Id too many requests response has a 5xx status code
+func (o *UpdateRecipientGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update recipient group by Id too many requests response a status code equal to that given
+func (o *UpdateRecipientGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the update recipient group by Id too many requests response
+func (o *UpdateRecipientGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *UpdateRecipientGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /setting/recipientgroups/{id}][%d] updateRecipientGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PUT /setting/recipientgroups/{id}][%d] updateRecipientGroupByIdTooManyRequests", 429)
+}
+
+func (o *UpdateRecipientGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /setting/recipientgroups/{id}][%d] updateRecipientGroupByIdTooManyRequests", 429)
 }
 
 func (o *UpdateRecipientGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewUpdateRecipientGroupByIDDefault(code int) *UpdateRecipientGroupByIDDefau
 	}
 }
 
-/* UpdateRecipientGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+UpdateRecipientGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type UpdateRecipientGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this update recipient group by Id default response has a 2xx status code
+func (o *UpdateRecipientGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this update recipient group by Id default response has a 3xx status code
+func (o *UpdateRecipientGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this update recipient group by Id default response has a 4xx status code
+func (o *UpdateRecipientGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this update recipient group by Id default response has a 5xx status code
+func (o *UpdateRecipientGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this update recipient group by Id default response a status code equal to that given
+func (o *UpdateRecipientGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the update recipient group by Id default response
 func (o *UpdateRecipientGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateRecipientGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[PUT /setting/recipientgroups/{id}][%d] updateRecipientGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/recipientgroups/{id}][%d] updateRecipientGroupById default %s", o._statusCode, payload)
 }
+
+func (o *UpdateRecipientGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/recipientgroups/{id}][%d] updateRecipientGroupById default %s", o._statusCode, payload)
+}
+
 func (o *UpdateRecipientGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

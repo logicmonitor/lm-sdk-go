@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddSDTOK() *AddSDTOK {
 	return &AddSDTOK{}
 }
 
-/* AddSDTOK describes a response with status code 200, with default header values.
+/*
+AddSDTOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddSDTOK struct {
 	Payload models.SDT
 }
 
-func (o *AddSDTOK) Error() string {
-	return fmt.Sprintf("[POST /sdt/sdts][%d] addSdtOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add Sdt o k response has a 2xx status code
+func (o *AddSDTOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add Sdt o k response has a 3xx status code
+func (o *AddSDTOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add Sdt o k response has a 4xx status code
+func (o *AddSDTOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add Sdt o k response has a 5xx status code
+func (o *AddSDTOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add Sdt o k response a status code equal to that given
+func (o *AddSDTOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add Sdt o k response
+func (o *AddSDTOK) Code() int {
+	return 200
+}
+
+func (o *AddSDTOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /sdt/sdts][%d] addSdtOK %s", 200, payload)
+}
+
+func (o *AddSDTOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /sdt/sdts][%d] addSdtOK %s", 200, payload)
+}
+
 func (o *AddSDTOK) GetPayload() models.SDT {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddSDTTooManyRequests() *AddSDTTooManyRequests {
 	return &AddSDTTooManyRequests{}
 }
 
-/* AddSDTTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddSDTTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddSDTTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add Sdt too many requests response has a 2xx status code
+func (o *AddSDTTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add Sdt too many requests response has a 3xx status code
+func (o *AddSDTTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add Sdt too many requests response has a 4xx status code
+func (o *AddSDTTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add Sdt too many requests response has a 5xx status code
+func (o *AddSDTTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add Sdt too many requests response a status code equal to that given
+func (o *AddSDTTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add Sdt too many requests response
+func (o *AddSDTTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddSDTTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /sdt/sdts][%d] addSdtTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /sdt/sdts][%d] addSdtTooManyRequests", 429)
+}
+
+func (o *AddSDTTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /sdt/sdts][%d] addSdtTooManyRequests", 429)
 }
 
 func (o *AddSDTTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddSDTDefault(code int) *AddSDTDefault {
 	}
 }
 
-/* AddSDTDefault describes a response with status code -1, with default header values.
+/*
+AddSDTDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddSDTDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add SDT default response has a 2xx status code
+func (o *AddSDTDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add SDT default response has a 3xx status code
+func (o *AddSDTDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add SDT default response has a 4xx status code
+func (o *AddSDTDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add SDT default response has a 5xx status code
+func (o *AddSDTDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add SDT default response a status code equal to that given
+func (o *AddSDTDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add SDT default response
 func (o *AddSDTDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddSDTDefault) Error() string {
-	return fmt.Sprintf("[POST /sdt/sdts][%d] addSDT default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /sdt/sdts][%d] addSDT default %s", o._statusCode, payload)
 }
+
+func (o *AddSDTDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /sdt/sdts][%d] addSDT default %s", o._statusCode, payload)
+}
+
 func (o *AddSDTDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

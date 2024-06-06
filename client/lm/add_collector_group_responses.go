@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddCollectorGroupOK() *AddCollectorGroupOK {
 	return &AddCollectorGroupOK{}
 }
 
-/* AddCollectorGroupOK describes a response with status code 200, with default header values.
+/*
+AddCollectorGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddCollectorGroupOK struct {
 	Payload *models.CollectorGroup
 }
 
-func (o *AddCollectorGroupOK) Error() string {
-	return fmt.Sprintf("[POST /setting/collector/groups][%d] addCollectorGroupOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add collector group o k response has a 2xx status code
+func (o *AddCollectorGroupOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add collector group o k response has a 3xx status code
+func (o *AddCollectorGroupOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add collector group o k response has a 4xx status code
+func (o *AddCollectorGroupOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add collector group o k response has a 5xx status code
+func (o *AddCollectorGroupOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add collector group o k response a status code equal to that given
+func (o *AddCollectorGroupOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add collector group o k response
+func (o *AddCollectorGroupOK) Code() int {
+	return 200
+}
+
+func (o *AddCollectorGroupOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/collector/groups][%d] addCollectorGroupOK %s", 200, payload)
+}
+
+func (o *AddCollectorGroupOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/collector/groups][%d] addCollectorGroupOK %s", 200, payload)
+}
+
 func (o *AddCollectorGroupOK) GetPayload() *models.CollectorGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddCollectorGroupTooManyRequests() *AddCollectorGroupTooManyRequests {
 	return &AddCollectorGroupTooManyRequests{}
 }
 
-/* AddCollectorGroupTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddCollectorGroupTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddCollectorGroupTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add collector group too many requests response has a 2xx status code
+func (o *AddCollectorGroupTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add collector group too many requests response has a 3xx status code
+func (o *AddCollectorGroupTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add collector group too many requests response has a 4xx status code
+func (o *AddCollectorGroupTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add collector group too many requests response has a 5xx status code
+func (o *AddCollectorGroupTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add collector group too many requests response a status code equal to that given
+func (o *AddCollectorGroupTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add collector group too many requests response
+func (o *AddCollectorGroupTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddCollectorGroupTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/collector/groups][%d] addCollectorGroupTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /setting/collector/groups][%d] addCollectorGroupTooManyRequests", 429)
+}
+
+func (o *AddCollectorGroupTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /setting/collector/groups][%d] addCollectorGroupTooManyRequests", 429)
 }
 
 func (o *AddCollectorGroupTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddCollectorGroupDefault(code int) *AddCollectorGroupDefault {
 	}
 }
 
-/* AddCollectorGroupDefault describes a response with status code -1, with default header values.
+/*
+AddCollectorGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddCollectorGroupDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add collector group default response has a 2xx status code
+func (o *AddCollectorGroupDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add collector group default response has a 3xx status code
+func (o *AddCollectorGroupDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add collector group default response has a 4xx status code
+func (o *AddCollectorGroupDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add collector group default response has a 5xx status code
+func (o *AddCollectorGroupDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add collector group default response a status code equal to that given
+func (o *AddCollectorGroupDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add collector group default response
 func (o *AddCollectorGroupDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddCollectorGroupDefault) Error() string {
-	return fmt.Sprintf("[POST /setting/collector/groups][%d] addCollectorGroup default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/collector/groups][%d] addCollectorGroup default %s", o._statusCode, payload)
 }
+
+func (o *AddCollectorGroupDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/collector/groups][%d] addCollectorGroup default %s", o._statusCode, payload)
+}
+
 func (o *AddCollectorGroupDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

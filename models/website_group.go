@@ -131,6 +131,8 @@ func (m *WebsiteGroup) validateProperties(formats strfmt.Registry) error {
 			if err := m.Properties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -150,6 +152,8 @@ func (m *WebsiteGroup) validateTestLocation(formats strfmt.Registry) error {
 		if err := m.TestLocation.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}
@@ -267,9 +271,16 @@ func (m *WebsiteGroup) contextValidateProperties(ctx context.Context, formats st
 	for i := 0; i < len(m.Properties); i++ {
 
 		if m.Properties[i] != nil {
+
+			if swag.IsZero(m.Properties[i]) { // not required
+				return nil
+			}
+
 			if err := m.Properties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -292,9 +303,16 @@ func (m *WebsiteGroup) contextValidateRolePrivileges(ctx context.Context, format
 func (m *WebsiteGroup) contextValidateTestLocation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TestLocation != nil {
+
+		if swag.IsZero(m.TestLocation) { // not required
+			return nil
+		}
+
 		if err := m.TestLocation.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}

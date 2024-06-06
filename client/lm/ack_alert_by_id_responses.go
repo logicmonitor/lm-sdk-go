@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAckAlertByIDOK() *AckAlertByIDOK {
 	return &AckAlertByIDOK{}
 }
 
-/* AckAlertByIDOK describes a response with status code 200, with default header values.
+/*
+AckAlertByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AckAlertByIDOK struct {
 	Payload interface{}
 }
 
-func (o *AckAlertByIDOK) Error() string {
-	return fmt.Sprintf("[POST /alert/alerts/{id}/ack][%d] ackAlertByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this ack alert by Id o k response has a 2xx status code
+func (o *AckAlertByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this ack alert by Id o k response has a 3xx status code
+func (o *AckAlertByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this ack alert by Id o k response has a 4xx status code
+func (o *AckAlertByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this ack alert by Id o k response has a 5xx status code
+func (o *AckAlertByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this ack alert by Id o k response a status code equal to that given
+func (o *AckAlertByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the ack alert by Id o k response
+func (o *AckAlertByIDOK) Code() int {
+	return 200
+}
+
+func (o *AckAlertByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert/alerts/{id}/ack][%d] ackAlertByIdOK %s", 200, payload)
+}
+
+func (o *AckAlertByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert/alerts/{id}/ack][%d] ackAlertByIdOK %s", 200, payload)
+}
+
 func (o *AckAlertByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewAckAlertByIDTooManyRequests() *AckAlertByIDTooManyRequests {
 	return &AckAlertByIDTooManyRequests{}
 }
 
-/* AckAlertByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+AckAlertByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type AckAlertByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this ack alert by Id too many requests response has a 2xx status code
+func (o *AckAlertByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this ack alert by Id too many requests response has a 3xx status code
+func (o *AckAlertByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this ack alert by Id too many requests response has a 4xx status code
+func (o *AckAlertByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this ack alert by Id too many requests response has a 5xx status code
+func (o *AckAlertByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this ack alert by Id too many requests response a status code equal to that given
+func (o *AckAlertByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the ack alert by Id too many requests response
+func (o *AckAlertByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AckAlertByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /alert/alerts/{id}/ack][%d] ackAlertByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /alert/alerts/{id}/ack][%d] ackAlertByIdTooManyRequests", 429)
+}
+
+func (o *AckAlertByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /alert/alerts/{id}/ack][%d] ackAlertByIdTooManyRequests", 429)
 }
 
 func (o *AckAlertByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewAckAlertByIDDefault(code int) *AckAlertByIDDefault {
 	}
 }
 
-/* AckAlertByIDDefault describes a response with status code -1, with default header values.
+/*
+AckAlertByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type AckAlertByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this ack alert by Id default response has a 2xx status code
+func (o *AckAlertByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this ack alert by Id default response has a 3xx status code
+func (o *AckAlertByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this ack alert by Id default response has a 4xx status code
+func (o *AckAlertByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this ack alert by Id default response has a 5xx status code
+func (o *AckAlertByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this ack alert by Id default response a status code equal to that given
+func (o *AckAlertByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the ack alert by Id default response
 func (o *AckAlertByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AckAlertByIDDefault) Error() string {
-	return fmt.Sprintf("[POST /alert/alerts/{id}/ack][%d] ackAlertById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert/alerts/{id}/ack][%d] ackAlertById default %s", o._statusCode, payload)
 }
+
+func (o *AckAlertByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /alert/alerts/{id}/ack][%d] ackAlertById default %s", o._statusCode, payload)
+}
+
 func (o *AckAlertByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

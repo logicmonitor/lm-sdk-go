@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddRecipientGroupOK() *AddRecipientGroupOK {
 	return &AddRecipientGroupOK{}
 }
 
-/* AddRecipientGroupOK describes a response with status code 200, with default header values.
+/*
+AddRecipientGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddRecipientGroupOK struct {
 	Payload *models.RecipientGroup
 }
 
-func (o *AddRecipientGroupOK) Error() string {
-	return fmt.Sprintf("[POST /setting/recipientgroups][%d] addRecipientGroupOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add recipient group o k response has a 2xx status code
+func (o *AddRecipientGroupOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add recipient group o k response has a 3xx status code
+func (o *AddRecipientGroupOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add recipient group o k response has a 4xx status code
+func (o *AddRecipientGroupOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add recipient group o k response has a 5xx status code
+func (o *AddRecipientGroupOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add recipient group o k response a status code equal to that given
+func (o *AddRecipientGroupOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add recipient group o k response
+func (o *AddRecipientGroupOK) Code() int {
+	return 200
+}
+
+func (o *AddRecipientGroupOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/recipientgroups][%d] addRecipientGroupOK %s", 200, payload)
+}
+
+func (o *AddRecipientGroupOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/recipientgroups][%d] addRecipientGroupOK %s", 200, payload)
+}
+
 func (o *AddRecipientGroupOK) GetPayload() *models.RecipientGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddRecipientGroupTooManyRequests() *AddRecipientGroupTooManyRequests {
 	return &AddRecipientGroupTooManyRequests{}
 }
 
-/* AddRecipientGroupTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddRecipientGroupTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddRecipientGroupTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add recipient group too many requests response has a 2xx status code
+func (o *AddRecipientGroupTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add recipient group too many requests response has a 3xx status code
+func (o *AddRecipientGroupTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add recipient group too many requests response has a 4xx status code
+func (o *AddRecipientGroupTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add recipient group too many requests response has a 5xx status code
+func (o *AddRecipientGroupTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add recipient group too many requests response a status code equal to that given
+func (o *AddRecipientGroupTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add recipient group too many requests response
+func (o *AddRecipientGroupTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddRecipientGroupTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/recipientgroups][%d] addRecipientGroupTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /setting/recipientgroups][%d] addRecipientGroupTooManyRequests", 429)
+}
+
+func (o *AddRecipientGroupTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /setting/recipientgroups][%d] addRecipientGroupTooManyRequests", 429)
 }
 
 func (o *AddRecipientGroupTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddRecipientGroupDefault(code int) *AddRecipientGroupDefault {
 	}
 }
 
-/* AddRecipientGroupDefault describes a response with status code -1, with default header values.
+/*
+AddRecipientGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddRecipientGroupDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add recipient group default response has a 2xx status code
+func (o *AddRecipientGroupDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add recipient group default response has a 3xx status code
+func (o *AddRecipientGroupDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add recipient group default response has a 4xx status code
+func (o *AddRecipientGroupDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add recipient group default response has a 5xx status code
+func (o *AddRecipientGroupDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add recipient group default response a status code equal to that given
+func (o *AddRecipientGroupDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add recipient group default response
 func (o *AddRecipientGroupDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddRecipientGroupDefault) Error() string {
-	return fmt.Sprintf("[POST /setting/recipientgroups][%d] addRecipientGroup default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/recipientgroups][%d] addRecipientGroup default %s", o._statusCode, payload)
 }
+
+func (o *AddRecipientGroupDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/recipientgroups][%d] addRecipientGroup default %s", o._statusCode, payload)
+}
+
 func (o *AddRecipientGroupDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -55,10 +55,12 @@ func NewPatchWebsiteGroupByIDParamsWithHTTPClient(client *http.Client) *PatchWeb
 	}
 }
 
-/* PatchWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
-   for the patch website group by Id operation.
+/*
+PatchWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch website group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchWebsiteGroupByIDParams struct {
 

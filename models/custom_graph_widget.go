@@ -352,6 +352,8 @@ func (m *CustomGraphWidget) validateGraphInfo(formats strfmt.Registry) error {
 		if err := m.GraphInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("graphInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("graphInfo")
 			}
 			return err
 		}
@@ -416,9 +418,16 @@ func (m *CustomGraphWidget) contextValidateUserPermission(ctx context.Context, f
 func (m *CustomGraphWidget) contextValidateGraphInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.GraphInfo != nil {
+
+		if swag.IsZero(m.GraphInfo) { // not required
+			return nil
+		}
+
 		if err := m.GraphInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("graphInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("graphInfo")
 			}
 			return err
 		}

@@ -55,10 +55,12 @@ func NewAddDeviceDatasourceInstanceParamsWithHTTPClient(client *http.Client) *Ad
 	}
 }
 
-/* AddDeviceDatasourceInstanceParams contains all the parameters to send to the API endpoint
-   for the add device datasource instance operation.
+/*
+AddDeviceDatasourceInstanceParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add device datasource instance operation.
+
+	Typically these are written to a http.Request.
 */
 type AddDeviceDatasourceInstanceParams struct {
 

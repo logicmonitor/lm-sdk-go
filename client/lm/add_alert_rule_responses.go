@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddAlertRuleOK() *AddAlertRuleOK {
 	return &AddAlertRuleOK{}
 }
 
-/* AddAlertRuleOK describes a response with status code 200, with default header values.
+/*
+AddAlertRuleOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddAlertRuleOK struct {
 	Payload *models.AlertRule
 }
 
-func (o *AddAlertRuleOK) Error() string {
-	return fmt.Sprintf("[POST /setting/alert/rules][%d] addAlertRuleOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add alert rule o k response has a 2xx status code
+func (o *AddAlertRuleOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add alert rule o k response has a 3xx status code
+func (o *AddAlertRuleOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add alert rule o k response has a 4xx status code
+func (o *AddAlertRuleOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add alert rule o k response has a 5xx status code
+func (o *AddAlertRuleOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add alert rule o k response a status code equal to that given
+func (o *AddAlertRuleOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add alert rule o k response
+func (o *AddAlertRuleOK) Code() int {
+	return 200
+}
+
+func (o *AddAlertRuleOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/alert/rules][%d] addAlertRuleOK %s", 200, payload)
+}
+
+func (o *AddAlertRuleOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/alert/rules][%d] addAlertRuleOK %s", 200, payload)
+}
+
 func (o *AddAlertRuleOK) GetPayload() *models.AlertRule {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddAlertRuleTooManyRequests() *AddAlertRuleTooManyRequests {
 	return &AddAlertRuleTooManyRequests{}
 }
 
-/* AddAlertRuleTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddAlertRuleTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddAlertRuleTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add alert rule too many requests response has a 2xx status code
+func (o *AddAlertRuleTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add alert rule too many requests response has a 3xx status code
+func (o *AddAlertRuleTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add alert rule too many requests response has a 4xx status code
+func (o *AddAlertRuleTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add alert rule too many requests response has a 5xx status code
+func (o *AddAlertRuleTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add alert rule too many requests response a status code equal to that given
+func (o *AddAlertRuleTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add alert rule too many requests response
+func (o *AddAlertRuleTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddAlertRuleTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/alert/rules][%d] addAlertRuleTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /setting/alert/rules][%d] addAlertRuleTooManyRequests", 429)
+}
+
+func (o *AddAlertRuleTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /setting/alert/rules][%d] addAlertRuleTooManyRequests", 429)
 }
 
 func (o *AddAlertRuleTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddAlertRuleDefault(code int) *AddAlertRuleDefault {
 	}
 }
 
-/* AddAlertRuleDefault describes a response with status code -1, with default header values.
+/*
+AddAlertRuleDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddAlertRuleDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add alert rule default response has a 2xx status code
+func (o *AddAlertRuleDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add alert rule default response has a 3xx status code
+func (o *AddAlertRuleDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add alert rule default response has a 4xx status code
+func (o *AddAlertRuleDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add alert rule default response has a 5xx status code
+func (o *AddAlertRuleDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add alert rule default response a status code equal to that given
+func (o *AddAlertRuleDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add alert rule default response
 func (o *AddAlertRuleDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddAlertRuleDefault) Error() string {
-	return fmt.Sprintf("[POST /setting/alert/rules][%d] addAlertRule default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/alert/rules][%d] addAlertRule default %s", o._statusCode, payload)
 }
+
+func (o *AddAlertRuleDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/alert/rules][%d] addAlertRule default %s", o._statusCode, payload)
+}
+
 func (o *AddAlertRuleDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

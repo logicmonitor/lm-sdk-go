@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewUpdateCollectorGroupByIDOK() *UpdateCollectorGroupByIDOK {
 	return &UpdateCollectorGroupByIDOK{}
 }
 
-/* UpdateCollectorGroupByIDOK describes a response with status code 200, with default header values.
+/*
+UpdateCollectorGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type UpdateCollectorGroupByIDOK struct {
 	Payload *models.CollectorGroup
 }
 
-func (o *UpdateCollectorGroupByIDOK) Error() string {
-	return fmt.Sprintf("[PUT /setting/collector/groups/{id}][%d] updateCollectorGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this update collector group by Id o k response has a 2xx status code
+func (o *UpdateCollectorGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this update collector group by Id o k response has a 3xx status code
+func (o *UpdateCollectorGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update collector group by Id o k response has a 4xx status code
+func (o *UpdateCollectorGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update collector group by Id o k response has a 5xx status code
+func (o *UpdateCollectorGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update collector group by Id o k response a status code equal to that given
+func (o *UpdateCollectorGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the update collector group by Id o k response
+func (o *UpdateCollectorGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *UpdateCollectorGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/collector/groups/{id}][%d] updateCollectorGroupByIdOK %s", 200, payload)
+}
+
+func (o *UpdateCollectorGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/collector/groups/{id}][%d] updateCollectorGroupByIdOK %s", 200, payload)
+}
+
 func (o *UpdateCollectorGroupByIDOK) GetPayload() *models.CollectorGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewUpdateCollectorGroupByIDTooManyRequests() *UpdateCollectorGroupByIDTooMa
 	return &UpdateCollectorGroupByIDTooManyRequests{}
 }
 
-/* UpdateCollectorGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateCollectorGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type UpdateCollectorGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this update collector group by Id too many requests response has a 2xx status code
+func (o *UpdateCollectorGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update collector group by Id too many requests response has a 3xx status code
+func (o *UpdateCollectorGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update collector group by Id too many requests response has a 4xx status code
+func (o *UpdateCollectorGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update collector group by Id too many requests response has a 5xx status code
+func (o *UpdateCollectorGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update collector group by Id too many requests response a status code equal to that given
+func (o *UpdateCollectorGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the update collector group by Id too many requests response
+func (o *UpdateCollectorGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *UpdateCollectorGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /setting/collector/groups/{id}][%d] updateCollectorGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PUT /setting/collector/groups/{id}][%d] updateCollectorGroupByIdTooManyRequests", 429)
+}
+
+func (o *UpdateCollectorGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /setting/collector/groups/{id}][%d] updateCollectorGroupByIdTooManyRequests", 429)
 }
 
 func (o *UpdateCollectorGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewUpdateCollectorGroupByIDDefault(code int) *UpdateCollectorGroupByIDDefau
 	}
 }
 
-/* UpdateCollectorGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+UpdateCollectorGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type UpdateCollectorGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this update collector group by Id default response has a 2xx status code
+func (o *UpdateCollectorGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this update collector group by Id default response has a 3xx status code
+func (o *UpdateCollectorGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this update collector group by Id default response has a 4xx status code
+func (o *UpdateCollectorGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this update collector group by Id default response has a 5xx status code
+func (o *UpdateCollectorGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this update collector group by Id default response a status code equal to that given
+func (o *UpdateCollectorGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the update collector group by Id default response
 func (o *UpdateCollectorGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateCollectorGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[PUT /setting/collector/groups/{id}][%d] updateCollectorGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/collector/groups/{id}][%d] updateCollectorGroupById default %s", o._statusCode, payload)
 }
+
+func (o *UpdateCollectorGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/collector/groups/{id}][%d] updateCollectorGroupById default %s", o._statusCode, payload)
+}
+
 func (o *UpdateCollectorGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

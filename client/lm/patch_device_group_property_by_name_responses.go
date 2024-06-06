@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchDeviceGroupPropertyByNameOK() *PatchDeviceGroupPropertyByNameOK {
 	return &PatchDeviceGroupPropertyByNameOK{}
 }
 
-/* PatchDeviceGroupPropertyByNameOK describes a response with status code 200, with default header values.
+/*
+PatchDeviceGroupPropertyByNameOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchDeviceGroupPropertyByNameOK struct {
 	Payload *models.EntityProperty
 }
 
-func (o *PatchDeviceGroupPropertyByNameOK) Error() string {
-	return fmt.Sprintf("[PATCH /device/groups/{gid}/properties/{name}][%d] patchDeviceGroupPropertyByNameOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch device group property by name o k response has a 2xx status code
+func (o *PatchDeviceGroupPropertyByNameOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch device group property by name o k response has a 3xx status code
+func (o *PatchDeviceGroupPropertyByNameOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch device group property by name o k response has a 4xx status code
+func (o *PatchDeviceGroupPropertyByNameOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch device group property by name o k response has a 5xx status code
+func (o *PatchDeviceGroupPropertyByNameOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch device group property by name o k response a status code equal to that given
+func (o *PatchDeviceGroupPropertyByNameOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch device group property by name o k response
+func (o *PatchDeviceGroupPropertyByNameOK) Code() int {
+	return 200
+}
+
+func (o *PatchDeviceGroupPropertyByNameOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/groups/{gid}/properties/{name}][%d] patchDeviceGroupPropertyByNameOK %s", 200, payload)
+}
+
+func (o *PatchDeviceGroupPropertyByNameOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/groups/{gid}/properties/{name}][%d] patchDeviceGroupPropertyByNameOK %s", 200, payload)
+}
+
 func (o *PatchDeviceGroupPropertyByNameOK) GetPayload() *models.EntityProperty {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchDeviceGroupPropertyByNameTooManyRequests() *PatchDeviceGroupPropert
 	return &PatchDeviceGroupPropertyByNameTooManyRequests{}
 }
 
-/* PatchDeviceGroupPropertyByNameTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchDeviceGroupPropertyByNameTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchDeviceGroupPropertyByNameTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch device group property by name too many requests response has a 2xx status code
+func (o *PatchDeviceGroupPropertyByNameTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch device group property by name too many requests response has a 3xx status code
+func (o *PatchDeviceGroupPropertyByNameTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch device group property by name too many requests response has a 4xx status code
+func (o *PatchDeviceGroupPropertyByNameTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch device group property by name too many requests response has a 5xx status code
+func (o *PatchDeviceGroupPropertyByNameTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch device group property by name too many requests response a status code equal to that given
+func (o *PatchDeviceGroupPropertyByNameTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch device group property by name too many requests response
+func (o *PatchDeviceGroupPropertyByNameTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchDeviceGroupPropertyByNameTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /device/groups/{gid}/properties/{name}][%d] patchDeviceGroupPropertyByNameTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /device/groups/{gid}/properties/{name}][%d] patchDeviceGroupPropertyByNameTooManyRequests", 429)
+}
+
+func (o *PatchDeviceGroupPropertyByNameTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /device/groups/{gid}/properties/{name}][%d] patchDeviceGroupPropertyByNameTooManyRequests", 429)
 }
 
 func (o *PatchDeviceGroupPropertyByNameTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchDeviceGroupPropertyByNameDefault(code int) *PatchDeviceGroupPropert
 	}
 }
 
-/* PatchDeviceGroupPropertyByNameDefault describes a response with status code -1, with default header values.
+/*
+PatchDeviceGroupPropertyByNameDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchDeviceGroupPropertyByNameDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch device group property by name default response has a 2xx status code
+func (o *PatchDeviceGroupPropertyByNameDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch device group property by name default response has a 3xx status code
+func (o *PatchDeviceGroupPropertyByNameDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch device group property by name default response has a 4xx status code
+func (o *PatchDeviceGroupPropertyByNameDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch device group property by name default response has a 5xx status code
+func (o *PatchDeviceGroupPropertyByNameDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch device group property by name default response a status code equal to that given
+func (o *PatchDeviceGroupPropertyByNameDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch device group property by name default response
 func (o *PatchDeviceGroupPropertyByNameDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchDeviceGroupPropertyByNameDefault) Error() string {
-	return fmt.Sprintf("[PATCH /device/groups/{gid}/properties/{name}][%d] patchDeviceGroupPropertyByName default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/groups/{gid}/properties/{name}][%d] patchDeviceGroupPropertyByName default %s", o._statusCode, payload)
 }
+
+func (o *PatchDeviceGroupPropertyByNameDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/groups/{gid}/properties/{name}][%d] patchDeviceGroupPropertyByName default %s", o._statusCode, payload)
+}
+
 func (o *PatchDeviceGroupPropertyByNameDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

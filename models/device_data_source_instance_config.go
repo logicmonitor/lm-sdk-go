@@ -28,6 +28,10 @@ type DeviceDataSourceInstanceConfig struct {
 	// Read Only: true
 	ChangeStatus string `json:"changeStatus,omitempty"`
 
+	// Version compared with and found difference
+	// Read Only: true
+	ComparedWith string `json:"comparedWith,omitempty"`
+
 	// Configuration file content
 	// Read Only: true
 	Config string `json:"config,omitempty"`
@@ -121,6 +125,8 @@ func (m *DeviceDataSourceInstanceConfig) validateAlerts(formats strfmt.Registry)
 			if err := m.Alerts[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alerts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alerts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -145,6 +151,8 @@ func (m *DeviceDataSourceInstanceConfig) validateDeltaConfig(formats strfmt.Regi
 			if err := m.DeltaConfig[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -164,6 +172,10 @@ func (m *DeviceDataSourceInstanceConfig) ContextValidate(ctx context.Context, fo
 	}
 
 	if err := m.contextValidateChangeStatus(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateComparedWith(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -242,9 +254,16 @@ func (m *DeviceDataSourceInstanceConfig) contextValidateAlerts(ctx context.Conte
 	for i := 0; i < len(m.Alerts); i++ {
 
 		if m.Alerts[i] != nil {
+
+			if swag.IsZero(m.Alerts[i]) { // not required
+				return nil
+			}
+
 			if err := m.Alerts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alerts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alerts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -258,6 +277,15 @@ func (m *DeviceDataSourceInstanceConfig) contextValidateAlerts(ctx context.Conte
 func (m *DeviceDataSourceInstanceConfig) contextValidateChangeStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "changeStatus", "body", string(m.ChangeStatus)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceConfig) contextValidateComparedWith(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "comparedWith", "body", string(m.ComparedWith)); err != nil {
 		return err
 	}
 
@@ -318,9 +346,16 @@ func (m *DeviceDataSourceInstanceConfig) contextValidateDeltaConfig(ctx context.
 	for i := 0; i < len(m.DeltaConfig); i++ {
 
 		if m.DeltaConfig[i] != nil {
+
+			if swag.IsZero(m.DeltaConfig[i]) { // not required
+				return nil
+			}
+
 			if err := m.DeltaConfig[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

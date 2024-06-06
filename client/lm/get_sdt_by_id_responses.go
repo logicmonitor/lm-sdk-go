@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetSDTByIDOK() *GetSDTByIDOK {
 	return &GetSDTByIDOK{}
 }
 
-/* GetSDTByIDOK describes a response with status code 200, with default header values.
+/*
+GetSDTByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetSDTByIDOK struct {
 	Payload models.SDT
 }
 
-func (o *GetSDTByIDOK) Error() string {
-	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSdtByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get Sdt by Id o k response has a 2xx status code
+func (o *GetSDTByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get Sdt by Id o k response has a 3xx status code
+func (o *GetSDTByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get Sdt by Id o k response has a 4xx status code
+func (o *GetSDTByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get Sdt by Id o k response has a 5xx status code
+func (o *GetSDTByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get Sdt by Id o k response a status code equal to that given
+func (o *GetSDTByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get Sdt by Id o k response
+func (o *GetSDTByIDOK) Code() int {
+	return 200
+}
+
+func (o *GetSDTByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSdtByIdOK %s", 200, payload)
+}
+
+func (o *GetSDTByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSdtByIdOK %s", 200, payload)
+}
+
 func (o *GetSDTByIDOK) GetPayload() models.SDT {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetSDTByIDTooManyRequests() *GetSDTByIDTooManyRequests {
 	return &GetSDTByIDTooManyRequests{}
 }
 
-/* GetSDTByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetSDTByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetSDTByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get Sdt by Id too many requests response has a 2xx status code
+func (o *GetSDTByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get Sdt by Id too many requests response has a 3xx status code
+func (o *GetSDTByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get Sdt by Id too many requests response has a 4xx status code
+func (o *GetSDTByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get Sdt by Id too many requests response has a 5xx status code
+func (o *GetSDTByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get Sdt by Id too many requests response a status code equal to that given
+func (o *GetSDTByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get Sdt by Id too many requests response
+func (o *GetSDTByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetSDTByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSdtByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSdtByIdTooManyRequests", 429)
+}
+
+func (o *GetSDTByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSdtByIdTooManyRequests", 429)
 }
 
 func (o *GetSDTByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetSDTByIDDefault(code int) *GetSDTByIDDefault {
 	}
 }
 
-/* GetSDTByIDDefault describes a response with status code -1, with default header values.
+/*
+GetSDTByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetSDTByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get SDT by Id default response has a 2xx status code
+func (o *GetSDTByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get SDT by Id default response has a 3xx status code
+func (o *GetSDTByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get SDT by Id default response has a 4xx status code
+func (o *GetSDTByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get SDT by Id default response has a 5xx status code
+func (o *GetSDTByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get SDT by Id default response a status code equal to that given
+func (o *GetSDTByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get SDT by Id default response
 func (o *GetSDTByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetSDTByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSDTById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSDTById default %s", o._statusCode, payload)
 }
+
+func (o *GetSDTByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSDTById default %s", o._statusCode, payload)
+}
+
 func (o *GetSDTByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

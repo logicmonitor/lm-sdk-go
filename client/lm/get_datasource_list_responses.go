@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetDatasourceListOK() *GetDatasourceListOK {
 	return &GetDatasourceListOK{}
 }
 
-/* GetDatasourceListOK describes a response with status code 200, with default header values.
+/*
+GetDatasourceListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDatasourceListOK struct {
 	Payload *models.DatasourcePaginationResponse
 }
 
-func (o *GetDatasourceListOK) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources][%d] getDatasourceListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get datasource list o k response has a 2xx status code
+func (o *GetDatasourceListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get datasource list o k response has a 3xx status code
+func (o *GetDatasourceListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get datasource list o k response has a 4xx status code
+func (o *GetDatasourceListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get datasource list o k response has a 5xx status code
+func (o *GetDatasourceListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get datasource list o k response a status code equal to that given
+func (o *GetDatasourceListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get datasource list o k response
+func (o *GetDatasourceListOK) Code() int {
+	return 200
+}
+
+func (o *GetDatasourceListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources][%d] getDatasourceListOK %s", 200, payload)
+}
+
+func (o *GetDatasourceListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources][%d] getDatasourceListOK %s", 200, payload)
+}
+
 func (o *GetDatasourceListOK) GetPayload() *models.DatasourcePaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDatasourceListTooManyRequests() *GetDatasourceListTooManyRequests {
 	return &GetDatasourceListTooManyRequests{}
 }
 
-/* GetDatasourceListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDatasourceListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDatasourceListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get datasource list too many requests response has a 2xx status code
+func (o *GetDatasourceListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get datasource list too many requests response has a 3xx status code
+func (o *GetDatasourceListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get datasource list too many requests response has a 4xx status code
+func (o *GetDatasourceListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get datasource list too many requests response has a 5xx status code
+func (o *GetDatasourceListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get datasource list too many requests response a status code equal to that given
+func (o *GetDatasourceListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get datasource list too many requests response
+func (o *GetDatasourceListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDatasourceListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources][%d] getDatasourceListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/datasources][%d] getDatasourceListTooManyRequests", 429)
+}
+
+func (o *GetDatasourceListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/datasources][%d] getDatasourceListTooManyRequests", 429)
 }
 
 func (o *GetDatasourceListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDatasourceListDefault(code int) *GetDatasourceListDefault {
 	}
 }
 
-/* GetDatasourceListDefault describes a response with status code -1, with default header values.
+/*
+GetDatasourceListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDatasourceListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get datasource list default response has a 2xx status code
+func (o *GetDatasourceListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get datasource list default response has a 3xx status code
+func (o *GetDatasourceListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get datasource list default response has a 4xx status code
+func (o *GetDatasourceListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get datasource list default response has a 5xx status code
+func (o *GetDatasourceListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get datasource list default response a status code equal to that given
+func (o *GetDatasourceListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get datasource list default response
 func (o *GetDatasourceListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDatasourceListDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources][%d] getDatasourceList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources][%d] getDatasourceList default %s", o._statusCode, payload)
 }
+
+func (o *GetDatasourceListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources][%d] getDatasourceList default %s", o._statusCode, payload)
+}
+
 func (o *GetDatasourceListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

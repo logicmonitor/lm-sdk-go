@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetWidgetListOK() *GetWidgetListOK {
 	return &GetWidgetListOK{}
 }
 
-/* GetWidgetListOK describes a response with status code 200, with default header values.
+/*
+GetWidgetListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetWidgetListOK struct {
 	Payload *models.WidgetPaginationResponse
 }
 
-func (o *GetWidgetListOK) Error() string {
-	return fmt.Sprintf("[GET /dashboard/widgets][%d] getWidgetListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get widget list o k response has a 2xx status code
+func (o *GetWidgetListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get widget list o k response has a 3xx status code
+func (o *GetWidgetListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get widget list o k response has a 4xx status code
+func (o *GetWidgetListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get widget list o k response has a 5xx status code
+func (o *GetWidgetListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get widget list o k response a status code equal to that given
+func (o *GetWidgetListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get widget list o k response
+func (o *GetWidgetListOK) Code() int {
+	return 200
+}
+
+func (o *GetWidgetListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/widgets][%d] getWidgetListOK %s", 200, payload)
+}
+
+func (o *GetWidgetListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/widgets][%d] getWidgetListOK %s", 200, payload)
+}
+
 func (o *GetWidgetListOK) GetPayload() *models.WidgetPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetWidgetListTooManyRequests() *GetWidgetListTooManyRequests {
 	return &GetWidgetListTooManyRequests{}
 }
 
-/* GetWidgetListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetWidgetListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetWidgetListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get widget list too many requests response has a 2xx status code
+func (o *GetWidgetListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get widget list too many requests response has a 3xx status code
+func (o *GetWidgetListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get widget list too many requests response has a 4xx status code
+func (o *GetWidgetListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get widget list too many requests response has a 5xx status code
+func (o *GetWidgetListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get widget list too many requests response a status code equal to that given
+func (o *GetWidgetListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get widget list too many requests response
+func (o *GetWidgetListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetWidgetListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /dashboard/widgets][%d] getWidgetListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /dashboard/widgets][%d] getWidgetListTooManyRequests", 429)
+}
+
+func (o *GetWidgetListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /dashboard/widgets][%d] getWidgetListTooManyRequests", 429)
 }
 
 func (o *GetWidgetListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetWidgetListDefault(code int) *GetWidgetListDefault {
 	}
 }
 
-/* GetWidgetListDefault describes a response with status code -1, with default header values.
+/*
+GetWidgetListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetWidgetListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get widget list default response has a 2xx status code
+func (o *GetWidgetListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get widget list default response has a 3xx status code
+func (o *GetWidgetListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get widget list default response has a 4xx status code
+func (o *GetWidgetListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get widget list default response has a 5xx status code
+func (o *GetWidgetListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get widget list default response a status code equal to that given
+func (o *GetWidgetListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get widget list default response
 func (o *GetWidgetListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetWidgetListDefault) Error() string {
-	return fmt.Sprintf("[GET /dashboard/widgets][%d] getWidgetList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/widgets][%d] getWidgetList default %s", o._statusCode, payload)
 }
+
+func (o *GetWidgetListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/widgets][%d] getWidgetList default %s", o._statusCode, payload)
+}
+
 func (o *GetWidgetListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

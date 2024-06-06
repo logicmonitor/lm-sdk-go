@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddOpsNoteOK() *AddOpsNoteOK {
 	return &AddOpsNoteOK{}
 }
 
-/* AddOpsNoteOK describes a response with status code 200, with default header values.
+/*
+AddOpsNoteOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddOpsNoteOK struct {
 	Payload *models.OpsNote
 }
 
-func (o *AddOpsNoteOK) Error() string {
-	return fmt.Sprintf("[POST /setting/opsnotes][%d] addOpsNoteOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add ops note o k response has a 2xx status code
+func (o *AddOpsNoteOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add ops note o k response has a 3xx status code
+func (o *AddOpsNoteOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add ops note o k response has a 4xx status code
+func (o *AddOpsNoteOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add ops note o k response has a 5xx status code
+func (o *AddOpsNoteOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add ops note o k response a status code equal to that given
+func (o *AddOpsNoteOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add ops note o k response
+func (o *AddOpsNoteOK) Code() int {
+	return 200
+}
+
+func (o *AddOpsNoteOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/opsnotes][%d] addOpsNoteOK %s", 200, payload)
+}
+
+func (o *AddOpsNoteOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/opsnotes][%d] addOpsNoteOK %s", 200, payload)
+}
+
 func (o *AddOpsNoteOK) GetPayload() *models.OpsNote {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddOpsNoteTooManyRequests() *AddOpsNoteTooManyRequests {
 	return &AddOpsNoteTooManyRequests{}
 }
 
-/* AddOpsNoteTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddOpsNoteTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddOpsNoteTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add ops note too many requests response has a 2xx status code
+func (o *AddOpsNoteTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add ops note too many requests response has a 3xx status code
+func (o *AddOpsNoteTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add ops note too many requests response has a 4xx status code
+func (o *AddOpsNoteTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add ops note too many requests response has a 5xx status code
+func (o *AddOpsNoteTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add ops note too many requests response a status code equal to that given
+func (o *AddOpsNoteTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add ops note too many requests response
+func (o *AddOpsNoteTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddOpsNoteTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/opsnotes][%d] addOpsNoteTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /setting/opsnotes][%d] addOpsNoteTooManyRequests", 429)
+}
+
+func (o *AddOpsNoteTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /setting/opsnotes][%d] addOpsNoteTooManyRequests", 429)
 }
 
 func (o *AddOpsNoteTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddOpsNoteDefault(code int) *AddOpsNoteDefault {
 	}
 }
 
-/* AddOpsNoteDefault describes a response with status code -1, with default header values.
+/*
+AddOpsNoteDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddOpsNoteDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add ops note default response has a 2xx status code
+func (o *AddOpsNoteDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add ops note default response has a 3xx status code
+func (o *AddOpsNoteDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add ops note default response has a 4xx status code
+func (o *AddOpsNoteDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add ops note default response has a 5xx status code
+func (o *AddOpsNoteDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add ops note default response a status code equal to that given
+func (o *AddOpsNoteDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add ops note default response
 func (o *AddOpsNoteDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddOpsNoteDefault) Error() string {
-	return fmt.Sprintf("[POST /setting/opsnotes][%d] addOpsNote default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/opsnotes][%d] addOpsNote default %s", o._statusCode, payload)
 }
+
+func (o *AddOpsNoteDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/opsnotes][%d] addOpsNote default %s", o._statusCode, payload)
+}
+
 func (o *AddOpsNoteDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -23,8 +23,8 @@ type DeviceDataSourceInstanceAlertSetting struct {
 	// ad adv setting enabled
 	AdAdvSettingEnabled bool `json:"adAdvSettingEnabled,omitempty"`
 
-	// The interval of alert clear transition
-	// Read Only: true
+	// The polling interval of alert clear transition (0-60)
+	// Example: 0
 	AlertClearInterval int32 `json:"alertClearInterval,omitempty"`
 
 	// The thresholds that should be associated with the datapoint. Note that you need to have a space between the operator and each threshold (e.g. > 1 2 3)
@@ -35,8 +35,12 @@ type DeviceDataSourceInstanceAlertSetting struct {
 	// Example: Router 1 Ping Check
 	AlertExprNote string `json:"alertExprNote,omitempty"`
 
-	// The interval of alert transition
-	// Read Only: true
+	// alert for no data (no alert-1, warning-2, error-3, critical-4)
+	// Example: 1
+	AlertForNoData int32 `json:"alertForNoData,omitempty"`
+
+	// The polling interval of alert transition (0-60)
+	// Example: 0
 	AlertTransitionInterval int32 `json:"alertTransitionInterval,omitempty"`
 
 	// The datapoint is effected alert disabled by which group
@@ -97,9 +101,24 @@ type DeviceDataSourceInstanceAlertSetting struct {
 	// error ad adv setting
 	ErrorAdAdvSetting string `json:"errorAdAdvSetting,omitempty"`
 
+	// The count that the alert must exist for this many poll cycles before the alert will be cleared
+	// Example: 0
+	// Read Only: true
+	GlobalAlertClearTransitionInterval int32 `json:"globalAlertClearTransitionInterval,omitempty"`
+
 	// The global alert expression for this datapoint
 	// Read Only: true
 	GlobalAlertExpr string `json:"globalAlertExpr,omitempty"`
+
+	// The triggered alert level if we cannot collect data for this datapoint
+	// Example: 1
+	// Read Only: true
+	GlobalAlertForNoData int32 `json:"globalAlertForNoData,omitempty"`
+
+	// The count that the alert must exist for this many poll cycles before it will be triggered
+	// Example: 0
+	// Read Only: true
+	GlobalAlertTransitionInterval int32 `json:"globalAlertTransitionInterval,omitempty"`
 
 	// The global enable anomaly alert generation
 	// Read Only: true
@@ -124,6 +143,10 @@ type DeviceDataSourceInstanceAlertSetting struct {
 	// Read Only: true
 	ParentInstanceGroupAlertExpr *InstanceGroupAlertThresholdInfo `json:"parentInstanceGroupAlertExpr,omitempty"`
 
+	// Resource datasource alert expression list base on the priority. The first is the highest priority and effected on this instance
+	// Read Only: true
+	ParentResourceDataSourceAlertExpr *ResourceDataSourceAlertThresholdInfo `json:"parentResourceDataSourceAlertExpr,omitempty"`
+
 	// The post processor parameter for complex DataPoint and instance level configCheck threshold.
 	PostProcessorParam string `json:"postProcessorParam,omitempty"`
 
@@ -140,6 +163,10 @@ func (m *DeviceDataSourceInstanceAlertSetting) Validate(formats strfmt.Registry)
 	}
 
 	if err := m.validateParentInstanceGroupAlertExpr(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateParentResourceDataSourceAlertExpr(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -163,6 +190,8 @@ func (m *DeviceDataSourceInstanceAlertSetting) validateParentDeviceGroupAlertExp
 			if err := m.ParentDeviceGroupAlertExprList[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("parentDeviceGroupAlertExprList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("parentDeviceGroupAlertExprList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -182,6 +211,27 @@ func (m *DeviceDataSourceInstanceAlertSetting) validateParentInstanceGroupAlertE
 		if err := m.ParentInstanceGroupAlertExpr.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parentInstanceGroupAlertExpr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parentInstanceGroupAlertExpr")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceAlertSetting) validateParentResourceDataSourceAlertExpr(formats strfmt.Registry) error {
+	if swag.IsZero(m.ParentResourceDataSourceAlertExpr) { // not required
+		return nil
+	}
+
+	if m.ParentResourceDataSourceAlertExpr != nil {
+		if err := m.ParentResourceDataSourceAlertExpr.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("parentResourceDataSourceAlertExpr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parentResourceDataSourceAlertExpr")
 			}
 			return err
 		}
@@ -193,14 +243,6 @@ func (m *DeviceDataSourceInstanceAlertSetting) validateParentInstanceGroupAlertE
 // ContextValidate validate this device data source instance alert setting based on the context it is used
 func (m *DeviceDataSourceInstanceAlertSetting) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
-
-	if err := m.contextValidateAlertClearInterval(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.contextValidateAlertTransitionInterval(ctx, formats); err != nil {
-		res = append(res, err)
-	}
 
 	if err := m.contextValidateAlertingDisabledOn(ctx, formats); err != nil {
 		res = append(res, err)
@@ -250,7 +292,19 @@ func (m *DeviceDataSourceInstanceAlertSetting) ContextValidate(ctx context.Conte
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateGlobalAlertClearTransitionInterval(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateGlobalAlertExpr(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGlobalAlertForNoData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateGlobalAlertTransitionInterval(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -274,27 +328,13 @@ func (m *DeviceDataSourceInstanceAlertSetting) ContextValidate(ctx context.Conte
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateParentResourceDataSourceAlertExpr(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceAlertSetting) contextValidateAlertClearInterval(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "alertClearInterval", "body", int32(m.AlertClearInterval)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceDataSourceInstanceAlertSetting) contextValidateAlertTransitionInterval(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "alertTransitionInterval", "body", int32(m.AlertTransitionInterval)); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -406,9 +446,36 @@ func (m *DeviceDataSourceInstanceAlertSetting) contextValidateEnableAnomalyAlert
 	return nil
 }
 
+func (m *DeviceDataSourceInstanceAlertSetting) contextValidateGlobalAlertClearTransitionInterval(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "globalAlertClearTransitionInterval", "body", int32(m.GlobalAlertClearTransitionInterval)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *DeviceDataSourceInstanceAlertSetting) contextValidateGlobalAlertExpr(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "globalAlertExpr", "body", string(m.GlobalAlertExpr)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceAlertSetting) contextValidateGlobalAlertForNoData(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "globalAlertForNoData", "body", int32(m.GlobalAlertForNoData)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceAlertSetting) contextValidateGlobalAlertTransitionInterval(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "globalAlertTransitionInterval", "body", int32(m.GlobalAlertTransitionInterval)); err != nil {
 		return err
 	}
 
@@ -451,9 +518,16 @@ func (m *DeviceDataSourceInstanceAlertSetting) contextValidateParentDeviceGroupA
 	for i := 0; i < len(m.ParentDeviceGroupAlertExprList); i++ {
 
 		if m.ParentDeviceGroupAlertExprList[i] != nil {
+
+			if swag.IsZero(m.ParentDeviceGroupAlertExprList[i]) { // not required
+				return nil
+			}
+
 			if err := m.ParentDeviceGroupAlertExprList[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("parentDeviceGroupAlertExprList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("parentDeviceGroupAlertExprList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -467,9 +541,37 @@ func (m *DeviceDataSourceInstanceAlertSetting) contextValidateParentDeviceGroupA
 func (m *DeviceDataSourceInstanceAlertSetting) contextValidateParentInstanceGroupAlertExpr(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ParentInstanceGroupAlertExpr != nil {
+
+		if swag.IsZero(m.ParentInstanceGroupAlertExpr) { // not required
+			return nil
+		}
+
 		if err := m.ParentInstanceGroupAlertExpr.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parentInstanceGroupAlertExpr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parentInstanceGroupAlertExpr")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DeviceDataSourceInstanceAlertSetting) contextValidateParentResourceDataSourceAlertExpr(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ParentResourceDataSourceAlertExpr != nil {
+
+		if swag.IsZero(m.ParentResourceDataSourceAlertExpr) { // not required
+			return nil
+		}
+
+		if err := m.ParentResourceDataSourceAlertExpr.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("parentResourceDataSourceAlertExpr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parentResourceDataSourceAlertExpr")
 			}
 			return err
 		}

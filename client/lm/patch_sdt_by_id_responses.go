@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchSDTByIDOK() *PatchSDTByIDOK {
 	return &PatchSDTByIDOK{}
 }
 
-/* PatchSDTByIDOK describes a response with status code 200, with default header values.
+/*
+PatchSDTByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchSDTByIDOK struct {
 	Payload models.SDT
 }
 
-func (o *PatchSDTByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /sdt/sdts/{id}][%d] patchSdtByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch Sdt by Id o k response has a 2xx status code
+func (o *PatchSDTByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch Sdt by Id o k response has a 3xx status code
+func (o *PatchSDTByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch Sdt by Id o k response has a 4xx status code
+func (o *PatchSDTByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch Sdt by Id o k response has a 5xx status code
+func (o *PatchSDTByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch Sdt by Id o k response a status code equal to that given
+func (o *PatchSDTByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch Sdt by Id o k response
+func (o *PatchSDTByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchSDTByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /sdt/sdts/{id}][%d] patchSdtByIdOK %s", 200, payload)
+}
+
+func (o *PatchSDTByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /sdt/sdts/{id}][%d] patchSdtByIdOK %s", 200, payload)
+}
+
 func (o *PatchSDTByIDOK) GetPayload() models.SDT {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchSDTByIDTooManyRequests() *PatchSDTByIDTooManyRequests {
 	return &PatchSDTByIDTooManyRequests{}
 }
 
-/* PatchSDTByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchSDTByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchSDTByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch Sdt by Id too many requests response has a 2xx status code
+func (o *PatchSDTByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch Sdt by Id too many requests response has a 3xx status code
+func (o *PatchSDTByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch Sdt by Id too many requests response has a 4xx status code
+func (o *PatchSDTByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch Sdt by Id too many requests response has a 5xx status code
+func (o *PatchSDTByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch Sdt by Id too many requests response a status code equal to that given
+func (o *PatchSDTByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch Sdt by Id too many requests response
+func (o *PatchSDTByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchSDTByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /sdt/sdts/{id}][%d] patchSdtByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /sdt/sdts/{id}][%d] patchSdtByIdTooManyRequests", 429)
+}
+
+func (o *PatchSDTByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /sdt/sdts/{id}][%d] patchSdtByIdTooManyRequests", 429)
 }
 
 func (o *PatchSDTByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchSDTByIDDefault(code int) *PatchSDTByIDDefault {
 	}
 }
 
-/* PatchSDTByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchSDTByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchSDTByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch SDT by Id default response has a 2xx status code
+func (o *PatchSDTByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch SDT by Id default response has a 3xx status code
+func (o *PatchSDTByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch SDT by Id default response has a 4xx status code
+func (o *PatchSDTByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch SDT by Id default response has a 5xx status code
+func (o *PatchSDTByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch SDT by Id default response a status code equal to that given
+func (o *PatchSDTByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch SDT by Id default response
 func (o *PatchSDTByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchSDTByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /sdt/sdts/{id}][%d] patchSDTById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /sdt/sdts/{id}][%d] patchSDTById default %s", o._statusCode, payload)
 }
+
+func (o *PatchSDTByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /sdt/sdts/{id}][%d] patchSDTById default %s", o._statusCode, payload)
+}
+
 func (o *PatchSDTByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

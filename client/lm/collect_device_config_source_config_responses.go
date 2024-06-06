@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewCollectDeviceConfigSourceConfigOK() *CollectDeviceConfigSourceConfigOK {
 	return &CollectDeviceConfigSourceConfigOK{}
 }
 
-/* CollectDeviceConfigSourceConfigOK describes a response with status code 200, with default header values.
+/*
+CollectDeviceConfigSourceConfigOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type CollectDeviceConfigSourceConfigOK struct {
 	Payload interface{}
 }
 
-func (o *CollectDeviceConfigSourceConfigOK) Error() string {
-	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfigOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this collect device config source config o k response has a 2xx status code
+func (o *CollectDeviceConfigSourceConfigOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this collect device config source config o k response has a 3xx status code
+func (o *CollectDeviceConfigSourceConfigOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this collect device config source config o k response has a 4xx status code
+func (o *CollectDeviceConfigSourceConfigOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this collect device config source config o k response has a 5xx status code
+func (o *CollectDeviceConfigSourceConfigOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this collect device config source config o k response a status code equal to that given
+func (o *CollectDeviceConfigSourceConfigOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the collect device config source config o k response
+func (o *CollectDeviceConfigSourceConfigOK) Code() int {
+	return 200
+}
+
+func (o *CollectDeviceConfigSourceConfigOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfigOK %s", 200, payload)
+}
+
+func (o *CollectDeviceConfigSourceConfigOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfigOK %s", 200, payload)
+}
+
 func (o *CollectDeviceConfigSourceConfigOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewCollectDeviceConfigSourceConfigTooManyRequests() *CollectDeviceConfigSou
 	return &CollectDeviceConfigSourceConfigTooManyRequests{}
 }
 
-/* CollectDeviceConfigSourceConfigTooManyRequests describes a response with status code 429, with default header values.
+/*
+CollectDeviceConfigSourceConfigTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type CollectDeviceConfigSourceConfigTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this collect device config source config too many requests response has a 2xx status code
+func (o *CollectDeviceConfigSourceConfigTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this collect device config source config too many requests response has a 3xx status code
+func (o *CollectDeviceConfigSourceConfigTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this collect device config source config too many requests response has a 4xx status code
+func (o *CollectDeviceConfigSourceConfigTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this collect device config source config too many requests response has a 5xx status code
+func (o *CollectDeviceConfigSourceConfigTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this collect device config source config too many requests response a status code equal to that given
+func (o *CollectDeviceConfigSourceConfigTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the collect device config source config too many requests response
+func (o *CollectDeviceConfigSourceConfigTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *CollectDeviceConfigSourceConfigTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfigTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfigTooManyRequests", 429)
+}
+
+func (o *CollectDeviceConfigSourceConfigTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfigTooManyRequests", 429)
 }
 
 func (o *CollectDeviceConfigSourceConfigTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewCollectDeviceConfigSourceConfigDefault(code int) *CollectDeviceConfigSou
 	}
 }
 
-/* CollectDeviceConfigSourceConfigDefault describes a response with status code -1, with default header values.
+/*
+CollectDeviceConfigSourceConfigDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type CollectDeviceConfigSourceConfigDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this collect device config source config default response has a 2xx status code
+func (o *CollectDeviceConfigSourceConfigDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this collect device config source config default response has a 3xx status code
+func (o *CollectDeviceConfigSourceConfigDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this collect device config source config default response has a 4xx status code
+func (o *CollectDeviceConfigSourceConfigDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this collect device config source config default response has a 5xx status code
+func (o *CollectDeviceConfigSourceConfigDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this collect device config source config default response a status code equal to that given
+func (o *CollectDeviceConfigSourceConfigDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the collect device config source config default response
 func (o *CollectDeviceConfigSourceConfigDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *CollectDeviceConfigSourceConfigDefault) Error() string {
-	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfig default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfig default %s", o._statusCode, payload)
 }
+
+func (o *CollectDeviceConfigSourceConfigDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config/configCollection][%d] collectDeviceConfigSourceConfig default %s", o._statusCode, payload)
+}
+
 func (o *CollectDeviceConfigSourceConfigDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewDeleteAlertRuleByIDOK() *DeleteAlertRuleByIDOK {
 	return &DeleteAlertRuleByIDOK{}
 }
 
-/* DeleteAlertRuleByIDOK describes a response with status code 200, with default header values.
+/*
+DeleteAlertRuleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DeleteAlertRuleByIDOK struct {
 	Payload interface{}
 }
 
-func (o *DeleteAlertRuleByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /setting/alert/rules/{id}][%d] deleteAlertRuleByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this delete alert rule by Id o k response has a 2xx status code
+func (o *DeleteAlertRuleByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this delete alert rule by Id o k response has a 3xx status code
+func (o *DeleteAlertRuleByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete alert rule by Id o k response has a 4xx status code
+func (o *DeleteAlertRuleByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete alert rule by Id o k response has a 5xx status code
+func (o *DeleteAlertRuleByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete alert rule by Id o k response a status code equal to that given
+func (o *DeleteAlertRuleByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the delete alert rule by Id o k response
+func (o *DeleteAlertRuleByIDOK) Code() int {
+	return 200
+}
+
+func (o *DeleteAlertRuleByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/alert/rules/{id}][%d] deleteAlertRuleByIdOK %s", 200, payload)
+}
+
+func (o *DeleteAlertRuleByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/alert/rules/{id}][%d] deleteAlertRuleByIdOK %s", 200, payload)
+}
+
 func (o *DeleteAlertRuleByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewDeleteAlertRuleByIDTooManyRequests() *DeleteAlertRuleByIDTooManyRequests
 	return &DeleteAlertRuleByIDTooManyRequests{}
 }
 
-/* DeleteAlertRuleByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteAlertRuleByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type DeleteAlertRuleByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this delete alert rule by Id too many requests response has a 2xx status code
+func (o *DeleteAlertRuleByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete alert rule by Id too many requests response has a 3xx status code
+func (o *DeleteAlertRuleByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete alert rule by Id too many requests response has a 4xx status code
+func (o *DeleteAlertRuleByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete alert rule by Id too many requests response has a 5xx status code
+func (o *DeleteAlertRuleByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete alert rule by Id too many requests response a status code equal to that given
+func (o *DeleteAlertRuleByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the delete alert rule by Id too many requests response
+func (o *DeleteAlertRuleByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DeleteAlertRuleByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /setting/alert/rules/{id}][%d] deleteAlertRuleByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /setting/alert/rules/{id}][%d] deleteAlertRuleByIdTooManyRequests", 429)
+}
+
+func (o *DeleteAlertRuleByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /setting/alert/rules/{id}][%d] deleteAlertRuleByIdTooManyRequests", 429)
 }
 
 func (o *DeleteAlertRuleByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewDeleteAlertRuleByIDDefault(code int) *DeleteAlertRuleByIDDefault {
 	}
 }
 
-/* DeleteAlertRuleByIDDefault describes a response with status code -1, with default header values.
+/*
+DeleteAlertRuleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type DeleteAlertRuleByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete alert rule by Id default response has a 2xx status code
+func (o *DeleteAlertRuleByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this delete alert rule by Id default response has a 3xx status code
+func (o *DeleteAlertRuleByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this delete alert rule by Id default response has a 4xx status code
+func (o *DeleteAlertRuleByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this delete alert rule by Id default response has a 5xx status code
+func (o *DeleteAlertRuleByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this delete alert rule by Id default response a status code equal to that given
+func (o *DeleteAlertRuleByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the delete alert rule by Id default response
 func (o *DeleteAlertRuleByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DeleteAlertRuleByIDDefault) Error() string {
-	return fmt.Sprintf("[DELETE /setting/alert/rules/{id}][%d] deleteAlertRuleById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/alert/rules/{id}][%d] deleteAlertRuleById default %s", o._statusCode, payload)
 }
+
+func (o *DeleteAlertRuleByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/alert/rules/{id}][%d] deleteAlertRuleById default %s", o._statusCode, payload)
+}
+
 func (o *DeleteAlertRuleByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

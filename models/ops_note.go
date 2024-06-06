@@ -197,6 +197,8 @@ func (m *OpsNote) validateScopes(formats strfmt.Registry) error {
 		if err := m.scopesField[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("scopes" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -220,6 +222,8 @@ func (m *OpsNote) validateTags(formats strfmt.Registry) error {
 			if err := m.Tags[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("tags" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tags" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -278,9 +282,15 @@ func (m *OpsNote) contextValidateScopes(ctx context.Context, formats strfmt.Regi
 
 	for i := 0; i < len(m.Scopes()); i++ {
 
+		if swag.IsZero(m.scopesField[i]) { // not required
+			return nil
+		}
+
 		if err := m.scopesField[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("scopes" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -295,9 +305,16 @@ func (m *OpsNote) contextValidateTags(ctx context.Context, formats strfmt.Regist
 	for i := 0; i < len(m.Tags); i++ {
 
 		if m.Tags[i] != nil {
+
+			if swag.IsZero(m.Tags[i]) { // not required
+				return nil
+			}
+
 			if err := m.Tags[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("tags" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("tags" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

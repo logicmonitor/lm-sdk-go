@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewDeleteRoleByIDOK() *DeleteRoleByIDOK {
 	return &DeleteRoleByIDOK{}
 }
 
-/* DeleteRoleByIDOK describes a response with status code 200, with default header values.
+/*
+DeleteRoleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DeleteRoleByIDOK struct {
 	Payload interface{}
 }
 
-func (o *DeleteRoleByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /setting/roles/{id}][%d] deleteRoleByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this delete role by Id o k response has a 2xx status code
+func (o *DeleteRoleByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this delete role by Id o k response has a 3xx status code
+func (o *DeleteRoleByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete role by Id o k response has a 4xx status code
+func (o *DeleteRoleByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete role by Id o k response has a 5xx status code
+func (o *DeleteRoleByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete role by Id o k response a status code equal to that given
+func (o *DeleteRoleByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the delete role by Id o k response
+func (o *DeleteRoleByIDOK) Code() int {
+	return 200
+}
+
+func (o *DeleteRoleByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/roles/{id}][%d] deleteRoleByIdOK %s", 200, payload)
+}
+
+func (o *DeleteRoleByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/roles/{id}][%d] deleteRoleByIdOK %s", 200, payload)
+}
+
 func (o *DeleteRoleByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewDeleteRoleByIDTooManyRequests() *DeleteRoleByIDTooManyRequests {
 	return &DeleteRoleByIDTooManyRequests{}
 }
 
-/* DeleteRoleByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteRoleByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type DeleteRoleByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this delete role by Id too many requests response has a 2xx status code
+func (o *DeleteRoleByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete role by Id too many requests response has a 3xx status code
+func (o *DeleteRoleByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete role by Id too many requests response has a 4xx status code
+func (o *DeleteRoleByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete role by Id too many requests response has a 5xx status code
+func (o *DeleteRoleByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete role by Id too many requests response a status code equal to that given
+func (o *DeleteRoleByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the delete role by Id too many requests response
+func (o *DeleteRoleByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DeleteRoleByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /setting/roles/{id}][%d] deleteRoleByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /setting/roles/{id}][%d] deleteRoleByIdTooManyRequests", 429)
+}
+
+func (o *DeleteRoleByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /setting/roles/{id}][%d] deleteRoleByIdTooManyRequests", 429)
 }
 
 func (o *DeleteRoleByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewDeleteRoleByIDDefault(code int) *DeleteRoleByIDDefault {
 	}
 }
 
-/* DeleteRoleByIDDefault describes a response with status code -1, with default header values.
+/*
+DeleteRoleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type DeleteRoleByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete role by Id default response has a 2xx status code
+func (o *DeleteRoleByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this delete role by Id default response has a 3xx status code
+func (o *DeleteRoleByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this delete role by Id default response has a 4xx status code
+func (o *DeleteRoleByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this delete role by Id default response has a 5xx status code
+func (o *DeleteRoleByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this delete role by Id default response a status code equal to that given
+func (o *DeleteRoleByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the delete role by Id default response
 func (o *DeleteRoleByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DeleteRoleByIDDefault) Error() string {
-	return fmt.Sprintf("[DELETE /setting/roles/{id}][%d] deleteRoleById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/roles/{id}][%d] deleteRoleById default %s", o._statusCode, payload)
 }
+
+func (o *DeleteRoleByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/roles/{id}][%d] deleteRoleById default %s", o._statusCode, payload)
+}
+
 func (o *DeleteRoleByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

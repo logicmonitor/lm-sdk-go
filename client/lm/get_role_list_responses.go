@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetRoleListOK() *GetRoleListOK {
 	return &GetRoleListOK{}
 }
 
-/* GetRoleListOK describes a response with status code 200, with default header values.
+/*
+GetRoleListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetRoleListOK struct {
 	Payload *models.RolePaginationResponse
 }
 
-func (o *GetRoleListOK) Error() string {
-	return fmt.Sprintf("[GET /setting/roles][%d] getRoleListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get role list o k response has a 2xx status code
+func (o *GetRoleListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get role list o k response has a 3xx status code
+func (o *GetRoleListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get role list o k response has a 4xx status code
+func (o *GetRoleListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get role list o k response has a 5xx status code
+func (o *GetRoleListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get role list o k response a status code equal to that given
+func (o *GetRoleListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get role list o k response
+func (o *GetRoleListOK) Code() int {
+	return 200
+}
+
+func (o *GetRoleListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/roles][%d] getRoleListOK %s", 200, payload)
+}
+
+func (o *GetRoleListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/roles][%d] getRoleListOK %s", 200, payload)
+}
+
 func (o *GetRoleListOK) GetPayload() *models.RolePaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetRoleListTooManyRequests() *GetRoleListTooManyRequests {
 	return &GetRoleListTooManyRequests{}
 }
 
-/* GetRoleListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetRoleListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetRoleListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get role list too many requests response has a 2xx status code
+func (o *GetRoleListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get role list too many requests response has a 3xx status code
+func (o *GetRoleListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get role list too many requests response has a 4xx status code
+func (o *GetRoleListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get role list too many requests response has a 5xx status code
+func (o *GetRoleListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get role list too many requests response a status code equal to that given
+func (o *GetRoleListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get role list too many requests response
+func (o *GetRoleListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetRoleListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/roles][%d] getRoleListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/roles][%d] getRoleListTooManyRequests", 429)
+}
+
+func (o *GetRoleListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/roles][%d] getRoleListTooManyRequests", 429)
 }
 
 func (o *GetRoleListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetRoleListDefault(code int) *GetRoleListDefault {
 	}
 }
 
-/* GetRoleListDefault describes a response with status code -1, with default header values.
+/*
+GetRoleListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetRoleListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get role list default response has a 2xx status code
+func (o *GetRoleListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get role list default response has a 3xx status code
+func (o *GetRoleListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get role list default response has a 4xx status code
+func (o *GetRoleListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get role list default response has a 5xx status code
+func (o *GetRoleListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get role list default response a status code equal to that given
+func (o *GetRoleListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get role list default response
 func (o *GetRoleListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetRoleListDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/roles][%d] getRoleList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/roles][%d] getRoleList default %s", o._statusCode, payload)
 }
+
+func (o *GetRoleListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/roles][%d] getRoleList default %s", o._statusCode, payload)
+}
+
 func (o *GetRoleListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -49,6 +49,11 @@ type APIPerfMetrics struct {
 	// Read Only: true
 	TotalProcessedRequests int64 `json:"totalProcessedRequests,omitempty"`
 
+	// api's summary defined in swagger.json
+	// Example: get alert list
+	// Read Only: true
+	TotalRejectedGetAPICount int64 `json:"totalRejectedGetAPICount,omitempty"`
+
 	// total requests
 	// Example: 10
 	// Read Only: true
@@ -90,6 +95,10 @@ func (m *APIPerfMetrics) ContextValidate(ctx context.Context, formats strfmt.Reg
 	}
 
 	if err := m.contextValidateTotalProcessedRequests(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTotalRejectedGetAPICount(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -155,6 +164,15 @@ func (m *APIPerfMetrics) contextValidateTotNanoTime(ctx context.Context, formats
 func (m *APIPerfMetrics) contextValidateTotalProcessedRequests(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "totalProcessedRequests", "body", int64(m.TotalProcessedRequests)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIPerfMetrics) contextValidateTotalRejectedGetAPICount(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "totalRejectedGetAPICount", "body", int64(m.TotalRejectedGetAPICount)); err != nil {
 		return err
 	}
 

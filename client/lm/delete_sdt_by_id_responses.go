@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewDeleteSDTByIDOK() *DeleteSDTByIDOK {
 	return &DeleteSDTByIDOK{}
 }
 
-/* DeleteSDTByIDOK describes a response with status code 200, with default header values.
+/*
+DeleteSDTByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DeleteSDTByIDOK struct {
 	Payload interface{}
 }
 
-func (o *DeleteSDTByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /sdt/sdts/{id}][%d] deleteSdtByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this delete Sdt by Id o k response has a 2xx status code
+func (o *DeleteSDTByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this delete Sdt by Id o k response has a 3xx status code
+func (o *DeleteSDTByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete Sdt by Id o k response has a 4xx status code
+func (o *DeleteSDTByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete Sdt by Id o k response has a 5xx status code
+func (o *DeleteSDTByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete Sdt by Id o k response a status code equal to that given
+func (o *DeleteSDTByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the delete Sdt by Id o k response
+func (o *DeleteSDTByIDOK) Code() int {
+	return 200
+}
+
+func (o *DeleteSDTByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sdt/sdts/{id}][%d] deleteSdtByIdOK %s", 200, payload)
+}
+
+func (o *DeleteSDTByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sdt/sdts/{id}][%d] deleteSdtByIdOK %s", 200, payload)
+}
+
 func (o *DeleteSDTByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewDeleteSDTByIDTooManyRequests() *DeleteSDTByIDTooManyRequests {
 	return &DeleteSDTByIDTooManyRequests{}
 }
 
-/* DeleteSDTByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteSDTByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type DeleteSDTByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this delete Sdt by Id too many requests response has a 2xx status code
+func (o *DeleteSDTByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete Sdt by Id too many requests response has a 3xx status code
+func (o *DeleteSDTByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete Sdt by Id too many requests response has a 4xx status code
+func (o *DeleteSDTByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete Sdt by Id too many requests response has a 5xx status code
+func (o *DeleteSDTByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete Sdt by Id too many requests response a status code equal to that given
+func (o *DeleteSDTByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the delete Sdt by Id too many requests response
+func (o *DeleteSDTByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DeleteSDTByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /sdt/sdts/{id}][%d] deleteSdtByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /sdt/sdts/{id}][%d] deleteSdtByIdTooManyRequests", 429)
+}
+
+func (o *DeleteSDTByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /sdt/sdts/{id}][%d] deleteSdtByIdTooManyRequests", 429)
 }
 
 func (o *DeleteSDTByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewDeleteSDTByIDDefault(code int) *DeleteSDTByIDDefault {
 	}
 }
 
-/* DeleteSDTByIDDefault describes a response with status code -1, with default header values.
+/*
+DeleteSDTByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type DeleteSDTByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete SDT by Id default response has a 2xx status code
+func (o *DeleteSDTByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this delete SDT by Id default response has a 3xx status code
+func (o *DeleteSDTByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this delete SDT by Id default response has a 4xx status code
+func (o *DeleteSDTByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this delete SDT by Id default response has a 5xx status code
+func (o *DeleteSDTByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this delete SDT by Id default response a status code equal to that given
+func (o *DeleteSDTByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the delete SDT by Id default response
 func (o *DeleteSDTByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DeleteSDTByIDDefault) Error() string {
-	return fmt.Sprintf("[DELETE /sdt/sdts/{id}][%d] deleteSDTById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sdt/sdts/{id}][%d] deleteSDTById default %s", o._statusCode, payload)
 }
+
+func (o *DeleteSDTByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /sdt/sdts/{id}][%d] deleteSDTById default %s", o._statusCode, payload)
+}
+
 func (o *DeleteSDTByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

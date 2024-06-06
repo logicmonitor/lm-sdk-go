@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -62,7 +61,7 @@ type EventSource interface {
 	ClearAfterAck() bool
 	SetClearAfterAck(bool)
 
-	// The EventSource collector type. The values can be wineventlog | syslog | snmptrap | echo | logfile | scriptevent | awsrss | azurerss | azureadvisor | gcpatom | awsrdspievent | azureresourcehealthevent | azureemergingissue | azureloganalyticsworkspacesevent | awstrustedadvisor | awshealth | ipmievent
+	// The EventSource collector type. The values can be wineventlog | syslog | snmptrap | echo | logfile | scriptevent | awsrss | azurerss | azureadvisor | gcpatom | awsrdspievent | azureresourcehealthevent | azureemergingissue | azureloganalyticsworkspacesevent | awstrustedadvisor | awshealth | awsorganizationalhealth | ipmievent
 	Collector() string
 	SetCollector(string)
 
@@ -381,7 +380,7 @@ func UnmarshalEventSourceSlice(reader io.Reader, consumer runtime.Consumer) ([]E
 // UnmarshalEventSource unmarshals polymorphic EventSource
 func UnmarshalEventSource(reader io.Reader, consumer runtime.Consumer) (EventSource, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -426,6 +425,12 @@ func unmarshalEventSource(data []byte, consumer runtime.Consumer) (EventSource, 
 		return &result, nil
 	case "RestAwsHealthEventSource":
 		var result RestAwsHealthEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAwsOrganizationalHealthEventSource":
+		var result RestAwsOrganizationalHealthEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -567,6 +572,8 @@ func (m *eventSource) validateFilters(formats strfmt.Registry) error {
 			if err := m.filtersField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -586,6 +593,8 @@ func (m *eventSource) validateInstallationMetadata(formats strfmt.Registry) erro
 		if err := m.InstallationMetadata().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}
@@ -664,9 +673,16 @@ func (m *eventSource) contextValidateFilters(ctx context.Context, formats strfmt
 	for i := 0; i < len(m.Filters()); i++ {
 
 		if m.filtersField[i] != nil {
+
+			if swag.IsZero(m.filtersField[i]) { // not required
+				return nil
+			}
+
 			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -689,9 +705,16 @@ func (m *eventSource) contextValidateID(ctx context.Context, formats strfmt.Regi
 func (m *eventSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstallationMetadata() != nil {
+
+		if swag.IsZero(m.InstallationMetadata()) { // not required
+			return nil
+		}
+
 		if err := m.InstallationMetadata().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}

@@ -576,6 +576,8 @@ func (m *GraphPlot) validateLines(formats strfmt.Registry) error {
 			if err := m.Lines[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("lines" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("lines" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -601,6 +603,8 @@ func (m *GraphPlot) validateScopes(formats strfmt.Registry) error {
 			if err := m.Scopes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("scopes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -829,9 +833,16 @@ func (m *GraphPlot) contextValidateLines(ctx context.Context, formats strfmt.Reg
 	for i := 0; i < len(m.Lines); i++ {
 
 		if m.Lines[i] != nil {
+
+			if swag.IsZero(m.Lines[i]) { // not required
+				return nil
+			}
+
 			if err := m.Lines[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("lines" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("lines" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -878,9 +889,16 @@ func (m *GraphPlot) contextValidateScopes(ctx context.Context, formats strfmt.Re
 	for i := 0; i < len(m.Scopes); i++ {
 
 		if m.Scopes[i] != nil {
+
+			if swag.IsZero(m.Scopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Scopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("scopes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

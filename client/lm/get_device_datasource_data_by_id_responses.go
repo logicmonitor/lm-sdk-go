@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetDeviceDatasourceDataByIDOK() *GetDeviceDatasourceDataByIDOK {
 	return &GetDeviceDatasourceDataByIDOK{}
 }
 
-/* GetDeviceDatasourceDataByIDOK describes a response with status code 200, with default header values.
+/*
+GetDeviceDatasourceDataByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeviceDatasourceDataByIDOK struct {
 	Payload *models.DeviceDataSourceData
 }
 
-func (o *GetDeviceDatasourceDataByIDOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}/data][%d] getDeviceDatasourceDataByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device datasource data by Id o k response has a 2xx status code
+func (o *GetDeviceDatasourceDataByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device datasource data by Id o k response has a 3xx status code
+func (o *GetDeviceDatasourceDataByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device datasource data by Id o k response has a 4xx status code
+func (o *GetDeviceDatasourceDataByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device datasource data by Id o k response has a 5xx status code
+func (o *GetDeviceDatasourceDataByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device datasource data by Id o k response a status code equal to that given
+func (o *GetDeviceDatasourceDataByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device datasource data by Id o k response
+func (o *GetDeviceDatasourceDataByIDOK) Code() int {
+	return 200
+}
+
+func (o *GetDeviceDatasourceDataByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}/data][%d] getDeviceDatasourceDataByIdOK %s", 200, payload)
+}
+
+func (o *GetDeviceDatasourceDataByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}/data][%d] getDeviceDatasourceDataByIdOK %s", 200, payload)
+}
+
 func (o *GetDeviceDatasourceDataByIDOK) GetPayload() *models.DeviceDataSourceData {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDeviceDatasourceDataByIDTooManyRequests() *GetDeviceDatasourceDataByI
 	return &GetDeviceDatasourceDataByIDTooManyRequests{}
 }
 
-/* GetDeviceDatasourceDataByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeviceDatasourceDataByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDeviceDatasourceDataByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device datasource data by Id too many requests response has a 2xx status code
+func (o *GetDeviceDatasourceDataByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device datasource data by Id too many requests response has a 3xx status code
+func (o *GetDeviceDatasourceDataByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device datasource data by Id too many requests response has a 4xx status code
+func (o *GetDeviceDatasourceDataByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device datasource data by Id too many requests response has a 5xx status code
+func (o *GetDeviceDatasourceDataByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device datasource data by Id too many requests response a status code equal to that given
+func (o *GetDeviceDatasourceDataByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device datasource data by Id too many requests response
+func (o *GetDeviceDatasourceDataByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeviceDatasourceDataByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}/data][%d] getDeviceDatasourceDataByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}/data][%d] getDeviceDatasourceDataByIdTooManyRequests", 429)
+}
+
+func (o *GetDeviceDatasourceDataByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}/data][%d] getDeviceDatasourceDataByIdTooManyRequests", 429)
 }
 
 func (o *GetDeviceDatasourceDataByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDeviceDatasourceDataByIDDefault(code int) *GetDeviceDatasourceDataByI
 	}
 }
 
-/* GetDeviceDatasourceDataByIDDefault describes a response with status code -1, with default header values.
+/*
+GetDeviceDatasourceDataByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDeviceDatasourceDataByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device datasource data by Id default response has a 2xx status code
+func (o *GetDeviceDatasourceDataByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device datasource data by Id default response has a 3xx status code
+func (o *GetDeviceDatasourceDataByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device datasource data by Id default response has a 4xx status code
+func (o *GetDeviceDatasourceDataByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device datasource data by Id default response has a 5xx status code
+func (o *GetDeviceDatasourceDataByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device datasource data by Id default response a status code equal to that given
+func (o *GetDeviceDatasourceDataByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device datasource data by Id default response
 func (o *GetDeviceDatasourceDataByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeviceDatasourceDataByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}/data][%d] getDeviceDatasourceDataById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}/data][%d] getDeviceDatasourceDataById default %s", o._statusCode, payload)
 }
+
+func (o *GetDeviceDatasourceDataByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{id}/data][%d] getDeviceDatasourceDataById default %s", o._statusCode, payload)
+}
+
 func (o *GetDeviceDatasourceDataByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

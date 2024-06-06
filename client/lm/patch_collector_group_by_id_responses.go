@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchCollectorGroupByIDOK() *PatchCollectorGroupByIDOK {
 	return &PatchCollectorGroupByIDOK{}
 }
 
-/* PatchCollectorGroupByIDOK describes a response with status code 200, with default header values.
+/*
+PatchCollectorGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchCollectorGroupByIDOK struct {
 	Payload *models.CollectorGroup
 }
 
-func (o *PatchCollectorGroupByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /setting/collector/groups/{id}][%d] patchCollectorGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch collector group by Id o k response has a 2xx status code
+func (o *PatchCollectorGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch collector group by Id o k response has a 3xx status code
+func (o *PatchCollectorGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch collector group by Id o k response has a 4xx status code
+func (o *PatchCollectorGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch collector group by Id o k response has a 5xx status code
+func (o *PatchCollectorGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch collector group by Id o k response a status code equal to that given
+func (o *PatchCollectorGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch collector group by Id o k response
+func (o *PatchCollectorGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchCollectorGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/collector/groups/{id}][%d] patchCollectorGroupByIdOK %s", 200, payload)
+}
+
+func (o *PatchCollectorGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/collector/groups/{id}][%d] patchCollectorGroupByIdOK %s", 200, payload)
+}
+
 func (o *PatchCollectorGroupByIDOK) GetPayload() *models.CollectorGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchCollectorGroupByIDTooManyRequests() *PatchCollectorGroupByIDTooMany
 	return &PatchCollectorGroupByIDTooManyRequests{}
 }
 
-/* PatchCollectorGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchCollectorGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchCollectorGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch collector group by Id too many requests response has a 2xx status code
+func (o *PatchCollectorGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch collector group by Id too many requests response has a 3xx status code
+func (o *PatchCollectorGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch collector group by Id too many requests response has a 4xx status code
+func (o *PatchCollectorGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch collector group by Id too many requests response has a 5xx status code
+func (o *PatchCollectorGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch collector group by Id too many requests response a status code equal to that given
+func (o *PatchCollectorGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch collector group by Id too many requests response
+func (o *PatchCollectorGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchCollectorGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /setting/collector/groups/{id}][%d] patchCollectorGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /setting/collector/groups/{id}][%d] patchCollectorGroupByIdTooManyRequests", 429)
+}
+
+func (o *PatchCollectorGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /setting/collector/groups/{id}][%d] patchCollectorGroupByIdTooManyRequests", 429)
 }
 
 func (o *PatchCollectorGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchCollectorGroupByIDDefault(code int) *PatchCollectorGroupByIDDefault
 	}
 }
 
-/* PatchCollectorGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchCollectorGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchCollectorGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch collector group by Id default response has a 2xx status code
+func (o *PatchCollectorGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch collector group by Id default response has a 3xx status code
+func (o *PatchCollectorGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch collector group by Id default response has a 4xx status code
+func (o *PatchCollectorGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch collector group by Id default response has a 5xx status code
+func (o *PatchCollectorGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch collector group by Id default response a status code equal to that given
+func (o *PatchCollectorGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch collector group by Id default response
 func (o *PatchCollectorGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchCollectorGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /setting/collector/groups/{id}][%d] patchCollectorGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/collector/groups/{id}][%d] patchCollectorGroupById default %s", o._statusCode, payload)
 }
+
+func (o *PatchCollectorGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/collector/groups/{id}][%d] patchCollectorGroupById default %s", o._statusCode, payload)
+}
+
 func (o *PatchCollectorGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

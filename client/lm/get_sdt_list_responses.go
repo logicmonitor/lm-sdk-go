@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetSDTListOK() *GetSDTListOK {
 	return &GetSDTListOK{}
 }
 
-/* GetSDTListOK describes a response with status code 200, with default header values.
+/*
+GetSDTListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetSDTListOK struct {
 	Payload *models.SDTPaginationResponse
 }
 
-func (o *GetSDTListOK) Error() string {
-	return fmt.Sprintf("[GET /sdt/sdts][%d] getSdtListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get Sdt list o k response has a 2xx status code
+func (o *GetSDTListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get Sdt list o k response has a 3xx status code
+func (o *GetSDTListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get Sdt list o k response has a 4xx status code
+func (o *GetSDTListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get Sdt list o k response has a 5xx status code
+func (o *GetSDTListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get Sdt list o k response a status code equal to that given
+func (o *GetSDTListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get Sdt list o k response
+func (o *GetSDTListOK) Code() int {
+	return 200
+}
+
+func (o *GetSDTListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sdt/sdts][%d] getSdtListOK %s", 200, payload)
+}
+
+func (o *GetSDTListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sdt/sdts][%d] getSdtListOK %s", 200, payload)
+}
+
 func (o *GetSDTListOK) GetPayload() *models.SDTPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetSDTListTooManyRequests() *GetSDTListTooManyRequests {
 	return &GetSDTListTooManyRequests{}
 }
 
-/* GetSDTListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetSDTListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetSDTListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get Sdt list too many requests response has a 2xx status code
+func (o *GetSDTListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get Sdt list too many requests response has a 3xx status code
+func (o *GetSDTListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get Sdt list too many requests response has a 4xx status code
+func (o *GetSDTListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get Sdt list too many requests response has a 5xx status code
+func (o *GetSDTListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get Sdt list too many requests response a status code equal to that given
+func (o *GetSDTListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get Sdt list too many requests response
+func (o *GetSDTListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetSDTListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /sdt/sdts][%d] getSdtListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /sdt/sdts][%d] getSdtListTooManyRequests", 429)
+}
+
+func (o *GetSDTListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /sdt/sdts][%d] getSdtListTooManyRequests", 429)
 }
 
 func (o *GetSDTListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetSDTListDefault(code int) *GetSDTListDefault {
 	}
 }
 
-/* GetSDTListDefault describes a response with status code -1, with default header values.
+/*
+GetSDTListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetSDTListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get SDT list default response has a 2xx status code
+func (o *GetSDTListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get SDT list default response has a 3xx status code
+func (o *GetSDTListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get SDT list default response has a 4xx status code
+func (o *GetSDTListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get SDT list default response has a 5xx status code
+func (o *GetSDTListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get SDT list default response a status code equal to that given
+func (o *GetSDTListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get SDT list default response
 func (o *GetSDTListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetSDTListDefault) Error() string {
-	return fmt.Sprintf("[GET /sdt/sdts][%d] getSDTList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sdt/sdts][%d] getSDTList default %s", o._statusCode, payload)
 }
+
+func (o *GetSDTListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /sdt/sdts][%d] getSDTList default %s", o._statusCode, payload)
+}
+
 func (o *GetSDTListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

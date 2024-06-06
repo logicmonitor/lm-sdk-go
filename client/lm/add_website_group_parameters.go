@@ -54,10 +54,12 @@ func NewAddWebsiteGroupParamsWithHTTPClient(client *http.Client) *AddWebsiteGrou
 	}
 }
 
-/* AddWebsiteGroupParams contains all the parameters to send to the API endpoint
-   for the add website group operation.
+/*
+AddWebsiteGroupParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add website group operation.
+
+	Typically these are written to a http.Request.
 */
 type AddWebsiteGroupParams struct {
 

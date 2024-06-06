@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetDashboardListOK() *GetDashboardListOK {
 	return &GetDashboardListOK{}
 }
 
-/* GetDashboardListOK describes a response with status code 200, with default header values.
+/*
+GetDashboardListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDashboardListOK struct {
 	Payload *models.DashboardPaginationResponse
 }
 
-func (o *GetDashboardListOK) Error() string {
-	return fmt.Sprintf("[GET /dashboard/dashboards][%d] getDashboardListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get dashboard list o k response has a 2xx status code
+func (o *GetDashboardListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get dashboard list o k response has a 3xx status code
+func (o *GetDashboardListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get dashboard list o k response has a 4xx status code
+func (o *GetDashboardListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get dashboard list o k response has a 5xx status code
+func (o *GetDashboardListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get dashboard list o k response a status code equal to that given
+func (o *GetDashboardListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get dashboard list o k response
+func (o *GetDashboardListOK) Code() int {
+	return 200
+}
+
+func (o *GetDashboardListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/dashboards][%d] getDashboardListOK %s", 200, payload)
+}
+
+func (o *GetDashboardListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/dashboards][%d] getDashboardListOK %s", 200, payload)
+}
+
 func (o *GetDashboardListOK) GetPayload() *models.DashboardPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDashboardListTooManyRequests() *GetDashboardListTooManyRequests {
 	return &GetDashboardListTooManyRequests{}
 }
 
-/* GetDashboardListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDashboardListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDashboardListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get dashboard list too many requests response has a 2xx status code
+func (o *GetDashboardListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get dashboard list too many requests response has a 3xx status code
+func (o *GetDashboardListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get dashboard list too many requests response has a 4xx status code
+func (o *GetDashboardListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get dashboard list too many requests response has a 5xx status code
+func (o *GetDashboardListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get dashboard list too many requests response a status code equal to that given
+func (o *GetDashboardListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get dashboard list too many requests response
+func (o *GetDashboardListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDashboardListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /dashboard/dashboards][%d] getDashboardListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /dashboard/dashboards][%d] getDashboardListTooManyRequests", 429)
+}
+
+func (o *GetDashboardListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /dashboard/dashboards][%d] getDashboardListTooManyRequests", 429)
 }
 
 func (o *GetDashboardListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDashboardListDefault(code int) *GetDashboardListDefault {
 	}
 }
 
-/* GetDashboardListDefault describes a response with status code -1, with default header values.
+/*
+GetDashboardListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDashboardListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get dashboard list default response has a 2xx status code
+func (o *GetDashboardListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get dashboard list default response has a 3xx status code
+func (o *GetDashboardListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get dashboard list default response has a 4xx status code
+func (o *GetDashboardListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get dashboard list default response has a 5xx status code
+func (o *GetDashboardListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get dashboard list default response a status code equal to that given
+func (o *GetDashboardListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get dashboard list default response
 func (o *GetDashboardListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDashboardListDefault) Error() string {
-	return fmt.Sprintf("[GET /dashboard/dashboards][%d] getDashboardList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/dashboards][%d] getDashboardList default %s", o._statusCode, payload)
 }
+
+func (o *GetDashboardListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /dashboard/dashboards][%d] getDashboardList default %s", o._statusCode, payload)
+}
+
 func (o *GetDashboardListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

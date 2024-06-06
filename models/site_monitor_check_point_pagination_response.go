@@ -60,6 +60,8 @@ func (m *SiteMonitorCheckPointPaginationResponse) validateItems(formats strfmt.R
 			if err := m.Items[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -97,9 +99,16 @@ func (m *SiteMonitorCheckPointPaginationResponse) contextValidateItems(ctx conte
 	for i := 0; i < len(m.Items); i++ {
 
 		if m.Items[i] != nil {
+
+			if swag.IsZero(m.Items[i]) { // not required
+				return nil
+			}
+
 			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("items" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("items" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddAPITokenByAdminIDOK() *AddAPITokenByAdminIDOK {
 	return &AddAPITokenByAdminIDOK{}
 }
 
-/* AddAPITokenByAdminIDOK describes a response with status code 200, with default header values.
+/*
+AddAPITokenByAdminIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddAPITokenByAdminIDOK struct {
 	Payload *models.APIToken
 }
 
-func (o *AddAPITokenByAdminIDOK) Error() string {
-	return fmt.Sprintf("[POST /setting/admins/{adminId}/apitokens][%d] addApiTokenByAdminIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add Api token by admin Id o k response has a 2xx status code
+func (o *AddAPITokenByAdminIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add Api token by admin Id o k response has a 3xx status code
+func (o *AddAPITokenByAdminIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add Api token by admin Id o k response has a 4xx status code
+func (o *AddAPITokenByAdminIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add Api token by admin Id o k response has a 5xx status code
+func (o *AddAPITokenByAdminIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add Api token by admin Id o k response a status code equal to that given
+func (o *AddAPITokenByAdminIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add Api token by admin Id o k response
+func (o *AddAPITokenByAdminIDOK) Code() int {
+	return 200
+}
+
+func (o *AddAPITokenByAdminIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/admins/{adminId}/apitokens][%d] addApiTokenByAdminIdOK %s", 200, payload)
+}
+
+func (o *AddAPITokenByAdminIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/admins/{adminId}/apitokens][%d] addApiTokenByAdminIdOK %s", 200, payload)
+}
+
 func (o *AddAPITokenByAdminIDOK) GetPayload() *models.APIToken {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddAPITokenByAdminIDTooManyRequests() *AddAPITokenByAdminIDTooManyReques
 	return &AddAPITokenByAdminIDTooManyRequests{}
 }
 
-/* AddAPITokenByAdminIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddAPITokenByAdminIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddAPITokenByAdminIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add Api token by admin Id too many requests response has a 2xx status code
+func (o *AddAPITokenByAdminIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add Api token by admin Id too many requests response has a 3xx status code
+func (o *AddAPITokenByAdminIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add Api token by admin Id too many requests response has a 4xx status code
+func (o *AddAPITokenByAdminIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add Api token by admin Id too many requests response has a 5xx status code
+func (o *AddAPITokenByAdminIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add Api token by admin Id too many requests response a status code equal to that given
+func (o *AddAPITokenByAdminIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add Api token by admin Id too many requests response
+func (o *AddAPITokenByAdminIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddAPITokenByAdminIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/admins/{adminId}/apitokens][%d] addApiTokenByAdminIdTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /setting/admins/{adminId}/apitokens][%d] addApiTokenByAdminIdTooManyRequests", 429)
+}
+
+func (o *AddAPITokenByAdminIDTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /setting/admins/{adminId}/apitokens][%d] addApiTokenByAdminIdTooManyRequests", 429)
 }
 
 func (o *AddAPITokenByAdminIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddAPITokenByAdminIDDefault(code int) *AddAPITokenByAdminIDDefault {
 	}
 }
 
-/* AddAPITokenByAdminIDDefault describes a response with status code -1, with default header values.
+/*
+AddAPITokenByAdminIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddAPITokenByAdminIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add Api token by admin Id default response has a 2xx status code
+func (o *AddAPITokenByAdminIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add Api token by admin Id default response has a 3xx status code
+func (o *AddAPITokenByAdminIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add Api token by admin Id default response has a 4xx status code
+func (o *AddAPITokenByAdminIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add Api token by admin Id default response has a 5xx status code
+func (o *AddAPITokenByAdminIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add Api token by admin Id default response a status code equal to that given
+func (o *AddAPITokenByAdminIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add Api token by admin Id default response
 func (o *AddAPITokenByAdminIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddAPITokenByAdminIDDefault) Error() string {
-	return fmt.Sprintf("[POST /setting/admins/{adminId}/apitokens][%d] addApiTokenByAdminId default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/admins/{adminId}/apitokens][%d] addApiTokenByAdminId default %s", o._statusCode, payload)
 }
+
+func (o *AddAPITokenByAdminIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/admins/{adminId}/apitokens][%d] addApiTokenByAdminId default %s", o._statusCode, payload)
+}
+
 func (o *AddAPITokenByAdminIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

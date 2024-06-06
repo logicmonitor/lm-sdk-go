@@ -53,10 +53,12 @@ func NewGetRecipientGroupByIDParamsWithHTTPClient(client *http.Client) *GetRecip
 	}
 }
 
-/* GetRecipientGroupByIDParams contains all the parameters to send to the API endpoint
-   for the get recipient group by Id operation.
+/*
+GetRecipientGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get recipient group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetRecipientGroupByIDParams struct {
 

@@ -203,6 +203,8 @@ func (m *AutoDiscoveryConfiguration) validateFilters(formats strfmt.Registry) er
 			if err := m.Filters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -222,6 +224,8 @@ func (m *AutoDiscoveryConfiguration) validateMethod(formats strfmt.Registry) err
 	if err := m.Method().Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("method")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("method")
 		}
 		return err
 	}
@@ -252,9 +256,16 @@ func (m *AutoDiscoveryConfiguration) contextValidateFilters(ctx context.Context,
 	for i := 0; i < len(m.Filters); i++ {
 
 		if m.Filters[i] != nil {
+
+			if swag.IsZero(m.Filters[i]) { // not required
+				return nil
+			}
+
 			if err := m.Filters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -270,6 +281,8 @@ func (m *AutoDiscoveryConfiguration) contextValidateMethod(ctx context.Context, 
 	if err := m.Method().ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("method")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("method")
 		}
 		return err
 	}

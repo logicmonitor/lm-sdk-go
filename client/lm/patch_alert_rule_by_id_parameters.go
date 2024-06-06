@@ -55,10 +55,12 @@ func NewPatchAlertRuleByIDParamsWithHTTPClient(client *http.Client) *PatchAlertR
 	}
 }
 
-/* PatchAlertRuleByIDParams contains all the parameters to send to the API endpoint
-   for the patch alert rule by Id operation.
+/*
+PatchAlertRuleByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch alert rule by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchAlertRuleByIDParams struct {
 

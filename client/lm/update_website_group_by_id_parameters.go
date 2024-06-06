@@ -55,10 +55,12 @@ func NewUpdateWebsiteGroupByIDParamsWithHTTPClient(client *http.Client) *UpdateW
 	}
 }
 
-/* UpdateWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
-   for the update website group by Id operation.
+/*
+UpdateWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update website group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateWebsiteGroupByIDParams struct {
 

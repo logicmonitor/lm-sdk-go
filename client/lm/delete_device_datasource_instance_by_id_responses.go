@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewDeleteDeviceDatasourceInstanceByIDOK() *DeleteDeviceDatasourceInstanceBy
 	return &DeleteDeviceDatasourceInstanceByIDOK{}
 }
 
-/* DeleteDeviceDatasourceInstanceByIDOK describes a response with status code 200, with default header values.
+/*
+DeleteDeviceDatasourceInstanceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DeleteDeviceDatasourceInstanceByIDOK struct {
 	Payload interface{}
 }
 
-func (o *DeleteDeviceDatasourceInstanceByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] deleteDeviceDatasourceInstanceByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this delete device datasource instance by Id o k response has a 2xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this delete device datasource instance by Id o k response has a 3xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete device datasource instance by Id o k response has a 4xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete device datasource instance by Id o k response has a 5xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete device datasource instance by Id o k response a status code equal to that given
+func (o *DeleteDeviceDatasourceInstanceByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the delete device datasource instance by Id o k response
+func (o *DeleteDeviceDatasourceInstanceByIDOK) Code() int {
+	return 200
+}
+
+func (o *DeleteDeviceDatasourceInstanceByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] deleteDeviceDatasourceInstanceByIdOK %s", 200, payload)
+}
+
+func (o *DeleteDeviceDatasourceInstanceByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] deleteDeviceDatasourceInstanceByIdOK %s", 200, payload)
+}
+
 func (o *DeleteDeviceDatasourceInstanceByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewDeleteDeviceDatasourceInstanceByIDTooManyRequests() *DeleteDeviceDatasou
 	return &DeleteDeviceDatasourceInstanceByIDTooManyRequests{}
 }
 
-/* DeleteDeviceDatasourceInstanceByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteDeviceDatasourceInstanceByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type DeleteDeviceDatasourceInstanceByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this delete device datasource instance by Id too many requests response has a 2xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete device datasource instance by Id too many requests response has a 3xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete device datasource instance by Id too many requests response has a 4xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete device datasource instance by Id too many requests response has a 5xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete device datasource instance by Id too many requests response a status code equal to that given
+func (o *DeleteDeviceDatasourceInstanceByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the delete device datasource instance by Id too many requests response
+func (o *DeleteDeviceDatasourceInstanceByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DeleteDeviceDatasourceInstanceByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] deleteDeviceDatasourceInstanceByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] deleteDeviceDatasourceInstanceByIdTooManyRequests", 429)
+}
+
+func (o *DeleteDeviceDatasourceInstanceByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] deleteDeviceDatasourceInstanceByIdTooManyRequests", 429)
 }
 
 func (o *DeleteDeviceDatasourceInstanceByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewDeleteDeviceDatasourceInstanceByIDDefault(code int) *DeleteDeviceDatasou
 	}
 }
 
-/* DeleteDeviceDatasourceInstanceByIDDefault describes a response with status code -1, with default header values.
+/*
+DeleteDeviceDatasourceInstanceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type DeleteDeviceDatasourceInstanceByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete device datasource instance by Id default response has a 2xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this delete device datasource instance by Id default response has a 3xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this delete device datasource instance by Id default response has a 4xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this delete device datasource instance by Id default response has a 5xx status code
+func (o *DeleteDeviceDatasourceInstanceByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this delete device datasource instance by Id default response a status code equal to that given
+func (o *DeleteDeviceDatasourceInstanceByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the delete device datasource instance by Id default response
 func (o *DeleteDeviceDatasourceInstanceByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DeleteDeviceDatasourceInstanceByIDDefault) Error() string {
-	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] deleteDeviceDatasourceInstanceById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] deleteDeviceDatasourceInstanceById default %s", o._statusCode, payload)
 }
+
+func (o *DeleteDeviceDatasourceInstanceByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}][%d] deleteDeviceDatasourceInstanceById default %s", o._statusCode, payload)
+}
+
 func (o *DeleteDeviceDatasourceInstanceByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

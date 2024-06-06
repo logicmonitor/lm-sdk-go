@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetTopTalkersGraphOK() *GetTopTalkersGraphOK {
 	return &GetTopTalkersGraphOK{}
 }
 
-/* GetTopTalkersGraphOK describes a response with status code 200, with default header values.
+/*
+GetTopTalkersGraphOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetTopTalkersGraphOK struct {
 	Payload *models.GraphPlot
 }
 
-func (o *GetTopTalkersGraphOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/topTalkersGraph][%d] getTopTalkersGraphOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get top talkers graph o k response has a 2xx status code
+func (o *GetTopTalkersGraphOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get top talkers graph o k response has a 3xx status code
+func (o *GetTopTalkersGraphOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get top talkers graph o k response has a 4xx status code
+func (o *GetTopTalkersGraphOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get top talkers graph o k response has a 5xx status code
+func (o *GetTopTalkersGraphOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get top talkers graph o k response a status code equal to that given
+func (o *GetTopTalkersGraphOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get top talkers graph o k response
+func (o *GetTopTalkersGraphOK) Code() int {
+	return 200
+}
+
+func (o *GetTopTalkersGraphOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/topTalkersGraph][%d] getTopTalkersGraphOK %s", 200, payload)
+}
+
+func (o *GetTopTalkersGraphOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/topTalkersGraph][%d] getTopTalkersGraphOK %s", 200, payload)
+}
+
 func (o *GetTopTalkersGraphOK) GetPayload() *models.GraphPlot {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetTopTalkersGraphTooManyRequests() *GetTopTalkersGraphTooManyRequests {
 	return &GetTopTalkersGraphTooManyRequests{}
 }
 
-/* GetTopTalkersGraphTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetTopTalkersGraphTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetTopTalkersGraphTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get top talkers graph too many requests response has a 2xx status code
+func (o *GetTopTalkersGraphTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get top talkers graph too many requests response has a 3xx status code
+func (o *GetTopTalkersGraphTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get top talkers graph too many requests response has a 4xx status code
+func (o *GetTopTalkersGraphTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get top talkers graph too many requests response has a 5xx status code
+func (o *GetTopTalkersGraphTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get top talkers graph too many requests response a status code equal to that given
+func (o *GetTopTalkersGraphTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get top talkers graph too many requests response
+func (o *GetTopTalkersGraphTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetTopTalkersGraphTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/topTalkersGraph][%d] getTopTalkersGraphTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{id}/topTalkersGraph][%d] getTopTalkersGraphTooManyRequests", 429)
+}
+
+func (o *GetTopTalkersGraphTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{id}/topTalkersGraph][%d] getTopTalkersGraphTooManyRequests", 429)
 }
 
 func (o *GetTopTalkersGraphTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetTopTalkersGraphDefault(code int) *GetTopTalkersGraphDefault {
 	}
 }
 
-/* GetTopTalkersGraphDefault describes a response with status code -1, with default header values.
+/*
+GetTopTalkersGraphDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetTopTalkersGraphDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get top talkers graph default response has a 2xx status code
+func (o *GetTopTalkersGraphDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get top talkers graph default response has a 3xx status code
+func (o *GetTopTalkersGraphDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get top talkers graph default response has a 4xx status code
+func (o *GetTopTalkersGraphDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get top talkers graph default response has a 5xx status code
+func (o *GetTopTalkersGraphDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get top talkers graph default response a status code equal to that given
+func (o *GetTopTalkersGraphDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get top talkers graph default response
 func (o *GetTopTalkersGraphDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetTopTalkersGraphDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/topTalkersGraph][%d] getTopTalkersGraph default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/topTalkersGraph][%d] getTopTalkersGraph default %s", o._statusCode, payload)
 }
+
+func (o *GetTopTalkersGraphDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/topTalkersGraph][%d] getTopTalkersGraph default %s", o._statusCode, payload)
+}
+
 func (o *GetTopTalkersGraphDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

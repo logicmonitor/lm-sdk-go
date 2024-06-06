@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewDeleteDeviceGroupByIDOK() *DeleteDeviceGroupByIDOK {
 	return &DeleteDeviceGroupByIDOK{}
 }
 
-/* DeleteDeviceGroupByIDOK describes a response with status code 200, with default header values.
+/*
+DeleteDeviceGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DeleteDeviceGroupByIDOK struct {
 	Payload interface{}
 }
 
-func (o *DeleteDeviceGroupByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /device/groups/{id}][%d] deleteDeviceGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this delete device group by Id o k response has a 2xx status code
+func (o *DeleteDeviceGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this delete device group by Id o k response has a 3xx status code
+func (o *DeleteDeviceGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete device group by Id o k response has a 4xx status code
+func (o *DeleteDeviceGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete device group by Id o k response has a 5xx status code
+func (o *DeleteDeviceGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete device group by Id o k response a status code equal to that given
+func (o *DeleteDeviceGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the delete device group by Id o k response
+func (o *DeleteDeviceGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *DeleteDeviceGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /device/groups/{id}][%d] deleteDeviceGroupByIdOK %s", 200, payload)
+}
+
+func (o *DeleteDeviceGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /device/groups/{id}][%d] deleteDeviceGroupByIdOK %s", 200, payload)
+}
+
 func (o *DeleteDeviceGroupByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewDeleteDeviceGroupByIDTooManyRequests() *DeleteDeviceGroupByIDTooManyRequ
 	return &DeleteDeviceGroupByIDTooManyRequests{}
 }
 
-/* DeleteDeviceGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteDeviceGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type DeleteDeviceGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this delete device group by Id too many requests response has a 2xx status code
+func (o *DeleteDeviceGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete device group by Id too many requests response has a 3xx status code
+func (o *DeleteDeviceGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete device group by Id too many requests response has a 4xx status code
+func (o *DeleteDeviceGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete device group by Id too many requests response has a 5xx status code
+func (o *DeleteDeviceGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete device group by Id too many requests response a status code equal to that given
+func (o *DeleteDeviceGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the delete device group by Id too many requests response
+func (o *DeleteDeviceGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DeleteDeviceGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /device/groups/{id}][%d] deleteDeviceGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /device/groups/{id}][%d] deleteDeviceGroupByIdTooManyRequests", 429)
+}
+
+func (o *DeleteDeviceGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /device/groups/{id}][%d] deleteDeviceGroupByIdTooManyRequests", 429)
 }
 
 func (o *DeleteDeviceGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewDeleteDeviceGroupByIDDefault(code int) *DeleteDeviceGroupByIDDefault {
 	}
 }
 
-/* DeleteDeviceGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+DeleteDeviceGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type DeleteDeviceGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete device group by Id default response has a 2xx status code
+func (o *DeleteDeviceGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this delete device group by Id default response has a 3xx status code
+func (o *DeleteDeviceGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this delete device group by Id default response has a 4xx status code
+func (o *DeleteDeviceGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this delete device group by Id default response has a 5xx status code
+func (o *DeleteDeviceGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this delete device group by Id default response a status code equal to that given
+func (o *DeleteDeviceGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the delete device group by Id default response
 func (o *DeleteDeviceGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DeleteDeviceGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[DELETE /device/groups/{id}][%d] deleteDeviceGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /device/groups/{id}][%d] deleteDeviceGroupById default %s", o._statusCode, payload)
 }
+
+func (o *DeleteDeviceGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /device/groups/{id}][%d] deleteDeviceGroupById default %s", o._statusCode, payload)
+}
+
 func (o *DeleteDeviceGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

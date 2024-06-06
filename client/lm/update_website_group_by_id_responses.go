@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewUpdateWebsiteGroupByIDOK() *UpdateWebsiteGroupByIDOK {
 	return &UpdateWebsiteGroupByIDOK{}
 }
 
-/* UpdateWebsiteGroupByIDOK describes a response with status code 200, with default header values.
+/*
+UpdateWebsiteGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type UpdateWebsiteGroupByIDOK struct {
 	Payload *models.WebsiteGroup
 }
 
-func (o *UpdateWebsiteGroupByIDOK) Error() string {
-	return fmt.Sprintf("[PUT /website/groups/{id}][%d] updateWebsiteGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this update website group by Id o k response has a 2xx status code
+func (o *UpdateWebsiteGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this update website group by Id o k response has a 3xx status code
+func (o *UpdateWebsiteGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update website group by Id o k response has a 4xx status code
+func (o *UpdateWebsiteGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update website group by Id o k response has a 5xx status code
+func (o *UpdateWebsiteGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update website group by Id o k response a status code equal to that given
+func (o *UpdateWebsiteGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the update website group by Id o k response
+func (o *UpdateWebsiteGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *UpdateWebsiteGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /website/groups/{id}][%d] updateWebsiteGroupByIdOK %s", 200, payload)
+}
+
+func (o *UpdateWebsiteGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /website/groups/{id}][%d] updateWebsiteGroupByIdOK %s", 200, payload)
+}
+
 func (o *UpdateWebsiteGroupByIDOK) GetPayload() *models.WebsiteGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewUpdateWebsiteGroupByIDTooManyRequests() *UpdateWebsiteGroupByIDTooManyRe
 	return &UpdateWebsiteGroupByIDTooManyRequests{}
 }
 
-/* UpdateWebsiteGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateWebsiteGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type UpdateWebsiteGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this update website group by Id too many requests response has a 2xx status code
+func (o *UpdateWebsiteGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update website group by Id too many requests response has a 3xx status code
+func (o *UpdateWebsiteGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update website group by Id too many requests response has a 4xx status code
+func (o *UpdateWebsiteGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update website group by Id too many requests response has a 5xx status code
+func (o *UpdateWebsiteGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update website group by Id too many requests response a status code equal to that given
+func (o *UpdateWebsiteGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the update website group by Id too many requests response
+func (o *UpdateWebsiteGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *UpdateWebsiteGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /website/groups/{id}][%d] updateWebsiteGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PUT /website/groups/{id}][%d] updateWebsiteGroupByIdTooManyRequests", 429)
+}
+
+func (o *UpdateWebsiteGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /website/groups/{id}][%d] updateWebsiteGroupByIdTooManyRequests", 429)
 }
 
 func (o *UpdateWebsiteGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewUpdateWebsiteGroupByIDDefault(code int) *UpdateWebsiteGroupByIDDefault {
 	}
 }
 
-/* UpdateWebsiteGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+UpdateWebsiteGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type UpdateWebsiteGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this update website group by Id default response has a 2xx status code
+func (o *UpdateWebsiteGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this update website group by Id default response has a 3xx status code
+func (o *UpdateWebsiteGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this update website group by Id default response has a 4xx status code
+func (o *UpdateWebsiteGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this update website group by Id default response has a 5xx status code
+func (o *UpdateWebsiteGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this update website group by Id default response a status code equal to that given
+func (o *UpdateWebsiteGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the update website group by Id default response
 func (o *UpdateWebsiteGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateWebsiteGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[PUT /website/groups/{id}][%d] updateWebsiteGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /website/groups/{id}][%d] updateWebsiteGroupById default %s", o._statusCode, payload)
 }
+
+func (o *UpdateWebsiteGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /website/groups/{id}][%d] updateWebsiteGroupById default %s", o._statusCode, payload)
+}
+
 func (o *UpdateWebsiteGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

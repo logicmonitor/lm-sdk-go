@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddDeviceGroupOK() *AddDeviceGroupOK {
 	return &AddDeviceGroupOK{}
 }
 
-/* AddDeviceGroupOK describes a response with status code 200, with default header values.
+/*
+AddDeviceGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddDeviceGroupOK struct {
 	Payload *models.DeviceGroup
 }
 
-func (o *AddDeviceGroupOK) Error() string {
-	return fmt.Sprintf("[POST /device/groups][%d] addDeviceGroupOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add device group o k response has a 2xx status code
+func (o *AddDeviceGroupOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add device group o k response has a 3xx status code
+func (o *AddDeviceGroupOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add device group o k response has a 4xx status code
+func (o *AddDeviceGroupOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add device group o k response has a 5xx status code
+func (o *AddDeviceGroupOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add device group o k response a status code equal to that given
+func (o *AddDeviceGroupOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add device group o k response
+func (o *AddDeviceGroupOK) Code() int {
+	return 200
+}
+
+func (o *AddDeviceGroupOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/groups][%d] addDeviceGroupOK %s", 200, payload)
+}
+
+func (o *AddDeviceGroupOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/groups][%d] addDeviceGroupOK %s", 200, payload)
+}
+
 func (o *AddDeviceGroupOK) GetPayload() *models.DeviceGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddDeviceGroupTooManyRequests() *AddDeviceGroupTooManyRequests {
 	return &AddDeviceGroupTooManyRequests{}
 }
 
-/* AddDeviceGroupTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddDeviceGroupTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddDeviceGroupTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add device group too many requests response has a 2xx status code
+func (o *AddDeviceGroupTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add device group too many requests response has a 3xx status code
+func (o *AddDeviceGroupTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add device group too many requests response has a 4xx status code
+func (o *AddDeviceGroupTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add device group too many requests response has a 5xx status code
+func (o *AddDeviceGroupTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add device group too many requests response a status code equal to that given
+func (o *AddDeviceGroupTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add device group too many requests response
+func (o *AddDeviceGroupTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddDeviceGroupTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /device/groups][%d] addDeviceGroupTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /device/groups][%d] addDeviceGroupTooManyRequests", 429)
+}
+
+func (o *AddDeviceGroupTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /device/groups][%d] addDeviceGroupTooManyRequests", 429)
 }
 
 func (o *AddDeviceGroupTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddDeviceGroupDefault(code int) *AddDeviceGroupDefault {
 	}
 }
 
-/* AddDeviceGroupDefault describes a response with status code -1, with default header values.
+/*
+AddDeviceGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddDeviceGroupDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add device group default response has a 2xx status code
+func (o *AddDeviceGroupDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add device group default response has a 3xx status code
+func (o *AddDeviceGroupDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add device group default response has a 4xx status code
+func (o *AddDeviceGroupDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add device group default response has a 5xx status code
+func (o *AddDeviceGroupDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add device group default response a status code equal to that given
+func (o *AddDeviceGroupDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add device group default response
 func (o *AddDeviceGroupDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddDeviceGroupDefault) Error() string {
-	return fmt.Sprintf("[POST /device/groups][%d] addDeviceGroup default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/groups][%d] addDeviceGroup default %s", o._statusCode, payload)
 }
+
+func (o *AddDeviceGroupDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/groups][%d] addDeviceGroup default %s", o._statusCode, payload)
+}
+
 func (o *AddDeviceGroupDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

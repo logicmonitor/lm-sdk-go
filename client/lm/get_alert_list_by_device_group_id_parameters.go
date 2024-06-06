@@ -53,10 +53,12 @@ func NewGetAlertListByDeviceGroupIDParamsWithHTTPClient(client *http.Client) *Ge
 	}
 }
 
-/* GetAlertListByDeviceGroupIDParams contains all the parameters to send to the API endpoint
-   for the get alert list by device group Id operation.
+/*
+GetAlertListByDeviceGroupIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get alert list by device group Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAlertListByDeviceGroupIDParams struct {
 

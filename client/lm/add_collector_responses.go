@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddCollectorOK() *AddCollectorOK {
 	return &AddCollectorOK{}
 }
 
-/* AddCollectorOK describes a response with status code 200, with default header values.
+/*
+AddCollectorOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddCollectorOK struct {
 	Payload *models.Collector
 }
 
-func (o *AddCollectorOK) Error() string {
-	return fmt.Sprintf("[POST /setting/collector/collectors][%d] addCollectorOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add collector o k response has a 2xx status code
+func (o *AddCollectorOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add collector o k response has a 3xx status code
+func (o *AddCollectorOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add collector o k response has a 4xx status code
+func (o *AddCollectorOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add collector o k response has a 5xx status code
+func (o *AddCollectorOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add collector o k response a status code equal to that given
+func (o *AddCollectorOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add collector o k response
+func (o *AddCollectorOK) Code() int {
+	return 200
+}
+
+func (o *AddCollectorOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/collector/collectors][%d] addCollectorOK %s", 200, payload)
+}
+
+func (o *AddCollectorOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/collector/collectors][%d] addCollectorOK %s", 200, payload)
+}
+
 func (o *AddCollectorOK) GetPayload() *models.Collector {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddCollectorTooManyRequests() *AddCollectorTooManyRequests {
 	return &AddCollectorTooManyRequests{}
 }
 
-/* AddCollectorTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddCollectorTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddCollectorTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add collector too many requests response has a 2xx status code
+func (o *AddCollectorTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add collector too many requests response has a 3xx status code
+func (o *AddCollectorTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add collector too many requests response has a 4xx status code
+func (o *AddCollectorTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add collector too many requests response has a 5xx status code
+func (o *AddCollectorTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add collector too many requests response a status code equal to that given
+func (o *AddCollectorTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add collector too many requests response
+func (o *AddCollectorTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddCollectorTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/collector/collectors][%d] addCollectorTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /setting/collector/collectors][%d] addCollectorTooManyRequests", 429)
+}
+
+func (o *AddCollectorTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /setting/collector/collectors][%d] addCollectorTooManyRequests", 429)
 }
 
 func (o *AddCollectorTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddCollectorDefault(code int) *AddCollectorDefault {
 	}
 }
 
-/* AddCollectorDefault describes a response with status code -1, with default header values.
+/*
+AddCollectorDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddCollectorDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add collector default response has a 2xx status code
+func (o *AddCollectorDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add collector default response has a 3xx status code
+func (o *AddCollectorDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add collector default response has a 4xx status code
+func (o *AddCollectorDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add collector default response has a 5xx status code
+func (o *AddCollectorDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add collector default response a status code equal to that given
+func (o *AddCollectorDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add collector default response
 func (o *AddCollectorDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddCollectorDefault) Error() string {
-	return fmt.Sprintf("[POST /setting/collector/collectors][%d] addCollector default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/collector/collectors][%d] addCollector default %s", o._statusCode, payload)
 }
+
+func (o *AddCollectorDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/collector/collectors][%d] addCollector default %s", o._statusCode, payload)
+}
+
 func (o *AddCollectorDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddNetscanOK() *AddNetscanOK {
 	return &AddNetscanOK{}
 }
 
-/* AddNetscanOK describes a response with status code 200, with default header values.
+/*
+AddNetscanOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddNetscanOK struct {
 	Payload models.Netscan
 }
 
-func (o *AddNetscanOK) Error() string {
-	return fmt.Sprintf("[POST /setting/netscans][%d] addNetscanOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add netscan o k response has a 2xx status code
+func (o *AddNetscanOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add netscan o k response has a 3xx status code
+func (o *AddNetscanOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add netscan o k response has a 4xx status code
+func (o *AddNetscanOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add netscan o k response has a 5xx status code
+func (o *AddNetscanOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add netscan o k response a status code equal to that given
+func (o *AddNetscanOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add netscan o k response
+func (o *AddNetscanOK) Code() int {
+	return 200
+}
+
+func (o *AddNetscanOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/netscans][%d] addNetscanOK %s", 200, payload)
+}
+
+func (o *AddNetscanOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/netscans][%d] addNetscanOK %s", 200, payload)
+}
+
 func (o *AddNetscanOK) GetPayload() models.Netscan {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddNetscanTooManyRequests() *AddNetscanTooManyRequests {
 	return &AddNetscanTooManyRequests{}
 }
 
-/* AddNetscanTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddNetscanTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddNetscanTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add netscan too many requests response has a 2xx status code
+func (o *AddNetscanTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add netscan too many requests response has a 3xx status code
+func (o *AddNetscanTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add netscan too many requests response has a 4xx status code
+func (o *AddNetscanTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add netscan too many requests response has a 5xx status code
+func (o *AddNetscanTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add netscan too many requests response a status code equal to that given
+func (o *AddNetscanTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add netscan too many requests response
+func (o *AddNetscanTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddNetscanTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/netscans][%d] addNetscanTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /setting/netscans][%d] addNetscanTooManyRequests", 429)
+}
+
+func (o *AddNetscanTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /setting/netscans][%d] addNetscanTooManyRequests", 429)
 }
 
 func (o *AddNetscanTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddNetscanDefault(code int) *AddNetscanDefault {
 	}
 }
 
-/* AddNetscanDefault describes a response with status code -1, with default header values.
+/*
+AddNetscanDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddNetscanDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add netscan default response has a 2xx status code
+func (o *AddNetscanDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add netscan default response has a 3xx status code
+func (o *AddNetscanDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add netscan default response has a 4xx status code
+func (o *AddNetscanDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add netscan default response has a 5xx status code
+func (o *AddNetscanDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add netscan default response a status code equal to that given
+func (o *AddNetscanDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add netscan default response
 func (o *AddNetscanDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddNetscanDefault) Error() string {
-	return fmt.Sprintf("[POST /setting/netscans][%d] addNetscan default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/netscans][%d] addNetscan default %s", o._statusCode, payload)
 }
+
+func (o *AddNetscanDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/netscans][%d] addNetscan default %s", o._statusCode, payload)
+}
+
 func (o *AddNetscanDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

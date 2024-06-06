@@ -65,6 +65,8 @@ func (m *EntityProperty) validateInheritList(formats strfmt.Registry) error {
 			if err := m.InheritList[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -110,9 +112,16 @@ func (m *EntityProperty) contextValidateInheritList(ctx context.Context, formats
 	for i := 0; i < len(m.InheritList); i++ {
 
 		if m.InheritList[i] != nil {
+
+			if swag.IsZero(m.InheritList[i]) { // not required
+				return nil
+			}
+
 			if err := m.InheritList[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

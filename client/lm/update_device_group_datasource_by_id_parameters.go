@@ -55,10 +55,12 @@ func NewUpdateDeviceGroupDatasourceByIDParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* UpdateDeviceGroupDatasourceByIDParams contains all the parameters to send to the API endpoint
-   for the update device group datasource by Id operation.
+/*
+UpdateDeviceGroupDatasourceByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update device group datasource by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateDeviceGroupDatasourceByIDParams struct {
 

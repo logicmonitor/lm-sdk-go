@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchWebsiteByIDOK() *PatchWebsiteByIDOK {
 	return &PatchWebsiteByIDOK{}
 }
 
-/* PatchWebsiteByIDOK describes a response with status code 200, with default header values.
+/*
+PatchWebsiteByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchWebsiteByIDOK struct {
 	Payload models.Website
 }
 
-func (o *PatchWebsiteByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /website/websites/{id}][%d] patchWebsiteByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch website by Id o k response has a 2xx status code
+func (o *PatchWebsiteByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch website by Id o k response has a 3xx status code
+func (o *PatchWebsiteByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch website by Id o k response has a 4xx status code
+func (o *PatchWebsiteByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch website by Id o k response has a 5xx status code
+func (o *PatchWebsiteByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch website by Id o k response a status code equal to that given
+func (o *PatchWebsiteByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch website by Id o k response
+func (o *PatchWebsiteByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchWebsiteByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /website/websites/{id}][%d] patchWebsiteByIdOK %s", 200, payload)
+}
+
+func (o *PatchWebsiteByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /website/websites/{id}][%d] patchWebsiteByIdOK %s", 200, payload)
+}
+
 func (o *PatchWebsiteByIDOK) GetPayload() models.Website {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchWebsiteByIDTooManyRequests() *PatchWebsiteByIDTooManyRequests {
 	return &PatchWebsiteByIDTooManyRequests{}
 }
 
-/* PatchWebsiteByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchWebsiteByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchWebsiteByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch website by Id too many requests response has a 2xx status code
+func (o *PatchWebsiteByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch website by Id too many requests response has a 3xx status code
+func (o *PatchWebsiteByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch website by Id too many requests response has a 4xx status code
+func (o *PatchWebsiteByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch website by Id too many requests response has a 5xx status code
+func (o *PatchWebsiteByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch website by Id too many requests response a status code equal to that given
+func (o *PatchWebsiteByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch website by Id too many requests response
+func (o *PatchWebsiteByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchWebsiteByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /website/websites/{id}][%d] patchWebsiteByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /website/websites/{id}][%d] patchWebsiteByIdTooManyRequests", 429)
+}
+
+func (o *PatchWebsiteByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /website/websites/{id}][%d] patchWebsiteByIdTooManyRequests", 429)
 }
 
 func (o *PatchWebsiteByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchWebsiteByIDDefault(code int) *PatchWebsiteByIDDefault {
 	}
 }
 
-/* PatchWebsiteByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchWebsiteByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchWebsiteByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch website by Id default response has a 2xx status code
+func (o *PatchWebsiteByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch website by Id default response has a 3xx status code
+func (o *PatchWebsiteByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch website by Id default response has a 4xx status code
+func (o *PatchWebsiteByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch website by Id default response has a 5xx status code
+func (o *PatchWebsiteByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch website by Id default response a status code equal to that given
+func (o *PatchWebsiteByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch website by Id default response
 func (o *PatchWebsiteByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchWebsiteByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /website/websites/{id}][%d] patchWebsiteById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /website/websites/{id}][%d] patchWebsiteById default %s", o._statusCode, payload)
 }
+
+func (o *PatchWebsiteByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /website/websites/{id}][%d] patchWebsiteById default %s", o._statusCode, payload)
+}
+
 func (o *PatchWebsiteByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

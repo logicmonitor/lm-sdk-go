@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchWidgetByIDOK() *PatchWidgetByIDOK {
 	return &PatchWidgetByIDOK{}
 }
 
-/* PatchWidgetByIDOK describes a response with status code 200, with default header values.
+/*
+PatchWidgetByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchWidgetByIDOK struct {
 	Payload models.Widget
 }
 
-func (o *PatchWidgetByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /dashboard/widgets/{id}][%d] patchWidgetByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch widget by Id o k response has a 2xx status code
+func (o *PatchWidgetByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch widget by Id o k response has a 3xx status code
+func (o *PatchWidgetByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch widget by Id o k response has a 4xx status code
+func (o *PatchWidgetByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch widget by Id o k response has a 5xx status code
+func (o *PatchWidgetByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch widget by Id o k response a status code equal to that given
+func (o *PatchWidgetByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch widget by Id o k response
+func (o *PatchWidgetByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchWidgetByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboard/widgets/{id}][%d] patchWidgetByIdOK %s", 200, payload)
+}
+
+func (o *PatchWidgetByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboard/widgets/{id}][%d] patchWidgetByIdOK %s", 200, payload)
+}
+
 func (o *PatchWidgetByIDOK) GetPayload() models.Widget {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchWidgetByIDTooManyRequests() *PatchWidgetByIDTooManyRequests {
 	return &PatchWidgetByIDTooManyRequests{}
 }
 
-/* PatchWidgetByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchWidgetByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchWidgetByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch widget by Id too many requests response has a 2xx status code
+func (o *PatchWidgetByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch widget by Id too many requests response has a 3xx status code
+func (o *PatchWidgetByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch widget by Id too many requests response has a 4xx status code
+func (o *PatchWidgetByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch widget by Id too many requests response has a 5xx status code
+func (o *PatchWidgetByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch widget by Id too many requests response a status code equal to that given
+func (o *PatchWidgetByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch widget by Id too many requests response
+func (o *PatchWidgetByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchWidgetByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /dashboard/widgets/{id}][%d] patchWidgetByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /dashboard/widgets/{id}][%d] patchWidgetByIdTooManyRequests", 429)
+}
+
+func (o *PatchWidgetByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /dashboard/widgets/{id}][%d] patchWidgetByIdTooManyRequests", 429)
 }
 
 func (o *PatchWidgetByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchWidgetByIDDefault(code int) *PatchWidgetByIDDefault {
 	}
 }
 
-/* PatchWidgetByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchWidgetByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchWidgetByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch widget by Id default response has a 2xx status code
+func (o *PatchWidgetByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch widget by Id default response has a 3xx status code
+func (o *PatchWidgetByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch widget by Id default response has a 4xx status code
+func (o *PatchWidgetByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch widget by Id default response has a 5xx status code
+func (o *PatchWidgetByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch widget by Id default response a status code equal to that given
+func (o *PatchWidgetByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch widget by Id default response
 func (o *PatchWidgetByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchWidgetByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /dashboard/widgets/{id}][%d] patchWidgetById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboard/widgets/{id}][%d] patchWidgetById default %s", o._statusCode, payload)
 }
+
+func (o *PatchWidgetByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /dashboard/widgets/{id}][%d] patchWidgetById default %s", o._statusCode, payload)
+}
+
 func (o *PatchWidgetByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

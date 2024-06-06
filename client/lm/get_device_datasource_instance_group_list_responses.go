@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetDeviceDatasourceInstanceGroupListOK() *GetDeviceDatasourceInstanceGro
 	return &GetDeviceDatasourceInstanceGroupListOK{}
 }
 
-/* GetDeviceDatasourceInstanceGroupListOK describes a response with status code 200, with default header values.
+/*
+GetDeviceDatasourceInstanceGroupListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeviceDatasourceInstanceGroupListOK struct {
 	Payload *models.DeviceDatasourceInstanceGroupPaginationResponse
 }
 
-func (o *GetDeviceDatasourceInstanceGroupListOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] getDeviceDatasourceInstanceGroupListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device datasource instance group list o k response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceGroupListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device datasource instance group list o k response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceGroupListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device datasource instance group list o k response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceGroupListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device datasource instance group list o k response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceGroupListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device datasource instance group list o k response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceGroupListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device datasource instance group list o k response
+func (o *GetDeviceDatasourceInstanceGroupListOK) Code() int {
+	return 200
+}
+
+func (o *GetDeviceDatasourceInstanceGroupListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] getDeviceDatasourceInstanceGroupListOK %s", 200, payload)
+}
+
+func (o *GetDeviceDatasourceInstanceGroupListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] getDeviceDatasourceInstanceGroupListOK %s", 200, payload)
+}
+
 func (o *GetDeviceDatasourceInstanceGroupListOK) GetPayload() *models.DeviceDatasourceInstanceGroupPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDeviceDatasourceInstanceGroupListTooManyRequests() *GetDeviceDatasour
 	return &GetDeviceDatasourceInstanceGroupListTooManyRequests{}
 }
 
-/* GetDeviceDatasourceInstanceGroupListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeviceDatasourceInstanceGroupListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDeviceDatasourceInstanceGroupListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device datasource instance group list too many requests response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceGroupListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device datasource instance group list too many requests response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceGroupListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device datasource instance group list too many requests response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceGroupListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device datasource instance group list too many requests response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceGroupListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device datasource instance group list too many requests response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceGroupListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device datasource instance group list too many requests response
+func (o *GetDeviceDatasourceInstanceGroupListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeviceDatasourceInstanceGroupListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] getDeviceDatasourceInstanceGroupListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] getDeviceDatasourceInstanceGroupListTooManyRequests", 429)
+}
+
+func (o *GetDeviceDatasourceInstanceGroupListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] getDeviceDatasourceInstanceGroupListTooManyRequests", 429)
 }
 
 func (o *GetDeviceDatasourceInstanceGroupListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDeviceDatasourceInstanceGroupListDefault(code int) *GetDeviceDatasour
 	}
 }
 
-/* GetDeviceDatasourceInstanceGroupListDefault describes a response with status code -1, with default header values.
+/*
+GetDeviceDatasourceInstanceGroupListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDeviceDatasourceInstanceGroupListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device datasource instance group list default response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceGroupListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device datasource instance group list default response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceGroupListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device datasource instance group list default response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceGroupListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device datasource instance group list default response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceGroupListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device datasource instance group list default response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceGroupListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device datasource instance group list default response
 func (o *GetDeviceDatasourceInstanceGroupListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeviceDatasourceInstanceGroupListDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] getDeviceDatasourceInstanceGroupList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] getDeviceDatasourceInstanceGroupList default %s", o._statusCode, payload)
 }
+
+func (o *GetDeviceDatasourceInstanceGroupListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] getDeviceDatasourceInstanceGroupList default %s", o._statusCode, payload)
+}
+
 func (o *GetDeviceDatasourceInstanceGroupListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

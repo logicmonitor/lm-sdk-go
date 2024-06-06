@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -103,7 +102,7 @@ func UnmarshalAuthenticationSlice(reader io.Reader, consumer runtime.Consumer) (
 // UnmarshalAuthentication unmarshals polymorphic Authentication
 func UnmarshalAuthentication(reader io.Reader, consumer runtime.Consumer) (Authentication, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}

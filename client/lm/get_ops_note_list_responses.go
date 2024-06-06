@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetOpsNoteListOK() *GetOpsNoteListOK {
 	return &GetOpsNoteListOK{}
 }
 
-/* GetOpsNoteListOK describes a response with status code 200, with default header values.
+/*
+GetOpsNoteListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetOpsNoteListOK struct {
 	Payload *models.OpsNotePaginationResponse
 }
 
-func (o *GetOpsNoteListOK) Error() string {
-	return fmt.Sprintf("[GET /setting/opsnotes][%d] getOpsNoteListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get ops note list o k response has a 2xx status code
+func (o *GetOpsNoteListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get ops note list o k response has a 3xx status code
+func (o *GetOpsNoteListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get ops note list o k response has a 4xx status code
+func (o *GetOpsNoteListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get ops note list o k response has a 5xx status code
+func (o *GetOpsNoteListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get ops note list o k response a status code equal to that given
+func (o *GetOpsNoteListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get ops note list o k response
+func (o *GetOpsNoteListOK) Code() int {
+	return 200
+}
+
+func (o *GetOpsNoteListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/opsnotes][%d] getOpsNoteListOK %s", 200, payload)
+}
+
+func (o *GetOpsNoteListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/opsnotes][%d] getOpsNoteListOK %s", 200, payload)
+}
+
 func (o *GetOpsNoteListOK) GetPayload() *models.OpsNotePaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetOpsNoteListTooManyRequests() *GetOpsNoteListTooManyRequests {
 	return &GetOpsNoteListTooManyRequests{}
 }
 
-/* GetOpsNoteListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetOpsNoteListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetOpsNoteListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get ops note list too many requests response has a 2xx status code
+func (o *GetOpsNoteListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get ops note list too many requests response has a 3xx status code
+func (o *GetOpsNoteListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get ops note list too many requests response has a 4xx status code
+func (o *GetOpsNoteListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get ops note list too many requests response has a 5xx status code
+func (o *GetOpsNoteListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get ops note list too many requests response a status code equal to that given
+func (o *GetOpsNoteListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get ops note list too many requests response
+func (o *GetOpsNoteListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetOpsNoteListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/opsnotes][%d] getOpsNoteListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/opsnotes][%d] getOpsNoteListTooManyRequests", 429)
+}
+
+func (o *GetOpsNoteListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/opsnotes][%d] getOpsNoteListTooManyRequests", 429)
 }
 
 func (o *GetOpsNoteListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetOpsNoteListDefault(code int) *GetOpsNoteListDefault {
 	}
 }
 
-/* GetOpsNoteListDefault describes a response with status code -1, with default header values.
+/*
+GetOpsNoteListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetOpsNoteListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get ops note list default response has a 2xx status code
+func (o *GetOpsNoteListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get ops note list default response has a 3xx status code
+func (o *GetOpsNoteListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get ops note list default response has a 4xx status code
+func (o *GetOpsNoteListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get ops note list default response has a 5xx status code
+func (o *GetOpsNoteListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get ops note list default response a status code equal to that given
+func (o *GetOpsNoteListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get ops note list default response
 func (o *GetOpsNoteListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetOpsNoteListDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/opsnotes][%d] getOpsNoteList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/opsnotes][%d] getOpsNoteList default %s", o._statusCode, payload)
 }
+
+func (o *GetOpsNoteListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/opsnotes][%d] getOpsNoteList default %s", o._statusCode, payload)
+}
+
 func (o *GetOpsNoteListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

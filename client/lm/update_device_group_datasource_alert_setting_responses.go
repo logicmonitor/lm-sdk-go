@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewUpdateDeviceGroupDatasourceAlertSettingOK() *UpdateDeviceGroupDatasource
 	return &UpdateDeviceGroupDatasourceAlertSettingOK{}
 }
 
-/* UpdateDeviceGroupDatasourceAlertSettingOK describes a response with status code 200, with default header values.
+/*
+UpdateDeviceGroupDatasourceAlertSettingOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type UpdateDeviceGroupDatasourceAlertSettingOK struct {
 	Payload *models.DeviceGroupDataSourceAlertConfig
 }
 
-func (o *UpdateDeviceGroupDatasourceAlertSettingOK) Error() string {
-	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] updateDeviceGroupDatasourceAlertSettingOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this update device group datasource alert setting o k response has a 2xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this update device group datasource alert setting o k response has a 3xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update device group datasource alert setting o k response has a 4xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update device group datasource alert setting o k response has a 5xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update device group datasource alert setting o k response a status code equal to that given
+func (o *UpdateDeviceGroupDatasourceAlertSettingOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the update device group datasource alert setting o k response
+func (o *UpdateDeviceGroupDatasourceAlertSettingOK) Code() int {
+	return 200
+}
+
+func (o *UpdateDeviceGroupDatasourceAlertSettingOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] updateDeviceGroupDatasourceAlertSettingOK %s", 200, payload)
+}
+
+func (o *UpdateDeviceGroupDatasourceAlertSettingOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] updateDeviceGroupDatasourceAlertSettingOK %s", 200, payload)
+}
+
 func (o *UpdateDeviceGroupDatasourceAlertSettingOK) GetPayload() *models.DeviceGroupDataSourceAlertConfig {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewUpdateDeviceGroupDatasourceAlertSettingTooManyRequests() *UpdateDeviceGr
 	return &UpdateDeviceGroupDatasourceAlertSettingTooManyRequests{}
 }
 
-/* UpdateDeviceGroupDatasourceAlertSettingTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateDeviceGroupDatasourceAlertSettingTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type UpdateDeviceGroupDatasourceAlertSettingTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this update device group datasource alert setting too many requests response has a 2xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update device group datasource alert setting too many requests response has a 3xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update device group datasource alert setting too many requests response has a 4xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update device group datasource alert setting too many requests response has a 5xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update device group datasource alert setting too many requests response a status code equal to that given
+func (o *UpdateDeviceGroupDatasourceAlertSettingTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the update device group datasource alert setting too many requests response
+func (o *UpdateDeviceGroupDatasourceAlertSettingTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *UpdateDeviceGroupDatasourceAlertSettingTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] updateDeviceGroupDatasourceAlertSettingTooManyRequests ", 429)
+	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] updateDeviceGroupDatasourceAlertSettingTooManyRequests", 429)
+}
+
+func (o *UpdateDeviceGroupDatasourceAlertSettingTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] updateDeviceGroupDatasourceAlertSettingTooManyRequests", 429)
 }
 
 func (o *UpdateDeviceGroupDatasourceAlertSettingTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewUpdateDeviceGroupDatasourceAlertSettingDefault(code int) *UpdateDeviceGr
 	}
 }
 
-/* UpdateDeviceGroupDatasourceAlertSettingDefault describes a response with status code -1, with default header values.
+/*
+UpdateDeviceGroupDatasourceAlertSettingDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type UpdateDeviceGroupDatasourceAlertSettingDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this update device group datasource alert setting default response has a 2xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this update device group datasource alert setting default response has a 3xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this update device group datasource alert setting default response has a 4xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this update device group datasource alert setting default response has a 5xx status code
+func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this update device group datasource alert setting default response a status code equal to that given
+func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the update device group datasource alert setting default response
 func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) Error() string {
-	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] updateDeviceGroupDatasourceAlertSetting default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] updateDeviceGroupDatasourceAlertSetting default %s", o._statusCode, payload)
 }
+
+func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/groups/{deviceGroupId}/datasources/{dsId}/alertsettings][%d] updateDeviceGroupDatasourceAlertSetting default %s", o._statusCode, payload)
+}
+
 func (o *UpdateDeviceGroupDatasourceAlertSettingDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

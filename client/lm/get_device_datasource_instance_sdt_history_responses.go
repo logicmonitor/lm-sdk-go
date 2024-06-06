@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetDeviceDatasourceInstanceSDTHistoryOK() *GetDeviceDatasourceInstanceSD
 	return &GetDeviceDatasourceInstanceSDTHistoryOK{}
 }
 
-/* GetDeviceDatasourceInstanceSDTHistoryOK describes a response with status code 200, with default header values.
+/*
+GetDeviceDatasourceInstanceSDTHistoryOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeviceDatasourceInstanceSDTHistoryOK struct {
 	Payload *models.DeviceGroupSDTHistoryPaginationResponse
 }
 
-func (o *GetDeviceDatasourceInstanceSDTHistoryOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts][%d] getDeviceDatasourceInstanceSdtHistoryOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device datasource instance Sdt history o k response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device datasource instance Sdt history o k response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device datasource instance Sdt history o k response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device datasource instance Sdt history o k response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device datasource instance Sdt history o k response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceSDTHistoryOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device datasource instance Sdt history o k response
+func (o *GetDeviceDatasourceInstanceSDTHistoryOK) Code() int {
+	return 200
+}
+
+func (o *GetDeviceDatasourceInstanceSDTHistoryOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts][%d] getDeviceDatasourceInstanceSdtHistoryOK %s", 200, payload)
+}
+
+func (o *GetDeviceDatasourceInstanceSDTHistoryOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts][%d] getDeviceDatasourceInstanceSdtHistoryOK %s", 200, payload)
+}
+
 func (o *GetDeviceDatasourceInstanceSDTHistoryOK) GetPayload() *models.DeviceGroupSDTHistoryPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDeviceDatasourceInstanceSDTHistoryTooManyRequests() *GetDeviceDatasou
 	return &GetDeviceDatasourceInstanceSDTHistoryTooManyRequests{}
 }
 
-/* GetDeviceDatasourceInstanceSDTHistoryTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeviceDatasourceInstanceSDTHistoryTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDeviceDatasourceInstanceSDTHistoryTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device datasource instance Sdt history too many requests response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device datasource instance Sdt history too many requests response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device datasource instance Sdt history too many requests response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device datasource instance Sdt history too many requests response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device datasource instance Sdt history too many requests response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceSDTHistoryTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device datasource instance Sdt history too many requests response
+func (o *GetDeviceDatasourceInstanceSDTHistoryTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeviceDatasourceInstanceSDTHistoryTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts][%d] getDeviceDatasourceInstanceSdtHistoryTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts][%d] getDeviceDatasourceInstanceSdtHistoryTooManyRequests", 429)
+}
+
+func (o *GetDeviceDatasourceInstanceSDTHistoryTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts][%d] getDeviceDatasourceInstanceSdtHistoryTooManyRequests", 429)
 }
 
 func (o *GetDeviceDatasourceInstanceSDTHistoryTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDeviceDatasourceInstanceSDTHistoryDefault(code int) *GetDeviceDatasou
 	}
 }
 
-/* GetDeviceDatasourceInstanceSDTHistoryDefault describes a response with status code -1, with default header values.
+/*
+GetDeviceDatasourceInstanceSDTHistoryDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDeviceDatasourceInstanceSDTHistoryDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device datasource instance SDT history default response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device datasource instance SDT history default response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device datasource instance SDT history default response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device datasource instance SDT history default response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device datasource instance SDT history default response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device datasource instance SDT history default response
 func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts][%d] getDeviceDatasourceInstanceSDTHistory default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts][%d] getDeviceDatasourceInstanceSDTHistory default %s", o._statusCode, payload)
 }
+
+func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{id}/historysdts][%d] getDeviceDatasourceInstanceSDTHistory default %s", o._statusCode, payload)
+}
+
 func (o *GetDeviceDatasourceInstanceSDTHistoryDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

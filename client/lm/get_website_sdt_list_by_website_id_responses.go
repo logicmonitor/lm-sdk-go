@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetWebsiteSDTListByWebsiteIDOK() *GetWebsiteSDTListByWebsiteIDOK {
 	return &GetWebsiteSDTListByWebsiteIDOK{}
 }
 
-/* GetWebsiteSDTListByWebsiteIDOK describes a response with status code 200, with default header values.
+/*
+GetWebsiteSDTListByWebsiteIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetWebsiteSDTListByWebsiteIDOK struct {
 	Payload *models.SDTPaginationResponse
 }
 
-func (o *GetWebsiteSDTListByWebsiteIDOK) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}/sdts][%d] getWebsiteSdtListByWebsiteIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get website Sdt list by website Id o k response has a 2xx status code
+func (o *GetWebsiteSDTListByWebsiteIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get website Sdt list by website Id o k response has a 3xx status code
+func (o *GetWebsiteSDTListByWebsiteIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website Sdt list by website Id o k response has a 4xx status code
+func (o *GetWebsiteSDTListByWebsiteIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get website Sdt list by website Id o k response has a 5xx status code
+func (o *GetWebsiteSDTListByWebsiteIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website Sdt list by website Id o k response a status code equal to that given
+func (o *GetWebsiteSDTListByWebsiteIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get website Sdt list by website Id o k response
+func (o *GetWebsiteSDTListByWebsiteIDOK) Code() int {
+	return 200
+}
+
+func (o *GetWebsiteSDTListByWebsiteIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/sdts][%d] getWebsiteSdtListByWebsiteIdOK %s", 200, payload)
+}
+
+func (o *GetWebsiteSDTListByWebsiteIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/sdts][%d] getWebsiteSdtListByWebsiteIdOK %s", 200, payload)
+}
+
 func (o *GetWebsiteSDTListByWebsiteIDOK) GetPayload() *models.SDTPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetWebsiteSDTListByWebsiteIDTooManyRequests() *GetWebsiteSDTListByWebsit
 	return &GetWebsiteSDTListByWebsiteIDTooManyRequests{}
 }
 
-/* GetWebsiteSDTListByWebsiteIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetWebsiteSDTListByWebsiteIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetWebsiteSDTListByWebsiteIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get website Sdt list by website Id too many requests response has a 2xx status code
+func (o *GetWebsiteSDTListByWebsiteIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get website Sdt list by website Id too many requests response has a 3xx status code
+func (o *GetWebsiteSDTListByWebsiteIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website Sdt list by website Id too many requests response has a 4xx status code
+func (o *GetWebsiteSDTListByWebsiteIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get website Sdt list by website Id too many requests response has a 5xx status code
+func (o *GetWebsiteSDTListByWebsiteIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website Sdt list by website Id too many requests response a status code equal to that given
+func (o *GetWebsiteSDTListByWebsiteIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get website Sdt list by website Id too many requests response
+func (o *GetWebsiteSDTListByWebsiteIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetWebsiteSDTListByWebsiteIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}/sdts][%d] getWebsiteSdtListByWebsiteIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /website/websites/{id}/sdts][%d] getWebsiteSdtListByWebsiteIdTooManyRequests", 429)
+}
+
+func (o *GetWebsiteSDTListByWebsiteIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /website/websites/{id}/sdts][%d] getWebsiteSdtListByWebsiteIdTooManyRequests", 429)
 }
 
 func (o *GetWebsiteSDTListByWebsiteIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetWebsiteSDTListByWebsiteIDDefault(code int) *GetWebsiteSDTListByWebsit
 	}
 }
 
-/* GetWebsiteSDTListByWebsiteIDDefault describes a response with status code -1, with default header values.
+/*
+GetWebsiteSDTListByWebsiteIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetWebsiteSDTListByWebsiteIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get website SDT list by website Id default response has a 2xx status code
+func (o *GetWebsiteSDTListByWebsiteIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get website SDT list by website Id default response has a 3xx status code
+func (o *GetWebsiteSDTListByWebsiteIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get website SDT list by website Id default response has a 4xx status code
+func (o *GetWebsiteSDTListByWebsiteIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get website SDT list by website Id default response has a 5xx status code
+func (o *GetWebsiteSDTListByWebsiteIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get website SDT list by website Id default response a status code equal to that given
+func (o *GetWebsiteSDTListByWebsiteIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get website SDT list by website Id default response
 func (o *GetWebsiteSDTListByWebsiteIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetWebsiteSDTListByWebsiteIDDefault) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}/sdts][%d] getWebsiteSDTListByWebsiteId default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/sdts][%d] getWebsiteSDTListByWebsiteId default %s", o._statusCode, payload)
 }
+
+func (o *GetWebsiteSDTListByWebsiteIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/sdts][%d] getWebsiteSDTListByWebsiteId default %s", o._statusCode, payload)
+}
+
 func (o *GetWebsiteSDTListByWebsiteIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

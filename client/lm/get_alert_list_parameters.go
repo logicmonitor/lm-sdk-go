@@ -53,10 +53,12 @@ func NewGetAlertListParamsWithHTTPClient(client *http.Client) *GetAlertListParam
 	}
 }
 
-/* GetAlertListParams contains all the parameters to send to the API endpoint
-   for the get alert list operation.
+/*
+GetAlertListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get alert list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAlertListParams struct {
 
@@ -64,9 +66,6 @@ type GetAlertListParams struct {
 	//
 	// Default: "Logicmonitor/GO-SDK"
 	UserAgent *string
-
-	// CustomColumns.
-	CustomColumns *string
 
 	// Fields.
 	Fields *string
@@ -166,17 +165,6 @@ func (o *GetAlertListParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
 }
 
-// WithCustomColumns adds the customColumns to the get alert list params
-func (o *GetAlertListParams) WithCustomColumns(customColumns *string) *GetAlertListParams {
-	o.SetCustomColumns(customColumns)
-	return o
-}
-
-// SetCustomColumns adds the customColumns to the get alert list params
-func (o *GetAlertListParams) SetCustomColumns(customColumns *string) {
-	o.CustomColumns = customColumns
-}
-
 // WithFields adds the fields to the get alert list params
 func (o *GetAlertListParams) WithFields(fields *string) *GetAlertListParams {
 	o.SetFields(fields)
@@ -234,23 +222,6 @@ func (o *GetAlertListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 		// header param User-Agent
 		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
 			return err
-		}
-	}
-
-	if o.CustomColumns != nil {
-
-		// query param customColumns
-		var qrCustomColumns string
-
-		if o.CustomColumns != nil {
-			qrCustomColumns = *o.CustomColumns
-		}
-		qCustomColumns := qrCustomColumns
-		if qCustomColumns != "" {
-
-			if err := r.SetQueryParam("customColumns", qCustomColumns); err != nil {
-				return err
-			}
 		}
 	}
 

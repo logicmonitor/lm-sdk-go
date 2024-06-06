@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetAuditLogListOK() *GetAuditLogListOK {
 	return &GetAuditLogListOK{}
 }
 
-/* GetAuditLogListOK describes a response with status code 200, with default header values.
+/*
+GetAuditLogListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAuditLogListOK struct {
 	Payload *models.AccessLogPaginationResponse
 }
 
-func (o *GetAuditLogListOK) Error() string {
-	return fmt.Sprintf("[GET /setting/accesslogs][%d] getAuditLogListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get audit log list o k response has a 2xx status code
+func (o *GetAuditLogListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get audit log list o k response has a 3xx status code
+func (o *GetAuditLogListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get audit log list o k response has a 4xx status code
+func (o *GetAuditLogListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get audit log list o k response has a 5xx status code
+func (o *GetAuditLogListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get audit log list o k response a status code equal to that given
+func (o *GetAuditLogListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get audit log list o k response
+func (o *GetAuditLogListOK) Code() int {
+	return 200
+}
+
+func (o *GetAuditLogListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accesslogs][%d] getAuditLogListOK %s", 200, payload)
+}
+
+func (o *GetAuditLogListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accesslogs][%d] getAuditLogListOK %s", 200, payload)
+}
+
 func (o *GetAuditLogListOK) GetPayload() *models.AccessLogPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetAuditLogListTooManyRequests() *GetAuditLogListTooManyRequests {
 	return &GetAuditLogListTooManyRequests{}
 }
 
-/* GetAuditLogListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAuditLogListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetAuditLogListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get audit log list too many requests response has a 2xx status code
+func (o *GetAuditLogListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get audit log list too many requests response has a 3xx status code
+func (o *GetAuditLogListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get audit log list too many requests response has a 4xx status code
+func (o *GetAuditLogListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get audit log list too many requests response has a 5xx status code
+func (o *GetAuditLogListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get audit log list too many requests response a status code equal to that given
+func (o *GetAuditLogListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get audit log list too many requests response
+func (o *GetAuditLogListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAuditLogListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/accesslogs][%d] getAuditLogListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/accesslogs][%d] getAuditLogListTooManyRequests", 429)
+}
+
+func (o *GetAuditLogListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/accesslogs][%d] getAuditLogListTooManyRequests", 429)
 }
 
 func (o *GetAuditLogListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetAuditLogListDefault(code int) *GetAuditLogListDefault {
 	}
 }
 
-/* GetAuditLogListDefault describes a response with status code -1, with default header values.
+/*
+GetAuditLogListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetAuditLogListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get audit log list default response has a 2xx status code
+func (o *GetAuditLogListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get audit log list default response has a 3xx status code
+func (o *GetAuditLogListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get audit log list default response has a 4xx status code
+func (o *GetAuditLogListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get audit log list default response has a 5xx status code
+func (o *GetAuditLogListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get audit log list default response a status code equal to that given
+func (o *GetAuditLogListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get audit log list default response
 func (o *GetAuditLogListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAuditLogListDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/accesslogs][%d] getAuditLogList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accesslogs][%d] getAuditLogList default %s", o._statusCode, payload)
 }
+
+func (o *GetAuditLogListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accesslogs][%d] getAuditLogList default %s", o._statusCode, payload)
+}
+
 func (o *GetAuditLogListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

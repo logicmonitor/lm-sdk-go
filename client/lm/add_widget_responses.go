@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddWidgetOK() *AddWidgetOK {
 	return &AddWidgetOK{}
 }
 
-/* AddWidgetOK describes a response with status code 200, with default header values.
+/*
+AddWidgetOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddWidgetOK struct {
 	Payload models.Widget
 }
 
-func (o *AddWidgetOK) Error() string {
-	return fmt.Sprintf("[POST /dashboard/widgets][%d] addWidgetOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add widget o k response has a 2xx status code
+func (o *AddWidgetOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add widget o k response has a 3xx status code
+func (o *AddWidgetOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add widget o k response has a 4xx status code
+func (o *AddWidgetOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add widget o k response has a 5xx status code
+func (o *AddWidgetOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add widget o k response a status code equal to that given
+func (o *AddWidgetOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add widget o k response
+func (o *AddWidgetOK) Code() int {
+	return 200
+}
+
+func (o *AddWidgetOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/widgets][%d] addWidgetOK %s", 200, payload)
+}
+
+func (o *AddWidgetOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/widgets][%d] addWidgetOK %s", 200, payload)
+}
+
 func (o *AddWidgetOK) GetPayload() models.Widget {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddWidgetTooManyRequests() *AddWidgetTooManyRequests {
 	return &AddWidgetTooManyRequests{}
 }
 
-/* AddWidgetTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddWidgetTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddWidgetTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add widget too many requests response has a 2xx status code
+func (o *AddWidgetTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add widget too many requests response has a 3xx status code
+func (o *AddWidgetTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add widget too many requests response has a 4xx status code
+func (o *AddWidgetTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add widget too many requests response has a 5xx status code
+func (o *AddWidgetTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add widget too many requests response a status code equal to that given
+func (o *AddWidgetTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add widget too many requests response
+func (o *AddWidgetTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddWidgetTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /dashboard/widgets][%d] addWidgetTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /dashboard/widgets][%d] addWidgetTooManyRequests", 429)
+}
+
+func (o *AddWidgetTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /dashboard/widgets][%d] addWidgetTooManyRequests", 429)
 }
 
 func (o *AddWidgetTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddWidgetDefault(code int) *AddWidgetDefault {
 	}
 }
 
-/* AddWidgetDefault describes a response with status code -1, with default header values.
+/*
+AddWidgetDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddWidgetDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add widget default response has a 2xx status code
+func (o *AddWidgetDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add widget default response has a 3xx status code
+func (o *AddWidgetDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add widget default response has a 4xx status code
+func (o *AddWidgetDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add widget default response has a 5xx status code
+func (o *AddWidgetDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add widget default response a status code equal to that given
+func (o *AddWidgetDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add widget default response
 func (o *AddWidgetDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddWidgetDefault) Error() string {
-	return fmt.Sprintf("[POST /dashboard/widgets][%d] addWidget default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/widgets][%d] addWidget default %s", o._statusCode, payload)
 }
+
+func (o *AddWidgetDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/widgets][%d] addWidget default %s", o._statusCode, payload)
+}
+
 func (o *AddWidgetDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -53,10 +53,12 @@ func NewGetImmediateDeviceListByDeviceGroupIDParamsWithHTTPClient(client *http.C
 	}
 }
 
-/* GetImmediateDeviceListByDeviceGroupIDParams contains all the parameters to send to the API endpoint
-   for the get immediate device list by device group Id operation.
+/*
+GetImmediateDeviceListByDeviceGroupIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get immediate device list by device group Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetImmediateDeviceListByDeviceGroupIDParams struct {
 

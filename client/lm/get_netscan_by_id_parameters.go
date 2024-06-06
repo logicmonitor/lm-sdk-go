@@ -53,10 +53,12 @@ func NewGetNetscanByIDParamsWithHTTPClient(client *http.Client) *GetNetscanByIDP
 	}
 }
 
-/* GetNetscanByIDParams contains all the parameters to send to the API endpoint
-   for the get netscan by Id operation.
+/*
+GetNetscanByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get netscan by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetNetscanByIDParams struct {
 

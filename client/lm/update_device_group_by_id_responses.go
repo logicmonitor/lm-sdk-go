@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewUpdateDeviceGroupByIDOK() *UpdateDeviceGroupByIDOK {
 	return &UpdateDeviceGroupByIDOK{}
 }
 
-/* UpdateDeviceGroupByIDOK describes a response with status code 200, with default header values.
+/*
+UpdateDeviceGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type UpdateDeviceGroupByIDOK struct {
 	Payload *models.DeviceGroup
 }
 
-func (o *UpdateDeviceGroupByIDOK) Error() string {
-	return fmt.Sprintf("[PUT /device/groups/{id}][%d] updateDeviceGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this update device group by Id o k response has a 2xx status code
+func (o *UpdateDeviceGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this update device group by Id o k response has a 3xx status code
+func (o *UpdateDeviceGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update device group by Id o k response has a 4xx status code
+func (o *UpdateDeviceGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update device group by Id o k response has a 5xx status code
+func (o *UpdateDeviceGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update device group by Id o k response a status code equal to that given
+func (o *UpdateDeviceGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the update device group by Id o k response
+func (o *UpdateDeviceGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *UpdateDeviceGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/groups/{id}][%d] updateDeviceGroupByIdOK %s", 200, payload)
+}
+
+func (o *UpdateDeviceGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/groups/{id}][%d] updateDeviceGroupByIdOK %s", 200, payload)
+}
+
 func (o *UpdateDeviceGroupByIDOK) GetPayload() *models.DeviceGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewUpdateDeviceGroupByIDTooManyRequests() *UpdateDeviceGroupByIDTooManyRequ
 	return &UpdateDeviceGroupByIDTooManyRequests{}
 }
 
-/* UpdateDeviceGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateDeviceGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type UpdateDeviceGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this update device group by Id too many requests response has a 2xx status code
+func (o *UpdateDeviceGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update device group by Id too many requests response has a 3xx status code
+func (o *UpdateDeviceGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update device group by Id too many requests response has a 4xx status code
+func (o *UpdateDeviceGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update device group by Id too many requests response has a 5xx status code
+func (o *UpdateDeviceGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update device group by Id too many requests response a status code equal to that given
+func (o *UpdateDeviceGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the update device group by Id too many requests response
+func (o *UpdateDeviceGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *UpdateDeviceGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /device/groups/{id}][%d] updateDeviceGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PUT /device/groups/{id}][%d] updateDeviceGroupByIdTooManyRequests", 429)
+}
+
+func (o *UpdateDeviceGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /device/groups/{id}][%d] updateDeviceGroupByIdTooManyRequests", 429)
 }
 
 func (o *UpdateDeviceGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewUpdateDeviceGroupByIDDefault(code int) *UpdateDeviceGroupByIDDefault {
 	}
 }
 
-/* UpdateDeviceGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+UpdateDeviceGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type UpdateDeviceGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this update device group by Id default response has a 2xx status code
+func (o *UpdateDeviceGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this update device group by Id default response has a 3xx status code
+func (o *UpdateDeviceGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this update device group by Id default response has a 4xx status code
+func (o *UpdateDeviceGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this update device group by Id default response has a 5xx status code
+func (o *UpdateDeviceGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this update device group by Id default response a status code equal to that given
+func (o *UpdateDeviceGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the update device group by Id default response
 func (o *UpdateDeviceGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateDeviceGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[PUT /device/groups/{id}][%d] updateDeviceGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/groups/{id}][%d] updateDeviceGroupById default %s", o._statusCode, payload)
 }
+
+func (o *UpdateDeviceGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /device/groups/{id}][%d] updateDeviceGroupById default %s", o._statusCode, payload)
+}
+
 func (o *UpdateDeviceGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

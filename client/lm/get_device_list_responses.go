@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetDeviceListOK() *GetDeviceListOK {
 	return &GetDeviceListOK{}
 }
 
-/* GetDeviceListOK describes a response with status code 200, with default header values.
+/*
+GetDeviceListOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeviceListOK struct {
 	Payload *models.DevicePaginationResponse
 }
 
-func (o *GetDeviceListOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices][%d] getDeviceListOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device list o k response has a 2xx status code
+func (o *GetDeviceListOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device list o k response has a 3xx status code
+func (o *GetDeviceListOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device list o k response has a 4xx status code
+func (o *GetDeviceListOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device list o k response has a 5xx status code
+func (o *GetDeviceListOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device list o k response a status code equal to that given
+func (o *GetDeviceListOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device list o k response
+func (o *GetDeviceListOK) Code() int {
+	return 200
+}
+
+func (o *GetDeviceListOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices][%d] getDeviceListOK %s", 200, payload)
+}
+
+func (o *GetDeviceListOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices][%d] getDeviceListOK %s", 200, payload)
+}
+
 func (o *GetDeviceListOK) GetPayload() *models.DevicePaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDeviceListTooManyRequests() *GetDeviceListTooManyRequests {
 	return &GetDeviceListTooManyRequests{}
 }
 
-/* GetDeviceListTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeviceListTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDeviceListTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device list too many requests response has a 2xx status code
+func (o *GetDeviceListTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device list too many requests response has a 3xx status code
+func (o *GetDeviceListTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device list too many requests response has a 4xx status code
+func (o *GetDeviceListTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device list too many requests response has a 5xx status code
+func (o *GetDeviceListTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device list too many requests response a status code equal to that given
+func (o *GetDeviceListTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device list too many requests response
+func (o *GetDeviceListTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeviceListTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices][%d] getDeviceListTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices][%d] getDeviceListTooManyRequests", 429)
+}
+
+func (o *GetDeviceListTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices][%d] getDeviceListTooManyRequests", 429)
 }
 
 func (o *GetDeviceListTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDeviceListDefault(code int) *GetDeviceListDefault {
 	}
 }
 
-/* GetDeviceListDefault describes a response with status code -1, with default header values.
+/*
+GetDeviceListDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDeviceListDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device list default response has a 2xx status code
+func (o *GetDeviceListDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device list default response has a 3xx status code
+func (o *GetDeviceListDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device list default response has a 4xx status code
+func (o *GetDeviceListDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device list default response has a 5xx status code
+func (o *GetDeviceListDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device list default response a status code equal to that given
+func (o *GetDeviceListDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device list default response
 func (o *GetDeviceListDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeviceListDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices][%d] getDeviceList default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices][%d] getDeviceList default %s", o._statusCode, payload)
 }
+
+func (o *GetDeviceListDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices][%d] getDeviceList default %s", o._statusCode, payload)
+}
+
 func (o *GetDeviceListDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

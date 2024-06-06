@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewUpdateAppliesToFunctionOK() *UpdateAppliesToFunctionOK {
 	return &UpdateAppliesToFunctionOK{}
 }
 
-/* UpdateAppliesToFunctionOK describes a response with status code 200, with default header values.
+/*
+UpdateAppliesToFunctionOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type UpdateAppliesToFunctionOK struct {
 	Payload *models.AppliesToFunction
 }
 
-func (o *UpdateAppliesToFunctionOK) Error() string {
-	return fmt.Sprintf("[PUT /setting/functions/{id}][%d] updateAppliesToFunctionOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this update applies to function o k response has a 2xx status code
+func (o *UpdateAppliesToFunctionOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this update applies to function o k response has a 3xx status code
+func (o *UpdateAppliesToFunctionOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update applies to function o k response has a 4xx status code
+func (o *UpdateAppliesToFunctionOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update applies to function o k response has a 5xx status code
+func (o *UpdateAppliesToFunctionOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update applies to function o k response a status code equal to that given
+func (o *UpdateAppliesToFunctionOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the update applies to function o k response
+func (o *UpdateAppliesToFunctionOK) Code() int {
+	return 200
+}
+
+func (o *UpdateAppliesToFunctionOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/functions/{id}][%d] updateAppliesToFunctionOK %s", 200, payload)
+}
+
+func (o *UpdateAppliesToFunctionOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/functions/{id}][%d] updateAppliesToFunctionOK %s", 200, payload)
+}
+
 func (o *UpdateAppliesToFunctionOK) GetPayload() *models.AppliesToFunction {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewUpdateAppliesToFunctionTooManyRequests() *UpdateAppliesToFunctionTooMany
 	return &UpdateAppliesToFunctionTooManyRequests{}
 }
 
-/* UpdateAppliesToFunctionTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateAppliesToFunctionTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type UpdateAppliesToFunctionTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this update applies to function too many requests response has a 2xx status code
+func (o *UpdateAppliesToFunctionTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update applies to function too many requests response has a 3xx status code
+func (o *UpdateAppliesToFunctionTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update applies to function too many requests response has a 4xx status code
+func (o *UpdateAppliesToFunctionTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update applies to function too many requests response has a 5xx status code
+func (o *UpdateAppliesToFunctionTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update applies to function too many requests response a status code equal to that given
+func (o *UpdateAppliesToFunctionTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the update applies to function too many requests response
+func (o *UpdateAppliesToFunctionTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *UpdateAppliesToFunctionTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /setting/functions/{id}][%d] updateAppliesToFunctionTooManyRequests ", 429)
+	return fmt.Sprintf("[PUT /setting/functions/{id}][%d] updateAppliesToFunctionTooManyRequests", 429)
+}
+
+func (o *UpdateAppliesToFunctionTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /setting/functions/{id}][%d] updateAppliesToFunctionTooManyRequests", 429)
 }
 
 func (o *UpdateAppliesToFunctionTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewUpdateAppliesToFunctionDefault(code int) *UpdateAppliesToFunctionDefault
 	}
 }
 
-/* UpdateAppliesToFunctionDefault describes a response with status code -1, with default header values.
+/*
+UpdateAppliesToFunctionDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type UpdateAppliesToFunctionDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this update applies to function default response has a 2xx status code
+func (o *UpdateAppliesToFunctionDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this update applies to function default response has a 3xx status code
+func (o *UpdateAppliesToFunctionDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this update applies to function default response has a 4xx status code
+func (o *UpdateAppliesToFunctionDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this update applies to function default response has a 5xx status code
+func (o *UpdateAppliesToFunctionDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this update applies to function default response a status code equal to that given
+func (o *UpdateAppliesToFunctionDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the update applies to function default response
 func (o *UpdateAppliesToFunctionDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateAppliesToFunctionDefault) Error() string {
-	return fmt.Sprintf("[PUT /setting/functions/{id}][%d] updateAppliesToFunction default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/functions/{id}][%d] updateAppliesToFunction default %s", o._statusCode, payload)
 }
+
+func (o *UpdateAppliesToFunctionDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/functions/{id}][%d] updateAppliesToFunction default %s", o._statusCode, payload)
+}
+
 func (o *UpdateAppliesToFunctionDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

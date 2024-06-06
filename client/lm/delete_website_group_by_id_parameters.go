@@ -53,10 +53,12 @@ func NewDeleteWebsiteGroupByIDParamsWithHTTPClient(client *http.Client) *DeleteW
 	}
 }
 
-/* DeleteWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
-   for the delete website group by Id operation.
+/*
+DeleteWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete website group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteWebsiteGroupByIDParams struct {
 

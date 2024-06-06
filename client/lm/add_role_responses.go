@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddRoleOK() *AddRoleOK {
 	return &AddRoleOK{}
 }
 
-/* AddRoleOK describes a response with status code 200, with default header values.
+/*
+AddRoleOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddRoleOK struct {
 	Payload *models.Role
 }
 
-func (o *AddRoleOK) Error() string {
-	return fmt.Sprintf("[POST /setting/roles][%d] addRoleOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add role o k response has a 2xx status code
+func (o *AddRoleOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add role o k response has a 3xx status code
+func (o *AddRoleOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add role o k response has a 4xx status code
+func (o *AddRoleOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add role o k response has a 5xx status code
+func (o *AddRoleOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add role o k response a status code equal to that given
+func (o *AddRoleOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add role o k response
+func (o *AddRoleOK) Code() int {
+	return 200
+}
+
+func (o *AddRoleOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/roles][%d] addRoleOK %s", 200, payload)
+}
+
+func (o *AddRoleOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/roles][%d] addRoleOK %s", 200, payload)
+}
+
 func (o *AddRoleOK) GetPayload() *models.Role {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddRoleTooManyRequests() *AddRoleTooManyRequests {
 	return &AddRoleTooManyRequests{}
 }
 
-/* AddRoleTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddRoleTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddRoleTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add role too many requests response has a 2xx status code
+func (o *AddRoleTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add role too many requests response has a 3xx status code
+func (o *AddRoleTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add role too many requests response has a 4xx status code
+func (o *AddRoleTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add role too many requests response has a 5xx status code
+func (o *AddRoleTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add role too many requests response a status code equal to that given
+func (o *AddRoleTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add role too many requests response
+func (o *AddRoleTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddRoleTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/roles][%d] addRoleTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /setting/roles][%d] addRoleTooManyRequests", 429)
+}
+
+func (o *AddRoleTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /setting/roles][%d] addRoleTooManyRequests", 429)
 }
 
 func (o *AddRoleTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddRoleDefault(code int) *AddRoleDefault {
 	}
 }
 
-/* AddRoleDefault describes a response with status code -1, with default header values.
+/*
+AddRoleDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddRoleDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add role default response has a 2xx status code
+func (o *AddRoleDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add role default response has a 3xx status code
+func (o *AddRoleDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add role default response has a 4xx status code
+func (o *AddRoleDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add role default response has a 5xx status code
+func (o *AddRoleDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add role default response a status code equal to that given
+func (o *AddRoleDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add role default response
 func (o *AddRoleDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddRoleDefault) Error() string {
-	return fmt.Sprintf("[POST /setting/roles][%d] addRole default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/roles][%d] addRole default %s", o._statusCode, payload)
 }
+
+func (o *AddRoleDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/roles][%d] addRole default %s", o._statusCode, payload)
+}
+
 func (o *AddRoleDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

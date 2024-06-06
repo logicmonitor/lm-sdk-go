@@ -656,6 +656,8 @@ func (m *InterfBandwidthReport) validateRecipients(formats strfmt.Registry) erro
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -690,6 +692,8 @@ func (m *InterfBandwidthReport) validateMetrics(formats strfmt.Registry) error {
 			if err := m.Metrics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -857,9 +861,16 @@ func (m *InterfBandwidthReport) contextValidateRecipients(ctx context.Context, f
 	for i := 0; i < len(m.Recipients()); i++ {
 
 		if m.recipientsField[i] != nil {
+
+			if swag.IsZero(m.recipientsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -893,9 +904,16 @@ func (m *InterfBandwidthReport) contextValidateMetrics(ctx context.Context, form
 	for i := 0; i < len(m.Metrics); i++ {
 
 		if m.Metrics[i] != nil {
+
+			if swag.IsZero(m.Metrics[i]) { // not required
+				return nil
+			}
+
 			if err := m.Metrics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

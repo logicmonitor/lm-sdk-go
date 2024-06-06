@@ -53,10 +53,12 @@ func NewCollectDeviceConfigSourceConfigParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* CollectDeviceConfigSourceConfigParams contains all the parameters to send to the API endpoint
-   for the collect device config source config operation.
+/*
+CollectDeviceConfigSourceConfigParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the collect device config source config operation.
+
+	Typically these are written to a http.Request.
 */
 type CollectDeviceConfigSourceConfigParams struct {
 

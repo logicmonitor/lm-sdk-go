@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetAppliesToFunctionByIDOK() *GetAppliesToFunctionByIDOK {
 	return &GetAppliesToFunctionByIDOK{}
 }
 
-/* GetAppliesToFunctionByIDOK describes a response with status code 200, with default header values.
+/*
+GetAppliesToFunctionByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAppliesToFunctionByIDOK struct {
 	Payload *models.AppliesToFunction
 }
 
-func (o *GetAppliesToFunctionByIDOK) Error() string {
-	return fmt.Sprintf("[GET /setting/functions/{id}][%d] getAppliesToFunctionByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get applies to function by Id o k response has a 2xx status code
+func (o *GetAppliesToFunctionByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get applies to function by Id o k response has a 3xx status code
+func (o *GetAppliesToFunctionByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get applies to function by Id o k response has a 4xx status code
+func (o *GetAppliesToFunctionByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get applies to function by Id o k response has a 5xx status code
+func (o *GetAppliesToFunctionByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get applies to function by Id o k response a status code equal to that given
+func (o *GetAppliesToFunctionByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get applies to function by Id o k response
+func (o *GetAppliesToFunctionByIDOK) Code() int {
+	return 200
+}
+
+func (o *GetAppliesToFunctionByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/functions/{id}][%d] getAppliesToFunctionByIdOK %s", 200, payload)
+}
+
+func (o *GetAppliesToFunctionByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/functions/{id}][%d] getAppliesToFunctionByIdOK %s", 200, payload)
+}
+
 func (o *GetAppliesToFunctionByIDOK) GetPayload() *models.AppliesToFunction {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetAppliesToFunctionByIDTooManyRequests() *GetAppliesToFunctionByIDTooMa
 	return &GetAppliesToFunctionByIDTooManyRequests{}
 }
 
-/* GetAppliesToFunctionByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAppliesToFunctionByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetAppliesToFunctionByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get applies to function by Id too many requests response has a 2xx status code
+func (o *GetAppliesToFunctionByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get applies to function by Id too many requests response has a 3xx status code
+func (o *GetAppliesToFunctionByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get applies to function by Id too many requests response has a 4xx status code
+func (o *GetAppliesToFunctionByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get applies to function by Id too many requests response has a 5xx status code
+func (o *GetAppliesToFunctionByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get applies to function by Id too many requests response a status code equal to that given
+func (o *GetAppliesToFunctionByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get applies to function by Id too many requests response
+func (o *GetAppliesToFunctionByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAppliesToFunctionByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/functions/{id}][%d] getAppliesToFunctionByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/functions/{id}][%d] getAppliesToFunctionByIdTooManyRequests", 429)
+}
+
+func (o *GetAppliesToFunctionByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/functions/{id}][%d] getAppliesToFunctionByIdTooManyRequests", 429)
 }
 
 func (o *GetAppliesToFunctionByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetAppliesToFunctionByIDDefault(code int) *GetAppliesToFunctionByIDDefau
 	}
 }
 
-/* GetAppliesToFunctionByIDDefault describes a response with status code -1, with default header values.
+/*
+GetAppliesToFunctionByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetAppliesToFunctionByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get applies to function by Id default response has a 2xx status code
+func (o *GetAppliesToFunctionByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get applies to function by Id default response has a 3xx status code
+func (o *GetAppliesToFunctionByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get applies to function by Id default response has a 4xx status code
+func (o *GetAppliesToFunctionByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get applies to function by Id default response has a 5xx status code
+func (o *GetAppliesToFunctionByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get applies to function by Id default response a status code equal to that given
+func (o *GetAppliesToFunctionByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get applies to function by Id default response
 func (o *GetAppliesToFunctionByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAppliesToFunctionByIDDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/functions/{id}][%d] getAppliesToFunctionById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/functions/{id}][%d] getAppliesToFunctionById default %s", o._statusCode, payload)
 }
+
+func (o *GetAppliesToFunctionByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/functions/{id}][%d] getAppliesToFunctionById default %s", o._statusCode, payload)
+}
+
 func (o *GetAppliesToFunctionByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

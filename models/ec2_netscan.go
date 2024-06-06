@@ -530,6 +530,8 @@ func (m *Ec2Netscan) validateDuplicate(formats strfmt.Registry) error {
 		if err := m.Duplicate().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
@@ -557,6 +559,8 @@ func (m *Ec2Netscan) validateSchedule(formats strfmt.Registry) error {
 		if err := m.Schedule().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}
@@ -584,6 +588,8 @@ func (m *Ec2Netscan) validateCredentials(formats strfmt.Registry) error {
 		if err := m.Credentials.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("credentials")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credentials")
 			}
 			return err
 		}
@@ -602,6 +608,8 @@ func (m *Ec2Netscan) validateDdr(formats strfmt.Registry) error {
 		if err := m.Ddr.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ddr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ddr")
 			}
 			return err
 		}
@@ -620,6 +628,8 @@ func (m *Ec2Netscan) validatePorts(formats strfmt.Registry) error {
 		if err := m.Ports.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ports")
 			}
 			return err
 		}
@@ -729,9 +739,12 @@ func (m *Ec2Netscan) contextValidateCreator(ctx context.Context, formats strfmt.
 func (m *Ec2Netscan) contextValidateDuplicate(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Duplicate() != nil {
+
 		if err := m.Duplicate().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
@@ -779,9 +792,12 @@ func (m *Ec2Netscan) contextValidateNextStartEpoch(ctx context.Context, formats 
 func (m *Ec2Netscan) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Schedule() != nil {
+
 		if err := m.Schedule().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}
@@ -793,9 +809,12 @@ func (m *Ec2Netscan) contextValidateSchedule(ctx context.Context, formats strfmt
 func (m *Ec2Netscan) contextValidateCredentials(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Credentials != nil {
+
 		if err := m.Credentials.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("credentials")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credentials")
 			}
 			return err
 		}
@@ -807,9 +826,16 @@ func (m *Ec2Netscan) contextValidateCredentials(ctx context.Context, formats str
 func (m *Ec2Netscan) contextValidateDdr(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Ddr != nil {
+
+		if swag.IsZero(m.Ddr) { // not required
+			return nil
+		}
+
 		if err := m.Ddr.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ddr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ddr")
 			}
 			return err
 		}
@@ -821,9 +847,16 @@ func (m *Ec2Netscan) contextValidateDdr(ctx context.Context, formats strfmt.Regi
 func (m *Ec2Netscan) contextValidatePorts(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Ports != nil {
+
+		if swag.IsZero(m.Ports) { // not required
+			return nil
+		}
+
 		if err := m.Ports.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ports")
 			}
 			return err
 		}

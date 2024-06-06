@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddEscalationChainOK() *AddEscalationChainOK {
 	return &AddEscalationChainOK{}
 }
 
-/* AddEscalationChainOK describes a response with status code 200, with default header values.
+/*
+AddEscalationChainOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddEscalationChainOK struct {
 	Payload *models.EscalatingChain
 }
 
-func (o *AddEscalationChainOK) Error() string {
-	return fmt.Sprintf("[POST /setting/alert/chains][%d] addEscalationChainOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add escalation chain o k response has a 2xx status code
+func (o *AddEscalationChainOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add escalation chain o k response has a 3xx status code
+func (o *AddEscalationChainOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add escalation chain o k response has a 4xx status code
+func (o *AddEscalationChainOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add escalation chain o k response has a 5xx status code
+func (o *AddEscalationChainOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add escalation chain o k response a status code equal to that given
+func (o *AddEscalationChainOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add escalation chain o k response
+func (o *AddEscalationChainOK) Code() int {
+	return 200
+}
+
+func (o *AddEscalationChainOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/alert/chains][%d] addEscalationChainOK %s", 200, payload)
+}
+
+func (o *AddEscalationChainOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/alert/chains][%d] addEscalationChainOK %s", 200, payload)
+}
+
 func (o *AddEscalationChainOK) GetPayload() *models.EscalatingChain {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddEscalationChainTooManyRequests() *AddEscalationChainTooManyRequests {
 	return &AddEscalationChainTooManyRequests{}
 }
 
-/* AddEscalationChainTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddEscalationChainTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddEscalationChainTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add escalation chain too many requests response has a 2xx status code
+func (o *AddEscalationChainTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add escalation chain too many requests response has a 3xx status code
+func (o *AddEscalationChainTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add escalation chain too many requests response has a 4xx status code
+func (o *AddEscalationChainTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add escalation chain too many requests response has a 5xx status code
+func (o *AddEscalationChainTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add escalation chain too many requests response a status code equal to that given
+func (o *AddEscalationChainTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add escalation chain too many requests response
+func (o *AddEscalationChainTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddEscalationChainTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/alert/chains][%d] addEscalationChainTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /setting/alert/chains][%d] addEscalationChainTooManyRequests", 429)
+}
+
+func (o *AddEscalationChainTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /setting/alert/chains][%d] addEscalationChainTooManyRequests", 429)
 }
 
 func (o *AddEscalationChainTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddEscalationChainDefault(code int) *AddEscalationChainDefault {
 	}
 }
 
-/* AddEscalationChainDefault describes a response with status code -1, with default header values.
+/*
+AddEscalationChainDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddEscalationChainDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add escalation chain default response has a 2xx status code
+func (o *AddEscalationChainDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add escalation chain default response has a 3xx status code
+func (o *AddEscalationChainDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add escalation chain default response has a 4xx status code
+func (o *AddEscalationChainDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add escalation chain default response has a 5xx status code
+func (o *AddEscalationChainDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add escalation chain default response a status code equal to that given
+func (o *AddEscalationChainDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add escalation chain default response
 func (o *AddEscalationChainDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddEscalationChainDefault) Error() string {
-	return fmt.Sprintf("[POST /setting/alert/chains][%d] addEscalationChain default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/alert/chains][%d] addEscalationChain default %s", o._statusCode, payload)
 }
+
+func (o *AddEscalationChainDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/alert/chains][%d] addEscalationChain default %s", o._statusCode, payload)
+}
+
 func (o *AddEscalationChainDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

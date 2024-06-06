@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -26,7 +25,7 @@ type AutoDiscoveryMethod interface {
 	runtime.ContextValidatable
 
 	// The auto discovery method name.
-	// The values can be ad_cim|ad_cloudwatch|ad_collector|ad_dummy|ad_ec2|ad_esx|ad_http|ad_ipmi|ad_jdbc|ad_jmx|ad_netapp|ad_pdh|ad_port|ad_script|ad_snmp|ad_wmi|ad_xen|ad_azurerediscache|ad_awsserviceregion|ad_awsec2reservedinstance|ad_awsec2reservedinstancecoverage|ad_awsecsservice|ad_awsec2scheduledevents|ad_azureserviceregion|ad_azuresubscription|ad_azurebackupjob|ad_azuresdk|ad_azurewebjob|ad_awsbillingreport|ad_awselasticache|ad_awsredshift|ad_azurebilling|ad_awslbtargetgroups|ad_gcpappengine|ad_gcpbilling|ad_awsvpntunnel|ad_gcpvpntunnel|ad_awsglobalwebacl|ad_gcplbbackendservice|ad_gcppubsubsubscription|ad_gcppubsubsnapshot|ad_azurereplicationjob|ad_azureexpressroutecircuitpeering|ad_awsapigatewaystage|ad_azureautomationaccountcertificate|ad_azurevngconnection|ad_azurewebappinstance|ad_azureappserviceenvironmentmultirolepool|ad_openmetrics|ad_awsmediaconnectoutput|ad_awsmediaconnectsource|ad_awswebaclwafv2|ad_saaso365sharepointsite|ad_awscognitoidentityproviders|ad_azureeabilling|ad_saaszoomplanusage|ad_saasstatus|ad_azuresynapse|ad_saasairbrake|ad_syntheticsselenium|ad_azurevirtualdesktopsessionhosts|ad_saaso365subscribedsku|ad_azuredimension|ad_azurecostmanagementdimensions|ad_saaso365servicehealth|ad_saaso365mailbox|ad_azurenetappvolumes|ad_azureloganalyticsworkspaces|ad_saaszoomstatus|ad_saassalesforcelicense|ad_saaszoomroom|ad_saaswebexlicenseusage|ad_azureloganalyticsreplicationjob|ad_paasjsonpath|ad_awsrabbitmqqueue
+	// The values can be ad_cim|ad_cloudwatch|ad_collector|ad_dummy|ad_ec2|ad_esx|ad_http|ad_ipmi|ad_jdbc|ad_jmx|ad_netapp|ad_pdh|ad_port|ad_script|ad_snmp|ad_wmi|ad_xen|ad_azurerediscache|ad_awsserviceregion|ad_awsec2reservedinstance|ad_awsec2reservedinstancecoverage|ad_awsecsservice|ad_awsec2scheduledevents|ad_azureserviceregion|ad_azuresubscription|ad_azurebackupjob|ad_azuresdk|ad_azurewebjob|ad_awsbillingreport|ad_awselasticache|ad_awsredshift|ad_azurebilling|ad_awslbtargetgroups|ad_gcpappengine|ad_gcpbilling|ad_awsvpntunnel|ad_gcpvpntunnel|ad_awsglobalwebacl|ad_gcplbbackendservice|ad_gcppubsubsubscription|ad_gcppubsubsnapshot|ad_azurereplicationjob|ad_azureexpressroutecircuitpeering|ad_awsapigatewaystage|ad_azureautomationaccountcertificate|ad_azurevngconnection|ad_azurewebappinstance|ad_azureappserviceenvironmentmultirolepool|ad_openmetrics|ad_awsmediaconnectoutput|ad_awsmediaconnectsource|ad_awswebaclwafv2|ad_saaso365sharepointsite|ad_awscognitoidentityproviders|ad_azureeabilling|ad_saaszoomplanusage|ad_saasstatus|ad_azuresynapse|ad_saasairbrake|ad_syntheticsselenium|ad_azurevirtualdesktopsessionhosts|ad_saaso365subscribedsku|ad_azuredimension|ad_azurecostmanagementdimensions|ad_saaso365servicehealth|ad_saaso365mailbox|ad_azurenetappvolumes|ad_azureloganalyticsworkspaces|ad_saaszoomstatus|ad_saassalesforcelicense|ad_saaszoomroom|ad_saaswebexlicenseusage|ad_azureloganalyticsreplicationjob|ad_paasjsonpath|ad_awsrabbitmqqueue|ad_awssagemakerendpointvariant|ad_awsroute53resolveripaddress
 	// Required: true
 	Name() string
 	SetName(string)
@@ -69,7 +68,7 @@ func UnmarshalAutoDiscoveryMethodSlice(reader io.Reader, consumer runtime.Consum
 // UnmarshalAutoDiscoveryMethod unmarshals polymorphic AutoDiscoveryMethod
 func UnmarshalAutoDiscoveryMethod(reader io.Reader, consumer runtime.Consumer) (AutoDiscoveryMethod, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -106,8 +105,44 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 			return nil, err
 		}
 		return &result, nil
+	case "AwsGlobalNetworkAttachmentMethod":
+		var result AwsGlobalNetworkAttachmentMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AwsGlobalNetworkDeviceMethod":
+		var result AwsGlobalNetworkDeviceMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AwsGlobalNetworkEdgeMethod":
+		var result AwsGlobalNetworkEdgeMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AwsGlobalNetworkLinkMethod":
+		var result AwsGlobalNetworkLinkMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "AwsGlobalWebACLDiscoveryMethodV3":
 		var result AwsGlobalWebACLDiscoveryMethodV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AwsRoute53ResolverIPAddressDiscoveryMethod":
+		var result AwsRoute53ResolverIPAddressDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AwsSageMakerEndpointVariantMethod":
+		var result AwsSageMakerEndpointVariantMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -214,6 +249,18 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 			return nil, err
 		}
 		return &result, nil
+	case "AzureServiceBusQueue":
+		var result AzureServiceBusQueue
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureServiceBusTopic":
+		var result AzureServiceBusTopic
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "AzureSynapseDiscoveryMethodV3":
 		var result AzureSynapseDiscoveryMethodV3
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -222,6 +269,12 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 		return &result, nil
 	case "AzureVNGConnectionDiscoveryMethod":
 		var result AzureVNGConnectionDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureVwanVpnConnectionMethod":
+		var result AzureVwanVpnConnectionMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

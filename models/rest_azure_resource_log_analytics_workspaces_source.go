@@ -557,6 +557,8 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) validateFilters(formats 
 			if err := m.filtersField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -577,6 +579,8 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) validateInstallationMeta
 		if err := m.InstallationMetadata().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}
@@ -655,9 +659,16 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) contextValidateFilters(c
 	for i := 0; i < len(m.Filters()); i++ {
 
 		if m.filtersField[i] != nil {
+
+			if swag.IsZero(m.filtersField[i]) { // not required
+				return nil
+			}
+
 			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -680,9 +691,16 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) contextValidateID(ctx co
 func (m *RestAzureResourceLogAnalyticsWorkspacesSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstallationMetadata() != nil {
+
+		if swag.IsZero(m.InstallationMetadata()) { // not required
+			return nil
+		}
+
 		if err := m.InstallationMetadata().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}

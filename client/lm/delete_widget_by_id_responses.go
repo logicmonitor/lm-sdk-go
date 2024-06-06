@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewDeleteWidgetByIDOK() *DeleteWidgetByIDOK {
 	return &DeleteWidgetByIDOK{}
 }
 
-/* DeleteWidgetByIDOK describes a response with status code 200, with default header values.
+/*
+DeleteWidgetByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DeleteWidgetByIDOK struct {
 	Payload interface{}
 }
 
-func (o *DeleteWidgetByIDOK) Error() string {
-	return fmt.Sprintf("[DELETE /dashboard/widgets/{id}][%d] deleteWidgetByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this delete widget by Id o k response has a 2xx status code
+func (o *DeleteWidgetByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this delete widget by Id o k response has a 3xx status code
+func (o *DeleteWidgetByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete widget by Id o k response has a 4xx status code
+func (o *DeleteWidgetByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete widget by Id o k response has a 5xx status code
+func (o *DeleteWidgetByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete widget by Id o k response a status code equal to that given
+func (o *DeleteWidgetByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the delete widget by Id o k response
+func (o *DeleteWidgetByIDOK) Code() int {
+	return 200
+}
+
+func (o *DeleteWidgetByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboard/widgets/{id}][%d] deleteWidgetByIdOK %s", 200, payload)
+}
+
+func (o *DeleteWidgetByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboard/widgets/{id}][%d] deleteWidgetByIdOK %s", 200, payload)
+}
+
 func (o *DeleteWidgetByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewDeleteWidgetByIDTooManyRequests() *DeleteWidgetByIDTooManyRequests {
 	return &DeleteWidgetByIDTooManyRequests{}
 }
 
-/* DeleteWidgetByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteWidgetByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type DeleteWidgetByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this delete widget by Id too many requests response has a 2xx status code
+func (o *DeleteWidgetByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete widget by Id too many requests response has a 3xx status code
+func (o *DeleteWidgetByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete widget by Id too many requests response has a 4xx status code
+func (o *DeleteWidgetByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete widget by Id too many requests response has a 5xx status code
+func (o *DeleteWidgetByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete widget by Id too many requests response a status code equal to that given
+func (o *DeleteWidgetByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the delete widget by Id too many requests response
+func (o *DeleteWidgetByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DeleteWidgetByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /dashboard/widgets/{id}][%d] deleteWidgetByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /dashboard/widgets/{id}][%d] deleteWidgetByIdTooManyRequests", 429)
+}
+
+func (o *DeleteWidgetByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /dashboard/widgets/{id}][%d] deleteWidgetByIdTooManyRequests", 429)
 }
 
 func (o *DeleteWidgetByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewDeleteWidgetByIDDefault(code int) *DeleteWidgetByIDDefault {
 	}
 }
 
-/* DeleteWidgetByIDDefault describes a response with status code -1, with default header values.
+/*
+DeleteWidgetByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type DeleteWidgetByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete widget by Id default response has a 2xx status code
+func (o *DeleteWidgetByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this delete widget by Id default response has a 3xx status code
+func (o *DeleteWidgetByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this delete widget by Id default response has a 4xx status code
+func (o *DeleteWidgetByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this delete widget by Id default response has a 5xx status code
+func (o *DeleteWidgetByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this delete widget by Id default response a status code equal to that given
+func (o *DeleteWidgetByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the delete widget by Id default response
 func (o *DeleteWidgetByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DeleteWidgetByIDDefault) Error() string {
-	return fmt.Sprintf("[DELETE /dashboard/widgets/{id}][%d] deleteWidgetById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboard/widgets/{id}][%d] deleteWidgetById default %s", o._statusCode, payload)
 }
+
+func (o *DeleteWidgetByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /dashboard/widgets/{id}][%d] deleteWidgetById default %s", o._statusCode, payload)
+}
+
 func (o *DeleteWidgetByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -54,10 +54,12 @@ func NewAddOpsNoteParamsWithHTTPClient(client *http.Client) *AddOpsNoteParams {
 	}
 }
 
-/* AddOpsNoteParams contains all the parameters to send to the API endpoint
-   for the add ops note operation.
+/*
+AddOpsNoteParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add ops note operation.
+
+	Typically these are written to a http.Request.
 */
 type AddOpsNoteParams struct {
 

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchRoleByIDOK() *PatchRoleByIDOK {
 	return &PatchRoleByIDOK{}
 }
 
-/* PatchRoleByIDOK describes a response with status code 200, with default header values.
+/*
+PatchRoleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchRoleByIDOK struct {
 	Payload *models.Role
 }
 
-func (o *PatchRoleByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /setting/roles/{id}][%d] patchRoleByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch role by Id o k response has a 2xx status code
+func (o *PatchRoleByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch role by Id o k response has a 3xx status code
+func (o *PatchRoleByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch role by Id o k response has a 4xx status code
+func (o *PatchRoleByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch role by Id o k response has a 5xx status code
+func (o *PatchRoleByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch role by Id o k response a status code equal to that given
+func (o *PatchRoleByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch role by Id o k response
+func (o *PatchRoleByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchRoleByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/roles/{id}][%d] patchRoleByIdOK %s", 200, payload)
+}
+
+func (o *PatchRoleByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/roles/{id}][%d] patchRoleByIdOK %s", 200, payload)
+}
+
 func (o *PatchRoleByIDOK) GetPayload() *models.Role {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchRoleByIDTooManyRequests() *PatchRoleByIDTooManyRequests {
 	return &PatchRoleByIDTooManyRequests{}
 }
 
-/* PatchRoleByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchRoleByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchRoleByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch role by Id too many requests response has a 2xx status code
+func (o *PatchRoleByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch role by Id too many requests response has a 3xx status code
+func (o *PatchRoleByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch role by Id too many requests response has a 4xx status code
+func (o *PatchRoleByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch role by Id too many requests response has a 5xx status code
+func (o *PatchRoleByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch role by Id too many requests response a status code equal to that given
+func (o *PatchRoleByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch role by Id too many requests response
+func (o *PatchRoleByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchRoleByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /setting/roles/{id}][%d] patchRoleByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /setting/roles/{id}][%d] patchRoleByIdTooManyRequests", 429)
+}
+
+func (o *PatchRoleByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /setting/roles/{id}][%d] patchRoleByIdTooManyRequests", 429)
 }
 
 func (o *PatchRoleByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchRoleByIDDefault(code int) *PatchRoleByIDDefault {
 	}
 }
 
-/* PatchRoleByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchRoleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchRoleByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch role by Id default response has a 2xx status code
+func (o *PatchRoleByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch role by Id default response has a 3xx status code
+func (o *PatchRoleByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch role by Id default response has a 4xx status code
+func (o *PatchRoleByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch role by Id default response has a 5xx status code
+func (o *PatchRoleByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch role by Id default response a status code equal to that given
+func (o *PatchRoleByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch role by Id default response
 func (o *PatchRoleByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchRoleByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /setting/roles/{id}][%d] patchRoleById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/roles/{id}][%d] patchRoleById default %s", o._statusCode, payload)
 }
+
+func (o *PatchRoleByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/roles/{id}][%d] patchRoleById default %s", o._statusCode, payload)
+}
+
 func (o *PatchRoleByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

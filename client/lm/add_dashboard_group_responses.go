@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddDashboardGroupOK() *AddDashboardGroupOK {
 	return &AddDashboardGroupOK{}
 }
 
-/* AddDashboardGroupOK describes a response with status code 200, with default header values.
+/*
+AddDashboardGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddDashboardGroupOK struct {
 	Payload *models.DashboardGroup
 }
 
-func (o *AddDashboardGroupOK) Error() string {
-	return fmt.Sprintf("[POST /dashboard/groups][%d] addDashboardGroupOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add dashboard group o k response has a 2xx status code
+func (o *AddDashboardGroupOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add dashboard group o k response has a 3xx status code
+func (o *AddDashboardGroupOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add dashboard group o k response has a 4xx status code
+func (o *AddDashboardGroupOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add dashboard group o k response has a 5xx status code
+func (o *AddDashboardGroupOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add dashboard group o k response a status code equal to that given
+func (o *AddDashboardGroupOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add dashboard group o k response
+func (o *AddDashboardGroupOK) Code() int {
+	return 200
+}
+
+func (o *AddDashboardGroupOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/groups][%d] addDashboardGroupOK %s", 200, payload)
+}
+
+func (o *AddDashboardGroupOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/groups][%d] addDashboardGroupOK %s", 200, payload)
+}
+
 func (o *AddDashboardGroupOK) GetPayload() *models.DashboardGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddDashboardGroupTooManyRequests() *AddDashboardGroupTooManyRequests {
 	return &AddDashboardGroupTooManyRequests{}
 }
 
-/* AddDashboardGroupTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddDashboardGroupTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddDashboardGroupTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add dashboard group too many requests response has a 2xx status code
+func (o *AddDashboardGroupTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add dashboard group too many requests response has a 3xx status code
+func (o *AddDashboardGroupTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add dashboard group too many requests response has a 4xx status code
+func (o *AddDashboardGroupTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add dashboard group too many requests response has a 5xx status code
+func (o *AddDashboardGroupTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add dashboard group too many requests response a status code equal to that given
+func (o *AddDashboardGroupTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add dashboard group too many requests response
+func (o *AddDashboardGroupTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddDashboardGroupTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /dashboard/groups][%d] addDashboardGroupTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /dashboard/groups][%d] addDashboardGroupTooManyRequests", 429)
+}
+
+func (o *AddDashboardGroupTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /dashboard/groups][%d] addDashboardGroupTooManyRequests", 429)
 }
 
 func (o *AddDashboardGroupTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddDashboardGroupDefault(code int) *AddDashboardGroupDefault {
 	}
 }
 
-/* AddDashboardGroupDefault describes a response with status code -1, with default header values.
+/*
+AddDashboardGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddDashboardGroupDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add dashboard group default response has a 2xx status code
+func (o *AddDashboardGroupDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add dashboard group default response has a 3xx status code
+func (o *AddDashboardGroupDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add dashboard group default response has a 4xx status code
+func (o *AddDashboardGroupDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add dashboard group default response has a 5xx status code
+func (o *AddDashboardGroupDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add dashboard group default response a status code equal to that given
+func (o *AddDashboardGroupDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add dashboard group default response
 func (o *AddDashboardGroupDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddDashboardGroupDefault) Error() string {
-	return fmt.Sprintf("[POST /dashboard/groups][%d] addDashboardGroup default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/groups][%d] addDashboardGroup default %s", o._statusCode, payload)
 }
+
+func (o *AddDashboardGroupDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/groups][%d] addDashboardGroup default %s", o._statusCode, payload)
+}
+
 func (o *AddDashboardGroupDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

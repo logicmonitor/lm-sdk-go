@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddDevicePropertyOK() *AddDevicePropertyOK {
 	return &AddDevicePropertyOK{}
 }
 
-/* AddDevicePropertyOK describes a response with status code 200, with default header values.
+/*
+AddDevicePropertyOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddDevicePropertyOK struct {
 	Payload *models.EntityProperty
 }
 
-func (o *AddDevicePropertyOK) Error() string {
-	return fmt.Sprintf("[POST /device/devices/{deviceId}/properties][%d] addDevicePropertyOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add device property o k response has a 2xx status code
+func (o *AddDevicePropertyOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add device property o k response has a 3xx status code
+func (o *AddDevicePropertyOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add device property o k response has a 4xx status code
+func (o *AddDevicePropertyOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add device property o k response has a 5xx status code
+func (o *AddDevicePropertyOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add device property o k response a status code equal to that given
+func (o *AddDevicePropertyOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add device property o k response
+func (o *AddDevicePropertyOK) Code() int {
+	return 200
+}
+
+func (o *AddDevicePropertyOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/properties][%d] addDevicePropertyOK %s", 200, payload)
+}
+
+func (o *AddDevicePropertyOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/properties][%d] addDevicePropertyOK %s", 200, payload)
+}
+
 func (o *AddDevicePropertyOK) GetPayload() *models.EntityProperty {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddDevicePropertyTooManyRequests() *AddDevicePropertyTooManyRequests {
 	return &AddDevicePropertyTooManyRequests{}
 }
 
-/* AddDevicePropertyTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddDevicePropertyTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddDevicePropertyTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add device property too many requests response has a 2xx status code
+func (o *AddDevicePropertyTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add device property too many requests response has a 3xx status code
+func (o *AddDevicePropertyTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add device property too many requests response has a 4xx status code
+func (o *AddDevicePropertyTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add device property too many requests response has a 5xx status code
+func (o *AddDevicePropertyTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add device property too many requests response a status code equal to that given
+func (o *AddDevicePropertyTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add device property too many requests response
+func (o *AddDevicePropertyTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddDevicePropertyTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /device/devices/{deviceId}/properties][%d] addDevicePropertyTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/properties][%d] addDevicePropertyTooManyRequests", 429)
+}
+
+func (o *AddDevicePropertyTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/properties][%d] addDevicePropertyTooManyRequests", 429)
 }
 
 func (o *AddDevicePropertyTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddDevicePropertyDefault(code int) *AddDevicePropertyDefault {
 	}
 }
 
-/* AddDevicePropertyDefault describes a response with status code -1, with default header values.
+/*
+AddDevicePropertyDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddDevicePropertyDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add device property default response has a 2xx status code
+func (o *AddDevicePropertyDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add device property default response has a 3xx status code
+func (o *AddDevicePropertyDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add device property default response has a 4xx status code
+func (o *AddDevicePropertyDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add device property default response has a 5xx status code
+func (o *AddDevicePropertyDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add device property default response a status code equal to that given
+func (o *AddDevicePropertyDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add device property default response
 func (o *AddDevicePropertyDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddDevicePropertyDefault) Error() string {
-	return fmt.Sprintf("[POST /device/devices/{deviceId}/properties][%d] addDeviceProperty default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/properties][%d] addDeviceProperty default %s", o._statusCode, payload)
 }
+
+func (o *AddDevicePropertyDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/properties][%d] addDeviceProperty default %s", o._statusCode, payload)
+}
+
 func (o *AddDevicePropertyDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

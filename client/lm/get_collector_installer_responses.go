@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -58,7 +59,8 @@ func NewGetCollectorInstallerOK(writer io.Writer) *GetCollectorInstallerOK {
 	}
 }
 
-/* GetCollectorInstallerOK describes a response with status code 200, with default header values.
+/*
+GetCollectorInstallerOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -66,9 +68,44 @@ type GetCollectorInstallerOK struct {
 	Payload io.Writer
 }
 
-func (o *GetCollectorInstallerOK) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/collectors/{collectorId}/installers/{osAndArch}][%d] getCollectorInstallerOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get collector installer o k response has a 2xx status code
+func (o *GetCollectorInstallerOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get collector installer o k response has a 3xx status code
+func (o *GetCollectorInstallerOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get collector installer o k response has a 4xx status code
+func (o *GetCollectorInstallerOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get collector installer o k response has a 5xx status code
+func (o *GetCollectorInstallerOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get collector installer o k response a status code equal to that given
+func (o *GetCollectorInstallerOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get collector installer o k response
+func (o *GetCollectorInstallerOK) Code() int {
+	return 200
+}
+
+func (o *GetCollectorInstallerOK) Error() string {
+	return fmt.Sprintf("[GET /setting/collector/collectors/{collectorId}/installers/{osAndArch}][%d] getCollectorInstallerOK", 200)
+}
+
+func (o *GetCollectorInstallerOK) String() string {
+	return fmt.Sprintf("[GET /setting/collector/collectors/{collectorId}/installers/{osAndArch}][%d] getCollectorInstallerOK", 200)
+}
+
 func (o *GetCollectorInstallerOK) GetPayload() io.Writer {
 	return o.Payload
 }
@@ -88,7 +125,8 @@ func NewGetCollectorInstallerTooManyRequests() *GetCollectorInstallerTooManyRequ
 	return &GetCollectorInstallerTooManyRequests{}
 }
 
-/* GetCollectorInstallerTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetCollectorInstallerTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -107,8 +145,42 @@ type GetCollectorInstallerTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get collector installer too many requests response has a 2xx status code
+func (o *GetCollectorInstallerTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get collector installer too many requests response has a 3xx status code
+func (o *GetCollectorInstallerTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get collector installer too many requests response has a 4xx status code
+func (o *GetCollectorInstallerTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get collector installer too many requests response has a 5xx status code
+func (o *GetCollectorInstallerTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get collector installer too many requests response a status code equal to that given
+func (o *GetCollectorInstallerTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get collector installer too many requests response
+func (o *GetCollectorInstallerTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetCollectorInstallerTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/collectors/{collectorId}/installers/{osAndArch}][%d] getCollectorInstallerTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/collector/collectors/{collectorId}/installers/{osAndArch}][%d] getCollectorInstallerTooManyRequests", 429)
+}
+
+func (o *GetCollectorInstallerTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/collector/collectors/{collectorId}/installers/{osAndArch}][%d] getCollectorInstallerTooManyRequests", 429)
 }
 
 func (o *GetCollectorInstallerTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -156,7 +228,8 @@ func NewGetCollectorInstallerDefault(code int) *GetCollectorInstallerDefault {
 	}
 }
 
-/* GetCollectorInstallerDefault describes a response with status code -1, with default header values.
+/*
+GetCollectorInstallerDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -166,14 +239,46 @@ type GetCollectorInstallerDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get collector installer default response has a 2xx status code
+func (o *GetCollectorInstallerDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get collector installer default response has a 3xx status code
+func (o *GetCollectorInstallerDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get collector installer default response has a 4xx status code
+func (o *GetCollectorInstallerDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get collector installer default response has a 5xx status code
+func (o *GetCollectorInstallerDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get collector installer default response a status code equal to that given
+func (o *GetCollectorInstallerDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get collector installer default response
 func (o *GetCollectorInstallerDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetCollectorInstallerDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/collectors/{collectorId}/installers/{osAndArch}][%d] getCollectorInstaller default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/collectors/{collectorId}/installers/{osAndArch}][%d] getCollectorInstaller default %s", o._statusCode, payload)
 }
+
+func (o *GetCollectorInstallerDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/collectors/{collectorId}/installers/{osAndArch}][%d] getCollectorInstaller default %s", o._statusCode, payload)
+}
+
 func (o *GetCollectorInstallerDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

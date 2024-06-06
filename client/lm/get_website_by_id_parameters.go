@@ -53,10 +53,12 @@ func NewGetWebsiteByIDParamsWithHTTPClient(client *http.Client) *GetWebsiteByIDP
 	}
 }
 
-/* GetWebsiteByIDParams contains all the parameters to send to the API endpoint
-   for the get website by Id operation.
+/*
+GetWebsiteByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteByIDParams struct {
 

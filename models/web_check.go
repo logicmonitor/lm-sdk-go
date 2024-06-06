@@ -770,6 +770,8 @@ func (m *WebCheck) validateCheckpoints(formats strfmt.Registry) error {
 			if err := m.checkpointsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("checkpoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("checkpoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -795,6 +797,8 @@ func (m *WebCheck) validateCollectors(formats strfmt.Registry) error {
 			if err := m.collectorsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -829,6 +833,8 @@ func (m *WebCheck) validateProperties(formats strfmt.Registry) error {
 			if err := m.propertiesField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -854,6 +860,8 @@ func (m *WebCheck) validateSteps(formats strfmt.Registry) error {
 			if err := m.stepsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -874,6 +882,8 @@ func (m *WebCheck) validateTestLocation(formats strfmt.Registry) error {
 		if err := m.TestLocation().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}
@@ -941,9 +951,16 @@ func (m *WebCheck) contextValidateCheckpoints(ctx context.Context, formats strfm
 	for i := 0; i < len(m.Checkpoints()); i++ {
 
 		if m.checkpointsField[i] != nil {
+
+			if swag.IsZero(m.checkpointsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.checkpointsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("checkpoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("checkpoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -963,9 +980,16 @@ func (m *WebCheck) contextValidateCollectors(ctx context.Context, formats strfmt
 	for i := 0; i < len(m.Collectors()); i++ {
 
 		if m.collectorsField[i] != nil {
+
+			if swag.IsZero(m.collectorsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.collectorsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1012,9 +1036,16 @@ func (m *WebCheck) contextValidateProperties(ctx context.Context, formats strfmt
 	for i := 0; i < len(m.Properties()); i++ {
 
 		if m.propertiesField[i] != nil {
+
+			if swag.IsZero(m.propertiesField[i]) { // not required
+				return nil
+			}
+
 			if err := m.propertiesField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1048,9 +1079,16 @@ func (m *WebCheck) contextValidateSteps(ctx context.Context, formats strfmt.Regi
 	for i := 0; i < len(m.Steps()); i++ {
 
 		if m.stepsField[i] != nil {
+
+			if swag.IsZero(m.stepsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.stepsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1073,9 +1111,12 @@ func (m *WebCheck) contextValidateStopMonitoringByFolder(ctx context.Context, fo
 func (m *WebCheck) contextValidateTestLocation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TestLocation() != nil {
+
 		if err := m.TestLocation().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}

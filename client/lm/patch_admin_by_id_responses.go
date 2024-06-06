@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchAdminByIDOK() *PatchAdminByIDOK {
 	return &PatchAdminByIDOK{}
 }
 
-/* PatchAdminByIDOK describes a response with status code 200, with default header values.
+/*
+PatchAdminByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchAdminByIDOK struct {
 	Payload *models.Admin
 }
 
-func (o *PatchAdminByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /setting/admins/{id}][%d] patchAdminByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch admin by Id o k response has a 2xx status code
+func (o *PatchAdminByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch admin by Id o k response has a 3xx status code
+func (o *PatchAdminByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch admin by Id o k response has a 4xx status code
+func (o *PatchAdminByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch admin by Id o k response has a 5xx status code
+func (o *PatchAdminByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch admin by Id o k response a status code equal to that given
+func (o *PatchAdminByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch admin by Id o k response
+func (o *PatchAdminByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchAdminByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/admins/{id}][%d] patchAdminByIdOK %s", 200, payload)
+}
+
+func (o *PatchAdminByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/admins/{id}][%d] patchAdminByIdOK %s", 200, payload)
+}
+
 func (o *PatchAdminByIDOK) GetPayload() *models.Admin {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchAdminByIDTooManyRequests() *PatchAdminByIDTooManyRequests {
 	return &PatchAdminByIDTooManyRequests{}
 }
 
-/* PatchAdminByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchAdminByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchAdminByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch admin by Id too many requests response has a 2xx status code
+func (o *PatchAdminByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch admin by Id too many requests response has a 3xx status code
+func (o *PatchAdminByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch admin by Id too many requests response has a 4xx status code
+func (o *PatchAdminByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch admin by Id too many requests response has a 5xx status code
+func (o *PatchAdminByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch admin by Id too many requests response a status code equal to that given
+func (o *PatchAdminByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch admin by Id too many requests response
+func (o *PatchAdminByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchAdminByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /setting/admins/{id}][%d] patchAdminByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /setting/admins/{id}][%d] patchAdminByIdTooManyRequests", 429)
+}
+
+func (o *PatchAdminByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /setting/admins/{id}][%d] patchAdminByIdTooManyRequests", 429)
 }
 
 func (o *PatchAdminByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchAdminByIDDefault(code int) *PatchAdminByIDDefault {
 	}
 }
 
-/* PatchAdminByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchAdminByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchAdminByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch admin by Id default response has a 2xx status code
+func (o *PatchAdminByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch admin by Id default response has a 3xx status code
+func (o *PatchAdminByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch admin by Id default response has a 4xx status code
+func (o *PatchAdminByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch admin by Id default response has a 5xx status code
+func (o *PatchAdminByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch admin by Id default response a status code equal to that given
+func (o *PatchAdminByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch admin by Id default response
 func (o *PatchAdminByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchAdminByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /setting/admins/{id}][%d] patchAdminById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/admins/{id}][%d] patchAdminById default %s", o._statusCode, payload)
 }
+
+func (o *PatchAdminByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/admins/{id}][%d] patchAdminById default %s", o._statusCode, payload)
+}
+
 func (o *PatchAdminByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

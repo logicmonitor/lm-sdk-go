@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchDeviceGroupByIDOK() *PatchDeviceGroupByIDOK {
 	return &PatchDeviceGroupByIDOK{}
 }
 
-/* PatchDeviceGroupByIDOK describes a response with status code 200, with default header values.
+/*
+PatchDeviceGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchDeviceGroupByIDOK struct {
 	Payload *models.DeviceGroup
 }
 
-func (o *PatchDeviceGroupByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /device/groups/{id}][%d] patchDeviceGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch device group by Id o k response has a 2xx status code
+func (o *PatchDeviceGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch device group by Id o k response has a 3xx status code
+func (o *PatchDeviceGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch device group by Id o k response has a 4xx status code
+func (o *PatchDeviceGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch device group by Id o k response has a 5xx status code
+func (o *PatchDeviceGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch device group by Id o k response a status code equal to that given
+func (o *PatchDeviceGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch device group by Id o k response
+func (o *PatchDeviceGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchDeviceGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/groups/{id}][%d] patchDeviceGroupByIdOK %s", 200, payload)
+}
+
+func (o *PatchDeviceGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/groups/{id}][%d] patchDeviceGroupByIdOK %s", 200, payload)
+}
+
 func (o *PatchDeviceGroupByIDOK) GetPayload() *models.DeviceGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchDeviceGroupByIDTooManyRequests() *PatchDeviceGroupByIDTooManyReques
 	return &PatchDeviceGroupByIDTooManyRequests{}
 }
 
-/* PatchDeviceGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchDeviceGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchDeviceGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch device group by Id too many requests response has a 2xx status code
+func (o *PatchDeviceGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch device group by Id too many requests response has a 3xx status code
+func (o *PatchDeviceGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch device group by Id too many requests response has a 4xx status code
+func (o *PatchDeviceGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch device group by Id too many requests response has a 5xx status code
+func (o *PatchDeviceGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch device group by Id too many requests response a status code equal to that given
+func (o *PatchDeviceGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch device group by Id too many requests response
+func (o *PatchDeviceGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchDeviceGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /device/groups/{id}][%d] patchDeviceGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /device/groups/{id}][%d] patchDeviceGroupByIdTooManyRequests", 429)
+}
+
+func (o *PatchDeviceGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /device/groups/{id}][%d] patchDeviceGroupByIdTooManyRequests", 429)
 }
 
 func (o *PatchDeviceGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchDeviceGroupByIDDefault(code int) *PatchDeviceGroupByIDDefault {
 	}
 }
 
-/* PatchDeviceGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchDeviceGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchDeviceGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch device group by Id default response has a 2xx status code
+func (o *PatchDeviceGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch device group by Id default response has a 3xx status code
+func (o *PatchDeviceGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch device group by Id default response has a 4xx status code
+func (o *PatchDeviceGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch device group by Id default response has a 5xx status code
+func (o *PatchDeviceGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch device group by Id default response a status code equal to that given
+func (o *PatchDeviceGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch device group by Id default response
 func (o *PatchDeviceGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchDeviceGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /device/groups/{id}][%d] patchDeviceGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/groups/{id}][%d] patchDeviceGroupById default %s", o._statusCode, payload)
 }
+
+func (o *PatchDeviceGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/groups/{id}][%d] patchDeviceGroupById default %s", o._statusCode, payload)
+}
+
 func (o *PatchDeviceGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

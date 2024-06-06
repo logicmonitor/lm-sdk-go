@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewAddWebsiteOK() *AddWebsiteOK {
 	return &AddWebsiteOK{}
 }
 
-/* AddWebsiteOK describes a response with status code 200, with default header values.
+/*
+AddWebsiteOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddWebsiteOK struct {
 	Payload models.Website
 }
 
-func (o *AddWebsiteOK) Error() string {
-	return fmt.Sprintf("[POST /website/websites][%d] addWebsiteOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add website o k response has a 2xx status code
+func (o *AddWebsiteOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add website o k response has a 3xx status code
+func (o *AddWebsiteOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add website o k response has a 4xx status code
+func (o *AddWebsiteOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add website o k response has a 5xx status code
+func (o *AddWebsiteOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add website o k response a status code equal to that given
+func (o *AddWebsiteOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add website o k response
+func (o *AddWebsiteOK) Code() int {
+	return 200
+}
+
+func (o *AddWebsiteOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /website/websites][%d] addWebsiteOK %s", 200, payload)
+}
+
+func (o *AddWebsiteOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /website/websites][%d] addWebsiteOK %s", 200, payload)
+}
+
 func (o *AddWebsiteOK) GetPayload() models.Website {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddWebsiteTooManyRequests() *AddWebsiteTooManyRequests {
 	return &AddWebsiteTooManyRequests{}
 }
 
-/* AddWebsiteTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddWebsiteTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddWebsiteTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add website too many requests response has a 2xx status code
+func (o *AddWebsiteTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add website too many requests response has a 3xx status code
+func (o *AddWebsiteTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add website too many requests response has a 4xx status code
+func (o *AddWebsiteTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add website too many requests response has a 5xx status code
+func (o *AddWebsiteTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add website too many requests response a status code equal to that given
+func (o *AddWebsiteTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add website too many requests response
+func (o *AddWebsiteTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddWebsiteTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /website/websites][%d] addWebsiteTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /website/websites][%d] addWebsiteTooManyRequests", 429)
+}
+
+func (o *AddWebsiteTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /website/websites][%d] addWebsiteTooManyRequests", 429)
 }
 
 func (o *AddWebsiteTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddWebsiteDefault(code int) *AddWebsiteDefault {
 	}
 }
 
-/* AddWebsiteDefault describes a response with status code -1, with default header values.
+/*
+AddWebsiteDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddWebsiteDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add website default response has a 2xx status code
+func (o *AddWebsiteDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add website default response has a 3xx status code
+func (o *AddWebsiteDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add website default response has a 4xx status code
+func (o *AddWebsiteDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add website default response has a 5xx status code
+func (o *AddWebsiteDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add website default response a status code equal to that given
+func (o *AddWebsiteDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add website default response
 func (o *AddWebsiteDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddWebsiteDefault) Error() string {
-	return fmt.Sprintf("[POST /website/websites][%d] addWebsite default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /website/websites][%d] addWebsite default %s", o._statusCode, payload)
 }
+
+func (o *AddWebsiteDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /website/websites][%d] addWebsite default %s", o._statusCode, payload)
+}
+
 func (o *AddWebsiteDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

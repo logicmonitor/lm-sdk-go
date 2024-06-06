@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetImmediateWebsiteListByWebsiteGroupIDOK() *GetImmediateWebsiteListByWe
 	return &GetImmediateWebsiteListByWebsiteGroupIDOK{}
 }
 
-/* GetImmediateWebsiteListByWebsiteGroupIDOK describes a response with status code 200, with default header values.
+/*
+GetImmediateWebsiteListByWebsiteGroupIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetImmediateWebsiteListByWebsiteGroupIDOK struct {
 	Payload *models.WebsitePaginationResponse
 }
 
-func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) Error() string {
-	return fmt.Sprintf("[GET /website/groups/{id}/websites][%d] getImmediateWebsiteListByWebsiteGroupIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get immediate website list by website group Id o k response has a 2xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get immediate website list by website group Id o k response has a 3xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get immediate website list by website group Id o k response has a 4xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get immediate website list by website group Id o k response has a 5xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get immediate website list by website group Id o k response a status code equal to that given
+func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get immediate website list by website group Id o k response
+func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) Code() int {
+	return 200
+}
+
+func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups/{id}/websites][%d] getImmediateWebsiteListByWebsiteGroupIdOK %s", 200, payload)
+}
+
+func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups/{id}/websites][%d] getImmediateWebsiteListByWebsiteGroupIdOK %s", 200, payload)
+}
+
 func (o *GetImmediateWebsiteListByWebsiteGroupIDOK) GetPayload() *models.WebsitePaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetImmediateWebsiteListByWebsiteGroupIDTooManyRequests() *GetImmediateWe
 	return &GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests{}
 }
 
-/* GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get immediate website list by website group Id too many requests response has a 2xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get immediate website list by website group Id too many requests response has a 3xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get immediate website list by website group Id too many requests response has a 4xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get immediate website list by website group Id too many requests response has a 5xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get immediate website list by website group Id too many requests response a status code equal to that given
+func (o *GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get immediate website list by website group Id too many requests response
+func (o *GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /website/groups/{id}/websites][%d] getImmediateWebsiteListByWebsiteGroupIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /website/groups/{id}/websites][%d] getImmediateWebsiteListByWebsiteGroupIdTooManyRequests", 429)
+}
+
+func (o *GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /website/groups/{id}/websites][%d] getImmediateWebsiteListByWebsiteGroupIdTooManyRequests", 429)
 }
 
 func (o *GetImmediateWebsiteListByWebsiteGroupIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetImmediateWebsiteListByWebsiteGroupIDDefault(code int) *GetImmediateWe
 	}
 }
 
-/* GetImmediateWebsiteListByWebsiteGroupIDDefault describes a response with status code -1, with default header values.
+/*
+GetImmediateWebsiteListByWebsiteGroupIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetImmediateWebsiteListByWebsiteGroupIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get immediate website list by website group Id default response has a 2xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get immediate website list by website group Id default response has a 3xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get immediate website list by website group Id default response has a 4xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get immediate website list by website group Id default response has a 5xx status code
+func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get immediate website list by website group Id default response a status code equal to that given
+func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get immediate website list by website group Id default response
 func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) Error() string {
-	return fmt.Sprintf("[GET /website/groups/{id}/websites][%d] getImmediateWebsiteListByWebsiteGroupId default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups/{id}/websites][%d] getImmediateWebsiteListByWebsiteGroupId default %s", o._statusCode, payload)
 }
+
+func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups/{id}/websites][%d] getImmediateWebsiteListByWebsiteGroupId default %s", o._statusCode, payload)
+}
+
 func (o *GetImmediateWebsiteListByWebsiteGroupIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewUpdateAdminByIDOK() *UpdateAdminByIDOK {
 	return &UpdateAdminByIDOK{}
 }
 
-/* UpdateAdminByIDOK describes a response with status code 200, with default header values.
+/*
+UpdateAdminByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type UpdateAdminByIDOK struct {
 	Payload *models.Admin
 }
 
-func (o *UpdateAdminByIDOK) Error() string {
-	return fmt.Sprintf("[PUT /setting/admins/{id}][%d] updateAdminByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this update admin by Id o k response has a 2xx status code
+func (o *UpdateAdminByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this update admin by Id o k response has a 3xx status code
+func (o *UpdateAdminByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update admin by Id o k response has a 4xx status code
+func (o *UpdateAdminByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update admin by Id o k response has a 5xx status code
+func (o *UpdateAdminByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update admin by Id o k response a status code equal to that given
+func (o *UpdateAdminByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the update admin by Id o k response
+func (o *UpdateAdminByIDOK) Code() int {
+	return 200
+}
+
+func (o *UpdateAdminByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/admins/{id}][%d] updateAdminByIdOK %s", 200, payload)
+}
+
+func (o *UpdateAdminByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/admins/{id}][%d] updateAdminByIdOK %s", 200, payload)
+}
+
 func (o *UpdateAdminByIDOK) GetPayload() *models.Admin {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewUpdateAdminByIDTooManyRequests() *UpdateAdminByIDTooManyRequests {
 	return &UpdateAdminByIDTooManyRequests{}
 }
 
-/* UpdateAdminByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateAdminByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type UpdateAdminByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this update admin by Id too many requests response has a 2xx status code
+func (o *UpdateAdminByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update admin by Id too many requests response has a 3xx status code
+func (o *UpdateAdminByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update admin by Id too many requests response has a 4xx status code
+func (o *UpdateAdminByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update admin by Id too many requests response has a 5xx status code
+func (o *UpdateAdminByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update admin by Id too many requests response a status code equal to that given
+func (o *UpdateAdminByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the update admin by Id too many requests response
+func (o *UpdateAdminByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *UpdateAdminByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /setting/admins/{id}][%d] updateAdminByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PUT /setting/admins/{id}][%d] updateAdminByIdTooManyRequests", 429)
+}
+
+func (o *UpdateAdminByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /setting/admins/{id}][%d] updateAdminByIdTooManyRequests", 429)
 }
 
 func (o *UpdateAdminByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewUpdateAdminByIDDefault(code int) *UpdateAdminByIDDefault {
 	}
 }
 
-/* UpdateAdminByIDDefault describes a response with status code -1, with default header values.
+/*
+UpdateAdminByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type UpdateAdminByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this update admin by Id default response has a 2xx status code
+func (o *UpdateAdminByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this update admin by Id default response has a 3xx status code
+func (o *UpdateAdminByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this update admin by Id default response has a 4xx status code
+func (o *UpdateAdminByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this update admin by Id default response has a 5xx status code
+func (o *UpdateAdminByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this update admin by Id default response a status code equal to that given
+func (o *UpdateAdminByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the update admin by Id default response
 func (o *UpdateAdminByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateAdminByIDDefault) Error() string {
-	return fmt.Sprintf("[PUT /setting/admins/{id}][%d] updateAdminById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/admins/{id}][%d] updateAdminById default %s", o._statusCode, payload)
 }
+
+func (o *UpdateAdminByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/admins/{id}][%d] updateAdminById default %s", o._statusCode, payload)
+}
+
 func (o *UpdateAdminByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -53,10 +53,12 @@ func NewGetWebsiteGroupByIDParamsWithHTTPClient(client *http.Client) *GetWebsite
 	}
 }
 
-/* GetWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
-   for the get website group by Id operation.
+/*
+GetWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteGroupByIDParams struct {
 

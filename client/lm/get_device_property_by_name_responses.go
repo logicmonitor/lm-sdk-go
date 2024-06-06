@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetDevicePropertyByNameOK() *GetDevicePropertyByNameOK {
 	return &GetDevicePropertyByNameOK{}
 }
 
-/* GetDevicePropertyByNameOK describes a response with status code 200, with default header values.
+/*
+GetDevicePropertyByNameOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDevicePropertyByNameOK struct {
 	Payload *models.EntityProperty
 }
 
-func (o *GetDevicePropertyByNameOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties/{name}][%d] getDevicePropertyByNameOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device property by name o k response has a 2xx status code
+func (o *GetDevicePropertyByNameOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device property by name o k response has a 3xx status code
+func (o *GetDevicePropertyByNameOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device property by name o k response has a 4xx status code
+func (o *GetDevicePropertyByNameOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device property by name o k response has a 5xx status code
+func (o *GetDevicePropertyByNameOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device property by name o k response a status code equal to that given
+func (o *GetDevicePropertyByNameOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device property by name o k response
+func (o *GetDevicePropertyByNameOK) Code() int {
+	return 200
+}
+
+func (o *GetDevicePropertyByNameOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties/{name}][%d] getDevicePropertyByNameOK %s", 200, payload)
+}
+
+func (o *GetDevicePropertyByNameOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties/{name}][%d] getDevicePropertyByNameOK %s", 200, payload)
+}
+
 func (o *GetDevicePropertyByNameOK) GetPayload() *models.EntityProperty {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDevicePropertyByNameTooManyRequests() *GetDevicePropertyByNameTooMany
 	return &GetDevicePropertyByNameTooManyRequests{}
 }
 
-/* GetDevicePropertyByNameTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDevicePropertyByNameTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDevicePropertyByNameTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device property by name too many requests response has a 2xx status code
+func (o *GetDevicePropertyByNameTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device property by name too many requests response has a 3xx status code
+func (o *GetDevicePropertyByNameTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device property by name too many requests response has a 4xx status code
+func (o *GetDevicePropertyByNameTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device property by name too many requests response has a 5xx status code
+func (o *GetDevicePropertyByNameTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device property by name too many requests response a status code equal to that given
+func (o *GetDevicePropertyByNameTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device property by name too many requests response
+func (o *GetDevicePropertyByNameTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDevicePropertyByNameTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties/{name}][%d] getDevicePropertyByNameTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties/{name}][%d] getDevicePropertyByNameTooManyRequests", 429)
+}
+
+func (o *GetDevicePropertyByNameTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties/{name}][%d] getDevicePropertyByNameTooManyRequests", 429)
 }
 
 func (o *GetDevicePropertyByNameTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDevicePropertyByNameDefault(code int) *GetDevicePropertyByNameDefault
 	}
 }
 
-/* GetDevicePropertyByNameDefault describes a response with status code -1, with default header values.
+/*
+GetDevicePropertyByNameDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDevicePropertyByNameDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device property by name default response has a 2xx status code
+func (o *GetDevicePropertyByNameDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device property by name default response has a 3xx status code
+func (o *GetDevicePropertyByNameDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device property by name default response has a 4xx status code
+func (o *GetDevicePropertyByNameDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device property by name default response has a 5xx status code
+func (o *GetDevicePropertyByNameDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device property by name default response a status code equal to that given
+func (o *GetDevicePropertyByNameDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device property by name default response
 func (o *GetDevicePropertyByNameDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDevicePropertyByNameDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties/{name}][%d] getDevicePropertyByName default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties/{name}][%d] getDevicePropertyByName default %s", o._statusCode, payload)
 }
+
+func (o *GetDevicePropertyByNameDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/properties/{name}][%d] getDevicePropertyByName default %s", o._statusCode, payload)
+}
+
 func (o *GetDevicePropertyByNameDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

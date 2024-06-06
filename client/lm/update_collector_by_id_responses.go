@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewUpdateCollectorByIDOK() *UpdateCollectorByIDOK {
 	return &UpdateCollectorByIDOK{}
 }
 
-/* UpdateCollectorByIDOK describes a response with status code 200, with default header values.
+/*
+UpdateCollectorByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type UpdateCollectorByIDOK struct {
 	Payload *models.Collector
 }
 
-func (o *UpdateCollectorByIDOK) Error() string {
-	return fmt.Sprintf("[PUT /setting/collector/collectors/{id}][%d] updateCollectorByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this update collector by Id o k response has a 2xx status code
+func (o *UpdateCollectorByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this update collector by Id o k response has a 3xx status code
+func (o *UpdateCollectorByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update collector by Id o k response has a 4xx status code
+func (o *UpdateCollectorByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this update collector by Id o k response has a 5xx status code
+func (o *UpdateCollectorByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update collector by Id o k response a status code equal to that given
+func (o *UpdateCollectorByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the update collector by Id o k response
+func (o *UpdateCollectorByIDOK) Code() int {
+	return 200
+}
+
+func (o *UpdateCollectorByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/collector/collectors/{id}][%d] updateCollectorByIdOK %s", 200, payload)
+}
+
+func (o *UpdateCollectorByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/collector/collectors/{id}][%d] updateCollectorByIdOK %s", 200, payload)
+}
+
 func (o *UpdateCollectorByIDOK) GetPayload() *models.Collector {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewUpdateCollectorByIDTooManyRequests() *UpdateCollectorByIDTooManyRequests
 	return &UpdateCollectorByIDTooManyRequests{}
 }
 
-/* UpdateCollectorByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+UpdateCollectorByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type UpdateCollectorByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this update collector by Id too many requests response has a 2xx status code
+func (o *UpdateCollectorByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this update collector by Id too many requests response has a 3xx status code
+func (o *UpdateCollectorByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this update collector by Id too many requests response has a 4xx status code
+func (o *UpdateCollectorByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this update collector by Id too many requests response has a 5xx status code
+func (o *UpdateCollectorByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this update collector by Id too many requests response a status code equal to that given
+func (o *UpdateCollectorByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the update collector by Id too many requests response
+func (o *UpdateCollectorByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *UpdateCollectorByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /setting/collector/collectors/{id}][%d] updateCollectorByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PUT /setting/collector/collectors/{id}][%d] updateCollectorByIdTooManyRequests", 429)
+}
+
+func (o *UpdateCollectorByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PUT /setting/collector/collectors/{id}][%d] updateCollectorByIdTooManyRequests", 429)
 }
 
 func (o *UpdateCollectorByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewUpdateCollectorByIDDefault(code int) *UpdateCollectorByIDDefault {
 	}
 }
 
-/* UpdateCollectorByIDDefault describes a response with status code -1, with default header values.
+/*
+UpdateCollectorByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type UpdateCollectorByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this update collector by Id default response has a 2xx status code
+func (o *UpdateCollectorByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this update collector by Id default response has a 3xx status code
+func (o *UpdateCollectorByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this update collector by Id default response has a 4xx status code
+func (o *UpdateCollectorByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this update collector by Id default response has a 5xx status code
+func (o *UpdateCollectorByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this update collector by Id default response a status code equal to that given
+func (o *UpdateCollectorByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the update collector by Id default response
 func (o *UpdateCollectorByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateCollectorByIDDefault) Error() string {
-	return fmt.Sprintf("[PUT /setting/collector/collectors/{id}][%d] updateCollectorById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/collector/collectors/{id}][%d] updateCollectorById default %s", o._statusCode, payload)
 }
+
+func (o *UpdateCollectorByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PUT /setting/collector/collectors/{id}][%d] updateCollectorById default %s", o._statusCode, payload)
+}
+
 func (o *UpdateCollectorByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

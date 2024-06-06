@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewGetMetricsUsageOK() *GetMetricsUsageOK {
 	return &GetMetricsUsageOK{}
 }
 
-/* GetMetricsUsageOK describes a response with status code 200, with default header values.
+/*
+GetMetricsUsageOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetMetricsUsageOK struct {
 	Payload *models.Usage
 }
 
-func (o *GetMetricsUsageOK) Error() string {
-	return fmt.Sprintf("[GET /metrics/usage][%d] getMetricsUsageOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get metrics usage o k response has a 2xx status code
+func (o *GetMetricsUsageOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get metrics usage o k response has a 3xx status code
+func (o *GetMetricsUsageOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get metrics usage o k response has a 4xx status code
+func (o *GetMetricsUsageOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get metrics usage o k response has a 5xx status code
+func (o *GetMetricsUsageOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get metrics usage o k response a status code equal to that given
+func (o *GetMetricsUsageOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get metrics usage o k response
+func (o *GetMetricsUsageOK) Code() int {
+	return 200
+}
+
+func (o *GetMetricsUsageOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /metrics/usage][%d] getMetricsUsageOK %s", 200, payload)
+}
+
+func (o *GetMetricsUsageOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /metrics/usage][%d] getMetricsUsageOK %s", 200, payload)
+}
+
 func (o *GetMetricsUsageOK) GetPayload() *models.Usage {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetMetricsUsageTooManyRequests() *GetMetricsUsageTooManyRequests {
 	return &GetMetricsUsageTooManyRequests{}
 }
 
-/* GetMetricsUsageTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetMetricsUsageTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetMetricsUsageTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get metrics usage too many requests response has a 2xx status code
+func (o *GetMetricsUsageTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get metrics usage too many requests response has a 3xx status code
+func (o *GetMetricsUsageTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get metrics usage too many requests response has a 4xx status code
+func (o *GetMetricsUsageTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get metrics usage too many requests response has a 5xx status code
+func (o *GetMetricsUsageTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get metrics usage too many requests response a status code equal to that given
+func (o *GetMetricsUsageTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get metrics usage too many requests response
+func (o *GetMetricsUsageTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetMetricsUsageTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /metrics/usage][%d] getMetricsUsageTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /metrics/usage][%d] getMetricsUsageTooManyRequests", 429)
+}
+
+func (o *GetMetricsUsageTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /metrics/usage][%d] getMetricsUsageTooManyRequests", 429)
 }
 
 func (o *GetMetricsUsageTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetMetricsUsageDefault(code int) *GetMetricsUsageDefault {
 	}
 }
 
-/* GetMetricsUsageDefault describes a response with status code -1, with default header values.
+/*
+GetMetricsUsageDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetMetricsUsageDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get metrics usage default response has a 2xx status code
+func (o *GetMetricsUsageDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get metrics usage default response has a 3xx status code
+func (o *GetMetricsUsageDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get metrics usage default response has a 4xx status code
+func (o *GetMetricsUsageDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get metrics usage default response has a 5xx status code
+func (o *GetMetricsUsageDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get metrics usage default response a status code equal to that given
+func (o *GetMetricsUsageDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get metrics usage default response
 func (o *GetMetricsUsageDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetMetricsUsageDefault) Error() string {
-	return fmt.Sprintf("[GET /metrics/usage][%d] getMetricsUsage default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /metrics/usage][%d] getMetricsUsage default %s", o._statusCode, payload)
 }
+
+func (o *GetMetricsUsageDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /metrics/usage][%d] getMetricsUsage default %s", o._statusCode, payload)
+}
+
 func (o *GetMetricsUsageDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

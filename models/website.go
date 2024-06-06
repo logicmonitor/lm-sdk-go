@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -558,7 +557,7 @@ func UnmarshalWebsiteSlice(reader io.Reader, consumer runtime.Consumer) ([]Websi
 // UnmarshalWebsite unmarshals polymorphic Website
 func UnmarshalWebsite(reader io.Reader, consumer runtime.Consumer) (Website, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -653,6 +652,8 @@ func (m *website) validateCheckpoints(formats strfmt.Registry) error {
 			if err := m.checkpointsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("checkpoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("checkpoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -677,6 +678,8 @@ func (m *website) validateCollectors(formats strfmt.Registry) error {
 			if err := m.collectorsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -710,6 +713,8 @@ func (m *website) validateProperties(formats strfmt.Registry) error {
 			if err := m.propertiesField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -734,6 +739,8 @@ func (m *website) validateSteps(formats strfmt.Registry) error {
 			if err := m.stepsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -754,6 +761,8 @@ func (m *website) validateTestLocation(formats strfmt.Registry) error {
 		if err := m.TestLocation().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}
@@ -821,9 +830,16 @@ func (m *website) contextValidateCheckpoints(ctx context.Context, formats strfmt
 	for i := 0; i < len(m.Checkpoints()); i++ {
 
 		if m.checkpointsField[i] != nil {
+
+			if swag.IsZero(m.checkpointsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.checkpointsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("checkpoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("checkpoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -843,9 +859,16 @@ func (m *website) contextValidateCollectors(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.Collectors()); i++ {
 
 		if m.collectorsField[i] != nil {
+
+			if swag.IsZero(m.collectorsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.collectorsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -892,9 +915,16 @@ func (m *website) contextValidateProperties(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.Properties()); i++ {
 
 		if m.propertiesField[i] != nil {
+
+			if swag.IsZero(m.propertiesField[i]) { // not required
+				return nil
+			}
+
 			if err := m.propertiesField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("properties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("properties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -928,9 +958,16 @@ func (m *website) contextValidateSteps(ctx context.Context, formats strfmt.Regis
 	for i := 0; i < len(m.Steps()); i++ {
 
 		if m.stepsField[i] != nil {
+
+			if swag.IsZero(m.stepsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.stepsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("steps" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("steps" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -953,9 +990,12 @@ func (m *website) contextValidateStopMonitoringByFolder(ctx context.Context, for
 func (m *website) contextValidateTestLocation(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.TestLocation() != nil {
+
 		if err := m.TestLocation().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("testLocation")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("testLocation")
 			}
 			return err
 		}

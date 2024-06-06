@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -54,7 +55,8 @@ func NewPatchAlertRuleByIDOK() *PatchAlertRuleByIDOK {
 	return &PatchAlertRuleByIDOK{}
 }
 
-/* PatchAlertRuleByIDOK describes a response with status code 200, with default header values.
+/*
+PatchAlertRuleByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchAlertRuleByIDOK struct {
 	Payload *models.AlertRule
 }
 
-func (o *PatchAlertRuleByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /setting/alert/rules/{id}][%d] patchAlertRuleByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch alert rule by Id o k response has a 2xx status code
+func (o *PatchAlertRuleByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch alert rule by Id o k response has a 3xx status code
+func (o *PatchAlertRuleByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch alert rule by Id o k response has a 4xx status code
+func (o *PatchAlertRuleByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch alert rule by Id o k response has a 5xx status code
+func (o *PatchAlertRuleByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch alert rule by Id o k response a status code equal to that given
+func (o *PatchAlertRuleByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch alert rule by Id o k response
+func (o *PatchAlertRuleByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchAlertRuleByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/alert/rules/{id}][%d] patchAlertRuleByIdOK %s", 200, payload)
+}
+
+func (o *PatchAlertRuleByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/alert/rules/{id}][%d] patchAlertRuleByIdOK %s", 200, payload)
+}
+
 func (o *PatchAlertRuleByIDOK) GetPayload() *models.AlertRule {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchAlertRuleByIDTooManyRequests() *PatchAlertRuleByIDTooManyRequests {
 	return &PatchAlertRuleByIDTooManyRequests{}
 }
 
-/* PatchAlertRuleByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchAlertRuleByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchAlertRuleByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch alert rule by Id too many requests response has a 2xx status code
+func (o *PatchAlertRuleByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch alert rule by Id too many requests response has a 3xx status code
+func (o *PatchAlertRuleByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch alert rule by Id too many requests response has a 4xx status code
+func (o *PatchAlertRuleByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch alert rule by Id too many requests response has a 5xx status code
+func (o *PatchAlertRuleByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch alert rule by Id too many requests response a status code equal to that given
+func (o *PatchAlertRuleByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch alert rule by Id too many requests response
+func (o *PatchAlertRuleByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchAlertRuleByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /setting/alert/rules/{id}][%d] patchAlertRuleByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /setting/alert/rules/{id}][%d] patchAlertRuleByIdTooManyRequests", 429)
+}
+
+func (o *PatchAlertRuleByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /setting/alert/rules/{id}][%d] patchAlertRuleByIdTooManyRequests", 429)
 }
 
 func (o *PatchAlertRuleByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchAlertRuleByIDDefault(code int) *PatchAlertRuleByIDDefault {
 	}
 }
 
-/* PatchAlertRuleByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchAlertRuleByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchAlertRuleByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch alert rule by Id default response has a 2xx status code
+func (o *PatchAlertRuleByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch alert rule by Id default response has a 3xx status code
+func (o *PatchAlertRuleByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch alert rule by Id default response has a 4xx status code
+func (o *PatchAlertRuleByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch alert rule by Id default response has a 5xx status code
+func (o *PatchAlertRuleByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch alert rule by Id default response a status code equal to that given
+func (o *PatchAlertRuleByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch alert rule by Id default response
 func (o *PatchAlertRuleByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchAlertRuleByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /setting/alert/rules/{id}][%d] patchAlertRuleById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/alert/rules/{id}][%d] patchAlertRuleById default %s", o._statusCode, payload)
 }
+
+func (o *PatchAlertRuleByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/alert/rules/{id}][%d] patchAlertRuleById default %s", o._statusCode, payload)
+}
+
 func (o *PatchAlertRuleByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }
