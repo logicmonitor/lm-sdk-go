@@ -106,8 +106,20 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 			return nil, err
 		}
 		return &result, nil
+	case "AwsGlobalNetworkAttachmentMethod":
+		var result AwsGlobalNetworkAttachmentMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "AwsGlobalNetworkDeviceMethod":
 		var result AwsGlobalNetworkDeviceMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AwsGlobalNetworkEdgeMethod":
+		var result AwsGlobalNetworkEdgeMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

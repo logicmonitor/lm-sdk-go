@@ -42,6 +42,14 @@ type CellData struct {
 	// Read Only: true
 	InstanceName string `json:"instanceName,omitempty"`
 
+	// is property value
+	// Read Only: true
+	IsPropertyValue *bool `json:"isPropertyValue,omitempty"`
+
+	// prop value
+	// Read Only: true
+	PropValue string `json:"propValue,omitempty"`
+
 	// value
 	// Read Only: true
 	Value float64 `json:"value,omitempty"`
@@ -109,6 +117,14 @@ func (m *CellData) ContextValidate(ctx context.Context, formats strfmt.Registry)
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIsPropertyValue(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePropValue(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateValue(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -167,6 +183,24 @@ func (m *CellData) contextValidateInstanceID(ctx context.Context, formats strfmt
 func (m *CellData) contextValidateInstanceName(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "instanceName", "body", string(m.InstanceName)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CellData) contextValidateIsPropertyValue(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "isPropertyValue", "body", m.IsPropertyValue); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CellData) contextValidatePropValue(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "propValue", "body", string(m.PropValue)); err != nil {
 		return err
 	}
 

@@ -145,6 +145,10 @@ type Admin struct {
 	// Read Only: true
 	UserPermission string `json:"userPermission,omitempty"`
 
+	// The type of user
+	// Read Only: true
+	UserType string `json:"userType,omitempty"`
+
 	// The username associated with the user
 	// Example: John
 	// Required: true
@@ -321,6 +325,10 @@ func (m *Admin) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateUserType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -456,6 +464,15 @@ func (m *Admin) contextValidateTrainingEmail(ctx context.Context, formats strfmt
 func (m *Admin) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Admin) contextValidateUserType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "userType", "body", string(m.UserType)); err != nil {
 		return err
 	}
 
