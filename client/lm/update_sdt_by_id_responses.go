@@ -239,44 +239,44 @@ type UpdateSDTByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this update SDT by Id default response has a 2xx status code
+// IsSuccess returns true when this update Sdt by Id default response has a 2xx status code
 func (o *UpdateSDTByIDDefault) IsSuccess() bool {
 	return o._statusCode/100 == 2
 }
 
-// IsRedirect returns true when this update SDT by Id default response has a 3xx status code
+// IsRedirect returns true when this update Sdt by Id default response has a 3xx status code
 func (o *UpdateSDTByIDDefault) IsRedirect() bool {
 	return o._statusCode/100 == 3
 }
 
-// IsClientError returns true when this update SDT by Id default response has a 4xx status code
+// IsClientError returns true when this update Sdt by Id default response has a 4xx status code
 func (o *UpdateSDTByIDDefault) IsClientError() bool {
 	return o._statusCode/100 == 4
 }
 
-// IsServerError returns true when this update SDT by Id default response has a 5xx status code
+// IsServerError returns true when this update Sdt by Id default response has a 5xx status code
 func (o *UpdateSDTByIDDefault) IsServerError() bool {
 	return o._statusCode/100 == 5
 }
 
-// IsCode returns true when this update SDT by Id default response a status code equal to that given
+// IsCode returns true when this update Sdt by Id default response a status code equal to that given
 func (o *UpdateSDTByIDDefault) IsCode(code int) bool {
 	return o._statusCode == code
 }
 
-// Code gets the status code for the update SDT by Id default response
+// Code gets the status code for the update Sdt by Id default response
 func (o *UpdateSDTByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *UpdateSDTByIDDefault) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /sdt/sdts/{id}][%d] updateSDTById default %s", o._statusCode, payload)
+	return fmt.Sprintf("[PUT /sdt/sdts/{id}][%d] updateSdtById default %s", o._statusCode, payload)
 }
 
 func (o *UpdateSDTByIDDefault) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /sdt/sdts/{id}][%d] updateSDTById default %s", o._statusCode, payload)
+	return fmt.Sprintf("[PUT /sdt/sdts/{id}][%d] updateSdtById default %s", o._statusCode, payload)
 }
 
 func (o *UpdateSDTByIDDefault) GetPayload() *models.ErrorResponse {

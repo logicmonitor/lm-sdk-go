@@ -21,6 +21,10 @@ import (
 //
 // swagger:model EchoEventSource
 type EchoEventSource struct {
+	accessGroupIdsField []int32
+
+	accessGroupsField []*AccessGroup
+
 	alertBodyTemplateField string
 
 	alertEffectiveIvalField *int32
@@ -60,6 +64,26 @@ type EchoEventSource struct {
 	versionField int64
 
 	EchoEventSourceAllOf1
+}
+
+// AccessGroupIds gets the access group ids of this subtype
+func (m *EchoEventSource) AccessGroupIds() []int32 {
+	return m.accessGroupIdsField
+}
+
+// SetAccessGroupIds sets the access group ids of this subtype
+func (m *EchoEventSource) SetAccessGroupIds(val []int32) {
+	m.accessGroupIdsField = val
+}
+
+// AccessGroups gets the access groups of this subtype
+func (m *EchoEventSource) AccessGroups() []*AccessGroup {
+	return m.accessGroupsField
+}
+
+// SetAccessGroups sets the access groups of this subtype
+func (m *EchoEventSource) SetAccessGroups(val []*AccessGroup) {
+	m.accessGroupsField = val
 }
 
 // AlertBodyTemplate gets the alert body template of this subtype
@@ -277,6 +301,10 @@ func (m *EchoEventSource) UnmarshalJSON(raw []byte) error {
 	var base struct {
 		/* Just the base type fields. Used for unmashalling polymorphic types.*/
 
+		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
 		AlertBodyTemplate string `json:"alertBodyTemplate,omitempty"`
 
 		AlertEffectiveIval *int32 `json:"alertEffectiveIval"`
@@ -326,6 +354,10 @@ func (m *EchoEventSource) UnmarshalJSON(raw []byte) error {
 	}
 
 	var result EchoEventSource
+
+	result.accessGroupIdsField = base.AccessGroupIds
+
+	result.accessGroupsField = base.AccessGroups
 
 	result.alertBodyTemplateField = base.AlertBodyTemplate
 
@@ -390,6 +422,10 @@ func (m EchoEventSource) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	b2, err = json.Marshal(struct {
+		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
 		AlertBodyTemplate string `json:"alertBodyTemplate,omitempty"`
 
 		AlertEffectiveIval *int32 `json:"alertEffectiveIval"`
@@ -430,6 +466,10 @@ func (m EchoEventSource) MarshalJSON() ([]byte, error) {
 
 		Version int64 `json:"version,omitempty"`
 	}{
+
+		AccessGroupIds: m.AccessGroupIds(),
+
+		AccessGroups: m.AccessGroups(),
 
 		AlertBodyTemplate: m.AlertBodyTemplate(),
 
@@ -482,6 +522,14 @@ func (m EchoEventSource) MarshalJSON() ([]byte, error) {
 func (m *EchoEventSource) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAccessGroupIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAccessGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAlertEffectiveIval(formats); err != nil {
 		res = append(res, err)
 	}
@@ -503,6 +551,46 @@ func (m *EchoEventSource) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *EchoEventSource) validateAccessGroupIds(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AccessGroupIds()) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("accessGroupIds", "body", m.AccessGroupIds()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *EchoEventSource) validateAccessGroups(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AccessGroups()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AccessGroups()); i++ {
+		if swag.IsZero(m.accessGroupsField[i]) { // not required
+			continue
+		}
+
+		if m.accessGroupsField[i] != nil {
+			if err := m.accessGroupsField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -575,6 +663,10 @@ func (m *EchoEventSource) validateName(formats strfmt.Registry) error {
 func (m *EchoEventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAccessGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -608,6 +700,31 @@ func (m *EchoEventSource) ContextValidate(ctx context.Context, formats strfmt.Re
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *EchoEventSource) contextValidateAccessGroups(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AccessGroups()); i++ {
+
+		if m.accessGroupsField[i] != nil {
+
+			if swag.IsZero(m.accessGroupsField[i]) { // not required
+				return nil
+			}
+
+			if err := m.accessGroupsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

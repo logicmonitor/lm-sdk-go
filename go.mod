@@ -1,6 +1,6 @@
 module github.com/logicmonitor/lm-sdk-go/v3
 
-go 1.21.10
+go 1.21.11
 
 require (
 	github.com/go-openapi/errors v0.22.0

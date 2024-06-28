@@ -239,44 +239,44 @@ type GetSDTByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
-// IsSuccess returns true when this get SDT by Id default response has a 2xx status code
+// IsSuccess returns true when this get Sdt by Id default response has a 2xx status code
 func (o *GetSDTByIDDefault) IsSuccess() bool {
 	return o._statusCode/100 == 2
 }
 
-// IsRedirect returns true when this get SDT by Id default response has a 3xx status code
+// IsRedirect returns true when this get Sdt by Id default response has a 3xx status code
 func (o *GetSDTByIDDefault) IsRedirect() bool {
 	return o._statusCode/100 == 3
 }
 
-// IsClientError returns true when this get SDT by Id default response has a 4xx status code
+// IsClientError returns true when this get Sdt by Id default response has a 4xx status code
 func (o *GetSDTByIDDefault) IsClientError() bool {
 	return o._statusCode/100 == 4
 }
 
-// IsServerError returns true when this get SDT by Id default response has a 5xx status code
+// IsServerError returns true when this get Sdt by Id default response has a 5xx status code
 func (o *GetSDTByIDDefault) IsServerError() bool {
 	return o._statusCode/100 == 5
 }
 
-// IsCode returns true when this get SDT by Id default response a status code equal to that given
+// IsCode returns true when this get Sdt by Id default response a status code equal to that given
 func (o *GetSDTByIDDefault) IsCode(code int) bool {
 	return o._statusCode == code
 }
 
-// Code gets the status code for the get SDT by Id default response
+// Code gets the status code for the get Sdt by Id default response
 func (o *GetSDTByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetSDTByIDDefault) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSDTById default %s", o._statusCode, payload)
+	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSdtById default %s", o._statusCode, payload)
 }
 
 func (o *GetSDTByIDDefault) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSDTById default %s", o._statusCode, payload)
+	return fmt.Sprintf("[GET /sdt/sdts/{id}][%d] getSdtById default %s", o._statusCode, payload)
 }
 
 func (o *GetSDTByIDDefault) GetPayload() *models.ErrorResponse {

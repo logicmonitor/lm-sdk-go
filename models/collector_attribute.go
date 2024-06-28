@@ -470,12 +470,6 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 			return nil, err
 		}
 		return &result, nil
-	case "awsec2reservedinstancecoverage":
-		var result AwsEC2ReservedInstanceCoverageCollectorAttribute
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
 	case "awsec2scheduledevents":
 		var result AwsEC2ScheduledEventsCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {

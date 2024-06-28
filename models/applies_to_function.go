@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -18,6 +19,14 @@ import (
 //
 // swagger:model AppliesToFunction
 type AppliesToFunction struct {
+
+	// The Access Groups Id's
+	// Example: 1, 2, 3
+	// Unique: true
+	AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+	// Access group Details in response
+	AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
 
 	// The metadata checksum for the LMModule content
 	// Read Only: true
@@ -52,6 +61,14 @@ type AppliesToFunction struct {
 func (m *AppliesToFunction) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAccessGroupIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAccessGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCode(formats); err != nil {
 		res = append(res, err)
 	}
@@ -71,6 +88,44 @@ func (m *AppliesToFunction) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AppliesToFunction) validateAccessGroupIds(formats strfmt.Registry) error {
+	if swag.IsZero(m.AccessGroupIds) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("accessGroupIds", "body", m.AccessGroupIds); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AppliesToFunction) validateAccessGroups(formats strfmt.Registry) error {
+	if swag.IsZero(m.AccessGroups) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AccessGroups); i++ {
+		if swag.IsZero(m.AccessGroups[i]) { // not required
+			continue
+		}
+
+		if m.AccessGroups[i] != nil {
+			if err := m.AccessGroups[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -127,6 +182,10 @@ func (m *AppliesToFunction) validateName(formats strfmt.Registry) error {
 func (m *AppliesToFunction) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAccessGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateChecksum(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -146,6 +205,31 @@ func (m *AppliesToFunction) ContextValidate(ctx context.Context, formats strfmt.
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AppliesToFunction) contextValidateAccessGroups(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AccessGroups); i++ {
+
+		if m.AccessGroups[i] != nil {
+
+			if swag.IsZero(m.AccessGroups[i]) { // not required
+				return nil
+			}
+
+			if err := m.AccessGroups[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

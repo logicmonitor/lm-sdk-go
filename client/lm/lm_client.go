@@ -1433,7 +1433,7 @@ func (a *Client) DeleteSDTByID(params *DeleteSDTByIDParams) (*DeleteSDTByIDOK, e
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "deleteSDTById",
+		ID:                 "deleteSdtById",
 		Method:             "DELETE",
 		PathPattern:        "/sdt/sdts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
@@ -6557,64 +6557,6 @@ func (a *Client) GetRoleListJSON(params *GetRoleListJSONParams) (*GetRoleListJSO
 }
 
 /*
-GetSDTByID gets SDT by id response may contain extra fields depending upon the type of SDT of given id
-*/
-func (a *Client) GetSDTByID(params *GetSDTByIDParams) (*GetSDTByIDOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetSDTByIDParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getSDTById",
-		Method:             "GET",
-		PathPattern:        "/sdt/sdts/{id}",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetSDTByIDReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetSDTByIDOK), nil
-
-}
-
-/*
-GetSDTByIDJSON gets SDT by id response may contain extra fields depending upon the type of SDT of given id raw response
-*/
-func (a *Client) GetSDTByIDJSON(params *GetSDTByIDJSONParams) (*GetSDTByIDJSONOK, error) {
-	// TODO: Validate the params before sending
-	if params == nil {
-		params = NewGetSDTByIDJSONParams()
-	}
-
-	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "getSDTByIdJson",
-		Method:             "GET",
-		PathPattern:        "/sdt/sdts/{id}?__json=",
-		ProducesMediaTypes: []string{"application/json"},
-		ConsumesMediaTypes: []string{"application/json"},
-		Schemes:            []string{"https"},
-		Params:             params,
-		Reader:             &GetSDTByIDJSONReader{formats: a.formats},
-		AuthInfo:           a.authInfo,
-		Context:            params.Context,
-		Client:             params.HTTPClient,
-	})
-	if err != nil {
-		return nil, err
-	}
-	return result.(*GetSDTByIDJSONOK), nil
-
-}
-
-/*
 GetSDTHistoryByDeviceDataSourceID gets SDT history for the device data source
 */
 func (a *Client) GetSDTHistoryByDeviceDataSourceID(params *GetSDTHistoryByDeviceDataSourceIDParams) (*GetSDTHistoryByDeviceDataSourceIDOK, error) {
@@ -6901,6 +6843,64 @@ func (a *Client) GetSDTListJSON(params *GetSDTListJSONParams) (*GetSDTListJSONOK
 		return nil, err
 	}
 	return result.(*GetSDTListJSONOK), nil
+
+}
+
+/*
+GetSDTByID gets SDT by id response may contain extra fields depending upon the type of SDT of given id
+*/
+func (a *Client) GetSDTByID(params *GetSDTByIDParams) (*GetSDTByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSDTByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSdtById",
+		Method:             "GET",
+		PathPattern:        "/sdt/sdts/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSDTByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetSDTByIDOK), nil
+
+}
+
+/*
+GetSDTByIDJSON gets SDT by id response may contain extra fields depending upon the type of SDT of given id raw response
+*/
+func (a *Client) GetSDTByIDJSON(params *GetSDTByIDJSONParams) (*GetSDTByIDJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSDTByIDJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSdtByIdJson",
+		Method:             "GET",
+		PathPattern:        "/sdt/sdts/{id}?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSDTByIDJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetSDTByIDJSONOK), nil
 
 }
 
@@ -8007,6 +8007,35 @@ func (a *Client) GetWidgetListJSON(params *GetWidgetListJSONParams) (*GetWidgetL
 }
 
 /*
+MapUnMapModuleToAccessGroup creates a mapping of access group and module
+*/
+func (a *Client) MapUnMapModuleToAccessGroup(params *MapUnMapModuleToAccessGroupParams) (*MapUnMapModuleToAccessGroupOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewMapUnMapModuleToAccessGroupParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "mapUnMapModuleToAccessGroup",
+		Method:             "POST",
+		PathPattern:        "/setting/accessgroup/mapunmap/modules",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &MapUnMapModuleToAccessGroupReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*MapUnMapModuleToAccessGroupOK), nil
+
+}
+
+/*
 PatchAccessGroup updates access group
 */
 func (a *Client) PatchAccessGroup(params *PatchAccessGroupParams) (*PatchAccessGroupOK, error) {
@@ -8716,7 +8745,7 @@ func (a *Client) PatchSDTByID(params *PatchSDTByIDParams) (*PatchSDTByIDOK, erro
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "patchSDTById",
+		ID:                 "patchSdtById",
 		Method:             "PATCH",
 		PathPattern:        "/sdt/sdts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
@@ -9706,7 +9735,7 @@ func (a *Client) UpdateSDTByID(params *UpdateSDTByIDParams) (*UpdateSDTByIDOK, e
 	}
 
 	result, err := a.transport.Submit(&runtime.ClientOperation{
-		ID:                 "updateSDTById",
+		ID:                 "updateSdtById",
 		Method:             "PUT",
 		PathPattern:        "/sdt/sdts/{id}",
 		ProducesMediaTypes: []string{"application/json"},
@@ -9809,6 +9838,35 @@ func (a *Client) UpdateWidgetByID(params *UpdateWidgetByIDParams) (*UpdateWidget
 		return nil, err
 	}
 	return result.(*UpdateWidgetByIDOK), nil
+
+}
+
+/*
+VerifyStorageAccountsPermissions views storage accounts
+*/
+func (a *Client) VerifyStorageAccountsPermissions(params *VerifyStorageAccountsPermissionsParams) (*VerifyStorageAccountsPermissionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVerifyStorageAccountsPermissionsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "verifyStorageAccountsPermissions",
+		Method:             "POST",
+		PathPattern:        "/azure/functions/verifyStorageAccountsPermissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &VerifyStorageAccountsPermissionsReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*VerifyStorageAccountsPermissionsOK), nil
 
 }
 
