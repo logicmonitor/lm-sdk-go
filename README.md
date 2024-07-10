@@ -4,7 +4,6 @@
 Getting Started
 ---------------
 
-
 ```go
 package main
 
