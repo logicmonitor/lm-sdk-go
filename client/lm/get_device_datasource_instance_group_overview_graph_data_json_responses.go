@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONReader is a Reader for the GetDeviceDatasourceInstanceGroupOverviewGraphDataJSON structure.
@@ -54,7 +55,8 @@ func NewGetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK() *GetDeviceData
 	return &GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK{}
 }
 
-/* GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK describes a response with status code 200, with default header values.
+/*
+GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data?__json=][%d] getDeviceDatasourceInstanceGroupOverviewGraphDataJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device datasource instance group overview graph data Json o k response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device datasource instance group overview graph data Json o k response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device datasource instance group overview graph data Json o k response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device datasource instance group overview graph data Json o k response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device datasource instance group overview graph data Json o k response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device datasource instance group overview graph data Json o k response
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data?__json=][%d] getDeviceDatasourceInstanceGroupOverviewGraphDataJsonOK %s", 200, payload)
+}
+
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data?__json=][%d] getDeviceDatasourceInstanceGroupOverviewGraphDataJsonOK %s", 200, payload)
+}
+
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests() *
 	return &GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests{}
 }
 
-/* GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests struct
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device datasource instance group overview graph data Json too many requests response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device datasource instance group overview graph data Json too many requests response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device datasource instance group overview graph data Json too many requests response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device datasource instance group overview graph data Json too many requests response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device datasource instance group overview graph data Json too many requests response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device datasource instance group overview graph data Json too many requests response
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data?__json=][%d] getDeviceDatasourceInstanceGroupOverviewGraphDataJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data?__json=][%d] getDeviceDatasourceInstanceGroupOverviewGraphDataJsonTooManyRequests", 429)
+}
+
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data?__json=][%d] getDeviceDatasourceInstanceGroupOverviewGraphDataJsonTooManyRequests", 429)
 }
 
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault(code int) *
 	}
 }
 
-/* GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault describes a response with status code -1, with default header values.
+/*
+GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device datasource instance group overview graph data Json default response has a 2xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device datasource instance group overview graph data Json default response has a 3xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device datasource instance group overview graph data Json default response has a 4xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device datasource instance group overview graph data Json default response has a 5xx status code
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device datasource instance group overview graph data Json default response a status code equal to that given
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device datasource instance group overview graph data Json default response
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data?__json=][%d] getDeviceDatasourceInstanceGroupOverviewGraphDataJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data?__json=][%d] getDeviceDatasourceInstanceGroupOverviewGraphDataJson default %s", o._statusCode, payload)
 }
+
+func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{dsigId}/graphs/{ographId}/data?__json=][%d] getDeviceDatasourceInstanceGroupOverviewGraphDataJson default %s", o._statusCode, payload)
+}
+
 func (o *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

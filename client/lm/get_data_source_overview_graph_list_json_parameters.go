@@ -53,10 +53,12 @@ func NewGetDataSourceOverviewGraphListJSONParamsWithHTTPClient(client *http.Clie
 	}
 }
 
-/* GetDataSourceOverviewGraphListJSONParams contains all the parameters to send to the API endpoint
-   for the get data source overview graph list Json operation.
+/*
+GetDataSourceOverviewGraphListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get data source overview graph list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDataSourceOverviewGraphListJSONParams struct {
 

@@ -54,6 +54,8 @@ func (m *DeviceGroupDataSourceAlertConfig) validateDpConfig(formats strfmt.Regis
 			if err := m.DpConfig[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dpConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dpConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -83,9 +85,16 @@ func (m *DeviceGroupDataSourceAlertConfig) contextValidateDpConfig(ctx context.C
 	for i := 0; i < len(m.DpConfig); i++ {
 
 		if m.DpConfig[i] != nil {
+
+			if swag.IsZero(m.DpConfig[i]) { // not required
+				return nil
+			}
+
 			if err := m.DpConfig[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dpConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dpConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

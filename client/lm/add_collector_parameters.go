@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewAddCollectorParams creates a new AddCollectorParams object,
@@ -54,10 +54,12 @@ func NewAddCollectorParamsWithHTTPClient(client *http.Client) *AddCollectorParam
 	}
 }
 
-/* AddCollectorParams contains all the parameters to send to the API endpoint
-   for the add collector operation.
+/*
+AddCollectorParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add collector operation.
+
+	Typically these are written to a http.Request.
 */
 type AddCollectorParams struct {
 

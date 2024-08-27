@@ -53,10 +53,12 @@ func NewGetAccessGroupByIDJSONParamsWithHTTPClient(client *http.Client) *GetAcce
 	}
 }
 
-/* GetAccessGroupByIDJSONParams contains all the parameters to send to the API endpoint
-   for the get access group by Id Json operation.
+/*
+GetAccessGroupByIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get access group by Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAccessGroupByIDJSONParams struct {
 

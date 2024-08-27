@@ -355,6 +355,8 @@ func (m *LogsWidget) validateLogsInfo(formats strfmt.Registry) error {
 		if err := m.LogsInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("logsInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("logsInfo")
 			}
 			return err
 		}
@@ -419,9 +421,12 @@ func (m *LogsWidget) contextValidateUserPermission(ctx context.Context, formats 
 func (m *LogsWidget) contextValidateLogsInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.LogsInfo != nil {
+
 		if err := m.LogsInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("logsInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("logsInfo")
 			}
 			return err
 		}

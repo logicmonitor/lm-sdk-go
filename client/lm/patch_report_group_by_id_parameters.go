@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewPatchReportGroupByIDParams creates a new PatchReportGroupByIDParams object,
@@ -55,10 +55,12 @@ func NewPatchReportGroupByIDParamsWithHTTPClient(client *http.Client) *PatchRepo
 	}
 }
 
-/* PatchReportGroupByIDParams contains all the parameters to send to the API endpoint
-   for the patch report group by Id operation.
+/*
+PatchReportGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch report group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchReportGroupByIDParams struct {
 

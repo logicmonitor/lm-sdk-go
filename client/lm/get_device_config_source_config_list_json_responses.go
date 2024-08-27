@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetDeviceConfigSourceConfigListJSONReader is a Reader for the GetDeviceConfigSourceConfigListJSON structure.
@@ -54,7 +55,8 @@ func NewGetDeviceConfigSourceConfigListJSONOK() *GetDeviceConfigSourceConfigList
 	return &GetDeviceConfigSourceConfigListJSONOK{}
 }
 
-/* GetDeviceConfigSourceConfigListJSONOK describes a response with status code 200, with default header values.
+/*
+GetDeviceConfigSourceConfigListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeviceConfigSourceConfigListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetDeviceConfigSourceConfigListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config?__json=][%d] getDeviceConfigSourceConfigListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device config source config list Json o k response has a 2xx status code
+func (o *GetDeviceConfigSourceConfigListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device config source config list Json o k response has a 3xx status code
+func (o *GetDeviceConfigSourceConfigListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device config source config list Json o k response has a 4xx status code
+func (o *GetDeviceConfigSourceConfigListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device config source config list Json o k response has a 5xx status code
+func (o *GetDeviceConfigSourceConfigListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device config source config list Json o k response a status code equal to that given
+func (o *GetDeviceConfigSourceConfigListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device config source config list Json o k response
+func (o *GetDeviceConfigSourceConfigListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetDeviceConfigSourceConfigListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config?__json=][%d] getDeviceConfigSourceConfigListJsonOK %s", 200, payload)
+}
+
+func (o *GetDeviceConfigSourceConfigListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config?__json=][%d] getDeviceConfigSourceConfigListJsonOK %s", 200, payload)
+}
+
 func (o *GetDeviceConfigSourceConfigListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetDeviceConfigSourceConfigListJSONTooManyRequests() *GetDeviceConfigSou
 	return &GetDeviceConfigSourceConfigListJSONTooManyRequests{}
 }
 
-/* GetDeviceConfigSourceConfigListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeviceConfigSourceConfigListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetDeviceConfigSourceConfigListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device config source config list Json too many requests response has a 2xx status code
+func (o *GetDeviceConfigSourceConfigListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device config source config list Json too many requests response has a 3xx status code
+func (o *GetDeviceConfigSourceConfigListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device config source config list Json too many requests response has a 4xx status code
+func (o *GetDeviceConfigSourceConfigListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device config source config list Json too many requests response has a 5xx status code
+func (o *GetDeviceConfigSourceConfigListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device config source config list Json too many requests response a status code equal to that given
+func (o *GetDeviceConfigSourceConfigListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device config source config list Json too many requests response
+func (o *GetDeviceConfigSourceConfigListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeviceConfigSourceConfigListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config?__json=][%d] getDeviceConfigSourceConfigListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config?__json=][%d] getDeviceConfigSourceConfigListJsonTooManyRequests", 429)
+}
+
+func (o *GetDeviceConfigSourceConfigListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config?__json=][%d] getDeviceConfigSourceConfigListJsonTooManyRequests", 429)
 }
 
 func (o *GetDeviceConfigSourceConfigListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetDeviceConfigSourceConfigListJSONDefault(code int) *GetDeviceConfigSou
 	}
 }
 
-/* GetDeviceConfigSourceConfigListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetDeviceConfigSourceConfigListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetDeviceConfigSourceConfigListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device config source config list Json default response has a 2xx status code
+func (o *GetDeviceConfigSourceConfigListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device config source config list Json default response has a 3xx status code
+func (o *GetDeviceConfigSourceConfigListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device config source config list Json default response has a 4xx status code
+func (o *GetDeviceConfigSourceConfigListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device config source config list Json default response has a 5xx status code
+func (o *GetDeviceConfigSourceConfigListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device config source config list Json default response a status code equal to that given
+func (o *GetDeviceConfigSourceConfigListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device config source config list Json default response
 func (o *GetDeviceConfigSourceConfigListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeviceConfigSourceConfigListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config?__json=][%d] getDeviceConfigSourceConfigListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config?__json=][%d] getDeviceConfigSourceConfigListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetDeviceConfigSourceConfigListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{deviceId}/devicedatasources/{hdsId}/instances/{instanceId}/config?__json=][%d] getDeviceConfigSourceConfigListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetDeviceConfigSourceConfigListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

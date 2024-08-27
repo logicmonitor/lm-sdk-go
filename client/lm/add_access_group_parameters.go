@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewAddAccessGroupParams creates a new AddAccessGroupParams object,
@@ -54,10 +54,12 @@ func NewAddAccessGroupParamsWithHTTPClient(client *http.Client) *AddAccessGroupP
 	}
 }
 
-/* AddAccessGroupParams contains all the parameters to send to the API endpoint
-   for the add access group operation.
+/*
+AddAccessGroupParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add access group operation.
+
+	Typically these are written to a http.Request.
 */
 type AddAccessGroupParams struct {
 

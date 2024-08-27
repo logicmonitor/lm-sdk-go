@@ -203,6 +203,8 @@ func (m *Admin) validateAPITokens(formats strfmt.Registry) error {
 			if err := m.APITokens[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apiTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("apiTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -250,6 +252,8 @@ func (m *Admin) validateRoles(formats strfmt.Registry) error {
 			if err := m.Roles[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("roles" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("roles" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -349,9 +353,16 @@ func (m *Admin) contextValidateAPITokens(ctx context.Context, formats strfmt.Reg
 	for i := 0; i < len(m.APITokens); i++ {
 
 		if m.APITokens[i] != nil {
+
+			if swag.IsZero(m.APITokens[i]) { // not required
+				return nil
+			}
+
 			if err := m.APITokens[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("apiTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("apiTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -430,9 +441,16 @@ func (m *Admin) contextValidateRoles(ctx context.Context, formats strfmt.Registr
 	for i := 0; i < len(m.Roles); i++ {
 
 		if m.Roles[i] != nil {
+
+			if swag.IsZero(m.Roles[i]) { // not required
+				return nil
+			}
+
 			if err := m.Roles[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("roles" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("roles" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

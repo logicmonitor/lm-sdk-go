@@ -53,10 +53,12 @@ func NewGetDeviceDatasourceInstanceGroupListJSONParamsWithHTTPClient(client *htt
 	}
 }
 
-/* GetDeviceDatasourceInstanceGroupListJSONParams contains all the parameters to send to the API endpoint
-   for the get device datasource instance group list Json operation.
+/*
+GetDeviceDatasourceInstanceGroupListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device datasource instance group list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceInstanceGroupListJSONParams struct {
 

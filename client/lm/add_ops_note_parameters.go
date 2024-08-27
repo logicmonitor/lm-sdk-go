@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewAddOpsNoteParams creates a new AddOpsNoteParams object,
@@ -54,10 +54,12 @@ func NewAddOpsNoteParamsWithHTTPClient(client *http.Client) *AddOpsNoteParams {
 	}
 }
 
-/* AddOpsNoteParams contains all the parameters to send to the API endpoint
-   for the add ops note operation.
+/*
+AddOpsNoteParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add ops note operation.
+
+	Typically these are written to a http.Request.
 */
 type AddOpsNoteParams struct {
 

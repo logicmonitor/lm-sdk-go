@@ -181,6 +181,8 @@ func (m *NetflowWidgetData) validateItems(formats strfmt.Registry) error {
 		if err := m.itemsField[i].Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("items" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("items" + "." + strconv.Itoa(i))
 			}
 			return err
 		}
@@ -225,9 +227,15 @@ func (m *NetflowWidgetData) contextValidateItems(ctx context.Context, formats st
 
 	for i := 0; i < len(m.Items()); i++ {
 
+		if swag.IsZero(m.itemsField[i]) { // not required
+			return nil
+		}
+
 		if err := m.itemsField[i].ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("items" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("items" + "." + strconv.Itoa(i))
 			}
 			return err
 		}

@@ -53,10 +53,12 @@ func NewGetDeviceGroupSDTListParamsWithHTTPClient(client *http.Client) *GetDevic
 	}
 }
 
-/* GetDeviceGroupSDTListParams contains all the parameters to send to the API endpoint
-   for the get device group SDT list operation.
+/*
+GetDeviceGroupSDTListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device group SDT list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceGroupSDTListParams struct {
 

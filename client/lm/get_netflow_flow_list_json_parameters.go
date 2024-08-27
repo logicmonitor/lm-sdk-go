@@ -53,10 +53,12 @@ func NewGetNetflowFlowListJSONParamsWithHTTPClient(client *http.Client) *GetNetf
 	}
 }
 
-/* GetNetflowFlowListJSONParams contains all the parameters to send to the API endpoint
-   for the get netflow flow list Json operation.
+/*
+GetNetflowFlowListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get netflow flow list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetNetflowFlowListJSONParams struct {
 

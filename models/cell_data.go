@@ -83,6 +83,8 @@ func (m *CellData) validateDaysUntilAlertList(formats strfmt.Registry) error {
 			if err := m.DaysUntilAlertList[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("daysUntilAlertList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("daysUntilAlertList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -149,9 +151,16 @@ func (m *CellData) contextValidateDaysUntilAlertList(ctx context.Context, format
 	for i := 0; i < len(m.DaysUntilAlertList); i++ {
 
 		if m.DaysUntilAlertList[i] != nil {
+
+			if swag.IsZero(m.DaysUntilAlertList[i]) { // not required
+				return nil
+			}
+
 			if err := m.DaysUntilAlertList[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("daysUntilAlertList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("daysUntilAlertList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

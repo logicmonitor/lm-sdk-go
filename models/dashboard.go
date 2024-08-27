@@ -117,6 +117,8 @@ func (m *Dashboard) validateWidgetTokens(formats strfmt.Registry) error {
 			if err := m.WidgetTokens[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -211,9 +213,16 @@ func (m *Dashboard) contextValidateWidgetTokens(ctx context.Context, formats str
 	for i := 0; i < len(m.WidgetTokens); i++ {
 
 		if m.WidgetTokens[i] != nil {
+
+			if swag.IsZero(m.WidgetTokens[i]) { // not required
+				return nil
+			}
+
 			if err := m.WidgetTokens[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

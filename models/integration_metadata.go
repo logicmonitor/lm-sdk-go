@@ -43,7 +43,7 @@ type IntegrationMetadata struct {
 	// The values can be DataSources | EventSources | PropertySources | ConfigSources | LogSources | TopologySources | Jobmonitors | AppliesTo Functions | SNMP SysOID Maps
 	// The type of LogicModule
 	// Read Only: true
-	// Enum: [DATASOURCE EVENTSOURCE JOBMONITOR APPLIESTO_FUNCTION SNMP_SYSOID_MAP PROPERTYSOURCE CONFIGSOURCE TOPOLOGYSOURCE LOGSOURCE]
+	// Enum: ["DATASOURCE","EVENTSOURCE","JOBMONITOR","APPLIESTO_FUNCTION","SNMP_SYSOID_MAP","PROPERTYSOURCE","CONFIGSOURCE","TOPOLOGYSOURCE","LOGSOURCE"]
 	LogicModuleType string `json:"logicModuleType,omitempty"`
 
 	// Specifies the origin Author companies unique Id

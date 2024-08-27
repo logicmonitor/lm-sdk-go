@@ -148,6 +148,8 @@ func (m *DeviceDataSourceInstance) validateAutoProperties(formats strfmt.Registr
 			if err := m.AutoProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -172,6 +174,8 @@ func (m *DeviceDataSourceInstance) validateCustomProperties(formats strfmt.Regis
 			if err := m.CustomProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -205,6 +209,8 @@ func (m *DeviceDataSourceInstance) validateSystemProperties(formats strfmt.Regis
 			if err := m.SystemProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -287,9 +293,16 @@ func (m *DeviceDataSourceInstance) contextValidateAutoProperties(ctx context.Con
 	for i := 0; i < len(m.AutoProperties); i++ {
 
 		if m.AutoProperties[i] != nil {
+
+			if swag.IsZero(m.AutoProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.AutoProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -314,9 +327,16 @@ func (m *DeviceDataSourceInstance) contextValidateCustomProperties(ctx context.C
 	for i := 0; i < len(m.CustomProperties); i++ {
 
 		if m.CustomProperties[i] != nil {
+
+			if swag.IsZero(m.CustomProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.CustomProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -404,9 +424,16 @@ func (m *DeviceDataSourceInstance) contextValidateSystemProperties(ctx context.C
 	for i := 0; i < len(m.SystemProperties); i++ {
 
 		if m.SystemProperties[i] != nil {
+
+			if swag.IsZero(m.SystemProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.SystemProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

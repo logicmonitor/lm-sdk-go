@@ -53,10 +53,12 @@ func NewGetAppliesToFunctionByIDJSONParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/* GetAppliesToFunctionByIDJSONParams contains all the parameters to send to the API endpoint
-   for the get applies to function by Id Json operation.
+/*
+GetAppliesToFunctionByIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get applies to function by Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAppliesToFunctionByIDJSONParams struct {
 

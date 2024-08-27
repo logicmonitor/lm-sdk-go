@@ -53,10 +53,12 @@ func NewGetEventSourceListJSONParamsWithHTTPClient(client *http.Client) *GetEven
 	}
 }
 
-/* GetEventSourceListJSONParams contains all the parameters to send to the API endpoint
-   for the get event source list Json operation.
+/*
+GetEventSourceListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get event source list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetEventSourceListJSONParams struct {
 

@@ -53,10 +53,12 @@ func NewGetWebsiteSDTListByWebsiteIDJSONParamsWithHTTPClient(client *http.Client
 	}
 }
 
-/* GetWebsiteSDTListByWebsiteIDJSONParams contains all the parameters to send to the API endpoint
-   for the get website SDT list by website Id Json operation.
+/*
+GetWebsiteSDTListByWebsiteIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website SDT list by website Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteSDTListByWebsiteIDJSONParams struct {
 

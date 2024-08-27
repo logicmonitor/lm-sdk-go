@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewPatchRecipientGroupByIDParams creates a new PatchRecipientGroupByIDParams object,
@@ -55,10 +55,12 @@ func NewPatchRecipientGroupByIDParamsWithHTTPClient(client *http.Client) *PatchR
 	}
 }
 
-/* PatchRecipientGroupByIDParams contains all the parameters to send to the API endpoint
-   for the patch recipient group by Id operation.
+/*
+PatchRecipientGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch recipient group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchRecipientGroupByIDParams struct {
 

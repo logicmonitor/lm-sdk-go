@@ -53,10 +53,12 @@ func NewGetAppliesToFunctionListJSONParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/* GetAppliesToFunctionListJSONParams contains all the parameters to send to the API endpoint
-   for the get applies to function list Json operation.
+/*
+GetAppliesToFunctionListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get applies to function list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAppliesToFunctionListJSONParams struct {
 

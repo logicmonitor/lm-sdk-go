@@ -53,10 +53,12 @@ func NewDeleteReportByIDParamsWithHTTPClient(client *http.Client) *DeleteReportB
 	}
 }
 
-/* DeleteReportByIDParams contains all the parameters to send to the API endpoint
-   for the delete report by Id operation.
+/*
+DeleteReportByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete report by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteReportByIDParams struct {
 

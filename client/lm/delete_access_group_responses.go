@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // DeleteAccessGroupReader is a Reader for the DeleteAccessGroup structure.
@@ -54,7 +55,8 @@ func NewDeleteAccessGroupOK() *DeleteAccessGroupOK {
 	return &DeleteAccessGroupOK{}
 }
 
-/* DeleteAccessGroupOK describes a response with status code 200, with default header values.
+/*
+DeleteAccessGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DeleteAccessGroupOK struct {
 	Payload interface{}
 }
 
-func (o *DeleteAccessGroupOK) Error() string {
-	return fmt.Sprintf("[DELETE /setting/accessgroup/{id}][%d] deleteAccessGroupOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this delete access group o k response has a 2xx status code
+func (o *DeleteAccessGroupOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this delete access group o k response has a 3xx status code
+func (o *DeleteAccessGroupOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete access group o k response has a 4xx status code
+func (o *DeleteAccessGroupOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this delete access group o k response has a 5xx status code
+func (o *DeleteAccessGroupOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete access group o k response a status code equal to that given
+func (o *DeleteAccessGroupOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the delete access group o k response
+func (o *DeleteAccessGroupOK) Code() int {
+	return 200
+}
+
+func (o *DeleteAccessGroupOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/accessgroup/{id}][%d] deleteAccessGroupOK %s", 200, payload)
+}
+
+func (o *DeleteAccessGroupOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/accessgroup/{id}][%d] deleteAccessGroupOK %s", 200, payload)
+}
+
 func (o *DeleteAccessGroupOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewDeleteAccessGroupTooManyRequests() *DeleteAccessGroupTooManyRequests {
 	return &DeleteAccessGroupTooManyRequests{}
 }
 
-/* DeleteAccessGroupTooManyRequests describes a response with status code 429, with default header values.
+/*
+DeleteAccessGroupTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type DeleteAccessGroupTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this delete access group too many requests response has a 2xx status code
+func (o *DeleteAccessGroupTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this delete access group too many requests response has a 3xx status code
+func (o *DeleteAccessGroupTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this delete access group too many requests response has a 4xx status code
+func (o *DeleteAccessGroupTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this delete access group too many requests response has a 5xx status code
+func (o *DeleteAccessGroupTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this delete access group too many requests response a status code equal to that given
+func (o *DeleteAccessGroupTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the delete access group too many requests response
+func (o *DeleteAccessGroupTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DeleteAccessGroupTooManyRequests) Error() string {
-	return fmt.Sprintf("[DELETE /setting/accessgroup/{id}][%d] deleteAccessGroupTooManyRequests ", 429)
+	return fmt.Sprintf("[DELETE /setting/accessgroup/{id}][%d] deleteAccessGroupTooManyRequests", 429)
+}
+
+func (o *DeleteAccessGroupTooManyRequests) String() string {
+	return fmt.Sprintf("[DELETE /setting/accessgroup/{id}][%d] deleteAccessGroupTooManyRequests", 429)
 }
 
 func (o *DeleteAccessGroupTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewDeleteAccessGroupDefault(code int) *DeleteAccessGroupDefault {
 	}
 }
 
-/* DeleteAccessGroupDefault describes a response with status code -1, with default header values.
+/*
+DeleteAccessGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type DeleteAccessGroupDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this delete access group default response has a 2xx status code
+func (o *DeleteAccessGroupDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this delete access group default response has a 3xx status code
+func (o *DeleteAccessGroupDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this delete access group default response has a 4xx status code
+func (o *DeleteAccessGroupDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this delete access group default response has a 5xx status code
+func (o *DeleteAccessGroupDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this delete access group default response a status code equal to that given
+func (o *DeleteAccessGroupDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the delete access group default response
 func (o *DeleteAccessGroupDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DeleteAccessGroupDefault) Error() string {
-	return fmt.Sprintf("[DELETE /setting/accessgroup/{id}][%d] deleteAccessGroup default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/accessgroup/{id}][%d] deleteAccessGroup default %s", o._statusCode, payload)
 }
+
+func (o *DeleteAccessGroupDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[DELETE /setting/accessgroup/{id}][%d] deleteAccessGroup default %s", o._statusCode, payload)
+}
+
 func (o *DeleteAccessGroupDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

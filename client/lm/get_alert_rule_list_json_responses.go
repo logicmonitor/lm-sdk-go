@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetAlertRuleListJSONReader is a Reader for the GetAlertRuleListJSON structure.
@@ -54,7 +55,8 @@ func NewGetAlertRuleListJSONOK() *GetAlertRuleListJSONOK {
 	return &GetAlertRuleListJSONOK{}
 }
 
-/* GetAlertRuleListJSONOK describes a response with status code 200, with default header values.
+/*
+GetAlertRuleListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAlertRuleListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetAlertRuleListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/rules?__json=][%d] getAlertRuleListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get alert rule list Json o k response has a 2xx status code
+func (o *GetAlertRuleListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get alert rule list Json o k response has a 3xx status code
+func (o *GetAlertRuleListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get alert rule list Json o k response has a 4xx status code
+func (o *GetAlertRuleListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get alert rule list Json o k response has a 5xx status code
+func (o *GetAlertRuleListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get alert rule list Json o k response a status code equal to that given
+func (o *GetAlertRuleListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get alert rule list Json o k response
+func (o *GetAlertRuleListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetAlertRuleListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/rules?__json=][%d] getAlertRuleListJsonOK %s", 200, payload)
+}
+
+func (o *GetAlertRuleListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/rules?__json=][%d] getAlertRuleListJsonOK %s", 200, payload)
+}
+
 func (o *GetAlertRuleListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetAlertRuleListJSONTooManyRequests() *GetAlertRuleListJSONTooManyReques
 	return &GetAlertRuleListJSONTooManyRequests{}
 }
 
-/* GetAlertRuleListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAlertRuleListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetAlertRuleListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get alert rule list Json too many requests response has a 2xx status code
+func (o *GetAlertRuleListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get alert rule list Json too many requests response has a 3xx status code
+func (o *GetAlertRuleListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get alert rule list Json too many requests response has a 4xx status code
+func (o *GetAlertRuleListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get alert rule list Json too many requests response has a 5xx status code
+func (o *GetAlertRuleListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get alert rule list Json too many requests response a status code equal to that given
+func (o *GetAlertRuleListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get alert rule list Json too many requests response
+func (o *GetAlertRuleListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAlertRuleListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/rules?__json=][%d] getAlertRuleListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/alert/rules?__json=][%d] getAlertRuleListJsonTooManyRequests", 429)
+}
+
+func (o *GetAlertRuleListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/alert/rules?__json=][%d] getAlertRuleListJsonTooManyRequests", 429)
 }
 
 func (o *GetAlertRuleListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetAlertRuleListJSONDefault(code int) *GetAlertRuleListJSONDefault {
 	}
 }
 
-/* GetAlertRuleListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetAlertRuleListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetAlertRuleListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get alert rule list Json default response has a 2xx status code
+func (o *GetAlertRuleListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get alert rule list Json default response has a 3xx status code
+func (o *GetAlertRuleListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get alert rule list Json default response has a 4xx status code
+func (o *GetAlertRuleListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get alert rule list Json default response has a 5xx status code
+func (o *GetAlertRuleListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get alert rule list Json default response a status code equal to that given
+func (o *GetAlertRuleListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get alert rule list Json default response
 func (o *GetAlertRuleListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAlertRuleListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/alert/rules?__json=][%d] getAlertRuleListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/rules?__json=][%d] getAlertRuleListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetAlertRuleListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/alert/rules?__json=][%d] getAlertRuleListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetAlertRuleListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

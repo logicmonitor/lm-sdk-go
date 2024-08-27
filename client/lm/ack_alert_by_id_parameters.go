@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewAckAlertByIDParams creates a new AckAlertByIDParams object,
@@ -54,10 +54,12 @@ func NewAckAlertByIDParamsWithHTTPClient(client *http.Client) *AckAlertByIDParam
 	}
 }
 
-/* AckAlertByIDParams contains all the parameters to send to the API endpoint
-   for the ack alert by Id operation.
+/*
+AckAlertByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the ack alert by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type AckAlertByIDParams struct {
 

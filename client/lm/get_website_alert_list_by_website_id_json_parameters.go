@@ -53,10 +53,12 @@ func NewGetWebsiteAlertListByWebsiteIDJSONParamsWithHTTPClient(client *http.Clie
 	}
 }
 
-/* GetWebsiteAlertListByWebsiteIDJSONParams contains all the parameters to send to the API endpoint
-   for the get website alert list by website Id Json operation.
+/*
+GetWebsiteAlertListByWebsiteIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website alert list by website Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteAlertListByWebsiteIDJSONParams struct {
 

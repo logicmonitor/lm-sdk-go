@@ -53,10 +53,12 @@ func NewGetDeviceDatasourceInstanceGroupByIDJSONParamsWithHTTPClient(client *htt
 	}
 }
 
-/* GetDeviceDatasourceInstanceGroupByIDJSONParams contains all the parameters to send to the API endpoint
-   for the get device datasource instance group by Id Json operation.
+/*
+GetDeviceDatasourceInstanceGroupByIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device datasource instance group by Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceInstanceGroupByIDJSONParams struct {
 

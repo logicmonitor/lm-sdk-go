@@ -53,10 +53,12 @@ func NewGetOpsNoteListParamsWithHTTPClient(client *http.Client) *GetOpsNoteListP
 	}
 }
 
-/* GetOpsNoteListParams contains all the parameters to send to the API endpoint
-   for the get ops note list operation.
+/*
+GetOpsNoteListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get ops note list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetOpsNoteListParams struct {
 

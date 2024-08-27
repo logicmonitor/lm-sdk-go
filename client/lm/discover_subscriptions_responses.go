@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // DiscoverSubscriptionsReader is a Reader for the DiscoverSubscriptions structure.
@@ -54,7 +55,8 @@ func NewDiscoverSubscriptionsOK() *DiscoverSubscriptionsOK {
 	return &DiscoverSubscriptionsOK{}
 }
 
-/* DiscoverSubscriptionsOK describes a response with status code 200, with default header values.
+/*
+DiscoverSubscriptionsOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type DiscoverSubscriptionsOK struct {
 	Payload *models.AzureSubscriptionIDPaginationResponse
 }
 
-func (o *DiscoverSubscriptionsOK) Error() string {
-	return fmt.Sprintf("[POST /azure/functions/discoverSubscriptions][%d] discoverSubscriptionsOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this discover subscriptions o k response has a 2xx status code
+func (o *DiscoverSubscriptionsOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this discover subscriptions o k response has a 3xx status code
+func (o *DiscoverSubscriptionsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this discover subscriptions o k response has a 4xx status code
+func (o *DiscoverSubscriptionsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this discover subscriptions o k response has a 5xx status code
+func (o *DiscoverSubscriptionsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this discover subscriptions o k response a status code equal to that given
+func (o *DiscoverSubscriptionsOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the discover subscriptions o k response
+func (o *DiscoverSubscriptionsOK) Code() int {
+	return 200
+}
+
+func (o *DiscoverSubscriptionsOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/discoverSubscriptions][%d] discoverSubscriptionsOK %s", 200, payload)
+}
+
+func (o *DiscoverSubscriptionsOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/discoverSubscriptions][%d] discoverSubscriptionsOK %s", 200, payload)
+}
+
 func (o *DiscoverSubscriptionsOK) GetPayload() *models.AzureSubscriptionIDPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewDiscoverSubscriptionsTooManyRequests() *DiscoverSubscriptionsTooManyRequ
 	return &DiscoverSubscriptionsTooManyRequests{}
 }
 
-/* DiscoverSubscriptionsTooManyRequests describes a response with status code 429, with default header values.
+/*
+DiscoverSubscriptionsTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type DiscoverSubscriptionsTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this discover subscriptions too many requests response has a 2xx status code
+func (o *DiscoverSubscriptionsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this discover subscriptions too many requests response has a 3xx status code
+func (o *DiscoverSubscriptionsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this discover subscriptions too many requests response has a 4xx status code
+func (o *DiscoverSubscriptionsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this discover subscriptions too many requests response has a 5xx status code
+func (o *DiscoverSubscriptionsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this discover subscriptions too many requests response a status code equal to that given
+func (o *DiscoverSubscriptionsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the discover subscriptions too many requests response
+func (o *DiscoverSubscriptionsTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *DiscoverSubscriptionsTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /azure/functions/discoverSubscriptions][%d] discoverSubscriptionsTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /azure/functions/discoverSubscriptions][%d] discoverSubscriptionsTooManyRequests", 429)
+}
+
+func (o *DiscoverSubscriptionsTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /azure/functions/discoverSubscriptions][%d] discoverSubscriptionsTooManyRequests", 429)
 }
 
 func (o *DiscoverSubscriptionsTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewDiscoverSubscriptionsDefault(code int) *DiscoverSubscriptionsDefault {
 	}
 }
 
-/* DiscoverSubscriptionsDefault describes a response with status code -1, with default header values.
+/*
+DiscoverSubscriptionsDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type DiscoverSubscriptionsDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this discover subscriptions default response has a 2xx status code
+func (o *DiscoverSubscriptionsDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this discover subscriptions default response has a 3xx status code
+func (o *DiscoverSubscriptionsDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this discover subscriptions default response has a 4xx status code
+func (o *DiscoverSubscriptionsDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this discover subscriptions default response has a 5xx status code
+func (o *DiscoverSubscriptionsDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this discover subscriptions default response a status code equal to that given
+func (o *DiscoverSubscriptionsDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the discover subscriptions default response
 func (o *DiscoverSubscriptionsDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *DiscoverSubscriptionsDefault) Error() string {
-	return fmt.Sprintf("[POST /azure/functions/discoverSubscriptions][%d] discoverSubscriptions default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/discoverSubscriptions][%d] discoverSubscriptions default %s", o._statusCode, payload)
 }
+
+func (o *DiscoverSubscriptionsDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/discoverSubscriptions][%d] discoverSubscriptions default %s", o._statusCode, payload)
+}
+
 func (o *DiscoverSubscriptionsDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

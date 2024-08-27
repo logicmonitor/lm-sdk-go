@@ -53,10 +53,12 @@ func NewGetCollectorInstallerParamsWithHTTPClient(client *http.Client) *GetColle
 	}
 }
 
-/* GetCollectorInstallerParams contains all the parameters to send to the API endpoint
-   for the get collector installer operation.
+/*
+GetCollectorInstallerParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get collector installer operation.
+
+	Typically these are written to a http.Request.
 */
 type GetCollectorInstallerParams struct {
 

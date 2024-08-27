@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetNetscanListJSONReader is a Reader for the GetNetscanListJSON structure.
@@ -54,7 +55,8 @@ func NewGetNetscanListJSONOK() *GetNetscanListJSONOK {
 	return &GetNetscanListJSONOK{}
 }
 
-/* GetNetscanListJSONOK describes a response with status code 200, with default header values.
+/*
+GetNetscanListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetNetscanListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetNetscanListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/netscans?__json=][%d] getNetscanListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get netscan list Json o k response has a 2xx status code
+func (o *GetNetscanListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get netscan list Json o k response has a 3xx status code
+func (o *GetNetscanListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get netscan list Json o k response has a 4xx status code
+func (o *GetNetscanListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get netscan list Json o k response has a 5xx status code
+func (o *GetNetscanListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get netscan list Json o k response a status code equal to that given
+func (o *GetNetscanListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get netscan list Json o k response
+func (o *GetNetscanListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetNetscanListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/netscans?__json=][%d] getNetscanListJsonOK %s", 200, payload)
+}
+
+func (o *GetNetscanListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/netscans?__json=][%d] getNetscanListJsonOK %s", 200, payload)
+}
+
 func (o *GetNetscanListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetNetscanListJSONTooManyRequests() *GetNetscanListJSONTooManyRequests {
 	return &GetNetscanListJSONTooManyRequests{}
 }
 
-/* GetNetscanListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetNetscanListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetNetscanListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get netscan list Json too many requests response has a 2xx status code
+func (o *GetNetscanListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get netscan list Json too many requests response has a 3xx status code
+func (o *GetNetscanListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get netscan list Json too many requests response has a 4xx status code
+func (o *GetNetscanListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get netscan list Json too many requests response has a 5xx status code
+func (o *GetNetscanListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get netscan list Json too many requests response a status code equal to that given
+func (o *GetNetscanListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get netscan list Json too many requests response
+func (o *GetNetscanListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetNetscanListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/netscans?__json=][%d] getNetscanListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/netscans?__json=][%d] getNetscanListJsonTooManyRequests", 429)
+}
+
+func (o *GetNetscanListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/netscans?__json=][%d] getNetscanListJsonTooManyRequests", 429)
 }
 
 func (o *GetNetscanListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetNetscanListJSONDefault(code int) *GetNetscanListJSONDefault {
 	}
 }
 
-/* GetNetscanListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetNetscanListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetNetscanListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get netscan list Json default response has a 2xx status code
+func (o *GetNetscanListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get netscan list Json default response has a 3xx status code
+func (o *GetNetscanListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get netscan list Json default response has a 4xx status code
+func (o *GetNetscanListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get netscan list Json default response has a 5xx status code
+func (o *GetNetscanListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get netscan list Json default response a status code equal to that given
+func (o *GetNetscanListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get netscan list Json default response
 func (o *GetNetscanListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetNetscanListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/netscans?__json=][%d] getNetscanListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/netscans?__json=][%d] getNetscanListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetNetscanListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/netscans?__json=][%d] getNetscanListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetNetscanListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetDeviceInstanceListJSONReader is a Reader for the GetDeviceInstanceListJSON structure.
@@ -54,7 +55,8 @@ func NewGetDeviceInstanceListJSONOK() *GetDeviceInstanceListJSONOK {
 	return &GetDeviceInstanceListJSONOK{}
 }
 
-/* GetDeviceInstanceListJSONOK describes a response with status code 200, with default header values.
+/*
+GetDeviceInstanceListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeviceInstanceListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetDeviceInstanceListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/instances?__json=][%d] getDeviceInstanceListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device instance list Json o k response has a 2xx status code
+func (o *GetDeviceInstanceListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device instance list Json o k response has a 3xx status code
+func (o *GetDeviceInstanceListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device instance list Json o k response has a 4xx status code
+func (o *GetDeviceInstanceListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device instance list Json o k response has a 5xx status code
+func (o *GetDeviceInstanceListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device instance list Json o k response a status code equal to that given
+func (o *GetDeviceInstanceListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device instance list Json o k response
+func (o *GetDeviceInstanceListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetDeviceInstanceListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/instances?__json=][%d] getDeviceInstanceListJsonOK %s", 200, payload)
+}
+
+func (o *GetDeviceInstanceListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/instances?__json=][%d] getDeviceInstanceListJsonOK %s", 200, payload)
+}
+
 func (o *GetDeviceInstanceListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetDeviceInstanceListJSONTooManyRequests() *GetDeviceInstanceListJSONToo
 	return &GetDeviceInstanceListJSONTooManyRequests{}
 }
 
-/* GetDeviceInstanceListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeviceInstanceListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetDeviceInstanceListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device instance list Json too many requests response has a 2xx status code
+func (o *GetDeviceInstanceListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device instance list Json too many requests response has a 3xx status code
+func (o *GetDeviceInstanceListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device instance list Json too many requests response has a 4xx status code
+func (o *GetDeviceInstanceListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device instance list Json too many requests response has a 5xx status code
+func (o *GetDeviceInstanceListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device instance list Json too many requests response a status code equal to that given
+func (o *GetDeviceInstanceListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device instance list Json too many requests response
+func (o *GetDeviceInstanceListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeviceInstanceListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/instances?__json=][%d] getDeviceInstanceListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/{id}/instances?__json=][%d] getDeviceInstanceListJsonTooManyRequests", 429)
+}
+
+func (o *GetDeviceInstanceListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/{id}/instances?__json=][%d] getDeviceInstanceListJsonTooManyRequests", 429)
 }
 
 func (o *GetDeviceInstanceListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetDeviceInstanceListJSONDefault(code int) *GetDeviceInstanceListJSONDef
 	}
 }
 
-/* GetDeviceInstanceListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetDeviceInstanceListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetDeviceInstanceListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device instance list Json default response has a 2xx status code
+func (o *GetDeviceInstanceListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device instance list Json default response has a 3xx status code
+func (o *GetDeviceInstanceListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device instance list Json default response has a 4xx status code
+func (o *GetDeviceInstanceListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device instance list Json default response has a 5xx status code
+func (o *GetDeviceInstanceListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device instance list Json default response a status code equal to that given
+func (o *GetDeviceInstanceListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device instance list Json default response
 func (o *GetDeviceInstanceListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeviceInstanceListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/{id}/instances?__json=][%d] getDeviceInstanceListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/instances?__json=][%d] getDeviceInstanceListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetDeviceInstanceListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/{id}/instances?__json=][%d] getDeviceInstanceListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetDeviceInstanceListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

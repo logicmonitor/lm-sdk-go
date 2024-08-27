@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewAddEscalationChainParams creates a new AddEscalationChainParams object,
@@ -54,10 +54,12 @@ func NewAddEscalationChainParamsWithHTTPClient(client *http.Client) *AddEscalati
 	}
 }
 
-/* AddEscalationChainParams contains all the parameters to send to the API endpoint
-   for the add escalation chain operation.
+/*
+AddEscalationChainParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add escalation chain operation.
+
+	Typically these are written to a http.Request.
 */
 type AddEscalationChainParams struct {
 

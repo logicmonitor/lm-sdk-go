@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewUpdateWebsiteByIDParams creates a new UpdateWebsiteByIDParams object,
@@ -55,10 +55,12 @@ func NewUpdateWebsiteByIDParamsWithHTTPClient(client *http.Client) *UpdateWebsit
 	}
 }
 
-/* UpdateWebsiteByIDParams contains all the parameters to send to the API endpoint
-   for the update website by Id operation.
+/*
+UpdateWebsiteByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update website by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateWebsiteByIDParams struct {
 

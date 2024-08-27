@@ -52,10 +52,12 @@ func NewGetMetricsUsageParamsWithHTTPClient(client *http.Client) *GetMetricsUsag
 	}
 }
 
-/* GetMetricsUsageParams contains all the parameters to send to the API endpoint
-   for the get metrics usage operation.
+/*
+GetMetricsUsageParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get metrics usage operation.
+
+	Typically these are written to a http.Request.
 */
 type GetMetricsUsageParams struct {
 

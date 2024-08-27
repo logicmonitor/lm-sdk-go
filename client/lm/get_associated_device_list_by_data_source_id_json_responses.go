@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetAssociatedDeviceListByDataSourceIDJSONReader is a Reader for the GetAssociatedDeviceListByDataSourceIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetAssociatedDeviceListByDataSourceIDJSONOK() *GetAssociatedDeviceListBy
 	return &GetAssociatedDeviceListByDataSourceIDJSONOK{}
 }
 
-/* GetAssociatedDeviceListByDataSourceIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetAssociatedDeviceListByDataSourceIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAssociatedDeviceListByDataSourceIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetAssociatedDeviceListByDataSourceIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{id}/devices?__json=][%d] getAssociatedDeviceListByDataSourceIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get associated device list by data source Id Json o k response has a 2xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get associated device list by data source Id Json o k response has a 3xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get associated device list by data source Id Json o k response has a 4xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get associated device list by data source Id Json o k response has a 5xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get associated device list by data source Id Json o k response a status code equal to that given
+func (o *GetAssociatedDeviceListByDataSourceIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get associated device list by data source Id Json o k response
+func (o *GetAssociatedDeviceListByDataSourceIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetAssociatedDeviceListByDataSourceIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}/devices?__json=][%d] getAssociatedDeviceListByDataSourceIdJsonOK %s", 200, payload)
+}
+
+func (o *GetAssociatedDeviceListByDataSourceIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}/devices?__json=][%d] getAssociatedDeviceListByDataSourceIdJsonOK %s", 200, payload)
+}
+
 func (o *GetAssociatedDeviceListByDataSourceIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetAssociatedDeviceListByDataSourceIDJSONTooManyRequests() *GetAssociate
 	return &GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests{}
 }
 
-/* GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get associated device list by data source Id Json too many requests response has a 2xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get associated device list by data source Id Json too many requests response has a 3xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get associated device list by data source Id Json too many requests response has a 4xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get associated device list by data source Id Json too many requests response has a 5xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get associated device list by data source Id Json too many requests response a status code equal to that given
+func (o *GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get associated device list by data source Id Json too many requests response
+func (o *GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{id}/devices?__json=][%d] getAssociatedDeviceListByDataSourceIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/datasources/{id}/devices?__json=][%d] getAssociatedDeviceListByDataSourceIdJsonTooManyRequests", 429)
+}
+
+func (o *GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/datasources/{id}/devices?__json=][%d] getAssociatedDeviceListByDataSourceIdJsonTooManyRequests", 429)
 }
 
 func (o *GetAssociatedDeviceListByDataSourceIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetAssociatedDeviceListByDataSourceIDJSONDefault(code int) *GetAssociate
 	}
 }
 
-/* GetAssociatedDeviceListByDataSourceIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetAssociatedDeviceListByDataSourceIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetAssociatedDeviceListByDataSourceIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get associated device list by data source Id Json default response has a 2xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get associated device list by data source Id Json default response has a 3xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get associated device list by data source Id Json default response has a 4xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get associated device list by data source Id Json default response has a 5xx status code
+func (o *GetAssociatedDeviceListByDataSourceIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get associated device list by data source Id Json default response a status code equal to that given
+func (o *GetAssociatedDeviceListByDataSourceIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get associated device list by data source Id Json default response
 func (o *GetAssociatedDeviceListByDataSourceIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAssociatedDeviceListByDataSourceIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{id}/devices?__json=][%d] getAssociatedDeviceListByDataSourceIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}/devices?__json=][%d] getAssociatedDeviceListByDataSourceIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetAssociatedDeviceListByDataSourceIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}/devices?__json=][%d] getAssociatedDeviceListByDataSourceIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetAssociatedDeviceListByDataSourceIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

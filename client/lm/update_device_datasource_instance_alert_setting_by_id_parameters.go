@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewUpdateDeviceDatasourceInstanceAlertSettingByIDParams creates a new UpdateDeviceDatasourceInstanceAlertSettingByIDParams object,
@@ -55,10 +55,12 @@ func NewUpdateDeviceDatasourceInstanceAlertSettingByIDParamsWithHTTPClient(clien
 	}
 }
 
-/* UpdateDeviceDatasourceInstanceAlertSettingByIDParams contains all the parameters to send to the API endpoint
-   for the update device datasource instance alert setting by Id operation.
+/*
+UpdateDeviceDatasourceInstanceAlertSettingByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update device datasource instance alert setting by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateDeviceDatasourceInstanceAlertSettingByIDParams struct {
 

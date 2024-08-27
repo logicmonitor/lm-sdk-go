@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewGenerateReportByIDParams creates a new GenerateReportByIDParams object,
@@ -55,10 +55,12 @@ func NewGenerateReportByIDParamsWithHTTPClient(client *http.Client) *GenerateRep
 	}
 }
 
-/* GenerateReportByIDParams contains all the parameters to send to the API endpoint
-   for the generate report by Id operation.
+/*
+GenerateReportByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the generate report by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GenerateReportByIDParams struct {
 

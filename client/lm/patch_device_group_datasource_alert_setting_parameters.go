@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewPatchDeviceGroupDatasourceAlertSettingParams creates a new PatchDeviceGroupDatasourceAlertSettingParams object,
@@ -55,10 +55,12 @@ func NewPatchDeviceGroupDatasourceAlertSettingParamsWithHTTPClient(client *http.
 	}
 }
 
-/* PatchDeviceGroupDatasourceAlertSettingParams contains all the parameters to send to the API endpoint
-   for the patch device group datasource alert setting operation.
+/*
+PatchDeviceGroupDatasourceAlertSettingParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch device group datasource alert setting operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDeviceGroupDatasourceAlertSettingParams struct {
 

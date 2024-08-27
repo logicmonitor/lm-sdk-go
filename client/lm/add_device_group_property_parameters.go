@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewAddDeviceGroupPropertyParams creates a new AddDeviceGroupPropertyParams object,
@@ -55,10 +55,12 @@ func NewAddDeviceGroupPropertyParamsWithHTTPClient(client *http.Client) *AddDevi
 	}
 }
 
-/* AddDeviceGroupPropertyParams contains all the parameters to send to the API endpoint
-   for the add device group property operation.
+/*
+AddDeviceGroupPropertyParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add device group property operation.
+
+	Typically these are written to a http.Request.
 */
 type AddDeviceGroupPropertyParams struct {
 

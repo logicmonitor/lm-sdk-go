@@ -53,10 +53,12 @@ func NewGetDeviceConfigSourceConfigListJSONParamsWithHTTPClient(client *http.Cli
 	}
 }
 
-/* GetDeviceConfigSourceConfigListJSONParams contains all the parameters to send to the API endpoint
-   for the get device config source config list Json operation.
+/*
+GetDeviceConfigSourceConfigListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device config source config list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceConfigSourceConfigListJSONParams struct {
 

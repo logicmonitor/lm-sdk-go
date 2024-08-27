@@ -145,6 +145,8 @@ func (m *ESXCollectorAttribute) validateCounters(formats strfmt.Registry) error 
 			if err := m.Counters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -174,9 +176,16 @@ func (m *ESXCollectorAttribute) contextValidateCounters(ctx context.Context, for
 	for i := 0; i < len(m.Counters); i++ {
 
 		if m.Counters[i] != nil {
+
+			if swag.IsZero(m.Counters[i]) { // not required
+				return nil
+			}
+
 			if err := m.Counters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

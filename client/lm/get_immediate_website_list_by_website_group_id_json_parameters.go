@@ -53,10 +53,12 @@ func NewGetImmediateWebsiteListByWebsiteGroupIDJSONParamsWithHTTPClient(client *
 	}
 }
 
-/* GetImmediateWebsiteListByWebsiteGroupIDJSONParams contains all the parameters to send to the API endpoint
-   for the get immediate website list by website group Id Json operation.
+/*
+GetImmediateWebsiteListByWebsiteGroupIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get immediate website list by website group Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetImmediateWebsiteListByWebsiteGroupIDJSONParams struct {
 

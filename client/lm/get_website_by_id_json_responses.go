@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetWebsiteByIDJSONReader is a Reader for the GetWebsiteByIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetWebsiteByIDJSONOK() *GetWebsiteByIDJSONOK {
 	return &GetWebsiteByIDJSONOK{}
 }
 
-/* GetWebsiteByIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetWebsiteByIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetWebsiteByIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetWebsiteByIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}?__json=][%d] getWebsiteByIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get website by Id Json o k response has a 2xx status code
+func (o *GetWebsiteByIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get website by Id Json o k response has a 3xx status code
+func (o *GetWebsiteByIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website by Id Json o k response has a 4xx status code
+func (o *GetWebsiteByIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get website by Id Json o k response has a 5xx status code
+func (o *GetWebsiteByIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website by Id Json o k response a status code equal to that given
+func (o *GetWebsiteByIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get website by Id Json o k response
+func (o *GetWebsiteByIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetWebsiteByIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}?__json=][%d] getWebsiteByIdJsonOK %s", 200, payload)
+}
+
+func (o *GetWebsiteByIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}?__json=][%d] getWebsiteByIdJsonOK %s", 200, payload)
+}
+
 func (o *GetWebsiteByIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetWebsiteByIDJSONTooManyRequests() *GetWebsiteByIDJSONTooManyRequests {
 	return &GetWebsiteByIDJSONTooManyRequests{}
 }
 
-/* GetWebsiteByIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetWebsiteByIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetWebsiteByIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get website by Id Json too many requests response has a 2xx status code
+func (o *GetWebsiteByIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get website by Id Json too many requests response has a 3xx status code
+func (o *GetWebsiteByIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website by Id Json too many requests response has a 4xx status code
+func (o *GetWebsiteByIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get website by Id Json too many requests response has a 5xx status code
+func (o *GetWebsiteByIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website by Id Json too many requests response a status code equal to that given
+func (o *GetWebsiteByIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get website by Id Json too many requests response
+func (o *GetWebsiteByIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetWebsiteByIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}?__json=][%d] getWebsiteByIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /website/websites/{id}?__json=][%d] getWebsiteByIdJsonTooManyRequests", 429)
+}
+
+func (o *GetWebsiteByIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /website/websites/{id}?__json=][%d] getWebsiteByIdJsonTooManyRequests", 429)
 }
 
 func (o *GetWebsiteByIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetWebsiteByIDJSONDefault(code int) *GetWebsiteByIDJSONDefault {
 	}
 }
 
-/* GetWebsiteByIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetWebsiteByIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetWebsiteByIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get website by Id Json default response has a 2xx status code
+func (o *GetWebsiteByIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get website by Id Json default response has a 3xx status code
+func (o *GetWebsiteByIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get website by Id Json default response has a 4xx status code
+func (o *GetWebsiteByIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get website by Id Json default response has a 5xx status code
+func (o *GetWebsiteByIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get website by Id Json default response a status code equal to that given
+func (o *GetWebsiteByIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get website by Id Json default response
 func (o *GetWebsiteByIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetWebsiteByIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}?__json=][%d] getWebsiteByIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}?__json=][%d] getWebsiteByIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetWebsiteByIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}?__json=][%d] getWebsiteByIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetWebsiteByIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

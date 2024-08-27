@@ -53,10 +53,12 @@ func NewDeleteDevicePropertyByNameParamsWithHTTPClient(client *http.Client) *Del
 	}
 }
 
-/* DeleteDevicePropertyByNameParams contains all the parameters to send to the API endpoint
-   for the delete device property by name operation.
+/*
+DeleteDevicePropertyByNameParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete device property by name operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteDevicePropertyByNameParams struct {
 

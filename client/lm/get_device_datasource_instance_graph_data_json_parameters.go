@@ -53,10 +53,12 @@ func NewGetDeviceDatasourceInstanceGraphDataJSONParamsWithHTTPClient(client *htt
 	}
 }
 
-/* GetDeviceDatasourceInstanceGraphDataJSONParams contains all the parameters to send to the API endpoint
-   for the get device datasource instance graph data Json operation.
+/*
+GetDeviceDatasourceInstanceGraphDataJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device datasource instance graph data Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceInstanceGraphDataJSONParams struct {
 

@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewTestAzureAccountParams creates a new TestAzureAccountParams object,
@@ -54,10 +54,12 @@ func NewTestAzureAccountParamsWithHTTPClient(client *http.Client) *TestAzureAcco
 	}
 }
 
-/* TestAzureAccountParams contains all the parameters to send to the API endpoint
-   for the test azure account operation.
+/*
+TestAzureAccountParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the test azure account operation.
+
+	Typically these are written to a http.Request.
 */
 type TestAzureAccountParams struct {
 

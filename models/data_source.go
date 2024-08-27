@@ -24,6 +24,14 @@ import (
 // swagger:model DataSource
 type DataSource struct {
 
+	// The Access Groups Id's
+	// Example: 1, 2, 3
+	// Unique: true
+	AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+	// Module's access groups
+	AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
 	// The Applies To for the LMModule
 	AppliesTo string `json:"appliesTo,omitempty"`
 
@@ -124,6 +132,10 @@ func (m *DataSource) SetCollectorAttribute(val CollectorAttribute) {
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *DataSource) UnmarshalJSON(raw []byte) error {
 	var data struct {
+		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
 		AppliesTo string `json:"appliesTo,omitempty"`
 
 		AuditVersion int64 `json:"auditVersion,omitempty"`
@@ -188,6 +200,12 @@ func (m *DataSource) UnmarshalJSON(raw []byte) error {
 	}
 
 	var result DataSource
+
+	// accessGroupIds
+	result.AccessGroupIds = data.AccessGroupIds
+
+	// accessGroups
+	result.AccessGroups = data.AccessGroups
 
 	// appliesTo
 	result.AppliesTo = data.AppliesTo
@@ -274,6 +292,10 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 	var b1, b2, b3 []byte
 	var err error
 	b1, err = json.Marshal(struct {
+		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
 		AppliesTo string `json:"appliesTo,omitempty"`
 
 		AuditVersion int64 `json:"auditVersion,omitempty"`
@@ -322,6 +344,10 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 
 		Version int64 `json:"version,omitempty"`
 	}{
+
+		AccessGroupIds: m.AccessGroupIds,
+
+		AccessGroups: m.AccessGroups,
 
 		AppliesTo: m.AppliesTo,
 
@@ -391,6 +417,14 @@ func (m DataSource) MarshalJSON() ([]byte, error) {
 func (m *DataSource) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAccessGroupIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAccessGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAutoDiscoveryConfig(formats); err != nil {
 		res = append(res, err)
 	}
@@ -429,6 +463,44 @@ func (m *DataSource) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *DataSource) validateAccessGroupIds(formats strfmt.Registry) error {
+	if swag.IsZero(m.AccessGroupIds) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("accessGroupIds", "body", m.AccessGroupIds); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DataSource) validateAccessGroups(formats strfmt.Registry) error {
+	if swag.IsZero(m.AccessGroups) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AccessGroups); i++ {
+		if swag.IsZero(m.AccessGroups[i]) { // not required
+			continue
+		}
+
+		if m.AccessGroups[i] != nil {
+			if err := m.AccessGroups[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *DataSource) validateAutoDiscoveryConfig(formats strfmt.Registry) error {
 	if swag.IsZero(m.AutoDiscoveryConfig) { // not required
 		return nil
@@ -438,6 +510,8 @@ func (m *DataSource) validateAutoDiscoveryConfig(formats strfmt.Registry) error 
 		if err := m.AutoDiscoveryConfig.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("autoDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("autoDiscoveryConfig")
 			}
 			return err
 		}
@@ -473,6 +547,8 @@ func (m *DataSource) validateCollectorAttribute(formats strfmt.Registry) error {
 	if err := m.CollectorAttribute().Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("collectorAttribute")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("collectorAttribute")
 		}
 		return err
 	}
@@ -494,6 +570,8 @@ func (m *DataSource) validateDataPoints(formats strfmt.Registry) error {
 			if err := m.DataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -513,6 +591,8 @@ func (m *DataSource) validateEriDiscoveryConfig(formats strfmt.Registry) error {
 		if err := m.EriDiscoveryConfig.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("eriDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("eriDiscoveryConfig")
 			}
 			return err
 		}
@@ -530,6 +610,8 @@ func (m *DataSource) validateInstallationMetadata(formats strfmt.Registry) error
 		if err := m.InstallationMetadata.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}
@@ -550,6 +632,10 @@ func (m *DataSource) validateName(formats strfmt.Registry) error {
 // ContextValidate validate this data source based on the context it is used
 func (m *DataSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateAccessGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
 		res = append(res, err)
@@ -609,6 +695,31 @@ func (m *DataSource) ContextValidate(ctx context.Context, formats strfmt.Registr
 	return nil
 }
 
+func (m *DataSource) contextValidateAccessGroups(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AccessGroups); i++ {
+
+		if m.AccessGroups[i] != nil {
+
+			if swag.IsZero(m.AccessGroups[i]) { // not required
+				return nil
+			}
+
+			if err := m.AccessGroups[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *DataSource) contextValidateAuditVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "auditVersion", "body", int64(m.AuditVersion)); err != nil {
@@ -621,9 +732,16 @@ func (m *DataSource) contextValidateAuditVersion(ctx context.Context, formats st
 func (m *DataSource) contextValidateAutoDiscoveryConfig(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AutoDiscoveryConfig != nil {
+
+		if swag.IsZero(m.AutoDiscoveryConfig) { // not required
+			return nil
+		}
+
 		if err := m.AutoDiscoveryConfig.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("autoDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("autoDiscoveryConfig")
 			}
 			return err
 		}
@@ -646,6 +764,8 @@ func (m *DataSource) contextValidateCollectorAttribute(ctx context.Context, form
 	if err := m.CollectorAttribute().ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("collectorAttribute")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("collectorAttribute")
 		}
 		return err
 	}
@@ -658,9 +778,16 @@ func (m *DataSource) contextValidateDataPoints(ctx context.Context, formats strf
 	for i := 0; i < len(m.DataPoints); i++ {
 
 		if m.DataPoints[i] != nil {
+
+			if swag.IsZero(m.DataPoints[i]) { // not required
+				return nil
+			}
+
 			if err := m.DataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -674,9 +801,16 @@ func (m *DataSource) contextValidateDataPoints(ctx context.Context, formats strf
 func (m *DataSource) contextValidateEriDiscoveryConfig(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.EriDiscoveryConfig != nil {
+
+		if swag.IsZero(m.EriDiscoveryConfig) { // not required
+			return nil
+		}
+
 		if err := m.EriDiscoveryConfig.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("eriDiscoveryConfig")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("eriDiscoveryConfig")
 			}
 			return err
 		}
@@ -706,9 +840,16 @@ func (m *DataSource) contextValidateID(ctx context.Context, formats strfmt.Regis
 func (m *DataSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstallationMetadata != nil {
+
+		if swag.IsZero(m.InstallationMetadata) { // not required
+			return nil
+		}
+
 		if err := m.InstallationMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}

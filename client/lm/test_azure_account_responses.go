@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // TestAzureAccountReader is a Reader for the TestAzureAccount structure.
@@ -54,7 +55,8 @@ func NewTestAzureAccountOK() *TestAzureAccountOK {
 	return &TestAzureAccountOK{}
 }
 
-/* TestAzureAccountOK describes a response with status code 200, with default header values.
+/*
+TestAzureAccountOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type TestAzureAccountOK struct {
 	Payload models.RestCloudOkPermissionsV3
 }
 
-func (o *TestAzureAccountOK) Error() string {
-	return fmt.Sprintf("[POST /azure/functions/testAccount][%d] testAzureAccountOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this test azure account o k response has a 2xx status code
+func (o *TestAzureAccountOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this test azure account o k response has a 3xx status code
+func (o *TestAzureAccountOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test azure account o k response has a 4xx status code
+func (o *TestAzureAccountOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this test azure account o k response has a 5xx status code
+func (o *TestAzureAccountOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test azure account o k response a status code equal to that given
+func (o *TestAzureAccountOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the test azure account o k response
+func (o *TestAzureAccountOK) Code() int {
+	return 200
+}
+
+func (o *TestAzureAccountOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/testAccount][%d] testAzureAccountOK %s", 200, payload)
+}
+
+func (o *TestAzureAccountOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/testAccount][%d] testAzureAccountOK %s", 200, payload)
+}
+
 func (o *TestAzureAccountOK) GetPayload() models.RestCloudOkPermissionsV3 {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewTestAzureAccountTooManyRequests() *TestAzureAccountTooManyRequests {
 	return &TestAzureAccountTooManyRequests{}
 }
 
-/* TestAzureAccountTooManyRequests describes a response with status code 429, with default header values.
+/*
+TestAzureAccountTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type TestAzureAccountTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this test azure account too many requests response has a 2xx status code
+func (o *TestAzureAccountTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test azure account too many requests response has a 3xx status code
+func (o *TestAzureAccountTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test azure account too many requests response has a 4xx status code
+func (o *TestAzureAccountTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test azure account too many requests response has a 5xx status code
+func (o *TestAzureAccountTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test azure account too many requests response a status code equal to that given
+func (o *TestAzureAccountTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the test azure account too many requests response
+func (o *TestAzureAccountTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *TestAzureAccountTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /azure/functions/testAccount][%d] testAzureAccountTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /azure/functions/testAccount][%d] testAzureAccountTooManyRequests", 429)
+}
+
+func (o *TestAzureAccountTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /azure/functions/testAccount][%d] testAzureAccountTooManyRequests", 429)
 }
 
 func (o *TestAzureAccountTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewTestAzureAccountDefault(code int) *TestAzureAccountDefault {
 	}
 }
 
-/* TestAzureAccountDefault describes a response with status code -1, with default header values.
+/*
+TestAzureAccountDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type TestAzureAccountDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this test azure account default response has a 2xx status code
+func (o *TestAzureAccountDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this test azure account default response has a 3xx status code
+func (o *TestAzureAccountDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this test azure account default response has a 4xx status code
+func (o *TestAzureAccountDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this test azure account default response has a 5xx status code
+func (o *TestAzureAccountDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this test azure account default response a status code equal to that given
+func (o *TestAzureAccountDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the test azure account default response
 func (o *TestAzureAccountDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *TestAzureAccountDefault) Error() string {
-	return fmt.Sprintf("[POST /azure/functions/testAccount][%d] testAzureAccount default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/testAccount][%d] testAzureAccount default %s", o._statusCode, payload)
 }
+
+func (o *TestAzureAccountDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/testAccount][%d] testAzureAccount default %s", o._statusCode, payload)
+}
+
 func (o *TestAzureAccountDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

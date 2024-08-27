@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetAPITokenListByAdminIDJSONReader is a Reader for the GetAPITokenListByAdminIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetAPITokenListByAdminIDJSONOK() *GetAPITokenListByAdminIDJSONOK {
 	return &GetAPITokenListByAdminIDJSONOK{}
 }
 
-/* GetAPITokenListByAdminIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetAPITokenListByAdminIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAPITokenListByAdminIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetAPITokenListByAdminIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/admins/{adminId}/apitokens?__json=][%d] getApiTokenListByAdminIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get Api token list by admin Id Json o k response has a 2xx status code
+func (o *GetAPITokenListByAdminIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get Api token list by admin Id Json o k response has a 3xx status code
+func (o *GetAPITokenListByAdminIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get Api token list by admin Id Json o k response has a 4xx status code
+func (o *GetAPITokenListByAdminIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get Api token list by admin Id Json o k response has a 5xx status code
+func (o *GetAPITokenListByAdminIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get Api token list by admin Id Json o k response a status code equal to that given
+func (o *GetAPITokenListByAdminIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get Api token list by admin Id Json o k response
+func (o *GetAPITokenListByAdminIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetAPITokenListByAdminIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins/{adminId}/apitokens?__json=][%d] getApiTokenListByAdminIdJsonOK %s", 200, payload)
+}
+
+func (o *GetAPITokenListByAdminIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins/{adminId}/apitokens?__json=][%d] getApiTokenListByAdminIdJsonOK %s", 200, payload)
+}
+
 func (o *GetAPITokenListByAdminIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetAPITokenListByAdminIDJSONTooManyRequests() *GetAPITokenListByAdminIDJ
 	return &GetAPITokenListByAdminIDJSONTooManyRequests{}
 }
 
-/* GetAPITokenListByAdminIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAPITokenListByAdminIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetAPITokenListByAdminIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get Api token list by admin Id Json too many requests response has a 2xx status code
+func (o *GetAPITokenListByAdminIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get Api token list by admin Id Json too many requests response has a 3xx status code
+func (o *GetAPITokenListByAdminIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get Api token list by admin Id Json too many requests response has a 4xx status code
+func (o *GetAPITokenListByAdminIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get Api token list by admin Id Json too many requests response has a 5xx status code
+func (o *GetAPITokenListByAdminIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get Api token list by admin Id Json too many requests response a status code equal to that given
+func (o *GetAPITokenListByAdminIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get Api token list by admin Id Json too many requests response
+func (o *GetAPITokenListByAdminIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAPITokenListByAdminIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/admins/{adminId}/apitokens?__json=][%d] getApiTokenListByAdminIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/admins/{adminId}/apitokens?__json=][%d] getApiTokenListByAdminIdJsonTooManyRequests", 429)
+}
+
+func (o *GetAPITokenListByAdminIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/admins/{adminId}/apitokens?__json=][%d] getApiTokenListByAdminIdJsonTooManyRequests", 429)
 }
 
 func (o *GetAPITokenListByAdminIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetAPITokenListByAdminIDJSONDefault(code int) *GetAPITokenListByAdminIDJ
 	}
 }
 
-/* GetAPITokenListByAdminIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetAPITokenListByAdminIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetAPITokenListByAdminIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get Api token list by admin Id Json default response has a 2xx status code
+func (o *GetAPITokenListByAdminIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get Api token list by admin Id Json default response has a 3xx status code
+func (o *GetAPITokenListByAdminIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get Api token list by admin Id Json default response has a 4xx status code
+func (o *GetAPITokenListByAdminIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get Api token list by admin Id Json default response has a 5xx status code
+func (o *GetAPITokenListByAdminIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get Api token list by admin Id Json default response a status code equal to that given
+func (o *GetAPITokenListByAdminIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get Api token list by admin Id Json default response
 func (o *GetAPITokenListByAdminIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAPITokenListByAdminIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/admins/{adminId}/apitokens?__json=][%d] getApiTokenListByAdminIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins/{adminId}/apitokens?__json=][%d] getApiTokenListByAdminIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetAPITokenListByAdminIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins/{adminId}/apitokens?__json=][%d] getApiTokenListByAdminIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetAPITokenListByAdminIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // FetchReportUsingTaskIDReader is a Reader for the FetchReportUsingTaskID structure.
@@ -54,7 +55,8 @@ func NewFetchReportUsingTaskIDOK() *FetchReportUsingTaskIDOK {
 	return &FetchReportUsingTaskIDOK{}
 }
 
-/* FetchReportUsingTaskIDOK describes a response with status code 200, with default header values.
+/*
+FetchReportUsingTaskIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type FetchReportUsingTaskIDOK struct {
 	Payload *models.GenerateReportResult
 }
 
-func (o *FetchReportUsingTaskIDOK) Error() string {
-	return fmt.Sprintf("[GET /report/reports/{id}/tasks/{taskId}][%d] fetchReportUsingTaskIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this fetch report using task Id o k response has a 2xx status code
+func (o *FetchReportUsingTaskIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this fetch report using task Id o k response has a 3xx status code
+func (o *FetchReportUsingTaskIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this fetch report using task Id o k response has a 4xx status code
+func (o *FetchReportUsingTaskIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this fetch report using task Id o k response has a 5xx status code
+func (o *FetchReportUsingTaskIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this fetch report using task Id o k response a status code equal to that given
+func (o *FetchReportUsingTaskIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the fetch report using task Id o k response
+func (o *FetchReportUsingTaskIDOK) Code() int {
+	return 200
+}
+
+func (o *FetchReportUsingTaskIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports/{id}/tasks/{taskId}][%d] fetchReportUsingTaskIdOK %s", 200, payload)
+}
+
+func (o *FetchReportUsingTaskIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports/{id}/tasks/{taskId}][%d] fetchReportUsingTaskIdOK %s", 200, payload)
+}
+
 func (o *FetchReportUsingTaskIDOK) GetPayload() *models.GenerateReportResult {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewFetchReportUsingTaskIDTooManyRequests() *FetchReportUsingTaskIDTooManyRe
 	return &FetchReportUsingTaskIDTooManyRequests{}
 }
 
-/* FetchReportUsingTaskIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+FetchReportUsingTaskIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type FetchReportUsingTaskIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this fetch report using task Id too many requests response has a 2xx status code
+func (o *FetchReportUsingTaskIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this fetch report using task Id too many requests response has a 3xx status code
+func (o *FetchReportUsingTaskIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this fetch report using task Id too many requests response has a 4xx status code
+func (o *FetchReportUsingTaskIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this fetch report using task Id too many requests response has a 5xx status code
+func (o *FetchReportUsingTaskIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this fetch report using task Id too many requests response a status code equal to that given
+func (o *FetchReportUsingTaskIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the fetch report using task Id too many requests response
+func (o *FetchReportUsingTaskIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *FetchReportUsingTaskIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /report/reports/{id}/tasks/{taskId}][%d] fetchReportUsingTaskIdTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /report/reports/{id}/tasks/{taskId}][%d] fetchReportUsingTaskIdTooManyRequests", 429)
+}
+
+func (o *FetchReportUsingTaskIDTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /report/reports/{id}/tasks/{taskId}][%d] fetchReportUsingTaskIdTooManyRequests", 429)
 }
 
 func (o *FetchReportUsingTaskIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewFetchReportUsingTaskIDDefault(code int) *FetchReportUsingTaskIDDefault {
 	}
 }
 
-/* FetchReportUsingTaskIDDefault describes a response with status code -1, with default header values.
+/*
+FetchReportUsingTaskIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type FetchReportUsingTaskIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this fetch report using task Id default response has a 2xx status code
+func (o *FetchReportUsingTaskIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this fetch report using task Id default response has a 3xx status code
+func (o *FetchReportUsingTaskIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this fetch report using task Id default response has a 4xx status code
+func (o *FetchReportUsingTaskIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this fetch report using task Id default response has a 5xx status code
+func (o *FetchReportUsingTaskIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this fetch report using task Id default response a status code equal to that given
+func (o *FetchReportUsingTaskIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the fetch report using task Id default response
 func (o *FetchReportUsingTaskIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *FetchReportUsingTaskIDDefault) Error() string {
-	return fmt.Sprintf("[GET /report/reports/{id}/tasks/{taskId}][%d] fetchReportUsingTaskId default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports/{id}/tasks/{taskId}][%d] fetchReportUsingTaskId default %s", o._statusCode, payload)
 }
+
+func (o *FetchReportUsingTaskIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports/{id}/tasks/{taskId}][%d] fetchReportUsingTaskId default %s", o._statusCode, payload)
+}
+
 func (o *FetchReportUsingTaskIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

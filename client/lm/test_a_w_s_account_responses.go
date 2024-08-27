@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // TestAWSAccountReader is a Reader for the TestAWSAccount structure.
@@ -54,7 +55,8 @@ func NewTestAWSAccountOK() *TestAWSAccountOK {
 	return &TestAWSAccountOK{}
 }
 
-/* TestAWSAccountOK describes a response with status code 200, with default header values.
+/*
+TestAWSAccountOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type TestAWSAccountOK struct {
 	Payload models.RestCloudOkPermissionsV3
 }
 
-func (o *TestAWSAccountOK) Error() string {
-	return fmt.Sprintf("[POST /aws/functions/testAccount][%d] testAWSAccountOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this test a w s account o k response has a 2xx status code
+func (o *TestAWSAccountOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this test a w s account o k response has a 3xx status code
+func (o *TestAWSAccountOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test a w s account o k response has a 4xx status code
+func (o *TestAWSAccountOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this test a w s account o k response has a 5xx status code
+func (o *TestAWSAccountOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test a w s account o k response a status code equal to that given
+func (o *TestAWSAccountOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the test a w s account o k response
+func (o *TestAWSAccountOK) Code() int {
+	return 200
+}
+
+func (o *TestAWSAccountOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /aws/functions/testAccount][%d] testAWSAccountOK %s", 200, payload)
+}
+
+func (o *TestAWSAccountOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /aws/functions/testAccount][%d] testAWSAccountOK %s", 200, payload)
+}
+
 func (o *TestAWSAccountOK) GetPayload() models.RestCloudOkPermissionsV3 {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewTestAWSAccountTooManyRequests() *TestAWSAccountTooManyRequests {
 	return &TestAWSAccountTooManyRequests{}
 }
 
-/* TestAWSAccountTooManyRequests describes a response with status code 429, with default header values.
+/*
+TestAWSAccountTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type TestAWSAccountTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this test a w s account too many requests response has a 2xx status code
+func (o *TestAWSAccountTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test a w s account too many requests response has a 3xx status code
+func (o *TestAWSAccountTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test a w s account too many requests response has a 4xx status code
+func (o *TestAWSAccountTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test a w s account too many requests response has a 5xx status code
+func (o *TestAWSAccountTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test a w s account too many requests response a status code equal to that given
+func (o *TestAWSAccountTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the test a w s account too many requests response
+func (o *TestAWSAccountTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *TestAWSAccountTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /aws/functions/testAccount][%d] testAWSAccountTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /aws/functions/testAccount][%d] testAWSAccountTooManyRequests", 429)
+}
+
+func (o *TestAWSAccountTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /aws/functions/testAccount][%d] testAWSAccountTooManyRequests", 429)
 }
 
 func (o *TestAWSAccountTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewTestAWSAccountDefault(code int) *TestAWSAccountDefault {
 	}
 }
 
-/* TestAWSAccountDefault describes a response with status code -1, with default header values.
+/*
+TestAWSAccountDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type TestAWSAccountDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this test a w s account default response has a 2xx status code
+func (o *TestAWSAccountDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this test a w s account default response has a 3xx status code
+func (o *TestAWSAccountDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this test a w s account default response has a 4xx status code
+func (o *TestAWSAccountDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this test a w s account default response has a 5xx status code
+func (o *TestAWSAccountDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this test a w s account default response a status code equal to that given
+func (o *TestAWSAccountDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the test a w s account default response
 func (o *TestAWSAccountDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *TestAWSAccountDefault) Error() string {
-	return fmt.Sprintf("[POST /aws/functions/testAccount][%d] testAWSAccount default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /aws/functions/testAccount][%d] testAWSAccount default %s", o._statusCode, payload)
 }
+
+func (o *TestAWSAccountDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /aws/functions/testAccount][%d] testAWSAccount default %s", o._statusCode, payload)
+}
+
 func (o *TestAWSAccountDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

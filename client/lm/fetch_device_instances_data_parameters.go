@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewFetchDeviceInstancesDataParams creates a new FetchDeviceInstancesDataParams object,
@@ -55,10 +55,12 @@ func NewFetchDeviceInstancesDataParamsWithHTTPClient(client *http.Client) *Fetch
 	}
 }
 
-/* FetchDeviceInstancesDataParams contains all the parameters to send to the API endpoint
-   for the fetch device instances data operation.
+/*
+FetchDeviceInstancesDataParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the fetch device instances data operation.
+
+	Typically these are written to a http.Request.
 */
 type FetchDeviceInstancesDataParams struct {
 

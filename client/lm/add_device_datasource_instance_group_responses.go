@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // AddDeviceDatasourceInstanceGroupReader is a Reader for the AddDeviceDatasourceInstanceGroup structure.
@@ -54,7 +55,8 @@ func NewAddDeviceDatasourceInstanceGroupOK() *AddDeviceDatasourceInstanceGroupOK
 	return &AddDeviceDatasourceInstanceGroupOK{}
 }
 
-/* AddDeviceDatasourceInstanceGroupOK describes a response with status code 200, with default header values.
+/*
+AddDeviceDatasourceInstanceGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddDeviceDatasourceInstanceGroupOK struct {
 	Payload *models.DeviceDataSourceInstanceGroup
 }
 
-func (o *AddDeviceDatasourceInstanceGroupOK) Error() string {
-	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] addDeviceDatasourceInstanceGroupOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add device datasource instance group o k response has a 2xx status code
+func (o *AddDeviceDatasourceInstanceGroupOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add device datasource instance group o k response has a 3xx status code
+func (o *AddDeviceDatasourceInstanceGroupOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add device datasource instance group o k response has a 4xx status code
+func (o *AddDeviceDatasourceInstanceGroupOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add device datasource instance group o k response has a 5xx status code
+func (o *AddDeviceDatasourceInstanceGroupOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add device datasource instance group o k response a status code equal to that given
+func (o *AddDeviceDatasourceInstanceGroupOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add device datasource instance group o k response
+func (o *AddDeviceDatasourceInstanceGroupOK) Code() int {
+	return 200
+}
+
+func (o *AddDeviceDatasourceInstanceGroupOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] addDeviceDatasourceInstanceGroupOK %s", 200, payload)
+}
+
+func (o *AddDeviceDatasourceInstanceGroupOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] addDeviceDatasourceInstanceGroupOK %s", 200, payload)
+}
+
 func (o *AddDeviceDatasourceInstanceGroupOK) GetPayload() *models.DeviceDataSourceInstanceGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddDeviceDatasourceInstanceGroupTooManyRequests() *AddDeviceDatasourceIn
 	return &AddDeviceDatasourceInstanceGroupTooManyRequests{}
 }
 
-/* AddDeviceDatasourceInstanceGroupTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddDeviceDatasourceInstanceGroupTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddDeviceDatasourceInstanceGroupTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add device datasource instance group too many requests response has a 2xx status code
+func (o *AddDeviceDatasourceInstanceGroupTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add device datasource instance group too many requests response has a 3xx status code
+func (o *AddDeviceDatasourceInstanceGroupTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add device datasource instance group too many requests response has a 4xx status code
+func (o *AddDeviceDatasourceInstanceGroupTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add device datasource instance group too many requests response has a 5xx status code
+func (o *AddDeviceDatasourceInstanceGroupTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add device datasource instance group too many requests response a status code equal to that given
+func (o *AddDeviceDatasourceInstanceGroupTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add device datasource instance group too many requests response
+func (o *AddDeviceDatasourceInstanceGroupTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddDeviceDatasourceInstanceGroupTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] addDeviceDatasourceInstanceGroupTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] addDeviceDatasourceInstanceGroupTooManyRequests", 429)
+}
+
+func (o *AddDeviceDatasourceInstanceGroupTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] addDeviceDatasourceInstanceGroupTooManyRequests", 429)
 }
 
 func (o *AddDeviceDatasourceInstanceGroupTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddDeviceDatasourceInstanceGroupDefault(code int) *AddDeviceDatasourceIn
 	}
 }
 
-/* AddDeviceDatasourceInstanceGroupDefault describes a response with status code -1, with default header values.
+/*
+AddDeviceDatasourceInstanceGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddDeviceDatasourceInstanceGroupDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add device datasource instance group default response has a 2xx status code
+func (o *AddDeviceDatasourceInstanceGroupDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add device datasource instance group default response has a 3xx status code
+func (o *AddDeviceDatasourceInstanceGroupDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add device datasource instance group default response has a 4xx status code
+func (o *AddDeviceDatasourceInstanceGroupDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add device datasource instance group default response has a 5xx status code
+func (o *AddDeviceDatasourceInstanceGroupDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add device datasource instance group default response a status code equal to that given
+func (o *AddDeviceDatasourceInstanceGroupDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add device datasource instance group default response
 func (o *AddDeviceDatasourceInstanceGroupDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddDeviceDatasourceInstanceGroupDefault) Error() string {
-	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] addDeviceDatasourceInstanceGroup default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] addDeviceDatasourceInstanceGroup default %s", o._statusCode, payload)
 }
+
+func (o *AddDeviceDatasourceInstanceGroupDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups][%d] addDeviceDatasourceInstanceGroup default %s", o._statusCode, payload)
+}
+
 func (o *AddDeviceDatasourceInstanceGroupDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

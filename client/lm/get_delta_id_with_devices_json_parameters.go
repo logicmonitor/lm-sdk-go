@@ -52,10 +52,12 @@ func NewGetDeltaIDWithDevicesJSONParamsWithHTTPClient(client *http.Client) *GetD
 	}
 }
 
-/* GetDeltaIDWithDevicesJSONParams contains all the parameters to send to the API endpoint
-   for the get delta Id with devices Json operation.
+/*
+GetDeltaIDWithDevicesJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get delta Id with devices Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeltaIDWithDevicesJSONParams struct {
 

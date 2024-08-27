@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -68,7 +67,7 @@ func UnmarshalCollectorAttributeSlice(reader io.Reader, consumer runtime.Consume
 // UnmarshalCollectorAttribute unmarshals polymorphic CollectorAttribute
 func UnmarshalCollectorAttribute(reader io.Reader, consumer runtime.Consumer) (CollectorAttribute, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -471,12 +470,6 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 			return nil, err
 		}
 		return &result, nil
-	case "awsec2reservedinstancecoverage":
-		var result AwsEC2ReservedInstanceCoverageCollectorAttribute
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
 	case "awsec2scheduledevents":
 		var result AwsEC2ScheduledEventsCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -617,12 +610,6 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 		return &result, nil
 	case "ping":
 		var result PingCollectorAttribute
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "script":
-		var result ScriptCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetAuditLogListJSONReader is a Reader for the GetAuditLogListJSON structure.
@@ -54,7 +55,8 @@ func NewGetAuditLogListJSONOK() *GetAuditLogListJSONOK {
 	return &GetAuditLogListJSONOK{}
 }
 
-/* GetAuditLogListJSONOK describes a response with status code 200, with default header values.
+/*
+GetAuditLogListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAuditLogListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetAuditLogListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/accesslogs?__json=][%d] getAuditLogListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get audit log list Json o k response has a 2xx status code
+func (o *GetAuditLogListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get audit log list Json o k response has a 3xx status code
+func (o *GetAuditLogListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get audit log list Json o k response has a 4xx status code
+func (o *GetAuditLogListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get audit log list Json o k response has a 5xx status code
+func (o *GetAuditLogListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get audit log list Json o k response a status code equal to that given
+func (o *GetAuditLogListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get audit log list Json o k response
+func (o *GetAuditLogListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetAuditLogListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accesslogs?__json=][%d] getAuditLogListJsonOK %s", 200, payload)
+}
+
+func (o *GetAuditLogListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accesslogs?__json=][%d] getAuditLogListJsonOK %s", 200, payload)
+}
+
 func (o *GetAuditLogListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetAuditLogListJSONTooManyRequests() *GetAuditLogListJSONTooManyRequests
 	return &GetAuditLogListJSONTooManyRequests{}
 }
 
-/* GetAuditLogListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAuditLogListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetAuditLogListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get audit log list Json too many requests response has a 2xx status code
+func (o *GetAuditLogListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get audit log list Json too many requests response has a 3xx status code
+func (o *GetAuditLogListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get audit log list Json too many requests response has a 4xx status code
+func (o *GetAuditLogListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get audit log list Json too many requests response has a 5xx status code
+func (o *GetAuditLogListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get audit log list Json too many requests response a status code equal to that given
+func (o *GetAuditLogListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get audit log list Json too many requests response
+func (o *GetAuditLogListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAuditLogListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/accesslogs?__json=][%d] getAuditLogListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/accesslogs?__json=][%d] getAuditLogListJsonTooManyRequests", 429)
+}
+
+func (o *GetAuditLogListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/accesslogs?__json=][%d] getAuditLogListJsonTooManyRequests", 429)
 }
 
 func (o *GetAuditLogListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetAuditLogListJSONDefault(code int) *GetAuditLogListJSONDefault {
 	}
 }
 
-/* GetAuditLogListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetAuditLogListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetAuditLogListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get audit log list Json default response has a 2xx status code
+func (o *GetAuditLogListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get audit log list Json default response has a 3xx status code
+func (o *GetAuditLogListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get audit log list Json default response has a 4xx status code
+func (o *GetAuditLogListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get audit log list Json default response has a 5xx status code
+func (o *GetAuditLogListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get audit log list Json default response a status code equal to that given
+func (o *GetAuditLogListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get audit log list Json default response
 func (o *GetAuditLogListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAuditLogListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/accesslogs?__json=][%d] getAuditLogListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accesslogs?__json=][%d] getAuditLogListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetAuditLogListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accesslogs?__json=][%d] getAuditLogListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetAuditLogListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

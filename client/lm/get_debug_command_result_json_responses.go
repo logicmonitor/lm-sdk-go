@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetDebugCommandResultJSONReader is a Reader for the GetDebugCommandResultJSON structure.
@@ -54,7 +55,8 @@ func NewGetDebugCommandResultJSONOK() *GetDebugCommandResultJSONOK {
 	return &GetDebugCommandResultJSONOK{}
 }
 
-/* GetDebugCommandResultJSONOK describes a response with status code 200, with default header values.
+/*
+GetDebugCommandResultJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDebugCommandResultJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetDebugCommandResultJSONOK) Error() string {
-	return fmt.Sprintf("[GET /debug/{id}?__json=][%d] getDebugCommandResultJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get debug command result Json o k response has a 2xx status code
+func (o *GetDebugCommandResultJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get debug command result Json o k response has a 3xx status code
+func (o *GetDebugCommandResultJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get debug command result Json o k response has a 4xx status code
+func (o *GetDebugCommandResultJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get debug command result Json o k response has a 5xx status code
+func (o *GetDebugCommandResultJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get debug command result Json o k response a status code equal to that given
+func (o *GetDebugCommandResultJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get debug command result Json o k response
+func (o *GetDebugCommandResultJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetDebugCommandResultJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /debug/{id}?__json=][%d] getDebugCommandResultJsonOK %s", 200, payload)
+}
+
+func (o *GetDebugCommandResultJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /debug/{id}?__json=][%d] getDebugCommandResultJsonOK %s", 200, payload)
+}
+
 func (o *GetDebugCommandResultJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetDebugCommandResultJSONTooManyRequests() *GetDebugCommandResultJSONToo
 	return &GetDebugCommandResultJSONTooManyRequests{}
 }
 
-/* GetDebugCommandResultJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDebugCommandResultJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetDebugCommandResultJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get debug command result Json too many requests response has a 2xx status code
+func (o *GetDebugCommandResultJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get debug command result Json too many requests response has a 3xx status code
+func (o *GetDebugCommandResultJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get debug command result Json too many requests response has a 4xx status code
+func (o *GetDebugCommandResultJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get debug command result Json too many requests response has a 5xx status code
+func (o *GetDebugCommandResultJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get debug command result Json too many requests response a status code equal to that given
+func (o *GetDebugCommandResultJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get debug command result Json too many requests response
+func (o *GetDebugCommandResultJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDebugCommandResultJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /debug/{id}?__json=][%d] getDebugCommandResultJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /debug/{id}?__json=][%d] getDebugCommandResultJsonTooManyRequests", 429)
+}
+
+func (o *GetDebugCommandResultJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /debug/{id}?__json=][%d] getDebugCommandResultJsonTooManyRequests", 429)
 }
 
 func (o *GetDebugCommandResultJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetDebugCommandResultJSONDefault(code int) *GetDebugCommandResultJSONDef
 	}
 }
 
-/* GetDebugCommandResultJSONDefault describes a response with status code -1, with default header values.
+/*
+GetDebugCommandResultJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetDebugCommandResultJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get debug command result Json default response has a 2xx status code
+func (o *GetDebugCommandResultJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get debug command result Json default response has a 3xx status code
+func (o *GetDebugCommandResultJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get debug command result Json default response has a 4xx status code
+func (o *GetDebugCommandResultJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get debug command result Json default response has a 5xx status code
+func (o *GetDebugCommandResultJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get debug command result Json default response a status code equal to that given
+func (o *GetDebugCommandResultJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get debug command result Json default response
 func (o *GetDebugCommandResultJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDebugCommandResultJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /debug/{id}?__json=][%d] getDebugCommandResultJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /debug/{id}?__json=][%d] getDebugCommandResultJson default %s", o._statusCode, payload)
 }
+
+func (o *GetDebugCommandResultJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /debug/{id}?__json=][%d] getDebugCommandResultJson default %s", o._statusCode, payload)
+}
+
 func (o *GetDebugCommandResultJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewUpdateDeviceParams creates a new UpdateDeviceParams object,
@@ -55,10 +55,12 @@ func NewUpdateDeviceParamsWithHTTPClient(client *http.Client) *UpdateDeviceParam
 	}
 }
 
-/* UpdateDeviceParams contains all the parameters to send to the API endpoint
-   for the update device operation.
+/*
+UpdateDeviceParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update device operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateDeviceParams struct {
 

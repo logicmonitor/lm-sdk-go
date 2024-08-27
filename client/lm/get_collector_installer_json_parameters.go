@@ -53,10 +53,12 @@ func NewGetCollectorInstallerJSONParamsWithHTTPClient(client *http.Client) *GetC
 	}
 }
 
-/* GetCollectorInstallerJSONParams contains all the parameters to send to the API endpoint
-   for the get collector installer Json operation.
+/*
+GetCollectorInstallerJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get collector installer Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetCollectorInstallerJSONParams struct {
 

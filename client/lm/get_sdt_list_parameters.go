@@ -53,10 +53,12 @@ func NewGetSDTListParamsWithHTTPClient(client *http.Client) *GetSDTListParams {
 	}
 }
 
-/* GetSDTListParams contains all the parameters to send to the API endpoint
-   for the get SDT list operation.
+/*
+GetSDTListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get SDT list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetSDTListParams struct {
 

@@ -53,10 +53,12 @@ func NewGetUpdateReasonListByDataSourceIDParamsWithHTTPClient(client *http.Clien
 	}
 }
 
-/* GetUpdateReasonListByDataSourceIDParams contains all the parameters to send to the API endpoint
-   for the get update reason list by data source Id operation.
+/*
+GetUpdateReasonListByDataSourceIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get update reason list by data source Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetUpdateReasonListByDataSourceIDParams struct {
 

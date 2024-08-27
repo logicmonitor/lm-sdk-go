@@ -53,10 +53,12 @@ func NewGetWebsiteListJSONParamsWithHTTPClient(client *http.Client) *GetWebsiteL
 	}
 }
 
-/* GetWebsiteListJSONParams contains all the parameters to send to the API endpoint
-   for the get website list Json operation.
+/*
+GetWebsiteListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteListJSONParams struct {
 

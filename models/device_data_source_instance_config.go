@@ -125,6 +125,8 @@ func (m *DeviceDataSourceInstanceConfig) validateAlerts(formats strfmt.Registry)
 			if err := m.Alerts[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alerts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alerts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -149,6 +151,8 @@ func (m *DeviceDataSourceInstanceConfig) validateDeltaConfig(formats strfmt.Regi
 			if err := m.DeltaConfig[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -250,9 +254,16 @@ func (m *DeviceDataSourceInstanceConfig) contextValidateAlerts(ctx context.Conte
 	for i := 0; i < len(m.Alerts); i++ {
 
 		if m.Alerts[i] != nil {
+
+			if swag.IsZero(m.Alerts[i]) { // not required
+				return nil
+			}
+
 			if err := m.Alerts[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("alerts" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("alerts" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -335,9 +346,16 @@ func (m *DeviceDataSourceInstanceConfig) contextValidateDeltaConfig(ctx context.
 	for i := 0; i < len(m.DeltaConfig); i++ {
 
 		if m.DeltaConfig[i] != nil {
+
+			if swag.IsZero(m.DeltaConfig[i]) { // not required
+				return nil
+			}
+
 			if err := m.DeltaConfig[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("deltaConfig" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

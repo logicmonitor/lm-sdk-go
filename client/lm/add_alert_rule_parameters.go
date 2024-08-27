@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewAddAlertRuleParams creates a new AddAlertRuleParams object,
@@ -54,10 +54,12 @@ func NewAddAlertRuleParamsWithHTTPClient(client *http.Client) *AddAlertRuleParam
 	}
 }
 
-/* AddAlertRuleParams contains all the parameters to send to the API endpoint
-   for the add alert rule operation.
+/*
+AddAlertRuleParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add alert rule operation.
+
+	Typically these are written to a http.Request.
 */
 type AddAlertRuleParams struct {
 

@@ -53,10 +53,12 @@ func NewGetReportGroupByIDParamsWithHTTPClient(client *http.Client) *GetReportGr
 	}
 }
 
-/* GetReportGroupByIDParams contains all the parameters to send to the API endpoint
-   for the get report group by Id operation.
+/*
+GetReportGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get report group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetReportGroupByIDParams struct {
 

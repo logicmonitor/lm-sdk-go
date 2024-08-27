@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewTestSaaSAccountParams creates a new TestSaaSAccountParams object,
@@ -54,10 +54,12 @@ func NewTestSaaSAccountParamsWithHTTPClient(client *http.Client) *TestSaaSAccoun
 	}
 }
 
-/* TestSaaSAccountParams contains all the parameters to send to the API endpoint
-   for the test saa s account operation.
+/*
+TestSaaSAccountParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the test saa s account operation.
+
+	Typically these are written to a http.Request.
 */
 type TestSaaSAccountParams struct {
 

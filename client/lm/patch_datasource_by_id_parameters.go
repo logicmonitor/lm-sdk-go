@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewPatchDatasourceByIDParams creates a new PatchDatasourceByIDParams object,
@@ -55,10 +55,12 @@ func NewPatchDatasourceByIDParamsWithHTTPClient(client *http.Client) *PatchDatas
 	}
 }
 
-/* PatchDatasourceByIDParams contains all the parameters to send to the API endpoint
-   for the patch datasource by Id operation.
+/*
+PatchDatasourceByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch datasource by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDatasourceByIDParams struct {
 

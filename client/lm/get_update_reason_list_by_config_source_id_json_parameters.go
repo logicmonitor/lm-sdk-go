@@ -53,10 +53,12 @@ func NewGetUpdateReasonListByConfigSourceIDJSONParamsWithHTTPClient(client *http
 	}
 }
 
-/* GetUpdateReasonListByConfigSourceIDJSONParams contains all the parameters to send to the API endpoint
-   for the get update reason list by config source Id Json operation.
+/*
+GetUpdateReasonListByConfigSourceIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get update reason list by config source Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetUpdateReasonListByConfigSourceIDJSONParams struct {
 

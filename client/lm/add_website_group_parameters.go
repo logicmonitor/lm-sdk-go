@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewAddWebsiteGroupParams creates a new AddWebsiteGroupParams object,
@@ -54,10 +54,12 @@ func NewAddWebsiteGroupParamsWithHTTPClient(client *http.Client) *AddWebsiteGrou
 	}
 }
 
-/* AddWebsiteGroupParams contains all the parameters to send to the API endpoint
-   for the add website group operation.
+/*
+AddWebsiteGroupParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add website group operation.
+
+	Typically these are written to a http.Request.
 */
 type AddWebsiteGroupParams struct {
 

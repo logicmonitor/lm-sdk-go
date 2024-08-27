@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetAlertByIDJSONReader is a Reader for the GetAlertByIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetAlertByIDJSONOK() *GetAlertByIDJSONOK {
 	return &GetAlertByIDJSONOK{}
 }
 
-/* GetAlertByIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetAlertByIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAlertByIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetAlertByIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /alert/alerts/{id}?__json=][%d] getAlertByIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get alert by Id Json o k response has a 2xx status code
+func (o *GetAlertByIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get alert by Id Json o k response has a 3xx status code
+func (o *GetAlertByIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get alert by Id Json o k response has a 4xx status code
+func (o *GetAlertByIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get alert by Id Json o k response has a 5xx status code
+func (o *GetAlertByIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get alert by Id Json o k response a status code equal to that given
+func (o *GetAlertByIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get alert by Id Json o k response
+func (o *GetAlertByIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetAlertByIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert/alerts/{id}?__json=][%d] getAlertByIdJsonOK %s", 200, payload)
+}
+
+func (o *GetAlertByIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert/alerts/{id}?__json=][%d] getAlertByIdJsonOK %s", 200, payload)
+}
+
 func (o *GetAlertByIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetAlertByIDJSONTooManyRequests() *GetAlertByIDJSONTooManyRequests {
 	return &GetAlertByIDJSONTooManyRequests{}
 }
 
-/* GetAlertByIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAlertByIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetAlertByIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get alert by Id Json too many requests response has a 2xx status code
+func (o *GetAlertByIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get alert by Id Json too many requests response has a 3xx status code
+func (o *GetAlertByIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get alert by Id Json too many requests response has a 4xx status code
+func (o *GetAlertByIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get alert by Id Json too many requests response has a 5xx status code
+func (o *GetAlertByIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get alert by Id Json too many requests response a status code equal to that given
+func (o *GetAlertByIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get alert by Id Json too many requests response
+func (o *GetAlertByIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAlertByIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /alert/alerts/{id}?__json=][%d] getAlertByIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /alert/alerts/{id}?__json=][%d] getAlertByIdJsonTooManyRequests", 429)
+}
+
+func (o *GetAlertByIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /alert/alerts/{id}?__json=][%d] getAlertByIdJsonTooManyRequests", 429)
 }
 
 func (o *GetAlertByIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetAlertByIDJSONDefault(code int) *GetAlertByIDJSONDefault {
 	}
 }
 
-/* GetAlertByIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetAlertByIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetAlertByIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get alert by Id Json default response has a 2xx status code
+func (o *GetAlertByIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get alert by Id Json default response has a 3xx status code
+func (o *GetAlertByIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get alert by Id Json default response has a 4xx status code
+func (o *GetAlertByIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get alert by Id Json default response has a 5xx status code
+func (o *GetAlertByIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get alert by Id Json default response a status code equal to that given
+func (o *GetAlertByIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get alert by Id Json default response
 func (o *GetAlertByIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAlertByIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /alert/alerts/{id}?__json=][%d] getAlertByIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert/alerts/{id}?__json=][%d] getAlertByIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetAlertByIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /alert/alerts/{id}?__json=][%d] getAlertByIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetAlertByIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

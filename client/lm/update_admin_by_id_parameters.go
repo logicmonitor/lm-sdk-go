@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewUpdateAdminByIDParams creates a new UpdateAdminByIDParams object,
@@ -55,10 +55,12 @@ func NewUpdateAdminByIDParamsWithHTTPClient(client *http.Client) *UpdateAdminByI
 	}
 }
 
-/* UpdateAdminByIDParams contains all the parameters to send to the API endpoint
-   for the update admin by Id operation.
+/*
+UpdateAdminByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update admin by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateAdminByIDParams struct {
 

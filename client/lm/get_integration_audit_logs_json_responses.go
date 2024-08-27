@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetIntegrationAuditLogsJSONReader is a Reader for the GetIntegrationAuditLogsJSON structure.
@@ -54,7 +55,8 @@ func NewGetIntegrationAuditLogsJSONOK() *GetIntegrationAuditLogsJSONOK {
 	return &GetIntegrationAuditLogsJSONOK{}
 }
 
-/* GetIntegrationAuditLogsJSONOK describes a response with status code 200, with default header values.
+/*
+GetIntegrationAuditLogsJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetIntegrationAuditLogsJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetIntegrationAuditLogsJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/integrations/auditlogs?__json=][%d] getIntegrationAuditLogsJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get integration audit logs Json o k response has a 2xx status code
+func (o *GetIntegrationAuditLogsJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get integration audit logs Json o k response has a 3xx status code
+func (o *GetIntegrationAuditLogsJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get integration audit logs Json o k response has a 4xx status code
+func (o *GetIntegrationAuditLogsJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get integration audit logs Json o k response has a 5xx status code
+func (o *GetIntegrationAuditLogsJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get integration audit logs Json o k response a status code equal to that given
+func (o *GetIntegrationAuditLogsJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get integration audit logs Json o k response
+func (o *GetIntegrationAuditLogsJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetIntegrationAuditLogsJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/integrations/auditlogs?__json=][%d] getIntegrationAuditLogsJsonOK %s", 200, payload)
+}
+
+func (o *GetIntegrationAuditLogsJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/integrations/auditlogs?__json=][%d] getIntegrationAuditLogsJsonOK %s", 200, payload)
+}
+
 func (o *GetIntegrationAuditLogsJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetIntegrationAuditLogsJSONTooManyRequests() *GetIntegrationAuditLogsJSO
 	return &GetIntegrationAuditLogsJSONTooManyRequests{}
 }
 
-/* GetIntegrationAuditLogsJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetIntegrationAuditLogsJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetIntegrationAuditLogsJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get integration audit logs Json too many requests response has a 2xx status code
+func (o *GetIntegrationAuditLogsJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get integration audit logs Json too many requests response has a 3xx status code
+func (o *GetIntegrationAuditLogsJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get integration audit logs Json too many requests response has a 4xx status code
+func (o *GetIntegrationAuditLogsJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get integration audit logs Json too many requests response has a 5xx status code
+func (o *GetIntegrationAuditLogsJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get integration audit logs Json too many requests response a status code equal to that given
+func (o *GetIntegrationAuditLogsJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get integration audit logs Json too many requests response
+func (o *GetIntegrationAuditLogsJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetIntegrationAuditLogsJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/integrations/auditlogs?__json=][%d] getIntegrationAuditLogsJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/integrations/auditlogs?__json=][%d] getIntegrationAuditLogsJsonTooManyRequests", 429)
+}
+
+func (o *GetIntegrationAuditLogsJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/integrations/auditlogs?__json=][%d] getIntegrationAuditLogsJsonTooManyRequests", 429)
 }
 
 func (o *GetIntegrationAuditLogsJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetIntegrationAuditLogsJSONDefault(code int) *GetIntegrationAuditLogsJSO
 	}
 }
 
-/* GetIntegrationAuditLogsJSONDefault describes a response with status code -1, with default header values.
+/*
+GetIntegrationAuditLogsJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetIntegrationAuditLogsJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get integration audit logs Json default response has a 2xx status code
+func (o *GetIntegrationAuditLogsJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get integration audit logs Json default response has a 3xx status code
+func (o *GetIntegrationAuditLogsJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get integration audit logs Json default response has a 4xx status code
+func (o *GetIntegrationAuditLogsJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get integration audit logs Json default response has a 5xx status code
+func (o *GetIntegrationAuditLogsJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get integration audit logs Json default response a status code equal to that given
+func (o *GetIntegrationAuditLogsJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get integration audit logs Json default response
 func (o *GetIntegrationAuditLogsJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetIntegrationAuditLogsJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/integrations/auditlogs?__json=][%d] getIntegrationAuditLogsJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/integrations/auditlogs?__json=][%d] getIntegrationAuditLogsJson default %s", o._statusCode, payload)
 }
+
+func (o *GetIntegrationAuditLogsJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/integrations/auditlogs?__json=][%d] getIntegrationAuditLogsJson default %s", o._statusCode, payload)
+}
+
 func (o *GetIntegrationAuditLogsJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

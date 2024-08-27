@@ -53,10 +53,12 @@ func NewGetDatasourceListJSONParamsWithHTTPClient(client *http.Client) *GetDatas
 	}
 }
 
-/* GetDatasourceListJSONParams contains all the parameters to send to the API endpoint
-   for the get datasource list Json operation.
+/*
+GetDatasourceListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get datasource list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDatasourceListJSONParams struct {
 

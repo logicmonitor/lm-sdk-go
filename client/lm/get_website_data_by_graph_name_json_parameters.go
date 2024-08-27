@@ -53,10 +53,12 @@ func NewGetWebsiteDataByGraphNameJSONParamsWithHTTPClient(client *http.Client) *
 	}
 }
 
-/* GetWebsiteDataByGraphNameJSONParams contains all the parameters to send to the API endpoint
-   for the get website data by graph name Json operation.
+/*
+GetWebsiteDataByGraphNameJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website data by graph name Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteDataByGraphNameJSONParams struct {
 

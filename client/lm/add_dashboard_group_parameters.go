@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewAddDashboardGroupParams creates a new AddDashboardGroupParams object,
@@ -54,10 +54,12 @@ func NewAddDashboardGroupParamsWithHTTPClient(client *http.Client) *AddDashboard
 	}
 }
 
-/* AddDashboardGroupParams contains all the parameters to send to the API endpoint
-   for the add dashboard group operation.
+/*
+AddDashboardGroupParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add dashboard group operation.
+
+	Typically these are written to a http.Request.
 */
 type AddDashboardGroupParams struct {
 

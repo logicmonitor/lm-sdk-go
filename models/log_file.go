@@ -66,6 +66,8 @@ func (m *LogFile) validateMatches(formats strfmt.Registry) error {
 			if err := m.Matches[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("matches" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("matches" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -95,9 +97,16 @@ func (m *LogFile) contextValidateMatches(ctx context.Context, formats strfmt.Reg
 	for i := 0; i < len(m.Matches); i++ {
 
 		if m.Matches[i] != nil {
+
+			if swag.IsZero(m.Matches[i]) { // not required
+				return nil
+			}
+
 			if err := m.Matches[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("matches" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("matches" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

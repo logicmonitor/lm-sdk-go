@@ -52,10 +52,12 @@ func NewGetAwsExternalIDJSONParamsWithHTTPClient(client *http.Client) *GetAwsExt
 	}
 }
 
-/* GetAwsExternalIDJSONParams contains all the parameters to send to the API endpoint
-   for the get aws external Id Json operation.
+/*
+GetAwsExternalIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get aws external Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAwsExternalIDJSONParams struct {
 

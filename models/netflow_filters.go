@@ -102,6 +102,8 @@ func (m *NetflowFilters) validateConversation(formats strfmt.Registry) error {
 			if err := m.Conversation[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("conversation" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("conversation" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -126,6 +128,8 @@ func (m *NetflowFilters) validateDeviceInterfaces(formats strfmt.Registry) error
 			if err := m.DeviceInterfaces[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("deviceInterfaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("deviceInterfaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -150,6 +154,8 @@ func (m *NetflowFilters) validateNbarApplicationNames(formats strfmt.Registry) e
 			if err := m.NbarApplicationNames[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nbarApplicationNames" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nbarApplicationNames" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -174,6 +180,8 @@ func (m *NetflowFilters) validateNetflowDevices(formats strfmt.Registry) error {
 			if err := m.NetflowDevices[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("netflowDevices" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("netflowDevices" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -215,9 +223,16 @@ func (m *NetflowFilters) contextValidateConversation(ctx context.Context, format
 	for i := 0; i < len(m.Conversation); i++ {
 
 		if m.Conversation[i] != nil {
+
+			if swag.IsZero(m.Conversation[i]) { // not required
+				return nil
+			}
+
 			if err := m.Conversation[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("conversation" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("conversation" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -233,9 +248,16 @@ func (m *NetflowFilters) contextValidateDeviceInterfaces(ctx context.Context, fo
 	for i := 0; i < len(m.DeviceInterfaces); i++ {
 
 		if m.DeviceInterfaces[i] != nil {
+
+			if swag.IsZero(m.DeviceInterfaces[i]) { // not required
+				return nil
+			}
+
 			if err := m.DeviceInterfaces[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("deviceInterfaces" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("deviceInterfaces" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -251,9 +273,16 @@ func (m *NetflowFilters) contextValidateNbarApplicationNames(ctx context.Context
 	for i := 0; i < len(m.NbarApplicationNames); i++ {
 
 		if m.NbarApplicationNames[i] != nil {
+
+			if swag.IsZero(m.NbarApplicationNames[i]) { // not required
+				return nil
+			}
+
 			if err := m.NbarApplicationNames[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("nbarApplicationNames" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("nbarApplicationNames" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -269,9 +298,16 @@ func (m *NetflowFilters) contextValidateNetflowDevices(ctx context.Context, form
 	for i := 0; i < len(m.NetflowDevices); i++ {
 
 		if m.NetflowDevices[i] != nil {
+
+			if swag.IsZero(m.NetflowDevices[i]) { // not required
+				return nil
+			}
+
 			if err := m.NetflowDevices[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("netflowDevices" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("netflowDevices" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

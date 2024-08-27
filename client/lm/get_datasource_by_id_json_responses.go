@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetDatasourceByIDJSONReader is a Reader for the GetDatasourceByIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetDatasourceByIDJSONOK() *GetDatasourceByIDJSONOK {
 	return &GetDatasourceByIDJSONOK{}
 }
 
-/* GetDatasourceByIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetDatasourceByIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDatasourceByIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetDatasourceByIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{id}?__json=][%d] getDatasourceByIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get datasource by Id Json o k response has a 2xx status code
+func (o *GetDatasourceByIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get datasource by Id Json o k response has a 3xx status code
+func (o *GetDatasourceByIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get datasource by Id Json o k response has a 4xx status code
+func (o *GetDatasourceByIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get datasource by Id Json o k response has a 5xx status code
+func (o *GetDatasourceByIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get datasource by Id Json o k response a status code equal to that given
+func (o *GetDatasourceByIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get datasource by Id Json o k response
+func (o *GetDatasourceByIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetDatasourceByIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}?__json=][%d] getDatasourceByIdJsonOK %s", 200, payload)
+}
+
+func (o *GetDatasourceByIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}?__json=][%d] getDatasourceByIdJsonOK %s", 200, payload)
+}
+
 func (o *GetDatasourceByIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetDatasourceByIDJSONTooManyRequests() *GetDatasourceByIDJSONTooManyRequ
 	return &GetDatasourceByIDJSONTooManyRequests{}
 }
 
-/* GetDatasourceByIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDatasourceByIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetDatasourceByIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get datasource by Id Json too many requests response has a 2xx status code
+func (o *GetDatasourceByIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get datasource by Id Json too many requests response has a 3xx status code
+func (o *GetDatasourceByIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get datasource by Id Json too many requests response has a 4xx status code
+func (o *GetDatasourceByIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get datasource by Id Json too many requests response has a 5xx status code
+func (o *GetDatasourceByIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get datasource by Id Json too many requests response a status code equal to that given
+func (o *GetDatasourceByIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get datasource by Id Json too many requests response
+func (o *GetDatasourceByIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDatasourceByIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{id}?__json=][%d] getDatasourceByIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/datasources/{id}?__json=][%d] getDatasourceByIdJsonTooManyRequests", 429)
+}
+
+func (o *GetDatasourceByIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/datasources/{id}?__json=][%d] getDatasourceByIdJsonTooManyRequests", 429)
 }
 
 func (o *GetDatasourceByIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetDatasourceByIDJSONDefault(code int) *GetDatasourceByIDJSONDefault {
 	}
 }
 
-/* GetDatasourceByIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetDatasourceByIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetDatasourceByIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get datasource by Id Json default response has a 2xx status code
+func (o *GetDatasourceByIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get datasource by Id Json default response has a 3xx status code
+func (o *GetDatasourceByIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get datasource by Id Json default response has a 4xx status code
+func (o *GetDatasourceByIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get datasource by Id Json default response has a 5xx status code
+func (o *GetDatasourceByIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get datasource by Id Json default response a status code equal to that given
+func (o *GetDatasourceByIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get datasource by Id Json default response
 func (o *GetDatasourceByIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDatasourceByIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/datasources/{id}?__json=][%d] getDatasourceByIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}?__json=][%d] getDatasourceByIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetDatasourceByIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/datasources/{id}?__json=][%d] getDatasourceByIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetDatasourceByIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetAdminListJSONReader is a Reader for the GetAdminListJSON structure.
@@ -54,7 +55,8 @@ func NewGetAdminListJSONOK() *GetAdminListJSONOK {
 	return &GetAdminListJSONOK{}
 }
 
-/* GetAdminListJSONOK describes a response with status code 200, with default header values.
+/*
+GetAdminListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAdminListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetAdminListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/admins?__json=][%d] getAdminListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get admin list Json o k response has a 2xx status code
+func (o *GetAdminListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get admin list Json o k response has a 3xx status code
+func (o *GetAdminListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get admin list Json o k response has a 4xx status code
+func (o *GetAdminListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get admin list Json o k response has a 5xx status code
+func (o *GetAdminListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get admin list Json o k response a status code equal to that given
+func (o *GetAdminListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get admin list Json o k response
+func (o *GetAdminListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetAdminListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins?__json=][%d] getAdminListJsonOK %s", 200, payload)
+}
+
+func (o *GetAdminListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins?__json=][%d] getAdminListJsonOK %s", 200, payload)
+}
+
 func (o *GetAdminListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetAdminListJSONTooManyRequests() *GetAdminListJSONTooManyRequests {
 	return &GetAdminListJSONTooManyRequests{}
 }
 
-/* GetAdminListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAdminListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetAdminListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get admin list Json too many requests response has a 2xx status code
+func (o *GetAdminListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get admin list Json too many requests response has a 3xx status code
+func (o *GetAdminListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get admin list Json too many requests response has a 4xx status code
+func (o *GetAdminListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get admin list Json too many requests response has a 5xx status code
+func (o *GetAdminListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get admin list Json too many requests response a status code equal to that given
+func (o *GetAdminListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get admin list Json too many requests response
+func (o *GetAdminListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAdminListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/admins?__json=][%d] getAdminListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/admins?__json=][%d] getAdminListJsonTooManyRequests", 429)
+}
+
+func (o *GetAdminListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/admins?__json=][%d] getAdminListJsonTooManyRequests", 429)
 }
 
 func (o *GetAdminListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetAdminListJSONDefault(code int) *GetAdminListJSONDefault {
 	}
 }
 
-/* GetAdminListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetAdminListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetAdminListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get admin list Json default response has a 2xx status code
+func (o *GetAdminListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get admin list Json default response has a 3xx status code
+func (o *GetAdminListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get admin list Json default response has a 4xx status code
+func (o *GetAdminListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get admin list Json default response has a 5xx status code
+func (o *GetAdminListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get admin list Json default response a status code equal to that given
+func (o *GetAdminListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get admin list Json default response
 func (o *GetAdminListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAdminListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/admins?__json=][%d] getAdminListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins?__json=][%d] getAdminListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetAdminListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/admins?__json=][%d] getAdminListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetAdminListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

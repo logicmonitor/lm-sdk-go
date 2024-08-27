@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetDeviceInstanceGraphDataOnlyByInstanceIDJSONReader is a Reader for the GetDeviceInstanceGraphDataOnlyByInstanceIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK() *GetDeviceInstanceGra
 	return &GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK{}
 }
 
-/* GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data?__json=][%d] getDeviceInstanceGraphDataOnlyByInstanceIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get device instance graph data only by instance Id Json o k response has a 2xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get device instance graph data only by instance Id Json o k response has a 3xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device instance graph data only by instance Id Json o k response has a 4xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get device instance graph data only by instance Id Json o k response has a 5xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device instance graph data only by instance Id Json o k response a status code equal to that given
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get device instance graph data only by instance Id Json o k response
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data?__json=][%d] getDeviceInstanceGraphDataOnlyByInstanceIdJsonOK %s", 200, payload)
+}
+
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data?__json=][%d] getDeviceInstanceGraphDataOnlyByInstanceIdJsonOK %s", 200, payload)
+}
+
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests() *GetDevi
 	return &GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests{}
 }
 
-/* GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get device instance graph data only by instance Id Json too many requests response has a 2xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get device instance graph data only by instance Id Json too many requests response has a 3xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get device instance graph data only by instance Id Json too many requests response has a 4xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get device instance graph data only by instance Id Json too many requests response has a 5xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get device instance graph data only by instance Id Json too many requests response a status code equal to that given
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get device instance graph data only by instance Id Json too many requests response
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data?__json=][%d] getDeviceInstanceGraphDataOnlyByInstanceIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data?__json=][%d] getDeviceInstanceGraphDataOnlyByInstanceIdJsonTooManyRequests", 429)
+}
+
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data?__json=][%d] getDeviceInstanceGraphDataOnlyByInstanceIdJsonTooManyRequests", 429)
 }
 
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault(code int) *GetDevi
 	}
 }
 
-/* GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get device instance graph data only by instance Id Json default response has a 2xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get device instance graph data only by instance Id Json default response has a 3xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get device instance graph data only by instance Id Json default response has a 4xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get device instance graph data only by instance Id Json default response has a 5xx status code
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get device instance graph data only by instance Id Json default response a status code equal to that given
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get device instance graph data only by instance Id Json default response
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data?__json=][%d] getDeviceInstanceGraphDataOnlyByInstanceIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data?__json=][%d] getDeviceInstanceGraphDataOnlyByInstanceIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devicedatasourceinstances/{instanceId}/graphs/{graphId}/data?__json=][%d] getDeviceInstanceGraphDataOnlyByInstanceIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

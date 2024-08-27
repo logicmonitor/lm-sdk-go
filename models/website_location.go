@@ -62,6 +62,8 @@ func (m *WebsiteLocation) validateCollectors(formats strfmt.Registry) error {
 			if err := m.Collectors[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -91,9 +93,16 @@ func (m *WebsiteLocation) contextValidateCollectors(ctx context.Context, formats
 	for i := 0; i < len(m.Collectors); i++ {
 
 		if m.Collectors[i] != nil {
+
+			if swag.IsZero(m.Collectors[i]) { // not required
+				return nil
+			}
+
 			if err := m.Collectors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

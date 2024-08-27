@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // PatchDefaultDashboardReader is a Reader for the PatchDefaultDashboard structure.
@@ -54,7 +55,8 @@ func NewPatchDefaultDashboardOK() *PatchDefaultDashboardOK {
 	return &PatchDefaultDashboardOK{}
 }
 
-/* PatchDefaultDashboardOK describes a response with status code 200, with default header values.
+/*
+PatchDefaultDashboardOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchDefaultDashboardOK struct {
 	Payload interface{}
 }
 
-func (o *PatchDefaultDashboardOK) Error() string {
-	return fmt.Sprintf("[PATCH /setting/userdata/{id}][%d] patchDefaultDashboardOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch default dashboard o k response has a 2xx status code
+func (o *PatchDefaultDashboardOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch default dashboard o k response has a 3xx status code
+func (o *PatchDefaultDashboardOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch default dashboard o k response has a 4xx status code
+func (o *PatchDefaultDashboardOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch default dashboard o k response has a 5xx status code
+func (o *PatchDefaultDashboardOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch default dashboard o k response a status code equal to that given
+func (o *PatchDefaultDashboardOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch default dashboard o k response
+func (o *PatchDefaultDashboardOK) Code() int {
+	return 200
+}
+
+func (o *PatchDefaultDashboardOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/userdata/{id}][%d] patchDefaultDashboardOK %s", 200, payload)
+}
+
+func (o *PatchDefaultDashboardOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/userdata/{id}][%d] patchDefaultDashboardOK %s", 200, payload)
+}
+
 func (o *PatchDefaultDashboardOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewPatchDefaultDashboardTooManyRequests() *PatchDefaultDashboardTooManyRequ
 	return &PatchDefaultDashboardTooManyRequests{}
 }
 
-/* PatchDefaultDashboardTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchDefaultDashboardTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type PatchDefaultDashboardTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch default dashboard too many requests response has a 2xx status code
+func (o *PatchDefaultDashboardTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch default dashboard too many requests response has a 3xx status code
+func (o *PatchDefaultDashboardTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch default dashboard too many requests response has a 4xx status code
+func (o *PatchDefaultDashboardTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch default dashboard too many requests response has a 5xx status code
+func (o *PatchDefaultDashboardTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch default dashboard too many requests response a status code equal to that given
+func (o *PatchDefaultDashboardTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch default dashboard too many requests response
+func (o *PatchDefaultDashboardTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchDefaultDashboardTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /setting/userdata/{id}][%d] patchDefaultDashboardTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /setting/userdata/{id}][%d] patchDefaultDashboardTooManyRequests", 429)
+}
+
+func (o *PatchDefaultDashboardTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /setting/userdata/{id}][%d] patchDefaultDashboardTooManyRequests", 429)
 }
 
 func (o *PatchDefaultDashboardTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewPatchDefaultDashboardDefault(code int) *PatchDefaultDashboardDefault {
 	}
 }
 
-/* PatchDefaultDashboardDefault describes a response with status code -1, with default header values.
+/*
+PatchDefaultDashboardDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type PatchDefaultDashboardDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch default dashboard default response has a 2xx status code
+func (o *PatchDefaultDashboardDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch default dashboard default response has a 3xx status code
+func (o *PatchDefaultDashboardDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch default dashboard default response has a 4xx status code
+func (o *PatchDefaultDashboardDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch default dashboard default response has a 5xx status code
+func (o *PatchDefaultDashboardDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch default dashboard default response a status code equal to that given
+func (o *PatchDefaultDashboardDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch default dashboard default response
 func (o *PatchDefaultDashboardDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchDefaultDashboardDefault) Error() string {
-	return fmt.Sprintf("[PATCH /setting/userdata/{id}][%d] patchDefaultDashboard default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/userdata/{id}][%d] patchDefaultDashboard default %s", o._statusCode, payload)
 }
+
+func (o *PatchDefaultDashboardDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/userdata/{id}][%d] patchDefaultDashboard default %s", o._statusCode, payload)
+}
+
 func (o *PatchDefaultDashboardDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

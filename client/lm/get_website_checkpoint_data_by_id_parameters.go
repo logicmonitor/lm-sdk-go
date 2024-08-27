@@ -53,10 +53,12 @@ func NewGetWebsiteCheckpointDataByIDParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/* GetWebsiteCheckpointDataByIDParams contains all the parameters to send to the API endpoint
-   for the get website checkpoint data by Id operation.
+/*
+GetWebsiteCheckpointDataByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website checkpoint data by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteCheckpointDataByIDParams struct {
 

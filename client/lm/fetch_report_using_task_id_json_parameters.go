@@ -53,10 +53,12 @@ func NewFetchReportUsingTaskIDJSONParamsWithHTTPClient(client *http.Client) *Fet
 	}
 }
 
-/* FetchReportUsingTaskIDJSONParams contains all the parameters to send to the API endpoint
-   for the fetch report using task Id Json operation.
+/*
+FetchReportUsingTaskIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the fetch report using task Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type FetchReportUsingTaskIDJSONParams struct {
 

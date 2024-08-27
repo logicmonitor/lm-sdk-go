@@ -52,10 +52,12 @@ func NewEscalatedAlertByIDParamsWithHTTPClient(client *http.Client) *EscalatedAl
 	}
 }
 
-/* EscalatedAlertByIDParams contains all the parameters to send to the API endpoint
-   for the escalated alert by Id operation.
+/*
+EscalatedAlertByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the escalated alert by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type EscalatedAlertByIDParams struct {
 

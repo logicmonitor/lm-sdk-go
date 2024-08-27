@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetCollectorGroupListJSONReader is a Reader for the GetCollectorGroupListJSON structure.
@@ -54,7 +55,8 @@ func NewGetCollectorGroupListJSONOK() *GetCollectorGroupListJSONOK {
 	return &GetCollectorGroupListJSONOK{}
 }
 
-/* GetCollectorGroupListJSONOK describes a response with status code 200, with default header values.
+/*
+GetCollectorGroupListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetCollectorGroupListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetCollectorGroupListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/groups?__json=][%d] getCollectorGroupListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get collector group list Json o k response has a 2xx status code
+func (o *GetCollectorGroupListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get collector group list Json o k response has a 3xx status code
+func (o *GetCollectorGroupListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get collector group list Json o k response has a 4xx status code
+func (o *GetCollectorGroupListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get collector group list Json o k response has a 5xx status code
+func (o *GetCollectorGroupListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get collector group list Json o k response a status code equal to that given
+func (o *GetCollectorGroupListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get collector group list Json o k response
+func (o *GetCollectorGroupListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetCollectorGroupListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/groups?__json=][%d] getCollectorGroupListJsonOK %s", 200, payload)
+}
+
+func (o *GetCollectorGroupListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/groups?__json=][%d] getCollectorGroupListJsonOK %s", 200, payload)
+}
+
 func (o *GetCollectorGroupListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetCollectorGroupListJSONTooManyRequests() *GetCollectorGroupListJSONToo
 	return &GetCollectorGroupListJSONTooManyRequests{}
 }
 
-/* GetCollectorGroupListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetCollectorGroupListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetCollectorGroupListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get collector group list Json too many requests response has a 2xx status code
+func (o *GetCollectorGroupListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get collector group list Json too many requests response has a 3xx status code
+func (o *GetCollectorGroupListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get collector group list Json too many requests response has a 4xx status code
+func (o *GetCollectorGroupListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get collector group list Json too many requests response has a 5xx status code
+func (o *GetCollectorGroupListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get collector group list Json too many requests response a status code equal to that given
+func (o *GetCollectorGroupListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get collector group list Json too many requests response
+func (o *GetCollectorGroupListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetCollectorGroupListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/groups?__json=][%d] getCollectorGroupListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/collector/groups?__json=][%d] getCollectorGroupListJsonTooManyRequests", 429)
+}
+
+func (o *GetCollectorGroupListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/collector/groups?__json=][%d] getCollectorGroupListJsonTooManyRequests", 429)
 }
 
 func (o *GetCollectorGroupListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetCollectorGroupListJSONDefault(code int) *GetCollectorGroupListJSONDef
 	}
 }
 
-/* GetCollectorGroupListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetCollectorGroupListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetCollectorGroupListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get collector group list Json default response has a 2xx status code
+func (o *GetCollectorGroupListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get collector group list Json default response has a 3xx status code
+func (o *GetCollectorGroupListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get collector group list Json default response has a 4xx status code
+func (o *GetCollectorGroupListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get collector group list Json default response has a 5xx status code
+func (o *GetCollectorGroupListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get collector group list Json default response a status code equal to that given
+func (o *GetCollectorGroupListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get collector group list Json default response
 func (o *GetCollectorGroupListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetCollectorGroupListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/groups?__json=][%d] getCollectorGroupListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/groups?__json=][%d] getCollectorGroupListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetCollectorGroupListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/groups?__json=][%d] getCollectorGroupListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetCollectorGroupListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

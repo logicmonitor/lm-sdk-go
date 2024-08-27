@@ -52,10 +52,12 @@ func NewGetSDTByIDJSONParamsWithHTTPClient(client *http.Client) *GetSDTByIDJSONP
 	}
 }
 
-/* GetSDTByIDJSONParams contains all the parameters to send to the API endpoint
-   for the get SDT by Id Json operation.
+/*
+GetSDTByIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get Sdt by Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetSDTByIDJSONParams struct {
 
@@ -63,9 +65,6 @@ type GetSDTByIDJSONParams struct {
 	//
 	// Default: "Logicmonitor/GO-SDK"
 	UserAgent *string
-
-	// Fields.
-	Fields *string
 
 	// ID.
 	ID string
@@ -75,7 +74,7 @@ type GetSDTByIDJSONParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the get SDT by Id Json params (not the query body).
+// WithDefaults hydrates default values in the get Sdt by Id Json params (not the query body).
 //
 // All values with no default are reset to their zero value.
 func (o *GetSDTByIDJSONParams) WithDefaults() *GetSDTByIDJSONParams {
@@ -83,7 +82,7 @@ func (o *GetSDTByIDJSONParams) WithDefaults() *GetSDTByIDJSONParams {
 	return o
 }
 
-// SetDefaults hydrates default values in the get SDT by Id Json params (not the query body).
+// SetDefaults hydrates default values in the get Sdt by Id Json params (not the query body).
 //
 // All values with no default are reset to their zero value.
 func (o *GetSDTByIDJSONParams) SetDefaults() {
@@ -101,68 +100,57 @@ func (o *GetSDTByIDJSONParams) SetDefaults() {
 	*o = val
 }
 
-// WithTimeout adds the timeout to the get SDT by Id Json params
+// WithTimeout adds the timeout to the get Sdt by Id Json params
 func (o *GetSDTByIDJSONParams) WithTimeout(timeout time.Duration) *GetSDTByIDJSONParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get SDT by Id Json params
+// SetTimeout adds the timeout to the get Sdt by Id Json params
 func (o *GetSDTByIDJSONParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get SDT by Id Json params
+// WithContext adds the context to the get Sdt by Id Json params
 func (o *GetSDTByIDJSONParams) WithContext(ctx context.Context) *GetSDTByIDJSONParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get SDT by Id Json params
+// SetContext adds the context to the get Sdt by Id Json params
 func (o *GetSDTByIDJSONParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the get SDT by Id Json params
+// WithHTTPClient adds the HTTPClient to the get Sdt by Id Json params
 func (o *GetSDTByIDJSONParams) WithHTTPClient(client *http.Client) *GetSDTByIDJSONParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get SDT by Id Json params
+// SetHTTPClient adds the HTTPClient to the get Sdt by Id Json params
 func (o *GetSDTByIDJSONParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the get SDT by Id Json params
+// WithUserAgent adds the userAgent to the get Sdt by Id Json params
 func (o *GetSDTByIDJSONParams) WithUserAgent(userAgent *string) *GetSDTByIDJSONParams {
 	o.SetUserAgent(userAgent)
 	return o
 }
 
-// SetUserAgent adds the userAgent to the get SDT by Id Json params
+// SetUserAgent adds the userAgent to the get Sdt by Id Json params
 func (o *GetSDTByIDJSONParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
 }
 
-// WithFields adds the fields to the get SDT by Id Json params
-func (o *GetSDTByIDJSONParams) WithFields(fields *string) *GetSDTByIDJSONParams {
-	o.SetFields(fields)
-	return o
-}
-
-// SetFields adds the fields to the get SDT by Id Json params
-func (o *GetSDTByIDJSONParams) SetFields(fields *string) {
-	o.Fields = fields
-}
-
-// WithID adds the id to the get SDT by Id Json params
+// WithID adds the id to the get Sdt by Id Json params
 func (o *GetSDTByIDJSONParams) WithID(id string) *GetSDTByIDJSONParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the get SDT by Id Json params
+// SetID adds the id to the get Sdt by Id Json params
 func (o *GetSDTByIDJSONParams) SetID(id string) {
 	o.ID = id
 }
@@ -180,23 +168,6 @@ func (o *GetSDTByIDJSONParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		// header param User-Agent
 		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
 			return err
-		}
-	}
-
-	if o.Fields != nil {
-
-		// query param fields
-		var qrFields string
-
-		if o.Fields != nil {
-			qrFields = *o.Fields
-		}
-		qFields := qrFields
-		if qFields != "" {
-
-			if err := r.SetQueryParam("fields", qFields); err != nil {
-				return err
-			}
 		}
 	}
 

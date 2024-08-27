@@ -53,10 +53,12 @@ func NewGetDeviceListJSONParamsWithHTTPClient(client *http.Client) *GetDeviceLis
 	}
 }
 
-/* GetDeviceListJSONParams contains all the parameters to send to the API endpoint
-   for the get device list Json operation.
+/*
+GetDeviceListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceListJSONParams struct {
 
@@ -75,6 +77,9 @@ type GetDeviceListJSONParams struct {
 
 	// Filter.
 	Filter *string
+
+	// IncludeDeletedResources.
+	IncludeDeletedResources *bool
 
 	// NetflowFilter.
 	NetflowFilter *string
@@ -115,15 +120,18 @@ func (o *GetDeviceListJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
+		includeDeletedResourcesDefault = bool(false)
+
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceListJSONParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		UserAgent:               &userAgentDefault,
+		IncludeDeletedResources: &includeDeletedResourcesDefault,
+		Offset:                  &offsetDefault,
+		Size:                    &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -207,6 +215,17 @@ func (o *GetDeviceListJSONParams) WithFilter(filter *string) *GetDeviceListJSONP
 // SetFilter adds the filter to the get device list Json params
 func (o *GetDeviceListJSONParams) SetFilter(filter *string) {
 	o.Filter = filter
+}
+
+// WithIncludeDeletedResources adds the includeDeletedResources to the get device list Json params
+func (o *GetDeviceListJSONParams) WithIncludeDeletedResources(includeDeletedResources *bool) *GetDeviceListJSONParams {
+	o.SetIncludeDeletedResources(includeDeletedResources)
+	return o
+}
+
+// SetIncludeDeletedResources adds the includeDeletedResources to the get device list Json params
+func (o *GetDeviceListJSONParams) SetIncludeDeletedResources(includeDeletedResources *bool) {
+	o.IncludeDeletedResources = includeDeletedResources
 }
 
 // WithNetflowFilter adds the netflowFilter to the get device list Json params
@@ -315,6 +334,23 @@ func (o *GetDeviceListJSONParams) WriteToRequest(r runtime.ClientRequest, reg st
 		if qFilter != "" {
 
 			if err := r.SetQueryParam("filter", qFilter); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.IncludeDeletedResources != nil {
+
+		// query param includeDeletedResources
+		var qrIncludeDeletedResources bool
+
+		if o.IncludeDeletedResources != nil {
+			qrIncludeDeletedResources = *o.IncludeDeletedResources
+		}
+		qIncludeDeletedResources := swag.FormatBool(qrIncludeDeletedResources)
+		if qIncludeDeletedResources != "" {
+
+			if err := r.SetQueryParam("includeDeletedResources", qIncludeDeletedResources); err != nil {
 				return err
 			}
 		}

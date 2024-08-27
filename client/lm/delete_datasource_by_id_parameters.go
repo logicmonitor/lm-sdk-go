@@ -53,10 +53,12 @@ func NewDeleteDatasourceByIDParamsWithHTTPClient(client *http.Client) *DeleteDat
 	}
 }
 
-/* DeleteDatasourceByIDParams contains all the parameters to send to the API endpoint
-   for the delete datasource by Id operation.
+/*
+DeleteDatasourceByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete datasource by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteDatasourceByIDParams struct {
 

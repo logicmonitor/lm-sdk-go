@@ -53,10 +53,12 @@ func NewGetAPITokenListByAdminIDJSONParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/* GetAPITokenListByAdminIDJSONParams contains all the parameters to send to the API endpoint
-   for the get Api token list by admin Id Json operation.
+/*
+GetAPITokenListByAdminIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get Api token list by admin Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAPITokenListByAdminIDJSONParams struct {
 

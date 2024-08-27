@@ -53,10 +53,12 @@ func NewGetAdminByIDParamsWithHTTPClient(client *http.Client) *GetAdminByIDParam
 	}
 }
 
-/* GetAdminByIDParams contains all the parameters to send to the API endpoint
-   for the get admin by Id operation.
+/*
+GetAdminByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get admin by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAdminByIDParams struct {
 

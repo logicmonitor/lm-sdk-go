@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewPatchAccessGroupParams creates a new PatchAccessGroupParams object,
@@ -55,10 +55,12 @@ func NewPatchAccessGroupParamsWithHTTPClient(client *http.Client) *PatchAccessGr
 	}
 }
 
-/* PatchAccessGroupParams contains all the parameters to send to the API endpoint
-   for the patch access group operation.
+/*
+PatchAccessGroupParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch access group operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchAccessGroupParams struct {
 

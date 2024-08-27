@@ -53,10 +53,12 @@ func NewGetEscalationChainByIDJSONParamsWithHTTPClient(client *http.Client) *Get
 	}
 }
 
-/* GetEscalationChainByIDJSONParams contains all the parameters to send to the API endpoint
-   for the get escalation chain by Id Json operation.
+/*
+GetEscalationChainByIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get escalation chain by Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetEscalationChainByIDJSONParams struct {
 

@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewAddDeviceDatasourceInstanceGroupParams creates a new AddDeviceDatasourceInstanceGroupParams object,
@@ -55,10 +55,12 @@ func NewAddDeviceDatasourceInstanceGroupParamsWithHTTPClient(client *http.Client
 	}
 }
 
-/* AddDeviceDatasourceInstanceGroupParams contains all the parameters to send to the API endpoint
-   for the add device datasource instance group operation.
+/*
+AddDeviceDatasourceInstanceGroupParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add device datasource instance group operation.
+
+	Typically these are written to a http.Request.
 */
 type AddDeviceDatasourceInstanceGroupParams struct {
 

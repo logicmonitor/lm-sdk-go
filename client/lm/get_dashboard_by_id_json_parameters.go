@@ -53,10 +53,12 @@ func NewGetDashboardByIDJSONParamsWithHTTPClient(client *http.Client) *GetDashbo
 	}
 }
 
-/* GetDashboardByIDJSONParams contains all the parameters to send to the API endpoint
-   for the get dashboard by Id Json operation.
+/*
+GetDashboardByIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get dashboard by Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDashboardByIDJSONParams struct {
 

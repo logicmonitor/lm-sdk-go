@@ -53,10 +53,12 @@ func NewGetDeviceDatasourceDataByIDJSONParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* GetDeviceDatasourceDataByIDJSONParams contains all the parameters to send to the API endpoint
-   for the get device datasource data by Id Json operation.
+/*
+GetDeviceDatasourceDataByIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device datasource data by Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceDataByIDJSONParams struct {
 

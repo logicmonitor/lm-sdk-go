@@ -53,10 +53,12 @@ func NewGetDeviceInstanceGraphDataOnlyByInstanceIDJSONParamsWithHTTPClient(clien
 	}
 }
 
-/* GetDeviceInstanceGraphDataOnlyByInstanceIDJSONParams contains all the parameters to send to the API endpoint
-   for the get device instance graph data only by instance Id Json operation.
+/*
+GetDeviceInstanceGraphDataOnlyByInstanceIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device instance graph data only by instance Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceInstanceGraphDataOnlyByInstanceIDJSONParams struct {
 

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetAccessGroupListJSONReader is a Reader for the GetAccessGroupListJSON structure.
@@ -54,7 +55,8 @@ func NewGetAccessGroupListJSONOK() *GetAccessGroupListJSONOK {
 	return &GetAccessGroupListJSONOK{}
 }
 
-/* GetAccessGroupListJSONOK describes a response with status code 200, with default header values.
+/*
+GetAccessGroupListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAccessGroupListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetAccessGroupListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/accessgroup?__json=][%d] getAccessGroupListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get access group list Json o k response has a 2xx status code
+func (o *GetAccessGroupListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get access group list Json o k response has a 3xx status code
+func (o *GetAccessGroupListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get access group list Json o k response has a 4xx status code
+func (o *GetAccessGroupListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get access group list Json o k response has a 5xx status code
+func (o *GetAccessGroupListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get access group list Json o k response a status code equal to that given
+func (o *GetAccessGroupListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get access group list Json o k response
+func (o *GetAccessGroupListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetAccessGroupListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accessgroup?__json=][%d] getAccessGroupListJsonOK %s", 200, payload)
+}
+
+func (o *GetAccessGroupListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accessgroup?__json=][%d] getAccessGroupListJsonOK %s", 200, payload)
+}
+
 func (o *GetAccessGroupListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetAccessGroupListJSONTooManyRequests() *GetAccessGroupListJSONTooManyRe
 	return &GetAccessGroupListJSONTooManyRequests{}
 }
 
-/* GetAccessGroupListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAccessGroupListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetAccessGroupListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get access group list Json too many requests response has a 2xx status code
+func (o *GetAccessGroupListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get access group list Json too many requests response has a 3xx status code
+func (o *GetAccessGroupListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get access group list Json too many requests response has a 4xx status code
+func (o *GetAccessGroupListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get access group list Json too many requests response has a 5xx status code
+func (o *GetAccessGroupListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get access group list Json too many requests response a status code equal to that given
+func (o *GetAccessGroupListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get access group list Json too many requests response
+func (o *GetAccessGroupListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAccessGroupListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/accessgroup?__json=][%d] getAccessGroupListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/accessgroup?__json=][%d] getAccessGroupListJsonTooManyRequests", 429)
+}
+
+func (o *GetAccessGroupListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/accessgroup?__json=][%d] getAccessGroupListJsonTooManyRequests", 429)
 }
 
 func (o *GetAccessGroupListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetAccessGroupListJSONDefault(code int) *GetAccessGroupListJSONDefault {
 	}
 }
 
-/* GetAccessGroupListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetAccessGroupListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetAccessGroupListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get access group list Json default response has a 2xx status code
+func (o *GetAccessGroupListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get access group list Json default response has a 3xx status code
+func (o *GetAccessGroupListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get access group list Json default response has a 4xx status code
+func (o *GetAccessGroupListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get access group list Json default response has a 5xx status code
+func (o *GetAccessGroupListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get access group list Json default response a status code equal to that given
+func (o *GetAccessGroupListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get access group list Json default response
 func (o *GetAccessGroupListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAccessGroupListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/accessgroup?__json=][%d] getAccessGroupListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accessgroup?__json=][%d] getAccessGroupListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetAccessGroupListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/accessgroup?__json=][%d] getAccessGroupListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetAccessGroupListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

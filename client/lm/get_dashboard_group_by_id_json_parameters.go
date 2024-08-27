@@ -53,10 +53,12 @@ func NewGetDashboardGroupByIDJSONParamsWithHTTPClient(client *http.Client) *GetD
 	}
 }
 
-/* GetDashboardGroupByIDJSONParams contains all the parameters to send to the API endpoint
-   for the get dashboard group by Id Json operation.
+/*
+GetDashboardGroupByIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get dashboard group by Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDashboardGroupByIDJSONParams struct {
 

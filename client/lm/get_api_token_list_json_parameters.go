@@ -53,10 +53,12 @@ func NewGetAPITokenListJSONParamsWithHTTPClient(client *http.Client) *GetAPIToke
 	}
 }
 
-/* GetAPITokenListJSONParams contains all the parameters to send to the API endpoint
-   for the get Api token list Json operation.
+/*
+GetAPITokenListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get Api token list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAPITokenListJSONParams struct {
 

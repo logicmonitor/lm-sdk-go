@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // PatchDatasourceByIDReader is a Reader for the PatchDatasourceByID structure.
@@ -54,7 +55,8 @@ func NewPatchDatasourceByIDOK() *PatchDatasourceByIDOK {
 	return &PatchDatasourceByIDOK{}
 }
 
-/* PatchDatasourceByIDOK describes a response with status code 200, with default header values.
+/*
+PatchDatasourceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchDatasourceByIDOK struct {
 	Payload *models.DataSource
 }
 
-func (o *PatchDatasourceByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /setting/datasources/{id}][%d] patchDatasourceByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch datasource by Id o k response has a 2xx status code
+func (o *PatchDatasourceByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch datasource by Id o k response has a 3xx status code
+func (o *PatchDatasourceByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch datasource by Id o k response has a 4xx status code
+func (o *PatchDatasourceByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch datasource by Id o k response has a 5xx status code
+func (o *PatchDatasourceByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch datasource by Id o k response a status code equal to that given
+func (o *PatchDatasourceByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch datasource by Id o k response
+func (o *PatchDatasourceByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchDatasourceByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/datasources/{id}][%d] patchDatasourceByIdOK %s", 200, payload)
+}
+
+func (o *PatchDatasourceByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/datasources/{id}][%d] patchDatasourceByIdOK %s", 200, payload)
+}
+
 func (o *PatchDatasourceByIDOK) GetPayload() *models.DataSource {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchDatasourceByIDTooManyRequests() *PatchDatasourceByIDTooManyRequests
 	return &PatchDatasourceByIDTooManyRequests{}
 }
 
-/* PatchDatasourceByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchDatasourceByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchDatasourceByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch datasource by Id too many requests response has a 2xx status code
+func (o *PatchDatasourceByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch datasource by Id too many requests response has a 3xx status code
+func (o *PatchDatasourceByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch datasource by Id too many requests response has a 4xx status code
+func (o *PatchDatasourceByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch datasource by Id too many requests response has a 5xx status code
+func (o *PatchDatasourceByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch datasource by Id too many requests response a status code equal to that given
+func (o *PatchDatasourceByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch datasource by Id too many requests response
+func (o *PatchDatasourceByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchDatasourceByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /setting/datasources/{id}][%d] patchDatasourceByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /setting/datasources/{id}][%d] patchDatasourceByIdTooManyRequests", 429)
+}
+
+func (o *PatchDatasourceByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /setting/datasources/{id}][%d] patchDatasourceByIdTooManyRequests", 429)
 }
 
 func (o *PatchDatasourceByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchDatasourceByIDDefault(code int) *PatchDatasourceByIDDefault {
 	}
 }
 
-/* PatchDatasourceByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchDatasourceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchDatasourceByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch datasource by Id default response has a 2xx status code
+func (o *PatchDatasourceByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch datasource by Id default response has a 3xx status code
+func (o *PatchDatasourceByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch datasource by Id default response has a 4xx status code
+func (o *PatchDatasourceByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch datasource by Id default response has a 5xx status code
+func (o *PatchDatasourceByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch datasource by Id default response a status code equal to that given
+func (o *PatchDatasourceByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch datasource by Id default response
 func (o *PatchDatasourceByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchDatasourceByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /setting/datasources/{id}][%d] patchDatasourceById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/datasources/{id}][%d] patchDatasourceById default %s", o._statusCode, payload)
 }
+
+func (o *PatchDatasourceByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/datasources/{id}][%d] patchDatasourceById default %s", o._statusCode, payload)
+}
+
 func (o *PatchDatasourceByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

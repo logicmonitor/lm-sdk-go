@@ -90,6 +90,8 @@ func (m *CustomGraph) validateDataPoints(formats strfmt.Registry) error {
 			if err := m.DataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -114,6 +116,8 @@ func (m *CustomGraph) validateVirtualDataPoints(formats strfmt.Registry) error {
 			if err := m.VirtualDataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -147,9 +151,16 @@ func (m *CustomGraph) contextValidateDataPoints(ctx context.Context, formats str
 	for i := 0; i < len(m.DataPoints); i++ {
 
 		if m.DataPoints[i] != nil {
+
+			if swag.IsZero(m.DataPoints[i]) { // not required
+				return nil
+			}
+
 			if err := m.DataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -165,9 +176,16 @@ func (m *CustomGraph) contextValidateVirtualDataPoints(ctx context.Context, form
 	for i := 0; i < len(m.VirtualDataPoints); i++ {
 
 		if m.VirtualDataPoints[i] != nil {
+
+			if swag.IsZero(m.VirtualDataPoints[i]) { // not required
+				return nil
+			}
+
 			if err := m.VirtualDataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -53,10 +53,12 @@ func NewGetWidgetListJSONParamsWithHTTPClient(client *http.Client) *GetWidgetLis
 	}
 }
 
-/* GetWidgetListJSONParams contains all the parameters to send to the API endpoint
-   for the get widget list Json operation.
+/*
+GetWidgetListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get widget list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWidgetListJSONParams struct {
 

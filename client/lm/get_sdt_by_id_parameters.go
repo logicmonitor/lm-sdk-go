@@ -52,10 +52,12 @@ func NewGetSDTByIDParamsWithHTTPClient(client *http.Client) *GetSDTByIDParams {
 	}
 }
 
-/* GetSDTByIDParams contains all the parameters to send to the API endpoint
-   for the get SDT by Id operation.
+/*
+GetSDTByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get Sdt by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetSDTByIDParams struct {
 
@@ -63,9 +65,6 @@ type GetSDTByIDParams struct {
 	//
 	// Default: "Logicmonitor/GO-SDK"
 	UserAgent *string
-
-	// Fields.
-	Fields *string
 
 	// ID.
 	ID string
@@ -75,7 +74,7 @@ type GetSDTByIDParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the get SDT by Id params (not the query body).
+// WithDefaults hydrates default values in the get Sdt by Id params (not the query body).
 //
 // All values with no default are reset to their zero value.
 func (o *GetSDTByIDParams) WithDefaults() *GetSDTByIDParams {
@@ -83,7 +82,7 @@ func (o *GetSDTByIDParams) WithDefaults() *GetSDTByIDParams {
 	return o
 }
 
-// SetDefaults hydrates default values in the get SDT by Id params (not the query body).
+// SetDefaults hydrates default values in the get Sdt by Id params (not the query body).
 //
 // All values with no default are reset to their zero value.
 func (o *GetSDTByIDParams) SetDefaults() {
@@ -101,68 +100,57 @@ func (o *GetSDTByIDParams) SetDefaults() {
 	*o = val
 }
 
-// WithTimeout adds the timeout to the get SDT by Id params
+// WithTimeout adds the timeout to the get Sdt by Id params
 func (o *GetSDTByIDParams) WithTimeout(timeout time.Duration) *GetSDTByIDParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the get SDT by Id params
+// SetTimeout adds the timeout to the get Sdt by Id params
 func (o *GetSDTByIDParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the get SDT by Id params
+// WithContext adds the context to the get Sdt by Id params
 func (o *GetSDTByIDParams) WithContext(ctx context.Context) *GetSDTByIDParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the get SDT by Id params
+// SetContext adds the context to the get Sdt by Id params
 func (o *GetSDTByIDParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the get SDT by Id params
+// WithHTTPClient adds the HTTPClient to the get Sdt by Id params
 func (o *GetSDTByIDParams) WithHTTPClient(client *http.Client) *GetSDTByIDParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the get SDT by Id params
+// SetHTTPClient adds the HTTPClient to the get Sdt by Id params
 func (o *GetSDTByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the get SDT by Id params
+// WithUserAgent adds the userAgent to the get Sdt by Id params
 func (o *GetSDTByIDParams) WithUserAgent(userAgent *string) *GetSDTByIDParams {
 	o.SetUserAgent(userAgent)
 	return o
 }
 
-// SetUserAgent adds the userAgent to the get SDT by Id params
+// SetUserAgent adds the userAgent to the get Sdt by Id params
 func (o *GetSDTByIDParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
 }
 
-// WithFields adds the fields to the get SDT by Id params
-func (o *GetSDTByIDParams) WithFields(fields *string) *GetSDTByIDParams {
-	o.SetFields(fields)
-	return o
-}
-
-// SetFields adds the fields to the get SDT by Id params
-func (o *GetSDTByIDParams) SetFields(fields *string) {
-	o.Fields = fields
-}
-
-// WithID adds the id to the get SDT by Id params
+// WithID adds the id to the get Sdt by Id params
 func (o *GetSDTByIDParams) WithID(id string) *GetSDTByIDParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the get SDT by Id params
+// SetID adds the id to the get Sdt by Id params
 func (o *GetSDTByIDParams) SetID(id string) {
 	o.ID = id
 }
@@ -180,23 +168,6 @@ func (o *GetSDTByIDParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Re
 		// header param User-Agent
 		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
 			return err
-		}
-	}
-
-	if o.Fields != nil {
-
-		// query param fields
-		var qrFields string
-
-		if o.Fields != nil {
-			qrFields = *o.Fields
-		}
-		qFields := qrFields
-		if qFields != "" {
-
-			if err := r.SetQueryParam("fields", qFields); err != nil {
-				return err
-			}
 		}
 	}
 

@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewExecuteDebugCommandParams creates a new ExecuteDebugCommandParams object,
@@ -55,10 +55,12 @@ func NewExecuteDebugCommandParamsWithHTTPClient(client *http.Client) *ExecuteDeb
 	}
 }
 
-/* ExecuteDebugCommandParams contains all the parameters to send to the API endpoint
-   for the execute debug command operation.
+/*
+ExecuteDebugCommandParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the execute debug command operation.
+
+	Typically these are written to a http.Request.
 */
 type ExecuteDebugCommandParams struct {
 

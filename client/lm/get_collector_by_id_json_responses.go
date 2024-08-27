@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetCollectorByIDJSONReader is a Reader for the GetCollectorByIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetCollectorByIDJSONOK() *GetCollectorByIDJSONOK {
 	return &GetCollectorByIDJSONOK{}
 }
 
-/* GetCollectorByIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetCollectorByIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetCollectorByIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetCollectorByIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/collectors/{id}?__json=][%d] getCollectorByIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get collector by Id Json o k response has a 2xx status code
+func (o *GetCollectorByIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get collector by Id Json o k response has a 3xx status code
+func (o *GetCollectorByIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get collector by Id Json o k response has a 4xx status code
+func (o *GetCollectorByIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get collector by Id Json o k response has a 5xx status code
+func (o *GetCollectorByIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get collector by Id Json o k response a status code equal to that given
+func (o *GetCollectorByIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get collector by Id Json o k response
+func (o *GetCollectorByIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetCollectorByIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/collectors/{id}?__json=][%d] getCollectorByIdJsonOK %s", 200, payload)
+}
+
+func (o *GetCollectorByIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/collectors/{id}?__json=][%d] getCollectorByIdJsonOK %s", 200, payload)
+}
+
 func (o *GetCollectorByIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetCollectorByIDJSONTooManyRequests() *GetCollectorByIDJSONTooManyReques
 	return &GetCollectorByIDJSONTooManyRequests{}
 }
 
-/* GetCollectorByIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetCollectorByIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetCollectorByIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get collector by Id Json too many requests response has a 2xx status code
+func (o *GetCollectorByIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get collector by Id Json too many requests response has a 3xx status code
+func (o *GetCollectorByIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get collector by Id Json too many requests response has a 4xx status code
+func (o *GetCollectorByIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get collector by Id Json too many requests response has a 5xx status code
+func (o *GetCollectorByIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get collector by Id Json too many requests response a status code equal to that given
+func (o *GetCollectorByIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get collector by Id Json too many requests response
+func (o *GetCollectorByIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetCollectorByIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/collectors/{id}?__json=][%d] getCollectorByIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/collector/collectors/{id}?__json=][%d] getCollectorByIdJsonTooManyRequests", 429)
+}
+
+func (o *GetCollectorByIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/collector/collectors/{id}?__json=][%d] getCollectorByIdJsonTooManyRequests", 429)
 }
 
 func (o *GetCollectorByIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetCollectorByIDJSONDefault(code int) *GetCollectorByIDJSONDefault {
 	}
 }
 
-/* GetCollectorByIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetCollectorByIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetCollectorByIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get collector by Id Json default response has a 2xx status code
+func (o *GetCollectorByIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get collector by Id Json default response has a 3xx status code
+func (o *GetCollectorByIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get collector by Id Json default response has a 4xx status code
+func (o *GetCollectorByIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get collector by Id Json default response has a 5xx status code
+func (o *GetCollectorByIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get collector by Id Json default response a status code equal to that given
+func (o *GetCollectorByIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get collector by Id Json default response
 func (o *GetCollectorByIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetCollectorByIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/collectors/{id}?__json=][%d] getCollectorByIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/collectors/{id}?__json=][%d] getCollectorByIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetCollectorByIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/collectors/{id}?__json=][%d] getCollectorByIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetCollectorByIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

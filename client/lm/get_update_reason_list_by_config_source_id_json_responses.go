@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetUpdateReasonListByConfigSourceIDJSONReader is a Reader for the GetUpdateReasonListByConfigSourceIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetUpdateReasonListByConfigSourceIDJSONOK() *GetUpdateReasonListByConfig
 	return &GetUpdateReasonListByConfigSourceIDJSONOK{}
 }
 
-/* GetUpdateReasonListByConfigSourceIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetUpdateReasonListByConfigSourceIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetUpdateReasonListByConfigSourceIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetUpdateReasonListByConfigSourceIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/configsources/{id}/updatereasons?__json=][%d] getUpdateReasonListByConfigSourceIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get update reason list by config source Id Json o k response has a 2xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get update reason list by config source Id Json o k response has a 3xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get update reason list by config source Id Json o k response has a 4xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get update reason list by config source Id Json o k response has a 5xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get update reason list by config source Id Json o k response a status code equal to that given
+func (o *GetUpdateReasonListByConfigSourceIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get update reason list by config source Id Json o k response
+func (o *GetUpdateReasonListByConfigSourceIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetUpdateReasonListByConfigSourceIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/configsources/{id}/updatereasons?__json=][%d] getUpdateReasonListByConfigSourceIdJsonOK %s", 200, payload)
+}
+
+func (o *GetUpdateReasonListByConfigSourceIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/configsources/{id}/updatereasons?__json=][%d] getUpdateReasonListByConfigSourceIdJsonOK %s", 200, payload)
+}
+
 func (o *GetUpdateReasonListByConfigSourceIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetUpdateReasonListByConfigSourceIDJSONTooManyRequests() *GetUpdateReaso
 	return &GetUpdateReasonListByConfigSourceIDJSONTooManyRequests{}
 }
 
-/* GetUpdateReasonListByConfigSourceIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetUpdateReasonListByConfigSourceIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetUpdateReasonListByConfigSourceIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get update reason list by config source Id Json too many requests response has a 2xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get update reason list by config source Id Json too many requests response has a 3xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get update reason list by config source Id Json too many requests response has a 4xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get update reason list by config source Id Json too many requests response has a 5xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get update reason list by config source Id Json too many requests response a status code equal to that given
+func (o *GetUpdateReasonListByConfigSourceIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get update reason list by config source Id Json too many requests response
+func (o *GetUpdateReasonListByConfigSourceIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetUpdateReasonListByConfigSourceIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/configsources/{id}/updatereasons?__json=][%d] getUpdateReasonListByConfigSourceIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/configsources/{id}/updatereasons?__json=][%d] getUpdateReasonListByConfigSourceIdJsonTooManyRequests", 429)
+}
+
+func (o *GetUpdateReasonListByConfigSourceIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/configsources/{id}/updatereasons?__json=][%d] getUpdateReasonListByConfigSourceIdJsonTooManyRequests", 429)
 }
 
 func (o *GetUpdateReasonListByConfigSourceIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetUpdateReasonListByConfigSourceIDJSONDefault(code int) *GetUpdateReaso
 	}
 }
 
-/* GetUpdateReasonListByConfigSourceIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetUpdateReasonListByConfigSourceIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetUpdateReasonListByConfigSourceIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get update reason list by config source Id Json default response has a 2xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get update reason list by config source Id Json default response has a 3xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get update reason list by config source Id Json default response has a 4xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get update reason list by config source Id Json default response has a 5xx status code
+func (o *GetUpdateReasonListByConfigSourceIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get update reason list by config source Id Json default response a status code equal to that given
+func (o *GetUpdateReasonListByConfigSourceIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get update reason list by config source Id Json default response
 func (o *GetUpdateReasonListByConfigSourceIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetUpdateReasonListByConfigSourceIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/configsources/{id}/updatereasons?__json=][%d] getUpdateReasonListByConfigSourceIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/configsources/{id}/updatereasons?__json=][%d] getUpdateReasonListByConfigSourceIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetUpdateReasonListByConfigSourceIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/configsources/{id}/updatereasons?__json=][%d] getUpdateReasonListByConfigSourceIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetUpdateReasonListByConfigSourceIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

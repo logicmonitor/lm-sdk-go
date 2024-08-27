@@ -355,6 +355,8 @@ func (m *BigNumberWidget) validateBigNumberInfo(formats strfmt.Registry) error {
 		if err := m.BigNumberInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bigNumberInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bigNumberInfo")
 			}
 			return err
 		}
@@ -419,9 +421,12 @@ func (m *BigNumberWidget) contextValidateUserPermission(ctx context.Context, for
 func (m *BigNumberWidget) contextValidateBigNumberInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.BigNumberInfo != nil {
+
 		if err := m.BigNumberInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("bigNumberInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("bigNumberInfo")
 			}
 			return err
 		}

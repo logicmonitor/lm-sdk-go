@@ -419,6 +419,8 @@ func (m *NetflowGroupWidget) validateNetflowFilter(formats strfmt.Registry) erro
 		if err := m.NetflowFilter.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("netflowFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("netflowFilter")
 			}
 			return err
 		}
@@ -496,9 +498,16 @@ func (m *NetflowGroupWidget) contextValidateDeviceGroupName(ctx context.Context,
 func (m *NetflowGroupWidget) contextValidateNetflowFilter(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NetflowFilter != nil {
+
+		if swag.IsZero(m.NetflowFilter) { // not required
+			return nil
+		}
+
 		if err := m.NetflowFilter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("netflowFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("netflowFilter")
 			}
 			return err
 		}

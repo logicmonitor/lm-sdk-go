@@ -23,6 +23,9 @@ type RestAzureStorageAccountVerify struct {
 	// client Id
 	ClientID string `json:"clientId,omitempty"`
 
+	// group Id
+	GroupID int32 `json:"groupId,omitempty"`
+
 	// is china account
 	IsChinaAccount bool `json:"isChinaAccount,omitempty"`
 

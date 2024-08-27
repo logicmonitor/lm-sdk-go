@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetAwsAccountIDJSONReader is a Reader for the GetAwsAccountIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetAwsAccountIDJSONOK() *GetAwsAccountIDJSONOK {
 	return &GetAwsAccountIDJSONOK{}
 }
 
-/* GetAwsAccountIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetAwsAccountIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetAwsAccountIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetAwsAccountIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /aws/accountId?__json=][%d] getAwsAccountIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get aws account Id Json o k response has a 2xx status code
+func (o *GetAwsAccountIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get aws account Id Json o k response has a 3xx status code
+func (o *GetAwsAccountIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get aws account Id Json o k response has a 4xx status code
+func (o *GetAwsAccountIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get aws account Id Json o k response has a 5xx status code
+func (o *GetAwsAccountIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get aws account Id Json o k response a status code equal to that given
+func (o *GetAwsAccountIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get aws account Id Json o k response
+func (o *GetAwsAccountIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetAwsAccountIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /aws/accountId?__json=][%d] getAwsAccountIdJsonOK %s", 200, payload)
+}
+
+func (o *GetAwsAccountIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /aws/accountId?__json=][%d] getAwsAccountIdJsonOK %s", 200, payload)
+}
+
 func (o *GetAwsAccountIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetAwsAccountIDJSONTooManyRequests() *GetAwsAccountIDJSONTooManyRequests
 	return &GetAwsAccountIDJSONTooManyRequests{}
 }
 
-/* GetAwsAccountIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetAwsAccountIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetAwsAccountIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get aws account Id Json too many requests response has a 2xx status code
+func (o *GetAwsAccountIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get aws account Id Json too many requests response has a 3xx status code
+func (o *GetAwsAccountIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get aws account Id Json too many requests response has a 4xx status code
+func (o *GetAwsAccountIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get aws account Id Json too many requests response has a 5xx status code
+func (o *GetAwsAccountIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get aws account Id Json too many requests response a status code equal to that given
+func (o *GetAwsAccountIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get aws account Id Json too many requests response
+func (o *GetAwsAccountIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetAwsAccountIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /aws/accountId?__json=][%d] getAwsAccountIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /aws/accountId?__json=][%d] getAwsAccountIdJsonTooManyRequests", 429)
+}
+
+func (o *GetAwsAccountIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /aws/accountId?__json=][%d] getAwsAccountIdJsonTooManyRequests", 429)
 }
 
 func (o *GetAwsAccountIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetAwsAccountIDJSONDefault(code int) *GetAwsAccountIDJSONDefault {
 	}
 }
 
-/* GetAwsAccountIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetAwsAccountIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetAwsAccountIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get aws account Id Json default response has a 2xx status code
+func (o *GetAwsAccountIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get aws account Id Json default response has a 3xx status code
+func (o *GetAwsAccountIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get aws account Id Json default response has a 4xx status code
+func (o *GetAwsAccountIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get aws account Id Json default response has a 5xx status code
+func (o *GetAwsAccountIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get aws account Id Json default response a status code equal to that given
+func (o *GetAwsAccountIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get aws account Id Json default response
 func (o *GetAwsAccountIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetAwsAccountIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /aws/accountId?__json=][%d] getAwsAccountIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /aws/accountId?__json=][%d] getAwsAccountIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetAwsAccountIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /aws/accountId?__json=][%d] getAwsAccountIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetAwsAccountIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

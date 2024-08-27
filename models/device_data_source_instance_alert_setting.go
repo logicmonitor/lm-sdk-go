@@ -190,6 +190,8 @@ func (m *DeviceDataSourceInstanceAlertSetting) validateParentDeviceGroupAlertExp
 			if err := m.ParentDeviceGroupAlertExprList[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("parentDeviceGroupAlertExprList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("parentDeviceGroupAlertExprList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -209,6 +211,8 @@ func (m *DeviceDataSourceInstanceAlertSetting) validateParentInstanceGroupAlertE
 		if err := m.ParentInstanceGroupAlertExpr.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parentInstanceGroupAlertExpr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parentInstanceGroupAlertExpr")
 			}
 			return err
 		}
@@ -226,6 +230,8 @@ func (m *DeviceDataSourceInstanceAlertSetting) validateParentResourceDataSourceA
 		if err := m.ParentResourceDataSourceAlertExpr.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parentResourceDataSourceAlertExpr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parentResourceDataSourceAlertExpr")
 			}
 			return err
 		}
@@ -512,9 +518,16 @@ func (m *DeviceDataSourceInstanceAlertSetting) contextValidateParentDeviceGroupA
 	for i := 0; i < len(m.ParentDeviceGroupAlertExprList); i++ {
 
 		if m.ParentDeviceGroupAlertExprList[i] != nil {
+
+			if swag.IsZero(m.ParentDeviceGroupAlertExprList[i]) { // not required
+				return nil
+			}
+
 			if err := m.ParentDeviceGroupAlertExprList[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("parentDeviceGroupAlertExprList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("parentDeviceGroupAlertExprList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -528,9 +541,16 @@ func (m *DeviceDataSourceInstanceAlertSetting) contextValidateParentDeviceGroupA
 func (m *DeviceDataSourceInstanceAlertSetting) contextValidateParentInstanceGroupAlertExpr(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ParentInstanceGroupAlertExpr != nil {
+
+		if swag.IsZero(m.ParentInstanceGroupAlertExpr) { // not required
+			return nil
+		}
+
 		if err := m.ParentInstanceGroupAlertExpr.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parentInstanceGroupAlertExpr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parentInstanceGroupAlertExpr")
 			}
 			return err
 		}
@@ -542,9 +562,16 @@ func (m *DeviceDataSourceInstanceAlertSetting) contextValidateParentInstanceGrou
 func (m *DeviceDataSourceInstanceAlertSetting) contextValidateParentResourceDataSourceAlertExpr(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ParentResourceDataSourceAlertExpr != nil {
+
+		if swag.IsZero(m.ParentResourceDataSourceAlertExpr) { // not required
+			return nil
+		}
+
 		if err := m.ParentResourceDataSourceAlertExpr.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parentResourceDataSourceAlertExpr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parentResourceDataSourceAlertExpr")
 			}
 			return err
 		}

@@ -53,10 +53,12 @@ func NewScheduleAutoDiscoveryByDeviceIDParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* ScheduleAutoDiscoveryByDeviceIDParams contains all the parameters to send to the API endpoint
-   for the schedule auto discovery by device Id operation.
+/*
+ScheduleAutoDiscoveryByDeviceIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the schedule auto discovery by device Id operation.
+
+	Typically these are written to a http.Request.
 */
 type ScheduleAutoDiscoveryByDeviceIDParams struct {
 

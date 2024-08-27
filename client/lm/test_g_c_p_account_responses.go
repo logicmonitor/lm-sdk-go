@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // TestGCPAccountReader is a Reader for the TestGCPAccount structure.
@@ -54,7 +55,8 @@ func NewTestGCPAccountOK() *TestGCPAccountOK {
 	return &TestGCPAccountOK{}
 }
 
-/* TestGCPAccountOK describes a response with status code 200, with default header values.
+/*
+TestGCPAccountOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type TestGCPAccountOK struct {
 	Payload models.RestCloudOkPermissionsV3
 }
 
-func (o *TestGCPAccountOK) Error() string {
-	return fmt.Sprintf("[POST /gcp/functions/testAccount][%d] testGCPAccountOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this test g c p account o k response has a 2xx status code
+func (o *TestGCPAccountOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this test g c p account o k response has a 3xx status code
+func (o *TestGCPAccountOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test g c p account o k response has a 4xx status code
+func (o *TestGCPAccountOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this test g c p account o k response has a 5xx status code
+func (o *TestGCPAccountOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test g c p account o k response a status code equal to that given
+func (o *TestGCPAccountOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the test g c p account o k response
+func (o *TestGCPAccountOK) Code() int {
+	return 200
+}
+
+func (o *TestGCPAccountOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gcp/functions/testAccount][%d] testGCPAccountOK %s", 200, payload)
+}
+
+func (o *TestGCPAccountOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gcp/functions/testAccount][%d] testGCPAccountOK %s", 200, payload)
+}
+
 func (o *TestGCPAccountOK) GetPayload() models.RestCloudOkPermissionsV3 {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewTestGCPAccountTooManyRequests() *TestGCPAccountTooManyRequests {
 	return &TestGCPAccountTooManyRequests{}
 }
 
-/* TestGCPAccountTooManyRequests describes a response with status code 429, with default header values.
+/*
+TestGCPAccountTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type TestGCPAccountTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this test g c p account too many requests response has a 2xx status code
+func (o *TestGCPAccountTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this test g c p account too many requests response has a 3xx status code
+func (o *TestGCPAccountTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this test g c p account too many requests response has a 4xx status code
+func (o *TestGCPAccountTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this test g c p account too many requests response has a 5xx status code
+func (o *TestGCPAccountTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this test g c p account too many requests response a status code equal to that given
+func (o *TestGCPAccountTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the test g c p account too many requests response
+func (o *TestGCPAccountTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *TestGCPAccountTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /gcp/functions/testAccount][%d] testGCPAccountTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /gcp/functions/testAccount][%d] testGCPAccountTooManyRequests", 429)
+}
+
+func (o *TestGCPAccountTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /gcp/functions/testAccount][%d] testGCPAccountTooManyRequests", 429)
 }
 
 func (o *TestGCPAccountTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewTestGCPAccountDefault(code int) *TestGCPAccountDefault {
 	}
 }
 
-/* TestGCPAccountDefault describes a response with status code -1, with default header values.
+/*
+TestGCPAccountDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type TestGCPAccountDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this test g c p account default response has a 2xx status code
+func (o *TestGCPAccountDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this test g c p account default response has a 3xx status code
+func (o *TestGCPAccountDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this test g c p account default response has a 4xx status code
+func (o *TestGCPAccountDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this test g c p account default response has a 5xx status code
+func (o *TestGCPAccountDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this test g c p account default response a status code equal to that given
+func (o *TestGCPAccountDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the test g c p account default response
 func (o *TestGCPAccountDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *TestGCPAccountDefault) Error() string {
-	return fmt.Sprintf("[POST /gcp/functions/testAccount][%d] testGCPAccount default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gcp/functions/testAccount][%d] testGCPAccount default %s", o._statusCode, payload)
 }
+
+func (o *TestGCPAccountDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /gcp/functions/testAccount][%d] testGCPAccount default %s", o._statusCode, payload)
+}
+
 func (o *TestGCPAccountDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -53,10 +53,12 @@ func NewGetSDTHistoryByWebsiteIDJSONParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/* GetSDTHistoryByWebsiteIDJSONParams contains all the parameters to send to the API endpoint
-   for the get SDT history by website Id Json operation.
+/*
+GetSDTHistoryByWebsiteIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get SDT history by website Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetSDTHistoryByWebsiteIDJSONParams struct {
 

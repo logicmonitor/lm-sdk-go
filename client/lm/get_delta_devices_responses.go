@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetDeltaDevicesReader is a Reader for the GetDeltaDevices structure.
@@ -54,7 +55,8 @@ func NewGetDeltaDevicesOK() *GetDeltaDevicesOK {
 	return &GetDeltaDevicesOK{}
 }
 
-/* GetDeltaDevicesOK describes a response with status code 200, with default header values.
+/*
+GetDeltaDevicesOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetDeltaDevicesOK struct {
 	Payload *models.DeviceDeltaPaginationResponse
 }
 
-func (o *GetDeltaDevicesOK) Error() string {
-	return fmt.Sprintf("[GET /device/devices/delta/{deltaId}][%d] getDeltaDevicesOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get delta devices o k response has a 2xx status code
+func (o *GetDeltaDevicesOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get delta devices o k response has a 3xx status code
+func (o *GetDeltaDevicesOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get delta devices o k response has a 4xx status code
+func (o *GetDeltaDevicesOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get delta devices o k response has a 5xx status code
+func (o *GetDeltaDevicesOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get delta devices o k response a status code equal to that given
+func (o *GetDeltaDevicesOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get delta devices o k response
+func (o *GetDeltaDevicesOK) Code() int {
+	return 200
+}
+
+func (o *GetDeltaDevicesOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/delta/{deltaId}][%d] getDeltaDevicesOK %s", 200, payload)
+}
+
+func (o *GetDeltaDevicesOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/delta/{deltaId}][%d] getDeltaDevicesOK %s", 200, payload)
+}
+
 func (o *GetDeltaDevicesOK) GetPayload() *models.DeviceDeltaPaginationResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewGetDeltaDevicesTooManyRequests() *GetDeltaDevicesTooManyRequests {
 	return &GetDeltaDevicesTooManyRequests{}
 }
 
-/* GetDeltaDevicesTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetDeltaDevicesTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type GetDeltaDevicesTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get delta devices too many requests response has a 2xx status code
+func (o *GetDeltaDevicesTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get delta devices too many requests response has a 3xx status code
+func (o *GetDeltaDevicesTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get delta devices too many requests response has a 4xx status code
+func (o *GetDeltaDevicesTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get delta devices too many requests response has a 5xx status code
+func (o *GetDeltaDevicesTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get delta devices too many requests response a status code equal to that given
+func (o *GetDeltaDevicesTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get delta devices too many requests response
+func (o *GetDeltaDevicesTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetDeltaDevicesTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /device/devices/delta/{deltaId}][%d] getDeltaDevicesTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /device/devices/delta/{deltaId}][%d] getDeltaDevicesTooManyRequests", 429)
+}
+
+func (o *GetDeltaDevicesTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /device/devices/delta/{deltaId}][%d] getDeltaDevicesTooManyRequests", 429)
 }
 
 func (o *GetDeltaDevicesTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewGetDeltaDevicesDefault(code int) *GetDeltaDevicesDefault {
 	}
 }
 
-/* GetDeltaDevicesDefault describes a response with status code -1, with default header values.
+/*
+GetDeltaDevicesDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type GetDeltaDevicesDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get delta devices default response has a 2xx status code
+func (o *GetDeltaDevicesDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get delta devices default response has a 3xx status code
+func (o *GetDeltaDevicesDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get delta devices default response has a 4xx status code
+func (o *GetDeltaDevicesDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get delta devices default response has a 5xx status code
+func (o *GetDeltaDevicesDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get delta devices default response a status code equal to that given
+func (o *GetDeltaDevicesDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get delta devices default response
 func (o *GetDeltaDevicesDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetDeltaDevicesDefault) Error() string {
-	return fmt.Sprintf("[GET /device/devices/delta/{deltaId}][%d] getDeltaDevices default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/delta/{deltaId}][%d] getDeltaDevices default %s", o._statusCode, payload)
 }
+
+func (o *GetDeltaDevicesDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /device/devices/delta/{deltaId}][%d] getDeltaDevices default %s", o._statusCode, payload)
+}
+
 func (o *GetDeltaDevicesDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

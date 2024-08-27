@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewUpdateDashboardGroupByIDParams creates a new UpdateDashboardGroupByIDParams object,
@@ -55,10 +55,12 @@ func NewUpdateDashboardGroupByIDParamsWithHTTPClient(client *http.Client) *Updat
 	}
 }
 
-/* UpdateDashboardGroupByIDParams contains all the parameters to send to the API endpoint
-   for the update dashboard group by Id operation.
+/*
+UpdateDashboardGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update dashboard group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateDashboardGroupByIDParams struct {
 

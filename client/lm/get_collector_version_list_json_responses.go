@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetCollectorVersionListJSONReader is a Reader for the GetCollectorVersionListJSON structure.
@@ -54,7 +55,8 @@ func NewGetCollectorVersionListJSONOK() *GetCollectorVersionListJSONOK {
 	return &GetCollectorVersionListJSONOK{}
 }
 
-/* GetCollectorVersionListJSONOK describes a response with status code 200, with default header values.
+/*
+GetCollectorVersionListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetCollectorVersionListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetCollectorVersionListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/collectors/versions?__json=][%d] getCollectorVersionListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get collector version list Json o k response has a 2xx status code
+func (o *GetCollectorVersionListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get collector version list Json o k response has a 3xx status code
+func (o *GetCollectorVersionListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get collector version list Json o k response has a 4xx status code
+func (o *GetCollectorVersionListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get collector version list Json o k response has a 5xx status code
+func (o *GetCollectorVersionListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get collector version list Json o k response a status code equal to that given
+func (o *GetCollectorVersionListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get collector version list Json o k response
+func (o *GetCollectorVersionListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetCollectorVersionListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/collectors/versions?__json=][%d] getCollectorVersionListJsonOK %s", 200, payload)
+}
+
+func (o *GetCollectorVersionListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/collectors/versions?__json=][%d] getCollectorVersionListJsonOK %s", 200, payload)
+}
+
 func (o *GetCollectorVersionListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetCollectorVersionListJSONTooManyRequests() *GetCollectorVersionListJSO
 	return &GetCollectorVersionListJSONTooManyRequests{}
 }
 
-/* GetCollectorVersionListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetCollectorVersionListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetCollectorVersionListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get collector version list Json too many requests response has a 2xx status code
+func (o *GetCollectorVersionListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get collector version list Json too many requests response has a 3xx status code
+func (o *GetCollectorVersionListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get collector version list Json too many requests response has a 4xx status code
+func (o *GetCollectorVersionListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get collector version list Json too many requests response has a 5xx status code
+func (o *GetCollectorVersionListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get collector version list Json too many requests response a status code equal to that given
+func (o *GetCollectorVersionListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get collector version list Json too many requests response
+func (o *GetCollectorVersionListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetCollectorVersionListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/collectors/versions?__json=][%d] getCollectorVersionListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/collector/collectors/versions?__json=][%d] getCollectorVersionListJsonTooManyRequests", 429)
+}
+
+func (o *GetCollectorVersionListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/collector/collectors/versions?__json=][%d] getCollectorVersionListJsonTooManyRequests", 429)
 }
 
 func (o *GetCollectorVersionListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetCollectorVersionListJSONDefault(code int) *GetCollectorVersionListJSO
 	}
 }
 
-/* GetCollectorVersionListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetCollectorVersionListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetCollectorVersionListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get collector version list Json default response has a 2xx status code
+func (o *GetCollectorVersionListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get collector version list Json default response has a 3xx status code
+func (o *GetCollectorVersionListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get collector version list Json default response has a 4xx status code
+func (o *GetCollectorVersionListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get collector version list Json default response has a 5xx status code
+func (o *GetCollectorVersionListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get collector version list Json default response a status code equal to that given
+func (o *GetCollectorVersionListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get collector version list Json default response
 func (o *GetCollectorVersionListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetCollectorVersionListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/collector/collectors/versions?__json=][%d] getCollectorVersionListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/collectors/versions?__json=][%d] getCollectorVersionListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetCollectorVersionListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/collector/collectors/versions?__json=][%d] getCollectorVersionListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetCollectorVersionListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetWebsiteDataByGraphNameJSONReader is a Reader for the GetWebsiteDataByGraphNameJSON structure.
@@ -54,7 +55,8 @@ func NewGetWebsiteDataByGraphNameJSONOK() *GetWebsiteDataByGraphNameJSONOK {
 	return &GetWebsiteDataByGraphNameJSONOK{}
 }
 
-/* GetWebsiteDataByGraphNameJSONOK describes a response with status code 200, with default header values.
+/*
+GetWebsiteDataByGraphNameJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetWebsiteDataByGraphNameJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetWebsiteDataByGraphNameJSONOK) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}/graphs/{graphName}/data?__json=][%d] getWebsiteDataByGraphNameJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get website data by graph name Json o k response has a 2xx status code
+func (o *GetWebsiteDataByGraphNameJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get website data by graph name Json o k response has a 3xx status code
+func (o *GetWebsiteDataByGraphNameJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website data by graph name Json o k response has a 4xx status code
+func (o *GetWebsiteDataByGraphNameJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get website data by graph name Json o k response has a 5xx status code
+func (o *GetWebsiteDataByGraphNameJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website data by graph name Json o k response a status code equal to that given
+func (o *GetWebsiteDataByGraphNameJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get website data by graph name Json o k response
+func (o *GetWebsiteDataByGraphNameJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetWebsiteDataByGraphNameJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/graphs/{graphName}/data?__json=][%d] getWebsiteDataByGraphNameJsonOK %s", 200, payload)
+}
+
+func (o *GetWebsiteDataByGraphNameJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/graphs/{graphName}/data?__json=][%d] getWebsiteDataByGraphNameJsonOK %s", 200, payload)
+}
+
 func (o *GetWebsiteDataByGraphNameJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetWebsiteDataByGraphNameJSONTooManyRequests() *GetWebsiteDataByGraphNam
 	return &GetWebsiteDataByGraphNameJSONTooManyRequests{}
 }
 
-/* GetWebsiteDataByGraphNameJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetWebsiteDataByGraphNameJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetWebsiteDataByGraphNameJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get website data by graph name Json too many requests response has a 2xx status code
+func (o *GetWebsiteDataByGraphNameJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get website data by graph name Json too many requests response has a 3xx status code
+func (o *GetWebsiteDataByGraphNameJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website data by graph name Json too many requests response has a 4xx status code
+func (o *GetWebsiteDataByGraphNameJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get website data by graph name Json too many requests response has a 5xx status code
+func (o *GetWebsiteDataByGraphNameJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website data by graph name Json too many requests response a status code equal to that given
+func (o *GetWebsiteDataByGraphNameJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get website data by graph name Json too many requests response
+func (o *GetWebsiteDataByGraphNameJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetWebsiteDataByGraphNameJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}/graphs/{graphName}/data?__json=][%d] getWebsiteDataByGraphNameJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /website/websites/{id}/graphs/{graphName}/data?__json=][%d] getWebsiteDataByGraphNameJsonTooManyRequests", 429)
+}
+
+func (o *GetWebsiteDataByGraphNameJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /website/websites/{id}/graphs/{graphName}/data?__json=][%d] getWebsiteDataByGraphNameJsonTooManyRequests", 429)
 }
 
 func (o *GetWebsiteDataByGraphNameJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetWebsiteDataByGraphNameJSONDefault(code int) *GetWebsiteDataByGraphNam
 	}
 }
 
-/* GetWebsiteDataByGraphNameJSONDefault describes a response with status code -1, with default header values.
+/*
+GetWebsiteDataByGraphNameJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetWebsiteDataByGraphNameJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get website data by graph name Json default response has a 2xx status code
+func (o *GetWebsiteDataByGraphNameJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get website data by graph name Json default response has a 3xx status code
+func (o *GetWebsiteDataByGraphNameJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get website data by graph name Json default response has a 4xx status code
+func (o *GetWebsiteDataByGraphNameJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get website data by graph name Json default response has a 5xx status code
+func (o *GetWebsiteDataByGraphNameJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get website data by graph name Json default response a status code equal to that given
+func (o *GetWebsiteDataByGraphNameJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get website data by graph name Json default response
 func (o *GetWebsiteDataByGraphNameJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetWebsiteDataByGraphNameJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}/graphs/{graphName}/data?__json=][%d] getWebsiteDataByGraphNameJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/graphs/{graphName}/data?__json=][%d] getWebsiteDataByGraphNameJson default %s", o._statusCode, payload)
 }
+
+func (o *GetWebsiteDataByGraphNameJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/graphs/{graphName}/data?__json=][%d] getWebsiteDataByGraphNameJson default %s", o._statusCode, payload)
+}
+
 func (o *GetWebsiteDataByGraphNameJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

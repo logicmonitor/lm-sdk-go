@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // PatchAccessGroupReader is a Reader for the PatchAccessGroup structure.
@@ -54,7 +55,8 @@ func NewPatchAccessGroupOK() *PatchAccessGroupOK {
 	return &PatchAccessGroupOK{}
 }
 
-/* PatchAccessGroupOK describes a response with status code 200, with default header values.
+/*
+PatchAccessGroupOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchAccessGroupOK struct {
 	Payload *models.AccessGroup
 }
 
-func (o *PatchAccessGroupOK) Error() string {
-	return fmt.Sprintf("[PATCH /setting/accessgroup/{id}][%d] patchAccessGroupOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch access group o k response has a 2xx status code
+func (o *PatchAccessGroupOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch access group o k response has a 3xx status code
+func (o *PatchAccessGroupOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch access group o k response has a 4xx status code
+func (o *PatchAccessGroupOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch access group o k response has a 5xx status code
+func (o *PatchAccessGroupOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch access group o k response a status code equal to that given
+func (o *PatchAccessGroupOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch access group o k response
+func (o *PatchAccessGroupOK) Code() int {
+	return 200
+}
+
+func (o *PatchAccessGroupOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/accessgroup/{id}][%d] patchAccessGroupOK %s", 200, payload)
+}
+
+func (o *PatchAccessGroupOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/accessgroup/{id}][%d] patchAccessGroupOK %s", 200, payload)
+}
+
 func (o *PatchAccessGroupOK) GetPayload() *models.AccessGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchAccessGroupTooManyRequests() *PatchAccessGroupTooManyRequests {
 	return &PatchAccessGroupTooManyRequests{}
 }
 
-/* PatchAccessGroupTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchAccessGroupTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchAccessGroupTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch access group too many requests response has a 2xx status code
+func (o *PatchAccessGroupTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch access group too many requests response has a 3xx status code
+func (o *PatchAccessGroupTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch access group too many requests response has a 4xx status code
+func (o *PatchAccessGroupTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch access group too many requests response has a 5xx status code
+func (o *PatchAccessGroupTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch access group too many requests response a status code equal to that given
+func (o *PatchAccessGroupTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch access group too many requests response
+func (o *PatchAccessGroupTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchAccessGroupTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /setting/accessgroup/{id}][%d] patchAccessGroupTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /setting/accessgroup/{id}][%d] patchAccessGroupTooManyRequests", 429)
+}
+
+func (o *PatchAccessGroupTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /setting/accessgroup/{id}][%d] patchAccessGroupTooManyRequests", 429)
 }
 
 func (o *PatchAccessGroupTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchAccessGroupDefault(code int) *PatchAccessGroupDefault {
 	}
 }
 
-/* PatchAccessGroupDefault describes a response with status code -1, with default header values.
+/*
+PatchAccessGroupDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchAccessGroupDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch access group default response has a 2xx status code
+func (o *PatchAccessGroupDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch access group default response has a 3xx status code
+func (o *PatchAccessGroupDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch access group default response has a 4xx status code
+func (o *PatchAccessGroupDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch access group default response has a 5xx status code
+func (o *PatchAccessGroupDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch access group default response a status code equal to that given
+func (o *PatchAccessGroupDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch access group default response
 func (o *PatchAccessGroupDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchAccessGroupDefault) Error() string {
-	return fmt.Sprintf("[PATCH /setting/accessgroup/{id}][%d] patchAccessGroup default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/accessgroup/{id}][%d] patchAccessGroup default %s", o._statusCode, payload)
 }
+
+func (o *PatchAccessGroupDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /setting/accessgroup/{id}][%d] patchAccessGroup default %s", o._statusCode, payload)
+}
+
 func (o *PatchAccessGroupDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

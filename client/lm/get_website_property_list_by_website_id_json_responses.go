@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetWebsitePropertyListByWebsiteIDJSONReader is a Reader for the GetWebsitePropertyListByWebsiteIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetWebsitePropertyListByWebsiteIDJSONOK() *GetWebsitePropertyListByWebsi
 	return &GetWebsitePropertyListByWebsiteIDJSONOK{}
 }
 
-/* GetWebsitePropertyListByWebsiteIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetWebsitePropertyListByWebsiteIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetWebsitePropertyListByWebsiteIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetWebsitePropertyListByWebsiteIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}/properties?__json=][%d] getWebsitePropertyListByWebsiteIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get website property list by website Id Json o k response has a 2xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get website property list by website Id Json o k response has a 3xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website property list by website Id Json o k response has a 4xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get website property list by website Id Json o k response has a 5xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website property list by website Id Json o k response a status code equal to that given
+func (o *GetWebsitePropertyListByWebsiteIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get website property list by website Id Json o k response
+func (o *GetWebsitePropertyListByWebsiteIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetWebsitePropertyListByWebsiteIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/properties?__json=][%d] getWebsitePropertyListByWebsiteIdJsonOK %s", 200, payload)
+}
+
+func (o *GetWebsitePropertyListByWebsiteIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/properties?__json=][%d] getWebsitePropertyListByWebsiteIdJsonOK %s", 200, payload)
+}
+
 func (o *GetWebsitePropertyListByWebsiteIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetWebsitePropertyListByWebsiteIDJSONTooManyRequests() *GetWebsiteProper
 	return &GetWebsitePropertyListByWebsiteIDJSONTooManyRequests{}
 }
 
-/* GetWebsitePropertyListByWebsiteIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetWebsitePropertyListByWebsiteIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetWebsitePropertyListByWebsiteIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get website property list by website Id Json too many requests response has a 2xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get website property list by website Id Json too many requests response has a 3xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website property list by website Id Json too many requests response has a 4xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get website property list by website Id Json too many requests response has a 5xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website property list by website Id Json too many requests response a status code equal to that given
+func (o *GetWebsitePropertyListByWebsiteIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get website property list by website Id Json too many requests response
+func (o *GetWebsitePropertyListByWebsiteIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetWebsitePropertyListByWebsiteIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}/properties?__json=][%d] getWebsitePropertyListByWebsiteIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /website/websites/{id}/properties?__json=][%d] getWebsitePropertyListByWebsiteIdJsonTooManyRequests", 429)
+}
+
+func (o *GetWebsitePropertyListByWebsiteIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /website/websites/{id}/properties?__json=][%d] getWebsitePropertyListByWebsiteIdJsonTooManyRequests", 429)
 }
 
 func (o *GetWebsitePropertyListByWebsiteIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetWebsitePropertyListByWebsiteIDJSONDefault(code int) *GetWebsiteProper
 	}
 }
 
-/* GetWebsitePropertyListByWebsiteIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetWebsitePropertyListByWebsiteIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetWebsitePropertyListByWebsiteIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get website property list by website Id Json default response has a 2xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get website property list by website Id Json default response has a 3xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get website property list by website Id Json default response has a 4xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get website property list by website Id Json default response has a 5xx status code
+func (o *GetWebsitePropertyListByWebsiteIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get website property list by website Id Json default response a status code equal to that given
+func (o *GetWebsitePropertyListByWebsiteIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get website property list by website Id Json default response
 func (o *GetWebsitePropertyListByWebsiteIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetWebsitePropertyListByWebsiteIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{id}/properties?__json=][%d] getWebsitePropertyListByWebsiteIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/properties?__json=][%d] getWebsitePropertyListByWebsiteIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetWebsitePropertyListByWebsiteIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{id}/properties?__json=][%d] getWebsitePropertyListByWebsiteIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetWebsitePropertyListByWebsiteIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewUpdateRoleByIDParams creates a new UpdateRoleByIDParams object,
@@ -55,10 +55,12 @@ func NewUpdateRoleByIDParamsWithHTTPClient(client *http.Client) *UpdateRoleByIDP
 	}
 }
 
-/* UpdateRoleByIDParams contains all the parameters to send to the API endpoint
-   for the update role by Id operation.
+/*
+UpdateRoleByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update role by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateRoleByIDParams struct {
 

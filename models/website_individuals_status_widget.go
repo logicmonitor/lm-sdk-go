@@ -439,6 +439,8 @@ func (m *WebsiteIndividualsStatusWidget) validateLocations(formats strfmt.Regist
 			if err := m.Locations[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("locations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("locations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -524,9 +526,16 @@ func (m *WebsiteIndividualsStatusWidget) contextValidateLocations(ctx context.Co
 	for i := 0; i < len(m.Locations); i++ {
 
 		if m.Locations[i] != nil {
+
+			if swag.IsZero(m.Locations[i]) { // not required
+				return nil
+			}
+
 			if err := m.Locations[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("locations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("locations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

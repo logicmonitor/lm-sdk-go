@@ -53,10 +53,12 @@ func NewDeleteDeviceDatasourceInstanceByIDParamsWithHTTPClient(client *http.Clie
 	}
 }
 
-/* DeleteDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
-   for the delete device datasource instance by Id operation.
+/*
+DeleteDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete device datasource instance by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteDeviceDatasourceInstanceByIDParams struct {
 

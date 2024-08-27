@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewTestGCPAccountParams creates a new TestGCPAccountParams object,
@@ -54,10 +54,12 @@ func NewTestGCPAccountParamsWithHTTPClient(client *http.Client) *TestGCPAccountP
 	}
 }
 
-/* TestGCPAccountParams contains all the parameters to send to the API endpoint
-   for the test g c p account operation.
+/*
+TestGCPAccountParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the test g c p account operation.
+
+	Typically these are written to a http.Request.
 */
 type TestGCPAccountParams struct {
 

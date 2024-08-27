@@ -53,10 +53,12 @@ func NewGetAllSDTListByWebsiteGroupIDParamsWithHTTPClient(client *http.Client) *
 	}
 }
 
-/* GetAllSDTListByWebsiteGroupIDParams contains all the parameters to send to the API endpoint
-   for the get all SDT list by website group Id operation.
+/*
+GetAllSDTListByWebsiteGroupIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get all SDT list by website group Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAllSDTListByWebsiteGroupIDParams struct {
 

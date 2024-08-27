@@ -53,10 +53,12 @@ func NewGetDeviceDatasourceInstanceAlertSettingListOfDSIJSONParamsWithHTTPClient
 	}
 }
 
-/* GetDeviceDatasourceInstanceAlertSettingListOfDSIJSONParams contains all the parameters to send to the API endpoint
-   for the get device datasource instance alert setting list of d s i Json operation.
+/*
+GetDeviceDatasourceInstanceAlertSettingListOfDSIJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device datasource instance alert setting list of d s i Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceInstanceAlertSettingListOfDSIJSONParams struct {
 

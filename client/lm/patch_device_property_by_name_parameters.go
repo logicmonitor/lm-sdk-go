@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewPatchDevicePropertyByNameParams creates a new PatchDevicePropertyByNameParams object,
@@ -55,10 +55,12 @@ func NewPatchDevicePropertyByNameParamsWithHTTPClient(client *http.Client) *Patc
 	}
 }
 
-/* PatchDevicePropertyByNameParams contains all the parameters to send to the API endpoint
-   for the patch device property by name operation.
+/*
+PatchDevicePropertyByNameParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch device property by name operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDevicePropertyByNameParams struct {
 

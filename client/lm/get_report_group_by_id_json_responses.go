@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetReportGroupByIDJSONReader is a Reader for the GetReportGroupByIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetReportGroupByIDJSONOK() *GetReportGroupByIDJSONOK {
 	return &GetReportGroupByIDJSONOK{}
 }
 
-/* GetReportGroupByIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetReportGroupByIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetReportGroupByIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetReportGroupByIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /report/groups/{id}?__json=][%d] getReportGroupByIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get report group by Id Json o k response has a 2xx status code
+func (o *GetReportGroupByIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get report group by Id Json o k response has a 3xx status code
+func (o *GetReportGroupByIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get report group by Id Json o k response has a 4xx status code
+func (o *GetReportGroupByIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get report group by Id Json o k response has a 5xx status code
+func (o *GetReportGroupByIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get report group by Id Json o k response a status code equal to that given
+func (o *GetReportGroupByIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get report group by Id Json o k response
+func (o *GetReportGroupByIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetReportGroupByIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/groups/{id}?__json=][%d] getReportGroupByIdJsonOK %s", 200, payload)
+}
+
+func (o *GetReportGroupByIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/groups/{id}?__json=][%d] getReportGroupByIdJsonOK %s", 200, payload)
+}
+
 func (o *GetReportGroupByIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetReportGroupByIDJSONTooManyRequests() *GetReportGroupByIDJSONTooManyRe
 	return &GetReportGroupByIDJSONTooManyRequests{}
 }
 
-/* GetReportGroupByIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetReportGroupByIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetReportGroupByIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get report group by Id Json too many requests response has a 2xx status code
+func (o *GetReportGroupByIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get report group by Id Json too many requests response has a 3xx status code
+func (o *GetReportGroupByIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get report group by Id Json too many requests response has a 4xx status code
+func (o *GetReportGroupByIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get report group by Id Json too many requests response has a 5xx status code
+func (o *GetReportGroupByIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get report group by Id Json too many requests response a status code equal to that given
+func (o *GetReportGroupByIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get report group by Id Json too many requests response
+func (o *GetReportGroupByIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetReportGroupByIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /report/groups/{id}?__json=][%d] getReportGroupByIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /report/groups/{id}?__json=][%d] getReportGroupByIdJsonTooManyRequests", 429)
+}
+
+func (o *GetReportGroupByIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /report/groups/{id}?__json=][%d] getReportGroupByIdJsonTooManyRequests", 429)
 }
 
 func (o *GetReportGroupByIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetReportGroupByIDJSONDefault(code int) *GetReportGroupByIDJSONDefault {
 	}
 }
 
-/* GetReportGroupByIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetReportGroupByIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetReportGroupByIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get report group by Id Json default response has a 2xx status code
+func (o *GetReportGroupByIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get report group by Id Json default response has a 3xx status code
+func (o *GetReportGroupByIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get report group by Id Json default response has a 4xx status code
+func (o *GetReportGroupByIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get report group by Id Json default response has a 5xx status code
+func (o *GetReportGroupByIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get report group by Id Json default response a status code equal to that given
+func (o *GetReportGroupByIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get report group by Id Json default response
 func (o *GetReportGroupByIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetReportGroupByIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /report/groups/{id}?__json=][%d] getReportGroupByIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/groups/{id}?__json=][%d] getReportGroupByIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetReportGroupByIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/groups/{id}?__json=][%d] getReportGroupByIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetReportGroupByIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

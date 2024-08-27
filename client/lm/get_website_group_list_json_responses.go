@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetWebsiteGroupListJSONReader is a Reader for the GetWebsiteGroupListJSON structure.
@@ -54,7 +55,8 @@ func NewGetWebsiteGroupListJSONOK() *GetWebsiteGroupListJSONOK {
 	return &GetWebsiteGroupListJSONOK{}
 }
 
-/* GetWebsiteGroupListJSONOK describes a response with status code 200, with default header values.
+/*
+GetWebsiteGroupListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetWebsiteGroupListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetWebsiteGroupListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /website/groups?__json=][%d] getWebsiteGroupListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get website group list Json o k response has a 2xx status code
+func (o *GetWebsiteGroupListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get website group list Json o k response has a 3xx status code
+func (o *GetWebsiteGroupListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website group list Json o k response has a 4xx status code
+func (o *GetWebsiteGroupListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get website group list Json o k response has a 5xx status code
+func (o *GetWebsiteGroupListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website group list Json o k response a status code equal to that given
+func (o *GetWebsiteGroupListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get website group list Json o k response
+func (o *GetWebsiteGroupListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetWebsiteGroupListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups?__json=][%d] getWebsiteGroupListJsonOK %s", 200, payload)
+}
+
+func (o *GetWebsiteGroupListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups?__json=][%d] getWebsiteGroupListJsonOK %s", 200, payload)
+}
+
 func (o *GetWebsiteGroupListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetWebsiteGroupListJSONTooManyRequests() *GetWebsiteGroupListJSONTooMany
 	return &GetWebsiteGroupListJSONTooManyRequests{}
 }
 
-/* GetWebsiteGroupListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetWebsiteGroupListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetWebsiteGroupListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get website group list Json too many requests response has a 2xx status code
+func (o *GetWebsiteGroupListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get website group list Json too many requests response has a 3xx status code
+func (o *GetWebsiteGroupListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website group list Json too many requests response has a 4xx status code
+func (o *GetWebsiteGroupListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get website group list Json too many requests response has a 5xx status code
+func (o *GetWebsiteGroupListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website group list Json too many requests response a status code equal to that given
+func (o *GetWebsiteGroupListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get website group list Json too many requests response
+func (o *GetWebsiteGroupListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetWebsiteGroupListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /website/groups?__json=][%d] getWebsiteGroupListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /website/groups?__json=][%d] getWebsiteGroupListJsonTooManyRequests", 429)
+}
+
+func (o *GetWebsiteGroupListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /website/groups?__json=][%d] getWebsiteGroupListJsonTooManyRequests", 429)
 }
 
 func (o *GetWebsiteGroupListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetWebsiteGroupListJSONDefault(code int) *GetWebsiteGroupListJSONDefault
 	}
 }
 
-/* GetWebsiteGroupListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetWebsiteGroupListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetWebsiteGroupListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get website group list Json default response has a 2xx status code
+func (o *GetWebsiteGroupListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get website group list Json default response has a 3xx status code
+func (o *GetWebsiteGroupListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get website group list Json default response has a 4xx status code
+func (o *GetWebsiteGroupListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get website group list Json default response has a 5xx status code
+func (o *GetWebsiteGroupListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get website group list Json default response a status code equal to that given
+func (o *GetWebsiteGroupListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get website group list Json default response
 func (o *GetWebsiteGroupListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetWebsiteGroupListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /website/groups?__json=][%d] getWebsiteGroupListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups?__json=][%d] getWebsiteGroupListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetWebsiteGroupListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/groups?__json=][%d] getWebsiteGroupListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetWebsiteGroupListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

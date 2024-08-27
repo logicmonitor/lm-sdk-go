@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewUpdateCollectorGroupByIDParams creates a new UpdateCollectorGroupByIDParams object,
@@ -55,10 +55,12 @@ func NewUpdateCollectorGroupByIDParamsWithHTTPClient(client *http.Client) *Updat
 	}
 }
 
-/* UpdateCollectorGroupByIDParams contains all the parameters to send to the API endpoint
-   for the update collector group by Id operation.
+/*
+UpdateCollectorGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update collector group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateCollectorGroupByIDParams struct {
 

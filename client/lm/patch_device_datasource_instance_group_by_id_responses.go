@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // PatchDeviceDatasourceInstanceGroupByIDReader is a Reader for the PatchDeviceDatasourceInstanceGroupByID structure.
@@ -54,7 +55,8 @@ func NewPatchDeviceDatasourceInstanceGroupByIDOK() *PatchDeviceDatasourceInstanc
 	return &PatchDeviceDatasourceInstanceGroupByIDOK{}
 }
 
-/* PatchDeviceDatasourceInstanceGroupByIDOK describes a response with status code 200, with default header values.
+/*
+PatchDeviceDatasourceInstanceGroupByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type PatchDeviceDatasourceInstanceGroupByIDOK struct {
 	Payload *models.DeviceDataSourceInstanceGroup
 }
 
-func (o *PatchDeviceDatasourceInstanceGroupByIDOK) Error() string {
-	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}][%d] patchDeviceDatasourceInstanceGroupByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this patch device datasource instance group by Id o k response has a 2xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this patch device datasource instance group by Id o k response has a 3xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch device datasource instance group by Id o k response has a 4xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this patch device datasource instance group by Id o k response has a 5xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch device datasource instance group by Id o k response a status code equal to that given
+func (o *PatchDeviceDatasourceInstanceGroupByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the patch device datasource instance group by Id o k response
+func (o *PatchDeviceDatasourceInstanceGroupByIDOK) Code() int {
+	return 200
+}
+
+func (o *PatchDeviceDatasourceInstanceGroupByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}][%d] patchDeviceDatasourceInstanceGroupByIdOK %s", 200, payload)
+}
+
+func (o *PatchDeviceDatasourceInstanceGroupByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}][%d] patchDeviceDatasourceInstanceGroupByIdOK %s", 200, payload)
+}
+
 func (o *PatchDeviceDatasourceInstanceGroupByIDOK) GetPayload() *models.DeviceDataSourceInstanceGroup {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewPatchDeviceDatasourceInstanceGroupByIDTooManyRequests() *PatchDeviceData
 	return &PatchDeviceDatasourceInstanceGroupByIDTooManyRequests{}
 }
 
-/* PatchDeviceDatasourceInstanceGroupByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+PatchDeviceDatasourceInstanceGroupByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type PatchDeviceDatasourceInstanceGroupByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this patch device datasource instance group by Id too many requests response has a 2xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this patch device datasource instance group by Id too many requests response has a 3xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this patch device datasource instance group by Id too many requests response has a 4xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this patch device datasource instance group by Id too many requests response has a 5xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this patch device datasource instance group by Id too many requests response a status code equal to that given
+func (o *PatchDeviceDatasourceInstanceGroupByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the patch device datasource instance group by Id too many requests response
+func (o *PatchDeviceDatasourceInstanceGroupByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *PatchDeviceDatasourceInstanceGroupByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}][%d] patchDeviceDatasourceInstanceGroupByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}][%d] patchDeviceDatasourceInstanceGroupByIdTooManyRequests", 429)
+}
+
+func (o *PatchDeviceDatasourceInstanceGroupByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}][%d] patchDeviceDatasourceInstanceGroupByIdTooManyRequests", 429)
 }
 
 func (o *PatchDeviceDatasourceInstanceGroupByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewPatchDeviceDatasourceInstanceGroupByIDDefault(code int) *PatchDeviceData
 	}
 }
 
-/* PatchDeviceDatasourceInstanceGroupByIDDefault describes a response with status code -1, with default header values.
+/*
+PatchDeviceDatasourceInstanceGroupByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type PatchDeviceDatasourceInstanceGroupByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this patch device datasource instance group by Id default response has a 2xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this patch device datasource instance group by Id default response has a 3xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this patch device datasource instance group by Id default response has a 4xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this patch device datasource instance group by Id default response has a 5xx status code
+func (o *PatchDeviceDatasourceInstanceGroupByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this patch device datasource instance group by Id default response a status code equal to that given
+func (o *PatchDeviceDatasourceInstanceGroupByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the patch device datasource instance group by Id default response
 func (o *PatchDeviceDatasourceInstanceGroupByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *PatchDeviceDatasourceInstanceGroupByIDDefault) Error() string {
-	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}][%d] patchDeviceDatasourceInstanceGroupById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}][%d] patchDeviceDatasourceInstanceGroupById default %s", o._statusCode, payload)
 }
+
+func (o *PatchDeviceDatasourceInstanceGroupByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[PATCH /device/devices/{deviceId}/devicedatasources/{deviceDsId}/groups/{id}][%d] patchDeviceDatasourceInstanceGroupById default %s", o._statusCode, payload)
+}
+
 func (o *PatchDeviceDatasourceInstanceGroupByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

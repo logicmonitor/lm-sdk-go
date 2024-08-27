@@ -283,6 +283,8 @@ func (m *Device) validateAutoProperties(formats strfmt.Registry) error {
 			if err := m.AutoProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -307,6 +309,8 @@ func (m *Device) validateCustomProperties(formats strfmt.Registry) error {
 			if err := m.CustomProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -340,6 +344,8 @@ func (m *Device) validateInheritedProperties(formats strfmt.Registry) error {
 			if err := m.InheritedProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -382,6 +388,8 @@ func (m *Device) validateResourceIds(formats strfmt.Registry) error {
 			if err := m.ResourceIds[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resourceIds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resourceIds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -418,6 +426,8 @@ func (m *Device) validateSystemProperties(formats strfmt.Registry) error {
 			if err := m.SystemProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -571,9 +581,16 @@ func (m *Device) contextValidateAutoProperties(ctx context.Context, formats strf
 	for i := 0; i < len(m.AutoProperties); i++ {
 
 		if m.AutoProperties[i] != nil {
+
+			if swag.IsZero(m.AutoProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.AutoProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -643,9 +660,16 @@ func (m *Device) contextValidateCustomProperties(ctx context.Context, formats st
 	for i := 0; i < len(m.CustomProperties); i++ {
 
 		if m.CustomProperties[i] != nil {
+
+			if swag.IsZero(m.CustomProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.CustomProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -701,9 +725,16 @@ func (m *Device) contextValidateInheritedProperties(ctx context.Context, formats
 	for i := 0; i < len(m.InheritedProperties); i++ {
 
 		if m.InheritedProperties[i] != nil {
+
+			if swag.IsZero(m.InheritedProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.InheritedProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -809,9 +840,16 @@ func (m *Device) contextValidateResourceIds(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.ResourceIds); i++ {
 
 		if m.ResourceIds[i] != nil {
+
+			if swag.IsZero(m.ResourceIds[i]) { // not required
+				return nil
+			}
+
 			if err := m.ResourceIds[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resourceIds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resourceIds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -849,9 +887,16 @@ func (m *Device) contextValidateSystemProperties(ctx context.Context, formats st
 	for i := 0; i < len(m.SystemProperties); i++ {
 
 		if m.SystemProperties[i] != nil {
+
+			if swag.IsZero(m.SystemProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.SystemProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

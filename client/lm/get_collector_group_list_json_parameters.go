@@ -53,10 +53,12 @@ func NewGetCollectorGroupListJSONParamsWithHTTPClient(client *http.Client) *GetC
 	}
 }
 
-/* GetCollectorGroupListJSONParams contains all the parameters to send to the API endpoint
-   for the get collector group list Json operation.
+/*
+GetCollectorGroupListJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get collector group list Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetCollectorGroupListJSONParams struct {
 

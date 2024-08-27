@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // AddDatasourceByIDReader is a Reader for the AddDatasourceByID structure.
@@ -54,7 +55,8 @@ func NewAddDatasourceByIDOK() *AddDatasourceByIDOK {
 	return &AddDatasourceByIDOK{}
 }
 
-/* AddDatasourceByIDOK describes a response with status code 200, with default header values.
+/*
+AddDatasourceByIDOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddDatasourceByIDOK struct {
 	Payload *models.DataSource
 }
 
-func (o *AddDatasourceByIDOK) Error() string {
-	return fmt.Sprintf("[POST /setting/datasources][%d] addDatasourceByIdOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add datasource by Id o k response has a 2xx status code
+func (o *AddDatasourceByIDOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add datasource by Id o k response has a 3xx status code
+func (o *AddDatasourceByIDOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add datasource by Id o k response has a 4xx status code
+func (o *AddDatasourceByIDOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add datasource by Id o k response has a 5xx status code
+func (o *AddDatasourceByIDOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add datasource by Id o k response a status code equal to that given
+func (o *AddDatasourceByIDOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add datasource by Id o k response
+func (o *AddDatasourceByIDOK) Code() int {
+	return 200
+}
+
+func (o *AddDatasourceByIDOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/datasources][%d] addDatasourceByIdOK %s", 200, payload)
+}
+
+func (o *AddDatasourceByIDOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/datasources][%d] addDatasourceByIdOK %s", 200, payload)
+}
+
 func (o *AddDatasourceByIDOK) GetPayload() *models.DataSource {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddDatasourceByIDTooManyRequests() *AddDatasourceByIDTooManyRequests {
 	return &AddDatasourceByIDTooManyRequests{}
 }
 
-/* AddDatasourceByIDTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddDatasourceByIDTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddDatasourceByIDTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add datasource by Id too many requests response has a 2xx status code
+func (o *AddDatasourceByIDTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add datasource by Id too many requests response has a 3xx status code
+func (o *AddDatasourceByIDTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add datasource by Id too many requests response has a 4xx status code
+func (o *AddDatasourceByIDTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add datasource by Id too many requests response has a 5xx status code
+func (o *AddDatasourceByIDTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add datasource by Id too many requests response a status code equal to that given
+func (o *AddDatasourceByIDTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add datasource by Id too many requests response
+func (o *AddDatasourceByIDTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddDatasourceByIDTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /setting/datasources][%d] addDatasourceByIdTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /setting/datasources][%d] addDatasourceByIdTooManyRequests", 429)
+}
+
+func (o *AddDatasourceByIDTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /setting/datasources][%d] addDatasourceByIdTooManyRequests", 429)
 }
 
 func (o *AddDatasourceByIDTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddDatasourceByIDDefault(code int) *AddDatasourceByIDDefault {
 	}
 }
 
-/* AddDatasourceByIDDefault describes a response with status code -1, with default header values.
+/*
+AddDatasourceByIDDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddDatasourceByIDDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add datasource by Id default response has a 2xx status code
+func (o *AddDatasourceByIDDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add datasource by Id default response has a 3xx status code
+func (o *AddDatasourceByIDDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add datasource by Id default response has a 4xx status code
+func (o *AddDatasourceByIDDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add datasource by Id default response has a 5xx status code
+func (o *AddDatasourceByIDDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add datasource by Id default response a status code equal to that given
+func (o *AddDatasourceByIDDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add datasource by Id default response
 func (o *AddDatasourceByIDDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddDatasourceByIDDefault) Error() string {
-	return fmt.Sprintf("[POST /setting/datasources][%d] addDatasourceById default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/datasources][%d] addDatasourceById default %s", o._statusCode, payload)
 }
+
+func (o *AddDatasourceByIDDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /setting/datasources][%d] addDatasourceById default %s", o._statusCode, payload)
+}
+
 func (o *AddDatasourceByIDDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

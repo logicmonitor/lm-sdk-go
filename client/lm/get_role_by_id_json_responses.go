@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetRoleByIDJSONReader is a Reader for the GetRoleByIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetRoleByIDJSONOK() *GetRoleByIDJSONOK {
 	return &GetRoleByIDJSONOK{}
 }
 
-/* GetRoleByIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetRoleByIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetRoleByIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetRoleByIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/roles/{id}?__json=][%d] getRoleByIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get role by Id Json o k response has a 2xx status code
+func (o *GetRoleByIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get role by Id Json o k response has a 3xx status code
+func (o *GetRoleByIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get role by Id Json o k response has a 4xx status code
+func (o *GetRoleByIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get role by Id Json o k response has a 5xx status code
+func (o *GetRoleByIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get role by Id Json o k response a status code equal to that given
+func (o *GetRoleByIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get role by Id Json o k response
+func (o *GetRoleByIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetRoleByIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/roles/{id}?__json=][%d] getRoleByIdJsonOK %s", 200, payload)
+}
+
+func (o *GetRoleByIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/roles/{id}?__json=][%d] getRoleByIdJsonOK %s", 200, payload)
+}
+
 func (o *GetRoleByIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetRoleByIDJSONTooManyRequests() *GetRoleByIDJSONTooManyRequests {
 	return &GetRoleByIDJSONTooManyRequests{}
 }
 
-/* GetRoleByIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetRoleByIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetRoleByIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get role by Id Json too many requests response has a 2xx status code
+func (o *GetRoleByIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get role by Id Json too many requests response has a 3xx status code
+func (o *GetRoleByIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get role by Id Json too many requests response has a 4xx status code
+func (o *GetRoleByIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get role by Id Json too many requests response has a 5xx status code
+func (o *GetRoleByIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get role by Id Json too many requests response a status code equal to that given
+func (o *GetRoleByIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get role by Id Json too many requests response
+func (o *GetRoleByIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetRoleByIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/roles/{id}?__json=][%d] getRoleByIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/roles/{id}?__json=][%d] getRoleByIdJsonTooManyRequests", 429)
+}
+
+func (o *GetRoleByIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/roles/{id}?__json=][%d] getRoleByIdJsonTooManyRequests", 429)
 }
 
 func (o *GetRoleByIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetRoleByIDJSONDefault(code int) *GetRoleByIDJSONDefault {
 	}
 }
 
-/* GetRoleByIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetRoleByIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetRoleByIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get role by Id Json default response has a 2xx status code
+func (o *GetRoleByIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get role by Id Json default response has a 3xx status code
+func (o *GetRoleByIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get role by Id Json default response has a 4xx status code
+func (o *GetRoleByIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get role by Id Json default response has a 5xx status code
+func (o *GetRoleByIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get role by Id Json default response a status code equal to that given
+func (o *GetRoleByIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get role by Id Json default response
 func (o *GetRoleByIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetRoleByIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/roles/{id}?__json=][%d] getRoleByIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/roles/{id}?__json=][%d] getRoleByIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetRoleByIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/roles/{id}?__json=][%d] getRoleByIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetRoleByIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

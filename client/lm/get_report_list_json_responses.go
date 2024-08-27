@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetReportListJSONReader is a Reader for the GetReportListJSON structure.
@@ -54,7 +55,8 @@ func NewGetReportListJSONOK() *GetReportListJSONOK {
 	return &GetReportListJSONOK{}
 }
 
-/* GetReportListJSONOK describes a response with status code 200, with default header values.
+/*
+GetReportListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetReportListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetReportListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /report/reports?__json=][%d] getReportListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get report list Json o k response has a 2xx status code
+func (o *GetReportListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get report list Json o k response has a 3xx status code
+func (o *GetReportListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get report list Json o k response has a 4xx status code
+func (o *GetReportListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get report list Json o k response has a 5xx status code
+func (o *GetReportListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get report list Json o k response a status code equal to that given
+func (o *GetReportListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get report list Json o k response
+func (o *GetReportListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetReportListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports?__json=][%d] getReportListJsonOK %s", 200, payload)
+}
+
+func (o *GetReportListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports?__json=][%d] getReportListJsonOK %s", 200, payload)
+}
+
 func (o *GetReportListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetReportListJSONTooManyRequests() *GetReportListJSONTooManyRequests {
 	return &GetReportListJSONTooManyRequests{}
 }
 
-/* GetReportListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetReportListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetReportListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get report list Json too many requests response has a 2xx status code
+func (o *GetReportListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get report list Json too many requests response has a 3xx status code
+func (o *GetReportListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get report list Json too many requests response has a 4xx status code
+func (o *GetReportListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get report list Json too many requests response has a 5xx status code
+func (o *GetReportListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get report list Json too many requests response a status code equal to that given
+func (o *GetReportListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get report list Json too many requests response
+func (o *GetReportListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetReportListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /report/reports?__json=][%d] getReportListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /report/reports?__json=][%d] getReportListJsonTooManyRequests", 429)
+}
+
+func (o *GetReportListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /report/reports?__json=][%d] getReportListJsonTooManyRequests", 429)
 }
 
 func (o *GetReportListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetReportListJSONDefault(code int) *GetReportListJSONDefault {
 	}
 }
 
-/* GetReportListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetReportListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetReportListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get report list Json default response has a 2xx status code
+func (o *GetReportListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get report list Json default response has a 3xx status code
+func (o *GetReportListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get report list Json default response has a 4xx status code
+func (o *GetReportListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get report list Json default response has a 5xx status code
+func (o *GetReportListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get report list Json default response a status code equal to that given
+func (o *GetReportListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get report list Json default response
 func (o *GetReportListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetReportListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /report/reports?__json=][%d] getReportListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports?__json=][%d] getReportListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetReportListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /report/reports?__json=][%d] getReportListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetReportListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

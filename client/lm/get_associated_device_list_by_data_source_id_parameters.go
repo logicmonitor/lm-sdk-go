@@ -53,10 +53,12 @@ func NewGetAssociatedDeviceListByDataSourceIDParamsWithHTTPClient(client *http.C
 	}
 }
 
-/* GetAssociatedDeviceListByDataSourceIDParams contains all the parameters to send to the API endpoint
-   for the get associated device list by data source Id operation.
+/*
+GetAssociatedDeviceListByDataSourceIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get associated device list by data source Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAssociatedDeviceListByDataSourceIDParams struct {
 

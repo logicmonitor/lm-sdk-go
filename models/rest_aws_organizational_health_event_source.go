@@ -21,6 +21,10 @@ import (
 //
 // swagger:model RestAwsOrganizationalHealthEventSource
 type RestAwsOrganizationalHealthEventSource struct {
+	accessGroupIdsField []int32
+
+	accessGroupsField []*AccessGroup
+
 	alertBodyTemplateField string
 
 	alertEffectiveIvalField *int32
@@ -61,6 +65,26 @@ type RestAwsOrganizationalHealthEventSource struct {
 
 	// The polling interval for the EventSource
 	Schedule int32 `json:"schedule,omitempty"`
+}
+
+// AccessGroupIds gets the access group ids of this subtype
+func (m *RestAwsOrganizationalHealthEventSource) AccessGroupIds() []int32 {
+	return m.accessGroupIdsField
+}
+
+// SetAccessGroupIds sets the access group ids of this subtype
+func (m *RestAwsOrganizationalHealthEventSource) SetAccessGroupIds(val []int32) {
+	m.accessGroupIdsField = val
+}
+
+// AccessGroups gets the access groups of this subtype
+func (m *RestAwsOrganizationalHealthEventSource) AccessGroups() []*AccessGroup {
+	return m.accessGroupsField
+}
+
+// SetAccessGroups sets the access groups of this subtype
+func (m *RestAwsOrganizationalHealthEventSource) SetAccessGroups(val []*AccessGroup) {
+	m.accessGroupsField = val
 }
 
 // AlertBodyTemplate gets the alert body template of this subtype
@@ -280,6 +304,10 @@ func (m *RestAwsOrganizationalHealthEventSource) UnmarshalJSON(raw []byte) error
 	var base struct {
 		/* Just the base type fields. Used for unmashalling polymorphic types.*/
 
+		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
 		AlertBodyTemplate string `json:"alertBodyTemplate,omitempty"`
 
 		AlertEffectiveIval *int32 `json:"alertEffectiveIval"`
@@ -329,6 +357,10 @@ func (m *RestAwsOrganizationalHealthEventSource) UnmarshalJSON(raw []byte) error
 	}
 
 	var result RestAwsOrganizationalHealthEventSource
+
+	result.accessGroupIdsField = base.AccessGroupIds
+
+	result.accessGroupsField = base.AccessGroups
 
 	result.alertBodyTemplateField = base.AlertBodyTemplate
 
@@ -395,6 +427,10 @@ func (m RestAwsOrganizationalHealthEventSource) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	b2, err = json.Marshal(struct {
+		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
 		AlertBodyTemplate string `json:"alertBodyTemplate,omitempty"`
 
 		AlertEffectiveIval *int32 `json:"alertEffectiveIval"`
@@ -435,6 +471,10 @@ func (m RestAwsOrganizationalHealthEventSource) MarshalJSON() ([]byte, error) {
 
 		Version int64 `json:"version,omitempty"`
 	}{
+
+		AccessGroupIds: m.AccessGroupIds(),
+
+		AccessGroups: m.AccessGroups(),
 
 		AlertBodyTemplate: m.AlertBodyTemplate(),
 
@@ -487,6 +527,14 @@ func (m RestAwsOrganizationalHealthEventSource) MarshalJSON() ([]byte, error) {
 func (m *RestAwsOrganizationalHealthEventSource) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAccessGroupIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAccessGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAlertEffectiveIval(formats); err != nil {
 		res = append(res, err)
 	}
@@ -506,6 +554,46 @@ func (m *RestAwsOrganizationalHealthEventSource) Validate(formats strfmt.Registr
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *RestAwsOrganizationalHealthEventSource) validateAccessGroupIds(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AccessGroupIds()) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("accessGroupIds", "body", m.AccessGroupIds()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *RestAwsOrganizationalHealthEventSource) validateAccessGroups(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AccessGroups()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AccessGroups()); i++ {
+		if swag.IsZero(m.accessGroupsField[i]) { // not required
+			continue
+		}
+
+		if m.accessGroupsField[i] != nil {
+			if err := m.accessGroupsField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -533,6 +621,8 @@ func (m *RestAwsOrganizationalHealthEventSource) validateFilters(formats strfmt.
 			if err := m.filtersField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -553,6 +643,8 @@ func (m *RestAwsOrganizationalHealthEventSource) validateInstallationMetadata(fo
 		if err := m.InstallationMetadata().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}
@@ -573,6 +665,10 @@ func (m *RestAwsOrganizationalHealthEventSource) validateName(formats strfmt.Reg
 // ContextValidate validate this rest aws organizational health event source based on the context it is used
 func (m *RestAwsOrganizationalHealthEventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateAccessGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
 		res = append(res, err)
@@ -608,6 +704,31 @@ func (m *RestAwsOrganizationalHealthEventSource) ContextValidate(ctx context.Con
 	return nil
 }
 
+func (m *RestAwsOrganizationalHealthEventSource) contextValidateAccessGroups(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AccessGroups()); i++ {
+
+		if m.accessGroupsField[i] != nil {
+
+			if swag.IsZero(m.accessGroupsField[i]) { // not required
+				return nil
+			}
+
+			if err := m.accessGroupsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *RestAwsOrganizationalHealthEventSource) contextValidateAuditVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "auditVersion", "body", int64(m.AuditVersion())); err != nil {
@@ -631,9 +752,16 @@ func (m *RestAwsOrganizationalHealthEventSource) contextValidateFilters(ctx cont
 	for i := 0; i < len(m.Filters()); i++ {
 
 		if m.filtersField[i] != nil {
+
+			if swag.IsZero(m.filtersField[i]) { // not required
+				return nil
+			}
+
 			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -656,9 +784,16 @@ func (m *RestAwsOrganizationalHealthEventSource) contextValidateID(ctx context.C
 func (m *RestAwsOrganizationalHealthEventSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstallationMetadata() != nil {
+
+		if swag.IsZero(m.InstallationMetadata()) { // not required
+			return nil
+		}
+
 		if err := m.InstallationMetadata().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}

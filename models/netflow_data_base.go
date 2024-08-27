@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -68,7 +67,7 @@ func UnmarshalNetflowDataBaseSlice(reader io.Reader, consumer runtime.Consumer) 
 // UnmarshalNetflowDataBase unmarshals polymorphic NetflowDataBase
 func UnmarshalNetflowDataBase(reader io.Reader, consumer runtime.Consumer) (NetflowDataBase, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}

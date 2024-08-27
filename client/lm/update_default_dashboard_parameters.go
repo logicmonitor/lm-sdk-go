@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewUpdateDefaultDashboardParams creates a new UpdateDefaultDashboardParams object,
@@ -54,10 +54,12 @@ func NewUpdateDefaultDashboardParamsWithHTTPClient(client *http.Client) *UpdateD
 	}
 }
 
-/* UpdateDefaultDashboardParams contains all the parameters to send to the API endpoint
-   for the update default dashboard operation.
+/*
+UpdateDefaultDashboardParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update default dashboard operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateDefaultDashboardParams struct {
 

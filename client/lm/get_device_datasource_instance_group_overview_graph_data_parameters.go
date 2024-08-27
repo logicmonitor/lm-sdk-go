@@ -53,10 +53,12 @@ func NewGetDeviceDatasourceInstanceGroupOverviewGraphDataParamsWithHTTPClient(cl
 	}
 }
 
-/* GetDeviceDatasourceInstanceGroupOverviewGraphDataParams contains all the parameters to send to the API endpoint
-   for the get device datasource instance group overview graph data operation.
+/*
+GetDeviceDatasourceInstanceGroupOverviewGraphDataParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device datasource instance group overview graph data operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceInstanceGroupOverviewGraphDataParams struct {
 

@@ -53,10 +53,12 @@ func NewGetReportByIDJSONParamsWithHTTPClient(client *http.Client) *GetReportByI
 	}
 }
 
-/* GetReportByIDJSONParams contains all the parameters to send to the API endpoint
-   for the get report by Id Json operation.
+/*
+GetReportByIDJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get report by Id Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetReportByIDJSONParams struct {
 

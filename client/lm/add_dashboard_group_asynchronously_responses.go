@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // AddDashboardGroupAsynchronouslyReader is a Reader for the AddDashboardGroupAsynchronously structure.
@@ -54,7 +55,8 @@ func NewAddDashboardGroupAsynchronouslyOK() *AddDashboardGroupAsynchronouslyOK {
 	return &AddDashboardGroupAsynchronouslyOK{}
 }
 
-/* AddDashboardGroupAsynchronouslyOK describes a response with status code 200, with default header values.
+/*
+AddDashboardGroupAsynchronouslyOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type AddDashboardGroupAsynchronouslyOK struct {
 	Payload *models.RestDashboardGroupAsyncCloneResponse
 }
 
-func (o *AddDashboardGroupAsynchronouslyOK) Error() string {
-	return fmt.Sprintf("[POST /dashboard/groups/{id}/asyncclone][%d] addDashboardGroupAsynchronouslyOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this add dashboard group asynchronously o k response has a 2xx status code
+func (o *AddDashboardGroupAsynchronouslyOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this add dashboard group asynchronously o k response has a 3xx status code
+func (o *AddDashboardGroupAsynchronouslyOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add dashboard group asynchronously o k response has a 4xx status code
+func (o *AddDashboardGroupAsynchronouslyOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this add dashboard group asynchronously o k response has a 5xx status code
+func (o *AddDashboardGroupAsynchronouslyOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add dashboard group asynchronously o k response a status code equal to that given
+func (o *AddDashboardGroupAsynchronouslyOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the add dashboard group asynchronously o k response
+func (o *AddDashboardGroupAsynchronouslyOK) Code() int {
+	return 200
+}
+
+func (o *AddDashboardGroupAsynchronouslyOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/groups/{id}/asyncclone][%d] addDashboardGroupAsynchronouslyOK %s", 200, payload)
+}
+
+func (o *AddDashboardGroupAsynchronouslyOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/groups/{id}/asyncclone][%d] addDashboardGroupAsynchronouslyOK %s", 200, payload)
+}
+
 func (o *AddDashboardGroupAsynchronouslyOK) GetPayload() *models.RestDashboardGroupAsyncCloneResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewAddDashboardGroupAsynchronouslyTooManyRequests() *AddDashboardGroupAsync
 	return &AddDashboardGroupAsynchronouslyTooManyRequests{}
 }
 
-/* AddDashboardGroupAsynchronouslyTooManyRequests describes a response with status code 429, with default header values.
+/*
+AddDashboardGroupAsynchronouslyTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type AddDashboardGroupAsynchronouslyTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this add dashboard group asynchronously too many requests response has a 2xx status code
+func (o *AddDashboardGroupAsynchronouslyTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this add dashboard group asynchronously too many requests response has a 3xx status code
+func (o *AddDashboardGroupAsynchronouslyTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this add dashboard group asynchronously too many requests response has a 4xx status code
+func (o *AddDashboardGroupAsynchronouslyTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this add dashboard group asynchronously too many requests response has a 5xx status code
+func (o *AddDashboardGroupAsynchronouslyTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this add dashboard group asynchronously too many requests response a status code equal to that given
+func (o *AddDashboardGroupAsynchronouslyTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the add dashboard group asynchronously too many requests response
+func (o *AddDashboardGroupAsynchronouslyTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *AddDashboardGroupAsynchronouslyTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /dashboard/groups/{id}/asyncclone][%d] addDashboardGroupAsynchronouslyTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /dashboard/groups/{id}/asyncclone][%d] addDashboardGroupAsynchronouslyTooManyRequests", 429)
+}
+
+func (o *AddDashboardGroupAsynchronouslyTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /dashboard/groups/{id}/asyncclone][%d] addDashboardGroupAsynchronouslyTooManyRequests", 429)
 }
 
 func (o *AddDashboardGroupAsynchronouslyTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewAddDashboardGroupAsynchronouslyDefault(code int) *AddDashboardGroupAsync
 	}
 }
 
-/* AddDashboardGroupAsynchronouslyDefault describes a response with status code -1, with default header values.
+/*
+AddDashboardGroupAsynchronouslyDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type AddDashboardGroupAsynchronouslyDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this add dashboard group asynchronously default response has a 2xx status code
+func (o *AddDashboardGroupAsynchronouslyDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this add dashboard group asynchronously default response has a 3xx status code
+func (o *AddDashboardGroupAsynchronouslyDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this add dashboard group asynchronously default response has a 4xx status code
+func (o *AddDashboardGroupAsynchronouslyDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this add dashboard group asynchronously default response has a 5xx status code
+func (o *AddDashboardGroupAsynchronouslyDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this add dashboard group asynchronously default response a status code equal to that given
+func (o *AddDashboardGroupAsynchronouslyDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the add dashboard group asynchronously default response
 func (o *AddDashboardGroupAsynchronouslyDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *AddDashboardGroupAsynchronouslyDefault) Error() string {
-	return fmt.Sprintf("[POST /dashboard/groups/{id}/asyncclone][%d] addDashboardGroupAsynchronously default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/groups/{id}/asyncclone][%d] addDashboardGroupAsynchronously default %s", o._statusCode, payload)
 }
+
+func (o *AddDashboardGroupAsynchronouslyDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /dashboard/groups/{id}/asyncclone][%d] addDashboardGroupAsynchronously default %s", o._statusCode, payload)
+}
+
 func (o *AddDashboardGroupAsynchronouslyDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

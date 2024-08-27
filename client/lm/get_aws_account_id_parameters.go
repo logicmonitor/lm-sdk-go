@@ -52,10 +52,12 @@ func NewGetAwsAccountIDParamsWithHTTPClient(client *http.Client) *GetAwsAccountI
 	}
 }
 
-/* GetAwsAccountIDParams contains all the parameters to send to the API endpoint
-   for the get aws account Id operation.
+/*
+GetAwsAccountIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get aws account Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAwsAccountIDParams struct {
 

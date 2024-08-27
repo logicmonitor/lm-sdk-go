@@ -16,7 +16,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewPatchAppliesToFunctionParams creates a new PatchAppliesToFunctionParams object,
@@ -55,10 +55,12 @@ func NewPatchAppliesToFunctionParamsWithHTTPClient(client *http.Client) *PatchAp
 	}
 }
 
-/* PatchAppliesToFunctionParams contains all the parameters to send to the API endpoint
-   for the patch applies to function operation.
+/*
+PatchAppliesToFunctionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch applies to function operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchAppliesToFunctionParams struct {
 

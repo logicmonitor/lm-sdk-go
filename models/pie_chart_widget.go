@@ -355,6 +355,8 @@ func (m *PieChartWidget) validatePieChartInfo(formats strfmt.Registry) error {
 		if err := m.PieChartInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("pieChartInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pieChartInfo")
 			}
 			return err
 		}
@@ -419,9 +421,12 @@ func (m *PieChartWidget) contextValidateUserPermission(ctx context.Context, form
 func (m *PieChartWidget) contextValidatePieChartInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.PieChartInfo != nil {
+
 		if err := m.PieChartInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("pieChartInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("pieChartInfo")
 			}
 			return err
 		}

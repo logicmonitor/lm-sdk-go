@@ -239,6 +239,8 @@ func (m *SNMPAutoDiscoveryMethod) validateILP(formats strfmt.Registry) error {
 			if err := m.ILP[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ILP" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ILP" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -295,9 +297,16 @@ func (m *SNMPAutoDiscoveryMethod) contextValidateILP(ctx context.Context, format
 	for i := 0; i < len(m.ILP); i++ {
 
 		if m.ILP[i] != nil {
+
+			if swag.IsZero(m.ILP[i]) { // not required
+				return nil
+			}
+
 			if err := m.ILP[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ILP" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ILP" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

@@ -15,7 +15,7 @@ import (
 	cr "github.com/go-openapi/runtime/client"
 	"github.com/go-openapi/strfmt"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // NewAddSDTParams creates a new AddSDTParams object,
@@ -54,10 +54,12 @@ func NewAddSDTParamsWithHTTPClient(client *http.Client) *AddSDTParams {
 	}
 }
 
-/* AddSDTParams contains all the parameters to send to the API endpoint
-   for the add SDT operation.
+/*
+AddSDTParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add SDT operation.
+
+	Typically these are written to a http.Request.
 */
 type AddSDTParams struct {
 

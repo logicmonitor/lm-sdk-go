@@ -53,10 +53,12 @@ func NewGetDebugCommandResultJSONParamsWithHTTPClient(client *http.Client) *GetD
 	}
 }
 
-/* GetDebugCommandResultJSONParams contains all the parameters to send to the API endpoint
-   for the get debug command result Json operation.
+/*
+GetDebugCommandResultJSONParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get debug command result Json operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDebugCommandResultJSONParams struct {
 

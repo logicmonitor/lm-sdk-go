@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetEventSourceListJSONReader is a Reader for the GetEventSourceListJSON structure.
@@ -54,7 +55,8 @@ func NewGetEventSourceListJSONOK() *GetEventSourceListJSONOK {
 	return &GetEventSourceListJSONOK{}
 }
 
-/* GetEventSourceListJSONOK describes a response with status code 200, with default header values.
+/*
+GetEventSourceListJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetEventSourceListJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetEventSourceListJSONOK) Error() string {
-	return fmt.Sprintf("[GET /setting/eventsources?__json=][%d] getEventSourceListJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get event source list Json o k response has a 2xx status code
+func (o *GetEventSourceListJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get event source list Json o k response has a 3xx status code
+func (o *GetEventSourceListJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get event source list Json o k response has a 4xx status code
+func (o *GetEventSourceListJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get event source list Json o k response has a 5xx status code
+func (o *GetEventSourceListJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get event source list Json o k response a status code equal to that given
+func (o *GetEventSourceListJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get event source list Json o k response
+func (o *GetEventSourceListJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetEventSourceListJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/eventsources?__json=][%d] getEventSourceListJsonOK %s", 200, payload)
+}
+
+func (o *GetEventSourceListJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/eventsources?__json=][%d] getEventSourceListJsonOK %s", 200, payload)
+}
+
 func (o *GetEventSourceListJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetEventSourceListJSONTooManyRequests() *GetEventSourceListJSONTooManyRe
 	return &GetEventSourceListJSONTooManyRequests{}
 }
 
-/* GetEventSourceListJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetEventSourceListJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetEventSourceListJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get event source list Json too many requests response has a 2xx status code
+func (o *GetEventSourceListJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get event source list Json too many requests response has a 3xx status code
+func (o *GetEventSourceListJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get event source list Json too many requests response has a 4xx status code
+func (o *GetEventSourceListJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get event source list Json too many requests response has a 5xx status code
+func (o *GetEventSourceListJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get event source list Json too many requests response a status code equal to that given
+func (o *GetEventSourceListJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get event source list Json too many requests response
+func (o *GetEventSourceListJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetEventSourceListJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /setting/eventsources?__json=][%d] getEventSourceListJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /setting/eventsources?__json=][%d] getEventSourceListJsonTooManyRequests", 429)
+}
+
+func (o *GetEventSourceListJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /setting/eventsources?__json=][%d] getEventSourceListJsonTooManyRequests", 429)
 }
 
 func (o *GetEventSourceListJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetEventSourceListJSONDefault(code int) *GetEventSourceListJSONDefault {
 	}
 }
 
-/* GetEventSourceListJSONDefault describes a response with status code -1, with default header values.
+/*
+GetEventSourceListJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetEventSourceListJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get event source list Json default response has a 2xx status code
+func (o *GetEventSourceListJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get event source list Json default response has a 3xx status code
+func (o *GetEventSourceListJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get event source list Json default response has a 4xx status code
+func (o *GetEventSourceListJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get event source list Json default response has a 5xx status code
+func (o *GetEventSourceListJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get event source list Json default response a status code equal to that given
+func (o *GetEventSourceListJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get event source list Json default response
 func (o *GetEventSourceListJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetEventSourceListJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /setting/eventsources?__json=][%d] getEventSourceListJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/eventsources?__json=][%d] getEventSourceListJson default %s", o._statusCode, payload)
 }
+
+func (o *GetEventSourceListJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /setting/eventsources?__json=][%d] getEventSourceListJson default %s", o._statusCode, payload)
+}
+
 func (o *GetEventSourceListJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

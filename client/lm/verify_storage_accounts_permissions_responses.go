@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // VerifyStorageAccountsPermissionsReader is a Reader for the VerifyStorageAccountsPermissions structure.
@@ -54,7 +55,8 @@ func NewVerifyStorageAccountsPermissionsOK() *VerifyStorageAccountsPermissionsOK
 	return &VerifyStorageAccountsPermissionsOK{}
 }
 
-/* VerifyStorageAccountsPermissionsOK describes a response with status code 200, with default header values.
+/*
+VerifyStorageAccountsPermissionsOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type VerifyStorageAccountsPermissionsOK struct {
 	Payload *models.RestResponse
 }
 
-func (o *VerifyStorageAccountsPermissionsOK) Error() string {
-	return fmt.Sprintf("[POST /azure/functions/verifyStorageAccountsPermissions][%d] verifyStorageAccountsPermissionsOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this verify storage accounts permissions o k response has a 2xx status code
+func (o *VerifyStorageAccountsPermissionsOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this verify storage accounts permissions o k response has a 3xx status code
+func (o *VerifyStorageAccountsPermissionsOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this verify storage accounts permissions o k response has a 4xx status code
+func (o *VerifyStorageAccountsPermissionsOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this verify storage accounts permissions o k response has a 5xx status code
+func (o *VerifyStorageAccountsPermissionsOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this verify storage accounts permissions o k response a status code equal to that given
+func (o *VerifyStorageAccountsPermissionsOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the verify storage accounts permissions o k response
+func (o *VerifyStorageAccountsPermissionsOK) Code() int {
+	return 200
+}
+
+func (o *VerifyStorageAccountsPermissionsOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/verifyStorageAccountsPermissions][%d] verifyStorageAccountsPermissionsOK %s", 200, payload)
+}
+
+func (o *VerifyStorageAccountsPermissionsOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/verifyStorageAccountsPermissions][%d] verifyStorageAccountsPermissionsOK %s", 200, payload)
+}
+
 func (o *VerifyStorageAccountsPermissionsOK) GetPayload() *models.RestResponse {
 	return o.Payload
 }
@@ -86,7 +125,8 @@ func NewVerifyStorageAccountsPermissionsTooManyRequests() *VerifyStorageAccounts
 	return &VerifyStorageAccountsPermissionsTooManyRequests{}
 }
 
-/* VerifyStorageAccountsPermissionsTooManyRequests describes a response with status code 429, with default header values.
+/*
+VerifyStorageAccountsPermissionsTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -105,8 +145,42 @@ type VerifyStorageAccountsPermissionsTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this verify storage accounts permissions too many requests response has a 2xx status code
+func (o *VerifyStorageAccountsPermissionsTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this verify storage accounts permissions too many requests response has a 3xx status code
+func (o *VerifyStorageAccountsPermissionsTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this verify storage accounts permissions too many requests response has a 4xx status code
+func (o *VerifyStorageAccountsPermissionsTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this verify storage accounts permissions too many requests response has a 5xx status code
+func (o *VerifyStorageAccountsPermissionsTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this verify storage accounts permissions too many requests response a status code equal to that given
+func (o *VerifyStorageAccountsPermissionsTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the verify storage accounts permissions too many requests response
+func (o *VerifyStorageAccountsPermissionsTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *VerifyStorageAccountsPermissionsTooManyRequests) Error() string {
-	return fmt.Sprintf("[POST /azure/functions/verifyStorageAccountsPermissions][%d] verifyStorageAccountsPermissionsTooManyRequests ", 429)
+	return fmt.Sprintf("[POST /azure/functions/verifyStorageAccountsPermissions][%d] verifyStorageAccountsPermissionsTooManyRequests", 429)
+}
+
+func (o *VerifyStorageAccountsPermissionsTooManyRequests) String() string {
+	return fmt.Sprintf("[POST /azure/functions/verifyStorageAccountsPermissions][%d] verifyStorageAccountsPermissionsTooManyRequests", 429)
 }
 
 func (o *VerifyStorageAccountsPermissionsTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -154,7 +228,8 @@ func NewVerifyStorageAccountsPermissionsDefault(code int) *VerifyStorageAccounts
 	}
 }
 
-/* VerifyStorageAccountsPermissionsDefault describes a response with status code -1, with default header values.
+/*
+VerifyStorageAccountsPermissionsDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -164,14 +239,46 @@ type VerifyStorageAccountsPermissionsDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this verify storage accounts permissions default response has a 2xx status code
+func (o *VerifyStorageAccountsPermissionsDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this verify storage accounts permissions default response has a 3xx status code
+func (o *VerifyStorageAccountsPermissionsDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this verify storage accounts permissions default response has a 4xx status code
+func (o *VerifyStorageAccountsPermissionsDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this verify storage accounts permissions default response has a 5xx status code
+func (o *VerifyStorageAccountsPermissionsDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this verify storage accounts permissions default response a status code equal to that given
+func (o *VerifyStorageAccountsPermissionsDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the verify storage accounts permissions default response
 func (o *VerifyStorageAccountsPermissionsDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *VerifyStorageAccountsPermissionsDefault) Error() string {
-	return fmt.Sprintf("[POST /azure/functions/verifyStorageAccountsPermissions][%d] verifyStorageAccountsPermissions default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/verifyStorageAccountsPermissions][%d] verifyStorageAccountsPermissions default %s", o._statusCode, payload)
 }
+
+func (o *VerifyStorageAccountsPermissionsDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[POST /azure/functions/verifyStorageAccountsPermissions][%d] verifyStorageAccountsPermissions default %s", o._statusCode, payload)
+}
+
 func (o *VerifyStorageAccountsPermissionsDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

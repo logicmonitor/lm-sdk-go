@@ -76,6 +76,8 @@ func (m *BigNumberInfo) validateBigNumberItems(formats strfmt.Registry) error {
 			if err := m.BigNumberItems[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("bigNumberItems" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("bigNumberItems" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -100,6 +102,8 @@ func (m *BigNumberInfo) validateCounters(formats strfmt.Registry) error {
 			if err := m.Counters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -125,6 +129,8 @@ func (m *BigNumberInfo) validateDataPoints(formats strfmt.Registry) error {
 			if err := m.DataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -149,6 +155,8 @@ func (m *BigNumberInfo) validateVirtualDataPoints(formats strfmt.Registry) error
 			if err := m.VirtualDataPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -190,9 +198,16 @@ func (m *BigNumberInfo) contextValidateBigNumberItems(ctx context.Context, forma
 	for i := 0; i < len(m.BigNumberItems); i++ {
 
 		if m.BigNumberItems[i] != nil {
+
+			if swag.IsZero(m.BigNumberItems[i]) { // not required
+				return nil
+			}
+
 			if err := m.BigNumberItems[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("bigNumberItems" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("bigNumberItems" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -208,9 +223,16 @@ func (m *BigNumberInfo) contextValidateCounters(ctx context.Context, formats str
 	for i := 0; i < len(m.Counters); i++ {
 
 		if m.Counters[i] != nil {
+
+			if swag.IsZero(m.Counters[i]) { // not required
+				return nil
+			}
+
 			if err := m.Counters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("counters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("counters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -226,9 +248,16 @@ func (m *BigNumberInfo) contextValidateDataPoints(ctx context.Context, formats s
 	for i := 0; i < len(m.DataPoints); i++ {
 
 		if m.DataPoints[i] != nil {
+
+			if swag.IsZero(m.DataPoints[i]) { // not required
+				return nil
+			}
+
 			if err := m.DataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -244,9 +273,16 @@ func (m *BigNumberInfo) contextValidateVirtualDataPoints(ctx context.Context, fo
 	for i := 0; i < len(m.VirtualDataPoints); i++ {
 
 		if m.VirtualDataPoints[i] != nil {
+
+			if swag.IsZero(m.VirtualDataPoints[i]) { // not required
+				return nil
+			}
+
 			if err := m.VirtualDataPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("virtualDataPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

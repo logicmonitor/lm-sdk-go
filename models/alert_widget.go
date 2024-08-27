@@ -368,6 +368,8 @@ func (m *AlertWidget) validateFilters(formats strfmt.Registry) error {
 		if err := m.Filters.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("filters")
 			}
 			return err
 		}
@@ -386,6 +388,8 @@ func (m *AlertWidget) validateParsedFilters(formats strfmt.Registry) error {
 		if err := m.ParsedFilters.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parsedFilters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parsedFilters")
 			}
 			return err
 		}
@@ -454,9 +458,16 @@ func (m *AlertWidget) contextValidateUserPermission(ctx context.Context, formats
 func (m *AlertWidget) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Filters != nil {
+
+		if swag.IsZero(m.Filters) { // not required
+			return nil
+		}
+
 		if err := m.Filters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("filters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("filters")
 			}
 			return err
 		}
@@ -468,9 +479,16 @@ func (m *AlertWidget) contextValidateFilters(ctx context.Context, formats strfmt
 func (m *AlertWidget) contextValidateParsedFilters(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.ParsedFilters != nil {
+
+		if swag.IsZero(m.ParsedFilters) { // not required
+			return nil
+		}
+
 		if err := m.ParsedFilters.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("parsedFilters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parsedFilters")
 			}
 			return err
 		}

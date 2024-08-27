@@ -421,6 +421,8 @@ func (m *GoogleMapWidget) validateMapPoints(formats strfmt.Registry) error {
 			if err := m.MapPoints[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mapPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("mapPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -489,9 +491,16 @@ func (m *GoogleMapWidget) contextValidateMapPoints(ctx context.Context, formats 
 	for i := 0; i < len(m.MapPoints); i++ {
 
 		if m.MapPoints[i] != nil {
+
+			if swag.IsZero(m.MapPoints[i]) { // not required
+				return nil
+			}
+
 			if err := m.MapPoints[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("mapPoints" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("mapPoints" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

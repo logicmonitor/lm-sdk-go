@@ -52,10 +52,12 @@ func NewGetIntegrationAuditLogsParamsWithHTTPClient(client *http.Client) *GetInt
 	}
 }
 
-/* GetIntegrationAuditLogsParams contains all the parameters to send to the API endpoint
-   for the get integration audit logs operation.
+/*
+GetIntegrationAuditLogsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get integration audit logs operation.
+
+	Typically these are written to a http.Request.
 */
 type GetIntegrationAuditLogsParams struct {
 

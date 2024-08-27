@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 
-	"github.com/logicmonitor/lm-sdk-go/models"
+	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
 
 // GetWebsiteCheckpointDataByIDJSONReader is a Reader for the GetWebsiteCheckpointDataByIDJSON structure.
@@ -54,7 +55,8 @@ func NewGetWebsiteCheckpointDataByIDJSONOK() *GetWebsiteCheckpointDataByIDJSONOK
 	return &GetWebsiteCheckpointDataByIDJSONOK{}
 }
 
-/* GetWebsiteCheckpointDataByIDJSONOK describes a response with status code 200, with default header values.
+/*
+GetWebsiteCheckpointDataByIDJSONOK describes a response with status code 200, with default header values.
 
 successful operation
 */
@@ -62,9 +64,46 @@ type GetWebsiteCheckpointDataByIDJSONOK struct {
 	Payload interface{}
 }
 
-func (o *GetWebsiteCheckpointDataByIDJSONOK) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{srvId}/checkpoints/{checkId}/data?__json=][%d] getWebsiteCheckpointDataByIdJsonOK  %+v", 200, o.Payload)
+// IsSuccess returns true when this get website checkpoint data by Id Json o k response has a 2xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONOK) IsSuccess() bool {
+	return true
 }
+
+// IsRedirect returns true when this get website checkpoint data by Id Json o k response has a 3xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONOK) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website checkpoint data by Id Json o k response has a 4xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONOK) IsClientError() bool {
+	return false
+}
+
+// IsServerError returns true when this get website checkpoint data by Id Json o k response has a 5xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONOK) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website checkpoint data by Id Json o k response a status code equal to that given
+func (o *GetWebsiteCheckpointDataByIDJSONOK) IsCode(code int) bool {
+	return code == 200
+}
+
+// Code gets the status code for the get website checkpoint data by Id Json o k response
+func (o *GetWebsiteCheckpointDataByIDJSONOK) Code() int {
+	return 200
+}
+
+func (o *GetWebsiteCheckpointDataByIDJSONOK) Error() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{srvId}/checkpoints/{checkId}/data?__json=][%d] getWebsiteCheckpointDataByIdJsonOK %s", 200, payload)
+}
+
+func (o *GetWebsiteCheckpointDataByIDJSONOK) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{srvId}/checkpoints/{checkId}/data?__json=][%d] getWebsiteCheckpointDataByIdJsonOK %s", 200, payload)
+}
+
 func (o *GetWebsiteCheckpointDataByIDJSONOK) GetPayload() interface{} {
 	return o.Payload
 }
@@ -84,7 +123,8 @@ func NewGetWebsiteCheckpointDataByIDJSONTooManyRequests() *GetWebsiteCheckpointD
 	return &GetWebsiteCheckpointDataByIDJSONTooManyRequests{}
 }
 
-/* GetWebsiteCheckpointDataByIDJSONTooManyRequests describes a response with status code 429, with default header values.
+/*
+GetWebsiteCheckpointDataByIDJSONTooManyRequests describes a response with status code 429, with default header values.
 
 Too Many Requests
 */
@@ -103,8 +143,42 @@ type GetWebsiteCheckpointDataByIDJSONTooManyRequests struct {
 	XRateLimitWindow int64
 }
 
+// IsSuccess returns true when this get website checkpoint data by Id Json too many requests response has a 2xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONTooManyRequests) IsSuccess() bool {
+	return false
+}
+
+// IsRedirect returns true when this get website checkpoint data by Id Json too many requests response has a 3xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONTooManyRequests) IsRedirect() bool {
+	return false
+}
+
+// IsClientError returns true when this get website checkpoint data by Id Json too many requests response has a 4xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONTooManyRequests) IsClientError() bool {
+	return true
+}
+
+// IsServerError returns true when this get website checkpoint data by Id Json too many requests response has a 5xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONTooManyRequests) IsServerError() bool {
+	return false
+}
+
+// IsCode returns true when this get website checkpoint data by Id Json too many requests response a status code equal to that given
+func (o *GetWebsiteCheckpointDataByIDJSONTooManyRequests) IsCode(code int) bool {
+	return code == 429
+}
+
+// Code gets the status code for the get website checkpoint data by Id Json too many requests response
+func (o *GetWebsiteCheckpointDataByIDJSONTooManyRequests) Code() int {
+	return 429
+}
+
 func (o *GetWebsiteCheckpointDataByIDJSONTooManyRequests) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{srvId}/checkpoints/{checkId}/data?__json=][%d] getWebsiteCheckpointDataByIdJsonTooManyRequests ", 429)
+	return fmt.Sprintf("[GET /website/websites/{srvId}/checkpoints/{checkId}/data?__json=][%d] getWebsiteCheckpointDataByIdJsonTooManyRequests", 429)
+}
+
+func (o *GetWebsiteCheckpointDataByIDJSONTooManyRequests) String() string {
+	return fmt.Sprintf("[GET /website/websites/{srvId}/checkpoints/{checkId}/data?__json=][%d] getWebsiteCheckpointDataByIdJsonTooManyRequests", 429)
 }
 
 func (o *GetWebsiteCheckpointDataByIDJSONTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -152,7 +226,8 @@ func NewGetWebsiteCheckpointDataByIDJSONDefault(code int) *GetWebsiteCheckpointD
 	}
 }
 
-/* GetWebsiteCheckpointDataByIDJSONDefault describes a response with status code -1, with default header values.
+/*
+GetWebsiteCheckpointDataByIDJSONDefault describes a response with status code -1, with default header values.
 
 Error
 */
@@ -162,14 +237,46 @@ type GetWebsiteCheckpointDataByIDJSONDefault struct {
 	Payload *models.ErrorResponse
 }
 
+// IsSuccess returns true when this get website checkpoint data by Id Json default response has a 2xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONDefault) IsSuccess() bool {
+	return o._statusCode/100 == 2
+}
+
+// IsRedirect returns true when this get website checkpoint data by Id Json default response has a 3xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONDefault) IsRedirect() bool {
+	return o._statusCode/100 == 3
+}
+
+// IsClientError returns true when this get website checkpoint data by Id Json default response has a 4xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONDefault) IsClientError() bool {
+	return o._statusCode/100 == 4
+}
+
+// IsServerError returns true when this get website checkpoint data by Id Json default response has a 5xx status code
+func (o *GetWebsiteCheckpointDataByIDJSONDefault) IsServerError() bool {
+	return o._statusCode/100 == 5
+}
+
+// IsCode returns true when this get website checkpoint data by Id Json default response a status code equal to that given
+func (o *GetWebsiteCheckpointDataByIDJSONDefault) IsCode(code int) bool {
+	return o._statusCode == code
+}
+
 // Code gets the status code for the get website checkpoint data by Id Json default response
 func (o *GetWebsiteCheckpointDataByIDJSONDefault) Code() int {
 	return o._statusCode
 }
 
 func (o *GetWebsiteCheckpointDataByIDJSONDefault) Error() string {
-	return fmt.Sprintf("[GET /website/websites/{srvId}/checkpoints/{checkId}/data?__json=][%d] getWebsiteCheckpointDataByIdJson default  %+v", o._statusCode, o.Payload)
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{srvId}/checkpoints/{checkId}/data?__json=][%d] getWebsiteCheckpointDataByIdJson default %s", o._statusCode, payload)
 }
+
+func (o *GetWebsiteCheckpointDataByIDJSONDefault) String() string {
+	payload, _ := json.Marshal(o.Payload)
+	return fmt.Sprintf("[GET /website/websites/{srvId}/checkpoints/{checkId}/data?__json=][%d] getWebsiteCheckpointDataByIdJson default %s", o._statusCode, payload)
+}
+
 func (o *GetWebsiteCheckpointDataByIDJSONDefault) GetPayload() *models.ErrorResponse {
 	return o.Payload
 }

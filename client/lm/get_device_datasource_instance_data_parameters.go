@@ -53,10 +53,12 @@ func NewGetDeviceDatasourceInstanceDataParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* GetDeviceDatasourceInstanceDataParams contains all the parameters to send to the API endpoint
-   for the get device datasource instance data operation.
+/*
+GetDeviceDatasourceInstanceDataParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device datasource instance data operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceInstanceDataParams struct {
 
