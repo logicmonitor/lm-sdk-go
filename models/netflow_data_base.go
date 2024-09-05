@@ -122,20 +122,8 @@ func unmarshalNetflowDataBase(data []byte, consumer runtime.Consumer) (NetflowDa
 			return nil, err
 		}
 		return &result, nil
-	case "endpoint":
-		var result NetflowEndpoint
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
 	case "groupFlowRecord":
 		var result GroupNetFlowRecord
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
-	case "port":
-		var result NetflowPort
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

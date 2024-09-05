@@ -8,7 +8,6 @@ package models
 import (
 	"context"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -48,7 +47,7 @@ type ConfigCheck struct {
 	OriginID string `json:"originId,omitempty"`
 
 	// The ConfigCheck script
-	Script *JSONObject `json:"script,omitempty"`
+	Script interface{} `json:"script,omitempty"`
 
 	// The ConfigCheck type. The values can be fetch|ignore|missing|value|groovy
 	Type string `json:"type,omitempty"`
@@ -56,69 +55,11 @@ type ConfigCheck struct {
 
 // Validate validates this config check
 func (m *ConfigCheck) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateScript(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
 	return nil
 }
 
-func (m *ConfigCheck) validateScript(formats strfmt.Registry) error {
-	if swag.IsZero(m.Script) { // not required
-		return nil
-	}
-
-	if m.Script != nil {
-		if err := m.Script.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("script")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("script")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this config check based on the context it is used
+// ContextValidate validates this config check based on context it is used
 func (m *ConfigCheck) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.contextValidateScript(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *ConfigCheck) contextValidateScript(ctx context.Context, formats strfmt.Registry) error {
-
-	if m.Script != nil {
-
-		if swag.IsZero(m.Script) { // not required
-			return nil
-		}
-
-		if err := m.Script.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("script")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("script")
-			}
-			return err
-		}
-	}
-
 	return nil
 }
 

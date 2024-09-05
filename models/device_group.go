@@ -163,6 +163,10 @@ type DeviceGroup struct {
 	// Example: 1
 	ParentID int32 `json:"parentId,omitempty"`
 
+	// Warning message if Parent Property of system.tenant.identifier is changed for a group
+	// Read Only: true
+	PropertyChangeWarningMessage string `json:"propertyChangeWarningMessage,omitempty"`
+
 	// The role privilege operations for the device group that are granted to the user that made this API request
 	// Read Only: true
 	RolePrivileges []string `json:"rolePrivileges,omitempty"`
@@ -464,6 +468,10 @@ func (m *DeviceGroup) ContextValidate(ctx context.Context, formats strfmt.Regist
 	}
 
 	if err := m.contextValidateNumOfKubernetesDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePropertyChangeWarningMessage(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -773,6 +781,15 @@ func (m *DeviceGroup) contextValidateNumOfHosts(ctx context.Context, formats str
 func (m *DeviceGroup) contextValidateNumOfKubernetesDevices(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "numOfKubernetesDevices", "body", int64(m.NumOfKubernetesDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceGroup) contextValidatePropertyChangeWarningMessage(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "propertyChangeWarningMessage", "body", string(m.PropertyChangeWarningMessage)); err != nil {
 		return err
 	}
 
