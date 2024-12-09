@@ -27,6 +27,9 @@ type LogsInfo struct {
 	// Required: true
 	LogsDataType *string `json:"logsDataType"`
 
+	// partitions
+	Partitions []string `json:"partitions,omitempty"`
+
 	// The query is used for saving the logs query expression
 	Query string `json:"query,omitempty"`
 

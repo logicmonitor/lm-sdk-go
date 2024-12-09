@@ -47,6 +47,9 @@ type Device struct {
 	// Read Only: true
 	CollectorDescription string `json:"collectorDescription,omitempty"`
 
+	// request contains multi value field
+	ContainsMultiValue bool `json:"containsMultiValue,omitempty"`
+
 	// The time, in epoch seconds format, that the device was added to your LogicMonitor account
 	// Read Only: true
 	CreatedOn int64 `json:"createdOn,omitempty"`

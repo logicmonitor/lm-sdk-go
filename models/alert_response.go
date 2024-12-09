@@ -137,6 +137,10 @@ type AlertResponse struct {
 	// Read Only: true
 	LogMetaData string `json:"logMetaData,omitempty"`
 
+	// Specified log alert partition information
+	// Read Only: true
+	LogPartition string `json:"logPartition,omitempty"`
+
 	// Information about the groups the object is a member of
 	// Read Only: true
 	MonitorObjectGroups interface{} `json:"monitorObjectGroups,omitempty"`
@@ -364,6 +368,10 @@ func (m *AlertResponse) ContextValidate(ctx context.Context, formats strfmt.Regi
 	}
 
 	if err := m.contextValidateLogMetaData(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLogPartition(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -702,6 +710,15 @@ func (m *AlertResponse) contextValidateInternalID(ctx context.Context, formats s
 func (m *AlertResponse) contextValidateLogMetaData(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "logMetaData", "body", string(m.LogMetaData)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertResponse) contextValidateLogPartition(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "logPartition", "body", string(m.LogPartition)); err != nil {
 		return err
 	}
 

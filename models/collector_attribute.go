@@ -98,6 +98,12 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 			return nil, err
 		}
 		return &result, nil
+	case "ArubaCentralCollectorAttribute":
+		var result ArubaCentralCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "AwsEbsVolumeSnapshotCollectorAttributeV3":
 		var result AwsEbsVolumeSnapshotCollectorAttributeV3
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -238,6 +244,12 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 		return &result, nil
 	case "AzureResourceUsageCollectorAttribute":
 		var result AzureResourceUsageCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AzureUpdateManagerCollectorAttribute":
+		var result AzureUpdateManagerCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

@@ -22,20 +22,25 @@ import (
 type VizFilterItem struct {
 
 	// inclusion type
+	// Read Only: true
 	// Enum: ["INCLUDE","EXCLUDE"]
 	InclusionType string `json:"inclusionType,omitempty"`
 
 	// label
+	// Read Only: true
 	Label string `json:"label,omitempty"`
 
 	// name
+	// Read Only: true
 	Name string `json:"name,omitempty"`
 
 	// type
+	// Read Only: true
 	// Enum: ["SYNONYM","RESOURCE_PROPERTY"]
 	Type string `json:"type,omitempty"`
 
 	// value
+	// Read Only: true
 	Value []*LabelValuePair `json:"value,omitempty"`
 }
 
@@ -175,6 +180,22 @@ func (m *VizFilterItem) validateValue(formats strfmt.Registry) error {
 func (m *VizFilterItem) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateInclusionType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLabel(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateType(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateValue(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -185,7 +206,47 @@ func (m *VizFilterItem) ContextValidate(ctx context.Context, formats strfmt.Regi
 	return nil
 }
 
+func (m *VizFilterItem) contextValidateInclusionType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "inclusionType", "body", string(m.InclusionType)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VizFilterItem) contextValidateLabel(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "label", "body", string(m.Label)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VizFilterItem) contextValidateName(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "name", "body", string(m.Name)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *VizFilterItem) contextValidateType(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "type", "body", string(m.Type)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *VizFilterItem) contextValidateValue(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "value", "body", []*LabelValuePair(m.Value)); err != nil {
+		return err
+	}
 
 	for i := 0; i < len(m.Value); i++ {
 

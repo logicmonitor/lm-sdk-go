@@ -41,6 +41,9 @@ type RestAwsAccountTestV3 struct {
 	// group Id
 	GroupID int32 `json:"groupId,omitempty"`
 
+	// is billing accept opt in warnings
+	IsBillingAcceptOptInWarnings bool `json:"isBillingAcceptOptInWarnings,omitempty"`
+
 	// new billing bucket
 	NewBillingBucket string `json:"newBillingBucket,omitempty"`
 

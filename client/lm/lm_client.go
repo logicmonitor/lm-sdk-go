@@ -351,6 +351,35 @@ func (a *Client) AddConfigSource(params *AddConfigSourceParams) (*AddConfigSourc
 }
 
 /*
+AddDNSMapping adds dns mapping
+*/
+func (a *Client) AddDNSMapping(params *AddDNSMappingParams) (*AddDNSMappingOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddDNSMappingParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addDNSMapping",
+		Method:             "POST",
+		PathPattern:        "/setting/dnsmappings",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddDNSMappingReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddDNSMappingOK), nil
+
+}
+
+/*
 AddDashboard adds dashboard
 */
 func (a *Client) AddDashboard(params *AddDashboardParams) (*AddDashboardOK, error) {
@@ -753,6 +782,35 @@ func (a *Client) AddJobMonitor(params *AddJobMonitorParams) (*AddJobMonitorOK, e
 		return nil, err
 	}
 	return result.(*AddJobMonitorOK), nil
+
+}
+
+/*
+AddLogSource adds log source
+*/
+func (a *Client) AddLogSource(params *AddLogSourceParams) (*AddLogSourceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddLogSourceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addLogSource",
+		Method:             "POST",
+		PathPattern:        "/setting/logsources",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddLogSourceReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddLogSourceOK), nil
 
 }
 
@@ -1163,6 +1221,35 @@ func (a *Client) CollectDeviceConfigSourceConfig(params *CollectDeviceConfigSour
 }
 
 /*
+CreateLogPartition creates a new log partition
+*/
+func (a *Client) CreateLogPartition(params *CreateLogPartitionParams) (*CreateLogPartitionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewCreateLogPartitionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "createLogPartition",
+		Method:             "POST",
+		PathPattern:        "/log/partitions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &CreateLogPartitionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*CreateLogPartitionOK), nil
+
+}
+
+/*
 DeleteAccessGroup deletes access group
 */
 func (a *Client) DeleteAccessGroup(params *DeleteAccessGroupParams) (*DeleteAccessGroupOK, error) {
@@ -1246,6 +1333,64 @@ func (a *Client) DeleteAlertRuleByID(params *DeleteAlertRuleByIDParams) (*Delete
 		return nil, err
 	}
 	return result.(*DeleteAlertRuleByIDOK), nil
+
+}
+
+/*
+DeleteAPITokenByID deletes api token
+*/
+func (a *Client) DeleteAPITokenByID(params *DeleteAPITokenByIDParams) (*DeleteAPITokenByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteAPITokenByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteApiTokenById",
+		Method:             "DELETE",
+		PathPattern:        "/setting/admins/{adminId}/apitokens/{apitokenId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteAPITokenByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteAPITokenByIDOK), nil
+
+}
+
+/*
+DeleteAppliesToFunctionByID deletes applies to function
+*/
+func (a *Client) DeleteAppliesToFunctionByID(params *DeleteAppliesToFunctionByIDParams) (*DeleteAppliesToFunctionByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteAppliesToFunctionByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteAppliesToFunctionById",
+		Method:             "DELETE",
+		PathPattern:        "/setting/functions/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteAppliesToFunctionByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteAppliesToFunctionByIDOK), nil
 
 }
 
@@ -1598,6 +1743,35 @@ func (a *Client) DeleteDevicePropertyByName(params *DeleteDevicePropertyByNamePa
 }
 
 /*
+DeleteEscalationChainByID deletes escalation chain
+*/
+func (a *Client) DeleteEscalationChainByID(params *DeleteEscalationChainByIDParams) (*DeleteEscalationChainByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteEscalationChainByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteEscalationChainById",
+		Method:             "DELETE",
+		PathPattern:        "/setting/alert/chains/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteEscalationChainByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteEscalationChainByIDOK), nil
+
+}
+
+/*
 DeleteEventSourceByID deletes event source by id
 */
 func (a *Client) DeleteEventSourceByID(params *DeleteEventSourceByIDParams) (*DeleteEventSourceByIDOK, error) {
@@ -1656,6 +1830,93 @@ func (a *Client) DeleteJobMonitor(params *DeleteJobMonitorParams) (*DeleteJobMon
 }
 
 /*
+DeleteLogPartitionByID deletes a log partition by ID
+*/
+func (a *Client) DeleteLogPartitionByID(params *DeleteLogPartitionByIDParams) (*DeleteLogPartitionByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteLogPartitionByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteLogPartitionById",
+		Method:             "DELETE",
+		PathPattern:        "/log/partitions/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteLogPartitionByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteLogPartitionByIDOK), nil
+
+}
+
+/*
+DeleteLogSource deletes log source
+*/
+func (a *Client) DeleteLogSource(params *DeleteLogSourceParams) (*DeleteLogSourceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteLogSourceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteLogSource",
+		Method:             "DELETE",
+		PathPattern:        "/setting/logsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteLogSourceReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteLogSourceOK), nil
+
+}
+
+/*
+DeleteNetscanByID deletes a netscan
+*/
+func (a *Client) DeleteNetscanByID(params *DeleteNetscanByIDParams) (*DeleteNetscanByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteNetscanByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteNetscanById",
+		Method:             "DELETE",
+		PathPattern:        "/setting/netscans/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteNetscanByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteNetscanByIDOK), nil
+
+}
+
+/*
 DeleteOID deletes a o ID
 */
 func (a *Client) DeleteOID(params *DeleteOIDParams) (*DeleteOIDOK, error) {
@@ -1685,6 +1946,35 @@ func (a *Client) DeleteOID(params *DeleteOIDParams) (*DeleteOIDOK, error) {
 }
 
 /*
+DeleteOpsNoteByID deletes opsnote
+*/
+func (a *Client) DeleteOpsNoteByID(params *DeleteOpsNoteByIDParams) (*DeleteOpsNoteByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteOpsNoteByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteOpsNoteById",
+		Method:             "DELETE",
+		PathPattern:        "/setting/opsnotes/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteOpsNoteByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteOpsNoteByIDOK), nil
+
+}
+
+/*
 DeletePropertyRule deletes a property rule
 */
 func (a *Client) DeletePropertyRule(params *DeletePropertyRuleParams) (*DeletePropertyRuleOK, error) {
@@ -1710,6 +2000,35 @@ func (a *Client) DeletePropertyRule(params *DeletePropertyRuleParams) (*DeletePr
 		return nil, err
 	}
 	return result.(*DeletePropertyRuleOK), nil
+
+}
+
+/*
+DeleteRecipientGroupByID deletes recipient group
+*/
+func (a *Client) DeleteRecipientGroupByID(params *DeleteRecipientGroupByIDParams) (*DeleteRecipientGroupByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteRecipientGroupByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteRecipientGroupById",
+		Method:             "DELETE",
+		PathPattern:        "/setting/recipientgroups/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteRecipientGroupByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteRecipientGroupByIDOK), nil
 
 }
 
@@ -2729,6 +3048,64 @@ func (a *Client) GetAlertRuleListJSON(params *GetAlertRuleListJSONParams) (*GetA
 }
 
 /*
+GetAllLogPartitions retrieves a list of all log partitions
+*/
+func (a *Client) GetAllLogPartitions(params *GetAllLogPartitionsParams) (*GetAllLogPartitionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllLogPartitionsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAllLogPartitions",
+		Method:             "GET",
+		PathPattern:        "/log/partitions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllLogPartitionsReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAllLogPartitionsOK), nil
+
+}
+
+/*
+GetAllLogPartitionsJSON retrieves a list of all log partitions raw response
+*/
+func (a *Client) GetAllLogPartitionsJSON(params *GetAllLogPartitionsJSONParams) (*GetAllLogPartitionsJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAllLogPartitionsJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAllLogPartitionsJson",
+		Method:             "GET",
+		PathPattern:        "/log/partitions?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAllLogPartitionsJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAllLogPartitionsJSONOK), nil
+
+}
+
+/*
 GetAllSDTListByDeviceID gets s d ts for a device
 */
 func (a *Client) GetAllSDTListByDeviceID(params *GetAllSDTListByDeviceIDParams) (*GetAllSDTListByDeviceIDOK, error) {
@@ -3131,6 +3508,64 @@ func (a *Client) GetAssociatedDeviceListByDataSourceIDJSON(params *GetAssociated
 		return nil, err
 	}
 	return result.(*GetAssociatedDeviceListByDataSourceIDJSONOK), nil
+
+}
+
+/*
+GetAuditLogByID gets audit log by id
+*/
+func (a *Client) GetAuditLogByID(params *GetAuditLogByIDParams) (*GetAuditLogByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAuditLogByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAuditLogById",
+		Method:             "GET",
+		PathPattern:        "/setting/accesslogs/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAuditLogByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAuditLogByIDOK), nil
+
+}
+
+/*
+GetAuditLogByIDJSON gets audit log by id raw response
+*/
+func (a *Client) GetAuditLogByIDJSON(params *GetAuditLogByIDJSONParams) (*GetAuditLogByIDJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetAuditLogByIDJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getAuditLogByIdJson",
+		Method:             "GET",
+		PathPattern:        "/setting/accesslogs/{id}?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetAuditLogByIDJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetAuditLogByIDJSONOK), nil
 
 }
 
@@ -3773,6 +4208,64 @@ func (a *Client) GetConfigSourceListJSON(params *GetConfigSourceListJSONParams) 
 }
 
 /*
+GetContractInfoByCompany gets contract info by company
+*/
+func (a *Client) GetContractInfoByCompany(params *GetContractInfoByCompanyParams) (*GetContractInfoByCompanyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetContractInfoByCompanyParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getContractInfoByCompany",
+		Method:             "GET",
+		PathPattern:        "/usage/contractInfo",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetContractInfoByCompanyReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetContractInfoByCompanyOK), nil
+
+}
+
+/*
+GetContractInfoByCompanyJSON gets contract info by company raw response
+*/
+func (a *Client) GetContractInfoByCompanyJSON(params *GetContractInfoByCompanyJSONParams) (*GetContractInfoByCompanyJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetContractInfoByCompanyJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getContractInfoByCompanyJson",
+		Method:             "GET",
+		PathPattern:        "/usage/contractInfo?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetContractInfoByCompanyJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetContractInfoByCompanyJSONOK), nil
+
+}
+
+/*
 GetDashboardByID gets dashboard
 */
 func (a *Client) GetDashboardByID(params *GetDashboardByIDParams) (*GetDashboardByIDOK, error) {
@@ -4001,6 +4494,64 @@ func (a *Client) GetDashboardListJSON(params *GetDashboardListJSONParams) (*GetD
 		return nil, err
 	}
 	return result.(*GetDashboardListJSONOK), nil
+
+}
+
+/*
+GetDataSourceOverviewGraphByID gets datasource overview graph by id
+*/
+func (a *Client) GetDataSourceOverviewGraphByID(params *GetDataSourceOverviewGraphByIDParams) (*GetDataSourceOverviewGraphByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDataSourceOverviewGraphByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDataSourceOverviewGraphById",
+		Method:             "GET",
+		PathPattern:        "/setting/datasources/{dsId}/ographs/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDataSourceOverviewGraphByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDataSourceOverviewGraphByIDOK), nil
+
+}
+
+/*
+GetDataSourceOverviewGraphByIDJSON gets datasource overview graph by id raw response
+*/
+func (a *Client) GetDataSourceOverviewGraphByIDJSON(params *GetDataSourceOverviewGraphByIDJSONParams) (*GetDataSourceOverviewGraphByIDJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDataSourceOverviewGraphByIDJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDataSourceOverviewGraphByIdJson",
+		Method:             "GET",
+		PathPattern:        "/setting/datasources/{dsId}/ographs/{id}?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDataSourceOverviewGraphByIDJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDataSourceOverviewGraphByIDJSONOK), nil
 
 }
 
@@ -6789,6 +7340,122 @@ func (a *Client) GetJobMonitorListJSON(params *GetJobMonitorListJSONParams) (*Ge
 }
 
 /*
+GetLogSourceByID gets log source
+*/
+func (a *Client) GetLogSourceByID(params *GetLogSourceByIDParams) (*GetLogSourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLogSourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLogSourceById",
+		Method:             "GET",
+		PathPattern:        "/setting/logsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLogSourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetLogSourceByIDOK), nil
+
+}
+
+/*
+GetLogSourceByIDJSON gets log source raw response
+*/
+func (a *Client) GetLogSourceByIDJSON(params *GetLogSourceByIDJSONParams) (*GetLogSourceByIDJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLogSourceByIDJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLogSourceByIdJson",
+		Method:             "GET",
+		PathPattern:        "/setting/logsources/{id}?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLogSourceByIDJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetLogSourceByIDJSONOK), nil
+
+}
+
+/*
+GetLogSourceList gets log source list
+*/
+func (a *Client) GetLogSourceList(params *GetLogSourceListParams) (*GetLogSourceListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLogSourceListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLogSourceList",
+		Method:             "GET",
+		PathPattern:        "/setting/logsources",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLogSourceListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetLogSourceListOK), nil
+
+}
+
+/*
+GetLogSourceListJSON gets log source list raw response
+*/
+func (a *Client) GetLogSourceListJSON(params *GetLogSourceListJSONParams) (*GetLogSourceListJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetLogSourceListJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getLogSourceListJson",
+		Method:             "GET",
+		PathPattern:        "/setting/logsources?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetLogSourceListJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetLogSourceListJSONOK), nil
+
+}
+
+/*
 GetMetricsUsage gets metrics usage
 */
 func (a *Client) GetMetricsUsage(params *GetMetricsUsageParams) (*GetMetricsUsageOK, error) {
@@ -7253,6 +7920,64 @@ func (a *Client) GetOidByIDJSON(params *GetOidByIDJSONParams) (*GetOidByIDJSONOK
 }
 
 /*
+GetOpsNoteByID gets opsnote by id
+*/
+func (a *Client) GetOpsNoteByID(params *GetOpsNoteByIDParams) (*GetOpsNoteByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOpsNoteByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getOpsNoteById",
+		Method:             "GET",
+		PathPattern:        "/setting/opsnotes/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOpsNoteByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetOpsNoteByIDOK), nil
+
+}
+
+/*
+GetOpsNoteByIDJSON gets opsnote by id raw response
+*/
+func (a *Client) GetOpsNoteByIDJSON(params *GetOpsNoteByIDJSONParams) (*GetOpsNoteByIDJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetOpsNoteByIDJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getOpsNoteByIdJson",
+		Method:             "GET",
+		PathPattern:        "/setting/opsnotes/{id}?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetOpsNoteByIDJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetOpsNoteByIDJSONOK), nil
+
+}
+
+/*
 GetOpsNoteList gets opsnote list
 */
 func (a *Client) GetOpsNoteList(params *GetOpsNoteListParams) (*GetOpsNoteListOK, error) {
@@ -7307,6 +8032,64 @@ func (a *Client) GetOpsNoteListJSON(params *GetOpsNoteListJSONParams) (*GetOpsNo
 		return nil, err
 	}
 	return result.(*GetOpsNoteListJSONOK), nil
+
+}
+
+/*
+GetPartitionByID retrieves details of a specific log partition
+*/
+func (a *Client) GetPartitionByID(params *GetPartitionByIDParams) (*GetPartitionByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPartitionByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPartitionById",
+		Method:             "GET",
+		PathPattern:        "/log/partitions/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPartitionByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetPartitionByIDOK), nil
+
+}
+
+/*
+GetPartitionByIDJSON retrieves details of a specific log partition raw response
+*/
+func (a *Client) GetPartitionByIDJSON(params *GetPartitionByIDJSONParams) (*GetPartitionByIDJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetPartitionByIDJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getPartitionByIdJson",
+		Method:             "GET",
+		PathPattern:        "/log/partitions/{id}?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetPartitionByIDJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetPartitionByIDJSONOK), nil
 
 }
 
@@ -7775,6 +8558,64 @@ func (a *Client) GetReportListJSON(params *GetReportListJSONParams) (*GetReportL
 }
 
 /*
+GetRetentionList retrieves the list of log retentions
+*/
+func (a *Client) GetRetentionList(params *GetRetentionListParams) (*GetRetentionListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRetentionListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRetentionList",
+		Method:             "GET",
+		PathPattern:        "/log/partitions/retentions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRetentionListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRetentionListOK), nil
+
+}
+
+/*
+GetRetentionListJSON retrieves the list of log retentions raw response
+*/
+func (a *Client) GetRetentionListJSON(params *GetRetentionListJSONParams) (*GetRetentionListJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRetentionListJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRetentionListJson",
+		Method:             "GET",
+		PathPattern:        "/log/partitions/retentions?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRetentionListJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRetentionListJSONOK), nil
+
+}
+
+/*
 GetRoleByID gets role by id
 */
 func (a *Client) GetRoleByID(params *GetRoleByIDParams) (*GetRoleByIDOK, error) {
@@ -8061,6 +8902,64 @@ func (a *Client) GetSDTHistoryByDeviceIDJSON(params *GetSDTHistoryByDeviceIDJSON
 		return nil, err
 	}
 	return result.(*GetSDTHistoryByDeviceIDJSONOK), nil
+
+}
+
+/*
+GetSDTHistoryByWebsiteGroupID gets SDT history for the website group response may contain extra fields depending upon the type of SDT
+*/
+func (a *Client) GetSDTHistoryByWebsiteGroupID(params *GetSDTHistoryByWebsiteGroupIDParams) (*GetSDTHistoryByWebsiteGroupIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSDTHistoryByWebsiteGroupIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSDTHistoryByWebsiteGroupId",
+		Method:             "GET",
+		PathPattern:        "/website/groups/{id}/historysdts",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSDTHistoryByWebsiteGroupIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetSDTHistoryByWebsiteGroupIDOK), nil
+
+}
+
+/*
+GetSDTHistoryByWebsiteGroupIDJSON gets SDT history for the website group response may contain extra fields depending upon the type of SDT raw response
+*/
+func (a *Client) GetSDTHistoryByWebsiteGroupIDJSON(params *GetSDTHistoryByWebsiteGroupIDJSONParams) (*GetSDTHistoryByWebsiteGroupIDJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetSDTHistoryByWebsiteGroupIDJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getSDTHistoryByWebsiteGroupIdJson",
+		Method:             "GET",
+		PathPattern:        "/website/groups/{id}/historysdts?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetSDTHistoryByWebsiteGroupIDJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetSDTHistoryByWebsiteGroupIDJSONOK), nil
 
 }
 
@@ -8641,6 +9540,64 @@ func (a *Client) GetUpdateReasonListByDataSourceIDJSON(params *GetUpdateReasonLi
 		return nil, err
 	}
 	return result.(*GetUpdateReasonListByDataSourceIDJSONOK), nil
+
+}
+
+/*
+GetV4Metadata gets metadata
+*/
+func (a *Client) GetV4Metadata(params *GetV4MetadataParams) (*GetV4MetadataOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetV4MetadataParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getV4Metadata",
+		Method:             "GET",
+		PathPattern:        "/setting/logicmodules/metadata",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetV4MetadataReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetV4MetadataOK), nil
+
+}
+
+/*
+GetV4MetadataJSON gets metadata raw response
+*/
+func (a *Client) GetV4MetadataJSON(params *GetV4MetadataJSONParams) (*GetV4MetadataJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetV4MetadataJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getV4MetadataJson",
+		Method:             "GET",
+		PathPattern:        "/setting/logicmodules/metadata?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetV4MetadataJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetV4MetadataJSONOK), nil
 
 }
 
@@ -9457,6 +10414,122 @@ func (a *Client) GetWidgetListJSON(params *GetWidgetListJSONParams) (*GetWidgetL
 }
 
 /*
+ImportBatchJob imports batch job via xml
+*/
+func (a *Client) ImportBatchJob(params *ImportBatchJobParams) (*ImportBatchJobOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportBatchJobParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importBatchJob",
+		Method:             "POST",
+		PathPattern:        "/setting/batchjobs/importxml",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportBatchJobReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportBatchJobOK), nil
+
+}
+
+/*
+ImportConfigSource imports config source via xml
+*/
+func (a *Client) ImportConfigSource(params *ImportConfigSourceParams) (*ImportConfigSourceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportConfigSourceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importConfigSource",
+		Method:             "POST",
+		PathPattern:        "/setting/configsources/importxml",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportConfigSourceReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportConfigSourceOK), nil
+
+}
+
+/*
+ImportDataSource imports datasource via xml
+*/
+func (a *Client) ImportDataSource(params *ImportDataSourceParams) (*ImportDataSourceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportDataSourceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importDataSource",
+		Method:             "POST",
+		PathPattern:        "/setting/datasources/importxml",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportDataSourceReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportDataSourceOK), nil
+
+}
+
+/*
+ImportEventSource imports eventsource via xml
+*/
+func (a *Client) ImportEventSource(params *ImportEventSourceParams) (*ImportEventSourceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportEventSourceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importEventSource",
+		Method:             "POST",
+		PathPattern:        "/setting/eventsources/importxml",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportEventSourceReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportEventSourceOK), nil
+
+}
+
+/*
 MapUnMapModuleToAccessGroup creates a mapping of access group and module
 */
 func (a *Client) MapUnMapModuleToAccessGroup(params *MapUnMapModuleToAccessGroupParams) (*MapUnMapModuleToAccessGroupOK, error) {
@@ -9482,6 +10555,35 @@ func (a *Client) MapUnMapModuleToAccessGroup(params *MapUnMapModuleToAccessGroup
 		return nil, err
 	}
 	return result.(*MapUnMapModuleToAccessGroupOK), nil
+
+}
+
+/*
+PartitionAction performs an action on a specified log partition
+*/
+func (a *Client) PartitionAction(params *PartitionActionParams) (*PartitionActionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPartitionActionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "partitionAction",
+		Method:             "POST",
+		PathPattern:        "/log/partitions/{id}/{action}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PartitionActionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PartitionActionOK), nil
 
 }
 
@@ -9569,6 +10671,35 @@ func (a *Client) PatchAlertRuleByID(params *PatchAlertRuleByIDParams) (*PatchAle
 		return nil, err
 	}
 	return result.(*PatchAlertRuleByIDOK), nil
+
+}
+
+/*
+PatchAPITokenByAdminID updates api tokens for a user
+*/
+func (a *Client) PatchAPITokenByAdminID(params *PatchAPITokenByAdminIDParams) (*PatchAPITokenByAdminIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchAPITokenByAdminIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchApiTokenByAdminId",
+		Method:             "PATCH",
+		PathPattern:        "/setting/admins/{adminId}/apitokens/{apitokenId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchAPITokenByAdminIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchAPITokenByAdminIDOK), nil
 
 }
 
@@ -10186,6 +11317,93 @@ func (a *Client) PatchJobMonitor(params *PatchJobMonitorParams) (*PatchJobMonito
 }
 
 /*
+PatchLogPartition updates an existing log partition
+*/
+func (a *Client) PatchLogPartition(params *PatchLogPartitionParams) (*PatchLogPartitionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchLogPartitionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchLogPartition",
+		Method:             "PATCH",
+		PathPattern:        "/log/partitions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchLogPartitionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchLogPartitionOK), nil
+
+}
+
+/*
+PatchLogSource updates log source
+*/
+func (a *Client) PatchLogSource(params *PatchLogSourceParams) (*PatchLogSourceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchLogSourceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchLogSource",
+		Method:             "PATCH",
+		PathPattern:        "/setting/logsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchLogSourceReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchLogSourceOK), nil
+
+}
+
+/*
+PatchNetscan updates a netscan
+*/
+func (a *Client) PatchNetscan(params *PatchNetscanParams) (*PatchNetscanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchNetscanParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchNetscan",
+		Method:             "PATCH",
+		PathPattern:        "/setting/netscans/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchNetscanReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchNetscanOK), nil
+
+}
+
+/*
 PatchOID updates a o ID
 */
 func (a *Client) PatchOID(params *PatchOIDParams) (*PatchOIDOK, error) {
@@ -10211,6 +11429,35 @@ func (a *Client) PatchOID(params *PatchOIDParams) (*PatchOIDOK, error) {
 		return nil, err
 	}
 	return result.(*PatchOIDOK), nil
+
+}
+
+/*
+PatchOpsNoteByID updates opsnote
+*/
+func (a *Client) PatchOpsNoteByID(params *PatchOpsNoteByIDParams) (*PatchOpsNoteByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchOpsNoteByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchOpsNoteById",
+		Method:             "PATCH",
+		PathPattern:        "/setting/opsnotes/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchOpsNoteByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchOpsNoteByIDOK), nil
 
 }
 
@@ -10733,6 +11980,35 @@ func (a *Client) UpdateAlertRuleByID(params *UpdateAlertRuleByIDParams) (*Update
 		return nil, err
 	}
 	return result.(*UpdateAlertRuleByIDOK), nil
+
+}
+
+/*
+UpdateAPITokenByAdminID updates api tokens for a user
+*/
+func (a *Client) UpdateAPITokenByAdminID(params *UpdateAPITokenByAdminIDParams) (*UpdateAPITokenByAdminIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateAPITokenByAdminIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateApiTokenByAdminId",
+		Method:             "PUT",
+		PathPattern:        "/setting/admins/{adminId}/apitokens/{apitokenId}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateAPITokenByAdminIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateAPITokenByAdminIDOK), nil
 
 }
 
@@ -11379,6 +12655,93 @@ func (a *Client) UpdateJobMonitor(params *UpdateJobMonitorParams) (*UpdateJobMon
 }
 
 /*
+UpdateLogPartition updates an existing log partition
+*/
+func (a *Client) UpdateLogPartition(params *UpdateLogPartitionParams) (*UpdateLogPartitionOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateLogPartitionParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateLogPartition",
+		Method:             "PUT",
+		PathPattern:        "/log/partitions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateLogPartitionReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateLogPartitionOK), nil
+
+}
+
+/*
+UpdateLogSource updates log source
+*/
+func (a *Client) UpdateLogSource(params *UpdateLogSourceParams) (*UpdateLogSourceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateLogSourceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateLogSource",
+		Method:             "PUT",
+		PathPattern:        "/setting/logsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateLogSourceReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateLogSourceOK), nil
+
+}
+
+/*
+UpdateNetscan updates a netscan
+*/
+func (a *Client) UpdateNetscan(params *UpdateNetscanParams) (*UpdateNetscanOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateNetscanParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateNetscan",
+		Method:             "PUT",
+		PathPattern:        "/setting/netscans/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateNetscanReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateNetscanOK), nil
+
+}
+
+/*
 UpdateOID updates a o ID
 */
 func (a *Client) UpdateOID(params *UpdateOIDParams) (*UpdateOIDOK, error) {
@@ -11404,6 +12767,35 @@ func (a *Client) UpdateOID(params *UpdateOIDParams) (*UpdateOIDOK, error) {
 		return nil, err
 	}
 	return result.(*UpdateOIDOK), nil
+
+}
+
+/*
+UpdateOpsNoteByID updates opsnote
+*/
+func (a *Client) UpdateOpsNoteByID(params *UpdateOpsNoteByIDParams) (*UpdateOpsNoteByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateOpsNoteByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateOpsNoteById",
+		Method:             "PUT",
+		PathPattern:        "/setting/opsnotes/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateOpsNoteByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateOpsNoteByIDOK), nil
 
 }
 
@@ -11694,6 +13086,35 @@ func (a *Client) UpdateWidgetByID(params *UpdateWidgetByIDParams) (*UpdateWidget
 		return nil, err
 	}
 	return result.(*UpdateWidgetByIDOK), nil
+
+}
+
+/*
+VerifyAWSBillingPermissions verifies a w s billing permissions
+*/
+func (a *Client) VerifyAWSBillingPermissions(params *VerifyAWSBillingPermissionsParams) (*VerifyAWSBillingPermissionsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVerifyAWSBillingPermissionsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "verifyAWSBillingPermissions",
+		Method:             "POST",
+		PathPattern:        "/aws/functions/verifyBillingPermissions",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &VerifyAWSBillingPermissionsReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*VerifyAWSBillingPermissionsOK), nil
 
 }
 

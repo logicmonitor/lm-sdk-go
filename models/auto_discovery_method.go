@@ -93,6 +93,24 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 
 	// The value of name is used to determine which type to create and unmarshal the data into
 	switch getType.Name {
+	case "ArubaCentralIAPInterfaceDiscoveryMethod":
+		var result ArubaCentralIAPInterfaceDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "ArubaCentralIAPNetworkDiscoveryMethod":
+		var result ArubaCentralIAPNetworkDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "ArubaCentralIAPRadioDiscoveryMethod":
+		var result ArubaCentralIAPRadioDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "AutoDiscoveryMethod":
 		var result autoDiscoveryMethod
 		if err := consumer.Consume(buf2, &result); err != nil {

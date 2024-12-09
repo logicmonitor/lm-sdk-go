@@ -69,6 +69,10 @@ type Admin struct {
 	// Read Only: true
 	ImmediateForceLogout *bool `json:"immediateForceLogout,omitempty"`
 
+	// The time that the user last accessed the portal
+	// Read Only: true
+	LastAccessOn int64 `json:"lastAccessOn,omitempty"`
+
 	// The last action taken by the user
 	// Read Only: true
 	LastAction string `json:"lastAction,omitempty"`
@@ -293,6 +297,10 @@ func (m *Admin) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateLastAccessOn(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateLastAction(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -385,6 +393,15 @@ func (m *Admin) contextValidateID(ctx context.Context, formats strfmt.Registry) 
 func (m *Admin) contextValidateImmediateForceLogout(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "immediateForceLogout", "body", m.ImmediateForceLogout); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Admin) contextValidateLastAccessOn(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastAccessOn", "body", int64(m.LastAccessOn)); err != nil {
 		return err
 	}
 

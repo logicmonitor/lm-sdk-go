@@ -91,6 +91,9 @@ type Collector struct {
 	// Read Only: true
 	CollectorGroupName string `json:"collectorGroupName,omitempty"`
 
+	// collector list
+	CollectorList string `json:"collectorList,omitempty"`
+
 	// The size of the collector
 	// Read Only: true
 	CollectorSize string `json:"collectorSize,omitempty"`
@@ -151,6 +154,9 @@ type Collector struct {
 	// Read Only: true
 	EncodedConfigData string `json:"encodedConfigData,omitempty"`
 
+	// error msg
+	ErrorMsg string `json:"errorMsg,omitempty"`
+
 	// The Id of the escalation chain associated with this Collector
 	// Example: 80
 	EscalatingChainID int32 `json:"escalatingChainId,omitempty"`
@@ -174,6 +180,10 @@ type Collector struct {
 	// The SDT status of the collector
 	// Read Only: true
 	InSDT *bool `json:"inSDT,omitempty"`
+
+	// Whether Collector is using an administrative account
+	// Read Only: true
+	IsAdminAccount *bool `json:"isAdminAccount,omitempty"`
 
 	// Whether or not the Collector is currently down
 	// Read Only: true
@@ -590,6 +600,10 @@ func (m *Collector) ContextValidate(ctx context.Context, formats strfmt.Registry
 	}
 
 	if err := m.contextValidateInSDT(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIsAdminAccount(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -1042,6 +1056,15 @@ func (m *Collector) contextValidateID(ctx context.Context, formats strfmt.Regist
 func (m *Collector) contextValidateInSDT(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "inSDT", "body", m.InSDT); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Collector) contextValidateIsAdminAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "isAdminAccount", "body", m.IsAdminAccount); err != nil {
 		return err
 	}
 

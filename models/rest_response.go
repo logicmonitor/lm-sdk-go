@@ -34,6 +34,9 @@ type RestResponse struct {
 	// Read Only: true
 	Meta *RestResponseMetaBlock `json:"meta,omitempty"`
 
+	// non Id items
+	NonIDItems []interface{} `json:"nonIdItems,omitempty"`
+
 	// successes
 	// Read Only: true
 	Successes ArrayNode `json:"successes,omitempty"`

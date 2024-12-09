@@ -28,8 +28,8 @@ type AlertFilters struct {
 	// Enum: ["INCLUDE","EXCLUDE"]
 	DatapointsFilterMode string `json:"datapointsFilterMode,omitempty"`
 
-	// is ignored Sdt alerts
-	IsIgnoredSDTAlerts bool `json:"isIgnoredSdtAlerts,omitempty"`
+	// is ignore Sdt alerts
+	IsIgnoreSDTAlerts bool `json:"isIgnoreSdtAlerts,omitempty"`
 }
 
 // Validate validates this alert filters

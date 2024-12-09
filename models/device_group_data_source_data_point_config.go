@@ -72,6 +72,9 @@ type DeviceGroupDataSourceDataPointConfig struct {
 	// error ad adv setting
 	ErrorAdAdvSetting string `json:"errorAdAdvSetting,omitempty"`
 
+	// global ad adv setting enabled
+	GlobalAdAdvSettingEnabled bool `json:"globalAdAdvSettingEnabled,omitempty"`
+
 	// The count that the alert must exist for this many poll cycles before the alert will be cleared
 	// Example: 0
 	// Read Only: true
@@ -91,11 +94,20 @@ type DeviceGroupDataSourceDataPointConfig struct {
 	// Read Only: true
 	GlobalAlertTransitionInterval int32 `json:"globalAlertTransitionInterval,omitempty"`
 
+	// global critical ad adv setting
+	GlobalCriticalAdAdvSetting string `json:"globalCriticalAdAdvSetting,omitempty"`
+
 	// global enable anomaly alert generation
 	GlobalEnableAnomalyAlertGeneration string `json:"globalEnableAnomalyAlertGeneration,omitempty"`
 
 	// global enable anomaly alert suppression
 	GlobalEnableAnomalyAlertSuppression string `json:"globalEnableAnomalyAlertSuppression,omitempty"`
+
+	// global error ad adv setting
+	GlobalErrorAdAdvSetting string `json:"globalErrorAdAdvSetting,omitempty"`
+
+	// global warn ad adv setting
+	GlobalWarnAdAdvSetting string `json:"globalWarnAdAdvSetting,omitempty"`
 
 	// warn ad adv setting
 	WarnAdAdvSetting string `json:"warnAdAdvSetting,omitempty"`
