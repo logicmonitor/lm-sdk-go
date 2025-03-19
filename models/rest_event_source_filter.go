@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// RestEventSourceFilter rest event source filter
+// RestEventSourceFilter The filters for the EventSource
 //
 // swagger:model RestEventSourceFilter
 type RestEventSourceFilter struct {

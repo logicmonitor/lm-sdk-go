@@ -19,7 +19,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AutoDiscoveryConfiguration auto discovery configuration
+// AutoDiscoveryConfiguration Auto discovery configuration
 //
 // swagger:model AutoDiscoveryConfiguration
 type AutoDiscoveryConfiguration struct {
@@ -46,6 +46,9 @@ type AutoDiscoveryConfiguration struct {
 
 	// Auto discovery schedule interval in minutes. 0 means host or data source changed. The values can be 0|15|60|1440
 	ScheduleInterval int32 `json:"scheduleInterval,omitempty"`
+
+	// show deleted instance days
+	ShowDeletedInstanceDays int32 `json:"showDeletedInstanceDays,omitempty"`
 }
 
 // Method gets the method of this base type
@@ -76,6 +79,8 @@ func (m *AutoDiscoveryConfiguration) UnmarshalJSON(raw []byte) error {
 		PersistentInstance bool `json:"persistentInstance,omitempty"`
 
 		ScheduleInterval int32 `json:"scheduleInterval,omitempty"`
+
+		ShowDeletedInstanceDays int32 `json:"showDeletedInstanceDays,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -116,6 +121,9 @@ func (m *AutoDiscoveryConfiguration) UnmarshalJSON(raw []byte) error {
 	// scheduleInterval
 	result.ScheduleInterval = data.ScheduleInterval
 
+	// showDeletedInstanceDays
+	result.ShowDeletedInstanceDays = data.ShowDeletedInstanceDays
+
 	*m = result
 
 	return nil
@@ -139,6 +147,8 @@ func (m AutoDiscoveryConfiguration) MarshalJSON() ([]byte, error) {
 		PersistentInstance bool `json:"persistentInstance,omitempty"`
 
 		ScheduleInterval int32 `json:"scheduleInterval,omitempty"`
+
+		ShowDeletedInstanceDays int32 `json:"showDeletedInstanceDays,omitempty"`
 	}{
 
 		DeleteInactiveInstance: m.DeleteInactiveInstance,
@@ -154,6 +164,8 @@ func (m AutoDiscoveryConfiguration) MarshalJSON() ([]byte, error) {
 		PersistentInstance: m.PersistentInstance,
 
 		ScheduleInterval: m.ScheduleInterval,
+
+		ShowDeletedInstanceDays: m.ShowDeletedInstanceDays,
 	})
 	if err != nil {
 		return nil, err
@@ -203,6 +215,8 @@ func (m *AutoDiscoveryConfiguration) validateFilters(formats strfmt.Registry) er
 			if err := m.Filters[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -222,6 +236,8 @@ func (m *AutoDiscoveryConfiguration) validateMethod(formats strfmt.Registry) err
 	if err := m.Method().Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("method")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("method")
 		}
 		return err
 	}
@@ -252,9 +268,16 @@ func (m *AutoDiscoveryConfiguration) contextValidateFilters(ctx context.Context,
 	for i := 0; i < len(m.Filters); i++ {
 
 		if m.Filters[i] != nil {
+
+			if swag.IsZero(m.Filters[i]) { // not required
+				return nil
+			}
+
 			if err := m.Filters[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -270,6 +293,8 @@ func (m *AutoDiscoveryConfiguration) contextValidateMethod(ctx context.Context, 
 	if err := m.Method().ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("method")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("method")
 		}
 		return err
 	}

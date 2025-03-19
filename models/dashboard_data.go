@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DashboardData dashboard data
+// DashboardData The dashboards that belong to the group
 //
 // swagger:model DashboardData
 type DashboardData struct {

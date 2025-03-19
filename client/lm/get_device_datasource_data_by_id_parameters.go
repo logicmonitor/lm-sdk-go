@@ -53,10 +53,12 @@ func NewGetDeviceDatasourceDataByIDParamsWithHTTPClient(client *http.Client) *Ge
 	}
 }
 
-/* GetDeviceDatasourceDataByIDParams contains all the parameters to send to the API endpoint
-   for the get device datasource data by Id operation.
+/*
+GetDeviceDatasourceDataByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device datasource data by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceDataByIDParams struct {
 
@@ -67,9 +69,7 @@ type GetDeviceDatasourceDataByIDParams struct {
 
 	/* Aggregate.
 
-	   the aggregate option
-
-	   Default: "none"
+	   The aggregate option
 	*/
 	Aggregate *string
 
@@ -87,8 +87,6 @@ type GetDeviceDatasourceDataByIDParams struct {
 	End *int64
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -99,7 +97,6 @@ type GetDeviceDatasourceDataByIDParams struct {
 	// Period.
 	//
 	// Format: double
-	// Default: 1
 	Period *float64
 
 	// Start.
@@ -126,25 +123,10 @@ func (o *GetDeviceDatasourceDataByIDParams) WithDefaults() *GetDeviceDatasourceD
 func (o *GetDeviceDatasourceDataByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		aggregateDefault = string("none")
-
-		endDefault = int64(0)
-
-		formatDefault = string("json")
-
-		periodDefault = float64(1)
-
-		startDefault = int64(0)
 	)
 
 	val := GetDeviceDatasourceDataByIDParams{
 		UserAgent: &userAgentDefault,
-		Aggregate: &aggregateDefault,
-		End:       &endDefault,
-		Format:    &formatDefault,
-		Period:    &periodDefault,
-		Start:     &startDefault,
 	}
 
 	val.timeout = o.timeout

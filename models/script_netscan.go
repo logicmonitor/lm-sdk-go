@@ -605,6 +605,8 @@ func (m *ScriptNetscan) validateDuplicate(formats strfmt.Registry) error {
 		if err := m.Duplicate().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
@@ -632,6 +634,8 @@ func (m *ScriptNetscan) validateSchedule(formats strfmt.Registry) error {
 		if err := m.Schedule().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}
@@ -742,9 +746,12 @@ func (m *ScriptNetscan) contextValidateCreator(ctx context.Context, formats strf
 func (m *ScriptNetscan) contextValidateDuplicate(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Duplicate() != nil {
+
 		if err := m.Duplicate().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
@@ -792,9 +799,12 @@ func (m *ScriptNetscan) contextValidateNextStartEpoch(ctx context.Context, forma
 func (m *ScriptNetscan) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Schedule() != nil {
+
 		if err := m.Schedule().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}

@@ -53,10 +53,12 @@ func NewGetRecipientGroupListParamsWithHTTPClient(client *http.Client) *GetRecip
 	}
 }
 
-/* GetRecipientGroupListParams contains all the parameters to send to the API endpoint
-   for the get recipient group list operation.
+/*
+GetRecipientGroupListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get recipient group list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetRecipientGroupListParams struct {
 

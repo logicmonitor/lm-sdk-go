@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// RestSchedule rest schedule
+// RestSchedule Information related to the recurring execution schedule for the Netscan Policy
 //
 // swagger:model RestSchedule
 type RestSchedule struct {
@@ -26,7 +26,7 @@ type RestSchedule struct {
 	Notify bool `json:"notify,omitempty"`
 
 	// The recipients that should receive the notification of the scan finish
-	// Example: [\"sarah@logicmonitor.com\" ]
+	// Example: [user@domain.com ]
 	Recipients []string `json:"recipients,omitempty"`
 
 	// The timezone for the schedule

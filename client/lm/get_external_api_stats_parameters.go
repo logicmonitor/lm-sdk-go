@@ -52,10 +52,12 @@ func NewGetExternalAPIStatsParamsWithHTTPClient(client *http.Client) *GetExterna
 	}
 }
 
-/* GetExternalAPIStatsParams contains all the parameters to send to the API endpoint
-   for the get external Api stats operation.
+/*
+GetExternalAPIStatsParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get external Api stats operation.
+
+	Typically these are written to a http.Request.
 */
 type GetExternalAPIStatsParams struct {
 

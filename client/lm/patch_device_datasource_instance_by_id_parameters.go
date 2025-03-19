@@ -55,10 +55,12 @@ func NewPatchDeviceDatasourceInstanceByIDParamsWithHTTPClient(client *http.Clien
 	}
 }
 
-/* PatchDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
-   for the patch device datasource instance by Id operation.
+/*
+PatchDeviceDatasourceInstanceByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch device datasource instance by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDeviceDatasourceInstanceByIDParams struct {
 
@@ -89,8 +91,6 @@ type PatchDeviceDatasourceInstanceByIDParams struct {
 	ID int32
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	timeout    time.Duration
@@ -112,13 +112,10 @@ func (o *PatchDeviceDatasourceInstanceByIDParams) WithDefaults() *PatchDeviceDat
 func (o *PatchDeviceDatasourceInstanceByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := PatchDeviceDatasourceInstanceByIDParams{
 		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
 	}
 
 	val.timeout = o.timeout

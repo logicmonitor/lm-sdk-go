@@ -14,14 +14,14 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Recipient recipient
+// Recipient The chain's cc destinations
 //
 // swagger:model Recipient
 type Recipient struct {
 
 	// The recipient address.
 	// The value will be user name if method = admin, or the email address if method = arbitrary
-	// Example: john.doe@logicmonitor.com
+	// Example: user@domain.com
 	Addr string `json:"addr,omitempty"`
 
 	// Contact details, email address or phone number

@@ -55,10 +55,12 @@ func NewPatchDeviceParamsWithHTTPClient(client *http.Client) *PatchDeviceParams 
 	}
 }
 
-/* PatchDeviceParams contains all the parameters to send to the API endpoint
-   for the patch device operation.
+/*
+PatchDeviceParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch device operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDeviceParams struct {
 
@@ -80,12 +82,13 @@ type PatchDeviceParams struct {
 	// Format: int32
 	ID int32
 
+	// NeedStcGrpAndSortedCP.
+	NeedStcGrpAndSortedCP *bool
+
 	// NetflowFilter.
 	NetflowFilter *string
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	// Start.
@@ -112,13 +115,10 @@ func (o *PatchDeviceParams) WithDefaults() *PatchDeviceParams {
 func (o *PatchDeviceParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := PatchDeviceParams{
 		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -204,6 +204,17 @@ func (o *PatchDeviceParams) SetID(id int32) {
 	o.ID = id
 }
 
+// WithNeedStcGrpAndSortedCP adds the needStcGrpAndSortedCP to the patch device params
+func (o *PatchDeviceParams) WithNeedStcGrpAndSortedCP(needStcGrpAndSortedCP *bool) *PatchDeviceParams {
+	o.SetNeedStcGrpAndSortedCP(needStcGrpAndSortedCP)
+	return o
+}
+
+// SetNeedStcGrpAndSortedCP adds the needStcGrpAndSortedCP to the patch device params
+func (o *PatchDeviceParams) SetNeedStcGrpAndSortedCP(needStcGrpAndSortedCP *bool) {
+	o.NeedStcGrpAndSortedCP = needStcGrpAndSortedCP
+}
+
 // WithNetflowFilter adds the netflowFilter to the patch device params
 func (o *PatchDeviceParams) WithNetflowFilter(netflowFilter *string) *PatchDeviceParams {
 	o.SetNetflowFilter(netflowFilter)
@@ -278,6 +289,23 @@ func (o *PatchDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {
 		return err
+	}
+
+	if o.NeedStcGrpAndSortedCP != nil {
+
+		// query param needStcGrpAndSortedCP
+		var qrNeedStcGrpAndSortedCP bool
+
+		if o.NeedStcGrpAndSortedCP != nil {
+			qrNeedStcGrpAndSortedCP = *o.NeedStcGrpAndSortedCP
+		}
+		qNeedStcGrpAndSortedCP := swag.FormatBool(qrNeedStcGrpAndSortedCP)
+		if qNeedStcGrpAndSortedCP != "" {
+
+			if err := r.SetQueryParam("needStcGrpAndSortedCP", qNeedStcGrpAndSortedCP); err != nil {
+				return err
+			}
+		}
 	}
 
 	if o.NetflowFilter != nil {

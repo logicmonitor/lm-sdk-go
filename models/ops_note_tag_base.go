@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// OpsNoteTagBase ops note tag base
+// OpsNoteTagBase The tags that should be associated with the note. Each tag has a unique id and a name - you can either include the name of a new or existing tag, or the id of an existing tag
 //
 // swagger:model OpsNoteTagBase
 type OpsNoteTagBase struct {

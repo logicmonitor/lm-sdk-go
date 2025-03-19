@@ -55,10 +55,12 @@ func NewUpdateWidgetByIDParamsWithHTTPClient(client *http.Client) *UpdateWidgetB
 	}
 }
 
-/* UpdateWidgetByIDParams contains all the parameters to send to the API endpoint
-   for the update widget by Id operation.
+/*
+UpdateWidgetByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update widget by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateWidgetByIDParams struct {
 

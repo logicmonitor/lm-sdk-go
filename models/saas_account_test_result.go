@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// SaasAccountTestResult saas account test result
+// SaasAccountTestResult The result returned by the transaction that tests the SaaS credentials associated with the Saas group
 //
 // swagger:model SaasAccountTestResult
 type SaasAccountTestResult struct {
@@ -82,8 +82,13 @@ func (m *SaasAccountTestResult) validateNonPermissionApisErrors(formats strfmt.R
 	return nil
 }
 
-// ContextValidate validates this saas account test result based on context it is used
+// ContextValidate validate this saas account test result based on the context it is used
 func (m *SaasAccountTestResult) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

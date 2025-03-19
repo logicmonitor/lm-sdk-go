@@ -54,10 +54,12 @@ func NewAddAlertRuleParamsWithHTTPClient(client *http.Client) *AddAlertRuleParam
 	}
 }
 
-/* AddAlertRuleParams contains all the parameters to send to the API endpoint
-   for the add alert rule operation.
+/*
+AddAlertRuleParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add alert rule operation.
+
+	Typically these are written to a http.Request.
 */
 type AddAlertRuleParams struct {
 

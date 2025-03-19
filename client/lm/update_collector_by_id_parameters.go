@@ -55,10 +55,12 @@ func NewUpdateCollectorByIDParamsWithHTTPClient(client *http.Client) *UpdateColl
 	}
 }
 
-/* UpdateCollectorByIDParams contains all the parameters to send to the API endpoint
-   for the update collector by Id operation.
+/*
+UpdateCollectorByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update collector by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateCollectorByIDParams struct {
 
@@ -82,8 +84,6 @@ type UpdateCollectorByIDParams struct {
 	ID int32
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	timeout    time.Duration
@@ -105,19 +105,10 @@ func (o *UpdateCollectorByIDParams) WithDefaults() *UpdateCollectorByIDParams {
 func (o *UpdateCollectorByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		autoBalanceMonitoredDevicesDefault = bool(false)
-
-		forceUpdateFailedOverDevicesDefault = bool(false)
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := UpdateCollectorByIDParams{
-		UserAgent:                    &userAgentDefault,
-		AutoBalanceMonitoredDevices:  &autoBalanceMonitoredDevicesDefault,
-		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
-		OpType:                       &opTypeDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

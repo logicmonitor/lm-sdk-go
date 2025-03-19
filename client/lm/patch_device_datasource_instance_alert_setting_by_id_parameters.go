@@ -55,10 +55,12 @@ func NewPatchDeviceDatasourceInstanceAlertSettingByIDParamsWithHTTPClient(client
 	}
 }
 
-/* PatchDeviceDatasourceInstanceAlertSettingByIDParams contains all the parameters to send to the API endpoint
-   for the patch device datasource instance alert setting by Id operation.
+/*
+PatchDeviceDatasourceInstanceAlertSettingByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch device datasource instance alert setting by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDeviceDatasourceInstanceAlertSettingByIDParams struct {
 

@@ -53,10 +53,12 @@ func NewGetWebsiteDataByGraphNameParamsWithHTTPClient(client *http.Client) *GetW
 	}
 }
 
-/* GetWebsiteDataByGraphNameParams contains all the parameters to send to the API endpoint
-   for the get website data by graph name operation.
+/*
+GetWebsiteDataByGraphNameParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website data by graph name operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteDataByGraphNameParams struct {
 
@@ -105,16 +107,10 @@ func (o *GetWebsiteDataByGraphNameParams) WithDefaults() *GetWebsiteDataByGraphN
 func (o *GetWebsiteDataByGraphNameParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		endDefault = int64(0)
-
-		startDefault = int64(0)
 	)
 
 	val := GetWebsiteDataByGraphNameParams{
 		UserAgent: &userAgentDefault,
-		End:       &endDefault,
-		Start:     &startDefault,
 	}
 
 	val.timeout = o.timeout

@@ -53,10 +53,12 @@ func NewGetTopTalkersGraphParamsWithHTTPClient(client *http.Client) *GetTopTalke
 	}
 }
 
-/* GetTopTalkersGraphParams contains all the parameters to send to the API endpoint
-   for the get top talkers graph operation.
+/*
+GetTopTalkersGraphParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get top talkers graph operation.
+
+	Typically these are written to a http.Request.
 */
 type GetTopTalkersGraphParams struct {
 

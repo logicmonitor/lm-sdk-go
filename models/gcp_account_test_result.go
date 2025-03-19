@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GcpAccountTestResult gcp account test result
+// GcpAccountTestResult The result returned by the transaction that tests the GCP credentials associated with the GCP group
 //
 // swagger:model GcpAccountTestResult
 type GcpAccountTestResult struct {
@@ -73,8 +73,13 @@ func (m *GcpAccountTestResult) validateNonPermissionErrors(formats strfmt.Regist
 	return nil
 }
 
-// ContextValidate validates this gcp account test result based on context it is used
+// ContextValidate validate this gcp account test result based on the context it is used
 func (m *GcpAccountTestResult) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

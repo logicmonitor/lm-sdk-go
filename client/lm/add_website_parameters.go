@@ -54,10 +54,12 @@ func NewAddWebsiteParamsWithHTTPClient(client *http.Client) *AddWebsiteParams {
 	}
 }
 
-/* AddWebsiteParams contains all the parameters to send to the API endpoint
-   for the add website operation.
+/*
+AddWebsiteParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add website operation.
+
+	Typically these are written to a http.Request.
 */
 type AddWebsiteParams struct {
 

@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -411,7 +410,7 @@ func UnmarshalReportBaseSlice(reader io.Reader, consumer runtime.Consumer) ([]Re
 // UnmarshalReportBase unmarshals polymorphic ReportBase
 func UnmarshalReportBase(reader io.Reader, consumer runtime.Consumer) (ReportBase, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -601,6 +600,8 @@ func (m *reportBase) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -755,9 +756,16 @@ func (m *reportBase) contextValidateRecipients(ctx context.Context, formats strf
 	for i := 0; i < len(m.Recipients()); i++ {
 
 		if m.recipientsField[i] != nil {
+
+			if swag.IsZero(m.recipientsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

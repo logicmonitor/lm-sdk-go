@@ -53,10 +53,12 @@ func NewGetEventSourceListParamsWithHTTPClient(client *http.Client) *GetEventSou
 	}
 }
 
-/* GetEventSourceListParams contains all the parameters to send to the API endpoint
-   for the get event source list operation.
+/*
+GetEventSourceListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get event source list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetEventSourceListParams struct {
 
@@ -72,8 +74,6 @@ type GetEventSourceListParams struct {
 	Filter *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// Offset.
@@ -107,8 +107,6 @@ func (o *GetEventSourceListParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
-		formatDefault = string("json")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
@@ -116,7 +114,6 @@ func (o *GetEventSourceListParams) SetDefaults() {
 
 	val := GetEventSourceListParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 		Offset:    &offsetDefault,
 		Size:      &sizeDefault,
 	}

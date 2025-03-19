@@ -55,10 +55,12 @@ func NewExecuteDebugCommandParamsWithHTTPClient(client *http.Client) *ExecuteDeb
 	}
 }
 
-/* ExecuteDebugCommandParams contains all the parameters to send to the API endpoint
-   for the execute debug command operation.
+/*
+ExecuteDebugCommandParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the execute debug command operation.
+
+	Typically these are written to a http.Request.
 */
 type ExecuteDebugCommandParams struct {
 
@@ -73,7 +75,6 @@ type ExecuteDebugCommandParams struct {
 	// CollectorID.
 	//
 	// Format: int32
-	// Default: -1
 	CollectorID *int32
 
 	timeout    time.Duration
@@ -95,13 +96,10 @@ func (o *ExecuteDebugCommandParams) WithDefaults() *ExecuteDebugCommandParams {
 func (o *ExecuteDebugCommandParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		collectorIDDefault = int32(-1)
 	)
 
 	val := ExecuteDebugCommandParams{
-		UserAgent:   &userAgentDefault,
-		CollectorID: &collectorIDDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

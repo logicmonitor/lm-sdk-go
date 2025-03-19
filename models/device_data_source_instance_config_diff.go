@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DeviceDataSourceInstanceConfigDiff device data source instance config diff
+// DeviceDataSourceInstanceConfigDiff Configuration file diff
 //
 // swagger:model DeviceDataSourceInstanceConfigDiff
 type DeviceDataSourceInstanceConfigDiff struct {

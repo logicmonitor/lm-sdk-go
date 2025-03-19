@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// DynamicColumn dynamic column
+// DynamicColumn The columns displayed in the report
 //
 // swagger:model DynamicColumn
 type DynamicColumn struct {

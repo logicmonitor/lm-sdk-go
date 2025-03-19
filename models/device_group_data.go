@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DeviceGroupData device group data
+// DeviceGroupData The child device groups within this device group
 //
 // swagger:model DeviceGroupData
 type DeviceGroupData struct {
@@ -259,6 +260,14 @@ func (m *DeviceGroupData) contextValidateRolePrivileges(ctx context.Context, for
 
 	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.RolePrivileges); i++ {
+
+		if err := validate.ReadOnly(ctx, "rolePrivileges"+"."+strconv.Itoa(i), "body", string(m.RolePrivileges[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

@@ -55,10 +55,12 @@ func NewUpdateDeviceGroupDatasourceAlertSettingParamsWithHTTPClient(client *http
 	}
 }
 
-/* UpdateDeviceGroupDatasourceAlertSettingParams contains all the parameters to send to the API endpoint
-   for the update device group datasource alert setting operation.
+/*
+UpdateDeviceGroupDatasourceAlertSettingParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update device group datasource alert setting operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateDeviceGroupDatasourceAlertSettingParams struct {
 

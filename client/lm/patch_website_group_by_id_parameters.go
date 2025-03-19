@@ -55,10 +55,12 @@ func NewPatchWebsiteGroupByIDParamsWithHTTPClient(client *http.Client) *PatchWeb
 	}
 }
 
-/* PatchWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
-   for the patch website group by Id operation.
+/*
+PatchWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch website group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchWebsiteGroupByIDParams struct {
 
@@ -76,8 +78,6 @@ type PatchWebsiteGroupByIDParams struct {
 	ID int32
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	timeout    time.Duration
@@ -99,13 +99,10 @@ func (o *PatchWebsiteGroupByIDParams) WithDefaults() *PatchWebsiteGroupByIDParam
 func (o *PatchWebsiteGroupByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := PatchWebsiteGroupByIDParams{
 		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
 	}
 
 	val.timeout = o.timeout

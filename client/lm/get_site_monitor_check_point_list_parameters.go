@@ -53,10 +53,12 @@ func NewGetSiteMonitorCheckPointListParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/* GetSiteMonitorCheckPointListParams contains all the parameters to send to the API endpoint
-   for the get site monitor check point list operation.
+/*
+GetSiteMonitorCheckPointListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get site monitor check point list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetSiteMonitorCheckPointListParams struct {
 

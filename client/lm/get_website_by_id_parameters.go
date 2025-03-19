@@ -53,10 +53,12 @@ func NewGetWebsiteByIDParamsWithHTTPClient(client *http.Client) *GetWebsiteByIDP
 	}
 }
 
-/* GetWebsiteByIDParams contains all the parameters to send to the API endpoint
-   for the get website by Id operation.
+/*
+GetWebsiteByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteByIDParams struct {
 
@@ -66,8 +68,6 @@ type GetWebsiteByIDParams struct {
 	UserAgent *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -94,13 +94,10 @@ func (o *GetWebsiteByIDParams) WithDefaults() *GetWebsiteByIDParams {
 func (o *GetWebsiteByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
 	)
 
 	val := GetWebsiteByIDParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 	}
 
 	val.timeout = o.timeout

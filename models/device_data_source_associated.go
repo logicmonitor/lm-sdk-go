@@ -72,6 +72,8 @@ func (m *DeviceDataSourceAssociated) validateInstance(formats strfmt.Registry) e
 			if err := m.Instance[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("instance" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("instance" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -127,9 +129,16 @@ func (m *DeviceDataSourceAssociated) contextValidateInstance(ctx context.Context
 	for i := 0; i < len(m.Instance); i++ {
 
 		if m.Instance[i] != nil {
+
+			if swag.IsZero(m.Instance[i]) { // not required
+				return nil
+			}
+
 			if err := m.Instance[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("instance" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("instance" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

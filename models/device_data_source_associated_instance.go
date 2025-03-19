@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DeviceDataSourceAssociatedInstance device data source associated instance
+// DeviceDataSourceAssociatedInstance The instance list associated to the datasource
 //
 // swagger:model DeviceDataSourceAssociatedInstance
 type DeviceDataSourceAssociatedInstance struct {

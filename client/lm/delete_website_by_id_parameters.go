@@ -53,10 +53,12 @@ func NewDeleteWebsiteByIDParamsWithHTTPClient(client *http.Client) *DeleteWebsit
 	}
 }
 
-/* DeleteWebsiteByIDParams contains all the parameters to send to the API endpoint
-   for the delete website by Id operation.
+/*
+DeleteWebsiteByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete website by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteWebsiteByIDParams struct {
 

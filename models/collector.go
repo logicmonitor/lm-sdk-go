@@ -91,6 +91,9 @@ type Collector struct {
 	// Read Only: true
 	CollectorGroupName string `json:"collectorGroupName,omitempty"`
 
+	// collector list
+	CollectorList string `json:"collectorList,omitempty"`
+
 	// The size of the collector
 	// Read Only: true
 	CollectorSize string `json:"collectorSize,omitempty"`
@@ -151,6 +154,9 @@ type Collector struct {
 	// Read Only: true
 	EncodedConfigData string `json:"encodedConfigData,omitempty"`
 
+	// error msg
+	ErrorMsg string `json:"errorMsg,omitempty"`
+
 	// The Id of the escalation chain associated with this Collector
 	// Example: 80
 	EscalatingChainID int32 `json:"escalatingChainId,omitempty"`
@@ -175,6 +181,10 @@ type Collector struct {
 	// Read Only: true
 	InSDT *bool `json:"inSDT,omitempty"`
 
+	// Whether Collector is using an administrative account
+	// Read Only: true
+	IsAdminAccount *bool `json:"isAdminAccount,omitempty"`
+
 	// Whether or not the Collector is currently down
 	// Read Only: true
 	IsDown *bool `json:"isDown,omitempty"`
@@ -182,6 +192,10 @@ type Collector struct {
 	// is encoded
 	// Read Only: true
 	IsEncoded *bool `json:"isEncoded,omitempty"`
+
+	// Whether collector has isLmlogsSyslogEnabled flag set as true
+	// Read Only: true
+	IsLmlogsSyslogEnabled *bool `json:"isLmlogsSyslogEnabled,omitempty"`
 
 	// The time, in epoch format, that a notification was last sent for the Collector
 	// Read Only: true
@@ -219,7 +233,7 @@ type Collector struct {
 	NumberOfWebsites int32 `json:"numberOfWebsites,omitempty"`
 
 	// The details of the Collector's automatic downgrade schedule, if one exists
-	OnetimeDowngradeInfo *OnetimeUpgradeInfo `json:"onetimeDowngradeInfo,omitempty"`
+	OnetimeDowngradeInfo *RestDowngradeInfoOnetime `json:"onetimeDowngradeInfo,omitempty"`
 
 	// The details of the Collector's one time upgrade, if one has been scheduled
 	OnetimeUpgradeInfo *OnetimeUpgradeInfo `json:"onetimeUpgradeInfo,omitempty"`
@@ -360,6 +374,8 @@ func (m *Collector) validateAutomaticUpgradeInfo(formats strfmt.Registry) error 
 		if err := m.AutomaticUpgradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("automaticUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("automaticUpgradeInfo")
 			}
 			return err
 		}
@@ -382,6 +398,8 @@ func (m *Collector) validateCustomProperties(formats strfmt.Registry) error {
 			if err := m.CustomProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -401,6 +419,8 @@ func (m *Collector) validateNextUpgradeInfo(formats strfmt.Registry) error {
 		if err := m.NextUpgradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nextUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nextUpgradeInfo")
 			}
 			return err
 		}
@@ -418,6 +438,8 @@ func (m *Collector) validateOnetimeDowngradeInfo(formats strfmt.Registry) error 
 		if err := m.OnetimeDowngradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeDowngradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeDowngradeInfo")
 			}
 			return err
 		}
@@ -435,6 +457,8 @@ func (m *Collector) validateOnetimeUpgradeInfo(formats strfmt.Registry) error {
 		if err := m.OnetimeUpgradeInfo.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeUpgradeInfo")
 			}
 			return err
 		}
@@ -579,11 +603,19 @@ func (m *Collector) ContextValidate(ctx context.Context, formats strfmt.Registry
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateIsAdminAccount(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateIsDown(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateIsEncoded(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateIsLmlogsSyslogEnabled(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -756,6 +788,14 @@ func (m *Collector) contextValidateAckedOnLocal(ctx context.Context, formats str
 
 func (m *Collector) contextValidateAgentConfFields(ctx context.Context, formats strfmt.Registry) error {
 
+	for k := range m.AgentConfFields {
+
+		if err := validate.ReadOnly(ctx, "agentConfFields"+"."+k, "body", string(m.AgentConfFields[k])); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -771,9 +811,16 @@ func (m *Collector) contextValidateArch(ctx context.Context, formats strfmt.Regi
 func (m *Collector) contextValidateAutomaticUpgradeInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.AutomaticUpgradeInfo != nil {
+
+		if swag.IsZero(m.AutomaticUpgradeInfo) { // not required
+			return nil
+		}
+
 		if err := m.AutomaticUpgradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("automaticUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("automaticUpgradeInfo")
 			}
 			return err
 		}
@@ -922,9 +969,16 @@ func (m *Collector) contextValidateCustomProperties(ctx context.Context, formats
 	for i := 0; i < len(m.CustomProperties); i++ {
 
 		if m.CustomProperties[i] != nil {
+
+			if swag.IsZero(m.CustomProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.CustomProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -1016,6 +1070,15 @@ func (m *Collector) contextValidateInSDT(ctx context.Context, formats strfmt.Reg
 	return nil
 }
 
+func (m *Collector) contextValidateIsAdminAccount(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "isAdminAccount", "body", m.IsAdminAccount); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Collector) contextValidateIsDown(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "isDown", "body", m.IsDown); err != nil {
@@ -1028,6 +1091,15 @@ func (m *Collector) contextValidateIsDown(ctx context.Context, formats strfmt.Re
 func (m *Collector) contextValidateIsEncoded(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "isEncoded", "body", m.IsEncoded); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Collector) contextValidateIsLmlogsSyslogEnabled(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "isLmlogsSyslogEnabled", "body", m.IsLmlogsSyslogEnabled); err != nil {
 		return err
 	}
 
@@ -1073,9 +1145,16 @@ func (m *Collector) contextValidateNextRecipient(ctx context.Context, formats st
 func (m *Collector) contextValidateNextUpgradeInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.NextUpgradeInfo != nil {
+
+		if swag.IsZero(m.NextUpgradeInfo) { // not required
+			return nil
+		}
+
 		if err := m.NextUpgradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("nextUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("nextUpgradeInfo")
 			}
 			return err
 		}
@@ -1105,9 +1184,16 @@ func (m *Collector) contextValidateNumberOfWebsites(ctx context.Context, formats
 func (m *Collector) contextValidateOnetimeDowngradeInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OnetimeDowngradeInfo != nil {
+
+		if swag.IsZero(m.OnetimeDowngradeInfo) { // not required
+			return nil
+		}
+
 		if err := m.OnetimeDowngradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeDowngradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeDowngradeInfo")
 			}
 			return err
 		}
@@ -1119,9 +1205,16 @@ func (m *Collector) contextValidateOnetimeDowngradeInfo(ctx context.Context, for
 func (m *Collector) contextValidateOnetimeUpgradeInfo(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.OnetimeUpgradeInfo != nil {
+
+		if swag.IsZero(m.OnetimeUpgradeInfo) { // not required
+			return nil
+		}
+
 		if err := m.OnetimeUpgradeInfo.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("onetimeUpgradeInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("onetimeUpgradeInfo")
 			}
 			return err
 		}

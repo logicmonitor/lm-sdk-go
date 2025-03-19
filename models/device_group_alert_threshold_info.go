@@ -14,10 +14,14 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DeviceGroupAlertThresholdInfo device group alert threshold info
+// DeviceGroupAlertThresholdInfo Device group alert expression list base on the priority. The first is the highest priority and effected on this instance
 //
 // swagger:model DeviceGroupAlertThresholdInfo
 type DeviceGroupAlertThresholdInfo struct {
+
+	// The count that the alert must exist for this many poll cycles before the alert will be cleared
+	// Example: 0
+	AlertClearTransitionInterval int32 `json:"alertClearTransitionInterval,omitempty"`
 
 	// alert enabled
 	// Read Only: true
@@ -26,6 +30,14 @@ type DeviceGroupAlertThresholdInfo struct {
 	// alert expr
 	// Read Only: true
 	AlertExpr string `json:"alertExpr,omitempty"`
+
+	// The triggered alert level if we cannot collect data for this datapoint. The values can be 1-4 (1:no alert, 2:warn alert, 3:error alert, 4:critical alert)
+	// Example: 1
+	AlertForNoData int32 `json:"alertForNoData,omitempty"`
+
+	// The count that the alert must exist for this many poll cycles before it will be triggered
+	// Example: 0
+	AlertTransitionInterval int32 `json:"alertTransitionInterval,omitempty"`
 
 	// enable anomaly alert generation
 	// Read Only: true

@@ -54,10 +54,12 @@ func NewAddAppliesToFunctionParamsWithHTTPClient(client *http.Client) *AddApplie
 	}
 }
 
-/* AddAppliesToFunctionParams contains all the parameters to send to the API endpoint
-   for the add applies to function operation.
+/*
+AddAppliesToFunctionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add applies to function operation.
+
+	Typically these are written to a http.Request.
 */
 type AddAppliesToFunctionParams struct {
 

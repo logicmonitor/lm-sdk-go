@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -18,7 +17,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// OpsNoteScope ops note scope
+// OpsNoteScope The scopes associated with the note. Each scope has a type of device, service, deviceGroup or serviceGroup. A note with no scope will show up for everything in the account
 //
 // swagger:discriminator OpsNoteScope type
 type OpsNoteScope interface {
@@ -69,7 +68,7 @@ func UnmarshalOpsNoteScopeSlice(reader io.Reader, consumer runtime.Consumer) ([]
 // UnmarshalOpsNoteScope unmarshals polymorphic OpsNoteScope
 func UnmarshalOpsNoteScope(reader io.Reader, consumer runtime.Consumer) (OpsNoteScope, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}

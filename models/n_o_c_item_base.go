@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -18,7 +17,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// NOCItemBase n o c item base
+// NOCItemBase The NOC items
 //
 // swagger:discriminator NOCItemBase type
 type NOCItemBase interface {
@@ -68,7 +67,7 @@ func UnmarshalNOCItemBaseSlice(reader io.Reader, consumer runtime.Consumer) ([]N
 // UnmarshalNOCItemBase unmarshals polymorphic NOCItemBase
 func UnmarshalNOCItemBase(reader io.Reader, consumer runtime.Consumer) (NOCItemBase, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}

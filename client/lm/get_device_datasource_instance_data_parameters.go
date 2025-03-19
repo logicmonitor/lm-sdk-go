@@ -53,10 +53,12 @@ func NewGetDeviceDatasourceInstanceDataParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* GetDeviceDatasourceInstanceDataParams contains all the parameters to send to the API endpoint
-   for the get device datasource instance data operation.
+/*
+GetDeviceDatasourceInstanceDataParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device datasource instance data operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceDatasourceInstanceDataParams struct {
 
@@ -79,8 +81,6 @@ type GetDeviceDatasourceInstanceDataParams struct {
 	End *int64
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	/* HdsID.
@@ -99,7 +99,6 @@ type GetDeviceDatasourceInstanceDataParams struct {
 	// Period.
 	//
 	// Format: double
-	// Default: 1
 	Period *float64
 
 	// Start.
@@ -126,22 +125,10 @@ func (o *GetDeviceDatasourceInstanceDataParams) WithDefaults() *GetDeviceDatasou
 func (o *GetDeviceDatasourceInstanceDataParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		endDefault = int64(0)
-
-		formatDefault = string("json")
-
-		periodDefault = float64(1)
-
-		startDefault = int64(0)
 	)
 
 	val := GetDeviceDatasourceInstanceDataParams{
 		UserAgent: &userAgentDefault,
-		End:       &endDefault,
-		Format:    &formatDefault,
-		Period:    &periodDefault,
-		Start:     &startDefault,
 	}
 
 	val.timeout = o.timeout

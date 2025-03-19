@@ -54,6 +54,8 @@ func (m *InterfacesFilter) validateInterfaceTypes(formats strfmt.Registry) error
 			if err := m.InterfaceTypes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("interfaceTypes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("interfaceTypes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -83,9 +85,16 @@ func (m *InterfacesFilter) contextValidateInterfaceTypes(ctx context.Context, fo
 	for i := 0; i < len(m.InterfaceTypes); i++ {
 
 		if m.InterfaceTypes[i] != nil {
+
+			if swag.IsZero(m.InterfaceTypes[i]) { // not required
+				return nil
+			}
+
 			if err := m.InterfaceTypes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("interfaceTypes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("interfaceTypes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

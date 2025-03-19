@@ -55,10 +55,12 @@ func NewPatchRecipientGroupByIDParamsWithHTTPClient(client *http.Client) *PatchR
 	}
 }
 
-/* PatchRecipientGroupByIDParams contains all the parameters to send to the API endpoint
-   for the patch recipient group by Id operation.
+/*
+PatchRecipientGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch recipient group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchRecipientGroupByIDParams struct {
 

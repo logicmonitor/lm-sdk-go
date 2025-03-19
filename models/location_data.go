@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// LocationData location data
+// LocationData The checkpoint locations for which data is displayed
 //
 // swagger:model LocationData
 type LocationData struct {

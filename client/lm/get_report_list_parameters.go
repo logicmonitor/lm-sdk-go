@@ -53,10 +53,12 @@ func NewGetReportListParamsWithHTTPClient(client *http.Client) *GetReportListPar
 	}
 }
 
-/* GetReportListParams contains all the parameters to send to the API endpoint
-   for the get report list operation.
+/*
+GetReportListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get report list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetReportListParams struct {
 
@@ -75,6 +77,9 @@ type GetReportListParams struct {
 	//
 	// Format: int32
 	Offset *int32
+
+	// ShowNextGenReports.
+	ShowNextGenReports *bool
 
 	// Size.
 	//
@@ -196,6 +201,17 @@ func (o *GetReportListParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithShowNextGenReports adds the showNextGenReports to the get report list params
+func (o *GetReportListParams) WithShowNextGenReports(showNextGenReports *bool) *GetReportListParams {
+	o.SetShowNextGenReports(showNextGenReports)
+	return o
+}
+
+// SetShowNextGenReports adds the showNextGenReports to the get report list params
+func (o *GetReportListParams) SetShowNextGenReports(showNextGenReports *bool) {
+	o.ShowNextGenReports = showNextGenReports
+}
+
 // WithSize adds the size to the get report list params
 func (o *GetReportListParams) WithSize(size *int32) *GetReportListParams {
 	o.SetSize(size)
@@ -269,6 +285,23 @@ func (o *GetReportListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		if qOffset != "" {
 
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ShowNextGenReports != nil {
+
+		// query param showNextGenReports
+		var qrShowNextGenReports bool
+
+		if o.ShowNextGenReports != nil {
+			qrShowNextGenReports = *o.ShowNextGenReports
+		}
+		qShowNextGenReports := swag.FormatBool(qrShowNextGenReports)
+		if qShowNextGenReports != "" {
+
+			if err := r.SetQueryParam("showNextGenReports", qShowNextGenReports); err != nil {
 				return err
 			}
 		}

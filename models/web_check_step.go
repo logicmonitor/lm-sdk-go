@@ -18,7 +18,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WebCheckStep web check step
+// WebCheckStep Required for type=webcheck , An object comprising one or more steps, see the table below for the properties included in each step
 //
 // swagger:model WebCheckStep
 type WebCheckStep struct {
@@ -448,6 +448,8 @@ func (m *WebCheckStep) validateAuth(formats strfmt.Registry) error {
 	if err := m.Auth().Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("auth")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("auth")
 		}
 		return err
 	}
@@ -475,9 +477,15 @@ func (m *WebCheckStep) ContextValidate(ctx context.Context, formats strfmt.Regis
 
 func (m *WebCheckStep) contextValidateAuth(ctx context.Context, formats strfmt.Registry) error {
 
+	if swag.IsZero(m.Auth()) { // not required
+		return nil
+	}
+
 	if err := m.Auth().ContextValidate(ctx, formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("auth")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("auth")
 		}
 		return err
 	}

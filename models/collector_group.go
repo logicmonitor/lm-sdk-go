@@ -114,6 +114,8 @@ func (m *CollectorGroup) validateCustomProperties(formats strfmt.Registry) error
 			if err := m.CustomProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -133,6 +135,8 @@ func (m *CollectorGroup) validateHighestPriorityCollectorStatus(formats strfmt.R
 		if err := m.HighestPriorityCollectorStatus.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("highestPriorityCollectorStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("highestPriorityCollectorStatus")
 			}
 			return err
 		}
@@ -214,9 +218,16 @@ func (m *CollectorGroup) contextValidateCustomProperties(ctx context.Context, fo
 	for i := 0; i < len(m.CustomProperties); i++ {
 
 		if m.CustomProperties[i] != nil {
+
+			if swag.IsZero(m.CustomProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.CustomProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -230,9 +241,16 @@ func (m *CollectorGroup) contextValidateCustomProperties(ctx context.Context, fo
 func (m *CollectorGroup) contextValidateHighestPriorityCollectorStatus(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.HighestPriorityCollectorStatus != nil {
+
+		if swag.IsZero(m.HighestPriorityCollectorStatus) { // not required
+			return nil
+		}
+
 		if err := m.HighestPriorityCollectorStatus.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("highestPriorityCollectorStatus")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("highestPriorityCollectorStatus")
 			}
 			return err
 		}

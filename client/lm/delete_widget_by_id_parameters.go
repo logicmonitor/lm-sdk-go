@@ -53,10 +53,12 @@ func NewDeleteWidgetByIDParamsWithHTTPClient(client *http.Client) *DeleteWidgetB
 	}
 }
 
-/* DeleteWidgetByIDParams contains all the parameters to send to the API endpoint
-   for the delete widget by Id operation.
+/*
+DeleteWidgetByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete widget by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteWidgetByIDParams struct {
 

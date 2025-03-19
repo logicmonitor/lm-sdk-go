@@ -21,19 +21,19 @@ import (
 // swagger:model NetflowBgpTable
 type NetflowBgpTable struct {
 
-	// as number
+	// autonomous system number
 	// Read Only: true
 	AsNumber int64 `json:"asNumber,omitempty"`
 
-	// description
+	// the description of the asNumber
 	// Read Only: true
 	Description string `json:"description,omitempty"`
 
-	// percent usage
+	// percentage of traffic through this asn
 	// Read Only: true
 	PercentUsage float64 `json:"percentUsage,omitempty"`
 
-	// usage
+	// total bytes through this asn
 	// Read Only: true
 	Usage float64 `json:"usage,omitempty"`
 }
@@ -51,19 +51,19 @@ func (m *NetflowBgpTable) SetDataType(val string) {
 func (m *NetflowBgpTable) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// as number
+		// autonomous system number
 		// Read Only: true
 		AsNumber int64 `json:"asNumber,omitempty"`
 
-		// description
+		// the description of the asNumber
 		// Read Only: true
 		Description string `json:"description,omitempty"`
 
-		// percent usage
+		// percentage of traffic through this asn
 		// Read Only: true
 		PercentUsage float64 `json:"percentUsage,omitempty"`
 
-		// usage
+		// total bytes through this asn
 		// Read Only: true
 		Usage float64 `json:"usage,omitempty"`
 	}
@@ -111,19 +111,19 @@ func (m NetflowBgpTable) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// as number
+		// autonomous system number
 		// Read Only: true
 		AsNumber int64 `json:"asNumber,omitempty"`
 
-		// description
+		// the description of the asNumber
 		// Read Only: true
 		Description string `json:"description,omitempty"`
 
-		// percent usage
+		// percentage of traffic through this asn
 		// Read Only: true
 		PercentUsage float64 `json:"percentUsage,omitempty"`
 
-		// usage
+		// total bytes through this asn
 		// Read Only: true
 		Usage float64 `json:"usage,omitempty"`
 	}{

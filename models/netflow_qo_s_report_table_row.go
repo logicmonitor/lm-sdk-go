@@ -21,15 +21,15 @@ import (
 // swagger:model NetflowQoSReportTableRow
 type NetflowQoSReportTableRow struct {
 
-	// received
+	// the total bytes of this qos type
 	// Read Only: true
 	Received float64 `json:"received,omitempty"`
 
-	// sent
+	// the total bytes of this qos type
 	// Read Only: true
 	Sent float64 `json:"sent,omitempty"`
 
-	// type
+	// this is QoS Type
 	// Read Only: true
 	Type string `json:"type,omitempty"`
 }
@@ -47,15 +47,15 @@ func (m *NetflowQoSReportTableRow) SetDataType(val string) {
 func (m *NetflowQoSReportTableRow) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// received
+		// the total bytes of this qos type
 		// Read Only: true
 		Received float64 `json:"received,omitempty"`
 
-		// sent
+		// the total bytes of this qos type
 		// Read Only: true
 		Sent float64 `json:"sent,omitempty"`
 
-		// type
+		// this is QoS Type
 		// Read Only: true
 		Type string `json:"type,omitempty"`
 	}
@@ -102,15 +102,15 @@ func (m NetflowQoSReportTableRow) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// received
+		// the total bytes of this qos type
 		// Read Only: true
 		Received float64 `json:"received,omitempty"`
 
-		// sent
+		// the total bytes of this qos type
 		// Read Only: true
 		Sent float64 `json:"sent,omitempty"`
 
-		// type
+		// this is QoS Type
 		// Read Only: true
 		Type string `json:"type,omitempty"`
 	}{

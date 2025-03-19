@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DataPoint data point
+// DataPoint The data point list
 //
 // swagger:model DataPoint
 type DataPoint struct {

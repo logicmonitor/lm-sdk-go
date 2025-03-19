@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -62,6 +63,11 @@ func (m *DeviceDataSourceData) validateInstances(formats strfmt.Registry) error 
 		}
 		if val, ok := m.Instances[k]; ok {
 			if err := val.Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("instances" + "." + k)
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("instances" + "." + k)
+				}
 				return err
 			}
 		}
@@ -101,6 +107,14 @@ func (m *DeviceDataSourceData) contextValidateDataPoints(ctx context.Context, fo
 
 	if err := validate.ReadOnly(ctx, "dataPoints", "body", []string(m.DataPoints)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.DataPoints); i++ {
+
+		if err := validate.ReadOnly(ctx, "dataPoints"+"."+strconv.Itoa(i), "body", string(m.DataPoints[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

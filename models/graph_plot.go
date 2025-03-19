@@ -576,6 +576,8 @@ func (m *GraphPlot) validateLines(formats strfmt.Registry) error {
 			if err := m.Lines[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("lines" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("lines" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -601,6 +603,8 @@ func (m *GraphPlot) validateScopes(formats strfmt.Registry) error {
 			if err := m.Scopes[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("scopes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -817,6 +821,14 @@ func (m *GraphPlot) contextValidateInstances(ctx context.Context, formats strfmt
 		return err
 	}
 
+	for i := 0; i < len(m.Instances); i++ {
+
+		if err := validate.ReadOnly(ctx, "instances"+"."+strconv.Itoa(i), "body", int32(m.Instances[i])); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -829,9 +841,16 @@ func (m *GraphPlot) contextValidateLines(ctx context.Context, formats strfmt.Reg
 	for i := 0; i < len(m.Lines); i++ {
 
 		if m.Lines[i] != nil {
+
+			if swag.IsZero(m.Lines[i]) { // not required
+				return nil
+			}
+
 			if err := m.Lines[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("lines" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("lines" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -846,6 +865,14 @@ func (m *GraphPlot) contextValidateMissinglines(ctx context.Context, formats str
 
 	if err := validate.ReadOnly(ctx, "missinglines", "body", []string(m.Missinglines)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Missinglines); i++ {
+
+		if err := validate.ReadOnly(ctx, "missinglines"+"."+strconv.Itoa(i), "body", string(m.Missinglines[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil
@@ -878,9 +905,16 @@ func (m *GraphPlot) contextValidateScopes(ctx context.Context, formats strfmt.Re
 	for i := 0; i < len(m.Scopes); i++ {
 
 		if m.Scopes[i] != nil {
+
+			if swag.IsZero(m.Scopes[i]) { // not required
+				return nil
+			}
+
 			if err := m.Scopes[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("scopes" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("scopes" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -949,6 +983,14 @@ func (m *GraphPlot) contextValidateTimestamps(ctx context.Context, formats strfm
 
 	if err := validate.ReadOnly(ctx, "timestamps", "body", []int64(m.Timestamps)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Timestamps); i++ {
+
+		if err := validate.ReadOnly(ctx, "timestamps"+"."+strconv.Itoa(i), "body", int64(m.Timestamps[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

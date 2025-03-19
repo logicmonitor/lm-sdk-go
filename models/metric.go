@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Metric metric
+// Metric The datapoints that needs to do forecasting
 //
 // swagger:model Metric
 type Metric struct {

@@ -53,10 +53,12 @@ func NewGetRoleListParamsWithHTTPClient(client *http.Client) *GetRoleListParams 
 	}
 }
 
-/* GetRoleListParams contains all the parameters to send to the API endpoint
-   for the get role list operation.
+/*
+GetRoleListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get role list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetRoleListParams struct {
 
@@ -64,6 +66,9 @@ type GetRoleListParams struct {
 	//
 	// Default: "Logicmonitor/GO-SDK"
 	UserAgent *string
+
+	// ExcludeAdmin.
+	ExcludeAdmin *bool
 
 	// Fields.
 	Fields *string
@@ -163,6 +168,17 @@ func (o *GetRoleListParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
 }
 
+// WithExcludeAdmin adds the excludeAdmin to the get role list params
+func (o *GetRoleListParams) WithExcludeAdmin(excludeAdmin *bool) *GetRoleListParams {
+	o.SetExcludeAdmin(excludeAdmin)
+	return o
+}
+
+// SetExcludeAdmin adds the excludeAdmin to the get role list params
+func (o *GetRoleListParams) SetExcludeAdmin(excludeAdmin *bool) {
+	o.ExcludeAdmin = excludeAdmin
+}
+
 // WithFields adds the fields to the get role list params
 func (o *GetRoleListParams) WithFields(fields *string) *GetRoleListParams {
 	o.SetFields(fields)
@@ -220,6 +236,23 @@ func (o *GetRoleListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 		// header param User-Agent
 		if err := r.SetHeaderParam("User-Agent", *o.UserAgent); err != nil {
 			return err
+		}
+	}
+
+	if o.ExcludeAdmin != nil {
+
+		// query param excludeAdmin
+		var qrExcludeAdmin bool
+
+		if o.ExcludeAdmin != nil {
+			qrExcludeAdmin = *o.ExcludeAdmin
+		}
+		qExcludeAdmin := swag.FormatBool(qrExcludeAdmin)
+		if qExcludeAdmin != "" {
+
+			if err := r.SetQueryParam("excludeAdmin", qExcludeAdmin); err != nil {
+				return err
+			}
 		}
 	}
 

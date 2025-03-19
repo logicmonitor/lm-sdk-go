@@ -54,10 +54,12 @@ func NewAddReportParamsWithHTTPClient(client *http.Client) *AddReportParams {
 	}
 }
 
-/* AddReportParams contains all the parameters to send to the API endpoint
-   for the add report operation.
+/*
+AddReportParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add report operation.
+
+	Typically these are written to a http.Request.
 */
 type AddReportParams struct {
 

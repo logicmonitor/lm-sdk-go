@@ -53,10 +53,12 @@ func NewGetWidgetByIDParamsWithHTTPClient(client *http.Client) *GetWidgetByIDPar
 	}
 }
 
-/* GetWidgetByIDParams contains all the parameters to send to the API endpoint
-   for the get widget by Id operation.
+/*
+GetWidgetByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get widget by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWidgetByIDParams struct {
 

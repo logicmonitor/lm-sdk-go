@@ -12,13 +12,14 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// RestNMapNetscanPolicyCredential rest n map netscan policy credential
+// RestNMapNetscanPolicyCredential The credentials to be used for the scan
+// Example: 2
 //
 // swagger:model RestNMapNetscanPolicyCredential
 type RestNMapNetscanPolicyCredential struct {
 
 	// Custom credentials that should be used for this scan
-	// Example: [{\"snmp.community\":\"test\"}]
+	// Example: \"[{\"snmp.community\":\"test\"}]\
 	Custom []map[string]string `json:"custom,omitempty"`
 
 	// The ID of the device group that credentials should be inherited from, for this scan
@@ -36,6 +37,9 @@ type RestNMapNetscanPolicyCredential struct {
 	// The name of the device that credentials should be inherited from, for this scan
 	// Example: LinuxDC1
 	DeviceName string `json:"deviceName,omitempty"`
+
+	// Multiple snmpv3 properties that should be used for this scan
+	SnmpV3Credentials []map[string]string `json:"snmpV3Credentials,omitempty"`
 }
 
 // Validate validates this rest n map netscan policy credential

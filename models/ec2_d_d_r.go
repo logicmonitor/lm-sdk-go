@@ -54,6 +54,8 @@ func (m *Ec2DDR) validateAssignment(formats strfmt.Registry) error {
 			if err := m.Assignment[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("assignment" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("assignment" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -83,9 +85,16 @@ func (m *Ec2DDR) contextValidateAssignment(ctx context.Context, formats strfmt.R
 	for i := 0; i < len(m.Assignment); i++ {
 
 		if m.Assignment[i] != nil {
+
+			if swag.IsZero(m.Assignment[i]) { // not required
+				return nil
+			}
+
 			if err := m.Assignment[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("assignment" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("assignment" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

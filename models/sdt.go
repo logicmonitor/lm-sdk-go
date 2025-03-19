@@ -10,11 +10,11 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
+	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
 )
 
@@ -34,6 +34,11 @@ type SDT interface {
 	// Example: Emergency prod deployment
 	Comment() string
 	SetComment(string)
+
+	// default value
+	// Format: date-time
+	DefaultValue() strfmt.DateTime
+	SetDefaultValue(strfmt.DateTime)
 
 	// The duration of the SDT in minutes
 	// Example: 138
@@ -131,6 +136,8 @@ type sdt struct {
 
 	commentField string
 
+	defaultValueField strfmt.DateTime
+
 	durationField int32
 
 	endDateTimeField int64
@@ -184,6 +191,16 @@ func (m *sdt) Comment() string {
 // SetComment sets the comment of this polymorphic type
 func (m *sdt) SetComment(val string) {
 	m.commentField = val
+}
+
+// DefaultValue gets the default value of this polymorphic type
+func (m *sdt) DefaultValue() strfmt.DateTime {
+	return m.defaultValueField
+}
+
+// SetDefaultValue sets the default value of this polymorphic type
+func (m *sdt) SetDefaultValue(val strfmt.DateTime) {
+	m.defaultValueField = val
 }
 
 // Duration gets the duration of this polymorphic type
@@ -376,7 +393,7 @@ func UnmarshalSDTSlice(reader io.Reader, consumer runtime.Consumer) ([]SDT, erro
 // UnmarshalSDT unmarshals polymorphic SDT
 func UnmarshalSDT(reader io.Reader, consumer runtime.Consumer) (SDT, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -491,6 +508,27 @@ func unmarshalSDT(data []byte, consumer runtime.Consumer) (SDT, error) {
 
 // Validate validates this SDT
 func (m *sdt) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateDefaultValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *sdt) validateDefaultValue(formats strfmt.Registry) error {
+	if swag.IsZero(m.DefaultValue()) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("defaultValue", "body", "date-time", m.DefaultValue().String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -93,6 +93,8 @@ func (m *EscalatingChain) validateCcDestinations(formats strfmt.Registry) error 
 			if err := m.CcDestinations[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ccDestinations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ccDestinations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -118,6 +120,8 @@ func (m *EscalatingChain) validateDestinations(formats strfmt.Registry) error {
 			if err := m.Destinations[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("destinations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("destinations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -168,9 +172,16 @@ func (m *EscalatingChain) contextValidateCcDestinations(ctx context.Context, for
 	for i := 0; i < len(m.CcDestinations); i++ {
 
 		if m.CcDestinations[i] != nil {
+
+			if swag.IsZero(m.CcDestinations[i]) { // not required
+				return nil
+			}
+
 			if err := m.CcDestinations[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("ccDestinations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("ccDestinations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -186,9 +197,16 @@ func (m *EscalatingChain) contextValidateDestinations(ctx context.Context, forma
 	for i := 0; i < len(m.Destinations); i++ {
 
 		if m.Destinations[i] != nil {
+
+			if swag.IsZero(m.Destinations[i]) { // not required
+				return nil
+			}
+
 			if err := m.Destinations[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("destinations" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("destinations" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

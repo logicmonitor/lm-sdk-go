@@ -53,10 +53,12 @@ func NewGetDatasourceListParamsWithHTTPClient(client *http.Client) *GetDatasourc
 	}
 }
 
-/* GetDatasourceListParams contains all the parameters to send to the API endpoint
-   for the get datasource list operation.
+/*
+GetDatasourceListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get datasource list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDatasourceListParams struct {
 
@@ -72,8 +74,6 @@ type GetDatasourceListParams struct {
 	Filter *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// Offset.
@@ -107,8 +107,6 @@ func (o *GetDatasourceListParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
-		formatDefault = string("json")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
@@ -116,7 +114,6 @@ func (o *GetDatasourceListParams) SetDefaults() {
 
 	val := GetDatasourceListParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 		Offset:    &offsetDefault,
 		Size:      &sizeDefault,
 	}

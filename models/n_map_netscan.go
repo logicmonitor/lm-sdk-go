@@ -52,11 +52,10 @@ type NMapNetscan struct {
 
 	versionField int32
 
-	// The credentials to be used for the scan
-	// Example: 2
+	// credentials
 	Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
-	// Information related to including / excluding discovered devices in / from monitoring
+	// ddr
 	Ddr *NMapDDR `json:"ddr,omitempty"`
 
 	// The subnet to exclude from scanning from nmap scans
@@ -68,7 +67,7 @@ type NMapNetscan struct {
 	// Required: true
 	IncludeNetworkAndBroadcast *bool `json:"includeNetworkAndBroadcast"`
 
-	// The ports that should be used in the Netscan
+	// ports
 	Ports *RestNetscanPorts `json:"ports,omitempty"`
 
 	// The subnet to scan for nmap scans
@@ -250,11 +249,10 @@ func (m *NMapNetscan) SetVersion(val int32) {
 func (m *NMapNetscan) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// The credentials to be used for the scan
-		// Example: 2
+		// credentials
 		Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
-		// Information related to including / excluding discovered devices in / from monitoring
+		// ddr
 		Ddr *NMapDDR `json:"ddr,omitempty"`
 
 		// The subnet to exclude from scanning from nmap scans
@@ -266,7 +264,7 @@ func (m *NMapNetscan) UnmarshalJSON(raw []byte) error {
 		// Required: true
 		IncludeNetworkAndBroadcast *bool `json:"includeNetworkAndBroadcast"`
 
-		// The ports that should be used in the Netscan
+		// ports
 		Ports *RestNetscanPorts `json:"ports,omitempty"`
 
 		// The subnet to scan for nmap scans
@@ -383,11 +381,10 @@ func (m NMapNetscan) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// The credentials to be used for the scan
-		// Example: 2
+		// credentials
 		Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
-		// Information related to including / excluding discovered devices in / from monitoring
+		// ddr
 		Ddr *NMapDDR `json:"ddr,omitempty"`
 
 		// The subnet to exclude from scanning from nmap scans
@@ -399,7 +396,7 @@ func (m NMapNetscan) MarshalJSON() ([]byte, error) {
 		// Required: true
 		IncludeNetworkAndBroadcast *bool `json:"includeNetworkAndBroadcast"`
 
-		// The ports that should be used in the Netscan
+		// ports
 		Ports *RestNetscanPorts `json:"ports,omitempty"`
 
 		// The subnet to scan for nmap scans
@@ -552,6 +549,8 @@ func (m *NMapNetscan) validateDuplicate(formats strfmt.Registry) error {
 		if err := m.Duplicate().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
@@ -579,6 +578,8 @@ func (m *NMapNetscan) validateSchedule(formats strfmt.Registry) error {
 		if err := m.Schedule().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}
@@ -597,6 +598,8 @@ func (m *NMapNetscan) validateCredentials(formats strfmt.Registry) error {
 		if err := m.Credentials.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("credentials")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credentials")
 			}
 			return err
 		}
@@ -615,6 +618,8 @@ func (m *NMapNetscan) validateDdr(formats strfmt.Registry) error {
 		if err := m.Ddr.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ddr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ddr")
 			}
 			return err
 		}
@@ -642,6 +647,8 @@ func (m *NMapNetscan) validatePorts(formats strfmt.Registry) error {
 		if err := m.Ports.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ports")
 			}
 			return err
 		}
@@ -760,9 +767,12 @@ func (m *NMapNetscan) contextValidateCreator(ctx context.Context, formats strfmt
 func (m *NMapNetscan) contextValidateDuplicate(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Duplicate() != nil {
+
 		if err := m.Duplicate().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("duplicate")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("duplicate")
 			}
 			return err
 		}
@@ -810,9 +820,12 @@ func (m *NMapNetscan) contextValidateNextStartEpoch(ctx context.Context, formats
 func (m *NMapNetscan) contextValidateSchedule(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Schedule() != nil {
+
 		if err := m.Schedule().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("schedule")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("schedule")
 			}
 			return err
 		}
@@ -824,9 +837,16 @@ func (m *NMapNetscan) contextValidateSchedule(ctx context.Context, formats strfm
 func (m *NMapNetscan) contextValidateCredentials(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Credentials != nil {
+
+		if swag.IsZero(m.Credentials) { // not required
+			return nil
+		}
+
 		if err := m.Credentials.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("credentials")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("credentials")
 			}
 			return err
 		}
@@ -838,9 +858,16 @@ func (m *NMapNetscan) contextValidateCredentials(ctx context.Context, formats st
 func (m *NMapNetscan) contextValidateDdr(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Ddr != nil {
+
+		if swag.IsZero(m.Ddr) { // not required
+			return nil
+		}
+
 		if err := m.Ddr.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ddr")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ddr")
 			}
 			return err
 		}
@@ -852,9 +879,16 @@ func (m *NMapNetscan) contextValidateDdr(ctx context.Context, formats strfmt.Reg
 func (m *NMapNetscan) contextValidatePorts(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.Ports != nil {
+
+		if swag.IsZero(m.Ports) { // not required
+			return nil
+		}
+
 		if err := m.Ports.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("ports")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ports")
 			}
 			return err
 		}

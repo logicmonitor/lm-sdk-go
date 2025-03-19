@@ -20,7 +20,7 @@ import (
 type GenerateReportRequest struct {
 
 	// The email addresses that LogicMonitor should send the report to, separated by commas
-	// Example: bob@logicmonitor.com
+	// Example: user@domain.com
 	ReceiveEmails string `json:"receiveEmails,omitempty"`
 
 	// The id of the report to run
@@ -29,7 +29,6 @@ type GenerateReportRequest struct {
 	ReportID int32 `json:"reportId,omitempty"`
 
 	// Generate the report with the admin. 0 mean current user
-	// Read Only: true
 	WithAdminID int32 `json:"withAdminId,omitempty"`
 }
 
@@ -46,10 +45,6 @@ func (m *GenerateReportRequest) ContextValidate(ctx context.Context, formats str
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateWithAdminID(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -59,15 +54,6 @@ func (m *GenerateReportRequest) ContextValidate(ctx context.Context, formats str
 func (m *GenerateReportRequest) contextValidateReportID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "reportId", "body", int32(m.ReportID)); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *GenerateReportRequest) contextValidateWithAdminID(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "withAdminId", "body", int32(m.WithAdminID)); err != nil {
 		return err
 	}
 

@@ -21,51 +21,51 @@ import (
 // swagger:model NetflowApplication
 type NetflowApplication struct {
 
-	// IP
+	// the ip of the host that the application runs on
 	// Read Only: true
 	IP string `json:"IP,omitempty"`
 
-	// client count
+	// the count fo client that communicate with this application
 	// Read Only: true
 	ClientCount int32 `json:"clientCount,omitempty"`
 
-	// destination m bytes
+	// the bytes that application received
 	// Read Only: true
 	DestinationMBytes float64 `json:"destinationMBytes,omitempty"`
 
-	// dns
+	// the dns name of the host that the application runs on
 	// Read Only: true
 	DNS string `json:"dns,omitempty"`
 
-	// first epoch in sec
+	// the fist time(sec) this application send or receive package
 	// Read Only: true
 	FirstEpochInSec int64 `json:"firstEpochInSec,omitempty"`
 
-	// flow count
+	// the flow count that associated to this application
 	// Read Only: true
 	FlowCount int64 `json:"flowCount,omitempty"`
 
-	// last epoch in sec
+	// the last time(sec) this application send or receive package
 	// Read Only: true
 	LastEpochInSec int64 `json:"lastEpochInSec,omitempty"`
 
-	// percent usage
+	// the percent traffic of the application
 	// Read Only: true
 	PercentUsage float64 `json:"percentUsage,omitempty"`
 
-	// port
+	// the port that the application runs on
 	// Read Only: true
 	Port int32 `json:"port,omitempty"`
 
-	// protocol
+	// the protocol that the application runs on
 	// Read Only: true
 	Protocol string `json:"protocol,omitempty"`
 
-	// source m bytes
+	// the bytes that application send
 	// Read Only: true
 	SourceMBytes float64 `json:"sourceMBytes,omitempty"`
 
-	// usage
+	// the total traffic of the application
 	// Read Only: true
 	Usage float64 `json:"usage,omitempty"`
 }
@@ -83,51 +83,51 @@ func (m *NetflowApplication) SetDataType(val string) {
 func (m *NetflowApplication) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// IP
+		// the ip of the host that the application runs on
 		// Read Only: true
 		IP string `json:"IP,omitempty"`
 
-		// client count
+		// the count fo client that communicate with this application
 		// Read Only: true
 		ClientCount int32 `json:"clientCount,omitempty"`
 
-		// destination m bytes
+		// the bytes that application received
 		// Read Only: true
 		DestinationMBytes float64 `json:"destinationMBytes,omitempty"`
 
-		// dns
+		// the dns name of the host that the application runs on
 		// Read Only: true
 		DNS string `json:"dns,omitempty"`
 
-		// first epoch in sec
+		// the fist time(sec) this application send or receive package
 		// Read Only: true
 		FirstEpochInSec int64 `json:"firstEpochInSec,omitempty"`
 
-		// flow count
+		// the flow count that associated to this application
 		// Read Only: true
 		FlowCount int64 `json:"flowCount,omitempty"`
 
-		// last epoch in sec
+		// the last time(sec) this application send or receive package
 		// Read Only: true
 		LastEpochInSec int64 `json:"lastEpochInSec,omitempty"`
 
-		// percent usage
+		// the percent traffic of the application
 		// Read Only: true
 		PercentUsage float64 `json:"percentUsage,omitempty"`
 
-		// port
+		// the port that the application runs on
 		// Read Only: true
 		Port int32 `json:"port,omitempty"`
 
-		// protocol
+		// the protocol that the application runs on
 		// Read Only: true
 		Protocol string `json:"protocol,omitempty"`
 
-		// source m bytes
+		// the bytes that application send
 		// Read Only: true
 		SourceMBytes float64 `json:"sourceMBytes,omitempty"`
 
-		// usage
+		// the total traffic of the application
 		// Read Only: true
 		Usage float64 `json:"usage,omitempty"`
 	}
@@ -183,51 +183,51 @@ func (m NetflowApplication) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// IP
+		// the ip of the host that the application runs on
 		// Read Only: true
 		IP string `json:"IP,omitempty"`
 
-		// client count
+		// the count fo client that communicate with this application
 		// Read Only: true
 		ClientCount int32 `json:"clientCount,omitempty"`
 
-		// destination m bytes
+		// the bytes that application received
 		// Read Only: true
 		DestinationMBytes float64 `json:"destinationMBytes,omitempty"`
 
-		// dns
+		// the dns name of the host that the application runs on
 		// Read Only: true
 		DNS string `json:"dns,omitempty"`
 
-		// first epoch in sec
+		// the fist time(sec) this application send or receive package
 		// Read Only: true
 		FirstEpochInSec int64 `json:"firstEpochInSec,omitempty"`
 
-		// flow count
+		// the flow count that associated to this application
 		// Read Only: true
 		FlowCount int64 `json:"flowCount,omitempty"`
 
-		// last epoch in sec
+		// the last time(sec) this application send or receive package
 		// Read Only: true
 		LastEpochInSec int64 `json:"lastEpochInSec,omitempty"`
 
-		// percent usage
+		// the percent traffic of the application
 		// Read Only: true
 		PercentUsage float64 `json:"percentUsage,omitempty"`
 
-		// port
+		// the port that the application runs on
 		// Read Only: true
 		Port int32 `json:"port,omitempty"`
 
-		// protocol
+		// the protocol that the application runs on
 		// Read Only: true
 		Protocol string `json:"protocol,omitempty"`
 
-		// source m bytes
+		// the bytes that application send
 		// Read Only: true
 		SourceMBytes float64 `json:"sourceMBytes,omitempty"`
 
-		// usage
+		// the total traffic of the application
 		// Read Only: true
 		Usage float64 `json:"usage,omitempty"`
 	}{

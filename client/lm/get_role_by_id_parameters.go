@@ -53,10 +53,12 @@ func NewGetRoleByIDParamsWithHTTPClient(client *http.Client) *GetRoleByIDParams 
 	}
 }
 
-/* GetRoleByIDParams contains all the parameters to send to the API endpoint
-   for the get role by Id operation.
+/*
+GetRoleByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get role by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetRoleByIDParams struct {
 

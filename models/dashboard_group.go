@@ -104,6 +104,8 @@ func (m *DashboardGroup) validateDashboards(formats strfmt.Registry) error {
 			if err := m.Dashboards[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dashboards" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dashboards" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -137,6 +139,8 @@ func (m *DashboardGroup) validateWidgetTokens(formats strfmt.Registry) error {
 			if err := m.WidgetTokens[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -198,9 +202,16 @@ func (m *DashboardGroup) contextValidateDashboards(ctx context.Context, formats 
 	for i := 0; i < len(m.Dashboards); i++ {
 
 		if m.Dashboards[i] != nil {
+
+			if swag.IsZero(m.Dashboards[i]) { // not required
+				return nil
+			}
+
 			if err := m.Dashboards[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("dashboards" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("dashboards" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -270,9 +281,16 @@ func (m *DashboardGroup) contextValidateWidgetTokens(ctx context.Context, format
 	for i := 0; i < len(m.WidgetTokens); i++ {
 
 		if m.WidgetTokens[i] != nil {
+
+			if swag.IsZero(m.WidgetTokens[i]) { // not required
+				return nil
+			}
+
 			if err := m.WidgetTokens[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("widgetTokens" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

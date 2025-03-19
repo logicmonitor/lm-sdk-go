@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"strconv"
 
 	"github.com/go-openapi/errors"
@@ -26,6 +25,16 @@ import (
 type EventSource interface {
 	runtime.Validatable
 	runtime.ContextValidatable
+
+	// The Access Groups Id's
+	// Example: 1, 2, 3
+	// Unique: true
+	AccessGroupIds() []int32
+	SetAccessGroupIds([]int32)
+
+	// Module's access groups
+	AccessGroups() []*AccessGroup
+	SetAccessGroups([]*AccessGroup)
 
 	// The alert message body for the EventSource
 	AlertBodyTemplate() string
@@ -62,13 +71,20 @@ type EventSource interface {
 	ClearAfterAck() bool
 	SetClearAfterAck(bool)
 
-	// The EventSource collector type. The values can be wineventlog | syslog | snmptrap | echo | logfile | scriptevent | awsrss | azurerss | azureadvisor | gcpatom | awsrdspievent | azureresourcehealthevent | azureemergingissue | azureloganalyticsworkspacesevent | awstrustedadvisor | awshealth | ipmievent
+	// The EventSource collector type. The values can be wineventlog | syslog | snmptrap | echo | logfile | scriptevent | awsrss | azurerss | azureadvisor | gcpatom | awsrdspievent | azureresourcehealthevent | azureemergingissue | azureloganalyticsworkspacesevent | awstrustedadvisor | awshealth | awsorganizationalhealth | ipmievent
 	Collector() string
 	SetCollector(string)
 
 	// The description for the LMModule
 	Description() string
 	SetDescription(string)
+
+	EventSource() EventSource
+	SetEventSource(EventSource)
+
+	// event source filters
+	EventSourceFilters() []*EventSourceFilter
+	SetEventSourceFilters([]*EventSourceFilter)
 
 	// The filters for the EventSource
 	Filters() []*RestEventSourceFilter
@@ -98,6 +114,10 @@ type EventSource interface {
 	Name() *string
 	SetName(*string)
 
+	// The Registry ID of the Exchange Integration this module is based from, including this field will set this as the module's import base and mark the ID's version as audited
+	OriginRegistryID() string
+	SetOriginRegistryID(string)
+
 	// Whether or not duplicate alerts have to be suppressed
 	SuppressDuplicatesES() bool
 	SetSuppressDuplicatesES(bool)
@@ -120,6 +140,10 @@ type EventSource interface {
 }
 
 type eventSource struct {
+	accessGroupIdsField []int32
+
+	accessGroupsField []*AccessGroup
+
 	alertBodyTemplateField string
 
 	alertEffectiveIvalField *int32
@@ -140,6 +164,10 @@ type eventSource struct {
 
 	descriptionField string
 
+	eventSourceField EventSource
+
+	eventSourceFiltersField []*EventSourceFilter
+
 	filtersField []*RestEventSourceFilter
 
 	groupField string
@@ -152,6 +180,8 @@ type eventSource struct {
 
 	nameField *string
 
+	originRegistryIdField string
+
 	suppressDuplicatesESField bool
 
 	tagsField string
@@ -159,6 +189,26 @@ type eventSource struct {
 	technologyField string
 
 	versionField int64
+}
+
+// AccessGroupIds gets the access group ids of this polymorphic type
+func (m *eventSource) AccessGroupIds() []int32 {
+	return m.accessGroupIdsField
+}
+
+// SetAccessGroupIds sets the access group ids of this polymorphic type
+func (m *eventSource) SetAccessGroupIds(val []int32) {
+	m.accessGroupIdsField = val
+}
+
+// AccessGroups gets the access groups of this polymorphic type
+func (m *eventSource) AccessGroups() []*AccessGroup {
+	return m.accessGroupsField
+}
+
+// SetAccessGroups sets the access groups of this polymorphic type
+func (m *eventSource) SetAccessGroups(val []*AccessGroup) {
+	m.accessGroupsField = val
 }
 
 // AlertBodyTemplate gets the alert body template of this polymorphic type
@@ -260,6 +310,26 @@ func (m *eventSource) SetDescription(val string) {
 	m.descriptionField = val
 }
 
+// EventSource gets the event source of this polymorphic type
+func (m *eventSource) EventSource() EventSource {
+	return m.eventSourceField
+}
+
+// SetEventSource sets the event source of this polymorphic type
+func (m *eventSource) SetEventSource(val EventSource) {
+	m.eventSourceField = val
+}
+
+// EventSourceFilters gets the event source filters of this polymorphic type
+func (m *eventSource) EventSourceFilters() []*EventSourceFilter {
+	return m.eventSourceFiltersField
+}
+
+// SetEventSourceFilters sets the event source filters of this polymorphic type
+func (m *eventSource) SetEventSourceFilters(val []*EventSourceFilter) {
+	m.eventSourceFiltersField = val
+}
+
 // Filters gets the filters of this polymorphic type
 func (m *eventSource) Filters() []*RestEventSourceFilter {
 	return m.filtersField
@@ -318,6 +388,16 @@ func (m *eventSource) Name() *string {
 // SetName sets the name of this polymorphic type
 func (m *eventSource) SetName(val *string) {
 	m.nameField = val
+}
+
+// OriginRegistryID gets the origin registry Id of this polymorphic type
+func (m *eventSource) OriginRegistryID() string {
+	return m.originRegistryIdField
+}
+
+// SetOriginRegistryID sets the origin registry Id of this polymorphic type
+func (m *eventSource) SetOriginRegistryID(val string) {
+	m.originRegistryIdField = val
 }
 
 // SuppressDuplicatesES gets the suppress duplicates e s of this polymorphic type
@@ -381,7 +461,7 @@ func UnmarshalEventSourceSlice(reader io.Reader, consumer runtime.Consumer) ([]E
 // UnmarshalEventSource unmarshals polymorphic EventSource
 func UnmarshalEventSource(reader io.Reader, consumer runtime.Consumer) (EventSource, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -426,6 +506,12 @@ func unmarshalEventSource(data []byte, consumer runtime.Consumer) (EventSource, 
 		return &result, nil
 	case "RestAwsHealthEventSource":
 		var result RestAwsHealthEventSource
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "RestAwsOrganizationalHealthEventSource":
+		var result RestAwsOrganizationalHealthEventSource
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -522,7 +608,23 @@ func unmarshalEventSource(data []byte, consumer runtime.Consumer) (EventSource, 
 func (m *eventSource) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAccessGroupIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAccessGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAlertEffectiveIval(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventSource(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventSourceFilters(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -544,10 +646,91 @@ func (m *eventSource) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *eventSource) validateAccessGroupIds(formats strfmt.Registry) error {
+	if swag.IsZero(m.AccessGroupIds()) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("accessGroupIds", "body", m.AccessGroupIds()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) validateAccessGroups(formats strfmt.Registry) error {
+	if swag.IsZero(m.AccessGroups()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AccessGroups()); i++ {
+		if swag.IsZero(m.accessGroupsField[i]) { // not required
+			continue
+		}
+
+		if m.accessGroupsField[i] != nil {
+			if err := m.accessGroupsField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *eventSource) validateAlertEffectiveIval(formats strfmt.Registry) error {
 
 	if err := validate.Required("alertEffectiveIval", "body", m.AlertEffectiveIval()); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) validateEventSource(formats strfmt.Registry) error {
+	if swag.IsZero(m.EventSource()) { // not required
+		return nil
+	}
+
+	if err := m.EventSource().Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("eventSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("eventSource")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) validateEventSourceFilters(formats strfmt.Registry) error {
+	if swag.IsZero(m.EventSourceFilters()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.EventSourceFilters()); i++ {
+		if swag.IsZero(m.eventSourceFiltersField[i]) { // not required
+			continue
+		}
+
+		if m.eventSourceFiltersField[i] != nil {
+			if err := m.eventSourceFiltersField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -567,6 +750,8 @@ func (m *eventSource) validateFilters(formats strfmt.Registry) error {
 			if err := m.filtersField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -586,6 +771,8 @@ func (m *eventSource) validateInstallationMetadata(formats strfmt.Registry) erro
 		if err := m.InstallationMetadata().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}
@@ -607,11 +794,23 @@ func (m *eventSource) validateName(formats strfmt.Registry) error {
 func (m *eventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAccessGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateChecksum(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEventSource(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEventSourceFilters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -641,6 +840,31 @@ func (m *eventSource) ContextValidate(ctx context.Context, formats strfmt.Regist
 	return nil
 }
 
+func (m *eventSource) contextValidateAccessGroups(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AccessGroups()); i++ {
+
+		if m.accessGroupsField[i] != nil {
+
+			if swag.IsZero(m.accessGroupsField[i]) { // not required
+				return nil
+			}
+
+			if err := m.accessGroupsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *eventSource) contextValidateAuditVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "auditVersion", "body", int64(m.AuditVersion())); err != nil {
@@ -659,14 +883,64 @@ func (m *eventSource) contextValidateChecksum(ctx context.Context, formats strfm
 	return nil
 }
 
+func (m *eventSource) contextValidateEventSource(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventSource()) { // not required
+		return nil
+	}
+
+	if err := m.EventSource().ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("eventSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("eventSource")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) contextValidateEventSourceFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.EventSourceFilters()); i++ {
+
+		if m.eventSourceFiltersField[i] != nil {
+
+			if swag.IsZero(m.eventSourceFiltersField[i]) { // not required
+				return nil
+			}
+
+			if err := m.eventSourceFiltersField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *eventSource) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Filters()); i++ {
 
 		if m.filtersField[i] != nil {
+
+			if swag.IsZero(m.filtersField[i]) { // not required
+				return nil
+			}
+
 			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -689,9 +963,16 @@ func (m *eventSource) contextValidateID(ctx context.Context, formats strfmt.Regi
 func (m *eventSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstallationMetadata() != nil {
+
+		if swag.IsZero(m.InstallationMetadata()) { // not required
+			return nil
+		}
+
 		if err := m.InstallationMetadata().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}

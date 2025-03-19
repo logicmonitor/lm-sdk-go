@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// RestHighestPriorityCollectorStatus rest highest priority collector status
+// RestHighestPriorityCollectorStatus The status of the highest priority sub collector
 //
 // swagger:model RestHighestPriorityCollectorStatus
 type RestHighestPriorityCollectorStatus struct {

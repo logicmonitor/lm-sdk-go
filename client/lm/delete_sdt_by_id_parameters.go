@@ -52,10 +52,12 @@ func NewDeleteSDTByIDParamsWithHTTPClient(client *http.Client) *DeleteSDTByIDPar
 	}
 }
 
-/* DeleteSDTByIDParams contains all the parameters to send to the API endpoint
-   for the delete SDT by Id operation.
+/*
+DeleteSDTByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete Sdt by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteSDTByIDParams struct {
 
@@ -72,7 +74,7 @@ type DeleteSDTByIDParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the delete SDT by Id params (not the query body).
+// WithDefaults hydrates default values in the delete Sdt by Id params (not the query body).
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteSDTByIDParams) WithDefaults() *DeleteSDTByIDParams {
@@ -80,7 +82,7 @@ func (o *DeleteSDTByIDParams) WithDefaults() *DeleteSDTByIDParams {
 	return o
 }
 
-// SetDefaults hydrates default values in the delete SDT by Id params (not the query body).
+// SetDefaults hydrates default values in the delete Sdt by Id params (not the query body).
 //
 // All values with no default are reset to their zero value.
 func (o *DeleteSDTByIDParams) SetDefaults() {
@@ -98,57 +100,57 @@ func (o *DeleteSDTByIDParams) SetDefaults() {
 	*o = val
 }
 
-// WithTimeout adds the timeout to the delete SDT by Id params
+// WithTimeout adds the timeout to the delete Sdt by Id params
 func (o *DeleteSDTByIDParams) WithTimeout(timeout time.Duration) *DeleteSDTByIDParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the delete SDT by Id params
+// SetTimeout adds the timeout to the delete Sdt by Id params
 func (o *DeleteSDTByIDParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the delete SDT by Id params
+// WithContext adds the context to the delete Sdt by Id params
 func (o *DeleteSDTByIDParams) WithContext(ctx context.Context) *DeleteSDTByIDParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the delete SDT by Id params
+// SetContext adds the context to the delete Sdt by Id params
 func (o *DeleteSDTByIDParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the delete SDT by Id params
+// WithHTTPClient adds the HTTPClient to the delete Sdt by Id params
 func (o *DeleteSDTByIDParams) WithHTTPClient(client *http.Client) *DeleteSDTByIDParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the delete SDT by Id params
+// SetHTTPClient adds the HTTPClient to the delete Sdt by Id params
 func (o *DeleteSDTByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the delete SDT by Id params
+// WithUserAgent adds the userAgent to the delete Sdt by Id params
 func (o *DeleteSDTByIDParams) WithUserAgent(userAgent *string) *DeleteSDTByIDParams {
 	o.SetUserAgent(userAgent)
 	return o
 }
 
-// SetUserAgent adds the userAgent to the delete SDT by Id params
+// SetUserAgent adds the userAgent to the delete Sdt by Id params
 func (o *DeleteSDTByIDParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
 }
 
-// WithID adds the id to the delete SDT by Id params
+// WithID adds the id to the delete Sdt by Id params
 func (o *DeleteSDTByIDParams) WithID(id string) *DeleteSDTByIDParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the delete SDT by Id params
+// SetID adds the id to the delete Sdt by Id params
 func (o *DeleteSDTByIDParams) SetID(id string) {
 	o.ID = id
 }

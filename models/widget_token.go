@@ -15,7 +15,8 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WidgetToken widget token
+// WidgetToken If useDynamicWidget=true, this field must at least contain tokens defaultDeviceGroup and defaultServiceGroup
+// Example: \"[{\"name\":\"defaultDeviceGroup\",\"value\":\"*\"},{\"name\":\"defaultServiceGroup\",\"value\":\"*\"}]\
 //
 // swagger:model WidgetToken
 type WidgetToken struct {
@@ -65,6 +66,8 @@ func (m *WidgetToken) validateInheritList(formats strfmt.Registry) error {
 			if err := m.InheritList[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -98,9 +101,16 @@ func (m *WidgetToken) contextValidateInheritList(ctx context.Context, formats st
 	for i := 0; i < len(m.InheritList); i++ {
 
 		if m.InheritList[i] != nil {
+
+			if swag.IsZero(m.InheritList[i]) { // not required
+				return nil
+			}
+
 			if err := m.InheritList[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritList" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritList" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

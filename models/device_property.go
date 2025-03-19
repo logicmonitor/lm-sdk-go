@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DeviceProperty device property
+// DeviceProperty The resource property filters list
 //
 // swagger:model DeviceProperty
 type DeviceProperty struct {

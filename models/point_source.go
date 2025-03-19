@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// PointSource point source
+// PointSource The points info
 //
 // swagger:model PointSource
 type PointSource struct {

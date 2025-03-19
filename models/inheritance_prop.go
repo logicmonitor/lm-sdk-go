@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// InheritanceProp inheritance prop
+// InheritanceProp The inherit list of the property
 //
 // swagger:model InheritanceProp
 type InheritanceProp struct {

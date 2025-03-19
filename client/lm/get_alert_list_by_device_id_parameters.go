@@ -53,10 +53,12 @@ func NewGetAlertListByDeviceIDParamsWithHTTPClient(client *http.Client) *GetAler
 	}
 }
 
-/* GetAlertListByDeviceIDParams contains all the parameters to send to the API endpoint
-   for the get alert list by device Id operation.
+/*
+GetAlertListByDeviceIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get alert list by device Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAlertListByDeviceIDParams struct {
 
@@ -66,8 +68,6 @@ type GetAlertListByDeviceIDParams struct {
 	UserAgent *string
 
 	// Bound.
-	//
-	// Default: "instances"
 	Bound *string
 
 	// CustomColumns.
@@ -131,21 +131,15 @@ func (o *GetAlertListByDeviceIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
-		boundDefault = string("instances")
-
-		needMessageDefault = bool(false)
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAlertListByDeviceIDParams{
-		UserAgent:   &userAgentDefault,
-		Bound:       &boundDefault,
-		NeedMessage: &needMessageDefault,
-		Offset:      &offsetDefault,
-		Size:        &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout

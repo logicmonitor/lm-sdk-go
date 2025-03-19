@@ -53,10 +53,12 @@ func NewDeleteDeviceGroupByIDParamsWithHTTPClient(client *http.Client) *DeleteDe
 	}
 }
 
-/* DeleteDeviceGroupByIDParams contains all the parameters to send to the API endpoint
-   for the delete device group by Id operation.
+/*
+DeleteDeviceGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete device group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteDeviceGroupByIDParams struct {
 
@@ -69,8 +71,6 @@ type DeleteDeviceGroupByIDParams struct {
 	DeleteChildren *bool
 
 	// DeleteHard.
-	//
-	// Default: true
 	DeleteHard *bool
 
 	// ID.
@@ -97,16 +97,10 @@ func (o *DeleteDeviceGroupByIDParams) WithDefaults() *DeleteDeviceGroupByIDParam
 func (o *DeleteDeviceGroupByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		deleteChildrenDefault = bool(false)
-
-		deleteHardDefault = bool(true)
 	)
 
 	val := DeleteDeviceGroupByIDParams{
-		UserAgent:      &userAgentDefault,
-		DeleteChildren: &deleteChildrenDefault,
-		DeleteHard:     &deleteHardDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

@@ -53,10 +53,12 @@ func NewDeleteWebsiteGroupByIDParamsWithHTTPClient(client *http.Client) *DeleteW
 	}
 }
 
-/* DeleteWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
-   for the delete website group by Id operation.
+/*
+DeleteWebsiteGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the delete website group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type DeleteWebsiteGroupByIDParams struct {
 
@@ -94,13 +96,10 @@ func (o *DeleteWebsiteGroupByIDParams) WithDefaults() *DeleteWebsiteGroupByIDPar
 func (o *DeleteWebsiteGroupByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		deleteChildrenDefault = int32(0)
 	)
 
 	val := DeleteWebsiteGroupByIDParams{
-		UserAgent:      &userAgentDefault,
-		DeleteChildren: &deleteChildrenDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

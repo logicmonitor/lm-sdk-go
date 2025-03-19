@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// APIToken API token
+// APIToken Any API Tokens associated with the user
 //
 // swagger:model APIToken
 type APIToken struct {
@@ -46,6 +47,10 @@ type APIToken struct {
 	// The id of the API Token
 	// Read Only: true
 	ID int32 `json:"id,omitempty"`
+
+	// The IP from which the API Tokens were last used
+	// Read Only: true
+	LastAuthIP string `json:"lastAuthIp,omitempty"`
 
 	// The epoch at which the API Tokens were last used
 	// Read Only: true
@@ -125,6 +130,10 @@ func (m *APIToken) ContextValidate(ctx context.Context, formats strfmt.Registry)
 	}
 
 	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastAuthIP(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -209,6 +218,15 @@ func (m *APIToken) contextValidateID(ctx context.Context, formats strfmt.Registr
 	return nil
 }
 
+func (m *APIToken) contextValidateLastAuthIP(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastAuthIp", "body", string(m.LastAuthIP)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *APIToken) contextValidateLastUsedOn(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "lastUsedOn", "body", int64(m.LastUsedOn)); err != nil {
@@ -222,6 +240,14 @@ func (m *APIToken) contextValidateRoles(ctx context.Context, formats strfmt.Regi
 
 	if err := validate.ReadOnly(ctx, "roles", "body", []string(m.Roles)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Roles); i++ {
+
+		if err := validate.ReadOnly(ctx, "roles"+"."+strconv.Itoa(i), "body", string(m.Roles[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

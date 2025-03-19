@@ -55,10 +55,12 @@ func NewPatchDashboardByIDParamsWithHTTPClient(client *http.Client) *PatchDashbo
 	}
 }
 
-/* PatchDashboardByIDParams contains all the parameters to send to the API endpoint
-   for the patch dashboard by Id operation.
+/*
+PatchDashboardByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch dashboard by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDashboardByIDParams struct {
 
@@ -97,13 +99,10 @@ func (o *PatchDashboardByIDParams) WithDefaults() *PatchDashboardByIDParams {
 func (o *PatchDashboardByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		overwriteGroupFieldsDefault = bool(false)
 	)
 
 	val := PatchDashboardByIDParams{
-		UserAgent:            &userAgentDefault,
-		OverwriteGroupFields: &overwriteGroupFieldsDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

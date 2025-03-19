@@ -54,10 +54,12 @@ func NewPatchSDTByIDParamsWithHTTPClient(client *http.Client) *PatchSDTByIDParam
 	}
 }
 
-/* PatchSDTByIDParams contains all the parameters to send to the API endpoint
-   for the patch SDT by Id operation.
+/*
+PatchSDTByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch Sdt by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchSDTByIDParams struct {
 
@@ -77,7 +79,7 @@ type PatchSDTByIDParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the patch SDT by Id params (not the query body).
+// WithDefaults hydrates default values in the patch Sdt by Id params (not the query body).
 //
 // All values with no default are reset to their zero value.
 func (o *PatchSDTByIDParams) WithDefaults() *PatchSDTByIDParams {
@@ -85,7 +87,7 @@ func (o *PatchSDTByIDParams) WithDefaults() *PatchSDTByIDParams {
 	return o
 }
 
-// SetDefaults hydrates default values in the patch SDT by Id params (not the query body).
+// SetDefaults hydrates default values in the patch Sdt by Id params (not the query body).
 //
 // All values with no default are reset to their zero value.
 func (o *PatchSDTByIDParams) SetDefaults() {
@@ -103,68 +105,68 @@ func (o *PatchSDTByIDParams) SetDefaults() {
 	*o = val
 }
 
-// WithTimeout adds the timeout to the patch SDT by Id params
+// WithTimeout adds the timeout to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) WithTimeout(timeout time.Duration) *PatchSDTByIDParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the patch SDT by Id params
+// SetTimeout adds the timeout to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the patch SDT by Id params
+// WithContext adds the context to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) WithContext(ctx context.Context) *PatchSDTByIDParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the patch SDT by Id params
+// SetContext adds the context to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the patch SDT by Id params
+// WithHTTPClient adds the HTTPClient to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) WithHTTPClient(client *http.Client) *PatchSDTByIDParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the patch SDT by Id params
+// SetHTTPClient adds the HTTPClient to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the patch SDT by Id params
+// WithUserAgent adds the userAgent to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) WithUserAgent(userAgent *string) *PatchSDTByIDParams {
 	o.SetUserAgent(userAgent)
 	return o
 }
 
-// SetUserAgent adds the userAgent to the patch SDT by Id params
+// SetUserAgent adds the userAgent to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
 }
 
-// WithBody adds the body to the patch SDT by Id params
+// WithBody adds the body to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) WithBody(body models.SDT) *PatchSDTByIDParams {
 	o.SetBody(body)
 	return o
 }
 
-// SetBody adds the body to the patch SDT by Id params
+// SetBody adds the body to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) SetBody(body models.SDT) {
 	o.Body = body
 }
 
-// WithID adds the id to the patch SDT by Id params
+// WithID adds the id to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) WithID(id string) *PatchSDTByIDParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the patch SDT by Id params
+// SetID adds the id to the patch Sdt by Id params
 func (o *PatchSDTByIDParams) SetID(id string) {
 	o.ID = id
 }

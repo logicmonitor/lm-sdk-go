@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// OverviewGraphDataPoint overview graph data point
+// OverviewGraphDataPoint The graph data point list
 //
 // swagger:model OverviewGraphDataPoint
 type OverviewGraphDataPoint struct {

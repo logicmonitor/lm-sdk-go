@@ -55,10 +55,12 @@ func NewPatchAppliesToFunctionParamsWithHTTPClient(client *http.Client) *PatchAp
 	}
 }
 
-/* PatchAppliesToFunctionParams contains all the parameters to send to the API endpoint
-   for the patch applies to function operation.
+/*
+PatchAppliesToFunctionParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch applies to function operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchAppliesToFunctionParams struct {
 
@@ -100,13 +102,10 @@ func (o *PatchAppliesToFunctionParams) WithDefaults() *PatchAppliesToFunctionPar
 func (o *PatchAppliesToFunctionParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		ignoreReferenceDefault = bool(false)
 	)
 
 	val := PatchAppliesToFunctionParams{
-		UserAgent:       &userAgentDefault,
-		IgnoreReference: &ignoreReferenceDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

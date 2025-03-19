@@ -53,10 +53,12 @@ func NewGetUnmonitoredDeviceListParamsWithHTTPClient(client *http.Client) *GetUn
 	}
 }
 
-/* GetUnmonitoredDeviceListParams contains all the parameters to send to the API endpoint
-   for the get unmonitored device list operation.
+/*
+GetUnmonitoredDeviceListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get unmonitored device list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetUnmonitoredDeviceListParams struct {
 

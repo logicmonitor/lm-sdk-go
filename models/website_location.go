@@ -14,7 +14,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// WebsiteLocation website location
+// WebsiteLocation The locations from which the website is monitored. If the website is internal, this field should include Collectors. If Non-Internal, possible test locations are:
+// 1 : US - LA
+// 2 : US - DC
+// 3 : US - SF
+// 4 : Europe - Dublin
+// 5 : Asia - Singapore
+// 6 : Australia - Sydney
+// testLocation:"{all:true}" indicates that the service will be monitored from all checkpoint locations
+// testLocation:"{smgIds:[1,2,3]}" indicates that the service will be monitored from checkpoint locations 1, 2 and 3
+// testLocation:"{collectorIds:[85,90]}" indicates that the service will be monitored by Collectors 85 and 90
 //
 // swagger:model WebsiteLocation
 type WebsiteLocation struct {
@@ -62,6 +71,8 @@ func (m *WebsiteLocation) validateCollectors(formats strfmt.Registry) error {
 			if err := m.Collectors[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -91,9 +102,16 @@ func (m *WebsiteLocation) contextValidateCollectors(ctx context.Context, formats
 	for i := 0; i < len(m.Collectors); i++ {
 
 		if m.Collectors[i] != nil {
+
+			if swag.IsZero(m.Collectors[i]) { // not required
+				return nil
+			}
+
 			if err := m.Collectors[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("collectors" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("collectors" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

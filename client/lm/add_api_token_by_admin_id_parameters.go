@@ -55,10 +55,12 @@ func NewAddAPITokenByAdminIDParamsWithHTTPClient(client *http.Client) *AddAPITok
 	}
 }
 
-/* AddAPITokenByAdminIDParams contains all the parameters to send to the API endpoint
-   for the add Api token by admin Id operation.
+/*
+AddAPITokenByAdminIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add Api token by admin Id operation.
+
+	Typically these are written to a http.Request.
 */
 type AddAPITokenByAdminIDParams struct {
 
@@ -76,8 +78,6 @@ type AddAPITokenByAdminIDParams struct {
 	Body *models.APIToken
 
 	// Type.
-	//
-	// Default: "API Token"
 	Type *string
 
 	timeout    time.Duration
@@ -99,13 +99,10 @@ func (o *AddAPITokenByAdminIDParams) WithDefaults() *AddAPITokenByAdminIDParams 
 func (o *AddAPITokenByAdminIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		typeVarDefault = string("API Token")
 	)
 
 	val := AddAPITokenByAdminIDParams{
 		UserAgent: &userAgentDefault,
-		Type:      &typeVarDefault,
 	}
 
 	val.timeout = o.timeout

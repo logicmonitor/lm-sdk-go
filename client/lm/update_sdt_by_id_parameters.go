@@ -54,10 +54,12 @@ func NewUpdateSDTByIDParamsWithHTTPClient(client *http.Client) *UpdateSDTByIDPar
 	}
 }
 
-/* UpdateSDTByIDParams contains all the parameters to send to the API endpoint
-   for the update SDT by Id operation.
+/*
+UpdateSDTByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update Sdt by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateSDTByIDParams struct {
 
@@ -77,7 +79,7 @@ type UpdateSDTByIDParams struct {
 	HTTPClient *http.Client
 }
 
-// WithDefaults hydrates default values in the update SDT by Id params (not the query body).
+// WithDefaults hydrates default values in the update Sdt by Id params (not the query body).
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateSDTByIDParams) WithDefaults() *UpdateSDTByIDParams {
@@ -85,7 +87,7 @@ func (o *UpdateSDTByIDParams) WithDefaults() *UpdateSDTByIDParams {
 	return o
 }
 
-// SetDefaults hydrates default values in the update SDT by Id params (not the query body).
+// SetDefaults hydrates default values in the update Sdt by Id params (not the query body).
 //
 // All values with no default are reset to their zero value.
 func (o *UpdateSDTByIDParams) SetDefaults() {
@@ -103,68 +105,68 @@ func (o *UpdateSDTByIDParams) SetDefaults() {
 	*o = val
 }
 
-// WithTimeout adds the timeout to the update SDT by Id params
+// WithTimeout adds the timeout to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) WithTimeout(timeout time.Duration) *UpdateSDTByIDParams {
 	o.SetTimeout(timeout)
 	return o
 }
 
-// SetTimeout adds the timeout to the update SDT by Id params
+// SetTimeout adds the timeout to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) SetTimeout(timeout time.Duration) {
 	o.timeout = timeout
 }
 
-// WithContext adds the context to the update SDT by Id params
+// WithContext adds the context to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) WithContext(ctx context.Context) *UpdateSDTByIDParams {
 	o.SetContext(ctx)
 	return o
 }
 
-// SetContext adds the context to the update SDT by Id params
+// SetContext adds the context to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) SetContext(ctx context.Context) {
 	o.Context = ctx
 }
 
-// WithHTTPClient adds the HTTPClient to the update SDT by Id params
+// WithHTTPClient adds the HTTPClient to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) WithHTTPClient(client *http.Client) *UpdateSDTByIDParams {
 	o.SetHTTPClient(client)
 	return o
 }
 
-// SetHTTPClient adds the HTTPClient to the update SDT by Id params
+// SetHTTPClient adds the HTTPClient to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
-// WithUserAgent adds the userAgent to the update SDT by Id params
+// WithUserAgent adds the userAgent to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) WithUserAgent(userAgent *string) *UpdateSDTByIDParams {
 	o.SetUserAgent(userAgent)
 	return o
 }
 
-// SetUserAgent adds the userAgent to the update SDT by Id params
+// SetUserAgent adds the userAgent to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
 }
 
-// WithBody adds the body to the update SDT by Id params
+// WithBody adds the body to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) WithBody(body models.SDT) *UpdateSDTByIDParams {
 	o.SetBody(body)
 	return o
 }
 
-// SetBody adds the body to the update SDT by Id params
+// SetBody adds the body to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) SetBody(body models.SDT) {
 	o.Body = body
 }
 
-// WithID adds the id to the update SDT by Id params
+// WithID adds the id to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) WithID(id string) *UpdateSDTByIDParams {
 	o.SetID(id)
 	return o
 }
 
-// SetID adds the id to the update SDT by Id params
+// SetID adds the id to the update Sdt by Id params
 func (o *UpdateSDTByIDParams) SetID(id string) {
 	o.ID = id
 }

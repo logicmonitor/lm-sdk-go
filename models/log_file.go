@@ -12,9 +12,10 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
-// LogFile log file
+// LogFile log files
 //
 // swagger:model LogFile
 type LogFile struct {
@@ -32,7 +33,8 @@ type LogFile struct {
 	OriginID string `json:"originId,omitempty"`
 
 	// The path of the log file to monitor
-	Path string `json:"path,omitempty"`
+	// Required: true
+	Path *string `json:"path"`
 
 	// Whether or not glob is used in the path
 	UseGlob bool `json:"useGlob,omitempty"`
@@ -43,6 +45,10 @@ func (m *LogFile) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateMatches(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validatePath(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -66,11 +72,22 @@ func (m *LogFile) validateMatches(formats strfmt.Registry) error {
 			if err := m.Matches[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("matches" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("matches" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *LogFile) validatePath(formats strfmt.Registry) error {
+
+	if err := validate.Required("path", "body", m.Path); err != nil {
+		return err
 	}
 
 	return nil
@@ -95,9 +112,16 @@ func (m *LogFile) contextValidateMatches(ctx context.Context, formats strfmt.Reg
 	for i := 0; i < len(m.Matches); i++ {
 
 		if m.Matches[i] != nil {
+
+			if swag.IsZero(m.Matches[i]) { // not required
+				return nil
+			}
+
 			if err := m.Matches[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("matches" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("matches" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

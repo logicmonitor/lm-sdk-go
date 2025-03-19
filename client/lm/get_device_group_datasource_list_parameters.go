@@ -53,10 +53,12 @@ func NewGetDeviceGroupDatasourceListParamsWithHTTPClient(client *http.Client) *G
 	}
 }
 
-/* GetDeviceGroupDatasourceListParams contains all the parameters to send to the API endpoint
-   for the get device group datasource list operation.
+/*
+GetDeviceGroupDatasourceListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device group datasource list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDeviceGroupDatasourceListParams struct {
 
@@ -110,18 +112,15 @@ func (o *GetDeviceGroupDatasourceListParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
-		includeDisabledDataSourceWithoutInstanceDefault = bool(false)
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceGroupDatasourceListParams{
-		UserAgent:                                &userAgentDefault,
-		IncludeDisabledDataSourceWithoutInstance: &includeDisabledDataSourceWithoutInstanceDefault,
-		Offset:                                   &offsetDefault,
-		Size:                                     &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout

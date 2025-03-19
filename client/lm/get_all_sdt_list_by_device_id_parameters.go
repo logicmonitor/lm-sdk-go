@@ -53,10 +53,12 @@ func NewGetAllSDTListByDeviceIDParamsWithHTTPClient(client *http.Client) *GetAll
 	}
 }
 
-/* GetAllSDTListByDeviceIDParams contains all the parameters to send to the API endpoint
-   for the get all SDT list by device Id operation.
+/*
+GetAllSDTListByDeviceIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get all SDT list by device Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetAllSDTListByDeviceIDParams struct {
 

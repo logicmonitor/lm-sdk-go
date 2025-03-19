@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// HostInventoryMetric host inventory metric
+// HostInventoryMetric The instances will be included in the report
 //
 // swagger:model HostInventoryMetric
 type HostInventoryMetric struct {

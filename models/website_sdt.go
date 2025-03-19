@@ -24,6 +24,8 @@ type WebsiteSDT struct {
 
 	commentField string
 
+	defaultValueField strfmt.DateTime
+
 	durationField int32
 
 	endDateTimeField int64
@@ -81,6 +83,16 @@ func (m *WebsiteSDT) Comment() string {
 // SetComment sets the comment of this subtype
 func (m *WebsiteSDT) SetComment(val string) {
 	m.commentField = val
+}
+
+// DefaultValue gets the default value of this subtype
+func (m *WebsiteSDT) DefaultValue() strfmt.DateTime {
+	return m.defaultValueField
+}
+
+// SetDefaultValue sets the default value of this subtype
+func (m *WebsiteSDT) SetDefaultValue(val strfmt.DateTime) {
+	m.defaultValueField = val
 }
 
 // Duration gets the duration of this subtype
@@ -277,6 +289,8 @@ func (m *WebsiteSDT) UnmarshalJSON(raw []byte) error {
 
 		Comment string `json:"comment,omitempty"`
 
+		DefaultValue strfmt.DateTime `json:"defaultValue,omitempty"`
+
 		Duration int32 `json:"duration,omitempty"`
 
 		EndDateTime int64 `json:"endDateTime,omitempty"`
@@ -324,6 +338,8 @@ func (m *WebsiteSDT) UnmarshalJSON(raw []byte) error {
 	result.adminField = base.Admin
 
 	result.commentField = base.Comment
+
+	result.defaultValueField = base.DefaultValue
 
 	result.durationField = base.Duration
 
@@ -394,6 +410,8 @@ func (m WebsiteSDT) MarshalJSON() ([]byte, error) {
 
 		Comment string `json:"comment,omitempty"`
 
+		DefaultValue strfmt.DateTime `json:"defaultValue,omitempty"`
+
 		Duration int32 `json:"duration,omitempty"`
 
 		EndDateTime int64 `json:"endDateTime,omitempty"`
@@ -432,6 +450,8 @@ func (m WebsiteSDT) MarshalJSON() ([]byte, error) {
 		Admin: m.Admin(),
 
 		Comment: m.Comment(),
+
+		DefaultValue: m.DefaultValue(),
 
 		Duration: m.Duration(),
 
@@ -478,9 +498,26 @@ func (m WebsiteSDT) MarshalJSON() ([]byte, error) {
 func (m *WebsiteSDT) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDefaultValue(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *WebsiteSDT) validateDefaultValue(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DefaultValue()) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("defaultValue", "body", "date-time", m.DefaultValue().String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ReportRecipient report recipient
+// ReportRecipient If the report is configured to be delivered via email, this object provides the recipients that the report will be delivered to
 //
 // swagger:model ReportRecipient
 type ReportRecipient struct {

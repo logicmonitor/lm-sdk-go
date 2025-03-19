@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// GraphVirtualDataPoint graph virtual data point
+// GraphVirtualDataPoint The virtual data point list
 //
 // swagger:model GraphVirtualDataPoint
 type GraphVirtualDataPoint struct {

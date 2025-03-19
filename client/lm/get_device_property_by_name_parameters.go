@@ -53,10 +53,12 @@ func NewGetDevicePropertyByNameParamsWithHTTPClient(client *http.Client) *GetDev
 	}
 }
 
-/* GetDevicePropertyByNameParams contains all the parameters to send to the API endpoint
-   for the get device property by name operation.
+/*
+GetDevicePropertyByNameParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get device property by name operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDevicePropertyByNameParams struct {
 

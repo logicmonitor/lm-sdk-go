@@ -55,10 +55,12 @@ func NewPatchEscalationChainByIDParamsWithHTTPClient(client *http.Client) *Patch
 	}
 }
 
-/* PatchEscalationChainByIDParams contains all the parameters to send to the API endpoint
-   for the patch escalation chain by Id operation.
+/*
+PatchEscalationChainByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch escalation chain by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchEscalationChainByIDParams struct {
 

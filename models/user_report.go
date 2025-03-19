@@ -67,7 +67,7 @@ type UserReport struct {
 	// The sort by method
 	SortedBy string `json:"sortedBy,omitempty"`
 
-	// The filter for the report
+	// user filter
 	UserFilter *UserFilter `json:"userFilter,omitempty"`
 }
 
@@ -290,7 +290,7 @@ func (m *UserReport) UnmarshalJSON(raw []byte) error {
 		// The sort by method
 		SortedBy string `json:"sortedBy,omitempty"`
 
-		// The filter for the report
+		// user filter
 		UserFilter *UserFilter `json:"userFilter,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
@@ -421,7 +421,7 @@ func (m UserReport) MarshalJSON() ([]byte, error) {
 		// The sort by method
 		SortedBy string `json:"sortedBy,omitempty"`
 
-		// The filter for the report
+		// user filter
 		UserFilter *UserFilter `json:"userFilter,omitempty"`
 	}{
 
@@ -577,6 +577,8 @@ func (m *UserReport) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -602,6 +604,8 @@ func (m *UserReport) validateColumns(formats strfmt.Registry) error {
 			if err := m.Columns[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -622,6 +626,8 @@ func (m *UserReport) validateUserFilter(formats strfmt.Registry) error {
 		if err := m.UserFilter.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("userFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("userFilter")
 			}
 			return err
 		}
@@ -782,9 +788,16 @@ func (m *UserReport) contextValidateRecipients(ctx context.Context, formats strf
 	for i := 0; i < len(m.Recipients()); i++ {
 
 		if m.recipientsField[i] != nil {
+
+			if swag.IsZero(m.recipientsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -818,9 +831,16 @@ func (m *UserReport) contextValidateColumns(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.Columns); i++ {
 
 		if m.Columns[i] != nil {
+
+			if swag.IsZero(m.Columns[i]) { // not required
+				return nil
+			}
+
 			if err := m.Columns[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("columns" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("columns" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -834,9 +854,16 @@ func (m *UserReport) contextValidateColumns(ctx context.Context, formats strfmt.
 func (m *UserReport) contextValidateUserFilter(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.UserFilter != nil {
+
+		if swag.IsZero(m.UserFilter) { // not required
+			return nil
+		}
+
 		if err := m.UserFilter.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("userFilter")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("userFilter")
 			}
 			return err
 		}

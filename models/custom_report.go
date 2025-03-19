@@ -561,6 +561,8 @@ func (m *CustomReport) validateRecipients(formats strfmt.Registry) error {
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -586,6 +588,8 @@ func (m *CustomReport) validateMacros(formats strfmt.Registry) error {
 			if err := m.Macros[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("macros" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("macros" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -744,9 +748,16 @@ func (m *CustomReport) contextValidateRecipients(ctx context.Context, formats st
 	for i := 0; i < len(m.Recipients()); i++ {
 
 		if m.recipientsField[i] != nil {
+
+			if swag.IsZero(m.recipientsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -780,9 +791,16 @@ func (m *CustomReport) contextValidateMacros(ctx context.Context, formats strfmt
 	for i := 0; i < len(m.Macros); i++ {
 
 		if m.Macros[i] != nil {
+
+			if swag.IsZero(m.Macros[i]) { // not required
+				return nil
+			}
+
 			if err := m.Macros[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("macros" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("macros" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

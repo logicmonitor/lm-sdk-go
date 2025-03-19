@@ -53,10 +53,12 @@ func NewGetDashboardGroupByIDParamsWithHTTPClient(client *http.Client) *GetDashb
 	}
 }
 
-/* GetDashboardGroupByIDParams contains all the parameters to send to the API endpoint
-   for the get dashboard group by Id operation.
+/*
+GetDashboardGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get dashboard group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDashboardGroupByIDParams struct {
 
@@ -69,8 +71,6 @@ type GetDashboardGroupByIDParams struct {
 	Fields *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -100,16 +100,10 @@ func (o *GetDashboardGroupByIDParams) WithDefaults() *GetDashboardGroupByIDParam
 func (o *GetDashboardGroupByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
-
-		templateDefault = bool(false)
 	)
 
 	val := GetDashboardGroupByIDParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
-		Template:  &templateDefault,
 	}
 
 	val.timeout = o.timeout

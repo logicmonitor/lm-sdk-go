@@ -53,10 +53,12 @@ func NewGetCollectorVersionListParamsWithHTTPClient(client *http.Client) *GetCol
 	}
 }
 
-/* GetCollectorVersionListParams contains all the parameters to send to the API endpoint
-   for the get collector version list operation.
+/*
+GetCollectorVersionListParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get collector version list operation.
+
+	Typically these are written to a http.Request.
 */
 type GetCollectorVersionListParams struct {
 

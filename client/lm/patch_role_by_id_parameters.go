@@ -55,10 +55,12 @@ func NewPatchRoleByIDParamsWithHTTPClient(client *http.Client) *PatchRoleByIDPar
 	}
 }
 
-/* PatchRoleByIDParams contains all the parameters to send to the API endpoint
-   for the patch role by Id operation.
+/*
+PatchRoleByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch role by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchRoleByIDParams struct {
 

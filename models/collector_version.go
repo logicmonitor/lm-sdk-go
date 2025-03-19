@@ -43,6 +43,10 @@ type CollectorVersion struct {
 	// Read Only: true
 	MinorVersion int32 `json:"minorVersion,omitempty"`
 
+	// Specifies if this is a ea patch version
+	// Read Only: true
+	Patch *bool `json:"patch,omitempty"`
+
 	// Release Epoch for official releases
 	// Read Only: true
 	ReleaseEpoch int64 `json:"releaseEpoch,omitempty"`
@@ -82,6 +86,10 @@ func (m *CollectorVersion) ContextValidate(ctx context.Context, formats strfmt.R
 	}
 
 	if err := m.contextValidateMinorVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidatePatch(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -147,6 +155,15 @@ func (m *CollectorVersion) contextValidateMandatory(ctx context.Context, formats
 func (m *CollectorVersion) contextValidateMinorVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "minorVersion", "body", int32(m.MinorVersion)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorVersion) contextValidatePatch(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "patch", "body", m.Patch); err != nil {
 		return err
 	}
 

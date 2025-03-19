@@ -7,9 +7,13 @@ package models
 
 import (
 	"context"
+	"encoding/json"
+	"strconv"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 )
 
 // AlertFilters alert filters
@@ -17,59 +21,139 @@ import (
 // swagger:model AlertFilters
 type AlertFilters struct {
 
-	// Displayed alerts must have an acknowledgement status that satisfies this criteria
-	Acked string `json:"acked,omitempty"`
+	// datapoint filters
+	DatapointFilters []*DatapointFilterItem `json:"datapointFilters,omitempty"`
 
-	// anomaly
-	Anomaly string `json:"anomaly,omitempty"`
+	// datapoints filter mode
+	// Enum: ["INCLUDE","EXCLUDE"]
+	DatapointsFilterMode string `json:"datapointsFilterMode,omitempty"`
 
-	// Displayed alerts must be routed to an escalation chain that satisfies this filter. Glob is accepted, and * and an empty string both match all escalation chains
-	Chain string `json:"chain,omitempty"`
-
-	// Displayed alerts must be active if cleared=no,  display alerts must be closed if cleared=yes, and must have cleared in the past 7 days if cleared=all
-	Cleared string `json:"cleared,omitempty"`
-
-	// Displayed alerts must be associated with datapoints that meet this filter criteria. Glob is accepted, and * and an empty string both match all datapoints
-	DataPoint string `json:"dataPoint,omitempty"`
-
-	// Displayed alerts must be associated with datasources that meet this filter criteria. Glob is accepted, and * and an empty string both indicate all datasources
-	DataSource string `json:"dataSource,omitempty"`
-
-	// dependency role
-	DependencyRole string `json:"dependencyRole,omitempty"`
-
-	// dependency routing state
-	DependencyRoutingState string `json:"dependencyRoutingState,omitempty"`
-
-	// Displayed alerts must be associated with groups that meet this filter criteria. Glob is accepted, and * and an empty string both indicate all groups
-	Group string `json:"group,omitempty"`
-
-	// Displayed alerts must be associated with devices that meet this filter criteria. Glob is accepted, and * and an empty string both indicate all devices
-	Host string `json:"host,omitempty"`
-
-	// Displayed alerts must be associated with instances that meet this filter criteria. Glob is accepted, and * and an empty string both match all instances
-	Instance string `json:"instance,omitempty"`
-
-	// The key word for free search
-	Keyword string `json:"keyword,omitempty"`
-
-	// Displayed alerts must match a rule that satisfies this filter. Glob is accepted, and * and an empty string both match all rules
-	Rule string `json:"rule,omitempty"`
-
-	// Displayed alerts must have an SDT status that meets this criteria
-	Sdted string `json:"sdted,omitempty"`
-
-	// Displayed alerts must have a severity that satisfies this criteria. Multiple severities are separated by commas
-	Severity string `json:"severity,omitempty"`
+	// is ignore Sdt alerts
+	IsIgnoreSDTAlerts bool `json:"isIgnoreSdtAlerts,omitempty"`
 }
 
 // Validate validates this alert filters
 func (m *AlertFilters) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateDatapointFilters(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDatapointsFilterMode(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this alert filters based on context it is used
+func (m *AlertFilters) validateDatapointFilters(formats strfmt.Registry) error {
+	if swag.IsZero(m.DatapointFilters) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.DatapointFilters); i++ {
+		if swag.IsZero(m.DatapointFilters[i]) { // not required
+			continue
+		}
+
+		if m.DatapointFilters[i] != nil {
+			if err := m.DatapointFilters[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("datapointFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("datapointFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+var alertFiltersTypeDatapointsFilterModePropEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["INCLUDE","EXCLUDE"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		alertFiltersTypeDatapointsFilterModePropEnum = append(alertFiltersTypeDatapointsFilterModePropEnum, v)
+	}
+}
+
+const (
+
+	// AlertFiltersDatapointsFilterModeINCLUDE captures enum value "INCLUDE"
+	AlertFiltersDatapointsFilterModeINCLUDE string = "INCLUDE"
+
+	// AlertFiltersDatapointsFilterModeEXCLUDE captures enum value "EXCLUDE"
+	AlertFiltersDatapointsFilterModeEXCLUDE string = "EXCLUDE"
+)
+
+// prop value enum
+func (m *AlertFilters) validateDatapointsFilterModeEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, alertFiltersTypeDatapointsFilterModePropEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *AlertFilters) validateDatapointsFilterMode(formats strfmt.Registry) error {
+	if swag.IsZero(m.DatapointsFilterMode) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateDatapointsFilterModeEnum("datapointsFilterMode", "body", m.DatapointsFilterMode); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// ContextValidate validate this alert filters based on the context it is used
 func (m *AlertFilters) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateDatapointFilters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *AlertFilters) contextValidateDatapointFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.DatapointFilters); i++ {
+
+		if m.DatapointFilters[i] != nil {
+
+			if swag.IsZero(m.DatapointFilters[i]) { // not required
+				return nil
+			}
+
+			if err := m.DatapointFilters[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("datapointFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("datapointFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 

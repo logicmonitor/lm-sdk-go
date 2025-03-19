@@ -47,6 +47,9 @@ type Device struct {
 	// Read Only: true
 	CollectorDescription string `json:"collectorDescription,omitempty"`
 
+	// request contains multi value field
+	ContainsMultiValue bool `json:"containsMultiValue,omitempty"`
+
 	// The time, in epoch seconds format, that the device was added to your LogicMonitor account
 	// Read Only: true
 	CreatedOn int64 `json:"createdOn,omitempty"`
@@ -70,7 +73,7 @@ type Device struct {
 	// Example: This is a Cisco Router
 	Description string `json:"description,omitempty"`
 
-	// The type of device: 0 indicates a regular device, 2 indicates an AWS device, 4 indicates an Azure device
+	// The type of device: 0 indicates a regular device, 1 indicates an APPGROUP device, 2 indicates an AWS device, 3 indicates a service device, 4 indicates an Azure device, 6 indicates a biz_service device, 7 indicates a GCP device, 8 indicates K8S device
 	// Example: 0
 	DeviceType int32 `json:"deviceType,omitempty"`
 
@@ -159,6 +162,9 @@ type Device struct {
 	// The Id of the netflow collector associated with the device
 	// Example: 1
 	NetflowCollectorID int32 `json:"netflowCollectorId,omitempty"`
+
+	// whether to use AND or OR for device matching
+	Op string `json:"op,omitempty"`
 
 	// The id of the Collector Group associated with the device's preferred collector
 	// Read Only: true
@@ -280,6 +286,8 @@ func (m *Device) validateAutoProperties(formats strfmt.Registry) error {
 			if err := m.AutoProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -304,6 +312,8 @@ func (m *Device) validateCustomProperties(formats strfmt.Registry) error {
 			if err := m.CustomProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -337,6 +347,8 @@ func (m *Device) validateInheritedProperties(formats strfmt.Registry) error {
 			if err := m.InheritedProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -379,6 +391,8 @@ func (m *Device) validateResourceIds(formats strfmt.Registry) error {
 			if err := m.ResourceIds[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resourceIds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resourceIds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -415,6 +429,8 @@ func (m *Device) validateSystemProperties(formats strfmt.Registry) error {
 			if err := m.SystemProperties[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -568,9 +584,16 @@ func (m *Device) contextValidateAutoProperties(ctx context.Context, formats strf
 	for i := 0; i < len(m.AutoProperties); i++ {
 
 		if m.AutoProperties[i] != nil {
+
+			if swag.IsZero(m.AutoProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.AutoProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -640,9 +663,16 @@ func (m *Device) contextValidateCustomProperties(ctx context.Context, formats st
 	for i := 0; i < len(m.CustomProperties); i++ {
 
 		if m.CustomProperties[i] != nil {
+
+			if swag.IsZero(m.CustomProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.CustomProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -698,9 +728,16 @@ func (m *Device) contextValidateInheritedProperties(ctx context.Context, formats
 	for i := 0; i < len(m.InheritedProperties); i++ {
 
 		if m.InheritedProperties[i] != nil {
+
+			if swag.IsZero(m.InheritedProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.InheritedProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -806,9 +843,16 @@ func (m *Device) contextValidateResourceIds(ctx context.Context, formats strfmt.
 	for i := 0; i < len(m.ResourceIds); i++ {
 
 		if m.ResourceIds[i] != nil {
+
+			if swag.IsZero(m.ResourceIds[i]) { // not required
+				return nil
+			}
+
 			if err := m.ResourceIds[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resourceIds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("resourceIds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -823,6 +867,14 @@ func (m *Device) contextValidateRolePrivileges(ctx context.Context, formats strf
 
 	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.RolePrivileges); i++ {
+
+		if err := validate.ReadOnly(ctx, "rolePrivileges"+"."+strconv.Itoa(i), "body", string(m.RolePrivileges[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil
@@ -846,9 +898,16 @@ func (m *Device) contextValidateSystemProperties(ctx context.Context, formats st
 	for i := 0; i < len(m.SystemProperties); i++ {
 
 		if m.SystemProperties[i] != nil {
+
+			if swag.IsZero(m.SystemProperties[i]) { // not required
+				return nil
+			}
+
 			if err := m.SystemProperties[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

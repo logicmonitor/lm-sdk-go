@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AlertTrendsMetric alert trends metric
+// AlertTrendsMetric The devices and groups that will be included in the report, where each device/group should be represented with two fields: itemType and itemVal
 //
 // swagger:model AlertTrendsMetric
 type AlertTrendsMetric struct {

@@ -54,10 +54,12 @@ func NewAddSDTParamsWithHTTPClient(client *http.Client) *AddSDTParams {
 	}
 }
 
-/* AddSDTParams contains all the parameters to send to the API endpoint
-   for the add SDT operation.
+/*
+AddSDTParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add SDT operation.
+
+	Typically these are written to a http.Request.
 */
 type AddSDTParams struct {
 

@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// PieChartDataPoint pie chart data point
+// PieChartDataPoint The datapoints added to the widget. Note that datapoints must be included in the pieChartItems object to be displayed in the widget
 //
 // swagger:model PieChartDataPoint
 type PieChartDataPoint struct {

@@ -53,10 +53,12 @@ func NewGetDatasourceByIDParamsWithHTTPClient(client *http.Client) *GetDatasourc
 	}
 }
 
-/* GetDatasourceByIDParams contains all the parameters to send to the API endpoint
-   for the get datasource by Id operation.
+/*
+GetDatasourceByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get datasource by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDatasourceByIDParams struct {
 
@@ -69,8 +71,6 @@ type GetDatasourceByIDParams struct {
 	Fields *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -97,13 +97,10 @@ func (o *GetDatasourceByIDParams) WithDefaults() *GetDatasourceByIDParams {
 func (o *GetDatasourceByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
 	)
 
 	val := GetDatasourceByIDParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 	}
 
 	val.timeout = o.timeout

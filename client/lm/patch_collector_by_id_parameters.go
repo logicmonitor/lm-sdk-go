@@ -55,10 +55,12 @@ func NewPatchCollectorByIDParamsWithHTTPClient(client *http.Client) *PatchCollec
 	}
 }
 
-/* PatchCollectorByIDParams contains all the parameters to send to the API endpoint
-   for the patch collector by Id operation.
+/*
+PatchCollectorByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch collector by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchCollectorByIDParams struct {
 
@@ -82,8 +84,6 @@ type PatchCollectorByIDParams struct {
 	ID int32
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	timeout    time.Duration
@@ -105,19 +105,10 @@ func (o *PatchCollectorByIDParams) WithDefaults() *PatchCollectorByIDParams {
 func (o *PatchCollectorByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		autoBalanceMonitoredDevicesDefault = bool(false)
-
-		forceUpdateFailedOverDevicesDefault = bool(false)
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := PatchCollectorByIDParams{
-		UserAgent:                    &userAgentDefault,
-		AutoBalanceMonitoredDevices:  &autoBalanceMonitoredDevicesDefault,
-		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
-		OpType:                       &opTypeDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

@@ -53,10 +53,12 @@ func NewGetWebsiteGraphDataParamsWithHTTPClient(client *http.Client) *GetWebsite
 	}
 }
 
-/* GetWebsiteGraphDataParams contains all the parameters to send to the API endpoint
-   for the get website graph data operation.
+/*
+GetWebsiteGraphDataParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get website graph data operation.
+
+	Typically these are written to a http.Request.
 */
 type GetWebsiteGraphDataParams struct {
 

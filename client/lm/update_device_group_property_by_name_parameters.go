@@ -55,10 +55,12 @@ func NewUpdateDeviceGroupPropertyByNameParamsWithHTTPClient(client *http.Client)
 	}
 }
 
-/* UpdateDeviceGroupPropertyByNameParams contains all the parameters to send to the API endpoint
-   for the update device group property by name operation.
+/*
+UpdateDeviceGroupPropertyByNameParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the update device group property by name operation.
+
+	Typically these are written to a http.Request.
 */
 type UpdateDeviceGroupPropertyByNameParams struct {
 

@@ -55,10 +55,12 @@ func NewPatchDeviceGroupByIDParamsWithHTTPClient(client *http.Client) *PatchDevi
 	}
 }
 
-/* PatchDeviceGroupByIDParams contains all the parameters to send to the API endpoint
-   for the patch device group by Id operation.
+/*
+PatchDeviceGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch device group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDeviceGroupByIDParams struct {
 
@@ -76,8 +78,6 @@ type PatchDeviceGroupByIDParams struct {
 	ID int32
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	timeout    time.Duration
@@ -99,13 +99,10 @@ func (o *PatchDeviceGroupByIDParams) WithDefaults() *PatchDeviceGroupByIDParams 
 func (o *PatchDeviceGroupByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := PatchDeviceGroupByIDParams{
 		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
 	}
 
 	val.timeout = o.timeout

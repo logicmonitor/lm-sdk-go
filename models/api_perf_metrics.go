@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -49,6 +50,11 @@ type APIPerfMetrics struct {
 	// Read Only: true
 	TotalProcessedRequests int64 `json:"totalProcessedRequests,omitempty"`
 
+	// Total rejected get API count
+	// Example: 5
+	// Read Only: true
+	TotalRejectedGetAPICount int64 `json:"totalRejectedGetAPICount,omitempty"`
+
 	// total requests
 	// Example: 10
 	// Read Only: true
@@ -90,6 +96,10 @@ func (m *APIPerfMetrics) ContextValidate(ctx context.Context, formats strfmt.Reg
 	}
 
 	if err := m.contextValidateTotalProcessedRequests(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateTotalRejectedGetAPICount(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -140,6 +150,14 @@ func (m *APIPerfMetrics) contextValidateTags(ctx context.Context, formats strfmt
 		return err
 	}
 
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.ReadOnly(ctx, "tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i])); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -155,6 +173,15 @@ func (m *APIPerfMetrics) contextValidateTotNanoTime(ctx context.Context, formats
 func (m *APIPerfMetrics) contextValidateTotalProcessedRequests(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "totalProcessedRequests", "body", int64(m.TotalProcessedRequests)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *APIPerfMetrics) contextValidateTotalRejectedGetAPICount(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "totalRejectedGetAPICount", "body", int64(m.TotalRejectedGetAPICount)); err != nil {
 		return err
 	}
 

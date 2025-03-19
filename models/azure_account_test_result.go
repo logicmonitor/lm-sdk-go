@@ -8,11 +8,12 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
-// AzureAccountTestResult azure account test result
+// AzureAccountTestResult The String result returned by the transaction that tests the Azure credentials associated with the Azure group
 //
 // swagger:model AzureAccountTestResult
 type AzureAccountTestResult struct {
@@ -31,8 +32,13 @@ func (m *AzureAccountTestResult) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this azure account test result based on context it is used
+// ContextValidate validate this azure account test result based on the context it is used
 func (m *AzureAccountTestResult) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

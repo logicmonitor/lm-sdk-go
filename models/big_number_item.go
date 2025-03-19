@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// BigNumberItem big number item
+// BigNumberItem The datapoints and virtual datapoints whose values should be displayed in the big number widget
 //
 // swagger:model BigNumberItem
 type BigNumberItem struct {
@@ -80,6 +80,8 @@ func (m *BigNumberItem) validateColorThresholds(formats strfmt.Registry) error {
 			if err := m.ColorThresholds[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -127,9 +129,16 @@ func (m *BigNumberItem) contextValidateColorThresholds(ctx context.Context, form
 	for i := 0; i < len(m.ColorThresholds); i++ {
 
 		if m.ColorThresholds[i] != nil {
+
+			if swag.IsZero(m.ColorThresholds[i]) { // not required
+				return nil
+			}
+
 			if err := m.ColorThresholds[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("colorThresholds" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

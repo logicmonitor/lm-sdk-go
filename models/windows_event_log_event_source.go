@@ -21,6 +21,10 @@ import (
 //
 // swagger:model WindowsEventLogEventSource
 type WindowsEventLogEventSource struct {
+	accessGroupIdsField []int32
+
+	accessGroupsField []*AccessGroup
+
 	alertBodyTemplateField string
 
 	alertEffectiveIvalField *int32
@@ -39,6 +43,10 @@ type WindowsEventLogEventSource struct {
 
 	descriptionField string
 
+	eventSourceField EventSource
+
+	eventSourceFiltersField []*EventSourceFilter
+
 	filtersField []*RestEventSourceFilter
 
 	groupField string
@@ -51,6 +59,8 @@ type WindowsEventLogEventSource struct {
 
 	nameField *string
 
+	originRegistryIdField string
+
 	suppressDuplicatesESField bool
 
 	tagsField string
@@ -60,6 +70,26 @@ type WindowsEventLogEventSource struct {
 	versionField int64
 
 	WindowsEventLogEventSourceAllOf1
+}
+
+// AccessGroupIds gets the access group ids of this subtype
+func (m *WindowsEventLogEventSource) AccessGroupIds() []int32 {
+	return m.accessGroupIdsField
+}
+
+// SetAccessGroupIds sets the access group ids of this subtype
+func (m *WindowsEventLogEventSource) SetAccessGroupIds(val []int32) {
+	m.accessGroupIdsField = val
+}
+
+// AccessGroups gets the access groups of this subtype
+func (m *WindowsEventLogEventSource) AccessGroups() []*AccessGroup {
+	return m.accessGroupsField
+}
+
+// SetAccessGroups sets the access groups of this subtype
+func (m *WindowsEventLogEventSource) SetAccessGroups(val []*AccessGroup) {
+	m.accessGroupsField = val
 }
 
 // AlertBodyTemplate gets the alert body template of this subtype
@@ -161,6 +191,26 @@ func (m *WindowsEventLogEventSource) SetDescription(val string) {
 	m.descriptionField = val
 }
 
+// EventSource gets the event source of this subtype
+func (m *WindowsEventLogEventSource) EventSource() EventSource {
+	return m.eventSourceField
+}
+
+// SetEventSource sets the event source of this subtype
+func (m *WindowsEventLogEventSource) SetEventSource(val EventSource) {
+	m.eventSourceField = val
+}
+
+// EventSourceFilters gets the event source filters of this subtype
+func (m *WindowsEventLogEventSource) EventSourceFilters() []*EventSourceFilter {
+	return m.eventSourceFiltersField
+}
+
+// SetEventSourceFilters sets the event source filters of this subtype
+func (m *WindowsEventLogEventSource) SetEventSourceFilters(val []*EventSourceFilter) {
+	m.eventSourceFiltersField = val
+}
+
 // Filters gets the filters of this subtype
 func (m *WindowsEventLogEventSource) Filters() []*RestEventSourceFilter {
 	return m.filtersField
@@ -221,6 +271,16 @@ func (m *WindowsEventLogEventSource) SetName(val *string) {
 	m.nameField = val
 }
 
+// OriginRegistryID gets the origin registry Id of this subtype
+func (m *WindowsEventLogEventSource) OriginRegistryID() string {
+	return m.originRegistryIdField
+}
+
+// SetOriginRegistryID sets the origin registry Id of this subtype
+func (m *WindowsEventLogEventSource) SetOriginRegistryID(val string) {
+	m.originRegistryIdField = val
+}
+
 // SuppressDuplicatesES gets the suppress duplicates e s of this subtype
 func (m *WindowsEventLogEventSource) SuppressDuplicatesES() bool {
 	return m.suppressDuplicatesESField
@@ -277,6 +337,10 @@ func (m *WindowsEventLogEventSource) UnmarshalJSON(raw []byte) error {
 	var base struct {
 		/* Just the base type fields. Used for unmashalling polymorphic types.*/
 
+		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
 		AlertBodyTemplate string `json:"alertBodyTemplate,omitempty"`
 
 		AlertEffectiveIval *int32 `json:"alertEffectiveIval"`
@@ -297,6 +361,10 @@ func (m *WindowsEventLogEventSource) UnmarshalJSON(raw []byte) error {
 
 		Description string `json:"description,omitempty"`
 
+		EventSource EventSource `json:"-"`
+
+		EventSourceFilters []*EventSourceFilter `json:"eventSourceFilters,omitempty"`
+
 		Filters []*RestEventSourceFilter `json:"filters,omitempty"`
 
 		Group string `json:"group,omitempty"`
@@ -308,6 +376,8 @@ func (m *WindowsEventLogEventSource) UnmarshalJSON(raw []byte) error {
 		LineageID string `json:"lineageId,omitempty"`
 
 		Name *string `json:"name"`
+
+		OriginRegistryID string `json:"originRegistryId,omitempty"`
 
 		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
 
@@ -326,6 +396,10 @@ func (m *WindowsEventLogEventSource) UnmarshalJSON(raw []byte) error {
 	}
 
 	var result WindowsEventLogEventSource
+
+	result.accessGroupIdsField = base.AccessGroupIds
+
+	result.accessGroupsField = base.AccessGroups
 
 	result.alertBodyTemplateField = base.AlertBodyTemplate
 
@@ -349,6 +423,10 @@ func (m *WindowsEventLogEventSource) UnmarshalJSON(raw []byte) error {
 	}
 	result.descriptionField = base.Description
 
+	result.eventSourceField = base.EventSource
+
+	result.eventSourceFiltersField = base.EventSourceFilters
+
 	result.filtersField = base.Filters
 
 	result.groupField = base.Group
@@ -360,6 +438,8 @@ func (m *WindowsEventLogEventSource) UnmarshalJSON(raw []byte) error {
 	result.lineageIdField = base.LineageID
 
 	result.nameField = base.Name
+
+	result.originRegistryIdField = base.OriginRegistryID
 
 	result.suppressDuplicatesESField = base.SuppressDuplicatesES
 
@@ -390,6 +470,10 @@ func (m WindowsEventLogEventSource) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	b2, err = json.Marshal(struct {
+		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
 		AlertBodyTemplate string `json:"alertBodyTemplate,omitempty"`
 
 		AlertEffectiveIval *int32 `json:"alertEffectiveIval"`
@@ -410,6 +494,10 @@ func (m WindowsEventLogEventSource) MarshalJSON() ([]byte, error) {
 
 		Description string `json:"description,omitempty"`
 
+		EventSource EventSource `json:"eventSource,omitempty"`
+
+		EventSourceFilters []*EventSourceFilter `json:"eventSourceFilters,omitempty"`
+
 		Filters []*RestEventSourceFilter `json:"filters,omitempty"`
 
 		Group string `json:"group,omitempty"`
@@ -422,6 +510,8 @@ func (m WindowsEventLogEventSource) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
+		OriginRegistryID string `json:"originRegistryId,omitempty"`
+
 		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
 
 		Tags string `json:"tags,omitempty"`
@@ -430,6 +520,10 @@ func (m WindowsEventLogEventSource) MarshalJSON() ([]byte, error) {
 
 		Version int64 `json:"version,omitempty"`
 	}{
+
+		AccessGroupIds: m.AccessGroupIds(),
+
+		AccessGroups: m.AccessGroups(),
 
 		AlertBodyTemplate: m.AlertBodyTemplate(),
 
@@ -451,6 +545,10 @@ func (m WindowsEventLogEventSource) MarshalJSON() ([]byte, error) {
 
 		Description: m.Description(),
 
+		EventSource: m.EventSource(),
+
+		EventSourceFilters: m.EventSourceFilters(),
+
 		Filters: m.Filters(),
 
 		Group: m.Group(),
@@ -462,6 +560,8 @@ func (m WindowsEventLogEventSource) MarshalJSON() ([]byte, error) {
 		LineageID: m.LineageID(),
 
 		Name: m.Name(),
+
+		OriginRegistryID: m.OriginRegistryID(),
 
 		SuppressDuplicatesES: m.SuppressDuplicatesES(),
 
@@ -482,7 +582,23 @@ func (m WindowsEventLogEventSource) MarshalJSON() ([]byte, error) {
 func (m *WindowsEventLogEventSource) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAccessGroupIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAccessGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAlertEffectiveIval(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventSource(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventSourceFilters(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -506,10 +622,95 @@ func (m *WindowsEventLogEventSource) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *WindowsEventLogEventSource) validateAccessGroupIds(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AccessGroupIds()) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("accessGroupIds", "body", m.AccessGroupIds()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WindowsEventLogEventSource) validateAccessGroups(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AccessGroups()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AccessGroups()); i++ {
+		if swag.IsZero(m.accessGroupsField[i]) { // not required
+			continue
+		}
+
+		if m.accessGroupsField[i] != nil {
+			if err := m.accessGroupsField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *WindowsEventLogEventSource) validateAlertEffectiveIval(formats strfmt.Registry) error {
 
 	if err := validate.Required("alertEffectiveIval", "body", m.AlertEffectiveIval()); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *WindowsEventLogEventSource) validateEventSource(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventSource()) { // not required
+		return nil
+	}
+
+	if err := m.EventSource().Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("eventSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("eventSource")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *WindowsEventLogEventSource) validateEventSourceFilters(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventSourceFilters()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.EventSourceFilters()); i++ {
+		if swag.IsZero(m.eventSourceFiltersField[i]) { // not required
+			continue
+		}
+
+		if m.eventSourceFiltersField[i] != nil {
+			if err := m.eventSourceFiltersField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -530,6 +731,8 @@ func (m *WindowsEventLogEventSource) validateFilters(formats strfmt.Registry) er
 			if err := m.filtersField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -550,6 +753,8 @@ func (m *WindowsEventLogEventSource) validateInstallationMetadata(formats strfmt
 		if err := m.InstallationMetadata().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}
@@ -571,11 +776,23 @@ func (m *WindowsEventLogEventSource) validateName(formats strfmt.Registry) error
 func (m *WindowsEventLogEventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAccessGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateChecksum(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEventSource(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEventSourceFilters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -607,6 +824,31 @@ func (m *WindowsEventLogEventSource) ContextValidate(ctx context.Context, format
 	return nil
 }
 
+func (m *WindowsEventLogEventSource) contextValidateAccessGroups(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AccessGroups()); i++ {
+
+		if m.accessGroupsField[i] != nil {
+
+			if swag.IsZero(m.accessGroupsField[i]) { // not required
+				return nil
+			}
+
+			if err := m.accessGroupsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *WindowsEventLogEventSource) contextValidateAuditVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "auditVersion", "body", int64(m.AuditVersion())); err != nil {
@@ -625,14 +867,64 @@ func (m *WindowsEventLogEventSource) contextValidateChecksum(ctx context.Context
 	return nil
 }
 
+func (m *WindowsEventLogEventSource) contextValidateEventSource(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventSource()) { // not required
+		return nil
+	}
+
+	if err := m.EventSource().ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("eventSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("eventSource")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *WindowsEventLogEventSource) contextValidateEventSourceFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.EventSourceFilters()); i++ {
+
+		if m.eventSourceFiltersField[i] != nil {
+
+			if swag.IsZero(m.eventSourceFiltersField[i]) { // not required
+				return nil
+			}
+
+			if err := m.eventSourceFiltersField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *WindowsEventLogEventSource) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Filters()); i++ {
 
 		if m.filtersField[i] != nil {
+
+			if swag.IsZero(m.filtersField[i]) { // not required
+				return nil
+			}
+
 			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -655,9 +947,16 @@ func (m *WindowsEventLogEventSource) contextValidateID(ctx context.Context, form
 func (m *WindowsEventLogEventSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstallationMetadata() != nil {
+
+		if swag.IsZero(m.InstallationMetadata()) { // not required
+			return nil
+		}
+
 		if err := m.InstallationMetadata().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}

@@ -54,10 +54,12 @@ func NewAddWidgetParamsWithHTTPClient(client *http.Client) *AddWidgetParams {
 	}
 }
 
-/* AddWidgetParams contains all the parameters to send to the API endpoint
-   for the add widget operation.
+/*
+AddWidgetParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the add widget operation.
+
+	Typically these are written to a http.Request.
 */
 type AddWidgetParams struct {
 

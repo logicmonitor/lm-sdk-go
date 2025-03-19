@@ -10,7 +10,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -240,7 +239,7 @@ func UnmarshalWidgetSlice(reader io.Reader, consumer runtime.Consumer) ([]Widget
 // UnmarshalWidget unmarshals polymorphic Widget
 func UnmarshalWidget(reader io.Reader, consumer runtime.Consumer) (Widget, error) {
 	// we need to read this twice, so first into a buffer
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
@@ -265,6 +264,30 @@ func unmarshalWidget(data []byte, consumer runtime.Consumer) (Widget, error) {
 
 	// The value of type is used to determine which type to create and unmarshal the data into
 	switch getType.Type {
+	case "BillingWidget":
+		var result BillingWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "CloudRecommendation":
+		var result CloudRecommendation
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "LMQLWidget":
+		var result LMQLWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "LogsWidget":
+		var result LogsWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "RestSavedMapWidgetV3":
 		var result RestSavedMapWidgetV3
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -273,6 +296,12 @@ func unmarshalWidget(data []byte, consumer runtime.Consumer) (Widget, error) {
 		return &result, nil
 	case "ServiceAlert":
 		var result ServiceAlert
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "Viz":
+		var result Viz
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

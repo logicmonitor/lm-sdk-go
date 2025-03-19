@@ -21,6 +21,10 @@ import (
 //
 // swagger:model IPMIEventSource
 type IPMIEventSource struct {
+	accessGroupIdsField []int32
+
+	accessGroupsField []*AccessGroup
+
 	alertBodyTemplateField string
 
 	alertEffectiveIvalField *int32
@@ -39,6 +43,10 @@ type IPMIEventSource struct {
 
 	descriptionField string
 
+	eventSourceField EventSource
+
+	eventSourceFiltersField []*EventSourceFilter
+
 	filtersField []*RestEventSourceFilter
 
 	groupField string
@@ -51,6 +59,8 @@ type IPMIEventSource struct {
 
 	nameField *string
 
+	originRegistryIdField string
+
 	suppressDuplicatesESField bool
 
 	tagsField string
@@ -62,6 +72,26 @@ type IPMIEventSource struct {
 	// impmi check interval
 	// Required: true
 	CheckInterval *int32 `json:"checkInterval"`
+}
+
+// AccessGroupIds gets the access group ids of this subtype
+func (m *IPMIEventSource) AccessGroupIds() []int32 {
+	return m.accessGroupIdsField
+}
+
+// SetAccessGroupIds sets the access group ids of this subtype
+func (m *IPMIEventSource) SetAccessGroupIds(val []int32) {
+	m.accessGroupIdsField = val
+}
+
+// AccessGroups gets the access groups of this subtype
+func (m *IPMIEventSource) AccessGroups() []*AccessGroup {
+	return m.accessGroupsField
+}
+
+// SetAccessGroups sets the access groups of this subtype
+func (m *IPMIEventSource) SetAccessGroups(val []*AccessGroup) {
+	m.accessGroupsField = val
 }
 
 // AlertBodyTemplate gets the alert body template of this subtype
@@ -163,6 +193,26 @@ func (m *IPMIEventSource) SetDescription(val string) {
 	m.descriptionField = val
 }
 
+// EventSource gets the event source of this subtype
+func (m *IPMIEventSource) EventSource() EventSource {
+	return m.eventSourceField
+}
+
+// SetEventSource sets the event source of this subtype
+func (m *IPMIEventSource) SetEventSource(val EventSource) {
+	m.eventSourceField = val
+}
+
+// EventSourceFilters gets the event source filters of this subtype
+func (m *IPMIEventSource) EventSourceFilters() []*EventSourceFilter {
+	return m.eventSourceFiltersField
+}
+
+// SetEventSourceFilters sets the event source filters of this subtype
+func (m *IPMIEventSource) SetEventSourceFilters(val []*EventSourceFilter) {
+	m.eventSourceFiltersField = val
+}
+
 // Filters gets the filters of this subtype
 func (m *IPMIEventSource) Filters() []*RestEventSourceFilter {
 	return m.filtersField
@@ -221,6 +271,16 @@ func (m *IPMIEventSource) Name() *string {
 // SetName sets the name of this subtype
 func (m *IPMIEventSource) SetName(val *string) {
 	m.nameField = val
+}
+
+// OriginRegistryID gets the origin registry Id of this subtype
+func (m *IPMIEventSource) OriginRegistryID() string {
+	return m.originRegistryIdField
+}
+
+// SetOriginRegistryID sets the origin registry Id of this subtype
+func (m *IPMIEventSource) SetOriginRegistryID(val string) {
+	m.originRegistryIdField = val
 }
 
 // SuppressDuplicatesES gets the suppress duplicates e s of this subtype
@@ -282,6 +342,10 @@ func (m *IPMIEventSource) UnmarshalJSON(raw []byte) error {
 	var base struct {
 		/* Just the base type fields. Used for unmashalling polymorphic types.*/
 
+		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
 		AlertBodyTemplate string `json:"alertBodyTemplate,omitempty"`
 
 		AlertEffectiveIval *int32 `json:"alertEffectiveIval"`
@@ -302,6 +366,10 @@ func (m *IPMIEventSource) UnmarshalJSON(raw []byte) error {
 
 		Description string `json:"description,omitempty"`
 
+		EventSource EventSource `json:"-"`
+
+		EventSourceFilters []*EventSourceFilter `json:"eventSourceFilters,omitempty"`
+
 		Filters []*RestEventSourceFilter `json:"filters,omitempty"`
 
 		Group string `json:"group,omitempty"`
@@ -313,6 +381,8 @@ func (m *IPMIEventSource) UnmarshalJSON(raw []byte) error {
 		LineageID string `json:"lineageId,omitempty"`
 
 		Name *string `json:"name"`
+
+		OriginRegistryID string `json:"originRegistryId,omitempty"`
 
 		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
 
@@ -331,6 +401,10 @@ func (m *IPMIEventSource) UnmarshalJSON(raw []byte) error {
 	}
 
 	var result IPMIEventSource
+
+	result.accessGroupIdsField = base.AccessGroupIds
+
+	result.accessGroupsField = base.AccessGroups
 
 	result.alertBodyTemplateField = base.AlertBodyTemplate
 
@@ -354,6 +428,10 @@ func (m *IPMIEventSource) UnmarshalJSON(raw []byte) error {
 	}
 	result.descriptionField = base.Description
 
+	result.eventSourceField = base.EventSource
+
+	result.eventSourceFiltersField = base.EventSourceFilters
+
 	result.filtersField = base.Filters
 
 	result.groupField = base.Group
@@ -365,6 +443,8 @@ func (m *IPMIEventSource) UnmarshalJSON(raw []byte) error {
 	result.lineageIdField = base.LineageID
 
 	result.nameField = base.Name
+
+	result.originRegistryIdField = base.OriginRegistryID
 
 	result.suppressDuplicatesESField = base.SuppressDuplicatesES
 
@@ -398,6 +478,10 @@ func (m IPMIEventSource) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 	b2, err = json.Marshal(struct {
+		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
 		AlertBodyTemplate string `json:"alertBodyTemplate,omitempty"`
 
 		AlertEffectiveIval *int32 `json:"alertEffectiveIval"`
@@ -418,6 +502,10 @@ func (m IPMIEventSource) MarshalJSON() ([]byte, error) {
 
 		Description string `json:"description,omitempty"`
 
+		EventSource EventSource `json:"eventSource,omitempty"`
+
+		EventSourceFilters []*EventSourceFilter `json:"eventSourceFilters,omitempty"`
+
 		Filters []*RestEventSourceFilter `json:"filters,omitempty"`
 
 		Group string `json:"group,omitempty"`
@@ -430,6 +518,8 @@ func (m IPMIEventSource) MarshalJSON() ([]byte, error) {
 
 		Name *string `json:"name"`
 
+		OriginRegistryID string `json:"originRegistryId,omitempty"`
+
 		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
 
 		Tags string `json:"tags,omitempty"`
@@ -438,6 +528,10 @@ func (m IPMIEventSource) MarshalJSON() ([]byte, error) {
 
 		Version int64 `json:"version,omitempty"`
 	}{
+
+		AccessGroupIds: m.AccessGroupIds(),
+
+		AccessGroups: m.AccessGroups(),
 
 		AlertBodyTemplate: m.AlertBodyTemplate(),
 
@@ -459,6 +553,10 @@ func (m IPMIEventSource) MarshalJSON() ([]byte, error) {
 
 		Description: m.Description(),
 
+		EventSource: m.EventSource(),
+
+		EventSourceFilters: m.EventSourceFilters(),
+
 		Filters: m.Filters(),
 
 		Group: m.Group(),
@@ -470,6 +568,8 @@ func (m IPMIEventSource) MarshalJSON() ([]byte, error) {
 		LineageID: m.LineageID(),
 
 		Name: m.Name(),
+
+		OriginRegistryID: m.OriginRegistryID(),
 
 		SuppressDuplicatesES: m.SuppressDuplicatesES(),
 
@@ -490,7 +590,23 @@ func (m IPMIEventSource) MarshalJSON() ([]byte, error) {
 func (m *IPMIEventSource) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAccessGroupIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAccessGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAlertEffectiveIval(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventSource(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventSourceFilters(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -516,10 +632,95 @@ func (m *IPMIEventSource) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *IPMIEventSource) validateAccessGroupIds(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AccessGroupIds()) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("accessGroupIds", "body", m.AccessGroupIds()); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *IPMIEventSource) validateAccessGroups(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AccessGroups()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AccessGroups()); i++ {
+		if swag.IsZero(m.accessGroupsField[i]) { // not required
+			continue
+		}
+
+		if m.accessGroupsField[i] != nil {
+			if err := m.accessGroupsField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *IPMIEventSource) validateAlertEffectiveIval(formats strfmt.Registry) error {
 
 	if err := validate.Required("alertEffectiveIval", "body", m.AlertEffectiveIval()); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *IPMIEventSource) validateEventSource(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventSource()) { // not required
+		return nil
+	}
+
+	if err := m.EventSource().Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("eventSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("eventSource")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *IPMIEventSource) validateEventSourceFilters(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventSourceFilters()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.EventSourceFilters()); i++ {
+		if swag.IsZero(m.eventSourceFiltersField[i]) { // not required
+			continue
+		}
+
+		if m.eventSourceFiltersField[i] != nil {
+			if err := m.eventSourceFiltersField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -540,6 +741,8 @@ func (m *IPMIEventSource) validateFilters(formats strfmt.Registry) error {
 			if err := m.filtersField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -560,6 +763,8 @@ func (m *IPMIEventSource) validateInstallationMetadata(formats strfmt.Registry) 
 		if err := m.InstallationMetadata().Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}
@@ -590,11 +795,23 @@ func (m *IPMIEventSource) validateCheckInterval(formats strfmt.Registry) error {
 func (m *IPMIEventSource) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.contextValidateAccessGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
 	if err := m.contextValidateChecksum(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEventSource(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEventSourceFilters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -624,6 +841,31 @@ func (m *IPMIEventSource) ContextValidate(ctx context.Context, formats strfmt.Re
 	return nil
 }
 
+func (m *IPMIEventSource) contextValidateAccessGroups(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AccessGroups()); i++ {
+
+		if m.accessGroupsField[i] != nil {
+
+			if swag.IsZero(m.accessGroupsField[i]) { // not required
+				return nil
+			}
+
+			if err := m.accessGroupsField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *IPMIEventSource) contextValidateAuditVersion(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "auditVersion", "body", int64(m.AuditVersion())); err != nil {
@@ -642,14 +884,64 @@ func (m *IPMIEventSource) contextValidateChecksum(ctx context.Context, formats s
 	return nil
 }
 
+func (m *IPMIEventSource) contextValidateEventSource(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventSource()) { // not required
+		return nil
+	}
+
+	if err := m.EventSource().ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("eventSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("eventSource")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *IPMIEventSource) contextValidateEventSourceFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.EventSourceFilters()); i++ {
+
+		if m.eventSourceFiltersField[i] != nil {
+
+			if swag.IsZero(m.eventSourceFiltersField[i]) { // not required
+				return nil
+			}
+
+			if err := m.eventSourceFiltersField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 func (m *IPMIEventSource) contextValidateFilters(ctx context.Context, formats strfmt.Registry) error {
 
 	for i := 0; i < len(m.Filters()); i++ {
 
 		if m.filtersField[i] != nil {
+
+			if swag.IsZero(m.filtersField[i]) { // not required
+				return nil
+			}
+
 			if err := m.filtersField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("filters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("filters" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -672,9 +964,16 @@ func (m *IPMIEventSource) contextValidateID(ctx context.Context, formats strfmt.
 func (m *IPMIEventSource) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstallationMetadata() != nil {
+
+		if swag.IsZero(m.InstallationMetadata()) { // not required
+			return nil
+		}
+
 		if err := m.InstallationMetadata().ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}

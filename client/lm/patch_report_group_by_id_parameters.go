@@ -55,10 +55,12 @@ func NewPatchReportGroupByIDParamsWithHTTPClient(client *http.Client) *PatchRepo
 	}
 }
 
-/* PatchReportGroupByIDParams contains all the parameters to send to the API endpoint
-   for the patch report group by Id operation.
+/*
+PatchReportGroupByIDParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch report group by Id operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchReportGroupByIDParams struct {
 

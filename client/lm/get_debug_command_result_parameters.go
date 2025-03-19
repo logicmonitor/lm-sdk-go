@@ -53,10 +53,12 @@ func NewGetDebugCommandResultParamsWithHTTPClient(client *http.Client) *GetDebug
 	}
 }
 
-/* GetDebugCommandResultParams contains all the parameters to send to the API endpoint
-   for the get debug command result operation.
+/*
+GetDebugCommandResultParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the get debug command result operation.
+
+	Typically these are written to a http.Request.
 */
 type GetDebugCommandResultParams struct {
 
@@ -68,7 +70,6 @@ type GetDebugCommandResultParams struct {
 	// CollectorID.
 	//
 	// Format: int32
-	// Default: -1
 	CollectorID *int32
 
 	// ID.
@@ -93,13 +94,10 @@ func (o *GetDebugCommandResultParams) WithDefaults() *GetDebugCommandResultParam
 func (o *GetDebugCommandResultParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		collectorIDDefault = int32(-1)
 	)
 
 	val := GetDebugCommandResultParams{
-		UserAgent:   &userAgentDefault,
-		CollectorID: &collectorIDDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

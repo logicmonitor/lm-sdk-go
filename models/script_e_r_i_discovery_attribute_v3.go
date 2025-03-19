@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ScriptERIDiscoveryAttributeV3 script e r i discovery attribute v3
+// ScriptERIDiscoveryAttributeV3 Enable ERI Discovery or not
 //
 // swagger:model ScriptERIDiscoveryAttributeV3
 type ScriptERIDiscoveryAttributeV3 struct {

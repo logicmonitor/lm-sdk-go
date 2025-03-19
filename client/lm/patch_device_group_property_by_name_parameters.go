@@ -55,10 +55,12 @@ func NewPatchDeviceGroupPropertyByNameParamsWithHTTPClient(client *http.Client) 
 	}
 }
 
-/* PatchDeviceGroupPropertyByNameParams contains all the parameters to send to the API endpoint
-   for the patch device group property by name operation.
+/*
+PatchDeviceGroupPropertyByNameParams contains all the parameters to send to the API endpoint
 
-   Typically these are written to a http.Request.
+	for the patch device group property by name operation.
+
+	Typically these are written to a http.Request.
 */
 type PatchDeviceGroupPropertyByNameParams struct {
 

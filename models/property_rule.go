@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -18,6 +19,14 @@ import (
 //
 // swagger:model PropertyRule
 type PropertyRule struct {
+
+	// The Access Groups Id's
+	// Example: 1, 2, 3
+	// Unique: true
+	AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
+
+	// Access group Details in response
+	AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
 
 	// The property rule applies to
 	// Read Only: true
@@ -77,6 +86,13 @@ type PropertyRule struct {
 	// Read Only: true
 	Name string `json:"name,omitempty"`
 
+	// The Registry ID of the Exchange Integration this module is based from, including this field will set this as the module's import base and mark the ID's version as audited
+	// Read Only: true
+	OriginRegistryID string `json:"originRegistryId,omitempty"`
+
+	// params
+	Params []*PropertyRuleParam `json:"params,omitempty"`
+
 	// The property rule schedule option. The values can be onAP|onAPpropertyChanges
 	// Read Only: true
 	ScheduleOption string `json:"scheduleOption,omitempty"`
@@ -107,13 +123,63 @@ type PropertyRule struct {
 func (m *PropertyRule) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAccessGroupIds(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAccessGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateInstallationMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateParams(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *PropertyRule) validateAccessGroupIds(formats strfmt.Registry) error {
+	if swag.IsZero(m.AccessGroupIds) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("accessGroupIds", "body", m.AccessGroupIds); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *PropertyRule) validateAccessGroups(formats strfmt.Registry) error {
+	if swag.IsZero(m.AccessGroups) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.AccessGroups); i++ {
+		if swag.IsZero(m.AccessGroups[i]) { // not required
+			continue
+		}
+
+		if m.AccessGroups[i] != nil {
+			if err := m.AccessGroups[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -126,6 +192,8 @@ func (m *PropertyRule) validateInstallationMetadata(formats strfmt.Registry) err
 		if err := m.InstallationMetadata.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}
@@ -134,9 +202,39 @@ func (m *PropertyRule) validateInstallationMetadata(formats strfmt.Registry) err
 	return nil
 }
 
+func (m *PropertyRule) validateParams(formats strfmt.Registry) error {
+	if swag.IsZero(m.Params) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Params); i++ {
+		if swag.IsZero(m.Params[i]) { // not required
+			continue
+		}
+
+		if m.Params[i] != nil {
+			if err := m.Params[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("params" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("params" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this property rule based on the context it is used
 func (m *PropertyRule) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateAccessGroups(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateAppliesTo(ctx, formats); err != nil {
 		res = append(res, err)
@@ -178,6 +276,14 @@ func (m *PropertyRule) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateOriginRegistryID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateParams(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateScheduleOption(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -197,6 +303,31 @@ func (m *PropertyRule) ContextValidate(ctx context.Context, formats strfmt.Regis
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *PropertyRule) contextValidateAccessGroups(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.AccessGroups); i++ {
+
+		if m.AccessGroups[i] != nil {
+
+			if swag.IsZero(m.AccessGroups[i]) { // not required
+				return nil
+			}
+
+			if err := m.AccessGroups[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("accessGroups" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
 	return nil
 }
 
@@ -257,9 +388,16 @@ func (m *PropertyRule) contextValidateGroup(ctx context.Context, formats strfmt.
 func (m *PropertyRule) contextValidateInstallationMetadata(ctx context.Context, formats strfmt.Registry) error {
 
 	if m.InstallationMetadata != nil {
+
+		if swag.IsZero(m.InstallationMetadata) { // not required
+			return nil
+		}
+
 		if err := m.InstallationMetadata.ContextValidate(ctx, formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("installationMetadata")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("installationMetadata")
 			}
 			return err
 		}
@@ -290,6 +428,40 @@ func (m *PropertyRule) contextValidateName(ctx context.Context, formats strfmt.R
 
 	if err := validate.ReadOnly(ctx, "name", "body", string(m.Name)); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *PropertyRule) contextValidateOriginRegistryID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "originRegistryId", "body", string(m.OriginRegistryID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *PropertyRule) contextValidateParams(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Params); i++ {
+
+		if m.Params[i] != nil {
+
+			if swag.IsZero(m.Params[i]) { // not required
+				return nil
+			}
+
+			if err := m.Params[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("params" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("params" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

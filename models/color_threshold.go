@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ColorThreshold color threshold
+// ColorThreshold The threshold of color changes
 //
 // swagger:model ColorThreshold
 type ColorThreshold struct {

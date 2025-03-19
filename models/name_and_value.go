@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// NameAndValue name and value
+// NameAndValue The properties associated with the website
 //
 // swagger:model NameAndValue
 type NameAndValue struct {
@@ -66,8 +66,13 @@ func (m *NameAndValue) validateValue(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this name and value based on context it is used
+// ContextValidate validate this name and value based on the context it is used
 func (m *NameAndValue) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

@@ -61,6 +61,11 @@ type InterfBandwidthReport struct {
 
 	userPermissionField string
 
+	// bps|Bps|Kbps|Mbps
+	// Converts the data in the given data format
+	//
+	DataFormat string `json:"dataFormat,omitempty"`
+
 	// The Time Range configured for the report. Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 	DateRange string `json:"dateRange,omitempty"`
 
@@ -79,6 +84,11 @@ type InterfBandwidthReport struct {
 	// The datapoint or calculation on a datapoint that will be included in the report, where each datapoint/calculation is specified by three fields: dataSourceId, instances (glob is okay)
 	// Required: true
 	Metrics []*Metric `json:"metrics"`
+
+	// 95|90|85
+	// Example 95: Calculates 95% of the dataset
+	//
+	Percentile int32 `json:"percentile,omitempty"`
 
 	// 0 | 1
 	// 0: Text only - metrics will be displayed in a tabular format.
@@ -305,6 +315,11 @@ func (m *InterfBandwidthReport) SetUserPermission(val string) {
 func (m *InterfBandwidthReport) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
+		// bps|Bps|Kbps|Mbps
+		// Converts the data in the given data format
+		//
+		DataFormat string `json:"dataFormat,omitempty"`
+
 		// The Time Range configured for the report. Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 		DateRange string `json:"dateRange,omitempty"`
 
@@ -323,6 +338,11 @@ func (m *InterfBandwidthReport) UnmarshalJSON(raw []byte) error {
 		// The datapoint or calculation on a datapoint that will be included in the report, where each datapoint/calculation is specified by three fields: dataSourceId, instances (glob is okay)
 		// Required: true
 		Metrics []*Metric `json:"metrics"`
+
+		// 95|90|85
+		// Example 95: Calculates 95% of the dataset
+		//
+		Percentile int32 `json:"percentile,omitempty"`
 
 		// 0 | 1
 		// 0: Text only - metrics will be displayed in a tabular format.
@@ -442,11 +462,13 @@ func (m *InterfBandwidthReport) UnmarshalJSON(raw []byte) error {
 	}
 	result.userPermissionField = base.UserPermission
 
+	result.DataFormat = data.DataFormat
 	result.DateRange = data.DateRange
 	result.HostsVal = data.HostsVal
 	result.HostsValType = data.HostsValType
 	result.IsBase1024 = data.IsBase1024
 	result.Metrics = data.Metrics
+	result.Percentile = data.Percentile
 	result.RowFormat = data.RowFormat
 	result.Top10Only = data.Top10Only
 
@@ -460,6 +482,11 @@ func (m InterfBandwidthReport) MarshalJSON() ([]byte, error) {
 	var b1, b2, b3 []byte
 	var err error
 	b1, err = json.Marshal(struct {
+
+		// bps|Bps|Kbps|Mbps
+		// Converts the data in the given data format
+		//
+		DataFormat string `json:"dataFormat,omitempty"`
 
 		// The Time Range configured for the report. Last 2 hours | Last 24 hours | Last calendar day | Last 7 days | Last 14 days | Last 30 days | Last calendar month | Last 365 days | Any custom date range in this format: YYYY-MM-dd hh:mm TO YYYY-MM-dd hh:mm
 		DateRange string `json:"dateRange,omitempty"`
@@ -480,6 +507,11 @@ func (m InterfBandwidthReport) MarshalJSON() ([]byte, error) {
 		// Required: true
 		Metrics []*Metric `json:"metrics"`
 
+		// 95|90|85
+		// Example 95: Calculates 95% of the dataset
+		//
+		Percentile int32 `json:"percentile,omitempty"`
+
 		// 0 | 1
 		// 0: Text only - metrics will be displayed in a tabular format.
 		// 1: One graph per instance - metrics will be displayed in a tabular format and one graph will be displayed per instance
@@ -492,6 +524,8 @@ func (m InterfBandwidthReport) MarshalJSON() ([]byte, error) {
 		Top10Only *bool `json:"top10Only"`
 	}{
 
+		DataFormat: m.DataFormat,
+
 		DateRange: m.DateRange,
 
 		HostsVal: m.HostsVal,
@@ -501,6 +535,8 @@ func (m InterfBandwidthReport) MarshalJSON() ([]byte, error) {
 		IsBase1024: m.IsBase1024,
 
 		Metrics: m.Metrics,
+
+		Percentile: m.Percentile,
 
 		RowFormat: m.RowFormat,
 
@@ -656,6 +692,8 @@ func (m *InterfBandwidthReport) validateRecipients(formats strfmt.Registry) erro
 			if err := m.recipientsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -690,6 +728,8 @@ func (m *InterfBandwidthReport) validateMetrics(formats strfmt.Registry) error {
 			if err := m.Metrics[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -857,9 +897,16 @@ func (m *InterfBandwidthReport) contextValidateRecipients(ctx context.Context, f
 	for i := 0; i < len(m.Recipients()); i++ {
 
 		if m.recipientsField[i] != nil {
+
+			if swag.IsZero(m.recipientsField[i]) { // not required
+				return nil
+			}
+
 			if err := m.recipientsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("recipients" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("recipients" + "." + strconv.Itoa(i))
 				}
 				return err
 			}
@@ -893,9 +940,16 @@ func (m *InterfBandwidthReport) contextValidateMetrics(ctx context.Context, form
 	for i := 0; i < len(m.Metrics); i++ {
 
 		if m.Metrics[i] != nil {
+
+			if swag.IsZero(m.Metrics[i]) { // not required
+				return nil
+			}
+
 			if err := m.Metrics[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("metrics" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("metrics" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

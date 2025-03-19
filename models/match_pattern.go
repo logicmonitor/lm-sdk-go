@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// MatchPattern match pattern
+// MatchPattern The regex or plain text to look for in the file and trigger alert if found
 //
 // swagger:model MatchPattern
 type MatchPattern struct {
