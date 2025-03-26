@@ -48,7 +48,7 @@ type Admin struct {
 	CreatedBy string `json:"createdBy,omitempty"`
 
 	// The email address associated with the user
-	// Example: john.doe@logicmonitor.com
+	// Example: user@domain.com
 	// Required: true
 	Email *string `json:"email"`
 
@@ -116,7 +116,7 @@ type Admin struct {
 	Roles []*Role `json:"roles"`
 
 	// The sms email address associated with the user
-	// Example: 8054445555@logicmonitor.com
+	// Example: user@domain.com
 	SmsEmail string `json:"smsEmail,omitempty"`
 
 	// The values can be sms | fullText, where sms = 160 characters and fullText = all characters

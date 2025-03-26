@@ -78,6 +78,11 @@ type GetReportListJSONParams struct {
 	// Format: int32
 	Offset *int32
 
+	// ShowNextGenReports.
+	//
+	// Default: true
+	ShowNextGenReports *bool
+
 	// Size.
 	//
 	// Format: int32
@@ -106,13 +111,16 @@ func (o *GetReportListJSONParams) SetDefaults() {
 
 		offsetDefault = int32(0)
 
+		showNextGenReportsDefault = bool(true)
+
 		sizeDefault = int32(50)
 	)
 
 	val := GetReportListJSONParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		UserAgent:          &userAgentDefault,
+		Offset:             &offsetDefault,
+		ShowNextGenReports: &showNextGenReportsDefault,
+		Size:               &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -198,6 +206,17 @@ func (o *GetReportListJSONParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithShowNextGenReports adds the showNextGenReports to the get report list Json params
+func (o *GetReportListJSONParams) WithShowNextGenReports(showNextGenReports *bool) *GetReportListJSONParams {
+	o.SetShowNextGenReports(showNextGenReports)
+	return o
+}
+
+// SetShowNextGenReports adds the showNextGenReports to the get report list Json params
+func (o *GetReportListJSONParams) SetShowNextGenReports(showNextGenReports *bool) {
+	o.ShowNextGenReports = showNextGenReports
+}
+
 // WithSize adds the size to the get report list Json params
 func (o *GetReportListJSONParams) WithSize(size *int32) *GetReportListJSONParams {
 	o.SetSize(size)
@@ -271,6 +290,23 @@ func (o *GetReportListJSONParams) WriteToRequest(r runtime.ClientRequest, reg st
 		if qOffset != "" {
 
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ShowNextGenReports != nil {
+
+		// query param showNextGenReports
+		var qrShowNextGenReports bool
+
+		if o.ShowNextGenReports != nil {
+			qrShowNextGenReports = *o.ShowNextGenReports
+		}
+		qShowNextGenReports := swag.FormatBool(qrShowNextGenReports)
+		if qShowNextGenReports != "" {
+
+			if err := r.SetQueryParam("showNextGenReports", qShowNextGenReports); err != nil {
 				return err
 			}
 		}

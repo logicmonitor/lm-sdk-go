@@ -96,12 +96,12 @@ func (o *PatchLogPartitionOK) Code() int {
 
 func (o *PatchLogPartitionOK) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /log/partitions][%d] patchLogPartitionOK %s", 200, payload)
+	return fmt.Sprintf("[PATCH /log/partitions/{id}][%d] patchLogPartitionOK %s", 200, payload)
 }
 
 func (o *PatchLogPartitionOK) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /log/partitions][%d] patchLogPartitionOK %s", 200, payload)
+	return fmt.Sprintf("[PATCH /log/partitions/{id}][%d] patchLogPartitionOK %s", 200, payload)
 }
 
 func (o *PatchLogPartitionOK) GetPayload() *models.LogPartition {
@@ -176,11 +176,11 @@ func (o *PatchLogPartitionTooManyRequests) Code() int {
 }
 
 func (o *PatchLogPartitionTooManyRequests) Error() string {
-	return fmt.Sprintf("[PATCH /log/partitions][%d] patchLogPartitionTooManyRequests", 429)
+	return fmt.Sprintf("[PATCH /log/partitions/{id}][%d] patchLogPartitionTooManyRequests", 429)
 }
 
 func (o *PatchLogPartitionTooManyRequests) String() string {
-	return fmt.Sprintf("[PATCH /log/partitions][%d] patchLogPartitionTooManyRequests", 429)
+	return fmt.Sprintf("[PATCH /log/partitions/{id}][%d] patchLogPartitionTooManyRequests", 429)
 }
 
 func (o *PatchLogPartitionTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -271,12 +271,12 @@ func (o *PatchLogPartitionDefault) Code() int {
 
 func (o *PatchLogPartitionDefault) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /log/partitions][%d] patchLogPartition default %s", o._statusCode, payload)
+	return fmt.Sprintf("[PATCH /log/partitions/{id}][%d] patchLogPartition default %s", o._statusCode, payload)
 }
 
 func (o *PatchLogPartitionDefault) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PATCH /log/partitions][%d] patchLogPartition default %s", o._statusCode, payload)
+	return fmt.Sprintf("[PATCH /log/partitions/{id}][%d] patchLogPartition default %s", o._statusCode, payload)
 }
 
 func (o *PatchLogPartitionDefault) GetPayload() *models.ErrorResponse {

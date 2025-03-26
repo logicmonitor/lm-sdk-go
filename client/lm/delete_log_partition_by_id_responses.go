@@ -61,7 +61,7 @@ DeleteLogPartitionByIDOK describes a response with status code 200, with default
 successful operation
 */
 type DeleteLogPartitionByIDOK struct {
-	Payload *models.Response
+	Payload interface{}
 }
 
 // IsSuccess returns true when this delete log partition by Id o k response has a 2xx status code
@@ -104,16 +104,14 @@ func (o *DeleteLogPartitionByIDOK) String() string {
 	return fmt.Sprintf("[DELETE /log/partitions/{id}][%d] deleteLogPartitionByIdOK %s", 200, payload)
 }
 
-func (o *DeleteLogPartitionByIDOK) GetPayload() *models.Response {
+func (o *DeleteLogPartitionByIDOK) GetPayload() interface{} {
 	return o.Payload
 }
 
 func (o *DeleteLogPartitionByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Response)
-
 	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 

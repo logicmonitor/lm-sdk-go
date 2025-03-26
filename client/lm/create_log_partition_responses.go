@@ -61,7 +61,7 @@ CreateLogPartitionOK describes a response with status code 200, with default hea
 successful operation
 */
 type CreateLogPartitionOK struct {
-	Payload *models.Pagination
+	Payload *models.LogPartition
 }
 
 // IsSuccess returns true when this create log partition o k response has a 2xx status code
@@ -104,13 +104,13 @@ func (o *CreateLogPartitionOK) String() string {
 	return fmt.Sprintf("[POST /log/partitions][%d] createLogPartitionOK %s", 200, payload)
 }
 
-func (o *CreateLogPartitionOK) GetPayload() *models.Pagination {
+func (o *CreateLogPartitionOK) GetPayload() *models.LogPartition {
 	return o.Payload
 }
 
 func (o *CreateLogPartitionOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Pagination)
+	o.Payload = new(models.LogPartition)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

@@ -20,7 +20,7 @@ import (
 type SDTHistory struct {
 
 	// The user that added the SDT
-	// Example: sarah@logicmonitor.com
+	// Example: user@domain.com
 	// Read Only: true
 	Admin string `json:"admin,omitempty"`
 

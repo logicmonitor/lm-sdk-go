@@ -96,12 +96,12 @@ func (o *UpdateLogPartitionOK) Code() int {
 
 func (o *UpdateLogPartitionOK) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /log/partitions][%d] updateLogPartitionOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /log/partitions/{id}][%d] updateLogPartitionOK %s", 200, payload)
 }
 
 func (o *UpdateLogPartitionOK) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /log/partitions][%d] updateLogPartitionOK %s", 200, payload)
+	return fmt.Sprintf("[PUT /log/partitions/{id}][%d] updateLogPartitionOK %s", 200, payload)
 }
 
 func (o *UpdateLogPartitionOK) GetPayload() *models.LogPartition {
@@ -176,11 +176,11 @@ func (o *UpdateLogPartitionTooManyRequests) Code() int {
 }
 
 func (o *UpdateLogPartitionTooManyRequests) Error() string {
-	return fmt.Sprintf("[PUT /log/partitions][%d] updateLogPartitionTooManyRequests", 429)
+	return fmt.Sprintf("[PUT /log/partitions/{id}][%d] updateLogPartitionTooManyRequests", 429)
 }
 
 func (o *UpdateLogPartitionTooManyRequests) String() string {
-	return fmt.Sprintf("[PUT /log/partitions][%d] updateLogPartitionTooManyRequests", 429)
+	return fmt.Sprintf("[PUT /log/partitions/{id}][%d] updateLogPartitionTooManyRequests", 429)
 }
 
 func (o *UpdateLogPartitionTooManyRequests) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
@@ -271,12 +271,12 @@ func (o *UpdateLogPartitionDefault) Code() int {
 
 func (o *UpdateLogPartitionDefault) Error() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /log/partitions][%d] updateLogPartition default %s", o._statusCode, payload)
+	return fmt.Sprintf("[PUT /log/partitions/{id}][%d] updateLogPartition default %s", o._statusCode, payload)
 }
 
 func (o *UpdateLogPartitionDefault) String() string {
 	payload, _ := json.Marshal(o.Payload)
-	return fmt.Sprintf("[PUT /log/partitions][%d] updateLogPartition default %s", o._statusCode, payload)
+	return fmt.Sprintf("[PUT /log/partitions/{id}][%d] updateLogPartition default %s", o._statusCode, payload)
 }
 
 func (o *UpdateLogPartitionDefault) GetPayload() *models.ErrorResponse {

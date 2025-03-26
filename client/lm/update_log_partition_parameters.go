@@ -71,6 +71,9 @@ type UpdateLogPartitionParams struct {
 	// Body.
 	Body *models.LogPartition
 
+	// ID.
+	ID string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -157,6 +160,17 @@ func (o *UpdateLogPartitionParams) SetBody(body *models.LogPartition) {
 	o.Body = body
 }
 
+// WithID adds the id to the update log partition params
+func (o *UpdateLogPartitionParams) WithID(id string) *UpdateLogPartitionParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the update log partition params
+func (o *UpdateLogPartitionParams) SetID(id string) {
+	o.ID = id
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *UpdateLogPartitionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -176,6 +190,11 @@ func (o *UpdateLogPartitionParams) WriteToRequest(r runtime.ClientRequest, reg s
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
 		}
+	}
+
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

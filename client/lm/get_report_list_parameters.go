@@ -78,6 +78,11 @@ type GetReportListParams struct {
 	// Format: int32
 	Offset *int32
 
+	// ShowNextGenReports.
+	//
+	// Default: true
+	ShowNextGenReports *bool
+
 	// Size.
 	//
 	// Format: int32
@@ -106,13 +111,16 @@ func (o *GetReportListParams) SetDefaults() {
 
 		offsetDefault = int32(0)
 
+		showNextGenReportsDefault = bool(true)
+
 		sizeDefault = int32(50)
 	)
 
 	val := GetReportListParams{
-		UserAgent: &userAgentDefault,
-		Offset:    &offsetDefault,
-		Size:      &sizeDefault,
+		UserAgent:          &userAgentDefault,
+		Offset:             &offsetDefault,
+		ShowNextGenReports: &showNextGenReportsDefault,
+		Size:               &sizeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -198,6 +206,17 @@ func (o *GetReportListParams) SetOffset(offset *int32) {
 	o.Offset = offset
 }
 
+// WithShowNextGenReports adds the showNextGenReports to the get report list params
+func (o *GetReportListParams) WithShowNextGenReports(showNextGenReports *bool) *GetReportListParams {
+	o.SetShowNextGenReports(showNextGenReports)
+	return o
+}
+
+// SetShowNextGenReports adds the showNextGenReports to the get report list params
+func (o *GetReportListParams) SetShowNextGenReports(showNextGenReports *bool) {
+	o.ShowNextGenReports = showNextGenReports
+}
+
 // WithSize adds the size to the get report list params
 func (o *GetReportListParams) WithSize(size *int32) *GetReportListParams {
 	o.SetSize(size)
@@ -271,6 +290,23 @@ func (o *GetReportListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		if qOffset != "" {
 
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.ShowNextGenReports != nil {
+
+		// query param showNextGenReports
+		var qrShowNextGenReports bool
+
+		if o.ShowNextGenReports != nil {
+			qrShowNextGenReports = *o.ShowNextGenReports
+		}
+		qShowNextGenReports := swag.FormatBool(qrShowNextGenReports)
+		if qShowNextGenReports != "" {
+
+			if err := r.SetQueryParam("showNextGenReports", qShowNextGenReports); err != nil {
 				return err
 			}
 		}

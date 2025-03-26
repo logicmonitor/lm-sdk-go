@@ -71,6 +71,9 @@ type PatchLogPartitionParams struct {
 	// Body.
 	Body *models.LogPartition
 
+	// ID.
+	ID string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -157,6 +160,17 @@ func (o *PatchLogPartitionParams) SetBody(body *models.LogPartition) {
 	o.Body = body
 }
 
+// WithID adds the id to the patch log partition params
+func (o *PatchLogPartitionParams) WithID(id string) *PatchLogPartitionParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the patch log partition params
+func (o *PatchLogPartitionParams) SetID(id string) {
+	o.ID = id
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *PatchLogPartitionParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -176,6 +190,11 @@ func (o *PatchLogPartitionParams) WriteToRequest(r runtime.ClientRequest, reg st
 		if err := r.SetBodyParam(o.Body); err != nil {
 			return err
 		}
+	}
+
+	// path param id
+	if err := r.SetPathParam("id", o.ID); err != nil {
+		return err
 	}
 
 	if len(res) > 0 {

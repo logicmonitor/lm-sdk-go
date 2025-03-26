@@ -82,6 +82,9 @@ type PatchDeviceParams struct {
 	// Format: int32
 	ID int32
 
+	// NeedStcGrpAndSortedCP.
+	NeedStcGrpAndSortedCP *bool
+
 	// NetflowFilter.
 	NetflowFilter *string
 
@@ -115,12 +118,15 @@ func (o *PatchDeviceParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
+		needStcGrpAndSortedCPDefault = bool(false)
+
 		opTypeDefault = string("refresh")
 	)
 
 	val := PatchDeviceParams{
-		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
+		UserAgent:             &userAgentDefault,
+		NeedStcGrpAndSortedCP: &needStcGrpAndSortedCPDefault,
+		OpType:                &opTypeDefault,
 	}
 
 	val.timeout = o.timeout
@@ -206,6 +212,17 @@ func (o *PatchDeviceParams) SetID(id int32) {
 	o.ID = id
 }
 
+// WithNeedStcGrpAndSortedCP adds the needStcGrpAndSortedCP to the patch device params
+func (o *PatchDeviceParams) WithNeedStcGrpAndSortedCP(needStcGrpAndSortedCP *bool) *PatchDeviceParams {
+	o.SetNeedStcGrpAndSortedCP(needStcGrpAndSortedCP)
+	return o
+}
+
+// SetNeedStcGrpAndSortedCP adds the needStcGrpAndSortedCP to the patch device params
+func (o *PatchDeviceParams) SetNeedStcGrpAndSortedCP(needStcGrpAndSortedCP *bool) {
+	o.NeedStcGrpAndSortedCP = needStcGrpAndSortedCP
+}
+
 // WithNetflowFilter adds the netflowFilter to the patch device params
 func (o *PatchDeviceParams) WithNetflowFilter(netflowFilter *string) *PatchDeviceParams {
 	o.SetNetflowFilter(netflowFilter)
@@ -280,6 +297,23 @@ func (o *PatchDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.R
 	// path param id
 	if err := r.SetPathParam("id", swag.FormatInt32(o.ID)); err != nil {
 		return err
+	}
+
+	if o.NeedStcGrpAndSortedCP != nil {
+
+		// query param needStcGrpAndSortedCP
+		var qrNeedStcGrpAndSortedCP bool
+
+		if o.NeedStcGrpAndSortedCP != nil {
+			qrNeedStcGrpAndSortedCP = *o.NeedStcGrpAndSortedCP
+		}
+		qNeedStcGrpAndSortedCP := swag.FormatBool(qrNeedStcGrpAndSortedCP)
+		if qNeedStcGrpAndSortedCP != "" {
+
+			if err := r.SetQueryParam("needStcGrpAndSortedCP", qNeedStcGrpAndSortedCP); err != nil {
+				return err
+			}
+		}
 	}
 
 	if o.NetflowFilter != nil {

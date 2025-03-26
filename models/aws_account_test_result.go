@@ -7,6 +7,8 @@ package models
 
 import (
 	"context"
+	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -29,6 +31,10 @@ type AwsAccountTestResult struct {
 	// non permission errors
 	// Unique: true
 	NonPermissionErrors []string `json:"nonPermissionErrors,omitempty"`
+
+	// warnings
+	// Unique: true
+	Warnings []string `json:"warnings,omitempty"`
 }
 
 // Validate validates this aws account test result
@@ -40,6 +46,10 @@ func (m *AwsAccountTestResult) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateNonPermissionErrors(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateWarnings(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -68,6 +78,46 @@ func (m *AwsAccountTestResult) validateNonPermissionErrors(formats strfmt.Regist
 
 	if err := validate.UniqueItems("nonPermissionErrors", "body", m.NonPermissionErrors); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+var awsAccountTestResultWarningsItemsEnum []interface{}
+
+func init() {
+	var res []string
+	if err := json.Unmarshal([]byte(`["CLIENT_ID_ISSUE","TENANT_ID_ISSUE","KEY_ISSUE","SUBSCRIPTION_ID_ISSUE","SERVICE_NAME_ERROR","TEMPORARY_WARNING","PROJECT_ID_ISSUE","CLIENT_EMAIL_ISSUE","TOKEN_URI_ISSUE","ROLE_ARN_ISSUE","PERMISSION_TEST_BYPASSED","POLICY_OR_NAME_ISSUE","SERVICE_PERMISION_FAILURE","MISSING_REQUIRED_CREDENTIAL_DATA","MISSING_CREDENTIALS","MISSING_SUBSCRIPTION_IDS","NO_SERVICES_CHECKED","MAXIMUM_RECORDS_EXCEEDED","FILTER_UNUSED","ID_NOT_FOUND","TYPE_INVALID","INVALID_TIME_RANGE","UNAUTHORIZED","OPTIONAL_FIELD_NOT_FOUND","EXTRA_FIELDS_PROVIDED","DEFAULT_COLUMNS_FILTER","SAAS_O365_EXTRA_PERMISSION","SAAS_O365_API_INACCESSIBLE","SAAS_O365_NO_PERMISSION_GRANTED","PATCH_NOT_ALLOWED_ON_READ_ONLY","PATCH_NOT_ALLOWED_ON_MULTI","IGNORED_COMPONENT_OF_PAYLOAD","INVALID_FIELD_VALUE","NO_ALERT_RULE_MATCHES_THIS_ALERT","INVALID_PROPERTY_NAMES_IGNORED","NO_STAGE_1_RECEIPIENTS_DEFINED_FOR_ALERT","NO_ESCALATING_CHAIN_MATCHES_THIS_ALERT","ASSUMED_TYPE","NO_DATA_FOR_MODEL","GET_INTEGRATION_FAIL","DASHBOARDS_NOT_CREATED","MISSING_PERMISSION_OR_MISSING_DATAPOINT","DISABLED_CLOUD_TYPE","SERVICE_API_DISABLED","ALERT_GENERATION_DISABLED","ALERT_GENERATION_DISABLED_WITH_NAME"]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		awsAccountTestResultWarningsItemsEnum = append(awsAccountTestResultWarningsItemsEnum, v)
+	}
+}
+
+func (m *AwsAccountTestResult) validateWarningsItemsEnum(path, location string, value string) error {
+	if err := validate.EnumCase(path, location, value, awsAccountTestResultWarningsItemsEnum, true); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *AwsAccountTestResult) validateWarnings(formats strfmt.Registry) error {
+	if swag.IsZero(m.Warnings) { // not required
+		return nil
+	}
+
+	if err := validate.UniqueItems("warnings", "body", m.Warnings); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.Warnings); i++ {
+
+		// value enum
+		if err := m.validateWarningsItemsEnum("warnings"+"."+strconv.Itoa(i), "body", m.Warnings[i]); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

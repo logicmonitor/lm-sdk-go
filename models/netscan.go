@@ -48,7 +48,7 @@ type Netscan interface {
 	SetCollectorGroupName(string)
 
 	// The user that created the policy
-	// Example: sarah@logicmonitor.com
+	// Example: user@domain.com
 	// Read Only: true
 	Creator() string
 	SetCreator(string)

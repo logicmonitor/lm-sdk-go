@@ -20,6 +20,9 @@ import (
 // swagger:model RestUsageContractInfoV4
 type RestUsageContractInfoV4 struct {
 
+	// aggregation type
+	AggregationType string `json:"aggregationType,omitempty"`
+
 	// child products
 	// Unique: true
 	ChildProducts []*RestUsageContractInfoV4 `json:"childProducts,omitempty"`

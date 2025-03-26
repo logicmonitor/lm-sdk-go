@@ -9,7 +9,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -17,10 +16,10 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GoogleMapWidget google map widget
+// BillingWidget billing widget
 //
-// swagger:model GoogleMapWidget
-type GoogleMapWidget struct {
+// swagger:model BillingWidget
+type BillingWidget struct {
 	dashboardIdField *int32
 
 	descriptionField string
@@ -45,177 +44,147 @@ type GoogleMapWidget struct {
 
 	userPermissionField string
 
-	// Whether ACKed alerts should be displayed, the default value is true
-	AckChecked interface{} `json:"ackChecked,omitempty"`
-
-	// Whether critical alerts should be displayed, the default value is true
-	DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
-
-	// Whether error alerts should be displayed, the default value is true
-	DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
-
-	// Whether warning alerts should be displayed, the default value is true
-	DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
-
-	// The points info
+	// billing info
 	// Required: true
-	MapPoints []*PointSource `json:"mapPoints"`
-
-	// Whether alerts occuring during an SDT period should be displayed, the default value is true
-	SDTChecked interface{} `json:"sdtChecked,omitempty"`
+	BillingInfo *BillingInfo `json:"billingInfo"`
 }
 
 // DashboardID gets the dashboard Id of this subtype
-func (m *GoogleMapWidget) DashboardID() *int32 {
+func (m *BillingWidget) DashboardID() *int32 {
 	return m.dashboardIdField
 }
 
 // SetDashboardID sets the dashboard Id of this subtype
-func (m *GoogleMapWidget) SetDashboardID(val *int32) {
+func (m *BillingWidget) SetDashboardID(val *int32) {
 	m.dashboardIdField = val
 }
 
 // Description gets the description of this subtype
-func (m *GoogleMapWidget) Description() string {
+func (m *BillingWidget) Description() string {
 	return m.descriptionField
 }
 
 // SetDescription sets the description of this subtype
-func (m *GoogleMapWidget) SetDescription(val string) {
+func (m *BillingWidget) SetDescription(val string) {
 	m.descriptionField = val
 }
 
 // ID gets the id of this subtype
-func (m *GoogleMapWidget) ID() int32 {
+func (m *BillingWidget) ID() int32 {
 	return m.idField
 }
 
 // SetID sets the id of this subtype
-func (m *GoogleMapWidget) SetID(val int32) {
+func (m *BillingWidget) SetID(val int32) {
 	m.idField = val
 }
 
 // Interval gets the interval of this subtype
-func (m *GoogleMapWidget) Interval() int32 {
+func (m *BillingWidget) Interval() int32 {
 	return m.intervalField
 }
 
 // SetInterval sets the interval of this subtype
-func (m *GoogleMapWidget) SetInterval(val int32) {
+func (m *BillingWidget) SetInterval(val int32) {
 	m.intervalField = val
 }
 
 // IsSupportCustomProperty gets the is support custom property of this subtype
-func (m *GoogleMapWidget) IsSupportCustomProperty() bool {
+func (m *BillingWidget) IsSupportCustomProperty() bool {
 	return m.isSupportCustomPropertyField
 }
 
 // SetIsSupportCustomProperty sets the is support custom property of this subtype
-func (m *GoogleMapWidget) SetIsSupportCustomProperty(val bool) {
+func (m *BillingWidget) SetIsSupportCustomProperty(val bool) {
 	m.isSupportCustomPropertyField = val
 }
 
 // LastUpdatedBy gets the last updated by of this subtype
-func (m *GoogleMapWidget) LastUpdatedBy() string {
+func (m *BillingWidget) LastUpdatedBy() string {
 	return m.lastUpdatedByField
 }
 
 // SetLastUpdatedBy sets the last updated by of this subtype
-func (m *GoogleMapWidget) SetLastUpdatedBy(val string) {
+func (m *BillingWidget) SetLastUpdatedBy(val string) {
 	m.lastUpdatedByField = val
 }
 
 // LastUpdatedOn gets the last updated on of this subtype
-func (m *GoogleMapWidget) LastUpdatedOn() int64 {
+func (m *BillingWidget) LastUpdatedOn() int64 {
 	return m.lastUpdatedOnField
 }
 
 // SetLastUpdatedOn sets the last updated on of this subtype
-func (m *GoogleMapWidget) SetLastUpdatedOn(val int64) {
+func (m *BillingWidget) SetLastUpdatedOn(val int64) {
 	m.lastUpdatedOnField = val
 }
 
 // Name gets the name of this subtype
-func (m *GoogleMapWidget) Name() *string {
+func (m *BillingWidget) Name() *string {
 	return m.nameField
 }
 
 // SetName sets the name of this subtype
-func (m *GoogleMapWidget) SetName(val *string) {
+func (m *BillingWidget) SetName(val *string) {
 	m.nameField = val
 }
 
 // SupportCustomProperty gets the support custom property of this subtype
-func (m *GoogleMapWidget) SupportCustomProperty() bool {
+func (m *BillingWidget) SupportCustomProperty() bool {
 	return m.supportCustomPropertyField
 }
 
 // SetSupportCustomProperty sets the support custom property of this subtype
-func (m *GoogleMapWidget) SetSupportCustomProperty(val bool) {
+func (m *BillingWidget) SetSupportCustomProperty(val bool) {
 	m.supportCustomPropertyField = val
 }
 
 // Theme gets the theme of this subtype
-func (m *GoogleMapWidget) Theme() string {
+func (m *BillingWidget) Theme() string {
 	return m.themeField
 }
 
 // SetTheme sets the theme of this subtype
-func (m *GoogleMapWidget) SetTheme(val string) {
+func (m *BillingWidget) SetTheme(val string) {
 	m.themeField = val
 }
 
 // Timescale gets the timescale of this subtype
-func (m *GoogleMapWidget) Timescale() string {
+func (m *BillingWidget) Timescale() string {
 	return m.timescaleField
 }
 
 // SetTimescale sets the timescale of this subtype
-func (m *GoogleMapWidget) SetTimescale(val string) {
+func (m *BillingWidget) SetTimescale(val string) {
 	m.timescaleField = val
 }
 
 // Type gets the type of this subtype
-func (m *GoogleMapWidget) Type() string {
-	return "gmap"
+func (m *BillingWidget) Type() string {
+	return "BillingWidget"
 }
 
 // SetType sets the type of this subtype
-func (m *GoogleMapWidget) SetType(val string) {
+func (m *BillingWidget) SetType(val string) {
 }
 
 // UserPermission gets the user permission of this subtype
-func (m *GoogleMapWidget) UserPermission() string {
+func (m *BillingWidget) UserPermission() string {
 	return m.userPermissionField
 }
 
 // SetUserPermission sets the user permission of this subtype
-func (m *GoogleMapWidget) SetUserPermission(val string) {
+func (m *BillingWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
 
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
-func (m *GoogleMapWidget) UnmarshalJSON(raw []byte) error {
+func (m *BillingWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// Whether ACKed alerts should be displayed, the default value is true
-		AckChecked interface{} `json:"ackChecked,omitempty"`
-
-		// Whether critical alerts should be displayed, the default value is true
-		DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
-
-		// Whether error alerts should be displayed, the default value is true
-		DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
-
-		// Whether warning alerts should be displayed, the default value is true
-		DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
-
-		// The points info
+		// billing info
 		// Required: true
-		MapPoints []*PointSource `json:"mapPoints"`
-
-		// Whether alerts occuring during an SDT period should be displayed, the default value is true
-		SDTChecked interface{} `json:"sdtChecked,omitempty"`
+		BillingInfo *BillingInfo `json:"billingInfo"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -262,7 +231,7 @@ func (m *GoogleMapWidget) UnmarshalJSON(raw []byte) error {
 		return err
 	}
 
-	var result GoogleMapWidget
+	var result BillingWidget
 
 	result.dashboardIdField = base.DashboardID
 
@@ -292,12 +261,7 @@ func (m *GoogleMapWidget) UnmarshalJSON(raw []byte) error {
 	}
 	result.userPermissionField = base.UserPermission
 
-	result.AckChecked = data.AckChecked
-	result.DisplayCriticalAlert = data.DisplayCriticalAlert
-	result.DisplayErrorAlert = data.DisplayErrorAlert
-	result.DisplayWarnAlert = data.DisplayWarnAlert
-	result.MapPoints = data.MapPoints
-	result.SDTChecked = data.SDTChecked
+	result.BillingInfo = data.BillingInfo
 
 	*m = result
 
@@ -305,42 +269,17 @@ func (m *GoogleMapWidget) UnmarshalJSON(raw []byte) error {
 }
 
 // MarshalJSON marshals this object with a polymorphic type to a JSON structure
-func (m GoogleMapWidget) MarshalJSON() ([]byte, error) {
+func (m BillingWidget) MarshalJSON() ([]byte, error) {
 	var b1, b2, b3 []byte
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// Whether ACKed alerts should be displayed, the default value is true
-		AckChecked interface{} `json:"ackChecked,omitempty"`
-
-		// Whether critical alerts should be displayed, the default value is true
-		DisplayCriticalAlert interface{} `json:"displayCriticalAlert,omitempty"`
-
-		// Whether error alerts should be displayed, the default value is true
-		DisplayErrorAlert interface{} `json:"displayErrorAlert,omitempty"`
-
-		// Whether warning alerts should be displayed, the default value is true
-		DisplayWarnAlert interface{} `json:"displayWarnAlert,omitempty"`
-
-		// The points info
+		// billing info
 		// Required: true
-		MapPoints []*PointSource `json:"mapPoints"`
-
-		// Whether alerts occuring during an SDT period should be displayed, the default value is true
-		SDTChecked interface{} `json:"sdtChecked,omitempty"`
+		BillingInfo *BillingInfo `json:"billingInfo"`
 	}{
 
-		AckChecked: m.AckChecked,
-
-		DisplayCriticalAlert: m.DisplayCriticalAlert,
-
-		DisplayErrorAlert: m.DisplayErrorAlert,
-
-		DisplayWarnAlert: m.DisplayWarnAlert,
-
-		MapPoints: m.MapPoints,
-
-		SDTChecked: m.SDTChecked,
+		BillingInfo: m.BillingInfo,
 	})
 	if err != nil {
 		return nil, err
@@ -406,8 +345,8 @@ func (m GoogleMapWidget) MarshalJSON() ([]byte, error) {
 	return swag.ConcatJSON(b1, b2, b3), nil
 }
 
-// Validate validates this google map widget
-func (m *GoogleMapWidget) Validate(formats strfmt.Registry) error {
+// Validate validates this billing widget
+func (m *BillingWidget) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateDashboardID(formats); err != nil {
@@ -418,7 +357,7 @@ func (m *GoogleMapWidget) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateMapPoints(formats); err != nil {
+	if err := m.validateBillingInfo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -428,7 +367,7 @@ func (m *GoogleMapWidget) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GoogleMapWidget) validateDashboardID(formats strfmt.Registry) error {
+func (m *BillingWidget) validateDashboardID(formats strfmt.Registry) error {
 
 	if err := validate.Required("dashboardId", "body", m.DashboardID()); err != nil {
 		return err
@@ -437,7 +376,7 @@ func (m *GoogleMapWidget) validateDashboardID(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GoogleMapWidget) validateName(formats strfmt.Registry) error {
+func (m *BillingWidget) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name()); err != nil {
 		return err
@@ -446,35 +385,28 @@ func (m *GoogleMapWidget) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *GoogleMapWidget) validateMapPoints(formats strfmt.Registry) error {
+func (m *BillingWidget) validateBillingInfo(formats strfmt.Registry) error {
 
-	if err := validate.Required("mapPoints", "body", m.MapPoints); err != nil {
+	if err := validate.Required("billingInfo", "body", m.BillingInfo); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.MapPoints); i++ {
-		if swag.IsZero(m.MapPoints[i]) { // not required
-			continue
-		}
-
-		if m.MapPoints[i] != nil {
-			if err := m.MapPoints[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("mapPoints" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("mapPoints" + "." + strconv.Itoa(i))
-				}
-				return err
+	if m.BillingInfo != nil {
+		if err := m.BillingInfo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("billingInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("billingInfo")
 			}
+			return err
 		}
-
 	}
 
 	return nil
 }
 
-// ContextValidate validate this google map widget based on the context it is used
-func (m *GoogleMapWidget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+// ContextValidate validate this billing widget based on the context it is used
+func (m *BillingWidget) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateLastUpdatedBy(ctx, formats); err != nil {
@@ -489,7 +421,7 @@ func (m *GoogleMapWidget) ContextValidate(ctx context.Context, formats strfmt.Re
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateMapPoints(ctx, formats); err != nil {
+	if err := m.contextValidateBillingInfo(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -499,7 +431,7 @@ func (m *GoogleMapWidget) ContextValidate(ctx context.Context, formats strfmt.Re
 	return nil
 }
 
-func (m *GoogleMapWidget) contextValidateLastUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
+func (m *BillingWidget) contextValidateLastUpdatedBy(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "lastUpdatedBy", "body", string(m.LastUpdatedBy())); err != nil {
 		return err
@@ -508,7 +440,7 @@ func (m *GoogleMapWidget) contextValidateLastUpdatedBy(ctx context.Context, form
 	return nil
 }
 
-func (m *GoogleMapWidget) contextValidateLastUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+func (m *BillingWidget) contextValidateLastUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "lastUpdatedOn", "body", int64(m.LastUpdatedOn())); err != nil {
 		return err
@@ -517,7 +449,7 @@ func (m *GoogleMapWidget) contextValidateLastUpdatedOn(ctx context.Context, form
 	return nil
 }
 
-func (m *GoogleMapWidget) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+func (m *BillingWidget) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
 		return err
@@ -526,33 +458,25 @@ func (m *GoogleMapWidget) contextValidateUserPermission(ctx context.Context, for
 	return nil
 }
 
-func (m *GoogleMapWidget) contextValidateMapPoints(ctx context.Context, formats strfmt.Registry) error {
+func (m *BillingWidget) contextValidateBillingInfo(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.MapPoints); i++ {
+	if m.BillingInfo != nil {
 
-		if m.MapPoints[i] != nil {
-
-			if swag.IsZero(m.MapPoints[i]) { // not required
-				return nil
+		if err := m.BillingInfo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("billingInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("billingInfo")
 			}
-
-			if err := m.MapPoints[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("mapPoints" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("mapPoints" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
+			return err
 		}
-
 	}
 
 	return nil
 }
 
 // MarshalBinary interface implementation
-func (m *GoogleMapWidget) MarshalBinary() ([]byte, error) {
+func (m *BillingWidget) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -560,8 +484,8 @@ func (m *GoogleMapWidget) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *GoogleMapWidget) UnmarshalBinary(b []byte) error {
-	var res GoogleMapWidget
+func (m *BillingWidget) UnmarshalBinary(b []byte) error {
+	var res BillingWidget
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

@@ -188,12 +188,6 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 			return nil, err
 		}
 		return &result, nil
-	case "AzureEABillingCollectorAttribute":
-		var result AzureEABillingCollectorAttribute
-		if err := consumer.Consume(buf2, &result); err != nil {
-			return nil, err
-		}
-		return &result, nil
 	case "AzureExpressRouteCircuitPeeringCollectorAttributeV3":
 		var result AzureExpressRouteCircuitPeeringCollectorAttributeV3
 		if err := consumer.Consume(buf2, &result); err != nil {

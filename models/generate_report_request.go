@@ -20,7 +20,7 @@ import (
 type GenerateReportRequest struct {
 
 	// The email addresses that LogicMonitor should send the report to, separated by commas
-	// Example: bob@logicmonitor.com
+	// Example: user@domain.com
 	ReceiveEmails string `json:"receiveEmails,omitempty"`
 
 	// The id of the report to run

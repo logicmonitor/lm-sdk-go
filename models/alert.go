@@ -55,6 +55,10 @@ type Alert struct {
 	// Read Only: true
 	AlertGroupEntityValue string `json:"alertGroupEntityValue,omitempty"`
 
+	// Specified alert query information
+	// Read Only: true
+	AlertQuery string `json:"alertQuery,omitempty"`
+
 	// The value that triggered the alert
 	// Read Only: true
 	AlertValue string `json:"alertValue,omitempty"`
@@ -70,6 +74,10 @@ type Alert struct {
 	// The id of the escalation chain the alert was routed to
 	// Read Only: true
 	ChainID int32 `json:"chainId,omitempty"`
+
+	// Specified log alert clear expression information
+	// Read Only: true
+	ClearExpr string `json:"clearExpr,omitempty"`
 
 	// The value that cleared the alert
 	// Read Only: true
@@ -299,6 +307,10 @@ func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAlertQuery(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAlertValue(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -312,6 +324,10 @@ func (m *Alert) ContextValidate(ctx context.Context, formats strfmt.Registry) er
 	}
 
 	if err := m.contextValidateChainID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateClearExpr(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -549,6 +565,15 @@ func (m *Alert) contextValidateAlertGroupEntityValue(ctx context.Context, format
 	return nil
 }
 
+func (m *Alert) contextValidateAlertQuery(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "alertQuery", "body", string(m.AlertQuery)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Alert) contextValidateAlertValue(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "alertValue", "body", string(m.AlertValue)); err != nil {
@@ -579,6 +604,15 @@ func (m *Alert) contextValidateChain(ctx context.Context, formats strfmt.Registr
 func (m *Alert) contextValidateChainID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "chainId", "body", int32(m.ChainID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Alert) contextValidateClearExpr(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "clearExpr", "body", string(m.ClearExpr)); err != nil {
 		return err
 	}
 

@@ -1105,7 +1105,7 @@ func (a *Client) AddTopologySource(params *AddTopologySourceParams) (*AddTopolog
 }
 
 /*
-AddWebsite adds website
+AddWebsite adds website request structure may vary based on the check type ping check pipe web check model use the respective model in s d k
 */
 func (a *Client) AddWebsite(params *AddWebsiteParams) (*AddWebsiteOK, error) {
 	// TODO: Validate the params before sending
@@ -11328,7 +11328,7 @@ func (a *Client) PatchLogPartition(params *PatchLogPartitionParams) (*PatchLogPa
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "patchLogPartition",
 		Method:             "PATCH",
-		PathPattern:        "/log/partitions",
+		PathPattern:        "/log/partitions/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -11665,7 +11665,7 @@ func (a *Client) PatchTopologySource(params *PatchTopologySourceParams) (*PatchT
 }
 
 /*
-PatchWebsiteByID updates website
+PatchWebsiteByID updates website request structure may vary based on the check type ping check pipe web check model use the respective model in s d k
 */
 func (a *Client) PatchWebsiteByID(params *PatchWebsiteByIDParams) (*PatchWebsiteByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12666,7 +12666,7 @@ func (a *Client) UpdateLogPartition(params *UpdateLogPartitionParams) (*UpdateLo
 	result, err := a.transport.Submit(&runtime.ClientOperation{
 		ID:                 "updateLogPartition",
 		Method:             "PUT",
-		PathPattern:        "/log/partitions",
+		PathPattern:        "/log/partitions/{id}",
 		ProducesMediaTypes: []string{"application/json"},
 		ConsumesMediaTypes: []string{"application/json"},
 		Schemes:            []string{"https"},
@@ -13003,7 +13003,7 @@ func (a *Client) UpdateTopologySource(params *UpdateTopologySourceParams) (*Upda
 }
 
 /*
-UpdateWebsiteByID updates website
+UpdateWebsiteByID updates website request structure may vary based on the check type ping check pipe web check model use the respective model in s d k
 */
 func (a *Client) UpdateWebsiteByID(params *UpdateWebsiteByIDParams) (*UpdateWebsiteByIDOK, error) {
 	// TODO: Validate the params before sending

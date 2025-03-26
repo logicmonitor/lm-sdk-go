@@ -44,6 +44,11 @@ type Widget interface {
 	Interval() int32
 	SetInterval(int32)
 
+	// Custom property support in table widget or not
+	// Example: false
+	IsSupportCustomProperty() bool
+	SetIsSupportCustomProperty(bool)
+
 	// The user that last updated the widget
 	// Read Only: true
 	LastUpdatedBy() string
@@ -59,6 +64,10 @@ type Widget interface {
 	// Required: true
 	Name() *string
 	SetName(*string)
+
+	// support custom property
+	SupportCustomProperty() bool
+	SetSupportCustomProperty(bool)
 
 	// The color scheme of the widget. Options are: borderPurple | borderGray | borderBlue | solidPurple | solidGray | solidBlue | simplePurple | simpleBlue | simpleGray | newBorderGray | newBorderBlue | newBorderDarkBlue | newSolidGray | newSolidBlue | newSolidDarkBlue | newSimpleGray | newSimpleBlue |newSimpleDarkBlue
 	// Example: newBorderBlue
@@ -94,11 +103,15 @@ type widget struct {
 
 	intervalField int32
 
+	isSupportCustomPropertyField bool
+
 	lastUpdatedByField string
 
 	lastUpdatedOnField int64
 
 	nameField *string
+
+	supportCustomPropertyField bool
 
 	themeField string
 
@@ -149,6 +162,16 @@ func (m *widget) SetInterval(val int32) {
 	m.intervalField = val
 }
 
+// IsSupportCustomProperty gets the is support custom property of this polymorphic type
+func (m *widget) IsSupportCustomProperty() bool {
+	return m.isSupportCustomPropertyField
+}
+
+// SetIsSupportCustomProperty sets the is support custom property of this polymorphic type
+func (m *widget) SetIsSupportCustomProperty(val bool) {
+	m.isSupportCustomPropertyField = val
+}
+
 // LastUpdatedBy gets the last updated by of this polymorphic type
 func (m *widget) LastUpdatedBy() string {
 	return m.lastUpdatedByField
@@ -177,6 +200,16 @@ func (m *widget) Name() *string {
 // SetName sets the name of this polymorphic type
 func (m *widget) SetName(val *string) {
 	m.nameField = val
+}
+
+// SupportCustomProperty gets the support custom property of this polymorphic type
+func (m *widget) SupportCustomProperty() bool {
+	return m.supportCustomPropertyField
+}
+
+// SetSupportCustomProperty sets the support custom property of this polymorphic type
+func (m *widget) SetSupportCustomProperty(val bool) {
+	m.supportCustomPropertyField = val
 }
 
 // Theme gets the theme of this polymorphic type
@@ -264,8 +297,20 @@ func unmarshalWidget(data []byte, consumer runtime.Consumer) (Widget, error) {
 
 	// The value of type is used to determine which type to create and unmarshal the data into
 	switch getType.Type {
+	case "BillingWidget":
+		var result BillingWidget
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "CloudRecommendation":
 		var result CloudRecommendation
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "LMQLWidget":
+		var result LMQLWidget
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
