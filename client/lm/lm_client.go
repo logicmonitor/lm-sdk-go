@@ -32,7 +32,9 @@ type Client struct {
 }
 
 /*
-AckAlertByID acks alert by id
+AckAlertByID acknowledges alert by ID
+
+Acknowledge the alert with the given ID
 */
 func (a *Client) AckAlertByID(params *AckAlertByIDParams) (*AckAlertByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -62,6 +64,8 @@ func (a *Client) AckAlertByID(params *AckAlertByIDParams) (*AckAlertByIDOK, erro
 
 /*
 AckCollectorDownAlertByID acks collector down alert
+
+ack collector down alert
 */
 func (a *Client) AckCollectorDownAlertByID(params *AckCollectorDownAlertByIDParams) (*AckCollectorDownAlertByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -91,6 +95,8 @@ func (a *Client) AckCollectorDownAlertByID(params *AckCollectorDownAlertByIDPara
 
 /*
 AddAccessGroup creates a access group
+
+Create a access group
 */
 func (a *Client) AddAccessGroup(params *AddAccessGroupParams) (*AddAccessGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -120,6 +126,8 @@ func (a *Client) AddAccessGroup(params *AddAccessGroupParams) (*AddAccessGroupOK
 
 /*
 AddAdmin adds user
+
+add user
 */
 func (a *Client) AddAdmin(params *AddAdminParams) (*AddAdminOK, error) {
 	// TODO: Validate the params before sending
@@ -149,6 +157,8 @@ func (a *Client) AddAdmin(params *AddAdminParams) (*AddAdminOK, error) {
 
 /*
 AddAlertNoteByID adds alert note
+
+Add a note to the alert with the given ID
 */
 func (a *Client) AddAlertNoteByID(params *AddAlertNoteByIDParams) (*AddAlertNoteByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -178,6 +188,8 @@ func (a *Client) AddAlertNoteByID(params *AddAlertNoteByIDParams) (*AddAlertNote
 
 /*
 AddAlertRule adds alert rule
+
+add alert rule
 */
 func (a *Client) AddAlertRule(params *AddAlertRuleParams) (*AddAlertRuleOK, error) {
 	// TODO: Validate the params before sending
@@ -206,7 +218,9 @@ func (a *Client) AddAlertRule(params *AddAlertRuleParams) (*AddAlertRuleOK, erro
 }
 
 /*
-AddAPITokenByAdminID adds api tokens for a user
+AddAPITokenByAdminID adds API tokens for a user
+
+Add new API tokens for a specific user
 */
 func (a *Client) AddAPITokenByAdminID(params *AddAPITokenByAdminIDParams) (*AddAPITokenByAdminIDOK, error) {
 	// TODO: Validate the params before sending
@@ -236,6 +250,8 @@ func (a *Client) AddAPITokenByAdminID(params *AddAPITokenByAdminIDParams) (*AddA
 
 /*
 AddAppliesToFunction adds applies to function
+
+Create a new applies to function
 */
 func (a *Client) AddAppliesToFunction(params *AddAppliesToFunctionParams) (*AddAppliesToFunctionOK, error) {
 	// TODO: Validate the params before sending
@@ -265,6 +281,8 @@ func (a *Client) AddAppliesToFunction(params *AddAppliesToFunctionParams) (*AddA
 
 /*
 AddCollector adds collector
+
+add collector
 */
 func (a *Client) AddCollector(params *AddCollectorParams) (*AddCollectorOK, error) {
 	// TODO: Validate the params before sending
@@ -294,6 +312,8 @@ func (a *Client) AddCollector(params *AddCollectorParams) (*AddCollectorOK, erro
 
 /*
 AddCollectorGroup adds collector group
+
+Create a new collector group
 */
 func (a *Client) AddCollectorGroup(params *AddCollectorGroupParams) (*AddCollectorGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -322,7 +342,9 @@ func (a *Client) AddCollectorGroup(params *AddCollectorGroupParams) (*AddCollect
 }
 
 /*
-AddConfigSource adds config source
+AddConfigSource adds a new config source
+
+Create a new config source
 */
 func (a *Client) AddConfigSource(params *AddConfigSourceParams) (*AddConfigSourceOK, error) {
 	// TODO: Validate the params before sending
@@ -351,7 +373,9 @@ func (a *Client) AddConfigSource(params *AddConfigSourceParams) (*AddConfigSourc
 }
 
 /*
-AddDNSMapping adds dns mapping
+AddDNSMapping adds DNS mapping
+
+Add a new DNS mapping
 */
 func (a *Client) AddDNSMapping(params *AddDNSMappingParams) (*AddDNSMappingOK, error) {
 	// TODO: Validate the params before sending
@@ -381,6 +405,8 @@ func (a *Client) AddDNSMapping(params *AddDNSMappingParams) (*AddDNSMappingOK, e
 
 /*
 AddDashboard adds dashboard
+
+add dashboard
 */
 func (a *Client) AddDashboard(params *AddDashboardParams) (*AddDashboardOK, error) {
 	// TODO: Validate the params before sending
@@ -410,6 +436,8 @@ func (a *Client) AddDashboard(params *AddDashboardParams) (*AddDashboardOK, erro
 
 /*
 AddDashboardGroup adds dashboard group
+
+add dashboard group
 */
 func (a *Client) AddDashboardGroup(params *AddDashboardGroupParams) (*AddDashboardGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -439,6 +467,8 @@ func (a *Client) AddDashboardGroup(params *AddDashboardGroupParams) (*AddDashboa
 
 /*
 AddDashboardGroupAsynchronously adds dashboard group asynchronously
+
+add dashboard group asynchronously
 */
 func (a *Client) AddDashboardGroupAsynchronously(params *AddDashboardGroupAsynchronouslyParams) (*AddDashboardGroupAsynchronouslyOK, error) {
 	// TODO: Validate the params before sending
@@ -468,6 +498,8 @@ func (a *Client) AddDashboardGroupAsynchronously(params *AddDashboardGroupAsynch
 
 /*
 AddDatasourceByID adds datasource
+
+Adds a new datasource
 */
 func (a *Client) AddDatasourceByID(params *AddDatasourceByIDParams) (*AddDatasourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -496,7 +528,9 @@ func (a *Client) AddDatasourceByID(params *AddDatasourceByIDParams) (*AddDatasou
 }
 
 /*
-AddDevice adds a new device
+AddDevice adds a new device request schema may change depending upon the type of uptime device being added
+
+add a new device (Request schema may change depending upon the type of uptime device being added)
 */
 func (a *Client) AddDevice(params *AddDeviceParams) (*AddDeviceOK, error) {
 	// TODO: Validate the params before sending
@@ -526,6 +560,8 @@ func (a *Client) AddDevice(params *AddDeviceParams) (*AddDeviceOK, error) {
 
 /*
 AddDeviceDatasourceInstance adds device instance
+
+add device instance
 */
 func (a *Client) AddDeviceDatasourceInstance(params *AddDeviceDatasourceInstanceParams) (*AddDeviceDatasourceInstanceOK, error) {
 	// TODO: Validate the params before sending
@@ -555,6 +591,8 @@ func (a *Client) AddDeviceDatasourceInstance(params *AddDeviceDatasourceInstance
 
 /*
 AddDeviceDatasourceInstanceGroup adds device datasource instance group
+
+Add a new device datasource instance group
 */
 func (a *Client) AddDeviceDatasourceInstanceGroup(params *AddDeviceDatasourceInstanceGroupParams) (*AddDeviceDatasourceInstanceGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -584,6 +622,8 @@ func (a *Client) AddDeviceDatasourceInstanceGroup(params *AddDeviceDatasourceIns
 
 /*
 AddDeviceGroup adds device group
+
+add device group
 */
 func (a *Client) AddDeviceGroup(params *AddDeviceGroupParams) (*AddDeviceGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -613,6 +653,8 @@ func (a *Client) AddDeviceGroup(params *AddDeviceGroupParams) (*AddDeviceGroupOK
 
 /*
 AddDeviceGroupClusterAlertConf adds cluster alert configuration
+
+Add cluster alert configuration
 */
 func (a *Client) AddDeviceGroupClusterAlertConf(params *AddDeviceGroupClusterAlertConfParams) (*AddDeviceGroupClusterAlertConfOK, error) {
 	// TODO: Validate the params before sending
@@ -642,6 +684,8 @@ func (a *Client) AddDeviceGroupClusterAlertConf(params *AddDeviceGroupClusterAle
 
 /*
 AddDeviceGroupProperty adds device group property
+
+Add a new property to a specific device group
 */
 func (a *Client) AddDeviceGroupProperty(params *AddDeviceGroupPropertyParams) (*AddDeviceGroupPropertyOK, error) {
 	// TODO: Validate the params before sending
@@ -671,6 +715,8 @@ func (a *Client) AddDeviceGroupProperty(params *AddDeviceGroupPropertyParams) (*
 
 /*
 AddDeviceProperty adds device property
+
+Add a new property to a specific device
 */
 func (a *Client) AddDeviceProperty(params *AddDevicePropertyParams) (*AddDevicePropertyOK, error) {
 	// TODO: Validate the params before sending
@@ -699,7 +745,40 @@ func (a *Client) AddDeviceProperty(params *AddDevicePropertyParams) (*AddDeviceP
 }
 
 /*
+AddDiagnosticSource adds diagnostics source
+
+Adds a new diagnostics source
+*/
+func (a *Client) AddDiagnosticSource(params *AddDiagnosticSourceParams) (*AddDiagnosticSourceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddDiagnosticSourceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addDiagnosticSource",
+		Method:             "POST",
+		PathPattern:        "/setting/diagnosticsources",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddDiagnosticSourceReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddDiagnosticSourceOK), nil
+
+}
+
+/*
 AddEscalationChain adds escalation chain
+
+Create a new escalation chain
 */
 func (a *Client) AddEscalationChain(params *AddEscalationChainParams) (*AddEscalationChainOK, error) {
 	// TODO: Validate the params before sending
@@ -729,6 +808,8 @@ func (a *Client) AddEscalationChain(params *AddEscalationChainParams) (*AddEscal
 
 /*
 AddEventSource adds event source
+
+Adds a new event source
 */
 func (a *Client) AddEventSource(params *AddEventSourceParams) (*AddEventSourceOK, error) {
 	// TODO: Validate the params before sending
@@ -758,6 +839,8 @@ func (a *Client) AddEventSource(params *AddEventSourceParams) (*AddEventSourceOK
 
 /*
 AddJobMonitor adds job monitor
+
+Create a new JobMonitor
 */
 func (a *Client) AddJobMonitor(params *AddJobMonitorParams) (*AddJobMonitorOK, error) {
 	// TODO: Validate the params before sending
@@ -787,6 +870,8 @@ func (a *Client) AddJobMonitor(params *AddJobMonitorParams) (*AddJobMonitorOK, e
 
 /*
 AddLogSource adds log source
+
+Adds a new log source
 */
 func (a *Client) AddLogSource(params *AddLogSourceParams) (*AddLogSourceOK, error) {
 	// TODO: Validate the params before sending
@@ -816,6 +901,8 @@ func (a *Client) AddLogSource(params *AddLogSourceParams) (*AddLogSourceOK, erro
 
 /*
 AddNetscan adds a new netscan
+
+Create a new netscan
 */
 func (a *Client) AddNetscan(params *AddNetscanParams) (*AddNetscanOK, error) {
 	// TODO: Validate the params before sending
@@ -845,6 +932,8 @@ func (a *Client) AddNetscan(params *AddNetscanParams) (*AddNetscanOK, error) {
 
 /*
 AddOid adds a new o ID
+
+Create a new OID and add it to the system
 */
 func (a *Client) AddOid(params *AddOidParams) (*AddOidOK, error) {
 	// TODO: Validate the params before sending
@@ -874,6 +963,8 @@ func (a *Client) AddOid(params *AddOidParams) (*AddOidOK, error) {
 
 /*
 AddOpsNote adds opsnote
+
+add opsnote
 */
 func (a *Client) AddOpsNote(params *AddOpsNoteParams) (*AddOpsNoteOK, error) {
 	// TODO: Validate the params before sending
@@ -903,6 +994,8 @@ func (a *Client) AddOpsNote(params *AddOpsNoteParams) (*AddOpsNoteOK, error) {
 
 /*
 AddPropertyRule adds a new property rule
+
+Creates a new property rule in the system
 */
 func (a *Client) AddPropertyRule(params *AddPropertyRuleParams) (*AddPropertyRuleOK, error) {
 	// TODO: Validate the params before sending
@@ -932,6 +1025,8 @@ func (a *Client) AddPropertyRule(params *AddPropertyRuleParams) (*AddPropertyRul
 
 /*
 AddRecipientGroup adds recipient group
+
+Add a new recipient group
 */
 func (a *Client) AddRecipientGroup(params *AddRecipientGroupParams) (*AddRecipientGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -960,7 +1055,40 @@ func (a *Client) AddRecipientGroup(params *AddRecipientGroupParams) (*AddRecipie
 }
 
 /*
+AddRemediationSource adds remediation source
+
+Adds a new remediation source
+*/
+func (a *Client) AddRemediationSource(params *AddRemediationSourceParams) (*AddRemediationSourceOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewAddRemediationSourceParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "addRemediationSource",
+		Method:             "POST",
+		PathPattern:        "/setting/remediationsources",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &AddRemediationSourceReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*AddRemediationSourceOK), nil
+
+}
+
+/*
 AddReport adds report
+
+Create a new report
 */
 func (a *Client) AddReport(params *AddReportParams) (*AddReportOK, error) {
 	// TODO: Validate the params before sending
@@ -990,6 +1118,8 @@ func (a *Client) AddReport(params *AddReportParams) (*AddReportOK, error) {
 
 /*
 AddReportGroup adds report group
+
+Add a new report group
 */
 func (a *Client) AddReportGroup(params *AddReportGroupParams) (*AddReportGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -1019,6 +1149,8 @@ func (a *Client) AddReportGroup(params *AddReportGroupParams) (*AddReportGroupOK
 
 /*
 AddRole adds role
+
+Create a new role
 */
 func (a *Client) AddRole(params *AddRoleParams) (*AddRoleOK, error) {
 	// TODO: Validate the params before sending
@@ -1048,6 +1180,8 @@ func (a *Client) AddRole(params *AddRoleParams) (*AddRoleOK, error) {
 
 /*
 AddSDT adds SDT response may contain extra fields depending upon the type of SDT being added
+
+add SDT (Response may contain extra fields depending upon the type of SDT being added)
 */
 func (a *Client) AddSDT(params *AddSDTParams) (*AddSDTOK, error) {
 	// TODO: Validate the params before sending
@@ -1077,6 +1211,8 @@ func (a *Client) AddSDT(params *AddSDTParams) (*AddSDTOK, error) {
 
 /*
 AddTopologySource adds topology source
+
+Add TopologySource
 */
 func (a *Client) AddTopologySource(params *AddTopologySourceParams) (*AddTopologySourceOK, error) {
 	// TODO: Validate the params before sending
@@ -1105,7 +1241,9 @@ func (a *Client) AddTopologySource(params *AddTopologySourceParams) (*AddTopolog
 }
 
 /*
-AddWebsite adds website request structure may vary based on the check type ping check pipe web check model use the respective model in s d k
+AddWebsite adds website
+
+Add website. Request structure may vary based on the check type {PingCheck | WebCheck model}. Use the respective model in SDK.
 */
 func (a *Client) AddWebsite(params *AddWebsiteParams) (*AddWebsiteOK, error) {
 	// TODO: Validate the params before sending
@@ -1135,6 +1273,8 @@ func (a *Client) AddWebsite(params *AddWebsiteParams) (*AddWebsiteOK, error) {
 
 /*
 AddWebsiteGroup adds website group
+
+add website group
 */
 func (a *Client) AddWebsiteGroup(params *AddWebsiteGroupParams) (*AddWebsiteGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -1163,7 +1303,9 @@ func (a *Client) AddWebsiteGroup(params *AddWebsiteGroupParams) (*AddWebsiteGrou
 }
 
 /*
-AddWidget adds widget based upon widget type the request and response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
+AddWidget adds widget
+
+Adds a new widget. Based on widget type, the request and response may contain additional attributes. Please refer to the models corresponding to specific widget types at the bottom of this page for detailed attributes.
 */
 func (a *Client) AddWidget(params *AddWidgetParams) (*AddWidgetOK, error) {
 	// TODO: Validate the params before sending
@@ -1193,6 +1335,8 @@ func (a *Client) AddWidget(params *AddWidgetParams) (*AddWidgetOK, error) {
 
 /*
 CollectDeviceConfigSourceConfig collects a config for a device
+
+collect a config for a device
 */
 func (a *Client) CollectDeviceConfigSourceConfig(params *CollectDeviceConfigSourceConfigParams) (*CollectDeviceConfigSourceConfigOK, error) {
 	// TODO: Validate the params before sending
@@ -1222,6 +1366,8 @@ func (a *Client) CollectDeviceConfigSourceConfig(params *CollectDeviceConfigSour
 
 /*
 CreateLogPartition creates a new log partition
+
+Create a new log partition
 */
 func (a *Client) CreateLogPartition(params *CreateLogPartitionParams) (*CreateLogPartitionOK, error) {
 	// TODO: Validate the params before sending
@@ -1251,6 +1397,8 @@ func (a *Client) CreateLogPartition(params *CreateLogPartitionParams) (*CreateLo
 
 /*
 DeleteAccessGroup deletes access group
+
+Delete access group
 */
 func (a *Client) DeleteAccessGroup(params *DeleteAccessGroupParams) (*DeleteAccessGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -1280,6 +1428,8 @@ func (a *Client) DeleteAccessGroup(params *DeleteAccessGroupParams) (*DeleteAcce
 
 /*
 DeleteAdminByID deletes user
+
+delete user
 */
 func (a *Client) DeleteAdminByID(params *DeleteAdminByIDParams) (*DeleteAdminByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1309,6 +1459,8 @@ func (a *Client) DeleteAdminByID(params *DeleteAdminByIDParams) (*DeleteAdminByI
 
 /*
 DeleteAlertRuleByID deletes alert rule
+
+delete alert rule
 */
 func (a *Client) DeleteAlertRuleByID(params *DeleteAlertRuleByIDParams) (*DeleteAlertRuleByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1337,7 +1489,9 @@ func (a *Client) DeleteAlertRuleByID(params *DeleteAlertRuleByIDParams) (*Delete
 }
 
 /*
-DeleteAPITokenByID deletes api token
+DeleteAPITokenByID deletes API token
+
+Delete a specific API token by its ID
 */
 func (a *Client) DeleteAPITokenByID(params *DeleteAPITokenByIDParams) (*DeleteAPITokenByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1367,6 +1521,8 @@ func (a *Client) DeleteAPITokenByID(params *DeleteAPITokenByIDParams) (*DeleteAP
 
 /*
 DeleteAppliesToFunctionByID deletes applies to function
+
+Delete a specific applies to function by its ID
 */
 func (a *Client) DeleteAppliesToFunctionByID(params *DeleteAppliesToFunctionByIDParams) (*DeleteAppliesToFunctionByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1396,6 +1552,8 @@ func (a *Client) DeleteAppliesToFunctionByID(params *DeleteAppliesToFunctionByID
 
 /*
 DeleteCollectorByID deletes collector
+
+delete collector
 */
 func (a *Client) DeleteCollectorByID(params *DeleteCollectorByIDParams) (*DeleteCollectorByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1425,6 +1583,8 @@ func (a *Client) DeleteCollectorByID(params *DeleteCollectorByIDParams) (*Delete
 
 /*
 DeleteCollectorGroupByID deletes collector group
+
+Delete a specific collector group by its ID
 */
 func (a *Client) DeleteCollectorGroupByID(params *DeleteCollectorGroupByIDParams) (*DeleteCollectorGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1453,7 +1613,9 @@ func (a *Client) DeleteCollectorGroupByID(params *DeleteCollectorGroupByIDParams
 }
 
 /*
-DeleteConfigSourceByID deletes config source by id
+DeleteConfigSourceByID deletes config source by ID
+
+Delete a config source based on the provided ID
 */
 func (a *Client) DeleteConfigSourceByID(params *DeleteConfigSourceByIDParams) (*DeleteConfigSourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1483,6 +1645,8 @@ func (a *Client) DeleteConfigSourceByID(params *DeleteConfigSourceByIDParams) (*
 
 /*
 DeleteDashboardByID deletes dashboard
+
+delete dashboard
 */
 func (a *Client) DeleteDashboardByID(params *DeleteDashboardByIDParams) (*DeleteDashboardByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1512,6 +1676,8 @@ func (a *Client) DeleteDashboardByID(params *DeleteDashboardByIDParams) (*Delete
 
 /*
 DeleteDashboardGroupByID deletes dashboard group
+
+delete dashboard group
 */
 func (a *Client) DeleteDashboardGroupByID(params *DeleteDashboardGroupByIDParams) (*DeleteDashboardGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1541,6 +1707,8 @@ func (a *Client) DeleteDashboardGroupByID(params *DeleteDashboardGroupByIDParams
 
 /*
 DeleteDatasourceByID deletes datasource
+
+Deletes a datasource by its ID
 */
 func (a *Client) DeleteDatasourceByID(params *DeleteDatasourceByIDParams) (*DeleteDatasourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1570,6 +1738,8 @@ func (a *Client) DeleteDatasourceByID(params *DeleteDatasourceByIDParams) (*Dele
 
 /*
 DeleteDeviceByID deletes a device
+
+delete a device
 */
 func (a *Client) DeleteDeviceByID(params *DeleteDeviceByIDParams) (*DeleteDeviceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1599,6 +1769,8 @@ func (a *Client) DeleteDeviceByID(params *DeleteDeviceByIDParams) (*DeleteDevice
 
 /*
 DeleteDeviceDatasourceInstanceByID deletes a device instance
+
+delete a device instance
 */
 func (a *Client) DeleteDeviceDatasourceInstanceByID(params *DeleteDeviceDatasourceInstanceByIDParams) (*DeleteDeviceDatasourceInstanceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1628,6 +1800,8 @@ func (a *Client) DeleteDeviceDatasourceInstanceByID(params *DeleteDeviceDatasour
 
 /*
 DeleteDeviceGroupByID deletes device group
+
+delete device group
 */
 func (a *Client) DeleteDeviceGroupByID(params *DeleteDeviceGroupByIDParams) (*DeleteDeviceGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1657,6 +1831,8 @@ func (a *Client) DeleteDeviceGroupByID(params *DeleteDeviceGroupByIDParams) (*De
 
 /*
 DeleteDeviceGroupClusterAlertConfByID deletes cluster alert configuration
+
+Delete cluster alert configuration
 */
 func (a *Client) DeleteDeviceGroupClusterAlertConfByID(params *DeleteDeviceGroupClusterAlertConfByIDParams) (*DeleteDeviceGroupClusterAlertConfByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1686,6 +1862,8 @@ func (a *Client) DeleteDeviceGroupClusterAlertConfByID(params *DeleteDeviceGroup
 
 /*
 DeleteDeviceGroupPropertyByName deletes device group property
+
+Delete a specific property of a device group by its name
 */
 func (a *Client) DeleteDeviceGroupPropertyByName(params *DeleteDeviceGroupPropertyByNameParams) (*DeleteDeviceGroupPropertyByNameOK, error) {
 	// TODO: Validate the params before sending
@@ -1715,6 +1893,8 @@ func (a *Client) DeleteDeviceGroupPropertyByName(params *DeleteDeviceGroupProper
 
 /*
 DeleteDevicePropertyByName deletes device property
+
+Delete a specific property of a device by its name
 */
 func (a *Client) DeleteDevicePropertyByName(params *DeleteDevicePropertyByNameParams) (*DeleteDevicePropertyByNameOK, error) {
 	// TODO: Validate the params before sending
@@ -1743,7 +1923,40 @@ func (a *Client) DeleteDevicePropertyByName(params *DeleteDevicePropertyByNamePa
 }
 
 /*
+DeleteDiagnosticSourceByID deletes a diagnostic source module
+
+Deletes a diagnostic source module by its ID
+*/
+func (a *Client) DeleteDiagnosticSourceByID(params *DeleteDiagnosticSourceByIDParams) (*DeleteDiagnosticSourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteDiagnosticSourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteDiagnosticSourceById",
+		Method:             "DELETE",
+		PathPattern:        "/setting/diagnosticsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteDiagnosticSourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteDiagnosticSourceByIDOK), nil
+
+}
+
+/*
 DeleteEscalationChainByID deletes escalation chain
+
+Delete a specific escalation chain by its ID
 */
 func (a *Client) DeleteEscalationChainByID(params *DeleteEscalationChainByIDParams) (*DeleteEscalationChainByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1772,7 +1985,9 @@ func (a *Client) DeleteEscalationChainByID(params *DeleteEscalationChainByIDPara
 }
 
 /*
-DeleteEventSourceByID deletes event source by id
+DeleteEventSourceByID deletes event source by ID
+
+Deletes an event source by its ID
 */
 func (a *Client) DeleteEventSourceByID(params *DeleteEventSourceByIDParams) (*DeleteEventSourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1802,6 +2017,8 @@ func (a *Client) DeleteEventSourceByID(params *DeleteEventSourceByIDParams) (*De
 
 /*
 DeleteJobMonitor deletes job monitor
+
+Delete a specific JobMonitor by its ID
 */
 func (a *Client) DeleteJobMonitor(params *DeleteJobMonitorParams) (*DeleteJobMonitorOK, error) {
 	// TODO: Validate the params before sending
@@ -1831,6 +2048,8 @@ func (a *Client) DeleteJobMonitor(params *DeleteJobMonitorParams) (*DeleteJobMon
 
 /*
 DeleteLogPartitionByID deletes a log partition by ID
+
+Delete a log partition by ID
 */
 func (a *Client) DeleteLogPartitionByID(params *DeleteLogPartitionByIDParams) (*DeleteLogPartitionByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1860,6 +2079,8 @@ func (a *Client) DeleteLogPartitionByID(params *DeleteLogPartitionByIDParams) (*
 
 /*
 DeleteLogSource deletes log source
+
+Deletes an existing log source
 */
 func (a *Client) DeleteLogSource(params *DeleteLogSourceParams) (*DeleteLogSourceOK, error) {
 	// TODO: Validate the params before sending
@@ -1889,6 +2110,8 @@ func (a *Client) DeleteLogSource(params *DeleteLogSourceParams) (*DeleteLogSourc
 
 /*
 DeleteNetscanByID deletes a netscan
+
+Delete a specific netscan by its ID
 */
 func (a *Client) DeleteNetscanByID(params *DeleteNetscanByIDParams) (*DeleteNetscanByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1917,7 +2140,9 @@ func (a *Client) DeleteNetscanByID(params *DeleteNetscanByIDParams) (*DeleteNets
 }
 
 /*
-DeleteOID deletes a o ID
+DeleteOID deletes an o ID
+
+Delete an existing OID from the system
 */
 func (a *Client) DeleteOID(params *DeleteOIDParams) (*DeleteOIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1947,6 +2172,8 @@ func (a *Client) DeleteOID(params *DeleteOIDParams) (*DeleteOIDOK, error) {
 
 /*
 DeleteOpsNoteByID deletes opsnote
+
+delete opsnote
 */
 func (a *Client) DeleteOpsNoteByID(params *DeleteOpsNoteByIDParams) (*DeleteOpsNoteByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -1976,6 +2203,8 @@ func (a *Client) DeleteOpsNoteByID(params *DeleteOpsNoteByIDParams) (*DeleteOpsN
 
 /*
 DeletePropertyRule deletes a property rule
+
+Delete a property rule by id
 */
 func (a *Client) DeletePropertyRule(params *DeletePropertyRuleParams) (*DeletePropertyRuleOK, error) {
 	// TODO: Validate the params before sending
@@ -2005,6 +2234,8 @@ func (a *Client) DeletePropertyRule(params *DeletePropertyRuleParams) (*DeletePr
 
 /*
 DeleteRecipientGroupByID deletes recipient group
+
+Delete a specific recipient group by its ID
 */
 func (a *Client) DeleteRecipientGroupByID(params *DeleteRecipientGroupByIDParams) (*DeleteRecipientGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2033,7 +2264,40 @@ func (a *Client) DeleteRecipientGroupByID(params *DeleteRecipientGroupByIDParams
 }
 
 /*
+DeleteRemediationSourceByID deletes a remediation source module
+
+Deletes a remediation source module by its ID
+*/
+func (a *Client) DeleteRemediationSourceByID(params *DeleteRemediationSourceByIDParams) (*DeleteRemediationSourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDeleteRemediationSourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "deleteRemediationSourceById",
+		Method:             "DELETE",
+		PathPattern:        "/setting/remediationsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &DeleteRemediationSourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*DeleteRemediationSourceByIDOK), nil
+
+}
+
+/*
 DeleteReportByID deletes report
+
+Delete a specific report by its ID
 */
 func (a *Client) DeleteReportByID(params *DeleteReportByIDParams) (*DeleteReportByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2063,6 +2327,8 @@ func (a *Client) DeleteReportByID(params *DeleteReportByIDParams) (*DeleteReport
 
 /*
 DeleteReportGroupByID deletes report group
+
+Delete a specific report group by its ID
 */
 func (a *Client) DeleteReportGroupByID(params *DeleteReportGroupByIDParams) (*DeleteReportGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2092,6 +2358,8 @@ func (a *Client) DeleteReportGroupByID(params *DeleteReportGroupByIDParams) (*De
 
 /*
 DeleteRoleByID deletes role
+
+Delete a specific role by its ID
 */
 func (a *Client) DeleteRoleByID(params *DeleteRoleByIDParams) (*DeleteRoleByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2121,6 +2389,8 @@ func (a *Client) DeleteRoleByID(params *DeleteRoleByIDParams) (*DeleteRoleByIDOK
 
 /*
 DeleteSDTByID deletes SDT
+
+delete SDT
 */
 func (a *Client) DeleteSDTByID(params *DeleteSDTByIDParams) (*DeleteSDTByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2150,6 +2420,8 @@ func (a *Client) DeleteSDTByID(params *DeleteSDTByIDParams) (*DeleteSDTByIDOK, e
 
 /*
 DeleteTopologySource deletes topology source
+
+Delete TopologySource
 */
 func (a *Client) DeleteTopologySource(params *DeleteTopologySourceParams) (*DeleteTopologySourceOK, error) {
 	// TODO: Validate the params before sending
@@ -2179,6 +2451,8 @@ func (a *Client) DeleteTopologySource(params *DeleteTopologySourceParams) (*Dele
 
 /*
 DeleteWebsiteByID deletes website
+
+delete website
 */
 func (a *Client) DeleteWebsiteByID(params *DeleteWebsiteByIDParams) (*DeleteWebsiteByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2208,6 +2482,8 @@ func (a *Client) DeleteWebsiteByID(params *DeleteWebsiteByIDParams) (*DeleteWebs
 
 /*
 DeleteWebsiteGroupByID deletes website group
+
+delete website group
 */
 func (a *Client) DeleteWebsiteGroupByID(params *DeleteWebsiteGroupByIDParams) (*DeleteWebsiteGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2237,6 +2513,8 @@ func (a *Client) DeleteWebsiteGroupByID(params *DeleteWebsiteGroupByIDParams) (*
 
 /*
 DeleteWidgetByID deletes widget
+
+Deletes a widget by its ID
 */
 func (a *Client) DeleteWidgetByID(params *DeleteWidgetByIDParams) (*DeleteWidgetByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2266,6 +2544,8 @@ func (a *Client) DeleteWidgetByID(params *DeleteWidgetByIDParams) (*DeleteWidget
 
 /*
 DiscoverSubscriptions views subscriptions
+
+view subscriptions
 */
 func (a *Client) DiscoverSubscriptions(params *DiscoverSubscriptionsParams) (*DiscoverSubscriptionsOK, error) {
 	// TODO: Validate the params before sending
@@ -2294,7 +2574,9 @@ func (a *Client) DiscoverSubscriptions(params *DiscoverSubscriptionsParams) (*Di
 }
 
 /*
-EscalatedAlertByID escalates alert by id
+EscalatedAlertByID escalates alert by ID
+
+Escalate the alert with the given ID
 */
 func (a *Client) EscalatedAlertByID(params *EscalatedAlertByIDParams) (*EscalatedAlertByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2324,6 +2606,8 @@ func (a *Client) EscalatedAlertByID(params *EscalatedAlertByIDParams) (*Escalate
 
 /*
 ExecuteDebugCommand executes a collector debug command
+
+Execute a Collector debug command
 */
 func (a *Client) ExecuteDebugCommand(params *ExecuteDebugCommandParams) (*ExecuteDebugCommandOK, error) {
 	// TODO: Validate the params before sending
@@ -2352,7 +2636,71 @@ func (a *Client) ExecuteDebugCommand(params *ExecuteDebugCommandParams) (*Execut
 }
 
 /*
+ExecuteDiagnosticsManually triggers a diagnostic module for host
+
+Trigger a diagnostic module for host.
+*/
+func (a *Client) ExecuteDiagnosticsManually(params *ExecuteDiagnosticsManuallyParams) (*ExecuteDiagnosticsManuallyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExecuteDiagnosticsManuallyParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "executeDiagnosticsManually",
+		Method:             "POST",
+		PathPattern:        "/setting/diagnosticsources/executemanually",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExecuteDiagnosticsManuallyReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ExecuteDiagnosticsManuallyOK), nil
+
+}
+
+/*
+ExecuteRemediationManually triggers a remediation module for host
+
+Trigger a remediation module for host.
+*/
+func (a *Client) ExecuteRemediationManually(params *ExecuteRemediationManuallyParams) (*ExecuteRemediationManuallyOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExecuteRemediationManuallyParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "executeRemediationManually",
+		Method:             "POST",
+		PathPattern:        "/setting/remediationsources/executemanually",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ExecuteRemediationManuallyReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ExecuteRemediationManuallyOK), nil
+
+}
+
+/*
 FetchDeviceInstancesData fetches device instances data
+
+Retrieve a paginated list of data for device instances
 */
 func (a *Client) FetchDeviceInstancesData(params *FetchDeviceInstancesDataParams) (*FetchDeviceInstancesDataOK, error) {
 	// TODO: Validate the params before sending
@@ -2381,7 +2729,9 @@ func (a *Client) FetchDeviceInstancesData(params *FetchDeviceInstancesDataParams
 }
 
 /*
-FetchReportUsingTaskID gets report for task Id
+FetchReportUsingTaskID gets report for task ID
+
+Fetch the report associated with a specific task ID
 */
 func (a *Client) FetchReportUsingTaskID(params *FetchReportUsingTaskIDParams) (*FetchReportUsingTaskIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2410,7 +2760,9 @@ func (a *Client) FetchReportUsingTaskID(params *FetchReportUsingTaskIDParams) (*
 }
 
 /*
-FetchReportUsingTaskIDJSON gets report for task Id raw response
+FetchReportUsingTaskIDJSON gets report for task ID raw response
+
+Fetch the report associated with a specific task ID
 */
 func (a *Client) FetchReportUsingTaskIDJSON(params *FetchReportUsingTaskIDJSONParams) (*FetchReportUsingTaskIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -2440,6 +2792,8 @@ func (a *Client) FetchReportUsingTaskIDJSON(params *FetchReportUsingTaskIDJSONPa
 
 /*
 GenerateReportByID runs a report
+
+Generate a report based on the given report ID
 */
 func (a *Client) GenerateReportByID(params *GenerateReportByIDParams) (*GenerateReportByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2469,6 +2823,8 @@ func (a *Client) GenerateReportByID(params *GenerateReportByIDParams) (*Generate
 
 /*
 GetAccessGroupByID gets access group by id
+
+Get access group by id
 */
 func (a *Client) GetAccessGroupByID(params *GetAccessGroupByIDParams) (*GetAccessGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2498,6 +2854,8 @@ func (a *Client) GetAccessGroupByID(params *GetAccessGroupByIDParams) (*GetAcces
 
 /*
 GetAccessGroupByIDJSON gets access group by id raw response
+
+Get access group by id
 */
 func (a *Client) GetAccessGroupByIDJSON(params *GetAccessGroupByIDJSONParams) (*GetAccessGroupByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -2527,6 +2885,8 @@ func (a *Client) GetAccessGroupByIDJSON(params *GetAccessGroupByIDJSONParams) (*
 
 /*
 GetAccessGroupList gets access group list
+
+Get access group list
 */
 func (a *Client) GetAccessGroupList(params *GetAccessGroupListParams) (*GetAccessGroupListOK, error) {
 	// TODO: Validate the params before sending
@@ -2556,6 +2916,8 @@ func (a *Client) GetAccessGroupList(params *GetAccessGroupListParams) (*GetAcces
 
 /*
 GetAccessGroupListJSON gets access group list raw response
+
+Get access group list
 */
 func (a *Client) GetAccessGroupListJSON(params *GetAccessGroupListJSONParams) (*GetAccessGroupListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -2585,6 +2947,8 @@ func (a *Client) GetAccessGroupListJSON(params *GetAccessGroupListJSONParams) (*
 
 /*
 GetAdminByID gets user
+
+get user
 */
 func (a *Client) GetAdminByID(params *GetAdminByIDParams) (*GetAdminByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2614,6 +2978,8 @@ func (a *Client) GetAdminByID(params *GetAdminByIDParams) (*GetAdminByIDOK, erro
 
 /*
 GetAdminByIDJSON gets user raw response
+
+get user
 */
 func (a *Client) GetAdminByIDJSON(params *GetAdminByIDJSONParams) (*GetAdminByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -2643,6 +3009,8 @@ func (a *Client) GetAdminByIDJSON(params *GetAdminByIDJSONParams) (*GetAdminByID
 
 /*
 GetAdminList gets user list
+
+get user list
 */
 func (a *Client) GetAdminList(params *GetAdminListParams) (*GetAdminListOK, error) {
 	// TODO: Validate the params before sending
@@ -2672,6 +3040,8 @@ func (a *Client) GetAdminList(params *GetAdminListParams) (*GetAdminListOK, erro
 
 /*
 GetAdminListJSON gets user list raw response
+
+get user list
 */
 func (a *Client) GetAdminListJSON(params *GetAdminListJSONParams) (*GetAdminListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -2701,6 +3071,8 @@ func (a *Client) GetAdminListJSON(params *GetAdminListJSONParams) (*GetAdminList
 
 /*
 GetAlertByID gets alert
+
+get alert by id
 */
 func (a *Client) GetAlertByID(params *GetAlertByIDParams) (*GetAlertByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2730,6 +3102,8 @@ func (a *Client) GetAlertByID(params *GetAlertByIDParams) (*GetAlertByIDOK, erro
 
 /*
 GetAlertByIDJSON gets alert raw response
+
+get alert by id
 */
 func (a *Client) GetAlertByIDJSON(params *GetAlertByIDJSONParams) (*GetAlertByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -2759,6 +3133,8 @@ func (a *Client) GetAlertByIDJSON(params *GetAlertByIDJSONParams) (*GetAlertByID
 
 /*
 GetAlertList gets alert list
+
+Retrieve the list of alerts
 */
 func (a *Client) GetAlertList(params *GetAlertListParams) (*GetAlertListOK, error) {
 	// TODO: Validate the params before sending
@@ -2788,6 +3164,8 @@ func (a *Client) GetAlertList(params *GetAlertListParams) (*GetAlertListOK, erro
 
 /*
 GetAlertListByDeviceGroupID gets device group alerts
+
+get device group alerts
 */
 func (a *Client) GetAlertListByDeviceGroupID(params *GetAlertListByDeviceGroupIDParams) (*GetAlertListByDeviceGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2817,6 +3195,8 @@ func (a *Client) GetAlertListByDeviceGroupID(params *GetAlertListByDeviceGroupID
 
 /*
 GetAlertListByDeviceGroupIDJSON gets device group alerts raw response
+
+get device group alerts
 */
 func (a *Client) GetAlertListByDeviceGroupIDJSON(params *GetAlertListByDeviceGroupIDJSONParams) (*GetAlertListByDeviceGroupIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -2846,6 +3226,8 @@ func (a *Client) GetAlertListByDeviceGroupIDJSON(params *GetAlertListByDeviceGro
 
 /*
 GetAlertListByDeviceID gets alerts
+
+get alerts
 */
 func (a *Client) GetAlertListByDeviceID(params *GetAlertListByDeviceIDParams) (*GetAlertListByDeviceIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2875,6 +3257,8 @@ func (a *Client) GetAlertListByDeviceID(params *GetAlertListByDeviceIDParams) (*
 
 /*
 GetAlertListByDeviceIDJSON gets alerts raw response
+
+get alerts
 */
 func (a *Client) GetAlertListByDeviceIDJSON(params *GetAlertListByDeviceIDJSONParams) (*GetAlertListByDeviceIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -2904,6 +3288,8 @@ func (a *Client) GetAlertListByDeviceIDJSON(params *GetAlertListByDeviceIDJSONPa
 
 /*
 GetAlertListJSON gets alert list raw response
+
+Retrieve the list of alerts
 */
 func (a *Client) GetAlertListJSON(params *GetAlertListJSONParams) (*GetAlertListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -2933,6 +3319,8 @@ func (a *Client) GetAlertListJSON(params *GetAlertListJSONParams) (*GetAlertList
 
 /*
 GetAlertRuleByID gets alert rule by id
+
+get alert rule by id
 */
 func (a *Client) GetAlertRuleByID(params *GetAlertRuleByIDParams) (*GetAlertRuleByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -2962,6 +3350,8 @@ func (a *Client) GetAlertRuleByID(params *GetAlertRuleByIDParams) (*GetAlertRule
 
 /*
 GetAlertRuleByIDJSON gets alert rule by id raw response
+
+get alert rule by id
 */
 func (a *Client) GetAlertRuleByIDJSON(params *GetAlertRuleByIDJSONParams) (*GetAlertRuleByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -2991,6 +3381,8 @@ func (a *Client) GetAlertRuleByIDJSON(params *GetAlertRuleByIDJSONParams) (*GetA
 
 /*
 GetAlertRuleList gets alert rule list
+
+get alert rule list
 */
 func (a *Client) GetAlertRuleList(params *GetAlertRuleListParams) (*GetAlertRuleListOK, error) {
 	// TODO: Validate the params before sending
@@ -3020,6 +3412,8 @@ func (a *Client) GetAlertRuleList(params *GetAlertRuleListParams) (*GetAlertRule
 
 /*
 GetAlertRuleListJSON gets alert rule list raw response
+
+get alert rule list
 */
 func (a *Client) GetAlertRuleListJSON(params *GetAlertRuleListJSONParams) (*GetAlertRuleListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3049,6 +3443,8 @@ func (a *Client) GetAlertRuleListJSON(params *GetAlertRuleListJSONParams) (*GetA
 
 /*
 GetAllLogPartitions retrieves a list of all log partitions
+
+Retrieve a list of all log partitions
 */
 func (a *Client) GetAllLogPartitions(params *GetAllLogPartitionsParams) (*GetAllLogPartitionsOK, error) {
 	// TODO: Validate the params before sending
@@ -3078,6 +3474,8 @@ func (a *Client) GetAllLogPartitions(params *GetAllLogPartitionsParams) (*GetAll
 
 /*
 GetAllLogPartitionsJSON retrieves a list of all log partitions raw response
+
+Retrieve a list of all log partitions
 */
 func (a *Client) GetAllLogPartitionsJSON(params *GetAllLogPartitionsJSONParams) (*GetAllLogPartitionsJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3107,6 +3505,8 @@ func (a *Client) GetAllLogPartitionsJSON(params *GetAllLogPartitionsJSONParams) 
 
 /*
 GetAllSDTListByDeviceID gets s d ts for a device
+
+get SDTs for a device
 */
 func (a *Client) GetAllSDTListByDeviceID(params *GetAllSDTListByDeviceIDParams) (*GetAllSDTListByDeviceIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3136,6 +3536,8 @@ func (a *Client) GetAllSDTListByDeviceID(params *GetAllSDTListByDeviceIDParams) 
 
 /*
 GetAllSDTListByDeviceIDJSON gets s d ts for a device raw response
+
+get SDTs for a device
 */
 func (a *Client) GetAllSDTListByDeviceIDJSON(params *GetAllSDTListByDeviceIDJSONParams) (*GetAllSDTListByDeviceIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3165,6 +3567,8 @@ func (a *Client) GetAllSDTListByDeviceIDJSON(params *GetAllSDTListByDeviceIDJSON
 
 /*
 GetAllSDTListByWebsiteGroupID gets a list of s d ts for a website group response may contain extra fields depending upon the type of SDT
+
+get a list of SDTs for a website group (Response may contain extra fields depending upon the type of SDT)
 */
 func (a *Client) GetAllSDTListByWebsiteGroupID(params *GetAllSDTListByWebsiteGroupIDParams) (*GetAllSDTListByWebsiteGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3194,6 +3598,8 @@ func (a *Client) GetAllSDTListByWebsiteGroupID(params *GetAllSDTListByWebsiteGro
 
 /*
 GetAllSDTListByWebsiteGroupIDJSON gets a list of s d ts for a website group response may contain extra fields depending upon the type of SDT raw response
+
+get a list of SDTs for a website group (Response may contain extra fields depending upon the type of SDT)
 */
 func (a *Client) GetAllSDTListByWebsiteGroupIDJSON(params *GetAllSDTListByWebsiteGroupIDJSONParams) (*GetAllSDTListByWebsiteGroupIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3222,7 +3628,9 @@ func (a *Client) GetAllSDTListByWebsiteGroupIDJSON(params *GetAllSDTListByWebsit
 }
 
 /*
-GetAPITokenList gets a list of api tokens across users
+GetAPITokenList gets a list of API tokens across users
+
+Retrieve a paginated list of API tokens for all users
 */
 func (a *Client) GetAPITokenList(params *GetAPITokenListParams) (*GetAPITokenListOK, error) {
 	// TODO: Validate the params before sending
@@ -3251,7 +3659,9 @@ func (a *Client) GetAPITokenList(params *GetAPITokenListParams) (*GetAPITokenLis
 }
 
 /*
-GetAPITokenListByAdminID gets api tokens for a user
+GetAPITokenListByAdminID gets API tokens for a user
+
+Retrieve a paginated list of API tokens for a specific user
 */
 func (a *Client) GetAPITokenListByAdminID(params *GetAPITokenListByAdminIDParams) (*GetAPITokenListByAdminIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3280,7 +3690,9 @@ func (a *Client) GetAPITokenListByAdminID(params *GetAPITokenListByAdminIDParams
 }
 
 /*
-GetAPITokenListByAdminIDJSON gets api tokens for a user raw response
+GetAPITokenListByAdminIDJSON gets API tokens for a user raw response
+
+Retrieve a paginated list of API tokens for a specific user
 */
 func (a *Client) GetAPITokenListByAdminIDJSON(params *GetAPITokenListByAdminIDJSONParams) (*GetAPITokenListByAdminIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3309,7 +3721,9 @@ func (a *Client) GetAPITokenListByAdminIDJSON(params *GetAPITokenListByAdminIDJS
 }
 
 /*
-GetAPITokenListJSON gets a list of api tokens across users raw response
+GetAPITokenListJSON gets a list of API tokens across users raw response
+
+Retrieve a paginated list of API tokens for all users
 */
 func (a *Client) GetAPITokenListJSON(params *GetAPITokenListJSONParams) (*GetAPITokenListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3338,7 +3752,9 @@ func (a *Client) GetAPITokenListJSON(params *GetAPITokenListJSONParams) (*GetAPI
 }
 
 /*
-GetAppliesToFunctionByID gets applies to function
+GetAppliesToFunctionByID gets applies to function by ID
+
+Retrieve a specific applies to function using its ID
 */
 func (a *Client) GetAppliesToFunctionByID(params *GetAppliesToFunctionByIDParams) (*GetAppliesToFunctionByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3367,7 +3783,9 @@ func (a *Client) GetAppliesToFunctionByID(params *GetAppliesToFunctionByIDParams
 }
 
 /*
-GetAppliesToFunctionByIDJSON gets applies to function raw response
+GetAppliesToFunctionByIDJSON gets applies to function by ID raw response
+
+Retrieve a specific applies to function using its ID
 */
 func (a *Client) GetAppliesToFunctionByIDJSON(params *GetAppliesToFunctionByIDJSONParams) (*GetAppliesToFunctionByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3397,6 +3815,8 @@ func (a *Client) GetAppliesToFunctionByIDJSON(params *GetAppliesToFunctionByIDJS
 
 /*
 GetAppliesToFunctionList gets applies to function list
+
+Retrieve a paginated list of functions that apply
 */
 func (a *Client) GetAppliesToFunctionList(params *GetAppliesToFunctionListParams) (*GetAppliesToFunctionListOK, error) {
 	// TODO: Validate the params before sending
@@ -3426,6 +3846,8 @@ func (a *Client) GetAppliesToFunctionList(params *GetAppliesToFunctionListParams
 
 /*
 GetAppliesToFunctionListJSON gets applies to function list raw response
+
+Retrieve a paginated list of functions that apply
 */
 func (a *Client) GetAppliesToFunctionListJSON(params *GetAppliesToFunctionListJSONParams) (*GetAppliesToFunctionListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3455,6 +3877,8 @@ func (a *Client) GetAppliesToFunctionListJSON(params *GetAppliesToFunctionListJS
 
 /*
 GetAssociatedDeviceListByDataSourceID gets devices associated with a datasource
+
+Retrieves the list of devices associated with a specific datasource
 */
 func (a *Client) GetAssociatedDeviceListByDataSourceID(params *GetAssociatedDeviceListByDataSourceIDParams) (*GetAssociatedDeviceListByDataSourceIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3484,6 +3908,8 @@ func (a *Client) GetAssociatedDeviceListByDataSourceID(params *GetAssociatedDevi
 
 /*
 GetAssociatedDeviceListByDataSourceIDJSON gets devices associated with a datasource raw response
+
+Retrieves the list of devices associated with a specific datasource
 */
 func (a *Client) GetAssociatedDeviceListByDataSourceIDJSON(params *GetAssociatedDeviceListByDataSourceIDJSONParams) (*GetAssociatedDeviceListByDataSourceIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3513,6 +3939,8 @@ func (a *Client) GetAssociatedDeviceListByDataSourceIDJSON(params *GetAssociated
 
 /*
 GetAuditLogByID gets audit log by id
+
+Retrieve a specific audit log by its ID
 */
 func (a *Client) GetAuditLogByID(params *GetAuditLogByIDParams) (*GetAuditLogByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3542,6 +3970,8 @@ func (a *Client) GetAuditLogByID(params *GetAuditLogByIDParams) (*GetAuditLogByI
 
 /*
 GetAuditLogByIDJSON gets audit log by id raw response
+
+Retrieve a specific audit log by its ID
 */
 func (a *Client) GetAuditLogByIDJSON(params *GetAuditLogByIDJSONParams) (*GetAuditLogByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3571,6 +4001,8 @@ func (a *Client) GetAuditLogByIDJSON(params *GetAuditLogByIDJSONParams) (*GetAud
 
 /*
 GetAuditLogList gets audit logs
+
+Retrieve a paginated list of audit logs
 */
 func (a *Client) GetAuditLogList(params *GetAuditLogListParams) (*GetAuditLogListOK, error) {
 	// TODO: Validate the params before sending
@@ -3600,6 +4032,8 @@ func (a *Client) GetAuditLogList(params *GetAuditLogListParams) (*GetAuditLogLis
 
 /*
 GetAuditLogListJSON gets audit logs raw response
+
+Retrieve a paginated list of audit logs
 */
 func (a *Client) GetAuditLogListJSON(params *GetAuditLogListJSONParams) (*GetAuditLogListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3629,6 +4063,8 @@ func (a *Client) GetAuditLogListJSON(params *GetAuditLogListJSONParams) (*GetAud
 
 /*
 GetAwsAccountID gets a w s account ID
+
+Retrieve the AWS account ID
 */
 func (a *Client) GetAwsAccountID(params *GetAwsAccountIDParams) (*GetAwsAccountIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3658,6 +4094,8 @@ func (a *Client) GetAwsAccountID(params *GetAwsAccountIDParams) (*GetAwsAccountI
 
 /*
 GetAwsAccountIDJSON gets a w s account ID raw response
+
+Retrieve the AWS account ID
 */
 func (a *Client) GetAwsAccountIDJSON(params *GetAwsAccountIDJSONParams) (*GetAwsAccountIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3687,6 +4125,8 @@ func (a *Client) GetAwsAccountIDJSON(params *GetAwsAccountIDJSONParams) (*GetAws
 
 /*
 GetAwsExternalID gets a w s external ID
+
+Retrieve the AWS external ID
 */
 func (a *Client) GetAwsExternalID(params *GetAwsExternalIDParams) (*GetAwsExternalIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3716,6 +4156,8 @@ func (a *Client) GetAwsExternalID(params *GetAwsExternalIDParams) (*GetAwsExtern
 
 /*
 GetAwsExternalIDJSON gets a w s external ID raw response
+
+Retrieve the AWS external ID
 */
 func (a *Client) GetAwsExternalIDJSON(params *GetAwsExternalIDJSONParams) (*GetAwsExternalIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3745,6 +4187,8 @@ func (a *Client) GetAwsExternalIDJSON(params *GetAwsExternalIDJSONParams) (*GetA
 
 /*
 GetCollectorByID gets collector
+
+get collector
 */
 func (a *Client) GetCollectorByID(params *GetCollectorByIDParams) (*GetCollectorByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3774,6 +4218,8 @@ func (a *Client) GetCollectorByID(params *GetCollectorByIDParams) (*GetCollector
 
 /*
 GetCollectorByIDJSON gets collector raw response
+
+get collector
 */
 func (a *Client) GetCollectorByIDJSON(params *GetCollectorByIDJSONParams) (*GetCollectorByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3803,6 +4249,8 @@ func (a *Client) GetCollectorByIDJSON(params *GetCollectorByIDJSONParams) (*GetC
 
 /*
 GetCollectorGroupByID gets collector group
+
+Retrieve details of a specific collector group by its ID
 */
 func (a *Client) GetCollectorGroupByID(params *GetCollectorGroupByIDParams) (*GetCollectorGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -3832,6 +4280,8 @@ func (a *Client) GetCollectorGroupByID(params *GetCollectorGroupByIDParams) (*Ge
 
 /*
 GetCollectorGroupByIDJSON gets collector group raw response
+
+Retrieve details of a specific collector group by its ID
 */
 func (a *Client) GetCollectorGroupByIDJSON(params *GetCollectorGroupByIDJSONParams) (*GetCollectorGroupByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3861,6 +4311,8 @@ func (a *Client) GetCollectorGroupByIDJSON(params *GetCollectorGroupByIDJSONPara
 
 /*
 GetCollectorGroupList gets collector group list
+
+Retrieve a paginated list of collector groups
 */
 func (a *Client) GetCollectorGroupList(params *GetCollectorGroupListParams) (*GetCollectorGroupListOK, error) {
 	// TODO: Validate the params before sending
@@ -3890,6 +4342,8 @@ func (a *Client) GetCollectorGroupList(params *GetCollectorGroupListParams) (*Ge
 
 /*
 GetCollectorGroupListJSON gets collector group list raw response
+
+Retrieve a paginated list of collector groups
 */
 func (a *Client) GetCollectorGroupListJSON(params *GetCollectorGroupListJSONParams) (*GetCollectorGroupListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3919,6 +4373,8 @@ func (a *Client) GetCollectorGroupListJSON(params *GetCollectorGroupListJSONPara
 
 /*
 GetCollectorInstaller gets collector installer
+
+get collector installer
 */
 func (a *Client) GetCollectorInstaller(params *GetCollectorInstallerParams, writer io.Writer) (*GetCollectorInstallerOK, error) {
 	// TODO: Validate the params before sending
@@ -3948,6 +4404,8 @@ func (a *Client) GetCollectorInstaller(params *GetCollectorInstallerParams, writ
 
 /*
 GetCollectorInstallerJSON gets collector installer raw response
+
+get collector installer
 */
 func (a *Client) GetCollectorInstallerJSON(params *GetCollectorInstallerJSONParams) (*GetCollectorInstallerJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -3977,6 +4435,8 @@ func (a *Client) GetCollectorInstallerJSON(params *GetCollectorInstallerJSONPara
 
 /*
 GetCollectorList gets collector list
+
+get collector list
 */
 func (a *Client) GetCollectorList(params *GetCollectorListParams) (*GetCollectorListOK, error) {
 	// TODO: Validate the params before sending
@@ -4006,6 +4466,8 @@ func (a *Client) GetCollectorList(params *GetCollectorListParams) (*GetCollector
 
 /*
 GetCollectorListJSON gets collector list raw response
+
+get collector list
 */
 func (a *Client) GetCollectorListJSON(params *GetCollectorListJSONParams) (*GetCollectorListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4035,6 +4497,8 @@ func (a *Client) GetCollectorListJSON(params *GetCollectorListJSONParams) (*GetC
 
 /*
 GetCollectorVersionList gets collector version list
+
+get collector version list
 */
 func (a *Client) GetCollectorVersionList(params *GetCollectorVersionListParams) (*GetCollectorVersionListOK, error) {
 	// TODO: Validate the params before sending
@@ -4064,6 +4528,8 @@ func (a *Client) GetCollectorVersionList(params *GetCollectorVersionListParams) 
 
 /*
 GetCollectorVersionListJSON gets collector version list raw response
+
+get collector version list
 */
 func (a *Client) GetCollectorVersionListJSON(params *GetCollectorVersionListJSONParams) (*GetCollectorVersionListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4092,7 +4558,9 @@ func (a *Client) GetCollectorVersionListJSON(params *GetCollectorVersionListJSON
 }
 
 /*
-GetConfigSourceByID gets config source by id
+GetConfigSourceByID gets config source by ID
+
+Retrieve a config source by its ID
 */
 func (a *Client) GetConfigSourceByID(params *GetConfigSourceByIDParams) (*GetConfigSourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4121,7 +4589,9 @@ func (a *Client) GetConfigSourceByID(params *GetConfigSourceByIDParams) (*GetCon
 }
 
 /*
-GetConfigSourceByIDJSON gets config source by id raw response
+GetConfigSourceByIDJSON gets config source by ID raw response
+
+Retrieve a config source by its ID
 */
 func (a *Client) GetConfigSourceByIDJSON(params *GetConfigSourceByIDJSONParams) (*GetConfigSourceByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4151,6 +4621,8 @@ func (a *Client) GetConfigSourceByIDJSON(params *GetConfigSourceByIDJSONParams) 
 
 /*
 GetConfigSourceList gets config source list
+
+Retrieve a list of config sources
 */
 func (a *Client) GetConfigSourceList(params *GetConfigSourceListParams) (*GetConfigSourceListOK, error) {
 	// TODO: Validate the params before sending
@@ -4180,6 +4652,8 @@ func (a *Client) GetConfigSourceList(params *GetConfigSourceListParams) (*GetCon
 
 /*
 GetConfigSourceListJSON gets config source list raw response
+
+Retrieve a list of config sources
 */
 func (a *Client) GetConfigSourceListJSON(params *GetConfigSourceListJSONParams) (*GetConfigSourceListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4209,6 +4683,8 @@ func (a *Client) GetConfigSourceListJSON(params *GetConfigSourceListJSONParams) 
 
 /*
 GetContractInfoByCompany gets contract info by company
+
+get contract info by company
 */
 func (a *Client) GetContractInfoByCompany(params *GetContractInfoByCompanyParams) (*GetContractInfoByCompanyOK, error) {
 	// TODO: Validate the params before sending
@@ -4238,6 +4714,8 @@ func (a *Client) GetContractInfoByCompany(params *GetContractInfoByCompanyParams
 
 /*
 GetContractInfoByCompanyJSON gets contract info by company raw response
+
+get contract info by company
 */
 func (a *Client) GetContractInfoByCompanyJSON(params *GetContractInfoByCompanyJSONParams) (*GetContractInfoByCompanyJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4267,6 +4745,8 @@ func (a *Client) GetContractInfoByCompanyJSON(params *GetContractInfoByCompanyJS
 
 /*
 GetDashboardByID gets dashboard
+
+get dashboard
 */
 func (a *Client) GetDashboardByID(params *GetDashboardByIDParams) (*GetDashboardByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4296,6 +4776,8 @@ func (a *Client) GetDashboardByID(params *GetDashboardByIDParams) (*GetDashboard
 
 /*
 GetDashboardByIDJSON gets dashboard raw response
+
+get dashboard
 */
 func (a *Client) GetDashboardByIDJSON(params *GetDashboardByIDJSONParams) (*GetDashboardByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4324,7 +4806,9 @@ func (a *Client) GetDashboardByIDJSON(params *GetDashboardByIDJSONParams) (*GetD
 }
 
 /*
-GetDashboardGroupByID gets dashboard group
+GetDashboardGroupByID gets dashboard group by ID
+
+Retrieves a dashboard group by its ID
 */
 func (a *Client) GetDashboardGroupByID(params *GetDashboardGroupByIDParams) (*GetDashboardGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4353,7 +4837,9 @@ func (a *Client) GetDashboardGroupByID(params *GetDashboardGroupByIDParams) (*Ge
 }
 
 /*
-GetDashboardGroupByIDJSON gets dashboard group raw response
+GetDashboardGroupByIDJSON gets dashboard group by ID raw response
+
+Retrieves a dashboard group by its ID
 */
 func (a *Client) GetDashboardGroupByIDJSON(params *GetDashboardGroupByIDJSONParams) (*GetDashboardGroupByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4383,6 +4869,8 @@ func (a *Client) GetDashboardGroupByIDJSON(params *GetDashboardGroupByIDJSONPara
 
 /*
 GetDashboardGroupList gets dashboard group list
+
+get dashboard group list
 */
 func (a *Client) GetDashboardGroupList(params *GetDashboardGroupListParams) (*GetDashboardGroupListOK, error) {
 	// TODO: Validate the params before sending
@@ -4412,6 +4900,8 @@ func (a *Client) GetDashboardGroupList(params *GetDashboardGroupListParams) (*Ge
 
 /*
 GetDashboardGroupListJSON gets dashboard group list raw response
+
+get dashboard group list
 */
 func (a *Client) GetDashboardGroupListJSON(params *GetDashboardGroupListJSONParams) (*GetDashboardGroupListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4441,6 +4931,8 @@ func (a *Client) GetDashboardGroupListJSON(params *GetDashboardGroupListJSONPara
 
 /*
 GetDashboardList gets dashboard list
+
+Retrieves a list of dashboards
 */
 func (a *Client) GetDashboardList(params *GetDashboardListParams) (*GetDashboardListOK, error) {
 	// TODO: Validate the params before sending
@@ -4470,6 +4962,8 @@ func (a *Client) GetDashboardList(params *GetDashboardListParams) (*GetDashboard
 
 /*
 GetDashboardListJSON gets dashboard list raw response
+
+Retrieves a list of dashboards
 */
 func (a *Client) GetDashboardListJSON(params *GetDashboardListJSONParams) (*GetDashboardListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4498,7 +4992,9 @@ func (a *Client) GetDashboardListJSON(params *GetDashboardListJSONParams) (*GetD
 }
 
 /*
-GetDataSourceOverviewGraphByID gets datasource overview graph by id
+GetDataSourceOverviewGraphByID gets datasource overview graph by ID
+
+Retrieves a datasource overview graph based on the provided ID
 */
 func (a *Client) GetDataSourceOverviewGraphByID(params *GetDataSourceOverviewGraphByIDParams) (*GetDataSourceOverviewGraphByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4527,7 +5023,9 @@ func (a *Client) GetDataSourceOverviewGraphByID(params *GetDataSourceOverviewGra
 }
 
 /*
-GetDataSourceOverviewGraphByIDJSON gets datasource overview graph by id raw response
+GetDataSourceOverviewGraphByIDJSON gets datasource overview graph by ID raw response
+
+Retrieves a datasource overview graph based on the provided ID
 */
 func (a *Client) GetDataSourceOverviewGraphByIDJSON(params *GetDataSourceOverviewGraphByIDJSONParams) (*GetDataSourceOverviewGraphByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4557,6 +5055,8 @@ func (a *Client) GetDataSourceOverviewGraphByIDJSON(params *GetDataSourceOvervie
 
 /*
 GetDataSourceOverviewGraphList gets datasource overview graph list
+
+Retrieves the list of datasource overview graphs
 */
 func (a *Client) GetDataSourceOverviewGraphList(params *GetDataSourceOverviewGraphListParams) (*GetDataSourceOverviewGraphListOK, error) {
 	// TODO: Validate the params before sending
@@ -4586,6 +5086,8 @@ func (a *Client) GetDataSourceOverviewGraphList(params *GetDataSourceOverviewGra
 
 /*
 GetDataSourceOverviewGraphListJSON gets datasource overview graph list raw response
+
+Retrieves the list of datasource overview graphs
 */
 func (a *Client) GetDataSourceOverviewGraphListJSON(params *GetDataSourceOverviewGraphListJSONParams) (*GetDataSourceOverviewGraphListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4614,7 +5116,9 @@ func (a *Client) GetDataSourceOverviewGraphListJSON(params *GetDataSourceOvervie
 }
 
 /*
-GetDatasourceByID gets datasource by id
+GetDatasourceByID gets datasource by ID
+
+Retrieves a datasource by its ID
 */
 func (a *Client) GetDatasourceByID(params *GetDatasourceByIDParams) (*GetDatasourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4643,7 +5147,9 @@ func (a *Client) GetDatasourceByID(params *GetDatasourceByIDParams) (*GetDatasou
 }
 
 /*
-GetDatasourceByIDJSON gets datasource by id raw response
+GetDatasourceByIDJSON gets datasource by ID raw response
+
+Retrieves a datasource by its ID
 */
 func (a *Client) GetDatasourceByIDJSON(params *GetDatasourceByIDJSONParams) (*GetDatasourceByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4673,6 +5179,8 @@ func (a *Client) GetDatasourceByIDJSON(params *GetDatasourceByIDJSONParams) (*Ge
 
 /*
 GetDatasourceList gets datasource list
+
+Retrieves a list of datasources
 */
 func (a *Client) GetDatasourceList(params *GetDatasourceListParams) (*GetDatasourceListOK, error) {
 	// TODO: Validate the params before sending
@@ -4702,6 +5210,8 @@ func (a *Client) GetDatasourceList(params *GetDatasourceListParams) (*GetDatasou
 
 /*
 GetDatasourceListJSON gets datasource list raw response
+
+Retrieves a list of datasources
 */
 func (a *Client) GetDatasourceListJSON(params *GetDatasourceListJSONParams) (*GetDatasourceListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4731,6 +5241,8 @@ func (a *Client) GetDatasourceListJSON(params *GetDatasourceListJSONParams) (*Ge
 
 /*
 GetDebugCommandResult gets the result of a collector debug command using session Id
+
+Get the result of a Collector debug command using sessionId
 */
 func (a *Client) GetDebugCommandResult(params *GetDebugCommandResultParams) (*GetDebugCommandResultOK, error) {
 	// TODO: Validate the params before sending
@@ -4760,6 +5272,8 @@ func (a *Client) GetDebugCommandResult(params *GetDebugCommandResultParams) (*Ge
 
 /*
 GetDebugCommandResultJSON gets the result of a collector debug command using session Id raw response
+
+Get the result of a Collector debug command using sessionId
 */
 func (a *Client) GetDebugCommandResultJSON(params *GetDebugCommandResultJSONParams) (*GetDebugCommandResultJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4789,6 +5303,8 @@ func (a *Client) GetDebugCommandResultJSON(params *GetDebugCommandResultJSONPara
 
 /*
 GetDeltaDevices gets delta devices using delta Id
+
+Get delta devices using deltaId
 */
 func (a *Client) GetDeltaDevices(params *GetDeltaDevicesParams) (*GetDeltaDevicesOK, error) {
 	// TODO: Validate the params before sending
@@ -4818,6 +5334,8 @@ func (a *Client) GetDeltaDevices(params *GetDeltaDevicesParams) (*GetDeltaDevice
 
 /*
 GetDeltaDevicesJSON gets delta devices using delta Id raw response
+
+Get delta devices using deltaId
 */
 func (a *Client) GetDeltaDevicesJSON(params *GetDeltaDevicesJSONParams) (*GetDeltaDevicesJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4847,6 +5365,8 @@ func (a *Client) GetDeltaDevicesJSON(params *GetDeltaDevicesJSONParams) (*GetDel
 
 /*
 GetDeltaIDWithDevices gets filter matched devices with new delta Id
+
+Get filter matched devices with new deltaId
 */
 func (a *Client) GetDeltaIDWithDevices(params *GetDeltaIDWithDevicesParams) (*GetDeltaIDWithDevicesOK, error) {
 	// TODO: Validate the params before sending
@@ -4876,6 +5396,8 @@ func (a *Client) GetDeltaIDWithDevices(params *GetDeltaIDWithDevicesParams) (*Ge
 
 /*
 GetDeltaIDWithDevicesJSON gets filter matched devices with new delta Id raw response
+
+Get filter matched devices with new deltaId
 */
 func (a *Client) GetDeltaIDWithDevicesJSON(params *GetDeltaIDWithDevicesJSONParams) (*GetDeltaIDWithDevicesJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4905,6 +5427,8 @@ func (a *Client) GetDeltaIDWithDevicesJSON(params *GetDeltaIDWithDevicesJSONPara
 
 /*
 GetDeviceByID gets device by id
+
+get device by id
 */
 func (a *Client) GetDeviceByID(params *GetDeviceByIDParams) (*GetDeviceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4934,6 +5458,8 @@ func (a *Client) GetDeviceByID(params *GetDeviceByIDParams) (*GetDeviceByIDOK, e
 
 /*
 GetDeviceByIDJSON gets device by id raw response
+
+get device by id
 */
 func (a *Client) GetDeviceByIDJSON(params *GetDeviceByIDJSONParams) (*GetDeviceByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -4963,6 +5489,8 @@ func (a *Client) GetDeviceByIDJSON(params *GetDeviceByIDJSONParams) (*GetDeviceB
 
 /*
 GetDeviceConfigSourceConfigByID gets a config for a device
+
+get a config for a device
 */
 func (a *Client) GetDeviceConfigSourceConfigByID(params *GetDeviceConfigSourceConfigByIDParams) (*GetDeviceConfigSourceConfigByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -4992,6 +5520,8 @@ func (a *Client) GetDeviceConfigSourceConfigByID(params *GetDeviceConfigSourceCo
 
 /*
 GetDeviceConfigSourceConfigByIDJSON gets a config for a device raw response
+
+get a config for a device
 */
 func (a *Client) GetDeviceConfigSourceConfigByIDJSON(params *GetDeviceConfigSourceConfigByIDJSONParams) (*GetDeviceConfigSourceConfigByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5021,6 +5551,8 @@ func (a *Client) GetDeviceConfigSourceConfigByIDJSON(params *GetDeviceConfigSour
 
 /*
 GetDeviceConfigSourceConfigList gets detailed config information for the instance
+
+get detailed config information for the instance
 */
 func (a *Client) GetDeviceConfigSourceConfigList(params *GetDeviceConfigSourceConfigListParams) (*GetDeviceConfigSourceConfigListOK, error) {
 	// TODO: Validate the params before sending
@@ -5050,6 +5582,8 @@ func (a *Client) GetDeviceConfigSourceConfigList(params *GetDeviceConfigSourceCo
 
 /*
 GetDeviceConfigSourceConfigListJSON gets detailed config information for the instance raw response
+
+get detailed config information for the instance
 */
 func (a *Client) GetDeviceConfigSourceConfigListJSON(params *GetDeviceConfigSourceConfigListJSONParams) (*GetDeviceConfigSourceConfigListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5079,6 +5613,8 @@ func (a *Client) GetDeviceConfigSourceConfigListJSON(params *GetDeviceConfigSour
 
 /*
 GetDeviceDatasourceByID gets device datasource
+
+Retrieve a specific device datasource by its ID
 */
 func (a *Client) GetDeviceDatasourceByID(params *GetDeviceDatasourceByIDParams) (*GetDeviceDatasourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -5108,6 +5644,8 @@ func (a *Client) GetDeviceDatasourceByID(params *GetDeviceDatasourceByIDParams) 
 
 /*
 GetDeviceDatasourceByIDJSON gets device datasource raw response
+
+Retrieve a specific device datasource by its ID
 */
 func (a *Client) GetDeviceDatasourceByIDJSON(params *GetDeviceDatasourceByIDJSONParams) (*GetDeviceDatasourceByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5137,6 +5675,8 @@ func (a *Client) GetDeviceDatasourceByIDJSON(params *GetDeviceDatasourceByIDJSON
 
 /*
 GetDeviceDatasourceDataByID gets device datasource data
+
+Retrieve data for a specific device datasource by its ID
 */
 func (a *Client) GetDeviceDatasourceDataByID(params *GetDeviceDatasourceDataByIDParams) (*GetDeviceDatasourceDataByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -5166,6 +5706,8 @@ func (a *Client) GetDeviceDatasourceDataByID(params *GetDeviceDatasourceDataByID
 
 /*
 GetDeviceDatasourceDataByIDJSON gets device datasource data raw response
+
+Retrieve data for a specific device datasource by its ID
 */
 func (a *Client) GetDeviceDatasourceDataByIDJSON(params *GetDeviceDatasourceDataByIDJSONParams) (*GetDeviceDatasourceDataByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5195,6 +5737,8 @@ func (a *Client) GetDeviceDatasourceDataByIDJSON(params *GetDeviceDatasourceData
 
 /*
 GetDeviceDatasourceInstanceAlertSettingByID gets device instance alert setting
+
+get device instance alert setting
 */
 func (a *Client) GetDeviceDatasourceInstanceAlertSettingByID(params *GetDeviceDatasourceInstanceAlertSettingByIDParams) (*GetDeviceDatasourceInstanceAlertSettingByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -5224,6 +5768,8 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingByID(params *GetDeviceDa
 
 /*
 GetDeviceDatasourceInstanceAlertSettingByIDJSON gets device instance alert setting raw response
+
+get device instance alert setting
 */
 func (a *Client) GetDeviceDatasourceInstanceAlertSettingByIDJSON(params *GetDeviceDatasourceInstanceAlertSettingByIDJSONParams) (*GetDeviceDatasourceInstanceAlertSettingByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5253,6 +5799,8 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingByIDJSON(params *GetDevi
 
 /*
 GetDeviceDatasourceInstanceAlertSettingListOfDSI gets a list of alert settings for a device datasource instance
+
+get a list of alert settings for a device datasource instance
 */
 func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDSI(params *GetDeviceDatasourceInstanceAlertSettingListOfDSIParams) (*GetDeviceDatasourceInstanceAlertSettingListOfDSIOK, error) {
 	// TODO: Validate the params before sending
@@ -5282,6 +5830,8 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDSI(params *GetDev
 
 /*
 GetDeviceDatasourceInstanceAlertSettingListOfDSIJSON gets a list of alert settings for a device datasource instance raw response
+
+get a list of alert settings for a device datasource instance
 */
 func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDSIJSON(params *GetDeviceDatasourceInstanceAlertSettingListOfDSIJSONParams) (*GetDeviceDatasourceInstanceAlertSettingListOfDSIJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5311,6 +5861,8 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDSIJSON(params *Ge
 
 /*
 GetDeviceDatasourceInstanceAlertSettingListOfDevice gets a list of alert settings for a device
+
+get a list of alert settings for a device
 */
 func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDevice(params *GetDeviceDatasourceInstanceAlertSettingListOfDeviceParams) (*GetDeviceDatasourceInstanceAlertSettingListOfDeviceOK, error) {
 	// TODO: Validate the params before sending
@@ -5340,6 +5892,8 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDevice(params *Get
 
 /*
 GetDeviceDatasourceInstanceAlertSettingListOfDeviceJSON gets a list of alert settings for a device raw response
+
+get a list of alert settings for a device
 */
 func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDeviceJSON(params *GetDeviceDatasourceInstanceAlertSettingListOfDeviceJSONParams) (*GetDeviceDatasourceInstanceAlertSettingListOfDeviceJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5369,6 +5923,8 @@ func (a *Client) GetDeviceDatasourceInstanceAlertSettingListOfDeviceJSON(params 
 
 /*
 GetDeviceDatasourceInstanceByID gets device instance
+
+get device instance
 */
 func (a *Client) GetDeviceDatasourceInstanceByID(params *GetDeviceDatasourceInstanceByIDParams) (*GetDeviceDatasourceInstanceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -5398,6 +5954,8 @@ func (a *Client) GetDeviceDatasourceInstanceByID(params *GetDeviceDatasourceInst
 
 /*
 GetDeviceDatasourceInstanceByIDJSON gets device instance raw response
+
+get device instance
 */
 func (a *Client) GetDeviceDatasourceInstanceByIDJSON(params *GetDeviceDatasourceInstanceByIDJSONParams) (*GetDeviceDatasourceInstanceByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5427,6 +5985,8 @@ func (a *Client) GetDeviceDatasourceInstanceByIDJSON(params *GetDeviceDatasource
 
 /*
 GetDeviceDatasourceInstanceData gets device instance data
+
+get device instance data
 */
 func (a *Client) GetDeviceDatasourceInstanceData(params *GetDeviceDatasourceInstanceDataParams) (*GetDeviceDatasourceInstanceDataOK, error) {
 	// TODO: Validate the params before sending
@@ -5456,6 +6016,8 @@ func (a *Client) GetDeviceDatasourceInstanceData(params *GetDeviceDatasourceInst
 
 /*
 GetDeviceDatasourceInstanceDataJSON gets device instance data raw response
+
+get device instance data
 */
 func (a *Client) GetDeviceDatasourceInstanceDataJSON(params *GetDeviceDatasourceInstanceDataJSONParams) (*GetDeviceDatasourceInstanceDataJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5485,6 +6047,8 @@ func (a *Client) GetDeviceDatasourceInstanceDataJSON(params *GetDeviceDatasource
 
 /*
 GetDeviceDatasourceInstanceGraphData gets device instance graph data
+
+get device instance graph data
 */
 func (a *Client) GetDeviceDatasourceInstanceGraphData(params *GetDeviceDatasourceInstanceGraphDataParams) (*GetDeviceDatasourceInstanceGraphDataOK, error) {
 	// TODO: Validate the params before sending
@@ -5514,6 +6078,8 @@ func (a *Client) GetDeviceDatasourceInstanceGraphData(params *GetDeviceDatasourc
 
 /*
 GetDeviceDatasourceInstanceGraphDataJSON gets device instance graph data raw response
+
+get device instance graph data
 */
 func (a *Client) GetDeviceDatasourceInstanceGraphDataJSON(params *GetDeviceDatasourceInstanceGraphDataJSONParams) (*GetDeviceDatasourceInstanceGraphDataJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5543,6 +6109,8 @@ func (a *Client) GetDeviceDatasourceInstanceGraphDataJSON(params *GetDeviceDatas
 
 /*
 GetDeviceDatasourceInstanceGroupByID gets device datasource instance group
+
+Retrieve a specific device datasource instance group by its ID
 */
 func (a *Client) GetDeviceDatasourceInstanceGroupByID(params *GetDeviceDatasourceInstanceGroupByIDParams) (*GetDeviceDatasourceInstanceGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -5572,6 +6140,8 @@ func (a *Client) GetDeviceDatasourceInstanceGroupByID(params *GetDeviceDatasourc
 
 /*
 GetDeviceDatasourceInstanceGroupByIDJSON gets device datasource instance group raw response
+
+Retrieve a specific device datasource instance group by its ID
 */
 func (a *Client) GetDeviceDatasourceInstanceGroupByIDJSON(params *GetDeviceDatasourceInstanceGroupByIDJSONParams) (*GetDeviceDatasourceInstanceGroupByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5601,6 +6171,8 @@ func (a *Client) GetDeviceDatasourceInstanceGroupByIDJSON(params *GetDeviceDatas
 
 /*
 GetDeviceDatasourceInstanceGroupList gets device datasource instance group list
+
+Retrieve a paginated list of device datasource instance groups
 */
 func (a *Client) GetDeviceDatasourceInstanceGroupList(params *GetDeviceDatasourceInstanceGroupListParams) (*GetDeviceDatasourceInstanceGroupListOK, error) {
 	// TODO: Validate the params before sending
@@ -5630,6 +6202,8 @@ func (a *Client) GetDeviceDatasourceInstanceGroupList(params *GetDeviceDatasourc
 
 /*
 GetDeviceDatasourceInstanceGroupListJSON gets device datasource instance group list raw response
+
+Retrieve a paginated list of device datasource instance groups
 */
 func (a *Client) GetDeviceDatasourceInstanceGroupListJSON(params *GetDeviceDatasourceInstanceGroupListJSONParams) (*GetDeviceDatasourceInstanceGroupListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5659,6 +6233,8 @@ func (a *Client) GetDeviceDatasourceInstanceGroupListJSON(params *GetDeviceDatas
 
 /*
 GetDeviceDatasourceInstanceGroupOverviewGraphData gets device instance group overview graph data
+
+Retrieve graph data for the overview of a device instance group
 */
 func (a *Client) GetDeviceDatasourceInstanceGroupOverviewGraphData(params *GetDeviceDatasourceInstanceGroupOverviewGraphDataParams) (*GetDeviceDatasourceInstanceGroupOverviewGraphDataOK, error) {
 	// TODO: Validate the params before sending
@@ -5688,6 +6264,8 @@ func (a *Client) GetDeviceDatasourceInstanceGroupOverviewGraphData(params *GetDe
 
 /*
 GetDeviceDatasourceInstanceGroupOverviewGraphDataJSON gets device instance group overview graph data raw response
+
+Retrieve graph data for the overview of a device instance group
 */
 func (a *Client) GetDeviceDatasourceInstanceGroupOverviewGraphDataJSON(params *GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONParams) (*GetDeviceDatasourceInstanceGroupOverviewGraphDataJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5717,6 +6295,8 @@ func (a *Client) GetDeviceDatasourceInstanceGroupOverviewGraphDataJSON(params *G
 
 /*
 GetDeviceDatasourceInstanceList gets device instance list
+
+get device instance list
 */
 func (a *Client) GetDeviceDatasourceInstanceList(params *GetDeviceDatasourceInstanceListParams) (*GetDeviceDatasourceInstanceListOK, error) {
 	// TODO: Validate the params before sending
@@ -5746,6 +6326,8 @@ func (a *Client) GetDeviceDatasourceInstanceList(params *GetDeviceDatasourceInst
 
 /*
 GetDeviceDatasourceInstanceListJSON gets device instance list raw response
+
+get device instance list
 */
 func (a *Client) GetDeviceDatasourceInstanceListJSON(params *GetDeviceDatasourceInstanceListJSONParams) (*GetDeviceDatasourceInstanceListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5775,6 +6357,8 @@ func (a *Client) GetDeviceDatasourceInstanceListJSON(params *GetDeviceDatasource
 
 /*
 GetDeviceDatasourceInstanceSDTHistory gets device instance SDT history
+
+get device instance SDT history
 */
 func (a *Client) GetDeviceDatasourceInstanceSDTHistory(params *GetDeviceDatasourceInstanceSDTHistoryParams) (*GetDeviceDatasourceInstanceSDTHistoryOK, error) {
 	// TODO: Validate the params before sending
@@ -5804,6 +6388,8 @@ func (a *Client) GetDeviceDatasourceInstanceSDTHistory(params *GetDeviceDatasour
 
 /*
 GetDeviceDatasourceInstanceSDTHistoryJSON gets device instance SDT history raw response
+
+get device instance SDT history
 */
 func (a *Client) GetDeviceDatasourceInstanceSDTHistoryJSON(params *GetDeviceDatasourceInstanceSDTHistoryJSONParams) (*GetDeviceDatasourceInstanceSDTHistoryJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5833,6 +6419,8 @@ func (a *Client) GetDeviceDatasourceInstanceSDTHistoryJSON(params *GetDeviceData
 
 /*
 GetDeviceDatasourceList gets device datasource list
+
+Retrieve a paginated list of device datasources
 */
 func (a *Client) GetDeviceDatasourceList(params *GetDeviceDatasourceListParams) (*GetDeviceDatasourceListOK, error) {
 	// TODO: Validate the params before sending
@@ -5862,6 +6450,8 @@ func (a *Client) GetDeviceDatasourceList(params *GetDeviceDatasourceListParams) 
 
 /*
 GetDeviceDatasourceListJSON gets device datasource list raw response
+
+Retrieve a paginated list of device datasources
 */
 func (a *Client) GetDeviceDatasourceListJSON(params *GetDeviceDatasourceListJSONParams) (*GetDeviceDatasourceListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5890,7 +6480,71 @@ func (a *Client) GetDeviceDatasourceListJSON(params *GetDeviceDatasourceListJSON
 }
 
 /*
+GetDeviceEventsourceList gets device eventsource list
+
+Retrieve a paginated list of device eventsources
+*/
+func (a *Client) GetDeviceEventsourceList(params *GetDeviceEventsourceListParams) (*GetDeviceEventsourceListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeviceEventsourceListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDeviceEventsourceList",
+		Method:             "GET",
+		PathPattern:        "/device/devices/{deviceId}/deviceeventsources",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeviceEventsourceListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDeviceEventsourceListOK), nil
+
+}
+
+/*
+GetDeviceEventsourceListJSON gets device eventsource list raw response
+
+Retrieve a paginated list of device eventsources
+*/
+func (a *Client) GetDeviceEventsourceListJSON(params *GetDeviceEventsourceListJSONParams) (*GetDeviceEventsourceListJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDeviceEventsourceListJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDeviceEventsourceListJson",
+		Method:             "GET",
+		PathPattern:        "/device/devices/{deviceId}/deviceeventsources?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDeviceEventsourceListJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDeviceEventsourceListJSONOK), nil
+
+}
+
+/*
 GetDeviceGroupByID gets device group
+
+get device group
 */
 func (a *Client) GetDeviceGroupByID(params *GetDeviceGroupByIDParams) (*GetDeviceGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -5920,6 +6574,8 @@ func (a *Client) GetDeviceGroupByID(params *GetDeviceGroupByIDParams) (*GetDevic
 
 /*
 GetDeviceGroupByIDJSON gets device group raw response
+
+get device group
 */
 func (a *Client) GetDeviceGroupByIDJSON(params *GetDeviceGroupByIDJSONParams) (*GetDeviceGroupByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -5949,6 +6605,8 @@ func (a *Client) GetDeviceGroupByIDJSON(params *GetDeviceGroupByIDJSONParams) (*
 
 /*
 GetDeviceGroupClusterAlertConfByID gets cluster alert configuration by id
+
+Get cluster alert configuration by id
 */
 func (a *Client) GetDeviceGroupClusterAlertConfByID(params *GetDeviceGroupClusterAlertConfByIDParams) (*GetDeviceGroupClusterAlertConfByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -5978,6 +6636,8 @@ func (a *Client) GetDeviceGroupClusterAlertConfByID(params *GetDeviceGroupCluste
 
 /*
 GetDeviceGroupClusterAlertConfByIDJSON gets cluster alert configuration by id raw response
+
+Get cluster alert configuration by id
 */
 func (a *Client) GetDeviceGroupClusterAlertConfByIDJSON(params *GetDeviceGroupClusterAlertConfByIDJSONParams) (*GetDeviceGroupClusterAlertConfByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6007,6 +6667,8 @@ func (a *Client) GetDeviceGroupClusterAlertConfByIDJSON(params *GetDeviceGroupCl
 
 /*
 GetDeviceGroupClusterAlertConfList gets a list of cluster alert configurations for a device group
+
+get a list of cluster alert configurations for a device group
 */
 func (a *Client) GetDeviceGroupClusterAlertConfList(params *GetDeviceGroupClusterAlertConfListParams) (*GetDeviceGroupClusterAlertConfListOK, error) {
 	// TODO: Validate the params before sending
@@ -6036,6 +6698,8 @@ func (a *Client) GetDeviceGroupClusterAlertConfList(params *GetDeviceGroupCluste
 
 /*
 GetDeviceGroupClusterAlertConfListJSON gets a list of cluster alert configurations for a device group raw response
+
+get a list of cluster alert configurations for a device group
 */
 func (a *Client) GetDeviceGroupClusterAlertConfListJSON(params *GetDeviceGroupClusterAlertConfListJSONParams) (*GetDeviceGroupClusterAlertConfListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6065,6 +6729,8 @@ func (a *Client) GetDeviceGroupClusterAlertConfListJSON(params *GetDeviceGroupCl
 
 /*
 GetDeviceGroupDatasourceAlertSetting gets device group datasource alert setting
+
+Retrieve the alert setting for a specific device group datasource
 */
 func (a *Client) GetDeviceGroupDatasourceAlertSetting(params *GetDeviceGroupDatasourceAlertSettingParams) (*GetDeviceGroupDatasourceAlertSettingOK, error) {
 	// TODO: Validate the params before sending
@@ -6094,6 +6760,8 @@ func (a *Client) GetDeviceGroupDatasourceAlertSetting(params *GetDeviceGroupData
 
 /*
 GetDeviceGroupDatasourceAlertSettingJSON gets device group datasource alert setting raw response
+
+Retrieve the alert setting for a specific device group datasource
 */
 func (a *Client) GetDeviceGroupDatasourceAlertSettingJSON(params *GetDeviceGroupDatasourceAlertSettingJSONParams) (*GetDeviceGroupDatasourceAlertSettingJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6123,6 +6791,8 @@ func (a *Client) GetDeviceGroupDatasourceAlertSettingJSON(params *GetDeviceGroup
 
 /*
 GetDeviceGroupDatasourceByID gets device group datasource
+
+get device group datasource
 */
 func (a *Client) GetDeviceGroupDatasourceByID(params *GetDeviceGroupDatasourceByIDParams) (*GetDeviceGroupDatasourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -6152,6 +6822,8 @@ func (a *Client) GetDeviceGroupDatasourceByID(params *GetDeviceGroupDatasourceBy
 
 /*
 GetDeviceGroupDatasourceByIDJSON gets device group datasource raw response
+
+get device group datasource
 */
 func (a *Client) GetDeviceGroupDatasourceByIDJSON(params *GetDeviceGroupDatasourceByIDJSONParams) (*GetDeviceGroupDatasourceByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6181,6 +6853,8 @@ func (a *Client) GetDeviceGroupDatasourceByIDJSON(params *GetDeviceGroupDatasour
 
 /*
 GetDeviceGroupDatasourceList gets device group datasource list
+
+get device group datasource list
 */
 func (a *Client) GetDeviceGroupDatasourceList(params *GetDeviceGroupDatasourceListParams) (*GetDeviceGroupDatasourceListOK, error) {
 	// TODO: Validate the params before sending
@@ -6210,6 +6884,8 @@ func (a *Client) GetDeviceGroupDatasourceList(params *GetDeviceGroupDatasourceLi
 
 /*
 GetDeviceGroupDatasourceListJSON gets device group datasource list raw response
+
+get device group datasource list
 */
 func (a *Client) GetDeviceGroupDatasourceListJSON(params *GetDeviceGroupDatasourceListJSONParams) (*GetDeviceGroupDatasourceListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6239,6 +6915,8 @@ func (a *Client) GetDeviceGroupDatasourceListJSON(params *GetDeviceGroupDatasour
 
 /*
 GetDeviceGroupList gets device group list
+
+get device group list
 */
 func (a *Client) GetDeviceGroupList(params *GetDeviceGroupListParams) (*GetDeviceGroupListOK, error) {
 	// TODO: Validate the params before sending
@@ -6268,6 +6946,8 @@ func (a *Client) GetDeviceGroupList(params *GetDeviceGroupListParams) (*GetDevic
 
 /*
 GetDeviceGroupListJSON gets device group list raw response
+
+get device group list
 */
 func (a *Client) GetDeviceGroupListJSON(params *GetDeviceGroupListJSONParams) (*GetDeviceGroupListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6297,6 +6977,8 @@ func (a *Client) GetDeviceGroupListJSON(params *GetDeviceGroupListJSONParams) (*
 
 /*
 GetDeviceGroupPropertyByName gets device group property by name
+
+Retrieve a specific device group property by its name
 */
 func (a *Client) GetDeviceGroupPropertyByName(params *GetDeviceGroupPropertyByNameParams) (*GetDeviceGroupPropertyByNameOK, error) {
 	// TODO: Validate the params before sending
@@ -6326,6 +7008,8 @@ func (a *Client) GetDeviceGroupPropertyByName(params *GetDeviceGroupPropertyByNa
 
 /*
 GetDeviceGroupPropertyByNameJSON gets device group property by name raw response
+
+Retrieve a specific device group property by its name
 */
 func (a *Client) GetDeviceGroupPropertyByNameJSON(params *GetDeviceGroupPropertyByNameJSONParams) (*GetDeviceGroupPropertyByNameJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6355,6 +7039,8 @@ func (a *Client) GetDeviceGroupPropertyByNameJSON(params *GetDeviceGroupProperty
 
 /*
 GetDeviceGroupPropertyList gets device group properties
+
+Retrieve a paginated list of properties for a specific device group
 */
 func (a *Client) GetDeviceGroupPropertyList(params *GetDeviceGroupPropertyListParams) (*GetDeviceGroupPropertyListOK, error) {
 	// TODO: Validate the params before sending
@@ -6384,6 +7070,8 @@ func (a *Client) GetDeviceGroupPropertyList(params *GetDeviceGroupPropertyListPa
 
 /*
 GetDeviceGroupPropertyListJSON gets device group properties raw response
+
+Retrieve a paginated list of properties for a specific device group
 */
 func (a *Client) GetDeviceGroupPropertyListJSON(params *GetDeviceGroupPropertyListJSONParams) (*GetDeviceGroupPropertyListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6413,6 +7101,8 @@ func (a *Client) GetDeviceGroupPropertyListJSON(params *GetDeviceGroupPropertyLi
 
 /*
 GetDeviceGroupSDTList gets device group s d ts
+
+get device group SDTs
 */
 func (a *Client) GetDeviceGroupSDTList(params *GetDeviceGroupSDTListParams) (*GetDeviceGroupSDTListOK, error) {
 	// TODO: Validate the params before sending
@@ -6442,6 +7132,8 @@ func (a *Client) GetDeviceGroupSDTList(params *GetDeviceGroupSDTListParams) (*Ge
 
 /*
 GetDeviceGroupSDTListJSON gets device group s d ts raw response
+
+get device group SDTs
 */
 func (a *Client) GetDeviceGroupSDTListJSON(params *GetDeviceGroupSDTListJSONParams) (*GetDeviceGroupSDTListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6471,6 +7163,8 @@ func (a *Client) GetDeviceGroupSDTListJSON(params *GetDeviceGroupSDTListJSONPara
 
 /*
 GetDeviceInstanceGraphDataOnlyByInstanceID gets device instance data
+
+get device instance data
 */
 func (a *Client) GetDeviceInstanceGraphDataOnlyByInstanceID(params *GetDeviceInstanceGraphDataOnlyByInstanceIDParams) (*GetDeviceInstanceGraphDataOnlyByInstanceIDOK, error) {
 	// TODO: Validate the params before sending
@@ -6500,6 +7194,8 @@ func (a *Client) GetDeviceInstanceGraphDataOnlyByInstanceID(params *GetDeviceIns
 
 /*
 GetDeviceInstanceGraphDataOnlyByInstanceIDJSON gets device instance data raw response
+
+get device instance data
 */
 func (a *Client) GetDeviceInstanceGraphDataOnlyByInstanceIDJSON(params *GetDeviceInstanceGraphDataOnlyByInstanceIDJSONParams) (*GetDeviceInstanceGraphDataOnlyByInstanceIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6529,6 +7225,8 @@ func (a *Client) GetDeviceInstanceGraphDataOnlyByInstanceIDJSON(params *GetDevic
 
 /*
 GetDeviceInstanceList gets device instance list
+
+get device instance list
 */
 func (a *Client) GetDeviceInstanceList(params *GetDeviceInstanceListParams) (*GetDeviceInstanceListOK, error) {
 	// TODO: Validate the params before sending
@@ -6558,6 +7256,8 @@ func (a *Client) GetDeviceInstanceList(params *GetDeviceInstanceListParams) (*Ge
 
 /*
 GetDeviceInstanceListJSON gets device instance list raw response
+
+get device instance list
 */
 func (a *Client) GetDeviceInstanceListJSON(params *GetDeviceInstanceListJSONParams) (*GetDeviceInstanceListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6587,6 +7287,8 @@ func (a *Client) GetDeviceInstanceListJSON(params *GetDeviceInstanceListJSONPara
 
 /*
 GetDeviceList gets device list
+
+Retrieve a paginated list of devices
 */
 func (a *Client) GetDeviceList(params *GetDeviceListParams) (*GetDeviceListOK, error) {
 	// TODO: Validate the params before sending
@@ -6616,6 +7318,8 @@ func (a *Client) GetDeviceList(params *GetDeviceListParams) (*GetDeviceListOK, e
 
 /*
 GetDeviceListJSON gets device list raw response
+
+Retrieve a paginated list of devices
 */
 func (a *Client) GetDeviceListJSON(params *GetDeviceListJSONParams) (*GetDeviceListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6645,6 +7349,8 @@ func (a *Client) GetDeviceListJSON(params *GetDeviceListJSONParams) (*GetDeviceL
 
 /*
 GetDevicePropertyByName gets device property by name
+
+Retrieve a specific device property by its name
 */
 func (a *Client) GetDevicePropertyByName(params *GetDevicePropertyByNameParams) (*GetDevicePropertyByNameOK, error) {
 	// TODO: Validate the params before sending
@@ -6674,6 +7380,8 @@ func (a *Client) GetDevicePropertyByName(params *GetDevicePropertyByNameParams) 
 
 /*
 GetDevicePropertyByNameJSON gets device property by name raw response
+
+Retrieve a specific device property by its name
 */
 func (a *Client) GetDevicePropertyByNameJSON(params *GetDevicePropertyByNameJSONParams) (*GetDevicePropertyByNameJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6703,6 +7411,8 @@ func (a *Client) GetDevicePropertyByNameJSON(params *GetDevicePropertyByNameJSON
 
 /*
 GetDevicePropertyList gets device properties
+
+Retrieve a paginated list of properties for a specific device
 */
 func (a *Client) GetDevicePropertyList(params *GetDevicePropertyListParams) (*GetDevicePropertyListOK, error) {
 	// TODO: Validate the params before sending
@@ -6732,6 +7442,8 @@ func (a *Client) GetDevicePropertyList(params *GetDevicePropertyListParams) (*Ge
 
 /*
 GetDevicePropertyListJSON gets device properties raw response
+
+Retrieve a paginated list of properties for a specific device
 */
 func (a *Client) GetDevicePropertyListJSON(params *GetDevicePropertyListJSONParams) (*GetDevicePropertyListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6760,7 +7472,133 @@ func (a *Client) GetDevicePropertyListJSON(params *GetDevicePropertyListJSONPara
 }
 
 /*
-GetEscalationChainByID gets escalation chain by id
+GetDiagnosticSourcesByID gets diagnostics sources by ID
+
+Retrieves a diagnostics source by its ID
+*/
+func (a *Client) GetDiagnosticSourcesByID(params *GetDiagnosticSourcesByIDParams) (*GetDiagnosticSourcesByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDiagnosticSourcesByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDiagnosticSourcesById",
+		Method:             "GET",
+		PathPattern:        "/setting/diagnosticsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDiagnosticSourcesByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDiagnosticSourcesByIDOK), nil
+
+}
+
+/*
+GetDiagnosticSourcesByIDJSON gets diagnostics sources by ID raw response
+
+Retrieves a diagnostics source by its ID
+*/
+func (a *Client) GetDiagnosticSourcesByIDJSON(params *GetDiagnosticSourcesByIDJSONParams) (*GetDiagnosticSourcesByIDJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDiagnosticSourcesByIDJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDiagnosticSourcesByIdJson",
+		Method:             "GET",
+		PathPattern:        "/setting/diagnosticsources/{id}?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDiagnosticSourcesByIDJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDiagnosticSourcesByIDJSONOK), nil
+
+}
+
+/*
+GetDiagnosticSourcesList gets diagnostics sources list
+
+Retrieves a list of diagnostics sources
+*/
+func (a *Client) GetDiagnosticSourcesList(params *GetDiagnosticSourcesListParams) (*GetDiagnosticSourcesListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDiagnosticSourcesListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDiagnosticSourcesList",
+		Method:             "GET",
+		PathPattern:        "/setting/diagnosticsources",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDiagnosticSourcesListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDiagnosticSourcesListOK), nil
+
+}
+
+/*
+GetDiagnosticSourcesListJSON gets diagnostics sources list raw response
+
+Retrieves a list of diagnostics sources
+*/
+func (a *Client) GetDiagnosticSourcesListJSON(params *GetDiagnosticSourcesListJSONParams) (*GetDiagnosticSourcesListJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetDiagnosticSourcesListJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getDiagnosticSourcesListJson",
+		Method:             "GET",
+		PathPattern:        "/setting/diagnosticsources?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetDiagnosticSourcesListJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetDiagnosticSourcesListJSONOK), nil
+
+}
+
+/*
+GetEscalationChainByID gets escalation chain by ID
+
+Retrieve details of a specific escalation chain by its ID
 */
 func (a *Client) GetEscalationChainByID(params *GetEscalationChainByIDParams) (*GetEscalationChainByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -6789,7 +7627,9 @@ func (a *Client) GetEscalationChainByID(params *GetEscalationChainByIDParams) (*
 }
 
 /*
-GetEscalationChainByIDJSON gets escalation chain by id raw response
+GetEscalationChainByIDJSON gets escalation chain by ID raw response
+
+Retrieve details of a specific escalation chain by its ID
 */
 func (a *Client) GetEscalationChainByIDJSON(params *GetEscalationChainByIDJSONParams) (*GetEscalationChainByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6819,6 +7659,8 @@ func (a *Client) GetEscalationChainByIDJSON(params *GetEscalationChainByIDJSONPa
 
 /*
 GetEscalationChainList gets escalation chain list
+
+Retrieve a paginated list of escalation chains
 */
 func (a *Client) GetEscalationChainList(params *GetEscalationChainListParams) (*GetEscalationChainListOK, error) {
 	// TODO: Validate the params before sending
@@ -6848,6 +7690,8 @@ func (a *Client) GetEscalationChainList(params *GetEscalationChainListParams) (*
 
 /*
 GetEscalationChainListJSON gets escalation chain list raw response
+
+Retrieve a paginated list of escalation chains
 */
 func (a *Client) GetEscalationChainListJSON(params *GetEscalationChainListJSONParams) (*GetEscalationChainListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6876,7 +7720,9 @@ func (a *Client) GetEscalationChainListJSON(params *GetEscalationChainListJSONPa
 }
 
 /*
-GetEventSourceByID gets event source by id
+GetEventSourceByID gets event source by ID
+
+Retrieves an event source by its ID
 */
 func (a *Client) GetEventSourceByID(params *GetEventSourceByIDParams) (*GetEventSourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -6905,7 +7751,9 @@ func (a *Client) GetEventSourceByID(params *GetEventSourceByIDParams) (*GetEvent
 }
 
 /*
-GetEventSourceByIDJSON gets event source by id raw response
+GetEventSourceByIDJSON gets event source by ID raw response
+
+Retrieves an event source by its ID
 */
 func (a *Client) GetEventSourceByIDJSON(params *GetEventSourceByIDJSONParams) (*GetEventSourceByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6935,6 +7783,8 @@ func (a *Client) GetEventSourceByIDJSON(params *GetEventSourceByIDJSONParams) (*
 
 /*
 GetEventSourceList gets event source list
+
+Retrieves the list of event sources
 */
 func (a *Client) GetEventSourceList(params *GetEventSourceListParams) (*GetEventSourceListOK, error) {
 	// TODO: Validate the params before sending
@@ -6964,6 +7814,8 @@ func (a *Client) GetEventSourceList(params *GetEventSourceListParams) (*GetEvent
 
 /*
 GetEventSourceListJSON gets event source list raw response
+
+Retrieves the list of event sources
 */
 func (a *Client) GetEventSourceListJSON(params *GetEventSourceListJSONParams) (*GetEventSourceListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -6993,6 +7845,8 @@ func (a *Client) GetEventSourceListJSON(params *GetEventSourceListJSONParams) (*
 
 /*
 GetExternalAPIStats gets external api stats info
+
+get external api stats info
 */
 func (a *Client) GetExternalAPIStats(params *GetExternalAPIStatsParams) (*GetExternalAPIStatsOK, error) {
 	// TODO: Validate the params before sending
@@ -7022,6 +7876,8 @@ func (a *Client) GetExternalAPIStats(params *GetExternalAPIStatsParams) (*GetExt
 
 /*
 GetExternalAPIStatsJSON gets external api stats info raw response
+
+get external api stats info
 */
 func (a *Client) GetExternalAPIStatsJSON(params *GetExternalAPIStatsJSONParams) (*GetExternalAPIStatsJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7051,6 +7907,8 @@ func (a *Client) GetExternalAPIStatsJSON(params *GetExternalAPIStatsJSONParams) 
 
 /*
 GetImmediateDeviceListByDeviceGroupID gets immediate devices under group
+
+get immediate devices under group
 */
 func (a *Client) GetImmediateDeviceListByDeviceGroupID(params *GetImmediateDeviceListByDeviceGroupIDParams) (*GetImmediateDeviceListByDeviceGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -7080,6 +7938,8 @@ func (a *Client) GetImmediateDeviceListByDeviceGroupID(params *GetImmediateDevic
 
 /*
 GetImmediateDeviceListByDeviceGroupIDJSON gets immediate devices under group raw response
+
+get immediate devices under group
 */
 func (a *Client) GetImmediateDeviceListByDeviceGroupIDJSON(params *GetImmediateDeviceListByDeviceGroupIDJSONParams) (*GetImmediateDeviceListByDeviceGroupIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7109,6 +7969,8 @@ func (a *Client) GetImmediateDeviceListByDeviceGroupIDJSON(params *GetImmediateD
 
 /*
 GetImmediateWebsiteListByWebsiteGroupID gets a list of websites for a group response may contain extra fields depending upon the type of check ping check pipe web check being added
+
+get a list of websites for a group (Response may contain extra fields depending upon the type of check { PingCheck | WebCheck} being added)
 */
 func (a *Client) GetImmediateWebsiteListByWebsiteGroupID(params *GetImmediateWebsiteListByWebsiteGroupIDParams) (*GetImmediateWebsiteListByWebsiteGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -7138,6 +8000,8 @@ func (a *Client) GetImmediateWebsiteListByWebsiteGroupID(params *GetImmediateWeb
 
 /*
 GetImmediateWebsiteListByWebsiteGroupIDJSON gets a list of websites for a group response may contain extra fields depending upon the type of check ping check pipe web check being added raw response
+
+get a list of websites for a group (Response may contain extra fields depending upon the type of check { PingCheck | WebCheck} being added)
 */
 func (a *Client) GetImmediateWebsiteListByWebsiteGroupIDJSON(params *GetImmediateWebsiteListByWebsiteGroupIDJSONParams) (*GetImmediateWebsiteListByWebsiteGroupIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7167,6 +8031,8 @@ func (a *Client) GetImmediateWebsiteListByWebsiteGroupIDJSON(params *GetImmediat
 
 /*
 GetIntegrationAuditLogs gets integration audit logs list
+
+Retrieves the list of integration audit logs
 */
 func (a *Client) GetIntegrationAuditLogs(params *GetIntegrationAuditLogsParams) (*GetIntegrationAuditLogsOK, error) {
 	// TODO: Validate the params before sending
@@ -7196,6 +8062,8 @@ func (a *Client) GetIntegrationAuditLogs(params *GetIntegrationAuditLogsParams) 
 
 /*
 GetIntegrationAuditLogsJSON gets integration audit logs list raw response
+
+Retrieves the list of integration audit logs
 */
 func (a *Client) GetIntegrationAuditLogsJSON(params *GetIntegrationAuditLogsJSONParams) (*GetIntegrationAuditLogsJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7224,7 +8092,9 @@ func (a *Client) GetIntegrationAuditLogsJSON(params *GetIntegrationAuditLogsJSON
 }
 
 /*
-GetJobMonitorByID gets job monitor by id
+GetJobMonitorByID gets job monitor by ID
+
+Retrieve a specific JobMonitor using its ID
 */
 func (a *Client) GetJobMonitorByID(params *GetJobMonitorByIDParams) (*GetJobMonitorByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -7253,7 +8123,9 @@ func (a *Client) GetJobMonitorByID(params *GetJobMonitorByIDParams) (*GetJobMoni
 }
 
 /*
-GetJobMonitorByIDJSON gets job monitor by id raw response
+GetJobMonitorByIDJSON gets job monitor by ID raw response
+
+Retrieve a specific JobMonitor using its ID
 */
 func (a *Client) GetJobMonitorByIDJSON(params *GetJobMonitorByIDJSONParams) (*GetJobMonitorByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7283,6 +8155,8 @@ func (a *Client) GetJobMonitorByIDJSON(params *GetJobMonitorByIDJSONParams) (*Ge
 
 /*
 GetJobMonitorList gets job monitor list
+
+Retrieve a paginated list of Job Monitors
 */
 func (a *Client) GetJobMonitorList(params *GetJobMonitorListParams) (*GetJobMonitorListOK, error) {
 	// TODO: Validate the params before sending
@@ -7312,6 +8186,8 @@ func (a *Client) GetJobMonitorList(params *GetJobMonitorListParams) (*GetJobMoni
 
 /*
 GetJobMonitorListJSON gets job monitor list raw response
+
+Retrieve a paginated list of Job Monitors
 */
 func (a *Client) GetJobMonitorListJSON(params *GetJobMonitorListJSONParams) (*GetJobMonitorListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7341,6 +8217,8 @@ func (a *Client) GetJobMonitorListJSON(params *GetJobMonitorListJSONParams) (*Ge
 
 /*
 GetLogSourceByID gets log source
+
+Retrieves a specific log source by its ID
 */
 func (a *Client) GetLogSourceByID(params *GetLogSourceByIDParams) (*GetLogSourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -7370,6 +8248,8 @@ func (a *Client) GetLogSourceByID(params *GetLogSourceByIDParams) (*GetLogSource
 
 /*
 GetLogSourceByIDJSON gets log source raw response
+
+Retrieves a specific log source by its ID
 */
 func (a *Client) GetLogSourceByIDJSON(params *GetLogSourceByIDJSONParams) (*GetLogSourceByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7399,6 +8279,8 @@ func (a *Client) GetLogSourceByIDJSON(params *GetLogSourceByIDJSONParams) (*GetL
 
 /*
 GetLogSourceList gets log source list
+
+Retrieves a list of log sources
 */
 func (a *Client) GetLogSourceList(params *GetLogSourceListParams) (*GetLogSourceListOK, error) {
 	// TODO: Validate the params before sending
@@ -7428,6 +8310,8 @@ func (a *Client) GetLogSourceList(params *GetLogSourceListParams) (*GetLogSource
 
 /*
 GetLogSourceListJSON gets log source list raw response
+
+Retrieves a list of log sources
 */
 func (a *Client) GetLogSourceListJSON(params *GetLogSourceListJSONParams) (*GetLogSourceListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7456,7 +8340,71 @@ func (a *Client) GetLogSourceListJSON(params *GetLogSourceListJSONParams) (*GetL
 }
 
 /*
+GetMetricsSummary gets metrics usage with company settings summary
+
+get metrics usage with company settings summary
+*/
+func (a *Client) GetMetricsSummary(params *GetMetricsSummaryParams) (*GetMetricsSummaryOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMetricsSummaryParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMetricsSummary",
+		Method:             "GET",
+		PathPattern:        "/metrics/summary",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMetricsSummaryReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetMetricsSummaryOK), nil
+
+}
+
+/*
+GetMetricsSummaryJSON gets metrics usage with company settings summary raw response
+
+get metrics usage with company settings summary
+*/
+func (a *Client) GetMetricsSummaryJSON(params *GetMetricsSummaryJSONParams) (*GetMetricsSummaryJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetMetricsSummaryJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getMetricsSummaryJson",
+		Method:             "GET",
+		PathPattern:        "/metrics/summary?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetMetricsSummaryJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetMetricsSummaryJSONOK), nil
+
+}
+
+/*
 GetMetricsUsage gets metrics usage
+
+Retrieve the metrics usage information
 */
 func (a *Client) GetMetricsUsage(params *GetMetricsUsageParams) (*GetMetricsUsageOK, error) {
 	// TODO: Validate the params before sending
@@ -7486,6 +8434,8 @@ func (a *Client) GetMetricsUsage(params *GetMetricsUsageParams) (*GetMetricsUsag
 
 /*
 GetMetricsUsageJSON gets metrics usage raw response
+
+Retrieve the metrics usage information
 */
 func (a *Client) GetMetricsUsageJSON(params *GetMetricsUsageJSONParams) (*GetMetricsUsageJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7515,6 +8465,8 @@ func (a *Client) GetMetricsUsageJSON(params *GetMetricsUsageJSONParams) (*GetMet
 
 /*
 GetNetflowEndpointList gets netflow endpoints
+
+get netflow endpoints
 */
 func (a *Client) GetNetflowEndpointList(params *GetNetflowEndpointListParams) (*GetNetflowEndpointListOK, error) {
 	// TODO: Validate the params before sending
@@ -7544,6 +8496,8 @@ func (a *Client) GetNetflowEndpointList(params *GetNetflowEndpointListParams) (*
 
 /*
 GetNetflowEndpointListJSON gets netflow endpoints raw response
+
+get netflow endpoints
 */
 func (a *Client) GetNetflowEndpointListJSON(params *GetNetflowEndpointListJSONParams) (*GetNetflowEndpointListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7573,6 +8527,8 @@ func (a *Client) GetNetflowEndpointListJSON(params *GetNetflowEndpointListJSONPa
 
 /*
 GetNetflowFlowList gets netflow flows
+
+get netflow flows
 */
 func (a *Client) GetNetflowFlowList(params *GetNetflowFlowListParams) (*GetNetflowFlowListOK, error) {
 	// TODO: Validate the params before sending
@@ -7602,6 +8558,8 @@ func (a *Client) GetNetflowFlowList(params *GetNetflowFlowListParams) (*GetNetfl
 
 /*
 GetNetflowFlowListJSON gets netflow flows raw response
+
+get netflow flows
 */
 func (a *Client) GetNetflowFlowListJSON(params *GetNetflowFlowListJSONParams) (*GetNetflowFlowListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7631,6 +8589,8 @@ func (a *Client) GetNetflowFlowListJSON(params *GetNetflowFlowListJSONParams) (*
 
 /*
 GetNetflowPortList gets netflow ports
+
+get netflow ports
 */
 func (a *Client) GetNetflowPortList(params *GetNetflowPortListParams) (*GetNetflowPortListOK, error) {
 	// TODO: Validate the params before sending
@@ -7660,6 +8620,8 @@ func (a *Client) GetNetflowPortList(params *GetNetflowPortListParams) (*GetNetfl
 
 /*
 GetNetflowPortListJSON gets netflow ports raw response
+
+get netflow ports
 */
 func (a *Client) GetNetflowPortListJSON(params *GetNetflowPortListJSONParams) (*GetNetflowPortListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7688,7 +8650,9 @@ func (a *Client) GetNetflowPortListJSON(params *GetNetflowPortListJSONParams) (*
 }
 
 /*
-GetNetscanByID gets netscan by id
+GetNetscanByID gets netscan by ID
+
+Retrieve a specific netscan by its ID
 */
 func (a *Client) GetNetscanByID(params *GetNetscanByIDParams) (*GetNetscanByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -7717,7 +8681,9 @@ func (a *Client) GetNetscanByID(params *GetNetscanByIDParams) (*GetNetscanByIDOK
 }
 
 /*
-GetNetscanByIDJSON gets netscan by id raw response
+GetNetscanByIDJSON gets netscan by ID raw response
+
+Retrieve a specific netscan by its ID
 */
 func (a *Client) GetNetscanByIDJSON(params *GetNetscanByIDJSONParams) (*GetNetscanByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7747,6 +8713,8 @@ func (a *Client) GetNetscanByIDJSON(params *GetNetscanByIDJSONParams) (*GetNetsc
 
 /*
 GetNetscanList gets netscan list
+
+Retrieve a list of netscans
 */
 func (a *Client) GetNetscanList(params *GetNetscanListParams) (*GetNetscanListOK, error) {
 	// TODO: Validate the params before sending
@@ -7776,6 +8744,8 @@ func (a *Client) GetNetscanList(params *GetNetscanListParams) (*GetNetscanListOK
 
 /*
 GetNetscanListJSON gets netscan list raw response
+
+Retrieve a list of netscans
 */
 func (a *Client) GetNetscanListJSON(params *GetNetscanListJSONParams) (*GetNetscanListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7805,6 +8775,8 @@ func (a *Client) GetNetscanListJSON(params *GetNetscanListJSONParams) (*GetNetsc
 
 /*
 GetOIDList gets o ID s list
+
+Retrieve the list of OIDs
 */
 func (a *Client) GetOIDList(params *GetOIDListParams) (*GetOIDListOK, error) {
 	// TODO: Validate the params before sending
@@ -7834,6 +8806,8 @@ func (a *Client) GetOIDList(params *GetOIDListParams) (*GetOIDListOK, error) {
 
 /*
 GetOIDListJSON gets o ID s list raw response
+
+Retrieve the list of OIDs
 */
 func (a *Client) GetOIDListJSON(params *GetOIDListJSONParams) (*GetOIDListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7862,7 +8836,9 @@ func (a *Client) GetOIDListJSON(params *GetOIDListJSONParams) (*GetOIDListJSONOK
 }
 
 /*
-GetOidByID gets o ID by id
+GetOidByID gets o ID by ID
+
+Retrieve the OID details by its ID
 */
 func (a *Client) GetOidByID(params *GetOidByIDParams) (*GetOidByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -7891,7 +8867,9 @@ func (a *Client) GetOidByID(params *GetOidByIDParams) (*GetOidByIDOK, error) {
 }
 
 /*
-GetOidByIDJSON gets o ID by id raw response
+GetOidByIDJSON gets o ID by ID raw response
+
+Retrieve the OID details by its ID
 */
 func (a *Client) GetOidByIDJSON(params *GetOidByIDJSONParams) (*GetOidByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7921,6 +8899,8 @@ func (a *Client) GetOidByIDJSON(params *GetOidByIDJSONParams) (*GetOidByIDJSONOK
 
 /*
 GetOpsNoteByID gets opsnote by id
+
+get opsnote by id
 */
 func (a *Client) GetOpsNoteByID(params *GetOpsNoteByIDParams) (*GetOpsNoteByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -7950,6 +8930,8 @@ func (a *Client) GetOpsNoteByID(params *GetOpsNoteByIDParams) (*GetOpsNoteByIDOK
 
 /*
 GetOpsNoteByIDJSON gets opsnote by id raw response
+
+get opsnote by id
 */
 func (a *Client) GetOpsNoteByIDJSON(params *GetOpsNoteByIDJSONParams) (*GetOpsNoteByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -7979,6 +8961,8 @@ func (a *Client) GetOpsNoteByIDJSON(params *GetOpsNoteByIDJSONParams) (*GetOpsNo
 
 /*
 GetOpsNoteList gets opsnote list
+
+get opsnote list
 */
 func (a *Client) GetOpsNoteList(params *GetOpsNoteListParams) (*GetOpsNoteListOK, error) {
 	// TODO: Validate the params before sending
@@ -8008,6 +8992,8 @@ func (a *Client) GetOpsNoteList(params *GetOpsNoteListParams) (*GetOpsNoteListOK
 
 /*
 GetOpsNoteListJSON gets opsnote list raw response
+
+get opsnote list
 */
 func (a *Client) GetOpsNoteListJSON(params *GetOpsNoteListJSONParams) (*GetOpsNoteListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8037,6 +9023,8 @@ func (a *Client) GetOpsNoteListJSON(params *GetOpsNoteListJSONParams) (*GetOpsNo
 
 /*
 GetPartitionByID retrieves details of a specific log partition
+
+Retrieve details of a specific log partition
 */
 func (a *Client) GetPartitionByID(params *GetPartitionByIDParams) (*GetPartitionByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -8066,6 +9054,8 @@ func (a *Client) GetPartitionByID(params *GetPartitionByIDParams) (*GetPartition
 
 /*
 GetPartitionByIDJSON retrieves details of a specific log partition raw response
+
+Retrieve details of a specific log partition
 */
 func (a *Client) GetPartitionByIDJSON(params *GetPartitionByIDJSONParams) (*GetPartitionByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8095,6 +9085,8 @@ func (a *Client) GetPartitionByIDJSON(params *GetPartitionByIDJSONParams) (*GetP
 
 /*
 GetPropertyRulesByID gets property rules by id
+
+Fetches a property rule by its ID
 */
 func (a *Client) GetPropertyRulesByID(params *GetPropertyRulesByIDParams) (*GetPropertyRulesByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -8124,6 +9116,8 @@ func (a *Client) GetPropertyRulesByID(params *GetPropertyRulesByIDParams) (*GetP
 
 /*
 GetPropertyRulesByIDJSON gets property rules by id raw response
+
+Fetches a property rule by its ID
 */
 func (a *Client) GetPropertyRulesByIDJSON(params *GetPropertyRulesByIDJSONParams) (*GetPropertyRulesByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8153,6 +9147,8 @@ func (a *Client) GetPropertyRulesByIDJSON(params *GetPropertyRulesByIDJSONParams
 
 /*
 GetPropertyRulesList gets property rules list
+
+Fetches a list of property rules
 */
 func (a *Client) GetPropertyRulesList(params *GetPropertyRulesListParams) (*GetPropertyRulesListOK, error) {
 	// TODO: Validate the params before sending
@@ -8182,6 +9178,8 @@ func (a *Client) GetPropertyRulesList(params *GetPropertyRulesListParams) (*GetP
 
 /*
 GetPropertyRulesListJSON gets property rules list raw response
+
+Fetches a list of property rules
 */
 func (a *Client) GetPropertyRulesListJSON(params *GetPropertyRulesListJSONParams) (*GetPropertyRulesListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8211,6 +9209,8 @@ func (a *Client) GetPropertyRulesListJSON(params *GetPropertyRulesListJSONParams
 
 /*
 GetRecipientGroupByID gets recipient group by id
+
+Retrieve a specific recipient group by its ID
 */
 func (a *Client) GetRecipientGroupByID(params *GetRecipientGroupByIDParams) (*GetRecipientGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -8240,6 +9240,8 @@ func (a *Client) GetRecipientGroupByID(params *GetRecipientGroupByIDParams) (*Ge
 
 /*
 GetRecipientGroupByIDJSON gets recipient group by id raw response
+
+Retrieve a specific recipient group by its ID
 */
 func (a *Client) GetRecipientGroupByIDJSON(params *GetRecipientGroupByIDJSONParams) (*GetRecipientGroupByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8269,6 +9271,8 @@ func (a *Client) GetRecipientGroupByIDJSON(params *GetRecipientGroupByIDJSONPara
 
 /*
 GetRecipientGroupList gets recipient group list
+
+Retrieve a paginated list of recipient groups
 */
 func (a *Client) GetRecipientGroupList(params *GetRecipientGroupListParams) (*GetRecipientGroupListOK, error) {
 	// TODO: Validate the params before sending
@@ -8298,6 +9302,8 @@ func (a *Client) GetRecipientGroupList(params *GetRecipientGroupListParams) (*Ge
 
 /*
 GetRecipientGroupListJSON gets recipient group list raw response
+
+Retrieve a paginated list of recipient groups
 */
 func (a *Client) GetRecipientGroupListJSON(params *GetRecipientGroupListJSONParams) (*GetRecipientGroupListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8326,7 +9332,319 @@ func (a *Client) GetRecipientGroupListJSON(params *GetRecipientGroupListJSONPara
 }
 
 /*
-GetReportByID gets report by id
+GetRecommendationByID gets recommendation by ID
+
+Retrieves a recommendation by its ID
+*/
+func (a *Client) GetRecommendationByID(params *GetRecommendationByIDParams) (*GetRecommendationByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRecommendationByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRecommendationById",
+		Method:             "GET",
+		PathPattern:        "/cost-optimization/recommendations/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRecommendationByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRecommendationByIDOK), nil
+
+}
+
+/*
+GetRecommendationByIDJSON gets recommendation by ID raw response
+
+Retrieves a recommendation by its ID
+*/
+func (a *Client) GetRecommendationByIDJSON(params *GetRecommendationByIDJSONParams) (*GetRecommendationByIDJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRecommendationByIDJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRecommendationByIdJson",
+		Method:             "GET",
+		PathPattern:        "/cost-optimization/recommendations/{id}?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRecommendationByIDJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRecommendationByIDJSONOK), nil
+
+}
+
+/*
+GetRecommendationCategoriesList gets recommendation category list
+
+Retrieves the list of recommendation categories
+*/
+func (a *Client) GetRecommendationCategoriesList(params *GetRecommendationCategoriesListParams) (*GetRecommendationCategoriesListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRecommendationCategoriesListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRecommendationCategoriesList",
+		Method:             "GET",
+		PathPattern:        "/cost-optimization/recommendations/categories",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRecommendationCategoriesListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRecommendationCategoriesListOK), nil
+
+}
+
+/*
+GetRecommendationCategoriesListJSON gets recommendation category list raw response
+
+Retrieves the list of recommendation categories
+*/
+func (a *Client) GetRecommendationCategoriesListJSON(params *GetRecommendationCategoriesListJSONParams) (*GetRecommendationCategoriesListJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRecommendationCategoriesListJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRecommendationCategoriesListJson",
+		Method:             "GET",
+		PathPattern:        "/cost-optimization/recommendations/categories?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRecommendationCategoriesListJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRecommendationCategoriesListJSONOK), nil
+
+}
+
+/*
+GetRecommendationsList gets recommendation list
+
+Retrieves a list of recommendations
+*/
+func (a *Client) GetRecommendationsList(params *GetRecommendationsListParams) (*GetRecommendationsListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRecommendationsListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRecommendationsList",
+		Method:             "GET",
+		PathPattern:        "/cost-optimization/recommendations",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRecommendationsListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRecommendationsListOK), nil
+
+}
+
+/*
+GetRecommendationsListJSON gets recommendation list raw response
+
+Retrieves a list of recommendations
+*/
+func (a *Client) GetRecommendationsListJSON(params *GetRecommendationsListJSONParams) (*GetRecommendationsListJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRecommendationsListJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRecommendationsListJson",
+		Method:             "GET",
+		PathPattern:        "/cost-optimization/recommendations?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRecommendationsListJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRecommendationsListJSONOK), nil
+
+}
+
+/*
+GetRemediationSourcesByID gets remediation sources by ID
+
+Retrieves a remediation source by its ID
+*/
+func (a *Client) GetRemediationSourcesByID(params *GetRemediationSourcesByIDParams) (*GetRemediationSourcesByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRemediationSourcesByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRemediationSourcesById",
+		Method:             "GET",
+		PathPattern:        "/setting/remediationsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRemediationSourcesByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRemediationSourcesByIDOK), nil
+
+}
+
+/*
+GetRemediationSourcesByIDJSON gets remediation sources by ID raw response
+
+Retrieves a remediation source by its ID
+*/
+func (a *Client) GetRemediationSourcesByIDJSON(params *GetRemediationSourcesByIDJSONParams) (*GetRemediationSourcesByIDJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRemediationSourcesByIDJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRemediationSourcesByIdJson",
+		Method:             "GET",
+		PathPattern:        "/setting/remediationsources/{id}?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRemediationSourcesByIDJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRemediationSourcesByIDJSONOK), nil
+
+}
+
+/*
+GetRemediationSourcesList gets remediation sources list
+
+Retrieves a list of remediation sources
+*/
+func (a *Client) GetRemediationSourcesList(params *GetRemediationSourcesListParams) (*GetRemediationSourcesListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRemediationSourcesListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRemediationSourcesList",
+		Method:             "GET",
+		PathPattern:        "/setting/remediationsources",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRemediationSourcesListReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRemediationSourcesListOK), nil
+
+}
+
+/*
+GetRemediationSourcesListJSON gets remediation sources list raw response
+
+Retrieves a list of remediation sources
+*/
+func (a *Client) GetRemediationSourcesListJSON(params *GetRemediationSourcesListJSONParams) (*GetRemediationSourcesListJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewGetRemediationSourcesListJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "getRemediationSourcesListJson",
+		Method:             "GET",
+		PathPattern:        "/setting/remediationsources?__json=",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &GetRemediationSourcesListJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*GetRemediationSourcesListJSONOK), nil
+
+}
+
+/*
+GetReportByID gets report by ID
+
+Retrieve the details of a specific report by its ID
 */
 func (a *Client) GetReportByID(params *GetReportByIDParams) (*GetReportByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -8355,7 +9673,9 @@ func (a *Client) GetReportByID(params *GetReportByIDParams) (*GetReportByIDOK, e
 }
 
 /*
-GetReportByIDJSON gets report by id raw response
+GetReportByIDJSON gets report by ID raw response
+
+Retrieve the details of a specific report by its ID
 */
 func (a *Client) GetReportByIDJSON(params *GetReportByIDJSONParams) (*GetReportByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8385,6 +9705,8 @@ func (a *Client) GetReportByIDJSON(params *GetReportByIDJSONParams) (*GetReportB
 
 /*
 GetReportGroupByID gets report group by id
+
+Retrieve a specific report group by its ID
 */
 func (a *Client) GetReportGroupByID(params *GetReportGroupByIDParams) (*GetReportGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -8414,6 +9736,8 @@ func (a *Client) GetReportGroupByID(params *GetReportGroupByIDParams) (*GetRepor
 
 /*
 GetReportGroupByIDJSON gets report group by id raw response
+
+Retrieve a specific report group by its ID
 */
 func (a *Client) GetReportGroupByIDJSON(params *GetReportGroupByIDJSONParams) (*GetReportGroupByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8443,6 +9767,8 @@ func (a *Client) GetReportGroupByIDJSON(params *GetReportGroupByIDJSONParams) (*
 
 /*
 GetReportGroupList gets report group list
+
+Retrieve a paginated list of report groups
 */
 func (a *Client) GetReportGroupList(params *GetReportGroupListParams) (*GetReportGroupListOK, error) {
 	// TODO: Validate the params before sending
@@ -8472,6 +9798,8 @@ func (a *Client) GetReportGroupList(params *GetReportGroupListParams) (*GetRepor
 
 /*
 GetReportGroupListJSON gets report group list raw response
+
+Retrieve a paginated list of report groups
 */
 func (a *Client) GetReportGroupListJSON(params *GetReportGroupListJSONParams) (*GetReportGroupListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8501,6 +9829,8 @@ func (a *Client) GetReportGroupListJSON(params *GetReportGroupListJSONParams) (*
 
 /*
 GetReportList gets report list
+
+Retrieve a paginated list of reports
 */
 func (a *Client) GetReportList(params *GetReportListParams) (*GetReportListOK, error) {
 	// TODO: Validate the params before sending
@@ -8530,6 +9860,8 @@ func (a *Client) GetReportList(params *GetReportListParams) (*GetReportListOK, e
 
 /*
 GetReportListJSON gets report list raw response
+
+Retrieve a paginated list of reports
 */
 func (a *Client) GetReportListJSON(params *GetReportListJSONParams) (*GetReportListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8559,6 +9891,8 @@ func (a *Client) GetReportListJSON(params *GetReportListJSONParams) (*GetReportL
 
 /*
 GetRetentionList retrieves the list of log retentions
+
+Retrieve the list of log retentions
 */
 func (a *Client) GetRetentionList(params *GetRetentionListParams) (*GetRetentionListOK, error) {
 	// TODO: Validate the params before sending
@@ -8588,6 +9922,8 @@ func (a *Client) GetRetentionList(params *GetRetentionListParams) (*GetRetention
 
 /*
 GetRetentionListJSON retrieves the list of log retentions raw response
+
+Retrieve the list of log retentions
 */
 func (a *Client) GetRetentionListJSON(params *GetRetentionListJSONParams) (*GetRetentionListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8616,7 +9952,9 @@ func (a *Client) GetRetentionListJSON(params *GetRetentionListJSONParams) (*GetR
 }
 
 /*
-GetRoleByID gets role by id
+GetRoleByID gets role by ID
+
+Retrieve details of a specific role by its ID
 */
 func (a *Client) GetRoleByID(params *GetRoleByIDParams) (*GetRoleByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -8645,7 +9983,9 @@ func (a *Client) GetRoleByID(params *GetRoleByIDParams) (*GetRoleByIDOK, error) 
 }
 
 /*
-GetRoleByIDJSON gets role by id raw response
+GetRoleByIDJSON gets role by ID raw response
+
+Retrieve details of a specific role by its ID
 */
 func (a *Client) GetRoleByIDJSON(params *GetRoleByIDJSONParams) (*GetRoleByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8675,6 +10015,8 @@ func (a *Client) GetRoleByIDJSON(params *GetRoleByIDJSONParams) (*GetRoleByIDJSO
 
 /*
 GetRoleList gets role list
+
+Retrieve a paginated list of roles
 */
 func (a *Client) GetRoleList(params *GetRoleListParams) (*GetRoleListOK, error) {
 	// TODO: Validate the params before sending
@@ -8704,6 +10046,8 @@ func (a *Client) GetRoleList(params *GetRoleListParams) (*GetRoleListOK, error) 
 
 /*
 GetRoleListJSON gets role list raw response
+
+Retrieve a paginated list of roles
 */
 func (a *Client) GetRoleListJSON(params *GetRoleListJSONParams) (*GetRoleListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8733,6 +10077,8 @@ func (a *Client) GetRoleListJSON(params *GetRoleListJSONParams) (*GetRoleListJSO
 
 /*
 GetSDTHistoryByDeviceDataSourceID gets SDT history for the device data source
+
+Retrieve the SDT (Service Disruption Time) history for a specific device dataSource
 */
 func (a *Client) GetSDTHistoryByDeviceDataSourceID(params *GetSDTHistoryByDeviceDataSourceIDParams) (*GetSDTHistoryByDeviceDataSourceIDOK, error) {
 	// TODO: Validate the params before sending
@@ -8762,6 +10108,8 @@ func (a *Client) GetSDTHistoryByDeviceDataSourceID(params *GetSDTHistoryByDevice
 
 /*
 GetSDTHistoryByDeviceDataSourceIDJSON gets SDT history for the device data source raw response
+
+Retrieve the SDT (Service Disruption Time) history for a specific device dataSource
 */
 func (a *Client) GetSDTHistoryByDeviceDataSourceIDJSON(params *GetSDTHistoryByDeviceDataSourceIDJSONParams) (*GetSDTHistoryByDeviceDataSourceIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8791,6 +10139,8 @@ func (a *Client) GetSDTHistoryByDeviceDataSourceIDJSON(params *GetSDTHistoryByDe
 
 /*
 GetSDTHistoryByDeviceGroupID gets SDT history for the group
+
+get SDT history for the group
 */
 func (a *Client) GetSDTHistoryByDeviceGroupID(params *GetSDTHistoryByDeviceGroupIDParams) (*GetSDTHistoryByDeviceGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -8820,6 +10170,8 @@ func (a *Client) GetSDTHistoryByDeviceGroupID(params *GetSDTHistoryByDeviceGroup
 
 /*
 GetSDTHistoryByDeviceGroupIDJSON gets SDT history for the group raw response
+
+get SDT history for the group
 */
 func (a *Client) GetSDTHistoryByDeviceGroupIDJSON(params *GetSDTHistoryByDeviceGroupIDJSONParams) (*GetSDTHistoryByDeviceGroupIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8849,6 +10201,8 @@ func (a *Client) GetSDTHistoryByDeviceGroupIDJSON(params *GetSDTHistoryByDeviceG
 
 /*
 GetSDTHistoryByDeviceID gets SDT history for the device
+
+get SDT history for the device
 */
 func (a *Client) GetSDTHistoryByDeviceID(params *GetSDTHistoryByDeviceIDParams) (*GetSDTHistoryByDeviceIDOK, error) {
 	// TODO: Validate the params before sending
@@ -8878,6 +10232,8 @@ func (a *Client) GetSDTHistoryByDeviceID(params *GetSDTHistoryByDeviceIDParams) 
 
 /*
 GetSDTHistoryByDeviceIDJSON gets SDT history for the device raw response
+
+get SDT history for the device
 */
 func (a *Client) GetSDTHistoryByDeviceIDJSON(params *GetSDTHistoryByDeviceIDJSONParams) (*GetSDTHistoryByDeviceIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8907,6 +10263,8 @@ func (a *Client) GetSDTHistoryByDeviceIDJSON(params *GetSDTHistoryByDeviceIDJSON
 
 /*
 GetSDTHistoryByWebsiteGroupID gets SDT history for the website group response may contain extra fields depending upon the type of SDT
+
+get SDT history for the website group (Response may contain extra fields depending upon the type of SDT)
 */
 func (a *Client) GetSDTHistoryByWebsiteGroupID(params *GetSDTHistoryByWebsiteGroupIDParams) (*GetSDTHistoryByWebsiteGroupIDOK, error) {
 	// TODO: Validate the params before sending
@@ -8936,6 +10294,8 @@ func (a *Client) GetSDTHistoryByWebsiteGroupID(params *GetSDTHistoryByWebsiteGro
 
 /*
 GetSDTHistoryByWebsiteGroupIDJSON gets SDT history for the website group response may contain extra fields depending upon the type of SDT raw response
+
+get SDT history for the website group (Response may contain extra fields depending upon the type of SDT)
 */
 func (a *Client) GetSDTHistoryByWebsiteGroupIDJSON(params *GetSDTHistoryByWebsiteGroupIDJSONParams) (*GetSDTHistoryByWebsiteGroupIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -8965,6 +10325,8 @@ func (a *Client) GetSDTHistoryByWebsiteGroupIDJSON(params *GetSDTHistoryByWebsit
 
 /*
 GetSDTHistoryByWebsiteID gets SDT history for the website response may contain extra fields depending upon the type of SDT
+
+get SDT history for the website (Response may contain extra fields depending upon the type of SDT)
 */
 func (a *Client) GetSDTHistoryByWebsiteID(params *GetSDTHistoryByWebsiteIDParams) (*GetSDTHistoryByWebsiteIDOK, error) {
 	// TODO: Validate the params before sending
@@ -8994,6 +10356,8 @@ func (a *Client) GetSDTHistoryByWebsiteID(params *GetSDTHistoryByWebsiteIDParams
 
 /*
 GetSDTHistoryByWebsiteIDJSON gets SDT history for the website response may contain extra fields depending upon the type of SDT raw response
+
+get SDT history for the website (Response may contain extra fields depending upon the type of SDT)
 */
 func (a *Client) GetSDTHistoryByWebsiteIDJSON(params *GetSDTHistoryByWebsiteIDJSONParams) (*GetSDTHistoryByWebsiteIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9023,6 +10387,8 @@ func (a *Client) GetSDTHistoryByWebsiteIDJSON(params *GetSDTHistoryByWebsiteIDJS
 
 /*
 GetSDTList gets SDT list
+
+get SDT list
 */
 func (a *Client) GetSDTList(params *GetSDTListParams) (*GetSDTListOK, error) {
 	// TODO: Validate the params before sending
@@ -9052,6 +10418,8 @@ func (a *Client) GetSDTList(params *GetSDTListParams) (*GetSDTListOK, error) {
 
 /*
 GetSDTListJSON gets SDT list raw response
+
+get SDT list
 */
 func (a *Client) GetSDTListJSON(params *GetSDTListJSONParams) (*GetSDTListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9081,6 +10449,8 @@ func (a *Client) GetSDTListJSON(params *GetSDTListJSONParams) (*GetSDTListJSONOK
 
 /*
 GetSDTByID gets SDT by id response may contain extra fields depending upon the type of SDT of given id
+
+get SDT by id (Response may contain extra fields depending upon the type of SDT of given id)
 */
 func (a *Client) GetSDTByID(params *GetSDTByIDParams) (*GetSDTByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -9110,6 +10480,8 @@ func (a *Client) GetSDTByID(params *GetSDTByIDParams) (*GetSDTByIDOK, error) {
 
 /*
 GetSDTByIDJSON gets SDT by id response may contain extra fields depending upon the type of SDT of given id raw response
+
+get SDT by id (Response may contain extra fields depending upon the type of SDT of given id)
 */
 func (a *Client) GetSDTByIDJSON(params *GetSDTByIDJSONParams) (*GetSDTByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9139,6 +10511,8 @@ func (a *Client) GetSDTByIDJSON(params *GetSDTByIDJSONParams) (*GetSDTByIDJSONOK
 
 /*
 GetSiteMonitorCheckPointList gets website checkpoint list
+
+Retrieves the list of website checkpoints
 */
 func (a *Client) GetSiteMonitorCheckPointList(params *GetSiteMonitorCheckPointListParams) (*GetSiteMonitorCheckPointListOK, error) {
 	// TODO: Validate the params before sending
@@ -9168,6 +10542,8 @@ func (a *Client) GetSiteMonitorCheckPointList(params *GetSiteMonitorCheckPointLi
 
 /*
 GetSiteMonitorCheckPointListJSON gets website checkpoint list raw response
+
+Retrieves the list of website checkpoints
 */
 func (a *Client) GetSiteMonitorCheckPointListJSON(params *GetSiteMonitorCheckPointListJSONParams) (*GetSiteMonitorCheckPointListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9197,6 +10573,8 @@ func (a *Client) GetSiteMonitorCheckPointListJSON(params *GetSiteMonitorCheckPoi
 
 /*
 GetTopTalkersGraph gets top talkers graph
+
+get top talkers graph
 */
 func (a *Client) GetTopTalkersGraph(params *GetTopTalkersGraphParams) (*GetTopTalkersGraphOK, error) {
 	// TODO: Validate the params before sending
@@ -9226,6 +10604,8 @@ func (a *Client) GetTopTalkersGraph(params *GetTopTalkersGraphParams) (*GetTopTa
 
 /*
 GetTopTalkersGraphJSON gets top talkers graph raw response
+
+get top talkers graph
 */
 func (a *Client) GetTopTalkersGraphJSON(params *GetTopTalkersGraphJSONParams) (*GetTopTalkersGraphJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9255,6 +10635,8 @@ func (a *Client) GetTopTalkersGraphJSON(params *GetTopTalkersGraphJSONParams) (*
 
 /*
 GetTopologySourceByID gets topology source by id
+
+Get TopologySource by id
 */
 func (a *Client) GetTopologySourceByID(params *GetTopologySourceByIDParams) (*GetTopologySourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -9284,6 +10666,8 @@ func (a *Client) GetTopologySourceByID(params *GetTopologySourceByIDParams) (*Ge
 
 /*
 GetTopologySourceByIDJSON gets topology source by id raw response
+
+Get TopologySource by id
 */
 func (a *Client) GetTopologySourceByIDJSON(params *GetTopologySourceByIDJSONParams) (*GetTopologySourceByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9313,6 +10697,8 @@ func (a *Client) GetTopologySourceByIDJSON(params *GetTopologySourceByIDJSONPara
 
 /*
 GetTopologySourceList gets topology source list
+
+Get TopologySource List
 */
 func (a *Client) GetTopologySourceList(params *GetTopologySourceListParams) (*GetTopologySourceListOK, error) {
 	// TODO: Validate the params before sending
@@ -9342,6 +10728,8 @@ func (a *Client) GetTopologySourceList(params *GetTopologySourceListParams) (*Ge
 
 /*
 GetTopologySourceListJSON gets topology source list raw response
+
+Get TopologySource List
 */
 func (a *Client) GetTopologySourceListJSON(params *GetTopologySourceListJSONParams) (*GetTopologySourceListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9371,6 +10759,8 @@ func (a *Client) GetTopologySourceListJSON(params *GetTopologySourceListJSONPara
 
 /*
 GetUnmonitoredDeviceList gets unmonitored device list
+
+Retrieve a paginated list of unmonitored devices
 */
 func (a *Client) GetUnmonitoredDeviceList(params *GetUnmonitoredDeviceListParams) (*GetUnmonitoredDeviceListOK, error) {
 	// TODO: Validate the params before sending
@@ -9400,6 +10790,8 @@ func (a *Client) GetUnmonitoredDeviceList(params *GetUnmonitoredDeviceListParams
 
 /*
 GetUnmonitoredDeviceListJSON gets unmonitored device list raw response
+
+Retrieve a paginated list of unmonitored devices
 */
 func (a *Client) GetUnmonitoredDeviceListJSON(params *GetUnmonitoredDeviceListJSONParams) (*GetUnmonitoredDeviceListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9429,6 +10821,8 @@ func (a *Client) GetUnmonitoredDeviceListJSON(params *GetUnmonitoredDeviceListJS
 
 /*
 GetUpdateReasonListByConfigSourceID gets update history for a config source
+
+Retrieve the list of update reasons/history for a specific configSource
 */
 func (a *Client) GetUpdateReasonListByConfigSourceID(params *GetUpdateReasonListByConfigSourceIDParams) (*GetUpdateReasonListByConfigSourceIDOK, error) {
 	// TODO: Validate the params before sending
@@ -9458,6 +10852,8 @@ func (a *Client) GetUpdateReasonListByConfigSourceID(params *GetUpdateReasonList
 
 /*
 GetUpdateReasonListByConfigSourceIDJSON gets update history for a config source raw response
+
+Retrieve the list of update reasons/history for a specific configSource
 */
 func (a *Client) GetUpdateReasonListByConfigSourceIDJSON(params *GetUpdateReasonListByConfigSourceIDJSONParams) (*GetUpdateReasonListByConfigSourceIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9487,6 +10883,8 @@ func (a *Client) GetUpdateReasonListByConfigSourceIDJSON(params *GetUpdateReason
 
 /*
 GetUpdateReasonListByDataSourceID gets update history for a datasource
+
+Retrieves the update history for a specific datasource
 */
 func (a *Client) GetUpdateReasonListByDataSourceID(params *GetUpdateReasonListByDataSourceIDParams) (*GetUpdateReasonListByDataSourceIDOK, error) {
 	// TODO: Validate the params before sending
@@ -9516,6 +10914,8 @@ func (a *Client) GetUpdateReasonListByDataSourceID(params *GetUpdateReasonListBy
 
 /*
 GetUpdateReasonListByDataSourceIDJSON gets update history for a datasource raw response
+
+Retrieves the update history for a specific datasource
 */
 func (a *Client) GetUpdateReasonListByDataSourceIDJSON(params *GetUpdateReasonListByDataSourceIDJSONParams) (*GetUpdateReasonListByDataSourceIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9545,6 +10945,8 @@ func (a *Client) GetUpdateReasonListByDataSourceIDJSON(params *GetUpdateReasonLi
 
 /*
 GetV4Metadata gets metadata
+
+get metadata
 */
 func (a *Client) GetV4Metadata(params *GetV4MetadataParams) (*GetV4MetadataOK, error) {
 	// TODO: Validate the params before sending
@@ -9574,6 +10976,8 @@ func (a *Client) GetV4Metadata(params *GetV4MetadataParams) (*GetV4MetadataOK, e
 
 /*
 GetV4MetadataJSON gets metadata raw response
+
+get metadata
 */
 func (a *Client) GetV4MetadataJSON(params *GetV4MetadataJSONParams) (*GetV4MetadataJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9603,6 +11007,8 @@ func (a *Client) GetV4MetadataJSON(params *GetV4MetadataJSONParams) (*GetV4Metad
 
 /*
 GetWebsiteAlertListByWebsiteID gets alerts for a website
+
+get alerts for a website
 */
 func (a *Client) GetWebsiteAlertListByWebsiteID(params *GetWebsiteAlertListByWebsiteIDParams) (*GetWebsiteAlertListByWebsiteIDOK, error) {
 	// TODO: Validate the params before sending
@@ -9632,6 +11038,8 @@ func (a *Client) GetWebsiteAlertListByWebsiteID(params *GetWebsiteAlertListByWeb
 
 /*
 GetWebsiteAlertListByWebsiteIDJSON gets alerts for a website raw response
+
+get alerts for a website
 */
 func (a *Client) GetWebsiteAlertListByWebsiteIDJSON(params *GetWebsiteAlertListByWebsiteIDJSONParams) (*GetWebsiteAlertListByWebsiteIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9661,6 +11069,8 @@ func (a *Client) GetWebsiteAlertListByWebsiteIDJSON(params *GetWebsiteAlertListB
 
 /*
 GetWebsiteByID gets website by id
+
+get website by id
 */
 func (a *Client) GetWebsiteByID(params *GetWebsiteByIDParams) (*GetWebsiteByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -9690,6 +11100,8 @@ func (a *Client) GetWebsiteByID(params *GetWebsiteByIDParams) (*GetWebsiteByIDOK
 
 /*
 GetWebsiteByIDJSON gets website by id raw response
+
+get website by id
 */
 func (a *Client) GetWebsiteByIDJSON(params *GetWebsiteByIDJSONParams) (*GetWebsiteByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9719,6 +11131,8 @@ func (a *Client) GetWebsiteByIDJSON(params *GetWebsiteByIDJSONParams) (*GetWebsi
 
 /*
 GetWebsiteCheckpointDataByID gets data for a website checkpoint
+
+get data for a website checkpoint
 */
 func (a *Client) GetWebsiteCheckpointDataByID(params *GetWebsiteCheckpointDataByIDParams) (*GetWebsiteCheckpointDataByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -9748,6 +11162,8 @@ func (a *Client) GetWebsiteCheckpointDataByID(params *GetWebsiteCheckpointDataBy
 
 /*
 GetWebsiteCheckpointDataByIDJSON gets data for a website checkpoint raw response
+
+get data for a website checkpoint
 */
 func (a *Client) GetWebsiteCheckpointDataByIDJSON(params *GetWebsiteCheckpointDataByIDJSONParams) (*GetWebsiteCheckpointDataByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9777,6 +11193,8 @@ func (a *Client) GetWebsiteCheckpointDataByIDJSON(params *GetWebsiteCheckpointDa
 
 /*
 GetWebsiteDataByGraphName gets website data by graph name
+
+get website data by graph name
 */
 func (a *Client) GetWebsiteDataByGraphName(params *GetWebsiteDataByGraphNameParams) (*GetWebsiteDataByGraphNameOK, error) {
 	// TODO: Validate the params before sending
@@ -9806,6 +11224,8 @@ func (a *Client) GetWebsiteDataByGraphName(params *GetWebsiteDataByGraphNamePara
 
 /*
 GetWebsiteDataByGraphNameJSON gets website data by graph name raw response
+
+get website data by graph name
 */
 func (a *Client) GetWebsiteDataByGraphNameJSON(params *GetWebsiteDataByGraphNameJSONParams) (*GetWebsiteDataByGraphNameJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9835,6 +11255,8 @@ func (a *Client) GetWebsiteDataByGraphNameJSON(params *GetWebsiteDataByGraphName
 
 /*
 GetWebsiteGraphData gets website graph data
+
+Retrieves the graph data for a website
 */
 func (a *Client) GetWebsiteGraphData(params *GetWebsiteGraphDataParams) (*GetWebsiteGraphDataOK, error) {
 	// TODO: Validate the params before sending
@@ -9864,6 +11286,8 @@ func (a *Client) GetWebsiteGraphData(params *GetWebsiteGraphDataParams) (*GetWeb
 
 /*
 GetWebsiteGraphDataJSON gets website graph data raw response
+
+Retrieves the graph data for a website
 */
 func (a *Client) GetWebsiteGraphDataJSON(params *GetWebsiteGraphDataJSONParams) (*GetWebsiteGraphDataJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9893,6 +11317,8 @@ func (a *Client) GetWebsiteGraphDataJSON(params *GetWebsiteGraphDataJSONParams) 
 
 /*
 GetWebsiteGroupByID gets website group
+
+get website group
 */
 func (a *Client) GetWebsiteGroupByID(params *GetWebsiteGroupByIDParams) (*GetWebsiteGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -9922,6 +11348,8 @@ func (a *Client) GetWebsiteGroupByID(params *GetWebsiteGroupByIDParams) (*GetWeb
 
 /*
 GetWebsiteGroupByIDJSON gets website group raw response
+
+get website group
 */
 func (a *Client) GetWebsiteGroupByIDJSON(params *GetWebsiteGroupByIDJSONParams) (*GetWebsiteGroupByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -9951,6 +11379,8 @@ func (a *Client) GetWebsiteGroupByIDJSON(params *GetWebsiteGroupByIDJSONParams) 
 
 /*
 GetWebsiteGroupList gets website group list
+
+get website group list
 */
 func (a *Client) GetWebsiteGroupList(params *GetWebsiteGroupListParams) (*GetWebsiteGroupListOK, error) {
 	// TODO: Validate the params before sending
@@ -9980,6 +11410,8 @@ func (a *Client) GetWebsiteGroupList(params *GetWebsiteGroupListParams) (*GetWeb
 
 /*
 GetWebsiteGroupListJSON gets website group list raw response
+
+get website group list
 */
 func (a *Client) GetWebsiteGroupListJSON(params *GetWebsiteGroupListJSONParams) (*GetWebsiteGroupListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -10009,6 +11441,8 @@ func (a *Client) GetWebsiteGroupListJSON(params *GetWebsiteGroupListJSONParams) 
 
 /*
 GetWebsiteList gets website list
+
+get website list
 */
 func (a *Client) GetWebsiteList(params *GetWebsiteListParams) (*GetWebsiteListOK, error) {
 	// TODO: Validate the params before sending
@@ -10038,6 +11472,8 @@ func (a *Client) GetWebsiteList(params *GetWebsiteListParams) (*GetWebsiteListOK
 
 /*
 GetWebsiteListJSON gets website list raw response
+
+get website list
 */
 func (a *Client) GetWebsiteListJSON(params *GetWebsiteListJSONParams) (*GetWebsiteListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -10067,6 +11503,8 @@ func (a *Client) GetWebsiteListJSON(params *GetWebsiteListJSONParams) (*GetWebsi
 
 /*
 GetWebsitePropertyListByWebsiteID gets a list of properties for a website
+
+get a list of properties for a website
 */
 func (a *Client) GetWebsitePropertyListByWebsiteID(params *GetWebsitePropertyListByWebsiteIDParams) (*GetWebsitePropertyListByWebsiteIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10096,6 +11534,8 @@ func (a *Client) GetWebsitePropertyListByWebsiteID(params *GetWebsitePropertyLis
 
 /*
 GetWebsitePropertyListByWebsiteIDJSON gets a list of properties for a website raw response
+
+get a list of properties for a website
 */
 func (a *Client) GetWebsitePropertyListByWebsiteIDJSON(params *GetWebsitePropertyListByWebsiteIDJSONParams) (*GetWebsitePropertyListByWebsiteIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -10125,6 +11565,8 @@ func (a *Client) GetWebsitePropertyListByWebsiteIDJSON(params *GetWebsitePropert
 
 /*
 GetWebsiteSDTListByWebsiteID gets a list of s d ts for a website
+
+get a list of SDTs for a website
 */
 func (a *Client) GetWebsiteSDTListByWebsiteID(params *GetWebsiteSDTListByWebsiteIDParams) (*GetWebsiteSDTListByWebsiteIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10154,6 +11596,8 @@ func (a *Client) GetWebsiteSDTListByWebsiteID(params *GetWebsiteSDTListByWebsite
 
 /*
 GetWebsiteSDTListByWebsiteIDJSON gets a list of s d ts for a website raw response
+
+get a list of SDTs for a website
 */
 func (a *Client) GetWebsiteSDTListByWebsiteIDJSON(params *GetWebsiteSDTListByWebsiteIDJSONParams) (*GetWebsiteSDTListByWebsiteIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -10182,7 +11626,9 @@ func (a *Client) GetWebsiteSDTListByWebsiteIDJSON(params *GetWebsiteSDTListByWeb
 }
 
 /*
-GetWidgetByID gets widget by id based upon widget type the response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
+GetWidgetByID gets widget by ID
+
+Retrieves a widget by its ID. Based on widget type, the response may contain additional attributes. Please refer to the models corresponding to specific widget types at the bottom of this page for detailed attributes.
 */
 func (a *Client) GetWidgetByID(params *GetWidgetByIDParams) (*GetWidgetByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10211,7 +11657,9 @@ func (a *Client) GetWidgetByID(params *GetWidgetByIDParams) (*GetWidgetByIDOK, e
 }
 
 /*
-GetWidgetByIDJSON gets widget by id based upon widget type the response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes raw response
+GetWidgetByIDJSON gets widget by ID raw response
+
+Retrieves a widget by its ID. Based on widget type, the response may contain additional attributes. Please refer to the models corresponding to specific widget types at the bottom of this page for detailed attributes.
 */
 func (a *Client) GetWidgetByIDJSON(params *GetWidgetByIDJSONParams) (*GetWidgetByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -10241,6 +11689,8 @@ func (a *Client) GetWidgetByIDJSON(params *GetWidgetByIDJSONParams) (*GetWidgetB
 
 /*
 GetWidgetDataByID gets widget data based upon widget type the response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
+
+get widget data (Based upon widget type the response may contain additional attributes. Please refer models corresponding to specific widget type at the bottom of this page to check the attributes)
 */
 func (a *Client) GetWidgetDataByID(params *GetWidgetDataByIDParams) (*GetWidgetDataByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10270,6 +11720,8 @@ func (a *Client) GetWidgetDataByID(params *GetWidgetDataByIDParams) (*GetWidgetD
 
 /*
 GetWidgetDataByIDJSON gets widget data based upon widget type the response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes raw response
+
+get widget data (Based upon widget type the response may contain additional attributes. Please refer models corresponding to specific widget type at the bottom of this page to check the attributes)
 */
 func (a *Client) GetWidgetDataByIDJSON(params *GetWidgetDataByIDJSONParams) (*GetWidgetDataByIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -10298,7 +11750,9 @@ func (a *Client) GetWidgetDataByIDJSON(params *GetWidgetDataByIDJSONParams) (*Ge
 }
 
 /*
-GetWidgetList gets widget list based upon widget type the response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
+GetWidgetList gets widget list
+
+Retrieves a list of widgets. Based on widget type, the response may contain additional attributes. Please refer to the models corresponding to specific widget types at the bottom of this page for detailed attributes.
 */
 func (a *Client) GetWidgetList(params *GetWidgetListParams) (*GetWidgetListOK, error) {
 	// TODO: Validate the params before sending
@@ -10328,6 +11782,8 @@ func (a *Client) GetWidgetList(params *GetWidgetListParams) (*GetWidgetListOK, e
 
 /*
 GetWidgetListByDashboardID gets widget list by dashboard Id
+
+get widget list by DashboardId
 */
 func (a *Client) GetWidgetListByDashboardID(params *GetWidgetListByDashboardIDParams) (*GetWidgetListByDashboardIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10357,6 +11813,8 @@ func (a *Client) GetWidgetListByDashboardID(params *GetWidgetListByDashboardIDPa
 
 /*
 GetWidgetListByDashboardIDJSON gets widget list by dashboard Id raw response
+
+get widget list by DashboardId
 */
 func (a *Client) GetWidgetListByDashboardIDJSON(params *GetWidgetListByDashboardIDJSONParams) (*GetWidgetListByDashboardIDJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -10385,7 +11843,9 @@ func (a *Client) GetWidgetListByDashboardIDJSON(params *GetWidgetListByDashboard
 }
 
 /*
-GetWidgetListJSON gets widget list based upon widget type the response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes raw response
+GetWidgetListJSON gets widget list raw response
+
+Retrieves a list of widgets. Based on widget type, the response may contain additional attributes. Please refer to the models corresponding to specific widget types at the bottom of this page for detailed attributes.
 */
 func (a *Client) GetWidgetListJSON(params *GetWidgetListJSONParams) (*GetWidgetListJSONOK, error) {
 	// TODO: Validate the params before sending
@@ -10414,7 +11874,40 @@ func (a *Client) GetWidgetListJSON(params *GetWidgetListJSONParams) (*GetWidgetL
 }
 
 /*
-ImportBatchJob imports batch job via xml
+ImportAppliesToFunctionJSON imports applies to function via json
+
+Import a AppliesTo function using json data
+*/
+func (a *Client) ImportAppliesToFunctionJSON(params *ImportAppliesToFunctionJSONParams) (*ImportAppliesToFunctionJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportAppliesToFunctionJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importAppliesToFunctionJson",
+		Method:             "POST",
+		PathPattern:        "/setting/functions/importjson",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportAppliesToFunctionJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportAppliesToFunctionJSONOK), nil
+
+}
+
+/*
+ImportBatchJob imports batch job via XML
+
+Import a batch job using XML data
 */
 func (a *Client) ImportBatchJob(params *ImportBatchJobParams) (*ImportBatchJobOK, error) {
 	// TODO: Validate the params before sending
@@ -10443,7 +11936,9 @@ func (a *Client) ImportBatchJob(params *ImportBatchJobParams) (*ImportBatchJobOK
 }
 
 /*
-ImportConfigSource imports config source via xml
+ImportConfigSource imports config source via XML
+
+Import configuration source data from an XML file
 */
 func (a *Client) ImportConfigSource(params *ImportConfigSourceParams) (*ImportConfigSourceOK, error) {
 	// TODO: Validate the params before sending
@@ -10472,7 +11967,40 @@ func (a *Client) ImportConfigSource(params *ImportConfigSourceParams) (*ImportCo
 }
 
 /*
-ImportDataSource imports datasource via xml
+ImportConfigSourceJSON imports config source via json
+
+Import a ConfigSource using json data
+*/
+func (a *Client) ImportConfigSourceJSON(params *ImportConfigSourceJSONParams) (*ImportConfigSourceJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportConfigSourceJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importConfigSourceJson",
+		Method:             "POST",
+		PathPattern:        "/setting/configsources/importjson",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportConfigSourceJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportConfigSourceJSONOK), nil
+
+}
+
+/*
+ImportDataSource imports datasource via XML
+
+Imports a datasource from an XML file
 */
 func (a *Client) ImportDataSource(params *ImportDataSourceParams) (*ImportDataSourceOK, error) {
 	// TODO: Validate the params before sending
@@ -10501,7 +12029,71 @@ func (a *Client) ImportDataSource(params *ImportDataSourceParams) (*ImportDataSo
 }
 
 /*
-ImportEventSource imports eventsource via xml
+ImportDataSourceJSON imports data source via json
+
+Import a DataSource using json data
+*/
+func (a *Client) ImportDataSourceJSON(params *ImportDataSourceJSONParams) (*ImportDataSourceJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportDataSourceJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importDataSourceJson",
+		Method:             "POST",
+		PathPattern:        "/setting/datasources/importjson",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportDataSourceJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportDataSourceJSONOK), nil
+
+}
+
+/*
+ImportDiagnosticSourceJSON imports diagnostic source via json
+
+Import a DiagnosticSource using json data
+*/
+func (a *Client) ImportDiagnosticSourceJSON(params *ImportDiagnosticSourceJSONParams) (*ImportDiagnosticSourceJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportDiagnosticSourceJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importDiagnosticSourceJson",
+		Method:             "POST",
+		PathPattern:        "/setting/diagnosticsources/importjson",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportDiagnosticSourceJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportDiagnosticSourceJSONOK), nil
+
+}
+
+/*
+ImportEventSource imports event source via XML
+
+Imports an event source from an XML file
 */
 func (a *Client) ImportEventSource(params *ImportEventSourceParams) (*ImportEventSourceOK, error) {
 	// TODO: Validate the params before sending
@@ -10530,7 +12122,195 @@ func (a *Client) ImportEventSource(params *ImportEventSourceParams) (*ImportEven
 }
 
 /*
+ImportEventSourceJSON imports event source via json
+
+Import a EventSource using json data
+*/
+func (a *Client) ImportEventSourceJSON(params *ImportEventSourceJSONParams) (*ImportEventSourceJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportEventSourceJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importEventSourceJson",
+		Method:             "POST",
+		PathPattern:        "/setting/eventsources/importjson",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportEventSourceJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportEventSourceJSONOK), nil
+
+}
+
+/*
+ImportJobMonitorJSON imports batch job monitor via json
+
+Import a JobMonitor using json data
+*/
+func (a *Client) ImportJobMonitorJSON(params *ImportJobMonitorJSONParams) (*ImportJobMonitorJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportJobMonitorJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importJobMonitorJson",
+		Method:             "POST",
+		PathPattern:        "/setting/batchjobs/importjson",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportJobMonitorJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportJobMonitorJSONOK), nil
+
+}
+
+/*
+ImportLogSourceJSON imports log source via json
+
+Import a LogSource using json data
+*/
+func (a *Client) ImportLogSourceJSON(params *ImportLogSourceJSONParams) (*ImportLogSourceJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportLogSourceJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importLogSourceJson",
+		Method:             "POST",
+		PathPattern:        "/setting/logsources/importjson",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportLogSourceJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportLogSourceJSONOK), nil
+
+}
+
+/*
+ImportOidJSON imports o ID via json
+
+Import a OID using json data
+*/
+func (a *Client) ImportOidJSON(params *ImportOidJSONParams) (*ImportOidJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportOidJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importOidJson",
+		Method:             "POST",
+		PathPattern:        "/setting/oids/importjson",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportOidJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportOidJSONOK), nil
+
+}
+
+/*
+ImportPropertySourceJSON imports property source via json
+
+Import a PropertySource using json data
+*/
+func (a *Client) ImportPropertySourceJSON(params *ImportPropertySourceJSONParams) (*ImportPropertySourceJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportPropertySourceJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importPropertySourceJson",
+		Method:             "POST",
+		PathPattern:        "/setting/propertyrules/importjson",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportPropertySourceJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportPropertySourceJSONOK), nil
+
+}
+
+/*
+ImportTopologySourceJSON imports topology source via json
+
+Import a TopologySource using json data
+*/
+func (a *Client) ImportTopologySourceJSON(params *ImportTopologySourceJSONParams) (*ImportTopologySourceJSONOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewImportTopologySourceJSONParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "importTopologySourceJson",
+		Method:             "POST",
+		PathPattern:        "/setting/topologysources/importjson",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"multipart/form-data"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &ImportTopologySourceJSONReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*ImportTopologySourceJSONOK), nil
+
+}
+
+/*
 MapUnMapModuleToAccessGroup creates a mapping of access group and module
+
+Map a module to an access group
 */
 func (a *Client) MapUnMapModuleToAccessGroup(params *MapUnMapModuleToAccessGroupParams) (*MapUnMapModuleToAccessGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -10560,6 +12340,8 @@ func (a *Client) MapUnMapModuleToAccessGroup(params *MapUnMapModuleToAccessGroup
 
 /*
 PartitionAction performs an action on a specified log partition
+
+Perform an action on a specified log partition
 */
 func (a *Client) PartitionAction(params *PartitionActionParams) (*PartitionActionOK, error) {
 	// TODO: Validate the params before sending
@@ -10589,6 +12371,8 @@ func (a *Client) PartitionAction(params *PartitionActionParams) (*PartitionActio
 
 /*
 PatchAccessGroup updates access group
+
+Update access group
 */
 func (a *Client) PatchAccessGroup(params *PatchAccessGroupParams) (*PatchAccessGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -10618,6 +12402,8 @@ func (a *Client) PatchAccessGroup(params *PatchAccessGroupParams) (*PatchAccessG
 
 /*
 PatchAdminByID updates user
+
+update user
 */
 func (a *Client) PatchAdminByID(params *PatchAdminByIDParams) (*PatchAdminByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10647,6 +12433,8 @@ func (a *Client) PatchAdminByID(params *PatchAdminByIDParams) (*PatchAdminByIDOK
 
 /*
 PatchAlertRuleByID updates alert rule
+
+update alert rule
 */
 func (a *Client) PatchAlertRuleByID(params *PatchAlertRuleByIDParams) (*PatchAlertRuleByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10675,7 +12463,9 @@ func (a *Client) PatchAlertRuleByID(params *PatchAlertRuleByIDParams) (*PatchAle
 }
 
 /*
-PatchAPITokenByAdminID updates api tokens for a user
+PatchAPITokenByAdminID updates API tokens for a user
+
+Update the API tokens for a specific user
 */
 func (a *Client) PatchAPITokenByAdminID(params *PatchAPITokenByAdminIDParams) (*PatchAPITokenByAdminIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10705,6 +12495,8 @@ func (a *Client) PatchAPITokenByAdminID(params *PatchAPITokenByAdminIDParams) (*
 
 /*
 PatchAppliesToFunction updates applies to function
+
+Update an existing applies to function
 */
 func (a *Client) PatchAppliesToFunction(params *PatchAppliesToFunctionParams) (*PatchAppliesToFunctionOK, error) {
 	// TODO: Validate the params before sending
@@ -10734,6 +12526,8 @@ func (a *Client) PatchAppliesToFunction(params *PatchAppliesToFunctionParams) (*
 
 /*
 PatchCollectorByID updates collector
+
+update collector
 */
 func (a *Client) PatchCollectorByID(params *PatchCollectorByIDParams) (*PatchCollectorByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10763,6 +12557,8 @@ func (a *Client) PatchCollectorByID(params *PatchCollectorByIDParams) (*PatchCol
 
 /*
 PatchCollectorGroupByID updates collector group
+
+Update the details of a specific collector group by its ID
 */
 func (a *Client) PatchCollectorGroupByID(params *PatchCollectorGroupByIDParams) (*PatchCollectorGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10791,7 +12587,9 @@ func (a *Client) PatchCollectorGroupByID(params *PatchCollectorGroupByIDParams) 
 }
 
 /*
-PatchConfigSourceByID updates config source by id
+PatchConfigSourceByID updates config source by ID
+
+Update the config source details based on the provided ID
 */
 func (a *Client) PatchConfigSourceByID(params *PatchConfigSourceByIDParams) (*PatchConfigSourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10883,6 +12681,8 @@ func (a *Client) PatchDashboardGroupByID(params *PatchDashboardGroupByIDParams) 
 
 /*
 PatchDatasourceByID updates datasource
+
+Updates a datasource by its ID
 */
 func (a *Client) PatchDatasourceByID(params *PatchDatasourceByIDParams) (*PatchDatasourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10912,6 +12712,8 @@ func (a *Client) PatchDatasourceByID(params *PatchDatasourceByIDParams) (*PatchD
 
 /*
 PatchDefaultDashboard updates default dashboard
+
+Update the default dashboard settings for a user or group
 */
 func (a *Client) PatchDefaultDashboard(params *PatchDefaultDashboardParams) (*PatchDefaultDashboardOK, error) {
 	// TODO: Validate the params before sending
@@ -10940,7 +12742,9 @@ func (a *Client) PatchDefaultDashboard(params *PatchDefaultDashboardParams) (*Pa
 }
 
 /*
-PatchDevice updates a device
+PatchDevice updates a device request schema may change depending upon the type of uptime device being updated
+
+update a device (Request schema may change depending upon the type of uptime device being updated)
 */
 func (a *Client) PatchDevice(params *PatchDeviceParams) (*PatchDeviceOK, error) {
 	// TODO: Validate the params before sending
@@ -10970,6 +12774,8 @@ func (a *Client) PatchDevice(params *PatchDeviceParams) (*PatchDeviceOK, error) 
 
 /*
 PatchDeviceDatasourceInstanceAlertSettingByID updates device instance alert setting
+
+update device instance alert setting
 */
 func (a *Client) PatchDeviceDatasourceInstanceAlertSettingByID(params *PatchDeviceDatasourceInstanceAlertSettingByIDParams) (*PatchDeviceDatasourceInstanceAlertSettingByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -10999,6 +12805,8 @@ func (a *Client) PatchDeviceDatasourceInstanceAlertSettingByID(params *PatchDevi
 
 /*
 PatchDeviceDatasourceInstanceByID updates device instance
+
+update device instance
 */
 func (a *Client) PatchDeviceDatasourceInstanceByID(params *PatchDeviceDatasourceInstanceByIDParams) (*PatchDeviceDatasourceInstanceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11028,6 +12836,8 @@ func (a *Client) PatchDeviceDatasourceInstanceByID(params *PatchDeviceDatasource
 
 /*
 PatchDeviceDatasourceInstanceGroupByID updates device datasource instance group
+
+Update a specific device datasource instance group by its ID
 */
 func (a *Client) PatchDeviceDatasourceInstanceGroupByID(params *PatchDeviceDatasourceInstanceGroupByIDParams) (*PatchDeviceDatasourceInstanceGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11057,6 +12867,8 @@ func (a *Client) PatchDeviceDatasourceInstanceGroupByID(params *PatchDeviceDatas
 
 /*
 PatchDeviceGroupByID updates device group
+
+update device group
 */
 func (a *Client) PatchDeviceGroupByID(params *PatchDeviceGroupByIDParams) (*PatchDeviceGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11086,6 +12898,8 @@ func (a *Client) PatchDeviceGroupByID(params *PatchDeviceGroupByIDParams) (*Patc
 
 /*
 PatchDeviceGroupClusterAlertConfByID updates cluster alert configuration
+
+Update cluster alert configuration
 */
 func (a *Client) PatchDeviceGroupClusterAlertConfByID(params *PatchDeviceGroupClusterAlertConfByIDParams) (*PatchDeviceGroupClusterAlertConfByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11115,6 +12929,8 @@ func (a *Client) PatchDeviceGroupClusterAlertConfByID(params *PatchDeviceGroupCl
 
 /*
 PatchDeviceGroupDatasourceAlertSetting updates device group datasource alert setting
+
+Update the alert setting for a specific device group datasource
 */
 func (a *Client) PatchDeviceGroupDatasourceAlertSetting(params *PatchDeviceGroupDatasourceAlertSettingParams) (*PatchDeviceGroupDatasourceAlertSettingOK, error) {
 	// TODO: Validate the params before sending
@@ -11144,6 +12960,8 @@ func (a *Client) PatchDeviceGroupDatasourceAlertSetting(params *PatchDeviceGroup
 
 /*
 PatchDeviceGroupDatasourceByID updates device group datasource
+
+update device group datasource
 */
 func (a *Client) PatchDeviceGroupDatasourceByID(params *PatchDeviceGroupDatasourceByIDParams) (*PatchDeviceGroupDatasourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11173,6 +12991,8 @@ func (a *Client) PatchDeviceGroupDatasourceByID(params *PatchDeviceGroupDatasour
 
 /*
 PatchDeviceGroupPropertyByName updates device group property
+
+Update a specific property of a device group
 */
 func (a *Client) PatchDeviceGroupPropertyByName(params *PatchDeviceGroupPropertyByNameParams) (*PatchDeviceGroupPropertyByNameOK, error) {
 	// TODO: Validate the params before sending
@@ -11202,6 +13022,8 @@ func (a *Client) PatchDeviceGroupPropertyByName(params *PatchDeviceGroupProperty
 
 /*
 PatchDevicePropertyByName updates device property
+
+Update a specific property of a device
 */
 func (a *Client) PatchDevicePropertyByName(params *PatchDevicePropertyByNameParams) (*PatchDevicePropertyByNameOK, error) {
 	// TODO: Validate the params before sending
@@ -11230,7 +13052,40 @@ func (a *Client) PatchDevicePropertyByName(params *PatchDevicePropertyByNamePara
 }
 
 /*
+PatchDiagnosticSourceByID updates a diagnostics source
+
+Updates a diagnostics source by its ID
+*/
+func (a *Client) PatchDiagnosticSourceByID(params *PatchDiagnosticSourceByIDParams) (*PatchDiagnosticSourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchDiagnosticSourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchDiagnosticSourceById",
+		Method:             "PATCH",
+		PathPattern:        "/setting/diagnosticsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchDiagnosticSourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchDiagnosticSourceByIDOK), nil
+
+}
+
+/*
 PatchEscalationChainByID updates escalation chain
+
+Update the details of a specific escalation chain by its ID
 */
 func (a *Client) PatchEscalationChainByID(params *PatchEscalationChainByIDParams) (*PatchEscalationChainByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11259,7 +13114,9 @@ func (a *Client) PatchEscalationChainByID(params *PatchEscalationChainByIDParams
 }
 
 /*
-PatchEventSourceByID updates event source by id
+PatchEventSourceByID updates event source by ID
+
+Updates the event source with the provided ID
 */
 func (a *Client) PatchEventSourceByID(params *PatchEventSourceByIDParams) (*PatchEventSourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11289,6 +13146,8 @@ func (a *Client) PatchEventSourceByID(params *PatchEventSourceByIDParams) (*Patc
 
 /*
 PatchJobMonitor updates job monitor
+
+Update an existing JobMonitor by its ID
 */
 func (a *Client) PatchJobMonitor(params *PatchJobMonitorParams) (*PatchJobMonitorOK, error) {
 	// TODO: Validate the params before sending
@@ -11318,6 +13177,8 @@ func (a *Client) PatchJobMonitor(params *PatchJobMonitorParams) (*PatchJobMonito
 
 /*
 PatchLogPartition updates an existing log partition
+
+Update an existing log partition
 */
 func (a *Client) PatchLogPartition(params *PatchLogPartitionParams) (*PatchLogPartitionOK, error) {
 	// TODO: Validate the params before sending
@@ -11347,6 +13208,8 @@ func (a *Client) PatchLogPartition(params *PatchLogPartitionParams) (*PatchLogPa
 
 /*
 PatchLogSource updates log source
+
+Updates an existing log source
 */
 func (a *Client) PatchLogSource(params *PatchLogSourceParams) (*PatchLogSourceOK, error) {
 	// TODO: Validate the params before sending
@@ -11376,6 +13239,8 @@ func (a *Client) PatchLogSource(params *PatchLogSourceParams) (*PatchLogSourceOK
 
 /*
 PatchNetscan updates a netscan
+
+Update an existing netscan
 */
 func (a *Client) PatchNetscan(params *PatchNetscanParams) (*PatchNetscanOK, error) {
 	// TODO: Validate the params before sending
@@ -11404,7 +13269,9 @@ func (a *Client) PatchNetscan(params *PatchNetscanParams) (*PatchNetscanOK, erro
 }
 
 /*
-PatchOID updates a o ID
+PatchOID updates an o ID
+
+Update the details of an existing OID
 */
 func (a *Client) PatchOID(params *PatchOIDParams) (*PatchOIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11434,6 +13301,8 @@ func (a *Client) PatchOID(params *PatchOIDParams) (*PatchOIDOK, error) {
 
 /*
 PatchOpsNoteByID updates opsnote
+
+update opsnote
 */
 func (a *Client) PatchOpsNoteByID(params *PatchOpsNoteByIDParams) (*PatchOpsNoteByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11463,6 +13332,8 @@ func (a *Client) PatchOpsNoteByID(params *PatchOpsNoteByIDParams) (*PatchOpsNote
 
 /*
 PatchPropertyRule updates a property rule
+
+Update a property rule by id
 */
 func (a *Client) PatchPropertyRule(params *PatchPropertyRuleParams) (*PatchPropertyRuleOK, error) {
 	// TODO: Validate the params before sending
@@ -11492,6 +13363,8 @@ func (a *Client) PatchPropertyRule(params *PatchPropertyRuleParams) (*PatchPrope
 
 /*
 PatchRecipientGroupByID updates recipient group
+
+Update a specific recipient group by its ID
 */
 func (a *Client) PatchRecipientGroupByID(params *PatchRecipientGroupByIDParams) (*PatchRecipientGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11520,7 +13393,40 @@ func (a *Client) PatchRecipientGroupByID(params *PatchRecipientGroupByIDParams) 
 }
 
 /*
+PatchRemediationSourceByID updates a remediation source
+
+Updates a remediation source by its ID
+*/
+func (a *Client) PatchRemediationSourceByID(params *PatchRemediationSourceByIDParams) (*PatchRemediationSourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewPatchRemediationSourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "patchRemediationSourceById",
+		Method:             "PATCH",
+		PathPattern:        "/setting/remediationsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &PatchRemediationSourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*PatchRemediationSourceByIDOK), nil
+
+}
+
+/*
 PatchReportByID updates report
+
+Update the details of a specific report by its ID
 */
 func (a *Client) PatchReportByID(params *PatchReportByIDParams) (*PatchReportByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11550,6 +13456,8 @@ func (a *Client) PatchReportByID(params *PatchReportByIDParams) (*PatchReportByI
 
 /*
 PatchReportGroupByID updates report group
+
+Update a specific report group by its ID
 */
 func (a *Client) PatchReportGroupByID(params *PatchReportGroupByIDParams) (*PatchReportGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11579,6 +13487,8 @@ func (a *Client) PatchReportGroupByID(params *PatchReportGroupByIDParams) (*Patc
 
 /*
 PatchRoleByID updates role
+
+Update the details of a specific role by its ID
 */
 func (a *Client) PatchRoleByID(params *PatchRoleByIDParams) (*PatchRoleByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11608,6 +13518,8 @@ func (a *Client) PatchRoleByID(params *PatchRoleByIDParams) (*PatchRoleByIDOK, e
 
 /*
 PatchSDTByID updates SDT response may contain extra fields depending upon the type of SDT being updated
+
+update SDT (Response may contain extra fields depending upon the type of SDT being updated)
 */
 func (a *Client) PatchSDTByID(params *PatchSDTByIDParams) (*PatchSDTByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11637,6 +13549,8 @@ func (a *Client) PatchSDTByID(params *PatchSDTByIDParams) (*PatchSDTByIDOK, erro
 
 /*
 PatchTopologySource updates topology source
+
+Update TopologySource
 */
 func (a *Client) PatchTopologySource(params *PatchTopologySourceParams) (*PatchTopologySourceOK, error) {
 	// TODO: Validate the params before sending
@@ -11665,7 +13579,9 @@ func (a *Client) PatchTopologySource(params *PatchTopologySourceParams) (*PatchT
 }
 
 /*
-PatchWebsiteByID updates website request structure may vary based on the check type ping check pipe web check model use the respective model in s d k
+PatchWebsiteByID updates website
+
+Update website. Request structure may vary based on the check type {PingCheck | WebCheck model}. Use the respective model in SDK.
 */
 func (a *Client) PatchWebsiteByID(params *PatchWebsiteByIDParams) (*PatchWebsiteByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11695,6 +13611,8 @@ func (a *Client) PatchWebsiteByID(params *PatchWebsiteByIDParams) (*PatchWebsite
 
 /*
 PatchWebsiteGroupByID updates website group
+
+update website group
 */
 func (a *Client) PatchWebsiteGroupByID(params *PatchWebsiteGroupByIDParams) (*PatchWebsiteGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11723,7 +13641,9 @@ func (a *Client) PatchWebsiteGroupByID(params *PatchWebsiteGroupByIDParams) (*Pa
 }
 
 /*
-PatchWidgetByID updates widget based upon widget type the request and response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
+PatchWidgetByID updates widget
+
+Updates a widget. Based on widget type, the request and response may contain additional attributes. Please refer to the models corresponding to specific widget types at the bottom of this page for detailed attributes.
 */
 func (a *Client) PatchWidgetByID(params *PatchWidgetByIDParams) (*PatchWidgetByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11753,6 +13673,8 @@ func (a *Client) PatchWidgetByID(params *PatchWidgetByIDParams) (*PatchWidgetByI
 
 /*
 ScheduleAutoDiscoveryByDeviceID schedules active discovery for a device
+
+schedule active discovery for a device
 */
 func (a *Client) ScheduleAutoDiscoveryByDeviceID(params *ScheduleAutoDiscoveryByDeviceIDParams) (*ScheduleAutoDiscoveryByDeviceIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11782,6 +13704,8 @@ func (a *Client) ScheduleAutoDiscoveryByDeviceID(params *ScheduleAutoDiscoveryBy
 
 /*
 TestAWSAccount tests a w s account
+
+Test the connection or status of an AWS account
 */
 func (a *Client) TestAWSAccount(params *TestAWSAccountParams) (*TestAWSAccountOK, error) {
 	// TODO: Validate the params before sending
@@ -11811,6 +13735,8 @@ func (a *Client) TestAWSAccount(params *TestAWSAccountParams) (*TestAWSAccountOK
 
 /*
 TestAzureAccount tests azure account
+
+test Azure account
 */
 func (a *Client) TestAzureAccount(params *TestAzureAccountParams) (*TestAzureAccountOK, error) {
 	// TODO: Validate the params before sending
@@ -11840,6 +13766,8 @@ func (a *Client) TestAzureAccount(params *TestAzureAccountParams) (*TestAzureAcc
 
 /*
 TestGCPAccount tests g c p account
+
+test GCP account
 */
 func (a *Client) TestGCPAccount(params *TestGCPAccountParams) (*TestGCPAccountOK, error) {
 	// TODO: Validate the params before sending
@@ -11869,6 +13797,8 @@ func (a *Client) TestGCPAccount(params *TestGCPAccountParams) (*TestGCPAccountOK
 
 /*
 TestSaaSAccount tests saa s account
+
+Test the connection or status of a SaaS account
 */
 func (a *Client) TestSaaSAccount(params *TestSaaSAccountParams) (*TestSaaSAccountOK, error) {
 	// TODO: Validate the params before sending
@@ -11897,7 +13827,40 @@ func (a *Client) TestSaaSAccount(params *TestSaaSAccountParams) (*TestSaaSAccoun
 }
 
 /*
+TriggerUsageExceeded triggers usage exceeded action for log partitions
+
+Trigger usage exceeded action for log partitions
+*/
+func (a *Client) TriggerUsageExceeded(params *TriggerUsageExceededParams) (*TriggerUsageExceededOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewTriggerUsageExceededParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "triggerUsageExceeded",
+		Method:             "POST",
+		PathPattern:        "/log/partitions/triggerUsageExceeded/{id}/{limit}/{value}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &TriggerUsageExceededReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*TriggerUsageExceededOK), nil
+
+}
+
+/*
 UpdateAccessGroup updates access group
+
+Update access group
 */
 func (a *Client) UpdateAccessGroup(params *UpdateAccessGroupParams) (*UpdateAccessGroupOK, error) {
 	// TODO: Validate the params before sending
@@ -11927,6 +13890,8 @@ func (a *Client) UpdateAccessGroup(params *UpdateAccessGroupParams) (*UpdateAcce
 
 /*
 UpdateAdminByID updates user
+
+update user
 */
 func (a *Client) UpdateAdminByID(params *UpdateAdminByIDParams) (*UpdateAdminByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11956,6 +13921,8 @@ func (a *Client) UpdateAdminByID(params *UpdateAdminByIDParams) (*UpdateAdminByI
 
 /*
 UpdateAlertRuleByID updates alert rule
+
+update alert rule
 */
 func (a *Client) UpdateAlertRuleByID(params *UpdateAlertRuleByIDParams) (*UpdateAlertRuleByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -11984,7 +13951,9 @@ func (a *Client) UpdateAlertRuleByID(params *UpdateAlertRuleByIDParams) (*Update
 }
 
 /*
-UpdateAPITokenByAdminID updates api tokens for a user
+UpdateAPITokenByAdminID updates API tokens for a user
+
+Update the API tokens for a specific user
 */
 func (a *Client) UpdateAPITokenByAdminID(params *UpdateAPITokenByAdminIDParams) (*UpdateAPITokenByAdminIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12014,6 +13983,8 @@ func (a *Client) UpdateAPITokenByAdminID(params *UpdateAPITokenByAdminIDParams) 
 
 /*
 UpdateAppliesToFunction updates applies to function
+
+Update an existing applies to function
 */
 func (a *Client) UpdateAppliesToFunction(params *UpdateAppliesToFunctionParams) (*UpdateAppliesToFunctionOK, error) {
 	// TODO: Validate the params before sending
@@ -12043,6 +14014,8 @@ func (a *Client) UpdateAppliesToFunction(params *UpdateAppliesToFunctionParams) 
 
 /*
 UpdateCollectorByID updates collector
+
+update collector
 */
 func (a *Client) UpdateCollectorByID(params *UpdateCollectorByIDParams) (*UpdateCollectorByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12072,6 +14045,8 @@ func (a *Client) UpdateCollectorByID(params *UpdateCollectorByIDParams) (*Update
 
 /*
 UpdateCollectorGroupByID updates collector group
+
+Update the details of a specific collector group by its ID
 */
 func (a *Client) UpdateCollectorGroupByID(params *UpdateCollectorGroupByIDParams) (*UpdateCollectorGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12100,7 +14075,9 @@ func (a *Client) UpdateCollectorGroupByID(params *UpdateCollectorGroupByIDParams
 }
 
 /*
-UpdateConfigSourceByID updates config source by id
+UpdateConfigSourceByID updates config source by ID
+
+Update the config source details based on the provided ID
 */
 func (a *Client) UpdateConfigSourceByID(params *UpdateConfigSourceByIDParams) (*UpdateConfigSourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12192,6 +14169,8 @@ func (a *Client) UpdateDashboardGroupByID(params *UpdateDashboardGroupByIDParams
 
 /*
 UpdateDatasourceByID updates datasource
+
+Updates a datasource by its ID
 */
 func (a *Client) UpdateDatasourceByID(params *UpdateDatasourceByIDParams) (*UpdateDatasourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12221,6 +14200,8 @@ func (a *Client) UpdateDatasourceByID(params *UpdateDatasourceByIDParams) (*Upda
 
 /*
 UpdateDefaultDashboard updates default dashboard
+
+Update the default dashboard settings for a user or group
 */
 func (a *Client) UpdateDefaultDashboard(params *UpdateDefaultDashboardParams) (*UpdateDefaultDashboardOK, error) {
 	// TODO: Validate the params before sending
@@ -12249,7 +14230,9 @@ func (a *Client) UpdateDefaultDashboard(params *UpdateDefaultDashboardParams) (*
 }
 
 /*
-UpdateDevice updates a device
+UpdateDevice updates a device request schema may change depending upon the type of uptime device being updated
+
+update a device (Request schema may change depending upon the type of uptime device being updated)
 */
 func (a *Client) UpdateDevice(params *UpdateDeviceParams) (*UpdateDeviceOK, error) {
 	// TODO: Validate the params before sending
@@ -12279,6 +14262,8 @@ func (a *Client) UpdateDevice(params *UpdateDeviceParams) (*UpdateDeviceOK, erro
 
 /*
 UpdateDeviceDatasourceInstanceAlertSettingByID updates device instance alert setting
+
+update device instance alert setting
 */
 func (a *Client) UpdateDeviceDatasourceInstanceAlertSettingByID(params *UpdateDeviceDatasourceInstanceAlertSettingByIDParams) (*UpdateDeviceDatasourceInstanceAlertSettingByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12308,6 +14293,8 @@ func (a *Client) UpdateDeviceDatasourceInstanceAlertSettingByID(params *UpdateDe
 
 /*
 UpdateDeviceDatasourceInstanceByID updates device instance
+
+update device instance
 */
 func (a *Client) UpdateDeviceDatasourceInstanceByID(params *UpdateDeviceDatasourceInstanceByIDParams) (*UpdateDeviceDatasourceInstanceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12337,6 +14324,8 @@ func (a *Client) UpdateDeviceDatasourceInstanceByID(params *UpdateDeviceDatasour
 
 /*
 UpdateDeviceDatasourceInstanceGroupByID updates device datasource instance group
+
+Update a specific device datasource instance group by its ID
 */
 func (a *Client) UpdateDeviceDatasourceInstanceGroupByID(params *UpdateDeviceDatasourceInstanceGroupByIDParams) (*UpdateDeviceDatasourceInstanceGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12366,6 +14355,8 @@ func (a *Client) UpdateDeviceDatasourceInstanceGroupByID(params *UpdateDeviceDat
 
 /*
 UpdateDeviceGroupByID updates device group
+
+update device group
 */
 func (a *Client) UpdateDeviceGroupByID(params *UpdateDeviceGroupByIDParams) (*UpdateDeviceGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12395,6 +14386,8 @@ func (a *Client) UpdateDeviceGroupByID(params *UpdateDeviceGroupByIDParams) (*Up
 
 /*
 UpdateDeviceGroupClusterAlertConfByID updates cluster alert configuration
+
+Update cluster alert configuration
 */
 func (a *Client) UpdateDeviceGroupClusterAlertConfByID(params *UpdateDeviceGroupClusterAlertConfByIDParams) (*UpdateDeviceGroupClusterAlertConfByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12424,6 +14417,8 @@ func (a *Client) UpdateDeviceGroupClusterAlertConfByID(params *UpdateDeviceGroup
 
 /*
 UpdateDeviceGroupDatasourceAlertSetting updates device group datasource alert setting
+
+Update the alert setting for a specific device group datasource
 */
 func (a *Client) UpdateDeviceGroupDatasourceAlertSetting(params *UpdateDeviceGroupDatasourceAlertSettingParams) (*UpdateDeviceGroupDatasourceAlertSettingOK, error) {
 	// TODO: Validate the params before sending
@@ -12453,6 +14448,8 @@ func (a *Client) UpdateDeviceGroupDatasourceAlertSetting(params *UpdateDeviceGro
 
 /*
 UpdateDeviceGroupDatasourceByID updates device group datasource
+
+update device group datasource
 */
 func (a *Client) UpdateDeviceGroupDatasourceByID(params *UpdateDeviceGroupDatasourceByIDParams) (*UpdateDeviceGroupDatasourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12482,6 +14479,8 @@ func (a *Client) UpdateDeviceGroupDatasourceByID(params *UpdateDeviceGroupDataso
 
 /*
 UpdateDeviceGroupPropertyByName updates device group property
+
+Update a specific property of a device group
 */
 func (a *Client) UpdateDeviceGroupPropertyByName(params *UpdateDeviceGroupPropertyByNameParams) (*UpdateDeviceGroupPropertyByNameOK, error) {
 	// TODO: Validate the params before sending
@@ -12511,6 +14510,8 @@ func (a *Client) UpdateDeviceGroupPropertyByName(params *UpdateDeviceGroupProper
 
 /*
 UpdateDevicePropertyByName updates device property
+
+Update a specific property of a device
 */
 func (a *Client) UpdateDevicePropertyByName(params *UpdateDevicePropertyByNameParams) (*UpdateDevicePropertyByNameOK, error) {
 	// TODO: Validate the params before sending
@@ -12539,7 +14540,40 @@ func (a *Client) UpdateDevicePropertyByName(params *UpdateDevicePropertyByNamePa
 }
 
 /*
+UpdateDiagnosticSourceByID updates a diagnostics source
+
+Updates a diagnostics source by its ID
+*/
+func (a *Client) UpdateDiagnosticSourceByID(params *UpdateDiagnosticSourceByIDParams) (*UpdateDiagnosticSourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateDiagnosticSourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateDiagnosticSourceById",
+		Method:             "PUT",
+		PathPattern:        "/setting/diagnosticsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateDiagnosticSourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateDiagnosticSourceByIDOK), nil
+
+}
+
+/*
 UpdateEscalationChainByID updates escalation chain
+
+Update the details of a specific escalation chain by its ID
 */
 func (a *Client) UpdateEscalationChainByID(params *UpdateEscalationChainByIDParams) (*UpdateEscalationChainByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12568,7 +14602,9 @@ func (a *Client) UpdateEscalationChainByID(params *UpdateEscalationChainByIDPara
 }
 
 /*
-UpdateEventSourceByID updates event source by id
+UpdateEventSourceByID updates event source by ID
+
+Updates the event source with the provided ID
 */
 func (a *Client) UpdateEventSourceByID(params *UpdateEventSourceByIDParams) (*UpdateEventSourceByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12597,7 +14633,9 @@ func (a *Client) UpdateEventSourceByID(params *UpdateEventSourceByIDParams) (*Up
 }
 
 /*
-UpdateInstanceGroupAlertThreshold updates instance group alert threshold setting the threshold at default group is not allowed
+UpdateInstanceGroupAlertThreshold updates instance group alert threshold
+
+Update the alert threshold for an instance group. Setting the threshold at the default group is not allowed.
 */
 func (a *Client) UpdateInstanceGroupAlertThreshold(params *UpdateInstanceGroupAlertThresholdParams) (*UpdateInstanceGroupAlertThresholdOK, error) {
 	// TODO: Validate the params before sending
@@ -12627,6 +14665,8 @@ func (a *Client) UpdateInstanceGroupAlertThreshold(params *UpdateInstanceGroupAl
 
 /*
 UpdateJobMonitor updates job monitor
+
+Update an existing JobMonitor by its ID
 */
 func (a *Client) UpdateJobMonitor(params *UpdateJobMonitorParams) (*UpdateJobMonitorOK, error) {
 	// TODO: Validate the params before sending
@@ -12656,6 +14696,8 @@ func (a *Client) UpdateJobMonitor(params *UpdateJobMonitorParams) (*UpdateJobMon
 
 /*
 UpdateLogPartition updates an existing log partition
+
+Update an existing log partition
 */
 func (a *Client) UpdateLogPartition(params *UpdateLogPartitionParams) (*UpdateLogPartitionOK, error) {
 	// TODO: Validate the params before sending
@@ -12685,6 +14727,8 @@ func (a *Client) UpdateLogPartition(params *UpdateLogPartitionParams) (*UpdateLo
 
 /*
 UpdateLogSource updates log source
+
+Updates an existing log source
 */
 func (a *Client) UpdateLogSource(params *UpdateLogSourceParams) (*UpdateLogSourceOK, error) {
 	// TODO: Validate the params before sending
@@ -12714,6 +14758,8 @@ func (a *Client) UpdateLogSource(params *UpdateLogSourceParams) (*UpdateLogSourc
 
 /*
 UpdateNetscan updates a netscan
+
+Update an existing netscan
 */
 func (a *Client) UpdateNetscan(params *UpdateNetscanParams) (*UpdateNetscanOK, error) {
 	// TODO: Validate the params before sending
@@ -12742,7 +14788,9 @@ func (a *Client) UpdateNetscan(params *UpdateNetscanParams) (*UpdateNetscanOK, e
 }
 
 /*
-UpdateOID updates a o ID
+UpdateOID updates an o ID
+
+Update the details of an existing OID
 */
 func (a *Client) UpdateOID(params *UpdateOIDParams) (*UpdateOIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12772,6 +14820,8 @@ func (a *Client) UpdateOID(params *UpdateOIDParams) (*UpdateOIDOK, error) {
 
 /*
 UpdateOpsNoteByID updates opsnote
+
+update opsnote
 */
 func (a *Client) UpdateOpsNoteByID(params *UpdateOpsNoteByIDParams) (*UpdateOpsNoteByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12801,6 +14851,8 @@ func (a *Client) UpdateOpsNoteByID(params *UpdateOpsNoteByIDParams) (*UpdateOpsN
 
 /*
 UpdatePropertyRule updates a property rule
+
+Update a property rule by id
 */
 func (a *Client) UpdatePropertyRule(params *UpdatePropertyRuleParams) (*UpdatePropertyRuleOK, error) {
 	// TODO: Validate the params before sending
@@ -12830,6 +14882,8 @@ func (a *Client) UpdatePropertyRule(params *UpdatePropertyRuleParams) (*UpdatePr
 
 /*
 UpdateRecipientGroupByID updates recipient group
+
+Update a specific recipient group by its ID
 */
 func (a *Client) UpdateRecipientGroupByID(params *UpdateRecipientGroupByIDParams) (*UpdateRecipientGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12858,7 +14912,40 @@ func (a *Client) UpdateRecipientGroupByID(params *UpdateRecipientGroupByIDParams
 }
 
 /*
+UpdateRemediationSourceByID updates a remediation source
+
+Updates a remediation source by its ID
+*/
+func (a *Client) UpdateRemediationSourceByID(params *UpdateRemediationSourceByIDParams) (*UpdateRemediationSourceByIDOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewUpdateRemediationSourceByIDParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "updateRemediationSourceById",
+		Method:             "PUT",
+		PathPattern:        "/setting/remediationsources/{id}",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &UpdateRemediationSourceByIDReader{formats: a.formats},
+		AuthInfo:           a.authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result.(*UpdateRemediationSourceByIDOK), nil
+
+}
+
+/*
 UpdateReportByID updates report
+
+Update the details of a specific report by its ID
 */
 func (a *Client) UpdateReportByID(params *UpdateReportByIDParams) (*UpdateReportByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12888,6 +14975,8 @@ func (a *Client) UpdateReportByID(params *UpdateReportByIDParams) (*UpdateReport
 
 /*
 UpdateReportGroupByID updates report group
+
+Update a specific report group by its ID
 */
 func (a *Client) UpdateReportGroupByID(params *UpdateReportGroupByIDParams) (*UpdateReportGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12917,6 +15006,8 @@ func (a *Client) UpdateReportGroupByID(params *UpdateReportGroupByIDParams) (*Up
 
 /*
 UpdateRoleByID updates role
+
+Update the details of a specific role by its ID
 */
 func (a *Client) UpdateRoleByID(params *UpdateRoleByIDParams) (*UpdateRoleByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12946,6 +15037,8 @@ func (a *Client) UpdateRoleByID(params *UpdateRoleByIDParams) (*UpdateRoleByIDOK
 
 /*
 UpdateSDTByID updates SDT response may contain extra fields depending upon the type of SDT being updated
+
+update SDT (Response may contain extra fields depending upon the type of SDT being updated)
 */
 func (a *Client) UpdateSDTByID(params *UpdateSDTByIDParams) (*UpdateSDTByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -12975,6 +15068,8 @@ func (a *Client) UpdateSDTByID(params *UpdateSDTByIDParams) (*UpdateSDTByIDOK, e
 
 /*
 UpdateTopologySource updates topology source
+
+Update TopologySource
 */
 func (a *Client) UpdateTopologySource(params *UpdateTopologySourceParams) (*UpdateTopologySourceOK, error) {
 	// TODO: Validate the params before sending
@@ -13003,7 +15098,9 @@ func (a *Client) UpdateTopologySource(params *UpdateTopologySourceParams) (*Upda
 }
 
 /*
-UpdateWebsiteByID updates website request structure may vary based on the check type ping check pipe web check model use the respective model in s d k
+UpdateWebsiteByID updates website
+
+Update website. Request structure may vary based on the check type {PingCheck | WebCheck model}. Use the respective model in SDK.
 */
 func (a *Client) UpdateWebsiteByID(params *UpdateWebsiteByIDParams) (*UpdateWebsiteByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -13033,6 +15130,8 @@ func (a *Client) UpdateWebsiteByID(params *UpdateWebsiteByIDParams) (*UpdateWebs
 
 /*
 UpdateWebsiteGroupByID updates website group
+
+update website group
 */
 func (a *Client) UpdateWebsiteGroupByID(params *UpdateWebsiteGroupByIDParams) (*UpdateWebsiteGroupByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -13061,7 +15160,9 @@ func (a *Client) UpdateWebsiteGroupByID(params *UpdateWebsiteGroupByIDParams) (*
 }
 
 /*
-UpdateWidgetByID updates widget based upon widget type the request and response may contain additional attributes please refer models corresponding to specific widget type at the bottom of this page to check the attributes
+UpdateWidgetByID updates widget
+
+Updates a widget. Based on widget type, the request and response may contain additional attributes. Please refer to the models corresponding to specific widget types at the bottom of this page for detailed attributes.
 */
 func (a *Client) UpdateWidgetByID(params *UpdateWidgetByIDParams) (*UpdateWidgetByIDOK, error) {
 	// TODO: Validate the params before sending
@@ -13091,6 +15192,8 @@ func (a *Client) UpdateWidgetByID(params *UpdateWidgetByIDParams) (*UpdateWidget
 
 /*
 VerifyAWSBillingPermissions verifies a w s billing permissions
+
+Verify the billing permissions of an AWS account
 */
 func (a *Client) VerifyAWSBillingPermissions(params *VerifyAWSBillingPermissionsParams) (*VerifyAWSBillingPermissionsOK, error) {
 	// TODO: Validate the params before sending
@@ -13120,6 +15223,8 @@ func (a *Client) VerifyAWSBillingPermissions(params *VerifyAWSBillingPermissions
 
 /*
 VerifyStorageAccountsPermissions views storage accounts
+
+view storage accounts
 */
 func (a *Client) VerifyStorageAccountsPermissions(params *VerifyStorageAccountsPermissionsParams) (*VerifyStorageAccountsPermissionsOK, error) {
 	// TODO: Validate the params before sending

@@ -58,7 +58,7 @@ func NewPatchDeviceGroupDatasourceAlertSettingOK() *PatchDeviceGroupDatasourceAl
 /*
 PatchDeviceGroupDatasourceAlertSettingOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the device group datasource alert setting
 */
 type PatchDeviceGroupDatasourceAlertSettingOK struct {
 	Payload *models.DeviceGroupDataSourceAlertConfig

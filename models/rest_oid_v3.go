@@ -49,7 +49,11 @@ type RestOidV3 struct {
 	LineageID string `json:"lineageId,omitempty"`
 
 	// The OID pattern to match to
-	Oid string `json:"oid,omitempty"`
+	// Required: true
+	Oid *string `json:"oid"`
+
+	// The Registry ID of the Exchange Integration this module is based from, including this field will set this as the module's import base and mark the ID's version as audited
+	OriginRegistryID string `json:"originRegistryId,omitempty"`
 }
 
 // Validate validates this rest oid v3
@@ -69,6 +73,10 @@ func (m *RestOidV3) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateInstallationMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOid(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -142,6 +150,15 @@ func (m *RestOidV3) validateInstallationMetadata(formats strfmt.Registry) error 
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *RestOidV3) validateOid(formats strfmt.Registry) error {
+
+	if err := validate.Required("oid", "body", m.Oid); err != nil {
+		return err
 	}
 
 	return nil

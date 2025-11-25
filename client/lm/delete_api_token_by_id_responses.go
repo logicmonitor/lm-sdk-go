@@ -58,7 +58,7 @@ func NewDeleteAPITokenByIDOK() *DeleteAPITokenByIDOK {
 /*
 DeleteAPITokenByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully deleted the API token
 */
 type DeleteAPITokenByIDOK struct {
 	Payload interface{}

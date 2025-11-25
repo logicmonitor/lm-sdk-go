@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GraphLine graph line
+// GraphLine The graph lines
 //
 // swagger:model GraphLine
 type GraphLine struct {

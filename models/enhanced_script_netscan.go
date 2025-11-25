@@ -53,8 +53,7 @@ type EnhancedScriptNetscan struct {
 
 	versionField int32
 
-	// The credentials to be used for the scan
-	// Example: 2
+	// credentials
 	Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
 	// The ID of the default group to add discovered devices to
@@ -276,8 +275,7 @@ func (m *EnhancedScriptNetscan) SetVersion(val int32) {
 func (m *EnhancedScriptNetscan) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// The credentials to be used for the scan
-		// Example: 2
+		// credentials
 		Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
 		// The ID of the default group to add discovered devices to
@@ -441,8 +439,7 @@ func (m EnhancedScriptNetscan) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// The credentials to be used for the scan
-		// Example: 2
+		// credentials
 		Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
 		// The ID of the default group to add discovered devices to

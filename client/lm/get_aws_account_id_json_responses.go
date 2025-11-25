@@ -58,7 +58,7 @@ func NewGetAwsAccountIDJSONOK() *GetAwsAccountIDJSONOK {
 /*
 GetAwsAccountIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the AWS account ID
 */
 type GetAwsAccountIDJSONOK struct {
 	Payload interface{}

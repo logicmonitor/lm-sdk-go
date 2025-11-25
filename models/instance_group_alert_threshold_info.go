@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// InstanceGroupAlertThresholdInfo instance group alert threshold info
+// InstanceGroupAlertThresholdInfo Instance group alert expression list base on the priority. The first is the highest priority and effected on this instance
 //
 // swagger:model InstanceGroupAlertThresholdInfo
 type InstanceGroupAlertThresholdInfo struct {

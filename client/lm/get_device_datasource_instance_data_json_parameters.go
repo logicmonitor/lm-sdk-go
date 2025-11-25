@@ -81,8 +81,6 @@ type GetDeviceDatasourceInstanceDataJSONParams struct {
 	End *int64
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	/* HdsID.
@@ -101,7 +99,6 @@ type GetDeviceDatasourceInstanceDataJSONParams struct {
 	// Period.
 	//
 	// Format: double
-	// Default: 1
 	Period *float64
 
 	// Start.
@@ -128,22 +125,10 @@ func (o *GetDeviceDatasourceInstanceDataJSONParams) WithDefaults() *GetDeviceDat
 func (o *GetDeviceDatasourceInstanceDataJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		endDefault = int64(0)
-
-		formatDefault = string("json")
-
-		periodDefault = float64(1)
-
-		startDefault = int64(0)
 	)
 
 	val := GetDeviceDatasourceInstanceDataJSONParams{
 		UserAgent: &userAgentDefault,
-		End:       &endDefault,
-		Format:    &formatDefault,
-		Period:    &periodDefault,
-		Start:     &startDefault,
 	}
 
 	val.timeout = o.timeout

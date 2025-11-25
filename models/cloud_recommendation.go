@@ -44,7 +44,8 @@ type CloudRecommendation struct {
 
 	userPermissionField string
 
-	CloudRecommendationAllOf1
+	// widget config
+	WidgetConfig string `json:"widgetConfig,omitempty"`
 }
 
 // DashboardID gets the dashboard Id of this subtype
@@ -179,7 +180,9 @@ func (m *CloudRecommendation) SetUserPermission(val string) {
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *CloudRecommendation) UnmarshalJSON(raw []byte) error {
 	var data struct {
-		CloudRecommendationAllOf1
+
+		// widget config
+		WidgetConfig string `json:"widgetConfig,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -256,7 +259,7 @@ func (m *CloudRecommendation) UnmarshalJSON(raw []byte) error {
 	}
 	result.userPermissionField = base.UserPermission
 
-	result.CloudRecommendationAllOf1 = data.CloudRecommendationAllOf1
+	result.WidgetConfig = data.WidgetConfig
 
 	*m = result
 
@@ -268,10 +271,12 @@ func (m CloudRecommendation) MarshalJSON() ([]byte, error) {
 	var b1, b2, b3 []byte
 	var err error
 	b1, err = json.Marshal(struct {
-		CloudRecommendationAllOf1
+
+		// widget config
+		WidgetConfig string `json:"widgetConfig,omitempty"`
 	}{
 
-		CloudRecommendationAllOf1: m.CloudRecommendationAllOf1,
+		WidgetConfig: m.WidgetConfig,
 	})
 	if err != nil {
 		return nil, err
@@ -349,8 +354,6 @@ func (m *CloudRecommendation) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	// validation for a type composition with CloudRecommendationAllOf1
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -390,8 +393,6 @@ func (m *CloudRecommendation) ContextValidate(ctx context.Context, formats strfm
 	if err := m.contextValidateUserPermission(ctx, formats); err != nil {
 		res = append(res, err)
 	}
-
-	// validation for a type composition with CloudRecommendationAllOf1
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
@@ -443,8 +444,3 @@ func (m *CloudRecommendation) UnmarshalBinary(b []byte) error {
 	*m = res
 	return nil
 }
-
-// CloudRecommendationAllOf1 cloud recommendation all of1
-//
-// swagger:model CloudRecommendationAllOf1
-type CloudRecommendationAllOf1 interface{}

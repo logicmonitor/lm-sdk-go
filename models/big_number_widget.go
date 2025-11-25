@@ -44,7 +44,7 @@ type BigNumberWidget struct {
 
 	userPermissionField string
 
-	// BigNumber widget configuration info
+	// big number info
 	// Required: true
 	BigNumberInfo *BigNumberInfo `json:"bigNumberInfo"`
 }
@@ -182,7 +182,7 @@ func (m *BigNumberWidget) SetUserPermission(val string) {
 func (m *BigNumberWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// BigNumber widget configuration info
+		// big number info
 		// Required: true
 		BigNumberInfo *BigNumberInfo `json:"bigNumberInfo"`
 	}
@@ -274,7 +274,7 @@ func (m BigNumberWidget) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// BigNumber widget configuration info
+		// big number info
 		// Required: true
 		BigNumberInfo *BigNumberInfo `json:"bigNumberInfo"`
 	}{

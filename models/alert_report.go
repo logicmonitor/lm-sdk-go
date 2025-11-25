@@ -81,6 +81,11 @@ type AlertReport struct {
 	// All alerts displayed in the report must have been routed to the Escalation Chains specified in this filter
 	Chain string `json:"chain,omitempty"`
 
+	// Only cleared alerts will be included in the response.
+	// no: only active alerts will be included in the response.
+	// all: both active and cleared alerts will be included in the response
+	ClearFilter string `json:"clearFilter,omitempty"`
+
 	// The columns that will be displayed in the report. You should specify the columns in the order in which you'd like them to be displayed. All column names need to be included in this object, but each column should have an associated isHidden field that indicates whether it is displayed or not. NOTE that if summaryOnly is set to true you can only include these columns: Alerts, Group, Device, Instance, Datapoint. If summaryOnly is set to false you can include these columns: Severity, Group, Device, Instance, Datapoint, Thresholds, Value, Began, End, Rule, Chain, Acked, Acked By, Acked On, Notes, In SDT
 	Columns []*DynamicColumn `json:"columns,omitempty"`
 
@@ -112,6 +117,12 @@ type AlertReport struct {
 	// false: only alerts that started during the specified dateRange will be displayed in the report
 	// the default value is true
 	IncludePreexist interface{} `json:"includePreexist,omitempty"`
+
+	// all | yes | no
+	// all: alerts during their lifecycle that were in SDT and that weren't in SDT that meet the report criteria will be displayed
+	// yes: only alerts that were in SDT during their lifecycle and that meet the report criteria will be displayed
+	// no: only alerts that weren't in SDT during their lifecycle and that meet the report criteria will be displayed
+	IsHistoricalSDT string `json:"isHistoricalSDT,omitempty"`
 
 	// all | error | critical
 	// all: alerts of all severity levels will be displayed if they match the filter criteria
@@ -375,6 +386,11 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 		// All alerts displayed in the report must have been routed to the Escalation Chains specified in this filter
 		Chain string `json:"chain,omitempty"`
 
+		// Only cleared alerts will be included in the response.
+		// no: only active alerts will be included in the response.
+		// all: both active and cleared alerts will be included in the response
+		ClearFilter string `json:"clearFilter,omitempty"`
+
 		// The columns that will be displayed in the report. You should specify the columns in the order in which you'd like them to be displayed. All column names need to be included in this object, but each column should have an associated isHidden field that indicates whether it is displayed or not. NOTE that if summaryOnly is set to true you can only include these columns: Alerts, Group, Device, Instance, Datapoint. If summaryOnly is set to false you can include these columns: Severity, Group, Device, Instance, Datapoint, Thresholds, Value, Began, End, Rule, Chain, Acked, Acked By, Acked On, Notes, In SDT
 		Columns []*DynamicColumn `json:"columns,omitempty"`
 
@@ -406,6 +422,12 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 		// false: only alerts that started during the specified dateRange will be displayed in the report
 		// the default value is true
 		IncludePreexist interface{} `json:"includePreexist,omitempty"`
+
+		// all | yes | no
+		// all: alerts during their lifecycle that were in SDT and that weren't in SDT that meet the report criteria will be displayed
+		// yes: only alerts that were in SDT during their lifecycle and that meet the report criteria will be displayed
+		// no: only alerts that weren't in SDT during their lifecycle and that meet the report criteria will be displayed
+		IsHistoricalSDT string `json:"isHistoricalSDT,omitempty"`
 
 		// all | error | critical
 		// all: alerts of all severity levels will be displayed if they match the filter criteria
@@ -546,6 +568,7 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 	result.ActiveOnly = data.ActiveOnly
 	result.Anomaly = data.Anomaly
 	result.Chain = data.Chain
+	result.ClearFilter = data.ClearFilter
 	result.Columns = data.Columns
 	result.DataPoint = data.DataPoint
 	result.DataSource = data.DataSource
@@ -556,6 +579,7 @@ func (m *AlertReport) UnmarshalJSON(raw []byte) error {
 	result.DeviceDisplayName = data.DeviceDisplayName
 	result.GroupFullPath = data.GroupFullPath
 	result.IncludePreexist = data.IncludePreexist
+	result.IsHistoricalSDT = data.IsHistoricalSDT
 	result.Level = data.Level
 	result.Rule = data.Rule
 	result.SDTFilter = data.SDTFilter
@@ -595,6 +619,11 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 		// All alerts displayed in the report must have been routed to the Escalation Chains specified in this filter
 		Chain string `json:"chain,omitempty"`
 
+		// Only cleared alerts will be included in the response.
+		// no: only active alerts will be included in the response.
+		// all: both active and cleared alerts will be included in the response
+		ClearFilter string `json:"clearFilter,omitempty"`
+
 		// The columns that will be displayed in the report. You should specify the columns in the order in which you'd like them to be displayed. All column names need to be included in this object, but each column should have an associated isHidden field that indicates whether it is displayed or not. NOTE that if summaryOnly is set to true you can only include these columns: Alerts, Group, Device, Instance, Datapoint. If summaryOnly is set to false you can include these columns: Severity, Group, Device, Instance, Datapoint, Thresholds, Value, Began, End, Rule, Chain, Acked, Acked By, Acked On, Notes, In SDT
 		Columns []*DynamicColumn `json:"columns,omitempty"`
 
@@ -626,6 +655,12 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 		// false: only alerts that started during the specified dateRange will be displayed in the report
 		// the default value is true
 		IncludePreexist interface{} `json:"includePreexist,omitempty"`
+
+		// all | yes | no
+		// all: alerts during their lifecycle that were in SDT and that weren't in SDT that meet the report criteria will be displayed
+		// yes: only alerts that were in SDT during their lifecycle and that meet the report criteria will be displayed
+		// no: only alerts that weren't in SDT during their lifecycle and that meet the report criteria will be displayed
+		IsHistoricalSDT string `json:"isHistoricalSDT,omitempty"`
 
 		// all | error | critical
 		// all: alerts of all severity levels will be displayed if they match the filter criteria
@@ -664,6 +699,8 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 
 		Chain: m.Chain,
 
+		ClearFilter: m.ClearFilter,
+
 		Columns: m.Columns,
 
 		DataPoint: m.DataPoint,
@@ -683,6 +720,8 @@ func (m AlertReport) MarshalJSON() ([]byte, error) {
 		GroupFullPath: m.GroupFullPath,
 
 		IncludePreexist: m.IncludePreexist,
+
+		IsHistoricalSDT: m.IsHistoricalSDT,
 
 		Level: m.Level,
 

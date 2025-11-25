@@ -78,8 +78,6 @@ type AddDashboardGroupAsynchronouslyParams struct {
 	ID int32
 
 	// Recursive.
-	//
-	// Default: true
 	Recursive *bool
 
 	timeout    time.Duration
@@ -101,13 +99,10 @@ func (o *AddDashboardGroupAsynchronouslyParams) WithDefaults() *AddDashboardGrou
 func (o *AddDashboardGroupAsynchronouslyParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		recursiveDefault = bool(true)
 	)
 
 	val := AddDashboardGroupAsynchronouslyParams{
 		UserAgent: &userAgentDefault,
-		Recursive: &recursiveDefault,
 	}
 
 	val.timeout = o.timeout

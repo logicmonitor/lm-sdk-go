@@ -58,7 +58,7 @@ func NewGetDeviceGroupPropertyListOK() *GetDeviceGroupPropertyListOK {
 /*
 GetDeviceGroupPropertyListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the device group properties
 */
 type GetDeviceGroupPropertyListOK struct {
 	Payload *models.PropertyPaginationResponse

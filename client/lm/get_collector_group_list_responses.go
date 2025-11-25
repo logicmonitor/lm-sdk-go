@@ -58,7 +58,7 @@ func NewGetCollectorGroupListOK() *GetCollectorGroupListOK {
 /*
 GetCollectorGroupListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the collector group list
 */
 type GetCollectorGroupListOK struct {
 	Payload *models.CollectorGroupPaginationResponse

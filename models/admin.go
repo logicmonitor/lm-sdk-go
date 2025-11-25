@@ -103,8 +103,7 @@ type Admin struct {
 
 	// The password associated with the user
 	// Example: JohnDoe1
-	// Required: true
-	Password *string `json:"password"`
+	Password string `json:"password,omitempty"`
 
 	// The phone number associated with the user
 	// Example: 8054445555
@@ -175,10 +174,6 @@ func (m *Admin) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validatePassword(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateRoles(formats); err != nil {
 		res = append(res, err)
 	}
@@ -222,15 +217,6 @@ func (m *Admin) validateAPITokens(formats strfmt.Registry) error {
 func (m *Admin) validateEmail(formats strfmt.Registry) error {
 
 	if err := validate.Required("email", "body", m.Email); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *Admin) validatePassword(formats strfmt.Registry) error {
-
-	if err := validate.Required("password", "body", m.Password); err != nil {
 		return err
 	}
 

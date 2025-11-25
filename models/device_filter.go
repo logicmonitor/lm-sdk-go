@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DeviceFilter device filter
+// DeviceFilter The filter to be applied to filter out the reported devices
 //
 // swagger:model DeviceFilter
 type DeviceFilter struct {

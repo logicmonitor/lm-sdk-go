@@ -9,8 +9,10 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"io"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
@@ -44,8 +46,7 @@ type LMQLWidget struct {
 
 	userPermissionField string
 
-	// lmql graph info
-	LmqlGraphInfo *LmqlGraphInfo `json:"lmqlGraphInfo,omitempty"`
+	advancedMetricsGraphInfoField AdvancedMetricsGraphInfo
 }
 
 // DashboardID gets the dashboard Id of this subtype
@@ -177,12 +178,20 @@ func (m *LMQLWidget) SetUserPermission(val string) {
 	m.userPermissionField = val
 }
 
+// AdvancedMetricsGraphInfo gets the advanced metrics graph info of this subtype
+func (m *LMQLWidget) AdvancedMetricsGraphInfo() AdvancedMetricsGraphInfo {
+	return m.advancedMetricsGraphInfoField
+}
+
+// SetAdvancedMetricsGraphInfo sets the advanced metrics graph info of this subtype
+func (m *LMQLWidget) SetAdvancedMetricsGraphInfo(val AdvancedMetricsGraphInfo) {
+	m.advancedMetricsGraphInfoField = val
+}
+
 // UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
 func (m *LMQLWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
-
-		// lmql graph info
-		LmqlGraphInfo *LmqlGraphInfo `json:"lmqlGraphInfo,omitempty"`
+		AdvancedMetricsGraphInfo json.RawMessage `json:"advancedMetricsGraphInfo,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -229,6 +238,15 @@ func (m *LMQLWidget) UnmarshalJSON(raw []byte) error {
 		return err
 	}
 
+	var allOfAdvancedMetricsGraphInfo AdvancedMetricsGraphInfo
+	if string(data.AdvancedMetricsGraphInfo) != "null" {
+		advancedMetricsGraphInfo, err := UnmarshalAdvancedMetricsGraphInfo(bytes.NewBuffer(data.AdvancedMetricsGraphInfo), runtime.JSONConsumer())
+		if err != nil && err != io.EOF {
+			return err
+		}
+		allOfAdvancedMetricsGraphInfo = advancedMetricsGraphInfo
+	}
+
 	var result LMQLWidget
 
 	result.dashboardIdField = base.DashboardID
@@ -259,7 +277,7 @@ func (m *LMQLWidget) UnmarshalJSON(raw []byte) error {
 	}
 	result.userPermissionField = base.UserPermission
 
-	result.LmqlGraphInfo = data.LmqlGraphInfo
+	result.advancedMetricsGraphInfoField = allOfAdvancedMetricsGraphInfo
 
 	*m = result
 
@@ -271,13 +289,7 @@ func (m LMQLWidget) MarshalJSON() ([]byte, error) {
 	var b1, b2, b3 []byte
 	var err error
 	b1, err = json.Marshal(struct {
-
-		// lmql graph info
-		LmqlGraphInfo *LmqlGraphInfo `json:"lmqlGraphInfo,omitempty"`
-	}{
-
-		LmqlGraphInfo: m.LmqlGraphInfo,
-	})
+	}{})
 	if err != nil {
 		return nil, err
 	}
@@ -307,6 +319,8 @@ func (m LMQLWidget) MarshalJSON() ([]byte, error) {
 		Type string `json:"type"`
 
 		UserPermission string `json:"userPermission,omitempty"`
+
+		AdvancedMetricsGraphInfo AdvancedMetricsGraphInfo `json:"advancedMetricsGraphInfo,omitempty"`
 	}{
 
 		DashboardID: m.DashboardID(),
@@ -334,6 +348,8 @@ func (m LMQLWidget) MarshalJSON() ([]byte, error) {
 		Type: m.Type(),
 
 		UserPermission: m.UserPermission(),
+
+		AdvancedMetricsGraphInfo: m.AdvancedMetricsGraphInfo(),
 	})
 	if err != nil {
 		return nil, err
@@ -354,7 +370,7 @@ func (m *LMQLWidget) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateLmqlGraphInfo(formats); err != nil {
+	if err := m.validateAdvancedMetricsGraphInfo(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -382,21 +398,19 @@ func (m *LMQLWidget) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *LMQLWidget) validateLmqlGraphInfo(formats strfmt.Registry) error {
+func (m *LMQLWidget) validateAdvancedMetricsGraphInfo(formats strfmt.Registry) error {
 
-	if swag.IsZero(m.LmqlGraphInfo) { // not required
+	if swag.IsZero(m.AdvancedMetricsGraphInfo()) { // not required
 		return nil
 	}
 
-	if m.LmqlGraphInfo != nil {
-		if err := m.LmqlGraphInfo.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("lmqlGraphInfo")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("lmqlGraphInfo")
-			}
-			return err
+	if err := m.AdvancedMetricsGraphInfo().Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("advancedMetricsGraphInfo")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("advancedMetricsGraphInfo")
 		}
+		return err
 	}
 
 	return nil
@@ -418,7 +432,7 @@ func (m *LMQLWidget) ContextValidate(ctx context.Context, formats strfmt.Registr
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateLmqlGraphInfo(ctx, formats); err != nil {
+	if err := m.contextValidateAdvancedMetricsGraphInfo(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -455,22 +469,19 @@ func (m *LMQLWidget) contextValidateUserPermission(ctx context.Context, formats 
 	return nil
 }
 
-func (m *LMQLWidget) contextValidateLmqlGraphInfo(ctx context.Context, formats strfmt.Registry) error {
+func (m *LMQLWidget) contextValidateAdvancedMetricsGraphInfo(ctx context.Context, formats strfmt.Registry) error {
 
-	if m.LmqlGraphInfo != nil {
+	if swag.IsZero(m.AdvancedMetricsGraphInfo()) { // not required
+		return nil
+	}
 
-		if swag.IsZero(m.LmqlGraphInfo) { // not required
-			return nil
+	if err := m.AdvancedMetricsGraphInfo().ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("advancedMetricsGraphInfo")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("advancedMetricsGraphInfo")
 		}
-
-		if err := m.LmqlGraphInfo.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("lmqlGraphInfo")
-			} else if ce, ok := err.(*errors.CompositeError); ok {
-				return ce.ValidateName("lmqlGraphInfo")
-			}
-			return err
-		}
+		return err
 	}
 
 	return nil

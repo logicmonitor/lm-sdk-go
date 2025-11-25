@@ -58,7 +58,7 @@ func NewUpdateAPITokenByAdminIDOK() *UpdateAPITokenByAdminIDOK {
 /*
 UpdateAPITokenByAdminIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the API tokens for the user
 */
 type UpdateAPITokenByAdminIDOK struct {
 	Payload *models.APIToken

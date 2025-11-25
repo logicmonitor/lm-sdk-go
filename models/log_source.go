@@ -46,7 +46,7 @@ type LogSource struct {
 	CollectionInterval *Duration `json:"collectionInterval,omitempty"`
 
 	// collection method
-	// Enum: ["INVALID","WIN_EVENT","SYSLOG","DUMMY","SCRAPE_LOGS","KUBERNETES_EVENT","KUBERNETES_POD","SCRIPT","SAAS_O365_AUDIT_LOGS","SNMP_TRAP"]
+	// Enum: ["INVALID","WIN_EVENT","SYSLOG","DUMMY","SCRAPE_LOGS","KUBERNETES_EVENT","KUBERNETES_POD","SCRIPT","SAAS_O365_AUDIT_LOGS","SNMP_TRAP","WEBHOOK"]
 	CollectionMethod string `json:"collectionMethod,omitempty"`
 
 	// description
@@ -75,6 +75,9 @@ type LogSource struct {
 
 	// The log source name
 	Name string `json:"name,omitempty"`
+
+	// The Registry ID of the Exchange Integration this module is based from, including this field will set this as the module's import base and mark the ID's version as audited
+	OriginRegistryID string `json:"originRegistryId,omitempty"`
 
 	// resource mapping
 	ResourceMapping []*RestLogSourceResourceMappingV3 `json:"resourceMapping,omitempty"`
@@ -219,7 +222,7 @@ var logSourceTypeCollectionMethodPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INVALID","WIN_EVENT","SYSLOG","DUMMY","SCRAPE_LOGS","KUBERNETES_EVENT","KUBERNETES_POD","SCRIPT","SAAS_O365_AUDIT_LOGS","SNMP_TRAP"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["INVALID","WIN_EVENT","SYSLOG","DUMMY","SCRAPE_LOGS","KUBERNETES_EVENT","KUBERNETES_POD","SCRIPT","SAAS_O365_AUDIT_LOGS","SNMP_TRAP","WEBHOOK"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -258,6 +261,9 @@ const (
 
 	// LogSourceCollectionMethodSNMPTRAP captures enum value "SNMP_TRAP"
 	LogSourceCollectionMethodSNMPTRAP string = "SNMP_TRAP"
+
+	// LogSourceCollectionMethodWEBHOOK captures enum value "WEBHOOK"
+	LogSourceCollectionMethodWEBHOOK string = "WEBHOOK"
 )
 
 // prop value enum

@@ -58,7 +58,7 @@ func NewGetAuditLogListOK() *GetAuditLogListOK {
 /*
 GetAuditLogListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the audit logs
 */
 type GetAuditLogListOK struct {
 	Payload *models.AccessLogPaginationResponse

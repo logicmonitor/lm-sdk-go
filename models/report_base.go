@@ -435,6 +435,12 @@ func unmarshalReportBase(data []byte, consumer runtime.Consumer) (ReportBase, er
 
 	// The value of type is used to determine which type to create and unmarshal the data into
 	switch getType.Type {
+	case "AdvancedMetricsReport":
+		var result AdvancedMetricsReport
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "Alert":
 		var result AlertReport
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -461,6 +467,12 @@ func unmarshalReportBase(data []byte, consumer runtime.Consumer) (ReportBase, er
 		return &result, nil
 	case "Alert trends":
 		var result AlertTrendsReport
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "AlertsHealthCheckReport":
+		var result AlertsHealthCheckReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -507,6 +519,12 @@ func unmarshalReportBase(data []byte, consumer runtime.Consumer) (ReportBase, er
 			return nil, err
 		}
 		return &result, nil
+	case "LogsReport":
+		var result LogsReport
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "Netflow device metric":
 		var result NetflowReport
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -525,8 +543,20 @@ func unmarshalReportBase(data []byte, consumer runtime.Consumer) (ReportBase, er
 			return nil, err
 		}
 		return &result, nil
+	case "SDTinventoryReport":
+		var result SDTinventoryReport
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "Service Level Agreement":
 		var result SLAReport
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "UptimeResourceOverviewReport":
+		var result UptimeResourceOverviewReport
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

@@ -78,8 +78,6 @@ type PatchWebsiteByIDParams struct {
 	ID int32
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	timeout    time.Duration
@@ -101,13 +99,10 @@ func (o *PatchWebsiteByIDParams) WithDefaults() *PatchWebsiteByIDParams {
 func (o *PatchWebsiteByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := PatchWebsiteByIDParams{
 		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
 	}
 
 	val.timeout = o.timeout

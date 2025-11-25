@@ -19,7 +19,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AutoDiscoveryConfiguration auto discovery configuration
+// AutoDiscoveryConfiguration Auto discovery configuration
 //
 // swagger:model AutoDiscoveryConfiguration
 type AutoDiscoveryConfiguration struct {

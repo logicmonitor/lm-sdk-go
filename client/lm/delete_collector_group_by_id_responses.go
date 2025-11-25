@@ -58,7 +58,7 @@ func NewDeleteCollectorGroupByIDOK() *DeleteCollectorGroupByIDOK {
 /*
 DeleteCollectorGroupByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully deleted the collector group
 */
 type DeleteCollectorGroupByIDOK struct {
 	Payload interface{}

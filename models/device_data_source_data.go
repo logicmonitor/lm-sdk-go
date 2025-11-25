@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -106,6 +107,14 @@ func (m *DeviceDataSourceData) contextValidateDataPoints(ctx context.Context, fo
 
 	if err := validate.ReadOnly(ctx, "dataPoints", "body", []string(m.DataPoints)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.DataPoints); i++ {
+
+		if err := validate.ReadOnly(ctx, "dataPoints"+"."+strconv.Itoa(i), "body", string(m.DataPoints[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

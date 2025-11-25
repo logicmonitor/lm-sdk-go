@@ -58,7 +58,7 @@ func NewGetRoleListJSONOK() *GetRoleListJSONOK {
 /*
 GetRoleListJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the role list
 */
 type GetRoleListJSONOK struct {
 	Payload interface{}

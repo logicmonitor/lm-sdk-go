@@ -19,30 +19,27 @@ import (
 type RestResponse struct {
 
 	// data
-	// Read Only: true
 	Data ObjectNode `json:"data,omitempty"`
 
 	// diagnostics
-	// Read Only: true
 	Diagnostics ArrayNode `json:"diagnostics,omitempty"`
 
 	// errors
-	// Read Only: true
 	Errors ArrayNode `json:"errors,omitempty"`
 
 	// meta
-	// Read Only: true
 	Meta *RestResponseMetaBlock `json:"meta,omitempty"`
 
-	// non Id items
-	NonIDItems []interface{} `json:"nonIdItems,omitempty"`
-
 	// successes
-	// Read Only: true
 	Successes ArrayNode `json:"successes,omitempty"`
 
+	// suppressed errors
+	SuppressedErrors ArrayNode `json:"suppressedErrors,omitempty"`
+
+	// suppressed warnings
+	SuppressedWarnings ArrayNode `json:"suppressedWarnings,omitempty"`
+
 	// warnings
-	// Read Only: true
 	Warnings ArrayNode `json:"warnings,omitempty"`
 }
 

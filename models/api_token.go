@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// APIToken API token
+// APIToken Any API Tokens associated with the user
 //
 // swagger:model APIToken
 type APIToken struct {
@@ -239,6 +240,14 @@ func (m *APIToken) contextValidateRoles(ctx context.Context, formats strfmt.Regi
 
 	if err := validate.ReadOnly(ctx, "roles", "body", []string(m.Roles)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Roles); i++ {
+
+		if err := validate.ReadOnly(ctx, "roles"+"."+strconv.Itoa(i), "body", string(m.Roles[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

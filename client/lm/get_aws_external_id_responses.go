@@ -58,7 +58,7 @@ func NewGetAwsExternalIDOK() *GetAwsExternalIDOK {
 /*
 GetAwsExternalIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the AWS external ID
 */
 type GetAwsExternalIDOK struct {
 	Payload *models.AwsExternalID

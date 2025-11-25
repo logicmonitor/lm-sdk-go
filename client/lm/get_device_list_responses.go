@@ -58,7 +58,7 @@ func NewGetDeviceListOK() *GetDeviceListOK {
 /*
 GetDeviceListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the device list
 */
 type GetDeviceListOK struct {
 	Payload *models.DevicePaginationResponse

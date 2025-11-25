@@ -71,9 +71,7 @@ type FetchDeviceInstancesDataParams struct {
 
 	/* Aggregate.
 
-	   the aggregate option
-
-	   Default: "none"
+	   The aggregate option
 	*/
 	Aggregate *string
 
@@ -88,7 +86,6 @@ type FetchDeviceInstancesDataParams struct {
 	// Period.
 	//
 	// Format: double
-	// Default: 1
 	Period *float64
 
 	// Start.
@@ -115,22 +112,10 @@ func (o *FetchDeviceInstancesDataParams) WithDefaults() *FetchDeviceInstancesDat
 func (o *FetchDeviceInstancesDataParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		aggregateDefault = string("none")
-
-		endDefault = int64(0)
-
-		periodDefault = float64(1)
-
-		startDefault = int64(0)
 	)
 
 	val := FetchDeviceInstancesDataParams{
 		UserAgent: &userAgentDefault,
-		Aggregate: &aggregateDefault,
-		End:       &endDefault,
-		Period:    &periodDefault,
-		Start:     &startDefault,
 	}
 
 	val.timeout = o.timeout

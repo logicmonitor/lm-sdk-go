@@ -58,7 +58,7 @@ func NewPatchJobMonitorOK() *PatchJobMonitorOK {
 /*
 PatchJobMonitorOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the JobMonitor
 */
 type PatchJobMonitorOK struct {
 	Payload *models.BatchJob

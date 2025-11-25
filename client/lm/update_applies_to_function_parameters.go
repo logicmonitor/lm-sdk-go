@@ -102,13 +102,10 @@ func (o *UpdateAppliesToFunctionParams) WithDefaults() *UpdateAppliesToFunctionP
 func (o *UpdateAppliesToFunctionParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		ignoreReferenceDefault = bool(false)
 	)
 
 	val := UpdateAppliesToFunctionParams{
-		UserAgent:       &userAgentDefault,
-		IgnoreReference: &ignoreReferenceDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

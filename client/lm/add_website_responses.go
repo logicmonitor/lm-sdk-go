@@ -58,7 +58,7 @@ func NewAddWebsiteOK() *AddWebsiteOK {
 /*
 AddWebsiteOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type AddWebsiteOK struct {
 	Payload models.Website

@@ -107,18 +107,15 @@ func (o *GetRoleListJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
-		excludeAdminDefault = bool(false)
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetRoleListJSONParams{
-		UserAgent:    &userAgentDefault,
-		ExcludeAdmin: &excludeAdminDefault,
-		Offset:       &offsetDefault,
-		Size:         &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout

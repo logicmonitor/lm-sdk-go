@@ -12,13 +12,13 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// EC2NetscanPolicyCredential e c2 netscan policy credential
+// EC2NetscanPolicyCredential The credentials to be used for the scan
 //
 // swagger:model EC2NetscanPolicyCredential
 type EC2NetscanPolicyCredential struct {
 
 	// Custom credentials that should be used for this scan
-	// Example: [{\"snmp.community\":\"test\"}]
+	// Example: \"[{\"snmp.community\":\"test\"}]\
 	Custom map[string]string `json:"custom,omitempty"`
 
 	// The ID of the device group that credentials should be inherited from, for this scan

@@ -58,10 +58,10 @@ func NewPatchDeviceOK() *PatchDeviceOK {
 /*
 PatchDeviceOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type PatchDeviceOK struct {
-	Payload *models.Device
+	Payload models.Device
 }
 
 // IsSuccess returns true when this patch device o k response has a 2xx status code
@@ -104,18 +104,18 @@ func (o *PatchDeviceOK) String() string {
 	return fmt.Sprintf("[PATCH /device/devices/{id}][%d] patchDeviceOK %s", 200, payload)
 }
 
-func (o *PatchDeviceOK) GetPayload() *models.Device {
+func (o *PatchDeviceOK) GetPayload() models.Device {
 	return o.Payload
 }
 
 func (o *PatchDeviceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Device)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	// response payload as interface type
+	payload, err := models.UnmarshalDevice(response.Body(), consumer)
+	if err != nil {
 		return err
 	}
+	o.Payload = payload
 
 	return nil
 }

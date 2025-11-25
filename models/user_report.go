@@ -67,7 +67,7 @@ type UserReport struct {
 	// The sort by method
 	SortedBy string `json:"sortedBy,omitempty"`
 
-	// The filter for the report
+	// user filter
 	UserFilter *UserFilter `json:"userFilter,omitempty"`
 }
 
@@ -290,7 +290,7 @@ func (m *UserReport) UnmarshalJSON(raw []byte) error {
 		// The sort by method
 		SortedBy string `json:"sortedBy,omitempty"`
 
-		// The filter for the report
+		// user filter
 		UserFilter *UserFilter `json:"userFilter,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
@@ -421,7 +421,7 @@ func (m UserReport) MarshalJSON() ([]byte, error) {
 		// The sort by method
 		SortedBy string `json:"sortedBy,omitempty"`
 
-		// The filter for the report
+		// user filter
 		UserFilter *UserFilter `json:"userFilter,omitempty"`
 	}{
 

@@ -102,16 +102,10 @@ func (o *UpdateAdminByIDParams) WithDefaults() *UpdateAdminByIDParams {
 func (o *UpdateAdminByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		changePasswordDefault = bool(false)
-
-		validationOnlyDefault = bool(false)
 	)
 
 	val := UpdateAdminByIDParams{
-		UserAgent:      &userAgentDefault,
-		ChangePassword: &changePasswordDefault,
-		ValidationOnly: &validationOnlyDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

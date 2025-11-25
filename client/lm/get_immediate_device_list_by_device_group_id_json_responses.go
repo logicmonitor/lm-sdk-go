@@ -58,7 +58,7 @@ func NewGetImmediateDeviceListByDeviceGroupIDJSONOK() *GetImmediateDeviceListByD
 /*
 GetImmediateDeviceListByDeviceGroupIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetImmediateDeviceListByDeviceGroupIDJSONOK struct {
 	Payload interface{}

@@ -23,6 +23,9 @@ type RestUsageContractInfoV4 struct {
 	// aggregation type
 	AggregationType string `json:"aggregationType,omitempty"`
 
+	// category
+	Category string `json:"category,omitempty"`
+
 	// child products
 	// Unique: true
 	ChildProducts []*RestUsageContractInfoV4 `json:"childProducts,omitempty"`
@@ -39,6 +42,9 @@ type RestUsageContractInfoV4 struct {
 	// rounding required
 	RoundingRequired bool `json:"roundingRequired,omitempty"`
 
+	// subscriptions
+	Subscriptions []*Subscriptions `json:"subscriptions,omitempty"`
+
 	// unit
 	Unit []string `json:"unit,omitempty"`
 
@@ -51,6 +57,10 @@ func (m *RestUsageContractInfoV4) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateChildProducts(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateSubscriptions(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -90,11 +100,41 @@ func (m *RestUsageContractInfoV4) validateChildProducts(formats strfmt.Registry)
 	return nil
 }
 
+func (m *RestUsageContractInfoV4) validateSubscriptions(formats strfmt.Registry) error {
+	if swag.IsZero(m.Subscriptions) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Subscriptions); i++ {
+		if swag.IsZero(m.Subscriptions[i]) { // not required
+			continue
+		}
+
+		if m.Subscriptions[i] != nil {
+			if err := m.Subscriptions[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("subscriptions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("subscriptions" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this rest usage contract info v4 based on the context it is used
 func (m *RestUsageContractInfoV4) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateChildProducts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSubscriptions(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -119,6 +159,31 @@ func (m *RestUsageContractInfoV4) contextValidateChildProducts(ctx context.Conte
 					return ve.ValidateName("childProducts" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
 					return ce.ValidateName("childProducts" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
+func (m *RestUsageContractInfoV4) contextValidateSubscriptions(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Subscriptions); i++ {
+
+		if m.Subscriptions[i] != nil {
+
+			if swag.IsZero(m.Subscriptions[i]) { // not required
+				return nil
+			}
+
+			if err := m.Subscriptions[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("subscriptions" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("subscriptions" + "." + strconv.Itoa(i))
 				}
 				return err
 			}

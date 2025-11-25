@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DeviceGroupAlertThresholdInfo device group alert threshold info
+// DeviceGroupAlertThresholdInfo Device group alert expression list base on the priority. The first is the highest priority and effected on this instance
 //
 // swagger:model DeviceGroupAlertThresholdInfo
 type DeviceGroupAlertThresholdInfo struct {

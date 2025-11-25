@@ -102,16 +102,10 @@ func (o *PatchAdminByIDParams) WithDefaults() *PatchAdminByIDParams {
 func (o *PatchAdminByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		changePasswordDefault = bool(false)
-
-		validationOnlyDefault = bool(false)
 	)
 
 	val := PatchAdminByIDParams{
-		UserAgent:      &userAgentDefault,
-		ChangePassword: &changePasswordDefault,
-		ValidationOnly: &validationOnlyDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

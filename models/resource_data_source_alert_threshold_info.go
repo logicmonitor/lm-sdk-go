@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// ResourceDataSourceAlertThresholdInfo resource data source alert threshold info
+// ResourceDataSourceAlertThresholdInfo Resource datasource alert expression list base on the priority. The first is the highest priority and effected on this instance
 //
 // swagger:model ResourceDataSourceAlertThresholdInfo
 type ResourceDataSourceAlertThresholdInfo struct {

@@ -29,12 +29,12 @@ type AlertRule struct {
 	Datasource string `json:"datasource,omitempty"`
 
 	// The device groups and service groups for which the alert rule is configured to match
-	// Example: [ \"Devices by Type\"]
+	// Example: [Devices by Type]
 	// Unique: true
 	DeviceGroups []string `json:"deviceGroups,omitempty"`
 
 	// The device names and service names for which the alert rule is configured to match
-	// Example: [\"Cisco Router\"]
+	// Example: [Cisco Router]
 	// Unique: true
 	Devices []string `json:"devices,omitempty"`
 

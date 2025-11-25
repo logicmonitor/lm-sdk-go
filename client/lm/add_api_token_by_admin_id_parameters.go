@@ -78,8 +78,6 @@ type AddAPITokenByAdminIDParams struct {
 	Body *models.APIToken
 
 	// Type.
-	//
-	// Default: "API Token"
 	Type *string
 
 	timeout    time.Duration
@@ -101,13 +99,10 @@ func (o *AddAPITokenByAdminIDParams) WithDefaults() *AddAPITokenByAdminIDParams 
 func (o *AddAPITokenByAdminIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		typeVarDefault = string("API Token")
 	)
 
 	val := AddAPITokenByAdminIDParams{
 		UserAgent: &userAgentDefault,
-		Type:      &typeVarDefault,
 	}
 
 	val.timeout = o.timeout

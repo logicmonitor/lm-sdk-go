@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WebsiteItemConfig website item config
+// WebsiteItemConfig The websites that should be used to compute the SLA
 //
 // swagger:model WebsiteItemConfig
 type WebsiteItemConfig struct {

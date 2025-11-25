@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DeviceGroupData device group data
+// DeviceGroupData The child device groups within this device group
 //
 // swagger:model DeviceGroupData
 type DeviceGroupData struct {
@@ -66,6 +67,10 @@ type DeviceGroupData struct {
 	// The number of total devices, including both AWS and normal devices, that belong to this device group (includes normal devices in sub groups)
 	// Read Only: true
 	NumOfHosts int32 `json:"numOfHosts,omitempty"`
+
+	// oci regions info
+	// Read Only: true
+	OciRegionsInfo string `json:"ociRegionsInfo,omitempty"`
 
 	// The role privilege operations for the device group that are granted to the user that made this API request
 	// Read Only: true
@@ -130,6 +135,10 @@ func (m *DeviceGroupData) ContextValidate(ctx context.Context, formats strfmt.Re
 	}
 
 	if err := m.contextValidateNumOfHosts(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOciRegionsInfo(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -255,10 +264,27 @@ func (m *DeviceGroupData) contextValidateNumOfHosts(ctx context.Context, formats
 	return nil
 }
 
+func (m *DeviceGroupData) contextValidateOciRegionsInfo(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "ociRegionsInfo", "body", string(m.OciRegionsInfo)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *DeviceGroupData) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.RolePrivileges); i++ {
+
+		if err := validate.ReadOnly(ctx, "rolePrivileges"+"."+strconv.Itoa(i), "body", string(m.RolePrivileges[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

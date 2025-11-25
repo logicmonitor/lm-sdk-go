@@ -58,7 +58,7 @@ func NewAddAlertNoteByIDOK() *AddAlertNoteByIDOK {
 /*
 AddAlertNoteByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully added the alert note
 */
 type AddAlertNoteByIDOK struct {
 	Payload interface{}

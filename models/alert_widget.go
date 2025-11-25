@@ -44,7 +44,7 @@ type AlertWidget struct {
 
 	userPermissionField string
 
-	// The filter for the alert table
+	// filters
 	Filters *AlertFilters `json:"filters,omitempty"`
 
 	// parsed filters
@@ -184,7 +184,7 @@ func (m *AlertWidget) SetUserPermission(val string) {
 func (m *AlertWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// The filter for the alert table
+		// filters
 		Filters *AlertFilters `json:"filters,omitempty"`
 
 		// parsed filters
@@ -279,7 +279,7 @@ func (m AlertWidget) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// The filter for the alert table
+		// filters
 		Filters *AlertFilters `json:"filters,omitempty"`
 
 		// parsed filters

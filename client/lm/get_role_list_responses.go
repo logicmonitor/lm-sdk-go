@@ -58,7 +58,7 @@ func NewGetRoleListOK() *GetRoleListOK {
 /*
 GetRoleListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the role list
 */
 type GetRoleListOK struct {
 	Payload *models.RolePaginationResponse

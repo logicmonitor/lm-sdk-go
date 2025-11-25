@@ -58,7 +58,7 @@ func NewGetEventSourceListJSONOK() *GetEventSourceListJSONOK {
 /*
 GetEventSourceListJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved event source list
 */
 type GetEventSourceListJSONOK struct {
 	Payload interface{}

@@ -98,13 +98,10 @@ func (o *GetAlertByIDParams) WithDefaults() *GetAlertByIDParams {
 func (o *GetAlertByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		needMessageDefault = bool(false)
 	)
 
 	val := GetAlertByIDParams{
-		UserAgent:   &userAgentDefault,
-		NeedMessage: &needMessageDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

@@ -58,7 +58,7 @@ func NewGetSDTHistoryByDeviceDataSourceIDOK() *GetSDTHistoryByDeviceDataSourceID
 /*
 GetSDTHistoryByDeviceDataSourceIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the SDT history
 */
 type GetSDTHistoryByDeviceDataSourceIDOK struct {
 	Payload *models.DeviceDataSourceSDTHistoryPaginationResponse

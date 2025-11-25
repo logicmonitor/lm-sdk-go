@@ -8,11 +8,12 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
 
-// JSONObject JSON object
+// JSONObject The alert external ticket urls
 //
 // swagger:model JSONObject
 type JSONObject struct {
@@ -26,8 +27,13 @@ func (m *JSONObject) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-// ContextValidate validates this JSON object based on context it is used
+// ContextValidate validate this JSON object based on the context it is used
 func (m *JSONObject) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 

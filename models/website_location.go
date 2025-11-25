@@ -14,7 +14,15 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// WebsiteLocation website location
+// WebsiteLocation The locations from which the website is monitored. If the website is internal, this field should include Collectors. If Non-Internal, possible test locations are:
+// 2 : US - Washington DC
+// 3 : US - Oregon
+// 4 : Europe - Dublin
+// 5 : Asia - Singapore
+// 6 : Australia - Sydney
+// testLocation:"{all:true}" indicates that the service will be monitored from all checkpoint locations
+// testLocation:"{smgIds:[1,2,3]}" indicates that the service will be monitored from checkpoint locations 1, 2 and 3
+// testLocation:"{collectorIds:[85,90]}" indicates that the service will be monitored by Collectors 85 and 90
 //
 // swagger:model WebsiteLocation
 type WebsiteLocation struct {

@@ -58,7 +58,7 @@ func NewPatchNetscanOK() *PatchNetscanOK {
 /*
 PatchNetscanOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the netscan
 */
 type PatchNetscanOK struct {
 	Payload models.Netscan

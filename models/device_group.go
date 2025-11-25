@@ -159,6 +159,22 @@ type DeviceGroup struct {
 	// Read Only: true
 	NumOfKubernetesDevices int64 `json:"numOfKubernetesDevices,omitempty"`
 
+	// num of oci devices
+	// Read Only: true
+	NumOfOciDevices int64 `json:"numOfOciDevices,omitempty"`
+
+	// oci regions info
+	// Read Only: true
+	OciRegionsInfo string `json:"ociRegionsInfo,omitempty"`
+
+	// The result returned by the transaction that tests the OCI credentials associated with the OCI group
+	// Read Only: true
+	OciTestResult *OciAccountTestResult `json:"ociTestResult,omitempty"`
+
+	// The Status code result returned by the transaction that tests the OCI credentials associated with the OCI group
+	// Read Only: true
+	OciTestResultCode int32 `json:"ociTestResultCode,omitempty"`
+
 	// The id of the parent group for this device group (the root device group has an Id of 1)
 	// Example: 1
 	ParentID int32 `json:"parentId,omitempty"`
@@ -209,6 +225,10 @@ func (m *DeviceGroup) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOciTestResult(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -313,6 +333,25 @@ func (m *DeviceGroup) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceGroup) validateOciTestResult(formats strfmt.Registry) error {
+	if swag.IsZero(m.OciTestResult) { // not required
+		return nil
+	}
+
+	if m.OciTestResult != nil {
+		if err := m.OciTestResult.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ociTestResult")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ociTestResult")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -468,6 +507,22 @@ func (m *DeviceGroup) ContextValidate(ctx context.Context, formats strfmt.Regist
 	}
 
 	if err := m.contextValidateNumOfKubernetesDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateNumOfOciDevices(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOciRegionsInfo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOciTestResult(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOciTestResultCode(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -787,6 +842,54 @@ func (m *DeviceGroup) contextValidateNumOfKubernetesDevices(ctx context.Context,
 	return nil
 }
 
+func (m *DeviceGroup) contextValidateNumOfOciDevices(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numOfOciDevices", "body", int64(m.NumOfOciDevices)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceGroup) contextValidateOciRegionsInfo(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "ociRegionsInfo", "body", string(m.OciRegionsInfo)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceGroup) contextValidateOciTestResult(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.OciTestResult != nil {
+
+		if swag.IsZero(m.OciTestResult) { // not required
+			return nil
+		}
+
+		if err := m.OciTestResult.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ociTestResult")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ociTestResult")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *DeviceGroup) contextValidateOciTestResultCode(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "ociTestResultCode", "body", int32(m.OciTestResultCode)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *DeviceGroup) contextValidatePropertyChangeWarningMessage(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "propertyChangeWarningMessage", "body", string(m.PropertyChangeWarningMessage)); err != nil {
@@ -800,6 +903,14 @@ func (m *DeviceGroup) contextValidateRolePrivileges(ctx context.Context, formats
 
 	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.RolePrivileges); i++ {
+
+		if err := validate.ReadOnly(ctx, "rolePrivileges"+"."+strconv.Itoa(i), "body", string(m.RolePrivileges[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

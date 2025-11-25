@@ -43,6 +43,10 @@ type RestAzureResourceLogAnalyticsWorkspacesSource struct {
 
 	descriptionField string
 
+	eventSourceField EventSource
+
+	eventSourceFiltersField []*EventSourceFilter
+
 	filtersField []*RestEventSourceFilter
 
 	groupField string
@@ -54,6 +58,8 @@ type RestAzureResourceLogAnalyticsWorkspacesSource struct {
 	lineageIdField string
 
 	nameField *string
+
+	originRegistryIdField string
 
 	suppressDuplicatesESField bool
 
@@ -192,6 +198,26 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) SetDescription(val strin
 	m.descriptionField = val
 }
 
+// EventSource gets the event source of this subtype
+func (m *RestAzureResourceLogAnalyticsWorkspacesSource) EventSource() EventSource {
+	return m.eventSourceField
+}
+
+// SetEventSource sets the event source of this subtype
+func (m *RestAzureResourceLogAnalyticsWorkspacesSource) SetEventSource(val EventSource) {
+	m.eventSourceField = val
+}
+
+// EventSourceFilters gets the event source filters of this subtype
+func (m *RestAzureResourceLogAnalyticsWorkspacesSource) EventSourceFilters() []*EventSourceFilter {
+	return m.eventSourceFiltersField
+}
+
+// SetEventSourceFilters sets the event source filters of this subtype
+func (m *RestAzureResourceLogAnalyticsWorkspacesSource) SetEventSourceFilters(val []*EventSourceFilter) {
+	m.eventSourceFiltersField = val
+}
+
 // Filters gets the filters of this subtype
 func (m *RestAzureResourceLogAnalyticsWorkspacesSource) Filters() []*RestEventSourceFilter {
 	return m.filtersField
@@ -250,6 +276,16 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) Name() *string {
 // SetName sets the name of this subtype
 func (m *RestAzureResourceLogAnalyticsWorkspacesSource) SetName(val *string) {
 	m.nameField = val
+}
+
+// OriginRegistryID gets the origin registry Id of this subtype
+func (m *RestAzureResourceLogAnalyticsWorkspacesSource) OriginRegistryID() string {
+	return m.originRegistryIdField
+}
+
+// SetOriginRegistryID sets the origin registry Id of this subtype
+func (m *RestAzureResourceLogAnalyticsWorkspacesSource) SetOriginRegistryID(val string) {
+	m.originRegistryIdField = val
 }
 
 // SuppressDuplicatesES gets the suppress duplicates e s of this subtype
@@ -340,6 +376,10 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) UnmarshalJSON(raw []byte
 
 		Description string `json:"description,omitempty"`
 
+		EventSource EventSource `json:"-"`
+
+		EventSourceFilters []*EventSourceFilter `json:"eventSourceFilters,omitempty"`
+
 		Filters []*RestEventSourceFilter `json:"filters,omitempty"`
 
 		Group string `json:"group,omitempty"`
@@ -351,6 +391,8 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) UnmarshalJSON(raw []byte
 		LineageID string `json:"lineageId,omitempty"`
 
 		Name *string `json:"name"`
+
+		OriginRegistryID string `json:"originRegistryId,omitempty"`
 
 		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
 
@@ -396,6 +438,10 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) UnmarshalJSON(raw []byte
 	}
 	result.descriptionField = base.Description
 
+	result.eventSourceField = base.EventSource
+
+	result.eventSourceFiltersField = base.EventSourceFilters
+
 	result.filtersField = base.Filters
 
 	result.groupField = base.Group
@@ -407,6 +453,8 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) UnmarshalJSON(raw []byte
 	result.lineageIdField = base.LineageID
 
 	result.nameField = base.Name
+
+	result.originRegistryIdField = base.OriginRegistryID
 
 	result.suppressDuplicatesESField = base.SuppressDuplicatesES
 
@@ -475,6 +523,10 @@ func (m RestAzureResourceLogAnalyticsWorkspacesSource) MarshalJSON() ([]byte, er
 
 		Description string `json:"description,omitempty"`
 
+		EventSource EventSource `json:"eventSource,omitempty"`
+
+		EventSourceFilters []*EventSourceFilter `json:"eventSourceFilters,omitempty"`
+
 		Filters []*RestEventSourceFilter `json:"filters,omitempty"`
 
 		Group string `json:"group,omitempty"`
@@ -486,6 +538,8 @@ func (m RestAzureResourceLogAnalyticsWorkspacesSource) MarshalJSON() ([]byte, er
 		LineageID string `json:"lineageId,omitempty"`
 
 		Name *string `json:"name"`
+
+		OriginRegistryID string `json:"originRegistryId,omitempty"`
 
 		SuppressDuplicatesES bool `json:"suppressDuplicatesES,omitempty"`
 
@@ -520,6 +574,10 @@ func (m RestAzureResourceLogAnalyticsWorkspacesSource) MarshalJSON() ([]byte, er
 
 		Description: m.Description(),
 
+		EventSource: m.EventSource(),
+
+		EventSourceFilters: m.EventSourceFilters(),
+
 		Filters: m.Filters(),
 
 		Group: m.Group(),
@@ -531,6 +589,8 @@ func (m RestAzureResourceLogAnalyticsWorkspacesSource) MarshalJSON() ([]byte, er
 		LineageID: m.LineageID(),
 
 		Name: m.Name(),
+
+		OriginRegistryID: m.OriginRegistryID(),
 
 		SuppressDuplicatesES: m.SuppressDuplicatesES(),
 
@@ -560,6 +620,14 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) Validate(formats strfmt.
 	}
 
 	if err := m.validateAlertEffectiveIval(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventSource(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventSourceFilters(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -625,6 +693,51 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) validateAlertEffectiveIv
 
 	if err := validate.Required("alertEffectiveIval", "body", m.AlertEffectiveIval()); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *RestAzureResourceLogAnalyticsWorkspacesSource) validateEventSource(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventSource()) { // not required
+		return nil
+	}
+
+	if err := m.EventSource().Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("eventSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("eventSource")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *RestAzureResourceLogAnalyticsWorkspacesSource) validateEventSourceFilters(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventSourceFilters()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.EventSourceFilters()); i++ {
+		if swag.IsZero(m.eventSourceFiltersField[i]) { // not required
+			continue
+		}
+
+		if m.eventSourceFiltersField[i] != nil {
+			if err := m.eventSourceFiltersField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -702,6 +815,14 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) ContextValidate(ctx cont
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEventSource(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEventSourceFilters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateFilters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -766,6 +887,49 @@ func (m *RestAzureResourceLogAnalyticsWorkspacesSource) contextValidateChecksum(
 
 	if err := validate.ReadOnly(ctx, "checksum", "body", string(m.Checksum())); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *RestAzureResourceLogAnalyticsWorkspacesSource) contextValidateEventSource(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventSource()) { // not required
+		return nil
+	}
+
+	if err := m.EventSource().ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("eventSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("eventSource")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *RestAzureResourceLogAnalyticsWorkspacesSource) contextValidateEventSourceFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.EventSourceFilters()); i++ {
+
+		if m.eventSourceFiltersField[i] != nil {
+
+			if swag.IsZero(m.eventSourceFiltersField[i]) { // not required
+				return nil
+			}
+
+			if err := m.eventSourceFiltersField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

@@ -58,7 +58,7 @@ func NewGetOpsNoteListJSONOK() *GetOpsNoteListJSONOK {
 /*
 GetOpsNoteListJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetOpsNoteListJSONOK struct {
 	Payload interface{}

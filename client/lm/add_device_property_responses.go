@@ -58,7 +58,7 @@ func NewAddDevicePropertyOK() *AddDevicePropertyOK {
 /*
 AddDevicePropertyOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully added the device property
 */
 type AddDevicePropertyOK struct {
 	Payload *models.EntityProperty

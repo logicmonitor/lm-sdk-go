@@ -94,13 +94,10 @@ func (o *DeleteDashboardGroupByIDParams) WithDefaults() *DeleteDashboardGroupByI
 func (o *DeleteDashboardGroupByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		allowNonEmptyGroupDefault = bool(false)
 	)
 
 	val := DeleteDashboardGroupByIDParams{
-		UserAgent:          &userAgentDefault,
-		AllowNonEmptyGroup: &allowNonEmptyGroupDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

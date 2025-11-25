@@ -58,7 +58,7 @@ func NewMapUnMapModuleToAccessGroupOK() *MapUnMapModuleToAccessGroupOK {
 /*
 MapUnMapModuleToAccessGroupOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully created the mapping
 */
 type MapUnMapModuleToAccessGroupOK struct {
 	Payload *models.RestMapModuleV3

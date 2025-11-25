@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// IntegrationMetadata integration metadata
+// IntegrationMetadata The local module's IntegrationMetadata, readable for troubleshooting purposes
 //
 // swagger:model IntegrationMetadata
 type IntegrationMetadata struct {
@@ -43,7 +43,7 @@ type IntegrationMetadata struct {
 	// The values can be DataSources | EventSources | PropertySources | ConfigSources | LogSources | TopologySources | Jobmonitors | AppliesTo Functions | SNMP SysOID Maps
 	// The type of LogicModule
 	// Read Only: true
-	// Enum: ["DATASOURCE","EVENTSOURCE","JOBMONITOR","APPLIESTO_FUNCTION","SNMP_SYSOID_MAP","PROPERTYSOURCE","CONFIGSOURCE","TOPOLOGYSOURCE","LOGSOURCE"]
+	// Enum: ["DATASOURCE","EVENTSOURCE","JOBMONITOR","APPLIESTO_FUNCTION","SNMP_SYSOID_MAP","PROPERTYSOURCE","CONFIGSOURCE","TOPOLOGYSOURCE","LOGSOURCE","DIAGNOSTICSOURCE","REMEDIATIONSOURCE"]
 	LogicModuleType string `json:"logicModuleType,omitempty"`
 
 	// Specifies the origin Author companies unique Id
@@ -113,7 +113,7 @@ var integrationMetadataTypeLogicModuleTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["DATASOURCE","EVENTSOURCE","JOBMONITOR","APPLIESTO_FUNCTION","SNMP_SYSOID_MAP","PROPERTYSOURCE","CONFIGSOURCE","TOPOLOGYSOURCE","LOGSOURCE"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["DATASOURCE","EVENTSOURCE","JOBMONITOR","APPLIESTO_FUNCTION","SNMP_SYSOID_MAP","PROPERTYSOURCE","CONFIGSOURCE","TOPOLOGYSOURCE","LOGSOURCE","DIAGNOSTICSOURCE","REMEDIATIONSOURCE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -149,6 +149,12 @@ const (
 
 	// IntegrationMetadataLogicModuleTypeLOGSOURCE captures enum value "LOGSOURCE"
 	IntegrationMetadataLogicModuleTypeLOGSOURCE string = "LOGSOURCE"
+
+	// IntegrationMetadataLogicModuleTypeDIAGNOSTICSOURCE captures enum value "DIAGNOSTICSOURCE"
+	IntegrationMetadataLogicModuleTypeDIAGNOSTICSOURCE string = "DIAGNOSTICSOURCE"
+
+	// IntegrationMetadataLogicModuleTypeREMEDIATIONSOURCE captures enum value "REMEDIATIONSOURCE"
+	IntegrationMetadataLogicModuleTypeREMEDIATIONSOURCE string = "REMEDIATIONSOURCE"
 )
 
 // prop value enum

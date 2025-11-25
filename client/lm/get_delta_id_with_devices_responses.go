@@ -58,7 +58,7 @@ func NewGetDeltaIDWithDevicesOK() *GetDeltaIDWithDevicesOK {
 /*
 GetDeltaIDWithDevicesOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetDeltaIDWithDevicesOK struct {
 	Payload *models.DeviceDeltaPaginationResponse

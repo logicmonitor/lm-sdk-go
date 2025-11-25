@@ -58,7 +58,7 @@ func NewGetDeviceDatasourceInstanceAlertSettingListOfDSIOK() *GetDeviceDatasourc
 /*
 GetDeviceDatasourceInstanceAlertSettingListOfDSIOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetDeviceDatasourceInstanceAlertSettingListOfDSIOK struct {
 	Payload *models.DeviceDataSourceInstanceAlertSettingPaginationResponse

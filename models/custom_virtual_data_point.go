@@ -13,7 +13,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// CustomVirtualDataPoint custom virtual data point
+// CustomVirtualDataPoint The virtual datapoints added to the widget (note that a virtual datapoint must be referenced in a graph line to be displayed)
 //
 // swagger:model CustomVirtualDataPoint
 type CustomVirtualDataPoint struct {

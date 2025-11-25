@@ -21,7 +21,7 @@ type AlertResponse struct {
 
 	// The active SDT, if one exists
 	// Read Only: true
-	SDT interface{} `json:"SDT,omitempty"`
+	SDT *JSONObject `json:"SDT,omitempty"`
 
 	// The comment submitted with the acknowledgement
 	// Read Only: true
@@ -87,6 +87,9 @@ type AlertResponse struct {
 	// Read Only: true
 	Cleared *bool `json:"cleared,omitempty"`
 
+	// context
+	Context *RestAlertQueryContext `json:"context,omitempty"`
+
 	// The id of the datapoint in alert
 	// Read Only: true
 	DataPointID int32 `json:"dataPointId,omitempty"`
@@ -140,6 +143,10 @@ type AlertResponse struct {
 	// The internal id for the alert
 	// Read Only: true
 	InternalID string `json:"internalId,omitempty"`
+
+	// The time (in epoch format) that the alert was last updated. This field is used to track the most recent update to the alert, such as changes in its state, acknowledgment, or other properties
+	// Read Only: true
+	LastUpdatedOnEpoch int64 `json:"lastUpdatedOnEpoch,omitempty"`
 
 	// Specified log alert metadata fields value
 	// Read Only: true
@@ -197,9 +204,17 @@ type AlertResponse struct {
 	// Read Only: true
 	RuleID int32 `json:"ruleId,omitempty"`
 
+	// The SDT Ids associated with the alert
+	// Read Only: true
+	SDTIds string `json:"sdtIds,omitempty"`
+
 	// It specifies if the SDT is set for an active alert or not. However, the sdted is set to false for cleared alert as you cannot apply SDT to a cleared alert.
 	// Read Only: true
-	Sdted *bool `json:"sdted,omitempty"`
+	Sdted interface{} `json:"sdted,omitempty"`
+
+	// The session id of alert
+	// Read Only: true
+	SessionID int32 `json:"sessionId,omitempty"`
 
 	// The alert severity, where 2=warning, 3=error and 4=critical
 	// Read Only: true
@@ -217,7 +232,7 @@ type AlertResponse struct {
 	// Read Only: true
 	SuppressDesc string `json:"suppressDesc,omitempty"`
 
-	// The component (For example: SDT, HostClusterAlert) which suppressed the alert
+	// The component (For example: SDT, CollectorDown, HostClusterAlert, Dependency, HostDown, ADS) which suppressed the alert
 	// Read Only: true
 	Suppressor string `json:"suppressor,omitempty"`
 
@@ -238,13 +253,40 @@ type AlertResponse struct {
 func (m *AlertResponse) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateSDT(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateAlertExternalTicketURL(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContext(formats); err != nil {
 		res = append(res, err)
 	}
 
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AlertResponse) validateSDT(formats strfmt.Registry) error {
+	if swag.IsZero(m.SDT) { // not required
+		return nil
+	}
+
+	if m.SDT != nil {
+		if err := m.SDT.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("SDT")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("SDT")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -267,9 +309,32 @@ func (m *AlertResponse) validateAlertExternalTicketURL(formats strfmt.Registry) 
 	return nil
 }
 
+func (m *AlertResponse) validateContext(formats strfmt.Registry) error {
+	if swag.IsZero(m.Context) { // not required
+		return nil
+	}
+
+	if m.Context != nil {
+		if err := m.Context.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("context")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("context")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this alert response based on the context it is used
 func (m *AlertResponse) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
+
+	if err := m.contextValidateSDT(ctx, formats); err != nil {
+		res = append(res, err)
+	}
 
 	if err := m.contextValidateAckComment(ctx, formats); err != nil {
 		res = append(res, err)
@@ -335,6 +400,10 @@ func (m *AlertResponse) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateContext(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateDataPointID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -380,6 +449,10 @@ func (m *AlertResponse) ContextValidate(ctx context.Context, formats strfmt.Regi
 	}
 
 	if err := m.contextValidateInternalID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateLastUpdatedOnEpoch(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -435,7 +508,11 @@ func (m *AlertResponse) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
-	if err := m.contextValidateSdted(ctx, formats); err != nil {
+	if err := m.contextValidateSDTIds(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateSessionID(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -474,6 +551,27 @@ func (m *AlertResponse) ContextValidate(ctx context.Context, formats strfmt.Regi
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *AlertResponse) contextValidateSDT(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.SDT != nil {
+
+		if swag.IsZero(m.SDT) { // not required
+			return nil
+		}
+
+		if err := m.SDT.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("SDT")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("SDT")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 
@@ -633,6 +731,27 @@ func (m *AlertResponse) contextValidateCleared(ctx context.Context, formats strf
 	return nil
 }
 
+func (m *AlertResponse) contextValidateContext(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Context != nil {
+
+		if swag.IsZero(m.Context) { // not required
+			return nil
+		}
+
+		if err := m.Context.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("context")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("context")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 func (m *AlertResponse) contextValidateDataPointID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "dataPointId", "body", int32(m.DataPointID)); err != nil {
@@ -735,6 +854,15 @@ func (m *AlertResponse) contextValidateInstanceName(ctx context.Context, formats
 func (m *AlertResponse) contextValidateInternalID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "internalId", "body", string(m.InternalID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertResponse) contextValidateLastUpdatedOnEpoch(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "lastUpdatedOnEpoch", "body", int64(m.LastUpdatedOnEpoch)); err != nil {
 		return err
 	}
 
@@ -858,9 +986,18 @@ func (m *AlertResponse) contextValidateRuleID(ctx context.Context, formats strfm
 	return nil
 }
 
-func (m *AlertResponse) contextValidateSdted(ctx context.Context, formats strfmt.Registry) error {
+func (m *AlertResponse) contextValidateSDTIds(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "sdted", "body", m.Sdted); err != nil {
+	if err := validate.ReadOnly(ctx, "sdtIds", "body", string(m.SDTIds)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AlertResponse) contextValidateSessionID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "sessionId", "body", int32(m.SessionID)); err != nil {
 		return err
 	}
 

@@ -58,7 +58,7 @@ func NewGetDeviceConfigSourceConfigListOK() *GetDeviceConfigSourceConfigListOK {
 /*
 GetDeviceConfigSourceConfigListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetDeviceConfigSourceConfigListOK struct {
 	Payload *models.DeviceDatasourceInstanceConfigPaginationResponse

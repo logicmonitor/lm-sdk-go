@@ -58,7 +58,7 @@ func NewGetWidgetByIDOK() *GetWidgetByIDOK {
 /*
 GetWidgetByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the widget
 */
 type GetWidgetByIDOK struct {
 	Payload models.Widget

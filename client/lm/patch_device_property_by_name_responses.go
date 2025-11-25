@@ -58,7 +58,7 @@ func NewPatchDevicePropertyByNameOK() *PatchDevicePropertyByNameOK {
 /*
 PatchDevicePropertyByNameOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the device property
 */
 type PatchDevicePropertyByNameOK struct {
 	Payload *models.EntityProperty

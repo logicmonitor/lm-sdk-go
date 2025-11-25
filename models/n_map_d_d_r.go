@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NMapDDR n map d d r
+// NMapDDR Information related to including / excluding discovered devices in / from monitoring
 //
 // swagger:model NMapDDR
 type NMapDDR struct {

@@ -79,6 +79,13 @@ type EventSource interface {
 	Description() string
 	SetDescription(string)
 
+	EventSource() EventSource
+	SetEventSource(EventSource)
+
+	// event source filters
+	EventSourceFilters() []*EventSourceFilter
+	SetEventSourceFilters([]*EventSourceFilter)
+
 	// The filters for the EventSource
 	Filters() []*RestEventSourceFilter
 	SetFilters([]*RestEventSourceFilter)
@@ -106,6 +113,10 @@ type EventSource interface {
 	// Required: true
 	Name() *string
 	SetName(*string)
+
+	// The Registry ID of the Exchange Integration this module is based from, including this field will set this as the module's import base and mark the ID's version as audited
+	OriginRegistryID() string
+	SetOriginRegistryID(string)
 
 	// Whether or not duplicate alerts have to be suppressed
 	SuppressDuplicatesES() bool
@@ -153,6 +164,10 @@ type eventSource struct {
 
 	descriptionField string
 
+	eventSourceField EventSource
+
+	eventSourceFiltersField []*EventSourceFilter
+
 	filtersField []*RestEventSourceFilter
 
 	groupField string
@@ -164,6 +179,8 @@ type eventSource struct {
 	lineageIdField string
 
 	nameField *string
+
+	originRegistryIdField string
 
 	suppressDuplicatesESField bool
 
@@ -293,6 +310,26 @@ func (m *eventSource) SetDescription(val string) {
 	m.descriptionField = val
 }
 
+// EventSource gets the event source of this polymorphic type
+func (m *eventSource) EventSource() EventSource {
+	return m.eventSourceField
+}
+
+// SetEventSource sets the event source of this polymorphic type
+func (m *eventSource) SetEventSource(val EventSource) {
+	m.eventSourceField = val
+}
+
+// EventSourceFilters gets the event source filters of this polymorphic type
+func (m *eventSource) EventSourceFilters() []*EventSourceFilter {
+	return m.eventSourceFiltersField
+}
+
+// SetEventSourceFilters sets the event source filters of this polymorphic type
+func (m *eventSource) SetEventSourceFilters(val []*EventSourceFilter) {
+	m.eventSourceFiltersField = val
+}
+
 // Filters gets the filters of this polymorphic type
 func (m *eventSource) Filters() []*RestEventSourceFilter {
 	return m.filtersField
@@ -351,6 +388,16 @@ func (m *eventSource) Name() *string {
 // SetName sets the name of this polymorphic type
 func (m *eventSource) SetName(val *string) {
 	m.nameField = val
+}
+
+// OriginRegistryID gets the origin registry Id of this polymorphic type
+func (m *eventSource) OriginRegistryID() string {
+	return m.originRegistryIdField
+}
+
+// SetOriginRegistryID sets the origin registry Id of this polymorphic type
+func (m *eventSource) SetOriginRegistryID(val string) {
+	m.originRegistryIdField = val
 }
 
 // SuppressDuplicatesES gets the suppress duplicates e s of this polymorphic type
@@ -573,6 +620,14 @@ func (m *eventSource) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateEventSource(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateEventSourceFilters(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateFilters(formats); err != nil {
 		res = append(res, err)
 	}
@@ -633,6 +688,49 @@ func (m *eventSource) validateAlertEffectiveIval(formats strfmt.Registry) error 
 
 	if err := validate.Required("alertEffectiveIval", "body", m.AlertEffectiveIval()); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) validateEventSource(formats strfmt.Registry) error {
+	if swag.IsZero(m.EventSource()) { // not required
+		return nil
+	}
+
+	if err := m.EventSource().Validate(formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("eventSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("eventSource")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) validateEventSourceFilters(formats strfmt.Registry) error {
+	if swag.IsZero(m.EventSourceFilters()) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.EventSourceFilters()); i++ {
+		if swag.IsZero(m.eventSourceFiltersField[i]) { // not required
+			continue
+		}
+
+		if m.eventSourceFiltersField[i] != nil {
+			if err := m.eventSourceFiltersField[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil
@@ -708,6 +806,14 @@ func (m *eventSource) ContextValidate(ctx context.Context, formats strfmt.Regist
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateEventSource(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateEventSourceFilters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateFilters(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -772,6 +878,49 @@ func (m *eventSource) contextValidateChecksum(ctx context.Context, formats strfm
 
 	if err := validate.ReadOnly(ctx, "checksum", "body", string(m.Checksum())); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) contextValidateEventSource(ctx context.Context, formats strfmt.Registry) error {
+
+	if swag.IsZero(m.EventSource()) { // not required
+		return nil
+	}
+
+	if err := m.EventSource().ContextValidate(ctx, formats); err != nil {
+		if ve, ok := err.(*errors.Validation); ok {
+			return ve.ValidateName("eventSource")
+		} else if ce, ok := err.(*errors.CompositeError); ok {
+			return ce.ValidateName("eventSource")
+		}
+		return err
+	}
+
+	return nil
+}
+
+func (m *eventSource) contextValidateEventSourceFilters(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.EventSourceFilters()); i++ {
+
+		if m.eventSourceFiltersField[i] != nil {
+
+			if swag.IsZero(m.eventSourceFiltersField[i]) { // not required
+				return nil
+			}
+
+			if err := m.eventSourceFiltersField[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("eventSourceFilters" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

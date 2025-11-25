@@ -58,7 +58,7 @@ func NewGetEscalationChainByIDOK() *GetEscalationChainByIDOK {
 /*
 GetEscalationChainByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the escalation chain
 */
 type GetEscalationChainByIDOK struct {
 	Payload *models.EscalatingChain

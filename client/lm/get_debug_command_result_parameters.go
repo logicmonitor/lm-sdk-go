@@ -70,7 +70,6 @@ type GetDebugCommandResultParams struct {
 	// CollectorID.
 	//
 	// Format: int32
-	// Default: -1
 	CollectorID *int32
 
 	// ID.
@@ -95,13 +94,10 @@ func (o *GetDebugCommandResultParams) WithDefaults() *GetDebugCommandResultParam
 func (o *GetDebugCommandResultParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		collectorIDDefault = int32(-1)
 	)
 
 	val := GetDebugCommandResultParams{
-		UserAgent:   &userAgentDefault,
-		CollectorID: &collectorIDDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

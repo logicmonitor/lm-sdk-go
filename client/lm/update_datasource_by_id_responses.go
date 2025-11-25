@@ -58,7 +58,7 @@ func NewUpdateDatasourceByIDOK() *UpdateDatasourceByIDOK {
 /*
 UpdateDatasourceByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated datasource
 */
 type UpdateDatasourceByIDOK struct {
 	Payload *models.DataSource

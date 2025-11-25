@@ -112,18 +112,15 @@ func (o *GetDeviceGroupDatasourceListParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
-		includeDisabledDataSourceWithoutInstanceDefault = bool(false)
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceGroupDatasourceListParams{
-		UserAgent:                                &userAgentDefault,
-		IncludeDisabledDataSourceWithoutInstance: &includeDisabledDataSourceWithoutInstanceDefault,
-		Offset:                                   &offsetDefault,
-		Size:                                     &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout

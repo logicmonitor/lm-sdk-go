@@ -58,7 +58,7 @@ func NewGetUpdateReasonListByConfigSourceIDJSONOK() *GetUpdateReasonListByConfig
 /*
 GetUpdateReasonListByConfigSourceIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved update history for the configSource
 */
 type GetUpdateReasonListByConfigSourceIDJSONOK struct {
 	Payload interface{}

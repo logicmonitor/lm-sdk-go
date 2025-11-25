@@ -58,7 +58,7 @@ func NewGetAlertListOK() *GetAlertListOK {
 /*
 GetAlertListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved alert list
 */
 type GetAlertListOK struct {
 	Payload *models.AlertListPaginationResponse

@@ -68,8 +68,6 @@ type GetJobMonitorByIDJSONParams struct {
 	UserAgent *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -96,13 +94,10 @@ func (o *GetJobMonitorByIDJSONParams) WithDefaults() *GetJobMonitorByIDJSONParam
 func (o *GetJobMonitorByIDJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
 	)
 
 	val := GetJobMonitorByIDJSONParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 	}
 
 	val.timeout = o.timeout

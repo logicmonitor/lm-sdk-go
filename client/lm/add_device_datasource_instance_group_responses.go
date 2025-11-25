@@ -58,7 +58,7 @@ func NewAddDeviceDatasourceInstanceGroupOK() *AddDeviceDatasourceInstanceGroupOK
 /*
 AddDeviceDatasourceInstanceGroupOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully added the device datasource instance group
 */
 type AddDeviceDatasourceInstanceGroupOK struct {
 	Payload *models.DeviceDataSourceInstanceGroup

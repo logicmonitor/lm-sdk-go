@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GraphOpsNoteScope graph ops note scope
+// GraphOpsNoteScope Scopes: use this field to find match opsnote
 //
 // swagger:model GraphOpsNoteScope
 type GraphOpsNoteScope struct {
@@ -81,6 +82,14 @@ func (m *GraphOpsNoteScope) contextValidateDeviceGroupIds(ctx context.Context, f
 		return err
 	}
 
+	for i := 0; i < len(m.DeviceGroupIds); i++ {
+
+		if err := validate.ReadOnly(ctx, "deviceGroupIds"+"."+strconv.Itoa(i), "body", int32(m.DeviceGroupIds[i])); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -97,6 +106,14 @@ func (m *GraphOpsNoteScope) contextValidateServiceGroupIds(ctx context.Context, 
 
 	if err := validate.ReadOnly(ctx, "serviceGroupIds", "body", []int32(m.ServiceGroupIds)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.ServiceGroupIds); i++ {
+
+		if err := validate.ReadOnly(ctx, "serviceGroupIds"+"."+strconv.Itoa(i), "body", int32(m.ServiceGroupIds[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

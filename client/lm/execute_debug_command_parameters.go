@@ -75,7 +75,6 @@ type ExecuteDebugCommandParams struct {
 	// CollectorID.
 	//
 	// Format: int32
-	// Default: -1
 	CollectorID *int32
 
 	timeout    time.Duration
@@ -97,13 +96,10 @@ func (o *ExecuteDebugCommandParams) WithDefaults() *ExecuteDebugCommandParams {
 func (o *ExecuteDebugCommandParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		collectorIDDefault = int32(-1)
 	)
 
 	val := ExecuteDebugCommandParams{
-		UserAgent:   &userAgentDefault,
-		CollectorID: &collectorIDDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

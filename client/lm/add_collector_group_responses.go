@@ -58,7 +58,7 @@ func NewAddCollectorGroupOK() *AddCollectorGroupOK {
 /*
 AddCollectorGroupOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully added the collector group
 */
 type AddCollectorGroupOK struct {
 	Payload *models.CollectorGroup

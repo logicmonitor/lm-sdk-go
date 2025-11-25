@@ -66,8 +66,8 @@ type ImportConfigSourceParams struct {
 	// Default: "Logicmonitor/GO-SDK"
 	UserAgent *string
 
-	// File.
-	File runtime.NamedReadCloser
+	// Body.
+	Body ImportConfigSourceBody
 
 	timeout    time.Duration
 	Context    context.Context
@@ -144,15 +144,15 @@ func (o *ImportConfigSourceParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
 }
 
-// WithFile adds the file to the import config source params
-func (o *ImportConfigSourceParams) WithFile(file runtime.NamedReadCloser) *ImportConfigSourceParams {
-	o.SetFile(file)
+// WithBody adds the body to the import config source params
+func (o *ImportConfigSourceParams) WithBody(body ImportConfigSourceBody) *ImportConfigSourceParams {
+	o.SetBody(body)
 	return o
 }
 
-// SetFile adds the file to the import config source params
-func (o *ImportConfigSourceParams) SetFile(file runtime.NamedReadCloser) {
-	o.File = file
+// SetBody adds the body to the import config source params
+func (o *ImportConfigSourceParams) SetBody(body ImportConfigSourceBody) {
+	o.Body = body
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -170,8 +170,7 @@ func (o *ImportConfigSourceParams) WriteToRequest(r runtime.ClientRequest, reg s
 			return err
 		}
 	}
-	// form file param file
-	if err := r.SetFileParam("file", o.File); err != nil {
+	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}
 

@@ -17,7 +17,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// NOCItemBase n o c item base
+// NOCItemBase The NOC items
 //
 // swagger:discriminator NOCItemBase type
 type NOCItemBase interface {

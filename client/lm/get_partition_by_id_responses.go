@@ -58,7 +58,7 @@ func NewGetPartitionByIDOK() *GetPartitionByIDOK {
 /*
 GetPartitionByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetPartitionByIDOK struct {
 	Payload *models.LogPartition

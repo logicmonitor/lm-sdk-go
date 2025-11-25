@@ -58,7 +58,7 @@ func NewGetAlertListByDeviceGroupIDJSONOK() *GetAlertListByDeviceGroupIDJSONOK {
 /*
 GetAlertListByDeviceGroupIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetAlertListByDeviceGroupIDJSONOK struct {
 	Payload interface{}

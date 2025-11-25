@@ -19,7 +19,7 @@ import (
 // swagger:model GenerateReportRequest
 type GenerateReportRequest struct {
 
-	// The email addresses that LogicMonitor should send the report to, separated by commas
+	// The email addresses that LogicMonitor should send the report to, separated by commas. If set to null, the report will be generated immediately and the response will contain the report file URLOtherwise, the report will be generated in the background and delivered to the specified email addresses
 	// Example: user@domain.com
 	ReceiveEmails string `json:"receiveEmails,omitempty"`
 

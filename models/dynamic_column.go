@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// DynamicColumn dynamic column
+// DynamicColumn The columns that will be displayed in the report. You should specify the columns in the order in which you'd like them to be displayed. All column names need to be included in this object, but each column should have an associated isHidden field that indicates whether it is displayed or not. Severity, Group, Device, Instance, Datapoint, Thresholds, Value, Began, End, Rule, Chain, Acked, Acked By, Acked On, Notes, In SDT,Dependancy Role,Notification State
 //
 // swagger:model DynamicColumn
 type DynamicColumn struct {

@@ -84,8 +84,6 @@ type UpdateCollectorByIDParams struct {
 	ID int32
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	timeout    time.Duration
@@ -107,19 +105,10 @@ func (o *UpdateCollectorByIDParams) WithDefaults() *UpdateCollectorByIDParams {
 func (o *UpdateCollectorByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		autoBalanceMonitoredDevicesDefault = bool(false)
-
-		forceUpdateFailedOverDevicesDefault = bool(false)
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := UpdateCollectorByIDParams{
-		UserAgent:                    &userAgentDefault,
-		AutoBalanceMonitoredDevices:  &autoBalanceMonitoredDevicesDefault,
-		ForceUpdateFailedOverDevices: &forceUpdateFailedOverDevicesDefault,
-		OpType:                       &opTypeDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

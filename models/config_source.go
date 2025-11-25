@@ -32,6 +32,9 @@ type ConfigSource struct {
 	// Module's access groups
 	AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
 
+	// ad parameters
+	AdParameters *DataSource `json:"adParameters,omitempty"`
+
 	// The Applies To for the LMModule
 	AppliesTo string `json:"appliesTo,omitempty"`
 
@@ -89,6 +92,9 @@ type ConfigSource struct {
 	// The config source name
 	Name string `json:"name,omitempty"`
 
+	// The Registry ID of the Exchange Integration this module is based from, including this field will set this as the module's import base and mark the ID's version as audited
+	OriginRegistryID string `json:"originRegistryId,omitempty"`
+
 	// The Tags for the LMModule
 	Tags string `json:"tags,omitempty"`
 
@@ -118,6 +124,8 @@ func (m *ConfigSource) UnmarshalJSON(raw []byte) error {
 		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
 
 		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
+		AdParameters *DataSource `json:"adParameters,omitempty"`
 
 		AppliesTo string `json:"appliesTo,omitempty"`
 
@@ -155,6 +163,8 @@ func (m *ConfigSource) UnmarshalJSON(raw []byte) error {
 
 		Name string `json:"name,omitempty"`
 
+		OriginRegistryID string `json:"originRegistryId,omitempty"`
+
 		Tags string `json:"tags,omitempty"`
 
 		Technology string `json:"technology,omitempty"`
@@ -187,6 +197,9 @@ func (m *ConfigSource) UnmarshalJSON(raw []byte) error {
 
 	// accessGroups
 	result.AccessGroups = data.AccessGroups
+
+	// adParameters
+	result.AdParameters = data.AdParameters
 
 	// appliesTo
 	result.AppliesTo = data.AppliesTo
@@ -242,6 +255,9 @@ func (m *ConfigSource) UnmarshalJSON(raw []byte) error {
 	// name
 	result.Name = data.Name
 
+	// originRegistryId
+	result.OriginRegistryID = data.OriginRegistryID
+
 	// tags
 	result.Tags = data.Tags
 
@@ -267,6 +283,8 @@ func (m ConfigSource) MarshalJSON() ([]byte, error) {
 		AccessGroupIds []int32 `json:"accessGroupIds,omitempty"`
 
 		AccessGroups []*AccessGroup `json:"accessGroups,omitempty"`
+
+		AdParameters *DataSource `json:"adParameters,omitempty"`
 
 		AppliesTo string `json:"appliesTo,omitempty"`
 
@@ -302,6 +320,8 @@ func (m ConfigSource) MarshalJSON() ([]byte, error) {
 
 		Name string `json:"name,omitempty"`
 
+		OriginRegistryID string `json:"originRegistryId,omitempty"`
+
 		Tags string `json:"tags,omitempty"`
 
 		Technology string `json:"technology,omitempty"`
@@ -314,6 +334,8 @@ func (m ConfigSource) MarshalJSON() ([]byte, error) {
 		AccessGroupIds: m.AccessGroupIds,
 
 		AccessGroups: m.AccessGroups,
+
+		AdParameters: m.AdParameters,
 
 		AppliesTo: m.AppliesTo,
 
@@ -349,6 +371,8 @@ func (m ConfigSource) MarshalJSON() ([]byte, error) {
 
 		Name: m.Name,
 
+		OriginRegistryID: m.OriginRegistryID,
+
 		Tags: m.Tags,
 
 		Technology: m.Technology,
@@ -382,6 +406,10 @@ func (m *ConfigSource) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateAccessGroups(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateAdParameters(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -440,6 +468,25 @@ func (m *ConfigSource) validateAccessGroups(formats strfmt.Registry) error {
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ConfigSource) validateAdParameters(formats strfmt.Registry) error {
+	if swag.IsZero(m.AdParameters) { // not required
+		return nil
+	}
+
+	if m.AdParameters != nil {
+		if err := m.AdParameters.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("adParameters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("adParameters")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -534,6 +581,10 @@ func (m *ConfigSource) ContextValidate(ctx context.Context, formats strfmt.Regis
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAdParameters(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateAutoDiscoveryConfig(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -588,6 +639,27 @@ func (m *ConfigSource) contextValidateAccessGroups(ctx context.Context, formats 
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *ConfigSource) contextValidateAdParameters(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.AdParameters != nil {
+
+		if swag.IsZero(m.AdParameters) { // not required
+			return nil
+		}
+
+		if err := m.AdParameters.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("adParameters")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("adParameters")
+			}
+			return err
+		}
 	}
 
 	return nil

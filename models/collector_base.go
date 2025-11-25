@@ -63,6 +63,9 @@ type CollectorBase struct {
 	// Read Only: true
 	Build string `json:"build,omitempty"`
 
+	// calculated threshold value for ABCG collector to check if a collector has high load
+	CalculatedThreshold int64 `json:"calculatedThreshold,omitempty"`
+
 	// Whether the collector can be downgraded to a lower version
 	// Read Only: true
 	CanDowngrade *bool `json:"canDowngrade,omitempty"`
@@ -228,8 +231,12 @@ type CollectorBase struct {
 	// number of instances
 	NumberOfInstances int32 `json:"numberOfInstances,omitempty"`
 
+	// The number of Collectors Sdts
+	// Read Only: true
+	NumberOfSDTs int32 `json:"numberOfSDTs,omitempty"`
+
 	// The details of the Collector's automatic downgrade schedule, if one exists
-	OnetimeDowngradeInfo *OnetimeUpgradeInfo `json:"onetimeDowngradeInfo,omitempty"`
+	OnetimeDowngradeInfo *RestDowngradeInfoOnetime `json:"onetimeDowngradeInfo,omitempty"`
 
 	// The details of the Collector's one time upgrade, if one has been scheduled
 	OnetimeUpgradeInfo *OnetimeUpgradeInfo `json:"onetimeUpgradeInfo,omitempty"`
@@ -631,6 +638,10 @@ func (m *CollectorBase) ContextValidate(ctx context.Context, formats strfmt.Regi
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateNumberOfSDTs(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateOnetimeDowngradeInfo(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -763,6 +774,14 @@ func (m *CollectorBase) contextValidateAckedOnLocal(ctx context.Context, formats
 }
 
 func (m *CollectorBase) contextValidateAgentConfFields(ctx context.Context, formats strfmt.Registry) error {
+
+	for k := range m.AgentConfFields {
+
+		if err := validate.ReadOnly(ctx, "agentConfFields"+"."+k, "body", string(m.AgentConfFields[k])); err != nil {
+			return err
+		}
+
+	}
 
 	return nil
 }
@@ -1134,6 +1153,15 @@ func (m *CollectorBase) contextValidateNextUpgradeInfo(ctx context.Context, form
 func (m *CollectorBase) contextValidateNumberOfHosts(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "numberOfHosts", "body", int32(m.NumberOfHosts)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *CollectorBase) contextValidateNumberOfSDTs(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "numberOfSDTs", "body", int32(m.NumberOfSDTs)); err != nil {
 		return err
 	}
 

@@ -107,16 +107,10 @@ func (o *GetWebsiteDataByGraphNameJSONParams) WithDefaults() *GetWebsiteDataByGr
 func (o *GetWebsiteDataByGraphNameJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		endDefault = int64(0)
-
-		startDefault = int64(0)
 	)
 
 	val := GetWebsiteDataByGraphNameJSONParams{
 		UserAgent: &userAgentDefault,
-		End:       &endDefault,
-		Start:     &startDefault,
 	}
 
 	val.timeout = o.timeout

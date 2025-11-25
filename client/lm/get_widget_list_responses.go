@@ -58,7 +58,7 @@ func NewGetWidgetListOK() *GetWidgetListOK {
 /*
 GetWidgetListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved widget list
 */
 type GetWidgetListOK struct {
 	Payload *models.WidgetPaginationResponse

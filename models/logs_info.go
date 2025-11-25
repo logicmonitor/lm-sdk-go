@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// LogsInfo logs info
+// LogsInfo Logs widget configuration info
 //
 // swagger:model LogsInfo
 type LogsInfo struct {
@@ -22,6 +22,15 @@ type LogsInfo struct {
 	// The field is used for saving the widget aggregateType
 	// Required: true
 	AggregateType *string `json:"aggregateType"`
+
+	// aggregation column
+	AggregationColumn string `json:"aggregationColumn,omitempty"`
+
+	// aggregation function
+	AggregationFunction string `json:"aggregationFunction,omitempty"`
+
+	// aggregation label
+	AggregationLabel string `json:"aggregationLabel,omitempty"`
 
 	// The logsDataType included in the widget. Note that a logsDataType must be referenced in the logsInfo object in order to be displayed
 	// Required: true

@@ -58,7 +58,7 @@ func NewGetWidgetListByDashboardIDOK() *GetWidgetListByDashboardIDOK {
 /*
 GetWidgetListByDashboardIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetWidgetListByDashboardIDOK struct {
 	Payload *models.WidgetPaginationResponse

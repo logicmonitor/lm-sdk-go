@@ -67,8 +67,6 @@ type GetJobMonitorListParams struct {
 	UserAgent *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	timeout    time.Duration
@@ -90,13 +88,10 @@ func (o *GetJobMonitorListParams) WithDefaults() *GetJobMonitorListParams {
 func (o *GetJobMonitorListParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
 	)
 
 	val := GetJobMonitorListParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 	}
 
 	val.timeout = o.timeout

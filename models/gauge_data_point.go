@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GaugeDataPoint gauge data point
+// GaugeDataPoint The datapoint whose value is displayed in the gauge widget
 //
 // swagger:model GaugeDataPoint
 type GaugeDataPoint struct {

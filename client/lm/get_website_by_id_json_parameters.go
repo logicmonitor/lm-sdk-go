@@ -68,8 +68,6 @@ type GetWebsiteByIDJSONParams struct {
 	UserAgent *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -96,13 +94,10 @@ func (o *GetWebsiteByIDJSONParams) WithDefaults() *GetWebsiteByIDJSONParams {
 func (o *GetWebsiteByIDJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
 	)
 
 	val := GetWebsiteByIDJSONParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 	}
 
 	val.timeout = o.timeout

@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// BigNumberDataPoint big number data point
+// BigNumberDataPoint The datapoints included in the widget. Note that a datapoint must be referenced in the bigNumberItems object in order to be displayed
 //
 // swagger:model BigNumberDataPoint
 type BigNumberDataPoint struct {

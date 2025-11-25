@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// RestLogSourceResourceMappingV3 rest log source resource mapping v3
+// RestLogSourceResourceMappingV3 resource mapping
 //
 // swagger:model RestLogSourceResourceMappingV3
 type RestLogSourceResourceMappingV3 struct {

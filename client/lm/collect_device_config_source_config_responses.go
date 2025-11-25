@@ -58,7 +58,7 @@ func NewCollectDeviceConfigSourceConfigOK() *CollectDeviceConfigSourceConfigOK {
 /*
 CollectDeviceConfigSourceConfigOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type CollectDeviceConfigSourceConfigOK struct {
 	Payload interface{}

@@ -58,7 +58,7 @@ func NewGetWidgetListJSONOK() *GetWidgetListJSONOK {
 /*
 GetWidgetListJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved widget list
 */
 type GetWidgetListJSONOK struct {
 	Payload interface{}

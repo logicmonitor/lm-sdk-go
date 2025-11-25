@@ -58,7 +58,7 @@ func NewGetSDTHistoryByWebsiteIDOK() *GetSDTHistoryByWebsiteIDOK {
 /*
 GetSDTHistoryByWebsiteIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetSDTHistoryByWebsiteIDOK struct {
 	Payload *models.WebsiteSDTHistoryPaginationResponse

@@ -58,7 +58,7 @@ func NewAddAlertRuleOK() *AddAlertRuleOK {
 /*
 AddAlertRuleOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type AddAlertRuleOK struct {
 	Payload *models.AlertRule

@@ -58,7 +58,7 @@ func NewGetWebsiteGroupListOK() *GetWebsiteGroupListOK {
 /*
 GetWebsiteGroupListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetWebsiteGroupListOK struct {
 	Payload *models.WebsiteGroupPaginationResponse

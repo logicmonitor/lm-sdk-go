@@ -58,7 +58,7 @@ func NewAddPropertyRuleOK() *AddPropertyRuleOK {
 /*
 AddPropertyRuleOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully created the new property rule
 */
 type AddPropertyRuleOK struct {
 	Payload *models.PropertyRule

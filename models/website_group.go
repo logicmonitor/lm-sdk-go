@@ -297,6 +297,14 @@ func (m *WebsiteGroup) contextValidateRolePrivileges(ctx context.Context, format
 		return err
 	}
 
+	for i := 0; i < len(m.RolePrivileges); i++ {
+
+		if err := validate.ReadOnly(ctx, "rolePrivileges"+"."+strconv.Itoa(i), "body", string(m.RolePrivileges[i])); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 

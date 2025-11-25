@@ -68,8 +68,6 @@ type GetConfigSourceByIDParams struct {
 	UserAgent *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -96,13 +94,10 @@ func (o *GetConfigSourceByIDParams) WithDefaults() *GetConfigSourceByIDParams {
 func (o *GetConfigSourceByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
 	)
 
 	val := GetConfigSourceByIDParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 	}
 
 	val.timeout = o.timeout

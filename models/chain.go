@@ -15,13 +15,12 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Chain chain
+// Chain The chain destinations
 //
 // swagger:model Chain
 type Chain struct {
 
-	// If type is timebased then effective time when recipient receive notification.
-	//
+	// period
 	Period *Period `json:"period,omitempty"`
 
 	// List of recipients list

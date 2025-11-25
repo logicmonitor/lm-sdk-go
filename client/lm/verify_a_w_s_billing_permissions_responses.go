@@ -58,7 +58,7 @@ func NewVerifyAWSBillingPermissionsOK() *VerifyAWSBillingPermissionsOK {
 /*
 VerifyAWSBillingPermissionsOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully verified the AWS billing permissions
 */
 type VerifyAWSBillingPermissionsOK struct {
 	Payload *models.RestAWSVerifyBillingPermissionsV3

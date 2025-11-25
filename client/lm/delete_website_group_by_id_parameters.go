@@ -96,13 +96,10 @@ func (o *DeleteWebsiteGroupByIDParams) WithDefaults() *DeleteWebsiteGroupByIDPar
 func (o *DeleteWebsiteGroupByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		deleteChildrenDefault = int32(0)
 	)
 
 	val := DeleteWebsiteGroupByIDParams{
-		UserAgent:      &userAgentDefault,
-		DeleteChildren: &deleteChildrenDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

@@ -58,7 +58,7 @@ func NewGenerateReportByIDOK() *GenerateReportByIDOK {
 /*
 GenerateReportByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully generated the report
 */
 type GenerateReportByIDOK struct {
 	Payload *models.GenerateReportResult

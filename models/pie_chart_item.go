@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// PieChartItem pie chart item
+// PieChartItem The datapoints and virtual datapoints that will be displayed in the pie chart
 //
 // swagger:model PieChartItem
 type PieChartItem struct {

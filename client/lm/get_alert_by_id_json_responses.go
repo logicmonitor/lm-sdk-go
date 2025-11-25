@@ -58,7 +58,7 @@ func NewGetAlertByIDJSONOK() *GetAlertByIDJSONOK {
 /*
 GetAlertByIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Get alert by id
 */
 type GetAlertByIDJSONOK struct {
 	Payload interface{}

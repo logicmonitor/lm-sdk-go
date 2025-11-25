@@ -24,7 +24,7 @@ type BillingInfo struct {
 	// The title that will be displayed above the pie chart
 	EndExclusive int64 `json:"endExclusive,omitempty"`
 
-	// filters to be applied on the billing info
+	// filters
 	Filters *JSONArray `json:"filters,omitempty"`
 
 	// The datapoints added to the widget. Note that datapoints must be included in the pieChartItems object to be displayed in the widget

@@ -58,7 +58,7 @@ func NewGetNetscanByIDOK() *GetNetscanByIDOK {
 /*
 GetNetscanByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the netscan by ID
 */
 type GetNetscanByIDOK struct {
 	Payload models.Netscan

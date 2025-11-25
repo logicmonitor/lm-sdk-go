@@ -36,7 +36,7 @@ type VizFilterItem struct {
 
 	// type
 	// Read Only: true
-	// Enum: ["SYNONYM","RESOURCE_PROPERTY"]
+	// Enum: ["SYNONYM","RESOURCE_PROPERTY","INSTANCE_PROPERTY","RESOURCE_AND_INSTANCE"]
 	Type string `json:"type,omitempty"`
 
 	// value
@@ -112,7 +112,7 @@ var vizFilterItemTypeTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["SYNONYM","RESOURCE_PROPERTY"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["SYNONYM","RESOURCE_PROPERTY","INSTANCE_PROPERTY","RESOURCE_AND_INSTANCE"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -127,6 +127,12 @@ const (
 
 	// VizFilterItemTypeRESOURCEPROPERTY captures enum value "RESOURCE_PROPERTY"
 	VizFilterItemTypeRESOURCEPROPERTY string = "RESOURCE_PROPERTY"
+
+	// VizFilterItemTypeINSTANCEPROPERTY captures enum value "INSTANCE_PROPERTY"
+	VizFilterItemTypeINSTANCEPROPERTY string = "INSTANCE_PROPERTY"
+
+	// VizFilterItemTypeRESOURCEANDINSTANCE captures enum value "RESOURCE_AND_INSTANCE"
+	VizFilterItemTypeRESOURCEANDINSTANCE string = "RESOURCE_AND_INSTANCE"
 )
 
 // prop value enum

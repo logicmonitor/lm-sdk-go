@@ -58,7 +58,7 @@ func NewGetJobMonitorByIDJSONOK() *GetJobMonitorByIDJSONOK {
 /*
 GetJobMonitorByIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the JobMonitor by ID
 */
 type GetJobMonitorByIDJSONOK struct {
 	Payload interface{}

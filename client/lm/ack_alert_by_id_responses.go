@@ -58,7 +58,7 @@ func NewAckAlertByIDOK() *AckAlertByIDOK {
 /*
 AckAlertByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully acknowledged the alert
 */
 type AckAlertByIDOK struct {
 	Payload interface{}

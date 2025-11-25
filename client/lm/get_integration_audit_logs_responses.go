@@ -58,7 +58,7 @@ func NewGetIntegrationAuditLogsOK() *GetIntegrationAuditLogsOK {
 /*
 GetIntegrationAuditLogsOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved integration audit logs
 */
 type GetIntegrationAuditLogsOK struct {
 	Payload *models.IntegrationAuditLogPaginationResponse

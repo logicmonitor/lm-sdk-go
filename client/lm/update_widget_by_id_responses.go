@@ -58,7 +58,7 @@ func NewUpdateWidgetByIDOK() *UpdateWidgetByIDOK {
 /*
 UpdateWidgetByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the widget
 */
 type UpdateWidgetByIDOK struct {
 	Payload models.Widget

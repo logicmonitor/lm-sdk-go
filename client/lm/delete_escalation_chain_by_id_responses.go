@@ -58,7 +58,7 @@ func NewDeleteEscalationChainByIDOK() *DeleteEscalationChainByIDOK {
 /*
 DeleteEscalationChainByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully deleted the escalation chain
 */
 type DeleteEscalationChainByIDOK struct {
 	Payload interface{}

@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WebsiteCollectorInfo website collector info
+// WebsiteCollectorInfo The collector info of the services
 //
 // swagger:model WebsiteCollectorInfo
 type WebsiteCollectorInfo struct {

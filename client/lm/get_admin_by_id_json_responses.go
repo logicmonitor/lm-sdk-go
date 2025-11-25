@@ -58,7 +58,7 @@ func NewGetAdminByIDJSONOK() *GetAdminByIDJSONOK {
 /*
 GetAdminByIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetAdminByIDJSONOK struct {
 	Payload interface{}

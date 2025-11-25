@@ -58,7 +58,7 @@ func NewGetImmediateWebsiteListByWebsiteGroupIDOK() *GetImmediateWebsiteListByWe
 /*
 GetImmediateWebsiteListByWebsiteGroupIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetImmediateWebsiteListByWebsiteGroupIDOK struct {
 	Payload *models.WebsitePaginationResponse

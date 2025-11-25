@@ -58,7 +58,7 @@ func NewGetAppliesToFunctionByIDOK() *GetAppliesToFunctionByIDOK {
 /*
 GetAppliesToFunctionByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the applies to function
 */
 type GetAppliesToFunctionByIDOK struct {
 	Payload *models.AppliesToFunction

@@ -58,7 +58,7 @@ func NewPatchConfigSourceByIDOK() *PatchConfigSourceByIDOK {
 /*
 PatchConfigSourceByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the config source
 */
 type PatchConfigSourceByIDOK struct {
 	Payload *models.ConfigSource

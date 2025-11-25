@@ -58,7 +58,7 @@ func NewPatchEventSourceByIDOK() *PatchEventSourceByIDOK {
 /*
 PatchEventSourceByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated event source by ID
 */
 type PatchEventSourceByIDOK struct {
 	Payload models.EventSource

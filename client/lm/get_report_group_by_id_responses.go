@@ -58,7 +58,7 @@ func NewGetReportGroupByIDOK() *GetReportGroupByIDOK {
 /*
 GetReportGroupByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the report group by id
 */
 type GetReportGroupByIDOK struct {
 	Payload *models.ReportGroup

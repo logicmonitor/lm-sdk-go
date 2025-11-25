@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// NextUpgradeInfo next upgrade info
+// NextUpgradeInfo The details of the Collector's next upgrade, if one has been scheduled
 //
 // swagger:model NextUpgradeInfo
 type NextUpgradeInfo struct {

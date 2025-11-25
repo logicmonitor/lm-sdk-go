@@ -79,8 +79,6 @@ type GetReportListJSONParams struct {
 	Offset *int32
 
 	// ShowNextGenReports.
-	//
-	// Default: true
 	ShowNextGenReports *bool
 
 	// Size.
@@ -111,16 +109,13 @@ func (o *GetReportListJSONParams) SetDefaults() {
 
 		offsetDefault = int32(0)
 
-		showNextGenReportsDefault = bool(true)
-
 		sizeDefault = int32(50)
 	)
 
 	val := GetReportListJSONParams{
-		UserAgent:          &userAgentDefault,
-		Offset:             &offsetDefault,
-		ShowNextGenReports: &showNextGenReportsDefault,
-		Size:               &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout

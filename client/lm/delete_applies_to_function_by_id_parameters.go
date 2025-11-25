@@ -94,13 +94,10 @@ func (o *DeleteAppliesToFunctionByIDParams) WithDefaults() *DeleteAppliesToFunct
 func (o *DeleteAppliesToFunctionByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		ignoreReferenceDefault = bool(false)
 	)
 
 	val := DeleteAppliesToFunctionByIDParams{
-		UserAgent:       &userAgentDefault,
-		IgnoreReference: &ignoreReferenceDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

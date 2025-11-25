@@ -105,13 +105,10 @@ func (o *PatchDatasourceByIDParams) WithDefaults() *PatchDatasourceByIDParams {
 func (o *PatchDatasourceByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		forceUniqueIdentifierDefault = bool(false)
 	)
 
 	val := PatchDatasourceByIDParams{
-		UserAgent:             &userAgentDefault,
-		ForceUniqueIdentifier: &forceUniqueIdentifierDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

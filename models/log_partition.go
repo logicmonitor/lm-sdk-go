@@ -44,10 +44,31 @@ type LogPartition struct {
 	// Read Only: true
 	ID string `json:"id,omitempty"`
 
+	// is limit exceeded
+	IsLimitExceeded bool `json:"isLimitExceeded,omitempty"`
+
 	// Partition Name
 	// Example: partition
 	// Required: true
 	Name *string `json:"name"`
+
+	// next effective date
+	NextEffectiveDate int64 `json:"nextEffectiveDate,omitempty"`
+
+	// next restart ingest monthly
+	NextRestartIngestMonthly bool `json:"nextRestartIngestMonthly,omitempty"`
+
+	// next retention
+	NextRetention int32 `json:"nextRetention,omitempty"`
+
+	// next sku
+	NextSku string `json:"nextSku,omitempty"`
+
+	// next stop ingest on limit
+	NextStopIngestOnLimit bool `json:"nextStopIngestOnLimit,omitempty"`
+
+	// next usage limit
+	NextUsageLimit string `json:"nextUsageLimit,omitempty"`
 
 	// Parent Partition Id
 	// Example: 2
@@ -61,14 +82,26 @@ type LogPartition struct {
 	// Example: 100
 	Priority int32 `json:"priority,omitempty"`
 
+	// restart ingest monthly
+	RestartIngestMonthly bool `json:"restartIngestMonthly,omitempty"`
+
 	// Partition Retention in days
 	// Example: 7
 	// Required: true
 	Retention *int32 `json:"retention"`
 
+	// sku
+	Sku string `json:"sku,omitempty"`
+
+	// stop ingest on limit
+	StopIngestOnLimit bool `json:"stopIngestOnLimit,omitempty"`
+
 	// Tenant Name
 	// Example: tenant
 	Tenant string `json:"tenant,omitempty"`
+
+	// usage limit
+	UsageLimit string `json:"usageLimit,omitempty"`
 
 	// Partition user permission
 	// Read Only: true

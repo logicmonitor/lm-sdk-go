@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DeviceDataSourceInstanceConfigAlert device data source instance config alert
+// DeviceDataSourceInstanceConfigAlert Alerts associated to this configuration file
 //
 // swagger:model DeviceDataSourceInstanceConfigAlert
 type DeviceDataSourceInstanceConfigAlert struct {

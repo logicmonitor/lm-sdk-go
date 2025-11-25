@@ -58,7 +58,7 @@ func NewGetDeviceDatasourceInstanceListJSONOK() *GetDeviceDatasourceInstanceList
 /*
 GetDeviceDatasourceInstanceListJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetDeviceDatasourceInstanceListJSONOK struct {
 	Payload interface{}

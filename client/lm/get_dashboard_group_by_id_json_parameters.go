@@ -71,8 +71,6 @@ type GetDashboardGroupByIDJSONParams struct {
 	Fields *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -102,16 +100,10 @@ func (o *GetDashboardGroupByIDJSONParams) WithDefaults() *GetDashboardGroupByIDJ
 func (o *GetDashboardGroupByIDJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
-
-		templateDefault = bool(false)
 	)
 
 	val := GetDashboardGroupByIDJSONParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
-		Template:  &templateDefault,
 	}
 
 	val.timeout = o.timeout

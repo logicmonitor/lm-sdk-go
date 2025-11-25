@@ -66,8 +66,8 @@ type ImportBatchJobParams struct {
 	// Default: "Logicmonitor/GO-SDK"
 	UserAgent *string
 
-	// File.
-	File runtime.NamedReadCloser
+	// Body.
+	Body ImportBatchJobBody
 
 	timeout    time.Duration
 	Context    context.Context
@@ -144,15 +144,15 @@ func (o *ImportBatchJobParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
 }
 
-// WithFile adds the file to the import batch job params
-func (o *ImportBatchJobParams) WithFile(file runtime.NamedReadCloser) *ImportBatchJobParams {
-	o.SetFile(file)
+// WithBody adds the body to the import batch job params
+func (o *ImportBatchJobParams) WithBody(body ImportBatchJobBody) *ImportBatchJobParams {
+	o.SetBody(body)
 	return o
 }
 
-// SetFile adds the file to the import batch job params
-func (o *ImportBatchJobParams) SetFile(file runtime.NamedReadCloser) {
-	o.File = file
+// SetBody adds the body to the import batch job params
+func (o *ImportBatchJobParams) SetBody(body ImportBatchJobBody) {
+	o.Body = body
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -170,8 +170,7 @@ func (o *ImportBatchJobParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 			return err
 		}
 	}
-	// form file param file
-	if err := r.SetFileParam("file", o.File); err != nil {
+	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}
 

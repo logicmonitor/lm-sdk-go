@@ -6,10 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
+	"io"
 	"strconv"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
@@ -19,9 +23,7 @@ import (
 //
 // swagger:model DevicePaginationResponse
 type DevicePaginationResponse struct {
-
-	// items
-	Items []*Device `json:"items,omitempty"`
+	itemsField []Device
 
 	// search Id
 	// Read Only: true
@@ -30,6 +32,88 @@ type DevicePaginationResponse struct {
 	// total
 	// Read Only: true
 	Total int32 `json:"total,omitempty"`
+}
+
+// Items gets the items of this base type
+func (m *DevicePaginationResponse) Items() []Device {
+	return m.itemsField
+}
+
+// SetItems sets the items of this base type
+func (m *DevicePaginationResponse) SetItems(val []Device) {
+	m.itemsField = val
+}
+
+// UnmarshalJSON unmarshals this object with a polymorphic type from a JSON structure
+func (m *DevicePaginationResponse) UnmarshalJSON(raw []byte) error {
+	var data struct {
+		Items json.RawMessage `json:"items,omitempty"`
+
+		SearchID string `json:"searchId,omitempty"`
+
+		Total int32 `json:"total,omitempty"`
+	}
+	buf := bytes.NewBuffer(raw)
+	dec := json.NewDecoder(buf)
+	dec.UseNumber()
+
+	if err := dec.Decode(&data); err != nil {
+		return err
+	}
+
+	var propItems []Device
+	if string(data.Items) != "null" {
+		items, err := UnmarshalDeviceSlice(bytes.NewBuffer(data.Items), runtime.JSONConsumer())
+		if err != nil && err != io.EOF {
+			return err
+		}
+		propItems = items
+	}
+
+	var result DevicePaginationResponse
+
+	// items
+	result.itemsField = propItems
+
+	// searchId
+	result.SearchID = data.SearchID
+
+	// total
+	result.Total = data.Total
+
+	*m = result
+
+	return nil
+}
+
+// MarshalJSON marshals this object with a polymorphic type to a JSON structure
+func (m DevicePaginationResponse) MarshalJSON() ([]byte, error) {
+	var b1, b2, b3 []byte
+	var err error
+	b1, err = json.Marshal(struct {
+		SearchID string `json:"searchId,omitempty"`
+
+		Total int32 `json:"total,omitempty"`
+	}{
+
+		SearchID: m.SearchID,
+
+		Total: m.Total,
+	})
+	if err != nil {
+		return nil, err
+	}
+	b2, err = json.Marshal(struct {
+		Items []Device `json:"items,omitempty"`
+	}{
+
+		Items: m.itemsField,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return swag.ConcatJSON(b1, b2, b3), nil
 }
 
 // Validate validates this device pagination response
@@ -47,24 +131,19 @@ func (m *DevicePaginationResponse) Validate(formats strfmt.Registry) error {
 }
 
 func (m *DevicePaginationResponse) validateItems(formats strfmt.Registry) error {
-	if swag.IsZero(m.Items) { // not required
+	if swag.IsZero(m.Items()) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.Items); i++ {
-		if swag.IsZero(m.Items[i]) { // not required
-			continue
-		}
+	for i := 0; i < len(m.Items()); i++ {
 
-		if m.Items[i] != nil {
-			if err := m.Items[i].Validate(formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("items" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("items" + "." + strconv.Itoa(i))
-				}
-				return err
+		if err := m.itemsField[i].Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("items" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("items" + "." + strconv.Itoa(i))
 			}
+			return err
 		}
 
 	}
@@ -96,22 +175,19 @@ func (m *DevicePaginationResponse) ContextValidate(ctx context.Context, formats 
 
 func (m *DevicePaginationResponse) contextValidateItems(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.Items); i++ {
+	for i := 0; i < len(m.Items()); i++ {
 
-		if m.Items[i] != nil {
+		if swag.IsZero(m.itemsField[i]) { // not required
+			return nil
+		}
 
-			if swag.IsZero(m.Items[i]) { // not required
-				return nil
+		if err := m.itemsField[i].ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("items" + "." + strconv.Itoa(i))
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("items" + "." + strconv.Itoa(i))
 			}
-
-			if err := m.Items[i].ContextValidate(ctx, formats); err != nil {
-				if ve, ok := err.(*errors.Validation); ok {
-					return ve.ValidateName("items" + "." + strconv.Itoa(i))
-				} else if ce, ok := err.(*errors.CompositeError); ok {
-					return ce.ValidateName("items" + "." + strconv.Itoa(i))
-				}
-				return err
-			}
+			return err
 		}
 
 	}

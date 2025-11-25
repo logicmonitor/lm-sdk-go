@@ -58,7 +58,7 @@ func NewGetV4MetadataOK() *GetV4MetadataOK {
 /*
 GetV4MetadataOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved metadata
 */
 type GetV4MetadataOK struct {
 	Payload *models.Response

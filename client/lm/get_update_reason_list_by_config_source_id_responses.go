@@ -58,7 +58,7 @@ func NewGetUpdateReasonListByConfigSourceIDOK() *GetUpdateReasonListByConfigSour
 /*
 GetUpdateReasonListByConfigSourceIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved update history for the configSource
 */
 type GetUpdateReasonListByConfigSourceIDOK struct {
 	Payload *models.ConfigSourceUpdateReasonsPaginationResponse

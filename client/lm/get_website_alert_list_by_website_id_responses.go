@@ -58,7 +58,7 @@ func NewGetWebsiteAlertListByWebsiteIDOK() *GetWebsiteAlertListByWebsiteIDOK {
 /*
 GetWebsiteAlertListByWebsiteIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetWebsiteAlertListByWebsiteIDOK struct {
 	Payload *models.AlertPaginationResponse

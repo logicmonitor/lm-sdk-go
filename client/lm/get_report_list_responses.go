@@ -58,7 +58,7 @@ func NewGetReportListOK() *GetReportListOK {
 /*
 GetReportListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the report list
 */
 type GetReportListOK struct {
 	Payload *models.ReportPaginationResponse

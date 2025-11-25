@@ -52,11 +52,10 @@ type NMapNetscan struct {
 
 	versionField int32
 
-	// The credentials to be used for the scan
-	// Example: 2
+	// credentials
 	Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
-	// Information related to including / excluding discovered devices in / from monitoring
+	// ddr
 	Ddr *NMapDDR `json:"ddr,omitempty"`
 
 	// The subnet to exclude from scanning from nmap scans
@@ -68,7 +67,7 @@ type NMapNetscan struct {
 	// Required: true
 	IncludeNetworkAndBroadcast *bool `json:"includeNetworkAndBroadcast"`
 
-	// The ports that should be used in the Netscan
+	// ports
 	Ports *RestNetscanPorts `json:"ports,omitempty"`
 
 	// The subnet to scan for nmap scans
@@ -250,11 +249,10 @@ func (m *NMapNetscan) SetVersion(val int32) {
 func (m *NMapNetscan) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// The credentials to be used for the scan
-		// Example: 2
+		// credentials
 		Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
-		// Information related to including / excluding discovered devices in / from monitoring
+		// ddr
 		Ddr *NMapDDR `json:"ddr,omitempty"`
 
 		// The subnet to exclude from scanning from nmap scans
@@ -266,7 +264,7 @@ func (m *NMapNetscan) UnmarshalJSON(raw []byte) error {
 		// Required: true
 		IncludeNetworkAndBroadcast *bool `json:"includeNetworkAndBroadcast"`
 
-		// The ports that should be used in the Netscan
+		// ports
 		Ports *RestNetscanPorts `json:"ports,omitempty"`
 
 		// The subnet to scan for nmap scans
@@ -383,11 +381,10 @@ func (m NMapNetscan) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// The credentials to be used for the scan
-		// Example: 2
+		// credentials
 		Credentials *RestNMapNetscanPolicyCredential `json:"credentials,omitempty"`
 
-		// Information related to including / excluding discovered devices in / from monitoring
+		// ddr
 		Ddr *NMapDDR `json:"ddr,omitempty"`
 
 		// The subnet to exclude from scanning from nmap scans
@@ -399,7 +396,7 @@ func (m NMapNetscan) MarshalJSON() ([]byte, error) {
 		// Required: true
 		IncludeNetworkAndBroadcast *bool `json:"includeNetworkAndBroadcast"`
 
-		// The ports that should be used in the Netscan
+		// ports
 		Ports *RestNetscanPorts `json:"ports,omitempty"`
 
 		// The subnet to scan for nmap scans

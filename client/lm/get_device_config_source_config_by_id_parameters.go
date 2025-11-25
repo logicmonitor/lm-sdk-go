@@ -76,8 +76,6 @@ type GetDeviceConfigSourceConfigByIDParams struct {
 	Fields *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// HdsID.
@@ -117,16 +115,10 @@ func (o *GetDeviceConfigSourceConfigByIDParams) WithDefaults() *GetDeviceConfigS
 func (o *GetDeviceConfigSourceConfigByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
-
-		startEpochDefault = int64(0)
 	)
 
 	val := GetDeviceConfigSourceConfigByIDParams{
-		UserAgent:  &userAgentDefault,
-		Format:     &formatDefault,
-		StartEpoch: &startEpochDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Privilege privilege
+// Privilege The account privileges associated with the role. Privileges can be added to a role for each area of your account
 //
 // swagger:model Privilege
 type Privilege struct {

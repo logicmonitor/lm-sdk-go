@@ -58,7 +58,7 @@ func NewPatchDeviceGroupDatasourceByIDOK() *PatchDeviceGroupDatasourceByIDOK {
 /*
 PatchDeviceGroupDatasourceByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type PatchDeviceGroupDatasourceByIDOK struct {
 	Payload *models.DeviceGroupDataSource

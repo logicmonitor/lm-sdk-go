@@ -58,7 +58,7 @@ func NewDeleteDatasourceByIDOK() *DeleteDatasourceByIDOK {
 /*
 DeleteDatasourceByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully deleted datasource
 */
 type DeleteDatasourceByIDOK struct {
 	Payload interface{}

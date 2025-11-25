@@ -24,6 +24,8 @@ type ResourceGroupSDT struct {
 
 	commentField string
 
+	defaultValueField strfmt.DateTime
+
 	durationField int32
 
 	endDateTimeField int64
@@ -87,6 +89,16 @@ func (m *ResourceGroupSDT) Comment() string {
 // SetComment sets the comment of this subtype
 func (m *ResourceGroupSDT) SetComment(val string) {
 	m.commentField = val
+}
+
+// DefaultValue gets the default value of this subtype
+func (m *ResourceGroupSDT) DefaultValue() strfmt.DateTime {
+	return m.defaultValueField
+}
+
+// SetDefaultValue sets the default value of this subtype
+func (m *ResourceGroupSDT) SetDefaultValue(val strfmt.DateTime) {
+	m.defaultValueField = val
 }
 
 // Duration gets the duration of this subtype
@@ -289,6 +301,8 @@ func (m *ResourceGroupSDT) UnmarshalJSON(raw []byte) error {
 
 		Comment string `json:"comment,omitempty"`
 
+		DefaultValue strfmt.DateTime `json:"defaultValue,omitempty"`
+
 		Duration int32 `json:"duration,omitempty"`
 
 		EndDateTime int64 `json:"endDateTime,omitempty"`
@@ -336,6 +350,8 @@ func (m *ResourceGroupSDT) UnmarshalJSON(raw []byte) error {
 	result.adminField = base.Admin
 
 	result.commentField = base.Comment
+
+	result.defaultValueField = base.DefaultValue
 
 	result.durationField = base.Duration
 
@@ -418,6 +434,8 @@ func (m ResourceGroupSDT) MarshalJSON() ([]byte, error) {
 
 		Comment string `json:"comment,omitempty"`
 
+		DefaultValue strfmt.DateTime `json:"defaultValue,omitempty"`
+
 		Duration int32 `json:"duration,omitempty"`
 
 		EndDateTime int64 `json:"endDateTime,omitempty"`
@@ -456,6 +474,8 @@ func (m ResourceGroupSDT) MarshalJSON() ([]byte, error) {
 		Admin: m.Admin(),
 
 		Comment: m.Comment(),
+
+		DefaultValue: m.DefaultValue(),
 
 		Duration: m.Duration(),
 
@@ -502,9 +522,26 @@ func (m ResourceGroupSDT) MarshalJSON() ([]byte, error) {
 func (m *ResourceGroupSDT) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateDefaultValue(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *ResourceGroupSDT) validateDefaultValue(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DefaultValue()) { // not required
+		return nil
+	}
+
+	if err := validate.FormatOf("defaultValue", "body", "date-time", m.DefaultValue().String(), formats); err != nil {
+		return err
+	}
+
 	return nil
 }
 

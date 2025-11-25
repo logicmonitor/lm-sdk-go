@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AutomaticUpgradeInfo automatic upgrade info
+// AutomaticUpgradeInfo The details of the Collector's automatic upgrade schedule, if one exists
 //
 // swagger:model AutomaticUpgradeInfo
 type AutomaticUpgradeInfo struct {

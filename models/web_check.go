@@ -1062,6 +1062,14 @@ func (m *WebCheck) contextValidateRolePrivileges(ctx context.Context, formats st
 		return err
 	}
 
+	for i := 0; i < len(m.RolePrivileges()); i++ {
+
+		if err := validate.ReadOnly(ctx, "rolePrivileges"+"."+strconv.Itoa(i), "body", string(m.rolePrivilegesField[i])); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 

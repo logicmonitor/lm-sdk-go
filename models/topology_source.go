@@ -33,6 +33,7 @@ type TopologySource struct {
 	AppliesTo string `json:"appliesTo,omitempty"`
 
 	// The TopologySource audit Version
+	// Read Only: true
 	AuditVersion int64 `json:"auditVersion,omitempty"`
 
 	// The metadata checksum for the LMModule content
@@ -73,6 +74,9 @@ type TopologySource struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// The Registry ID of the Exchange Integration this module is based from, including this field will set this as the module's import base and mark the ID's version as audited
+	OriginRegistryID string `json:"originRegistryId,omitempty"`
+
 	// The Tags for the LMModule
 	Tags string `json:"tags,omitempty"`
 
@@ -80,6 +84,7 @@ type TopologySource struct {
 	Technology string `json:"technology,omitempty"`
 
 	// The TopologySource version
+	// Read Only: true
 	Version int64 `json:"version,omitempty"`
 }
 
@@ -257,6 +262,10 @@ func (m *TopologySource) ContextValidate(ctx context.Context, formats strfmt.Reg
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateAuditVersion(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.contextValidateChecksum(ctx, formats); err != nil {
 		res = append(res, err)
 	}
@@ -274,6 +283,10 @@ func (m *TopologySource) ContextValidate(ctx context.Context, formats strfmt.Reg
 	}
 
 	if err := m.contextValidateLineageID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateVersion(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -303,6 +316,15 @@ func (m *TopologySource) contextValidateAccessGroups(ctx context.Context, format
 			}
 		}
 
+	}
+
+	return nil
+}
+
+func (m *TopologySource) contextValidateAuditVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "auditVersion", "body", int64(m.AuditVersion)); err != nil {
+		return err
 	}
 
 	return nil
@@ -367,6 +389,15 @@ func (m *TopologySource) contextValidateInstallationMetadata(ctx context.Context
 func (m *TopologySource) contextValidateLineageID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "lineageId", "body", string(m.LineageID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *TopologySource) contextValidateVersion(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "version", "body", int64(m.Version)); err != nil {
 		return err
 	}
 

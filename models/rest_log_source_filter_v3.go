@@ -29,6 +29,9 @@ type RestLogSourceFilterV3 struct {
 	// include
 	Include string `json:"include,omitempty"`
 
+	// index
+	Index string `json:"index,omitempty"`
+
 	// operator
 	Operator string `json:"operator,omitempty"`
 

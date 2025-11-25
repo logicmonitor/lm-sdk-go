@@ -58,7 +58,7 @@ func NewAddRoleOK() *AddRoleOK {
 /*
 AddRoleOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully added the role
 */
 type AddRoleOK struct {
 	Payload *models.Role

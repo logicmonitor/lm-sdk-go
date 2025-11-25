@@ -78,8 +78,6 @@ type UpdateWebsiteGroupByIDParams struct {
 	ID int32
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	timeout    time.Duration
@@ -101,13 +99,10 @@ func (o *UpdateWebsiteGroupByIDParams) WithDefaults() *UpdateWebsiteGroupByIDPar
 func (o *UpdateWebsiteGroupByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := UpdateWebsiteGroupByIDParams{
 		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
 	}
 
 	val.timeout = o.timeout

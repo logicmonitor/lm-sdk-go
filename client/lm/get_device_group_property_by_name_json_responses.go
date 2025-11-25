@@ -58,7 +58,7 @@ func NewGetDeviceGroupPropertyByNameJSONOK() *GetDeviceGroupPropertyByNameJSONOK
 /*
 GetDeviceGroupPropertyByNameJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the device group property by name
 */
 type GetDeviceGroupPropertyByNameJSONOK struct {
 	Payload interface{}

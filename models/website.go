@@ -151,9 +151,8 @@ type Website interface {
 	SetTemplate(interface{})
 
 	// The locations from which the website is monitored. If the website is internal, this field should include Collectors. If Non-Internal, possible test locations are:
-	// 1 : US - LA
-	// 2 : US - DC
-	// 3 : US - SF
+	// 2 : US - Washington DC
+	// 3 : US - Oregon
 	// 4 : Europe - Dublin
 	// 5 : Asia - Singapore
 	// 6 : Australia - Sydney
@@ -939,6 +938,14 @@ func (m *website) contextValidateRolePrivileges(ctx context.Context, formats str
 
 	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges())); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.RolePrivileges()); i++ {
+
+		if err := validate.ReadOnly(ctx, "rolePrivileges"+"."+strconv.Itoa(i), "body", string(m.rolePrivilegesField[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

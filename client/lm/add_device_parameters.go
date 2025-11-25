@@ -73,7 +73,7 @@ type AddDeviceParams struct {
 	AddFromWizard *bool
 
 	// Body.
-	Body *models.Device
+	Body models.Device
 
 	// End.
 	//
@@ -110,16 +110,10 @@ func (o *AddDeviceParams) WithDefaults() *AddDeviceParams {
 func (o *AddDeviceParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		addFromWizardDefault = bool(false)
-
-		needStcGrpAndSortedCPDefault = bool(false)
 	)
 
 	val := AddDeviceParams{
-		UserAgent:             &userAgentDefault,
-		AddFromWizard:         &addFromWizardDefault,
-		NeedStcGrpAndSortedCP: &needStcGrpAndSortedCPDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout
@@ -184,13 +178,13 @@ func (o *AddDeviceParams) SetAddFromWizard(addFromWizard *bool) {
 }
 
 // WithBody adds the body to the add device params
-func (o *AddDeviceParams) WithBody(body *models.Device) *AddDeviceParams {
+func (o *AddDeviceParams) WithBody(body models.Device) *AddDeviceParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the add device params
-func (o *AddDeviceParams) SetBody(body *models.Device) {
+func (o *AddDeviceParams) SetBody(body models.Device) {
 	o.Body = body
 }
 
@@ -270,10 +264,8 @@ func (o *AddDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Reg
 			}
 		}
 	}
-	if o.Body != nil {
-		if err := r.SetBodyParam(o.Body); err != nil {
-			return err
-		}
+	if err := r.SetBodyParam(o.Body); err != nil {
+		return err
 	}
 
 	if o.End != nil {

@@ -58,7 +58,7 @@ func NewVerifyStorageAccountsPermissionsOK() *VerifyStorageAccountsPermissionsOK
 /*
 VerifyStorageAccountsPermissionsOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type VerifyStorageAccountsPermissionsOK struct {
 	Payload *models.RestResponse

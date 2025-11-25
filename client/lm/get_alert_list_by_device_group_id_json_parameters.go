@@ -115,18 +115,15 @@ func (o *GetAlertListByDeviceGroupIDJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
-		needMessageDefault = bool(false)
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAlertListByDeviceGroupIDJSONParams{
-		UserAgent:   &userAgentDefault,
-		NeedMessage: &needMessageDefault,
-		Offset:      &offsetDefault,
-		Size:        &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout

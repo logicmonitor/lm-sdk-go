@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// GraphPlotLine graph plot line
+// GraphPlotLine The properties of the graph and graph lines
 //
 // swagger:model GraphPlotLine
 type GraphPlotLine struct {
@@ -33,7 +34,7 @@ type GraphPlotLine struct {
 
 	// The polled data used to plot the graph
 	// Read Only: true
-	Data []interface{} `json:"data,omitempty"`
+	Data []float64 `json:"data,omitempty"`
 
 	// The decimal value
 	// The values can be -1 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
@@ -155,8 +156,16 @@ func (m *GraphPlotLine) contextValidateColorName(ctx context.Context, formats st
 
 func (m *GraphPlotLine) contextValidateData(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "data", "body", []interface{}(m.Data)); err != nil {
+	if err := validate.ReadOnly(ctx, "data", "body", []float64(m.Data)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Data); i++ {
+
+		if err := validate.ReadOnly(ctx, "data"+"."+strconv.Itoa(i), "body", float64(m.Data[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

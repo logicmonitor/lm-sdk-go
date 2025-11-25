@@ -90,6 +90,9 @@ type BatchJob struct {
 	// Required: true
 	Name *string `json:"name"`
 
+	// The Registry ID of the Exchange Integration this module is based from, including this field will set this as the module's import base and mark the ID's version as audited
+	OriginRegistryID string `json:"originRegistryId,omitempty"`
+
 	// Max Relative Time Interval Error, effective if activeMonitoring true
 	StartMrtie int32 `json:"startMrtie,omitempty"`
 

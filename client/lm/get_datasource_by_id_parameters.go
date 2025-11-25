@@ -71,8 +71,6 @@ type GetDatasourceByIDParams struct {
 	Fields *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -99,13 +97,10 @@ func (o *GetDatasourceByIDParams) WithDefaults() *GetDatasourceByIDParams {
 func (o *GetDatasourceByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
 	)
 
 	val := GetDatasourceByIDParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 	}
 
 	val.timeout = o.timeout

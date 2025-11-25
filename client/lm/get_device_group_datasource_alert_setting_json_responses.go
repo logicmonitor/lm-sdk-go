@@ -58,7 +58,7 @@ func NewGetDeviceGroupDatasourceAlertSettingJSONOK() *GetDeviceGroupDatasourceAl
 /*
 GetDeviceGroupDatasourceAlertSettingJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the device group datasource alert setting
 */
 type GetDeviceGroupDatasourceAlertSettingJSONOK struct {
 	Payload interface{}

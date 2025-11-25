@@ -120,18 +120,15 @@ func (o *GetDeviceListParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
-		includeDeletedResourcesDefault = bool(false)
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetDeviceListParams{
-		UserAgent:               &userAgentDefault,
-		IncludeDeletedResources: &includeDeletedResourcesDefault,
-		Offset:                  &offsetDefault,
-		Size:                    &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout

@@ -18,7 +18,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WebCheckStep web check step
+// WebCheckStep Required for type=webcheck , An object comprising one or more steps, see the table below for the properties included in each step
 //
 // swagger:model WebCheckStep
 type WebCheckStep struct {

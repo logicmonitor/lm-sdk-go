@@ -109,6 +109,9 @@ type DeviceGroupDataSourceDataPointConfig struct {
 	// global warn ad adv setting
 	GlobalWarnAdAdvSetting string `json:"globalWarnAdAdvSetting,omitempty"`
 
+	// parent device group alert expr list
+	ParentDeviceGroupAlertExprList *DeviceGroupAlertThresholdInfo `json:"parentDeviceGroupAlertExprList,omitempty"`
+
 	// warn ad adv setting
 	WarnAdAdvSetting string `json:"warnAdAdvSetting,omitempty"`
 }
@@ -126,6 +129,10 @@ func (m *DeviceGroupDataSourceDataPointConfig) Validate(formats strfmt.Registry)
 	}
 
 	if err := m.validateDataPointName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateParentDeviceGroupAlertExprList(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -162,6 +169,25 @@ func (m *DeviceGroupDataSourceDataPointConfig) validateDataPointName(formats str
 	return nil
 }
 
+func (m *DeviceGroupDataSourceDataPointConfig) validateParentDeviceGroupAlertExprList(formats strfmt.Registry) error {
+	if swag.IsZero(m.ParentDeviceGroupAlertExprList) { // not required
+		return nil
+	}
+
+	if m.ParentDeviceGroupAlertExprList != nil {
+		if err := m.ParentDeviceGroupAlertExprList.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("parentDeviceGroupAlertExprList")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parentDeviceGroupAlertExprList")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
 // ContextValidate validate this device group data source data point config based on the context it is used
 func (m *DeviceGroupDataSourceDataPointConfig) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -187,6 +213,10 @@ func (m *DeviceGroupDataSourceDataPointConfig) ContextValidate(ctx context.Conte
 	}
 
 	if err := m.contextValidateGlobalAlertTransitionInterval(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateParentDeviceGroupAlertExprList(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -245,6 +275,27 @@ func (m *DeviceGroupDataSourceDataPointConfig) contextValidateGlobalAlertTransit
 
 	if err := validate.ReadOnly(ctx, "globalAlertTransitionInterval", "body", int32(m.GlobalAlertTransitionInterval)); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceGroupDataSourceDataPointConfig) contextValidateParentDeviceGroupAlertExprList(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.ParentDeviceGroupAlertExprList != nil {
+
+		if swag.IsZero(m.ParentDeviceGroupAlertExprList) { // not required
+			return nil
+		}
+
+		if err := m.ParentDeviceGroupAlertExprList.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("parentDeviceGroupAlertExprList")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("parentDeviceGroupAlertExprList")
+			}
+			return err
+		}
 	}
 
 	return nil

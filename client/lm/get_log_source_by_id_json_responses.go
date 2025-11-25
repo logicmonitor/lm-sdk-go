@@ -58,7 +58,7 @@ func NewGetLogSourceByIDJSONOK() *GetLogSourceByIDJSONOK {
 /*
 GetLogSourceByIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the log source
 */
 type GetLogSourceByIDJSONOK struct {
 	Payload interface{}

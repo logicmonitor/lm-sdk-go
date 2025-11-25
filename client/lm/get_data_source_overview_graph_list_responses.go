@@ -58,7 +58,7 @@ func NewGetDataSourceOverviewGraphListOK() *GetDataSourceOverviewGraphListOK {
 /*
 GetDataSourceOverviewGraphListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved datasource overview graph list
 */
 type GetDataSourceOverviewGraphListOK struct {
 	Payload *models.DatasourceOverviewGraphPaginationResponse

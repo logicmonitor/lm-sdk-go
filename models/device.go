@@ -6,10 +6,14 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"bytes"
 	"context"
+	"encoding/json"
+	"io"
 	"strconv"
 
 	"github.com/go-openapi/errors"
+	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
@@ -17,196 +21,252 @@ import (
 
 // Device device
 //
-// swagger:model Device
-type Device struct {
+// swagger:discriminator Device type
+type Device interface {
+	runtime.Validatable
+	runtime.ContextValidatable
 
 	// The Auto Balanced Collector Group id. 0 means not monitored by ABCG
-	AutoBalancedCollectorGroupID int32 `json:"autoBalancedCollectorGroupId,omitempty"`
+	AutoBalancedCollectorGroupID() int32
+	SetAutoBalancedCollectorGroupID(int32)
 
 	// Any auto properties assigned to the device
 	// Read Only: true
-	AutoProperties []*NameAndValue `json:"autoProperties,omitempty"`
+	AutoProperties() []*NameAndValue
+	SetAutoProperties([]*NameAndValue)
 
 	// The time, in epoch seconds format, that properties were first discovered for this device
 	// Read Only: true
-	AutoPropsAssignedOn int64 `json:"autoPropsAssignedOn,omitempty"`
+	AutoPropsAssignedOn() int64
+	SetAutoPropsAssignedOn(int64)
 
 	// The time, in epoch seconds, that auto properties last ran and updated the properties table for this device
 	// Read Only: true
-	AutoPropsUpdatedOn int64 `json:"autoPropsUpdatedOn,omitempty"`
+	AutoPropsUpdatedOn() int64
+	SetAutoPropsUpdatedOn(int64)
 
 	// The AWS instance state (if applicable): 1 indicates that the instance is running, 2 indicates that the instance is stopped and 3 the instance is terminated
 	// Read Only: true
-	AwsState int32 `json:"awsState,omitempty"`
+	AwsState() int32
+	SetAwsState(int32)
 
 	// The Azure instance state (if applicable): 1 indicates that the instance is running, 2 indicates that the instance is stopped and 3 the instance is terminated.
 	// Read Only: true
-	AzureState int32 `json:"azureState,omitempty"`
+	AzureState() int32
+	SetAzureState(int32)
 
 	// The description/name of the collector for this device
 	// Read Only: true
-	CollectorDescription string `json:"collectorDescription,omitempty"`
+	CollectorDescription() string
+	SetCollectorDescription(string)
 
 	// request contains multi value field
-	ContainsMultiValue bool `json:"containsMultiValue,omitempty"`
+	ContainsMultiValue() bool
+	SetContainsMultiValue(bool)
 
 	// The time, in epoch seconds format, that the device was added to your LogicMonitor account
 	// Read Only: true
-	CreatedOn int64 `json:"createdOn,omitempty"`
+	CreatedOn() int64
+	SetCreatedOn(int64)
 
 	// The id of the collector currently monitoring the device and discovering instances
 	// Example: 1
-	CurrentCollectorID int32 `json:"currentCollectorId,omitempty"`
+	CurrentCollectorID() int32
+	SetCurrentCollectorID(int32)
 
 	// The id of the Log collector currently collecting logs.
 	// Example: 1
-	CurrentLogCollectorID int32 `json:"currentLogCollectorId,omitempty"`
+	CurrentLogCollectorID() int32
+	SetCurrentLogCollectorID(int32)
 
 	// Any non-system properties (aside from system.categories) defined for this device
-	CustomProperties []*NameAndValue `json:"customProperties,omitempty"`
+	CustomProperties() []*NameAndValue
+	SetCustomProperties([]*NameAndValue)
 
 	// The time in milliseconds that the device has been dead for, or since the AWS device was filtered out
 	// Read Only: true
-	DeletedTimeInMs int64 `json:"deletedTimeInMs,omitempty"`
+	DeletedTimeInMs() int64
+	SetDeletedTimeInMs(int64)
 
 	// The device description
 	// Example: This is a Cisco Router
-	Description string `json:"description,omitempty"`
+	Description() string
+	SetDescription(string)
 
 	// The type of device: 0 indicates a regular device, 1 indicates an APPGROUP device, 2 indicates an AWS device, 3 indicates a service device, 4 indicates an Azure device, 6 indicates a biz_service device, 7 indicates a GCP device, 8 indicates K8S device
 	// Example: 0
-	DeviceType int32 `json:"deviceType,omitempty"`
+	DeviceType() int32
+	SetDeviceType(int32)
 
 	// Indicates whether alerting is disabled (true) or enabled (false) for this device
 	// Example: true
-	DisableAlerting bool `json:"disableAlerting,omitempty"`
+	DisableAlerting() bool
+	SetDisableAlerting(bool)
 
 	// The display name of the device
 	// Example: Cisco Router
 	// Required: true
-	DisplayName *string `json:"displayName"`
+	DisplayName() *string
+	SetDisplayName(*string)
 
 	// Indicates whether Netflow is enabled (true) or disabled (false) for the device
 	// Example: true
-	EnableNetflow bool `json:"enableNetflow,omitempty"`
+	EnableNetflow() bool
+	SetEnableNetflow(bool)
 
 	// The GCP instance state (if applicable): 1 indicates that the instance is running, 2 indicates that the instance is stopped and 3 the instance is terminated.
 	// Read Only: true
-	GcpState int32 `json:"gcpState,omitempty"`
+	GcpState() int32
+	SetGcpState(int32)
 
 	// The Id(s) of the groups the device is in, where multiple group ids are comma separated
 	// Example: 16,4,3
-	HostGroupIds string `json:"hostGroupIds,omitempty"`
+	HostGroupIds() string
+	SetHostGroupIds(string)
 
 	// The status of this device, where possible statuses are normal, dead and dead-collector
 	// Read Only: true
-	HostStatus string `json:"hostStatus,omitempty"`
+	HostStatus() string
+	SetHostStatus(string)
 
 	// The Id of the device
 	// Read Only: true
-	ID int32 `json:"id,omitempty"`
+	ID() int32
+	SetID(int32)
 
 	// Any properties inherit from parents
 	// Read Only: true
-	InheritedProperties []*NameAndValue `json:"inheritedProperties,omitempty"`
+	InheritedProperties() []*NameAndValue
+	SetInheritedProperties([]*NameAndValue)
 
 	// Indicates whether Preferred Log Collector is configured  (true) or not (false) for the device
 	// Example: true
-	IsPreferredLogCollectorConfigured bool `json:"isPreferredLogCollectorConfigured,omitempty"`
+	IsPreferredLogCollectorConfigured() bool
+	SetIsPreferredLogCollectorConfigured(bool)
 
 	// The last time, in epoch seconds, that the device received Netflow data
 	// Read Only: true
-	LastDataTime int64 `json:"lastDataTime,omitempty"`
+	LastDataTime() int64
+	SetLastDataTime(int64)
 
 	// The last time, in epoch seconds, that raw Netflow data was reported
 	// Read Only: true
-	LastRawdataTime int64 `json:"lastRawdataTime,omitempty"`
+	LastRawdataTime() int64
+	SetLastRawdataTime(int64)
 
 	// The URL link associated with the device
 	// Example: www.ciscorouter.com
-	Link string `json:"link,omitempty"`
+	Link() string
+	SetLink(string)
 
 	// The description/name of the log collector for this device
 	// Read Only: true
-	LogCollectorDescription string `json:"logCollectorDescription,omitempty"`
+	LogCollectorDescription() string
+	SetLogCollectorDescription(string)
 
 	// The id of the Collector Group associated with the device's log collection
 	// Read Only: true
-	LogCollectorGroupID int32 `json:"logCollectorGroupId,omitempty"`
+	LogCollectorGroupID() int32
+	SetLogCollectorGroupID(int32)
 
 	// The name of the Collector Group associated with the device's.
 	// Read Only: true
-	LogCollectorGroupName string `json:"logCollectorGroupName,omitempty"`
+	LogCollectorGroupName() string
+	SetLogCollectorGroupName(string)
 
 	// The Id of the netflow collector associated with the device
 	// Example: 1
-	LogCollectorID int32 `json:"logCollectorId,omitempty"`
+	LogCollectorID() int32
+	SetLogCollectorID(int32)
 
 	// The host name or IP address of the device
 	// Example: Main Collector
 	// Required: true
-	Name *string `json:"name"`
+	Name() *string
+	SetName(*string)
 
 	// The description/name of the netflow collector for this device
 	// Read Only: true
-	NetflowCollectorDescription string `json:"netflowCollectorDescription,omitempty"`
+	NetflowCollectorDescription() string
+	SetNetflowCollectorDescription(string)
 
 	// The id of the Collector Group associated with the device's netflow collector
 	// Read Only: true
-	NetflowCollectorGroupID int32 `json:"netflowCollectorGroupId,omitempty"`
+	NetflowCollectorGroupID() int32
+	SetNetflowCollectorGroupID(int32)
 
 	// The name of the Collector Group associated with the device's netflow collector
 	// Read Only: true
-	NetflowCollectorGroupName string `json:"netflowCollectorGroupName,omitempty"`
+	NetflowCollectorGroupName() string
+	SetNetflowCollectorGroupName(string)
 
 	// The Id of the netflow collector associated with the device
 	// Example: 1
-	NetflowCollectorID int32 `json:"netflowCollectorId,omitempty"`
+	NetflowCollectorID() int32
+	SetNetflowCollectorID(int32)
 
 	// whether to use AND or OR for device matching
-	Op string `json:"op,omitempty"`
+	Op() string
+	SetOp(string)
 
 	// The id of the Collector Group associated with the device's preferred collector
 	// Read Only: true
-	PreferredCollectorGroupID int32 `json:"preferredCollectorGroupId,omitempty"`
+	PreferredCollectorGroupID() int32
+	SetPreferredCollectorGroupID(int32)
 
 	// The name of the Collector Group associated with the device's preferred collector
 	// Read Only: true
-	PreferredCollectorGroupName string `json:"preferredCollectorGroupName,omitempty"`
+	PreferredCollectorGroupName() string
+	SetPreferredCollectorGroupName(string)
 
 	// The Id of the preferred collector assigned to monitor the device
 	// Example: 2
 	// Required: true
-	PreferredCollectorID *int32 `json:"preferredCollectorId"`
+	PreferredCollectorID() *int32
+	SetPreferredCollectorID(*int32)
 
 	// The Id of the AWS EC2 instance related to this device, if one exists in the LogicMonitor account. This value defaults to -1, which indicates that there are no related devices
 	// Example: -1
-	RelatedDeviceID int32 `json:"relatedDeviceId,omitempty"`
+	RelatedDeviceID() int32
+	SetRelatedDeviceID(int32)
 
 	// Any non-system properties (aside from system.categories) defined for this device
-	ResourceIds []*NameAndValue `json:"resourceIds,omitempty"`
+	ResourceIds() []*NameAndValue
+	SetResourceIds([]*NameAndValue)
 
 	// The role privilege operation(s) for this device that are granted to the user who made the API request
 	// Read Only: true
-	RolePrivileges []string `json:"rolePrivileges,omitempty"`
+	RolePrivileges() []string
+	SetRolePrivileges([]string)
 
 	// The Id of the netscan configuration which was used to discover this device. 0 indicates that the device was not discovered by a scan
 	// Example: 0
 	// Read Only: true
-	ScanConfigID int32 `json:"scanConfigId,omitempty"`
+	ScanConfigID() int32
+	SetScanConfigID(int32)
 
 	// The list of ids of the collectors currently monitoring the resource and discovering instances
 	// Example: 1,4
 	// Unique: true
-	SyntheticsCollectorIds []int32 `json:"syntheticsCollectorIds,omitempty"`
+	SyntheticsCollectorIds() []int32
+	SetSyntheticsCollectorIds([]int32)
 
 	// Any system properties (aside from system.categories) defined for this device
 	// Read Only: true
-	SystemProperties []*NameAndValue `json:"systemProperties,omitempty"`
+	SystemProperties() []*NameAndValue
+	SetSystemProperties([]*NameAndValue)
 
 	// The number of milliseconds until the device will be automatically deleted from your LogicMonitor account (a value of zero indicates that a future delete time/date has not been scheduled)
 	// Read Only: true
-	ToDeleteTimeInMs int64 `json:"toDeleteTimeInMs,omitempty"`
+	ToDeleteTimeInMs() int64
+	SetToDeleteTimeInMs(int64)
+
+	// Specifies the v3 Uptime Device request type. Supported values:
+	//  uptimewebcheck - for Uptime Web Check devices
+	//  uptimepingcheck - for Uptime Ping Check devices blank/empty value- for regular devices
+	// Example: uptimewebcheck
+	Type() string
+	SetType(string)
 
 	// The uptime of the device in seconds. This value will always be the largest value reported by the following datasources:
 	// Host Uptime-
@@ -215,19 +275,706 @@ type Device struct {
 	// WinSystemUptime-
 	// NimbleUptime-
 	// Read Only: true
-	UpTimeInSeconds int64 `json:"upTimeInSeconds,omitempty"`
+	UpTimeInSeconds() int64
+	SetUpTimeInSeconds(int64)
 
 	// The time, in epoch seconds format, that the device was last updated
 	// Read Only: true
-	UpdatedOn int64 `json:"updatedOn,omitempty"`
+	UpdatedOn() int64
+	SetUpdatedOn(int64)
 
 	// The read and/or write permissions for this device that are granted to the user who made the API request
 	// Read Only: true
-	UserPermission string `json:"userPermission,omitempty"`
+	UserPermission() string
+	SetUserPermission(string)
+
+	// AdditionalProperties in base type shoud be handled just like regular properties
+	// At this moment, the base type property is pushed down to the subtype
+}
+
+type device struct {
+	autoBalancedCollectorGroupIdField int32
+
+	autoPropertiesField []*NameAndValue
+
+	autoPropsAssignedOnField int64
+
+	autoPropsUpdatedOnField int64
+
+	awsStateField int32
+
+	azureStateField int32
+
+	collectorDescriptionField string
+
+	containsMultiValueField bool
+
+	createdOnField int64
+
+	currentCollectorIdField int32
+
+	currentLogCollectorIdField int32
+
+	customPropertiesField []*NameAndValue
+
+	deletedTimeInMsField int64
+
+	descriptionField string
+
+	deviceTypeField int32
+
+	disableAlertingField bool
+
+	displayNameField *string
+
+	enableNetflowField bool
+
+	gcpStateField int32
+
+	hostGroupIdsField string
+
+	hostStatusField string
+
+	idField int32
+
+	inheritedPropertiesField []*NameAndValue
+
+	isPreferredLogCollectorConfiguredField bool
+
+	lastDataTimeField int64
+
+	lastRawdataTimeField int64
+
+	linkField string
+
+	logCollectorDescriptionField string
+
+	logCollectorGroupIdField int32
+
+	logCollectorGroupNameField string
+
+	logCollectorIdField int32
+
+	nameField *string
+
+	netflowCollectorDescriptionField string
+
+	netflowCollectorGroupIdField int32
+
+	netflowCollectorGroupNameField string
+
+	netflowCollectorIdField int32
+
+	opField string
+
+	preferredCollectorGroupIdField int32
+
+	preferredCollectorGroupNameField string
+
+	preferredCollectorIdField *int32
+
+	relatedDeviceIdField int32
+
+	resourceIdsField []*NameAndValue
+
+	rolePrivilegesField []string
+
+	scanConfigIdField int32
+
+	syntheticsCollectorIdsField []int32
+
+	systemPropertiesField []*NameAndValue
+
+	toDeleteTimeInMsField int64
+
+	typeField string
+
+	upTimeInSecondsField int64
+
+	updatedOnField int64
+
+	userPermissionField string
+}
+
+// AutoBalancedCollectorGroupID gets the auto balanced collector group Id of this polymorphic type
+func (m *device) AutoBalancedCollectorGroupID() int32 {
+	return m.autoBalancedCollectorGroupIdField
+}
+
+// SetAutoBalancedCollectorGroupID sets the auto balanced collector group Id of this polymorphic type
+func (m *device) SetAutoBalancedCollectorGroupID(val int32) {
+	m.autoBalancedCollectorGroupIdField = val
+}
+
+// AutoProperties gets the auto properties of this polymorphic type
+func (m *device) AutoProperties() []*NameAndValue {
+	return m.autoPropertiesField
+}
+
+// SetAutoProperties sets the auto properties of this polymorphic type
+func (m *device) SetAutoProperties(val []*NameAndValue) {
+	m.autoPropertiesField = val
+}
+
+// AutoPropsAssignedOn gets the auto props assigned on of this polymorphic type
+func (m *device) AutoPropsAssignedOn() int64 {
+	return m.autoPropsAssignedOnField
+}
+
+// SetAutoPropsAssignedOn sets the auto props assigned on of this polymorphic type
+func (m *device) SetAutoPropsAssignedOn(val int64) {
+	m.autoPropsAssignedOnField = val
+}
+
+// AutoPropsUpdatedOn gets the auto props updated on of this polymorphic type
+func (m *device) AutoPropsUpdatedOn() int64 {
+	return m.autoPropsUpdatedOnField
+}
+
+// SetAutoPropsUpdatedOn sets the auto props updated on of this polymorphic type
+func (m *device) SetAutoPropsUpdatedOn(val int64) {
+	m.autoPropsUpdatedOnField = val
+}
+
+// AwsState gets the aws state of this polymorphic type
+func (m *device) AwsState() int32 {
+	return m.awsStateField
+}
+
+// SetAwsState sets the aws state of this polymorphic type
+func (m *device) SetAwsState(val int32) {
+	m.awsStateField = val
+}
+
+// AzureState gets the azure state of this polymorphic type
+func (m *device) AzureState() int32 {
+	return m.azureStateField
+}
+
+// SetAzureState sets the azure state of this polymorphic type
+func (m *device) SetAzureState(val int32) {
+	m.azureStateField = val
+}
+
+// CollectorDescription gets the collector description of this polymorphic type
+func (m *device) CollectorDescription() string {
+	return m.collectorDescriptionField
+}
+
+// SetCollectorDescription sets the collector description of this polymorphic type
+func (m *device) SetCollectorDescription(val string) {
+	m.collectorDescriptionField = val
+}
+
+// ContainsMultiValue gets the contains multi value of this polymorphic type
+func (m *device) ContainsMultiValue() bool {
+	return m.containsMultiValueField
+}
+
+// SetContainsMultiValue sets the contains multi value of this polymorphic type
+func (m *device) SetContainsMultiValue(val bool) {
+	m.containsMultiValueField = val
+}
+
+// CreatedOn gets the created on of this polymorphic type
+func (m *device) CreatedOn() int64 {
+	return m.createdOnField
+}
+
+// SetCreatedOn sets the created on of this polymorphic type
+func (m *device) SetCreatedOn(val int64) {
+	m.createdOnField = val
+}
+
+// CurrentCollectorID gets the current collector Id of this polymorphic type
+func (m *device) CurrentCollectorID() int32 {
+	return m.currentCollectorIdField
+}
+
+// SetCurrentCollectorID sets the current collector Id of this polymorphic type
+func (m *device) SetCurrentCollectorID(val int32) {
+	m.currentCollectorIdField = val
+}
+
+// CurrentLogCollectorID gets the current log collector Id of this polymorphic type
+func (m *device) CurrentLogCollectorID() int32 {
+	return m.currentLogCollectorIdField
+}
+
+// SetCurrentLogCollectorID sets the current log collector Id of this polymorphic type
+func (m *device) SetCurrentLogCollectorID(val int32) {
+	m.currentLogCollectorIdField = val
+}
+
+// CustomProperties gets the custom properties of this polymorphic type
+func (m *device) CustomProperties() []*NameAndValue {
+	return m.customPropertiesField
+}
+
+// SetCustomProperties sets the custom properties of this polymorphic type
+func (m *device) SetCustomProperties(val []*NameAndValue) {
+	m.customPropertiesField = val
+}
+
+// DeletedTimeInMs gets the deleted time in ms of this polymorphic type
+func (m *device) DeletedTimeInMs() int64 {
+	return m.deletedTimeInMsField
+}
+
+// SetDeletedTimeInMs sets the deleted time in ms of this polymorphic type
+func (m *device) SetDeletedTimeInMs(val int64) {
+	m.deletedTimeInMsField = val
+}
+
+// Description gets the description of this polymorphic type
+func (m *device) Description() string {
+	return m.descriptionField
+}
+
+// SetDescription sets the description of this polymorphic type
+func (m *device) SetDescription(val string) {
+	m.descriptionField = val
+}
+
+// DeviceType gets the device type of this polymorphic type
+func (m *device) DeviceType() int32 {
+	return m.deviceTypeField
+}
+
+// SetDeviceType sets the device type of this polymorphic type
+func (m *device) SetDeviceType(val int32) {
+	m.deviceTypeField = val
+}
+
+// DisableAlerting gets the disable alerting of this polymorphic type
+func (m *device) DisableAlerting() bool {
+	return m.disableAlertingField
+}
+
+// SetDisableAlerting sets the disable alerting of this polymorphic type
+func (m *device) SetDisableAlerting(val bool) {
+	m.disableAlertingField = val
+}
+
+// DisplayName gets the display name of this polymorphic type
+func (m *device) DisplayName() *string {
+	return m.displayNameField
+}
+
+// SetDisplayName sets the display name of this polymorphic type
+func (m *device) SetDisplayName(val *string) {
+	m.displayNameField = val
+}
+
+// EnableNetflow gets the enable netflow of this polymorphic type
+func (m *device) EnableNetflow() bool {
+	return m.enableNetflowField
+}
+
+// SetEnableNetflow sets the enable netflow of this polymorphic type
+func (m *device) SetEnableNetflow(val bool) {
+	m.enableNetflowField = val
+}
+
+// GcpState gets the gcp state of this polymorphic type
+func (m *device) GcpState() int32 {
+	return m.gcpStateField
+}
+
+// SetGcpState sets the gcp state of this polymorphic type
+func (m *device) SetGcpState(val int32) {
+	m.gcpStateField = val
+}
+
+// HostGroupIds gets the host group ids of this polymorphic type
+func (m *device) HostGroupIds() string {
+	return m.hostGroupIdsField
+}
+
+// SetHostGroupIds sets the host group ids of this polymorphic type
+func (m *device) SetHostGroupIds(val string) {
+	m.hostGroupIdsField = val
+}
+
+// HostStatus gets the host status of this polymorphic type
+func (m *device) HostStatus() string {
+	return m.hostStatusField
+}
+
+// SetHostStatus sets the host status of this polymorphic type
+func (m *device) SetHostStatus(val string) {
+	m.hostStatusField = val
+}
+
+// ID gets the id of this polymorphic type
+func (m *device) ID() int32 {
+	return m.idField
+}
+
+// SetID sets the id of this polymorphic type
+func (m *device) SetID(val int32) {
+	m.idField = val
+}
+
+// InheritedProperties gets the inherited properties of this polymorphic type
+func (m *device) InheritedProperties() []*NameAndValue {
+	return m.inheritedPropertiesField
+}
+
+// SetInheritedProperties sets the inherited properties of this polymorphic type
+func (m *device) SetInheritedProperties(val []*NameAndValue) {
+	m.inheritedPropertiesField = val
+}
+
+// IsPreferredLogCollectorConfigured gets the is preferred log collector configured of this polymorphic type
+func (m *device) IsPreferredLogCollectorConfigured() bool {
+	return m.isPreferredLogCollectorConfiguredField
+}
+
+// SetIsPreferredLogCollectorConfigured sets the is preferred log collector configured of this polymorphic type
+func (m *device) SetIsPreferredLogCollectorConfigured(val bool) {
+	m.isPreferredLogCollectorConfiguredField = val
+}
+
+// LastDataTime gets the last data time of this polymorphic type
+func (m *device) LastDataTime() int64 {
+	return m.lastDataTimeField
+}
+
+// SetLastDataTime sets the last data time of this polymorphic type
+func (m *device) SetLastDataTime(val int64) {
+	m.lastDataTimeField = val
+}
+
+// LastRawdataTime gets the last rawdata time of this polymorphic type
+func (m *device) LastRawdataTime() int64 {
+	return m.lastRawdataTimeField
+}
+
+// SetLastRawdataTime sets the last rawdata time of this polymorphic type
+func (m *device) SetLastRawdataTime(val int64) {
+	m.lastRawdataTimeField = val
+}
+
+// Link gets the link of this polymorphic type
+func (m *device) Link() string {
+	return m.linkField
+}
+
+// SetLink sets the link of this polymorphic type
+func (m *device) SetLink(val string) {
+	m.linkField = val
+}
+
+// LogCollectorDescription gets the log collector description of this polymorphic type
+func (m *device) LogCollectorDescription() string {
+	return m.logCollectorDescriptionField
+}
+
+// SetLogCollectorDescription sets the log collector description of this polymorphic type
+func (m *device) SetLogCollectorDescription(val string) {
+	m.logCollectorDescriptionField = val
+}
+
+// LogCollectorGroupID gets the log collector group Id of this polymorphic type
+func (m *device) LogCollectorGroupID() int32 {
+	return m.logCollectorGroupIdField
+}
+
+// SetLogCollectorGroupID sets the log collector group Id of this polymorphic type
+func (m *device) SetLogCollectorGroupID(val int32) {
+	m.logCollectorGroupIdField = val
+}
+
+// LogCollectorGroupName gets the log collector group name of this polymorphic type
+func (m *device) LogCollectorGroupName() string {
+	return m.logCollectorGroupNameField
+}
+
+// SetLogCollectorGroupName sets the log collector group name of this polymorphic type
+func (m *device) SetLogCollectorGroupName(val string) {
+	m.logCollectorGroupNameField = val
+}
+
+// LogCollectorID gets the log collector Id of this polymorphic type
+func (m *device) LogCollectorID() int32 {
+	return m.logCollectorIdField
+}
+
+// SetLogCollectorID sets the log collector Id of this polymorphic type
+func (m *device) SetLogCollectorID(val int32) {
+	m.logCollectorIdField = val
+}
+
+// Name gets the name of this polymorphic type
+func (m *device) Name() *string {
+	return m.nameField
+}
+
+// SetName sets the name of this polymorphic type
+func (m *device) SetName(val *string) {
+	m.nameField = val
+}
+
+// NetflowCollectorDescription gets the netflow collector description of this polymorphic type
+func (m *device) NetflowCollectorDescription() string {
+	return m.netflowCollectorDescriptionField
+}
+
+// SetNetflowCollectorDescription sets the netflow collector description of this polymorphic type
+func (m *device) SetNetflowCollectorDescription(val string) {
+	m.netflowCollectorDescriptionField = val
+}
+
+// NetflowCollectorGroupID gets the netflow collector group Id of this polymorphic type
+func (m *device) NetflowCollectorGroupID() int32 {
+	return m.netflowCollectorGroupIdField
+}
+
+// SetNetflowCollectorGroupID sets the netflow collector group Id of this polymorphic type
+func (m *device) SetNetflowCollectorGroupID(val int32) {
+	m.netflowCollectorGroupIdField = val
+}
+
+// NetflowCollectorGroupName gets the netflow collector group name of this polymorphic type
+func (m *device) NetflowCollectorGroupName() string {
+	return m.netflowCollectorGroupNameField
+}
+
+// SetNetflowCollectorGroupName sets the netflow collector group name of this polymorphic type
+func (m *device) SetNetflowCollectorGroupName(val string) {
+	m.netflowCollectorGroupNameField = val
+}
+
+// NetflowCollectorID gets the netflow collector Id of this polymorphic type
+func (m *device) NetflowCollectorID() int32 {
+	return m.netflowCollectorIdField
+}
+
+// SetNetflowCollectorID sets the netflow collector Id of this polymorphic type
+func (m *device) SetNetflowCollectorID(val int32) {
+	m.netflowCollectorIdField = val
+}
+
+// Op gets the op of this polymorphic type
+func (m *device) Op() string {
+	return m.opField
+}
+
+// SetOp sets the op of this polymorphic type
+func (m *device) SetOp(val string) {
+	m.opField = val
+}
+
+// PreferredCollectorGroupID gets the preferred collector group Id of this polymorphic type
+func (m *device) PreferredCollectorGroupID() int32 {
+	return m.preferredCollectorGroupIdField
+}
+
+// SetPreferredCollectorGroupID sets the preferred collector group Id of this polymorphic type
+func (m *device) SetPreferredCollectorGroupID(val int32) {
+	m.preferredCollectorGroupIdField = val
+}
+
+// PreferredCollectorGroupName gets the preferred collector group name of this polymorphic type
+func (m *device) PreferredCollectorGroupName() string {
+	return m.preferredCollectorGroupNameField
+}
+
+// SetPreferredCollectorGroupName sets the preferred collector group name of this polymorphic type
+func (m *device) SetPreferredCollectorGroupName(val string) {
+	m.preferredCollectorGroupNameField = val
+}
+
+// PreferredCollectorID gets the preferred collector Id of this polymorphic type
+func (m *device) PreferredCollectorID() *int32 {
+	return m.preferredCollectorIdField
+}
+
+// SetPreferredCollectorID sets the preferred collector Id of this polymorphic type
+func (m *device) SetPreferredCollectorID(val *int32) {
+	m.preferredCollectorIdField = val
+}
+
+// RelatedDeviceID gets the related device Id of this polymorphic type
+func (m *device) RelatedDeviceID() int32 {
+	return m.relatedDeviceIdField
+}
+
+// SetRelatedDeviceID sets the related device Id of this polymorphic type
+func (m *device) SetRelatedDeviceID(val int32) {
+	m.relatedDeviceIdField = val
+}
+
+// ResourceIds gets the resource ids of this polymorphic type
+func (m *device) ResourceIds() []*NameAndValue {
+	return m.resourceIdsField
+}
+
+// SetResourceIds sets the resource ids of this polymorphic type
+func (m *device) SetResourceIds(val []*NameAndValue) {
+	m.resourceIdsField = val
+}
+
+// RolePrivileges gets the role privileges of this polymorphic type
+func (m *device) RolePrivileges() []string {
+	return m.rolePrivilegesField
+}
+
+// SetRolePrivileges sets the role privileges of this polymorphic type
+func (m *device) SetRolePrivileges(val []string) {
+	m.rolePrivilegesField = val
+}
+
+// ScanConfigID gets the scan config Id of this polymorphic type
+func (m *device) ScanConfigID() int32 {
+	return m.scanConfigIdField
+}
+
+// SetScanConfigID sets the scan config Id of this polymorphic type
+func (m *device) SetScanConfigID(val int32) {
+	m.scanConfigIdField = val
+}
+
+// SyntheticsCollectorIds gets the synthetics collector ids of this polymorphic type
+func (m *device) SyntheticsCollectorIds() []int32 {
+	return m.syntheticsCollectorIdsField
+}
+
+// SetSyntheticsCollectorIds sets the synthetics collector ids of this polymorphic type
+func (m *device) SetSyntheticsCollectorIds(val []int32) {
+	m.syntheticsCollectorIdsField = val
+}
+
+// SystemProperties gets the system properties of this polymorphic type
+func (m *device) SystemProperties() []*NameAndValue {
+	return m.systemPropertiesField
+}
+
+// SetSystemProperties sets the system properties of this polymorphic type
+func (m *device) SetSystemProperties(val []*NameAndValue) {
+	m.systemPropertiesField = val
+}
+
+// ToDeleteTimeInMs gets the to delete time in ms of this polymorphic type
+func (m *device) ToDeleteTimeInMs() int64 {
+	return m.toDeleteTimeInMsField
+}
+
+// SetToDeleteTimeInMs sets the to delete time in ms of this polymorphic type
+func (m *device) SetToDeleteTimeInMs(val int64) {
+	m.toDeleteTimeInMsField = val
+}
+
+// Type gets the type of this polymorphic type
+func (m *device) Type() string {
+	return "Device"
+}
+
+// SetType sets the type of this polymorphic type
+func (m *device) SetType(val string) {
+}
+
+// UpTimeInSeconds gets the up time in seconds of this polymorphic type
+func (m *device) UpTimeInSeconds() int64 {
+	return m.upTimeInSecondsField
+}
+
+// SetUpTimeInSeconds sets the up time in seconds of this polymorphic type
+func (m *device) SetUpTimeInSeconds(val int64) {
+	m.upTimeInSecondsField = val
+}
+
+// UpdatedOn gets the updated on of this polymorphic type
+func (m *device) UpdatedOn() int64 {
+	return m.updatedOnField
+}
+
+// SetUpdatedOn sets the updated on of this polymorphic type
+func (m *device) SetUpdatedOn(val int64) {
+	m.updatedOnField = val
+}
+
+// UserPermission gets the user permission of this polymorphic type
+func (m *device) UserPermission() string {
+	return m.userPermissionField
+}
+
+// SetUserPermission sets the user permission of this polymorphic type
+func (m *device) SetUserPermission(val string) {
+	m.userPermissionField = val
+}
+
+// UnmarshalDeviceSlice unmarshals polymorphic slices of Device
+func UnmarshalDeviceSlice(reader io.Reader, consumer runtime.Consumer) ([]Device, error) {
+	var elements []json.RawMessage
+	if err := consumer.Consume(reader, &elements); err != nil {
+		return nil, err
+	}
+
+	var result []Device
+	for _, element := range elements {
+		obj, err := unmarshalDevice(element, consumer)
+		if err != nil {
+			return nil, err
+		}
+		result = append(result, obj)
+	}
+	return result, nil
+}
+
+// UnmarshalDevice unmarshals polymorphic Device
+func UnmarshalDevice(reader io.Reader, consumer runtime.Consumer) (Device, error) {
+	// we need to read this twice, so first into a buffer
+	data, err := io.ReadAll(reader)
+	if err != nil {
+		return nil, err
+	}
+	return unmarshalDevice(data, consumer)
+}
+
+func unmarshalDevice(data []byte, consumer runtime.Consumer) (Device, error) {
+	buf := bytes.NewBuffer(data)
+	buf2 := bytes.NewBuffer(data)
+
+	// the first time this is read is to fetch the value of the type property.
+	var getType struct {
+		Type string `json:"type"`
+	}
+	if err := consumer.Consume(buf, &getType); err != nil {
+		return nil, err
+	}
+
+	if err := validate.RequiredString("type", "body", getType.Type); err != nil {
+		return nil, err
+	}
+
+	// The value of type is used to determine which type to create and unmarshal the data into
+	switch getType.Type {
+	case "Device":
+		var result device
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "uptimepingcheck":
+		var result UptimePingCheck
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "uptimewebcheck":
+		var result UptimeWebCheck
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	}
+	return nil, errors.New(422, "invalid type value: %q", getType.Type)
 }
 
 // Validate validates this device
-func (m *Device) Validate(formats strfmt.Registry) error {
+func (m *device) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAutoProperties(formats); err != nil {
@@ -272,18 +1019,18 @@ func (m *Device) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Device) validateAutoProperties(formats strfmt.Registry) error {
-	if swag.IsZero(m.AutoProperties) { // not required
+func (m *device) validateAutoProperties(formats strfmt.Registry) error {
+	if swag.IsZero(m.AutoProperties()) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.AutoProperties); i++ {
-		if swag.IsZero(m.AutoProperties[i]) { // not required
+	for i := 0; i < len(m.AutoProperties()); i++ {
+		if swag.IsZero(m.autoPropertiesField[i]) { // not required
 			continue
 		}
 
-		if m.AutoProperties[i] != nil {
-			if err := m.AutoProperties[i].Validate(formats); err != nil {
+		if m.autoPropertiesField[i] != nil {
+			if err := m.autoPropertiesField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -298,18 +1045,18 @@ func (m *Device) validateAutoProperties(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Device) validateCustomProperties(formats strfmt.Registry) error {
-	if swag.IsZero(m.CustomProperties) { // not required
+func (m *device) validateCustomProperties(formats strfmt.Registry) error {
+	if swag.IsZero(m.CustomProperties()) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.CustomProperties); i++ {
-		if swag.IsZero(m.CustomProperties[i]) { // not required
+	for i := 0; i < len(m.CustomProperties()); i++ {
+		if swag.IsZero(m.customPropertiesField[i]) { // not required
 			continue
 		}
 
-		if m.CustomProperties[i] != nil {
-			if err := m.CustomProperties[i].Validate(formats); err != nil {
+		if m.customPropertiesField[i] != nil {
+			if err := m.customPropertiesField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -324,27 +1071,27 @@ func (m *Device) validateCustomProperties(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Device) validateDisplayName(formats strfmt.Registry) error {
+func (m *device) validateDisplayName(formats strfmt.Registry) error {
 
-	if err := validate.Required("displayName", "body", m.DisplayName); err != nil {
+	if err := validate.Required("displayName", "body", m.DisplayName()); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) validateInheritedProperties(formats strfmt.Registry) error {
-	if swag.IsZero(m.InheritedProperties) { // not required
+func (m *device) validateInheritedProperties(formats strfmt.Registry) error {
+	if swag.IsZero(m.InheritedProperties()) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.InheritedProperties); i++ {
-		if swag.IsZero(m.InheritedProperties[i]) { // not required
+	for i := 0; i < len(m.InheritedProperties()); i++ {
+		if swag.IsZero(m.inheritedPropertiesField[i]) { // not required
 			continue
 		}
 
-		if m.InheritedProperties[i] != nil {
-			if err := m.InheritedProperties[i].Validate(formats); err != nil {
+		if m.inheritedPropertiesField[i] != nil {
+			if err := m.inheritedPropertiesField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -359,36 +1106,36 @@ func (m *Device) validateInheritedProperties(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Device) validateName(formats strfmt.Registry) error {
+func (m *device) validateName(formats strfmt.Registry) error {
 
-	if err := validate.Required("name", "body", m.Name); err != nil {
+	if err := validate.Required("name", "body", m.Name()); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) validatePreferredCollectorID(formats strfmt.Registry) error {
+func (m *device) validatePreferredCollectorID(formats strfmt.Registry) error {
 
-	if err := validate.Required("preferredCollectorId", "body", m.PreferredCollectorID); err != nil {
+	if err := validate.Required("preferredCollectorId", "body", m.PreferredCollectorID()); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) validateResourceIds(formats strfmt.Registry) error {
-	if swag.IsZero(m.ResourceIds) { // not required
+func (m *device) validateResourceIds(formats strfmt.Registry) error {
+	if swag.IsZero(m.ResourceIds()) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.ResourceIds); i++ {
-		if swag.IsZero(m.ResourceIds[i]) { // not required
+	for i := 0; i < len(m.ResourceIds()); i++ {
+		if swag.IsZero(m.resourceIdsField[i]) { // not required
 			continue
 		}
 
-		if m.ResourceIds[i] != nil {
-			if err := m.ResourceIds[i].Validate(formats); err != nil {
+		if m.resourceIdsField[i] != nil {
+			if err := m.resourceIdsField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resourceIds" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -403,30 +1150,30 @@ func (m *Device) validateResourceIds(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *Device) validateSyntheticsCollectorIds(formats strfmt.Registry) error {
-	if swag.IsZero(m.SyntheticsCollectorIds) { // not required
+func (m *device) validateSyntheticsCollectorIds(formats strfmt.Registry) error {
+	if swag.IsZero(m.SyntheticsCollectorIds()) { // not required
 		return nil
 	}
 
-	if err := validate.UniqueItems("syntheticsCollectorIds", "body", m.SyntheticsCollectorIds); err != nil {
+	if err := validate.UniqueItems("syntheticsCollectorIds", "body", m.SyntheticsCollectorIds()); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) validateSystemProperties(formats strfmt.Registry) error {
-	if swag.IsZero(m.SystemProperties) { // not required
+func (m *device) validateSystemProperties(formats strfmt.Registry) error {
+	if swag.IsZero(m.SystemProperties()) { // not required
 		return nil
 	}
 
-	for i := 0; i < len(m.SystemProperties); i++ {
-		if swag.IsZero(m.SystemProperties[i]) { // not required
+	for i := 0; i < len(m.SystemProperties()); i++ {
+		if swag.IsZero(m.systemPropertiesField[i]) { // not required
 			continue
 		}
 
-		if m.SystemProperties[i] != nil {
-			if err := m.SystemProperties[i].Validate(formats); err != nil {
+		if m.systemPropertiesField[i] != nil {
+			if err := m.systemPropertiesField[i].Validate(formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -442,7 +1189,7 @@ func (m *Device) validateSystemProperties(formats strfmt.Registry) error {
 }
 
 // ContextValidate validate this device based on the context it is used
-func (m *Device) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.contextValidateAutoProperties(ctx, formats); err != nil {
@@ -575,21 +1322,21 @@ func (m *Device) ContextValidate(ctx context.Context, formats strfmt.Registry) e
 	return nil
 }
 
-func (m *Device) contextValidateAutoProperties(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateAutoProperties(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "autoProperties", "body", []*NameAndValue(m.AutoProperties)); err != nil {
+	if err := validate.ReadOnly(ctx, "autoProperties", "body", []*NameAndValue(m.AutoProperties())); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.AutoProperties); i++ {
+	for i := 0; i < len(m.AutoProperties()); i++ {
 
-		if m.AutoProperties[i] != nil {
+		if m.autoPropertiesField[i] != nil {
 
-			if swag.IsZero(m.AutoProperties[i]) { // not required
+			if swag.IsZero(m.autoPropertiesField[i]) { // not required
 				return nil
 			}
 
-			if err := m.AutoProperties[i].ContextValidate(ctx, formats); err != nil {
+			if err := m.autoPropertiesField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("autoProperties" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -604,71 +1351,71 @@ func (m *Device) contextValidateAutoProperties(ctx context.Context, formats strf
 	return nil
 }
 
-func (m *Device) contextValidateAutoPropsAssignedOn(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateAutoPropsAssignedOn(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "autoPropsAssignedOn", "body", int64(m.AutoPropsAssignedOn)); err != nil {
+	if err := validate.ReadOnly(ctx, "autoPropsAssignedOn", "body", int64(m.AutoPropsAssignedOn())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateAutoPropsUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateAutoPropsUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "autoPropsUpdatedOn", "body", int64(m.AutoPropsUpdatedOn)); err != nil {
+	if err := validate.ReadOnly(ctx, "autoPropsUpdatedOn", "body", int64(m.AutoPropsUpdatedOn())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateAwsState(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateAwsState(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "awsState", "body", int32(m.AwsState)); err != nil {
+	if err := validate.ReadOnly(ctx, "awsState", "body", int32(m.AwsState())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateAzureState(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateAzureState(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "azureState", "body", int32(m.AzureState)); err != nil {
+	if err := validate.ReadOnly(ctx, "azureState", "body", int32(m.AzureState())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "collectorDescription", "body", string(m.CollectorDescription)); err != nil {
+	if err := validate.ReadOnly(ctx, "collectorDescription", "body", string(m.CollectorDescription())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateCreatedOn(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateCreatedOn(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "createdOn", "body", int64(m.CreatedOn)); err != nil {
+	if err := validate.ReadOnly(ctx, "createdOn", "body", int64(m.CreatedOn())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateCustomProperties(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateCustomProperties(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.CustomProperties); i++ {
+	for i := 0; i < len(m.CustomProperties()); i++ {
 
-		if m.CustomProperties[i] != nil {
+		if m.customPropertiesField[i] != nil {
 
-			if swag.IsZero(m.CustomProperties[i]) { // not required
+			if swag.IsZero(m.customPropertiesField[i]) { // not required
 				return nil
 			}
 
-			if err := m.CustomProperties[i].ContextValidate(ctx, formats); err != nil {
+			if err := m.customPropertiesField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("customProperties" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -683,57 +1430,57 @@ func (m *Device) contextValidateCustomProperties(ctx context.Context, formats st
 	return nil
 }
 
-func (m *Device) contextValidateDeletedTimeInMs(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateDeletedTimeInMs(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "deletedTimeInMs", "body", int64(m.DeletedTimeInMs)); err != nil {
+	if err := validate.ReadOnly(ctx, "deletedTimeInMs", "body", int64(m.DeletedTimeInMs())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateGcpState(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateGcpState(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "gcpState", "body", int32(m.GcpState)); err != nil {
+	if err := validate.ReadOnly(ctx, "gcpState", "body", int32(m.GcpState())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateHostStatus(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateHostStatus(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "hostStatus", "body", string(m.HostStatus)); err != nil {
+	if err := validate.ReadOnly(ctx, "hostStatus", "body", string(m.HostStatus())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateID(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
+	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateInheritedProperties(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateInheritedProperties(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "inheritedProperties", "body", []*NameAndValue(m.InheritedProperties)); err != nil {
+	if err := validate.ReadOnly(ctx, "inheritedProperties", "body", []*NameAndValue(m.InheritedProperties())); err != nil {
 		return err
 	}
 
-	for i := 0; i < len(m.InheritedProperties); i++ {
+	for i := 0; i < len(m.InheritedProperties()); i++ {
 
-		if m.InheritedProperties[i] != nil {
+		if m.inheritedPropertiesField[i] != nil {
 
-			if swag.IsZero(m.InheritedProperties[i]) { // not required
+			if swag.IsZero(m.inheritedPropertiesField[i]) { // not required
 				return nil
 			}
 
-			if err := m.InheritedProperties[i].ContextValidate(ctx, formats); err != nil {
+			if err := m.inheritedPropertiesField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("inheritedProperties" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -748,107 +1495,107 @@ func (m *Device) contextValidateInheritedProperties(ctx context.Context, formats
 	return nil
 }
 
-func (m *Device) contextValidateLastDataTime(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateLastDataTime(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "lastDataTime", "body", int64(m.LastDataTime)); err != nil {
+	if err := validate.ReadOnly(ctx, "lastDataTime", "body", int64(m.LastDataTime())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateLastRawdataTime(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateLastRawdataTime(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "lastRawdataTime", "body", int64(m.LastRawdataTime)); err != nil {
+	if err := validate.ReadOnly(ctx, "lastRawdataTime", "body", int64(m.LastRawdataTime())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateLogCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateLogCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "logCollectorDescription", "body", string(m.LogCollectorDescription)); err != nil {
+	if err := validate.ReadOnly(ctx, "logCollectorDescription", "body", string(m.LogCollectorDescription())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateLogCollectorGroupID(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateLogCollectorGroupID(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "logCollectorGroupId", "body", int32(m.LogCollectorGroupID)); err != nil {
+	if err := validate.ReadOnly(ctx, "logCollectorGroupId", "body", int32(m.LogCollectorGroupID())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateLogCollectorGroupName(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateLogCollectorGroupName(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "logCollectorGroupName", "body", string(m.LogCollectorGroupName)); err != nil {
+	if err := validate.ReadOnly(ctx, "logCollectorGroupName", "body", string(m.LogCollectorGroupName())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateNetflowCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateNetflowCollectorDescription(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "netflowCollectorDescription", "body", string(m.NetflowCollectorDescription)); err != nil {
+	if err := validate.ReadOnly(ctx, "netflowCollectorDescription", "body", string(m.NetflowCollectorDescription())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateNetflowCollectorGroupID(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateNetflowCollectorGroupID(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "netflowCollectorGroupId", "body", int32(m.NetflowCollectorGroupID)); err != nil {
+	if err := validate.ReadOnly(ctx, "netflowCollectorGroupId", "body", int32(m.NetflowCollectorGroupID())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateNetflowCollectorGroupName(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateNetflowCollectorGroupName(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "netflowCollectorGroupName", "body", string(m.NetflowCollectorGroupName)); err != nil {
+	if err := validate.ReadOnly(ctx, "netflowCollectorGroupName", "body", string(m.NetflowCollectorGroupName())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidatePreferredCollectorGroupID(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidatePreferredCollectorGroupID(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "preferredCollectorGroupId", "body", int32(m.PreferredCollectorGroupID)); err != nil {
+	if err := validate.ReadOnly(ctx, "preferredCollectorGroupId", "body", int32(m.PreferredCollectorGroupID())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidatePreferredCollectorGroupName(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidatePreferredCollectorGroupName(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "preferredCollectorGroupName", "body", string(m.PreferredCollectorGroupName)); err != nil {
+	if err := validate.ReadOnly(ctx, "preferredCollectorGroupName", "body", string(m.PreferredCollectorGroupName())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateResourceIds(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateResourceIds(ctx context.Context, formats strfmt.Registry) error {
 
-	for i := 0; i < len(m.ResourceIds); i++ {
+	for i := 0; i < len(m.ResourceIds()); i++ {
 
-		if m.ResourceIds[i] != nil {
+		if m.resourceIdsField[i] != nil {
 
-			if swag.IsZero(m.ResourceIds[i]) { // not required
+			if swag.IsZero(m.resourceIdsField[i]) { // not required
 				return nil
 			}
 
-			if err := m.ResourceIds[i].ContextValidate(ctx, formats); err != nil {
+			if err := m.resourceIdsField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("resourceIds" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -863,39 +1610,47 @@ func (m *Device) contextValidateResourceIds(ctx context.Context, formats strfmt.
 	return nil
 }
 
-func (m *Device) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateRolePrivileges(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges)); err != nil {
+	if err := validate.ReadOnly(ctx, "rolePrivileges", "body", []string(m.RolePrivileges())); err != nil {
+		return err
+	}
+
+	for i := 0; i < len(m.RolePrivileges()); i++ {
+
+		if err := validate.ReadOnly(ctx, "rolePrivileges"+"."+strconv.Itoa(i), "body", string(m.rolePrivilegesField[i])); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
+func (m *device) contextValidateScanConfigID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "scanConfigId", "body", int32(m.ScanConfigID())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateScanConfigID(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateSystemProperties(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "scanConfigId", "body", int32(m.ScanConfigID)); err != nil {
+	if err := validate.ReadOnly(ctx, "systemProperties", "body", []*NameAndValue(m.SystemProperties())); err != nil {
 		return err
 	}
 
-	return nil
-}
+	for i := 0; i < len(m.SystemProperties()); i++ {
 
-func (m *Device) contextValidateSystemProperties(ctx context.Context, formats strfmt.Registry) error {
+		if m.systemPropertiesField[i] != nil {
 
-	if err := validate.ReadOnly(ctx, "systemProperties", "body", []*NameAndValue(m.SystemProperties)); err != nil {
-		return err
-	}
-
-	for i := 0; i < len(m.SystemProperties); i++ {
-
-		if m.SystemProperties[i] != nil {
-
-			if swag.IsZero(m.SystemProperties[i]) { // not required
+			if swag.IsZero(m.systemPropertiesField[i]) { // not required
 				return nil
 			}
 
-			if err := m.SystemProperties[i].ContextValidate(ctx, formats); err != nil {
+			if err := m.systemPropertiesField[i].ContextValidate(ctx, formats); err != nil {
 				if ve, ok := err.(*errors.Validation); ok {
 					return ve.ValidateName("systemProperties" + "." + strconv.Itoa(i))
 				} else if ce, ok := err.(*errors.CompositeError); ok {
@@ -910,56 +1665,38 @@ func (m *Device) contextValidateSystemProperties(ctx context.Context, formats st
 	return nil
 }
 
-func (m *Device) contextValidateToDeleteTimeInMs(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateToDeleteTimeInMs(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "toDeleteTimeInMs", "body", int64(m.ToDeleteTimeInMs)); err != nil {
+	if err := validate.ReadOnly(ctx, "toDeleteTimeInMs", "body", int64(m.ToDeleteTimeInMs())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateUpTimeInSeconds(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateUpTimeInSeconds(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "upTimeInSeconds", "body", int64(m.UpTimeInSeconds)); err != nil {
+	if err := validate.ReadOnly(ctx, "upTimeInSeconds", "body", int64(m.UpTimeInSeconds())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateUpdatedOn(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "updatedOn", "body", int64(m.UpdatedOn)); err != nil {
+	if err := validate.ReadOnly(ctx, "updatedOn", "body", int64(m.UpdatedOn())); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (m *Device) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
+func (m *device) contextValidateUserPermission(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission)); err != nil {
+	if err := validate.ReadOnly(ctx, "userPermission", "body", string(m.UserPermission())); err != nil {
 		return err
 	}
 
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *Device) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *Device) UnmarshalBinary(b []byte) error {
-	var res Device
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
 	return nil
 }

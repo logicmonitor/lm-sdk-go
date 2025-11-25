@@ -284,6 +284,12 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 			return nil, err
 		}
 		return &result, nil
+	case "AzureVwanVpnLinkConnectionCollectorAttribute":
+		var result AzureVwanVpnLinkConnectionCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "AzureWebJobCollectorAttributeV3":
 		var result AzureWebJobCollectorAttributeV3
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -332,6 +338,12 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 			return nil, err
 		}
 		return &result, nil
+	case "OciMonitoringCollectorAttribute":
+		var result OciMonitoringCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "OpenMetricCollectorAttributeV3":
 		var result OpenMetricCollectorAttributeV3
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -340,6 +352,12 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 		return &result, nil
 	case "PaaSMongoDbCollectorAttribute":
 		var result PaaSMongoDbCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "PingCheckDevice":
+		var result PingCheckDevice
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -382,6 +400,24 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 		return &result, nil
 	case "SaasOffice365TeamsCallsQosCollectorAttributeV3":
 		var result SaasOffice365TeamsCallsQosCollectorAttributeV3
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasOpenAIUsageCompletionCollectorAttribute":
+		var result SaasOpenAIUsageCompletionCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasOpenAIUsageCostCollectorAttribute":
+		var result SaasOpenAIUsageCostCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasOpenAIUsageImageCollectorAttribute":
+		var result SaasOpenAIUsageImageCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -436,6 +472,12 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 		return &result, nil
 	case "SyntheticsSeleniumCollectorAttribute":
 		var result SyntheticsSeleniumCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "WebCheckDevice":
+		var result WebCheckDevice
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}
@@ -616,6 +658,12 @@ func unmarshalCollectorAttribute(data []byte, consumer runtime.Consumer) (Collec
 		return &result, nil
 	case "ping":
 		var result PingCollectorAttribute
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "script":
+		var result ScriptCollectorAttribute
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

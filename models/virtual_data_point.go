@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// VirtualDataPoint virtual data point
+// VirtualDataPoint The virtual datapoints added to the widget. Note that virtual datapoints must be included in the pieChartItems object to be displayed in the widget
 //
 // swagger:model VirtualDataPoint
 type VirtualDataPoint struct {

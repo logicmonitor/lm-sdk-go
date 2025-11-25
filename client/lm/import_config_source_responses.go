@@ -6,6 +6,7 @@ package lm
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -14,6 +15,7 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/go-openapi/validate"
 
 	"github.com/logicmonitor/lm-sdk-go/v3/models"
 )
@@ -58,7 +60,7 @@ func NewImportConfigSourceOK() *ImportConfigSourceOK {
 /*
 ImportConfigSourceOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully imported the config source
 */
 type ImportConfigSourceOK struct {
 	Payload interface{}
@@ -290,5 +292,99 @@ func (o *ImportConfigSourceDefault) readResponse(response runtime.ClientResponse
 		return err
 	}
 
+	return nil
+}
+
+/*
+ImportConfigSourceBody import config source body
+swagger:model ImportConfigSourceBody
+*/
+type ImportConfigSourceBody struct {
+
+	// file
+	// Required: true
+	File *models.FormDataContentDisposition `json:"file"`
+}
+
+// Validate validates this import config source body
+func (o *ImportConfigSourceBody) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.validateFile(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *ImportConfigSourceBody) validateFile(formats strfmt.Registry) error {
+
+	if err := validate.Required("body"+"."+"file", "body", o.File); err != nil {
+		return err
+	}
+
+	if o.File != nil {
+		if err := o.File.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "file")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "file")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this import config source body based on the context it is used
+func (o *ImportConfigSourceBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := o.contextValidateFile(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (o *ImportConfigSourceBody) contextValidateFile(ctx context.Context, formats strfmt.Registry) error {
+
+	if o.File != nil {
+
+		if err := o.File.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("body" + "." + "file")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("body" + "." + "file")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (o *ImportConfigSourceBody) MarshalBinary() ([]byte, error) {
+	if o == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(o)
+}
+
+// UnmarshalBinary interface implementation
+func (o *ImportConfigSourceBody) UnmarshalBinary(b []byte) error {
+	var res ImportConfigSourceBody
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*o = res
 	return nil
 }

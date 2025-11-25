@@ -15,7 +15,8 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WidgetToken widget token
+// WidgetToken If useDynamicWidget=true, this field must at least contain tokens defaultDeviceGroup and defaultServiceGroup
+// Example: \"[{\"name\":\"defaultDeviceGroup\",\"value\":\"*\"},{\"name\":\"defaultServiceGroup\",\"value\":\"*\"}]\
 //
 // swagger:model WidgetToken
 type WidgetToken struct {

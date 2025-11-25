@@ -58,7 +58,7 @@ func NewUpdateDeviceGroupPropertyByNameOK() *UpdateDeviceGroupPropertyByNameOK {
 /*
 UpdateDeviceGroupPropertyByNameOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the device group property
 */
 type UpdateDeviceGroupPropertyByNameOK struct {
 	Payload *models.EntityProperty

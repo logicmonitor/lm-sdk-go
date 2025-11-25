@@ -94,13 +94,10 @@ func (o *AddDatasourceByIDParams) WithDefaults() *AddDatasourceByIDParams {
 func (o *AddDatasourceByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		createGraphDefault = bool(false)
 	)
 
 	val := AddDatasourceByIDParams{
-		UserAgent:   &userAgentDefault,
-		CreateGraph: &createGraphDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

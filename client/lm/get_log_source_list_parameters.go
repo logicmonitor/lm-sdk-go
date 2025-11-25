@@ -67,8 +67,6 @@ type GetLogSourceListParams struct {
 	UserAgent *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	timeout    time.Duration
@@ -90,13 +88,10 @@ func (o *GetLogSourceListParams) WithDefaults() *GetLogSourceListParams {
 func (o *GetLogSourceListParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
 	)
 
 	val := GetLogSourceListParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 	}
 
 	val.timeout = o.timeout

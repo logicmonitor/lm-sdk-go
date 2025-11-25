@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -49,8 +50,8 @@ type APIPerfMetrics struct {
 	// Read Only: true
 	TotalProcessedRequests int64 `json:"totalProcessedRequests,omitempty"`
 
-	// api's summary defined in swagger.json
-	// Example: get alert list
+	// Total rejected get API count
+	// Example: 5
 	// Read Only: true
 	TotalRejectedGetAPICount int64 `json:"totalRejectedGetAPICount,omitempty"`
 
@@ -147,6 +148,14 @@ func (m *APIPerfMetrics) contextValidateTags(ctx context.Context, formats strfmt
 
 	if err := validate.ReadOnly(ctx, "tags", "body", []string(m.Tags)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.ReadOnly(ctx, "tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

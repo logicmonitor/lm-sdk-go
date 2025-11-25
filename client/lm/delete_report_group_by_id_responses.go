@@ -58,7 +58,7 @@ func NewDeleteReportGroupByIDOK() *DeleteReportGroupByIDOK {
 /*
 DeleteReportGroupByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully deleted the report group
 */
 type DeleteReportGroupByIDOK struct {
 	Payload interface{}

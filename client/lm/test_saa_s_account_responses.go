@@ -58,7 +58,7 @@ func NewTestSaaSAccountOK() *TestSaaSAccountOK {
 /*
 TestSaaSAccountOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully tested the SaaS account
 */
 type TestSaaSAccountOK struct {
 	Payload models.RestCloudOkPermissionsV3

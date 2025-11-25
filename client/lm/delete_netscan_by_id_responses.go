@@ -58,7 +58,7 @@ func NewDeleteNetscanByIDOK() *DeleteNetscanByIDOK {
 /*
 DeleteNetscanByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully deleted the netscan
 */
 type DeleteNetscanByIDOK struct {
 	Payload interface{}

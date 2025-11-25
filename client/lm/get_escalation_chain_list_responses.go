@@ -58,7 +58,7 @@ func NewGetEscalationChainListOK() *GetEscalationChainListOK {
 /*
 GetEscalationChainListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the escalation chain list
 */
 type GetEscalationChainListOK struct {
 	Payload *models.EscalationChainPaginationResponse

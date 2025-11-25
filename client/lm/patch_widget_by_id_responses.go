@@ -58,7 +58,7 @@ func NewPatchWidgetByIDOK() *PatchWidgetByIDOK {
 /*
 PatchWidgetByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the widget
 */
 type PatchWidgetByIDOK struct {
 	Payload models.Widget

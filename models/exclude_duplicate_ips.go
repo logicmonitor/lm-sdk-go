@@ -12,17 +12,17 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// ExcludeDuplicateIps exclude duplicate ips
+// ExcludeDuplicateIps Information that determines how duplicate discovered devices should be handled
 //
 // swagger:model ExcludeDuplicateIps
 type ExcludeDuplicateIps struct {
 
 	// The collectors for which monitored devices should be used to identify and exclude duplicate IPs, if duplicate type is 4
-	// Example: [\"ip-172-31-45-179.us-west-2.compute.internal\"]
+	// Example: [ip-172-31-45-179.us-west-2.compute.internal]
 	Collectors []string `json:"collectors,omitempty"`
 
 	// The groups for which devices should be used to identify and exclude duplicate IPs, if duplicate type is 3
-	// Example: [\"Network Devices\"]
+	// Example: [Network Devices]
 	Groups []string `json:"groups,omitempty"`
 
 	// The types of duplicate IPs that should be excluded. The values can be 1|2|3|4 which denotes

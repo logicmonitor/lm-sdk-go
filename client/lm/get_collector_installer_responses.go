@@ -62,7 +62,7 @@ func NewGetCollectorInstallerOK(writer io.Writer) *GetCollectorInstallerOK {
 /*
 GetCollectorInstallerOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetCollectorInstallerOK struct {
 	Payload io.Writer

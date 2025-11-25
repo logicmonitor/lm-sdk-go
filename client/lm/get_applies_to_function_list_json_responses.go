@@ -58,7 +58,7 @@ func NewGetAppliesToFunctionListJSONOK() *GetAppliesToFunctionListJSONOK {
 /*
 GetAppliesToFunctionListJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the list of applies to functions
 */
 type GetAppliesToFunctionListJSONOK struct {
 	Payload interface{}

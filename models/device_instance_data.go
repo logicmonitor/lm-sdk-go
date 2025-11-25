@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -41,7 +42,7 @@ type DeviceInstanceData struct {
 
 	// Datapoint values 2-D list
 	// Read Only: true
-	Values [][]interface{} `json:"values,omitempty"`
+	Values [][]float64 `json:"values,omitempty"`
 }
 
 // Validate validates this device instance data
@@ -125,13 +126,37 @@ func (m *DeviceInstanceData) contextValidateTime(ctx context.Context, formats st
 		return err
 	}
 
+	for i := 0; i < len(m.Time); i++ {
+
+		if err := validate.ReadOnly(ctx, "time"+"."+strconv.Itoa(i), "body", int64(m.Time[i])); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 
 func (m *DeviceInstanceData) contextValidateValues(ctx context.Context, formats strfmt.Registry) error {
 
-	if err := validate.ReadOnly(ctx, "values", "body", [][]interface{}(m.Values)); err != nil {
+	if err := validate.ReadOnly(ctx, "values", "body", [][]float64(m.Values)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Values); i++ {
+
+		if err := validate.ReadOnly(ctx, "values"+"."+strconv.Itoa(i), "body", []float64(m.Values[i])); err != nil {
+			return err
+		}
+
+		for ii := 0; ii < len(m.Values[i]); ii++ {
+
+			if err := validate.ReadOnly(ctx, "values"+"."+strconv.Itoa(i)+"."+strconv.Itoa(ii), "body", float64(m.Values[i][ii])); err != nil {
+				return err
+			}
+
+		}
+
 	}
 
 	return nil

@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// MapModuleToAccessGroup map module to access group
+// MapModuleToAccessGroup Can provide module id, module type and access group for mapping
 //
 // swagger:model MapModuleToAccessGroup
 type MapModuleToAccessGroup struct {

@@ -58,7 +58,7 @@ func NewDeleteJobMonitorOK() *DeleteJobMonitorOK {
 /*
 DeleteJobMonitorOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully deleted the JobMonitor
 */
 type DeleteJobMonitorOK struct {
 	Payload interface{}

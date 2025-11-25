@@ -58,7 +58,7 @@ func NewGetReportListJSONOK() *GetReportListJSONOK {
 /*
 GetReportListJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the report list
 */
 type GetReportListJSONOK struct {
 	Payload interface{}

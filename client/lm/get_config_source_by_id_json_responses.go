@@ -58,7 +58,7 @@ func NewGetConfigSourceByIDJSONOK() *GetConfigSourceByIDJSONOK {
 /*
 GetConfigSourceByIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the config source by ID
 */
 type GetConfigSourceByIDJSONOK struct {
 	Payload interface{}

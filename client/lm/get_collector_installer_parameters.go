@@ -75,8 +75,6 @@ type GetCollectorInstallerParams struct {
 	/* CollectorSize.
 
 	   The size of the Collector you'd like to install. Options are nano, small (requires 2GB memory), medium (requires 4GB memory), large (requires 8GB memory), extra large (requires 16GB memory), double extra large (requires 32GB memory). Requires collector version 22.180 or higher. Defaults to small
-
-	   Default: "medium"
 	*/
 	CollectorSize *string
 
@@ -89,8 +87,6 @@ type GetCollectorInstallerParams struct {
 	CollectorVersion *int32
 
 	// MonitorOthers.
-	//
-	// Default: true
 	MonitorOthers *bool
 
 	// OsAndArch.
@@ -124,19 +120,10 @@ func (o *GetCollectorInstallerParams) WithDefaults() *GetCollectorInstallerParam
 func (o *GetCollectorInstallerParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		collectorSizeDefault = string("medium")
-
-		monitorOthersDefault = bool(true)
-
-		useEADefault = bool(false)
 	)
 
 	val := GetCollectorInstallerParams{
-		UserAgent:     &userAgentDefault,
-		CollectorSize: &collectorSizeDefault,
-		MonitorOthers: &monitorOthersDefault,
-		UseEA:         &useEADefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

@@ -58,7 +58,7 @@ func NewGetReportGroupByIDJSONOK() *GetReportGroupByIDJSONOK {
 /*
 GetReportGroupByIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the report group by id
 */
 type GetReportGroupByIDJSONOK struct {
 	Payload interface{}

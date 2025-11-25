@@ -17,7 +17,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AutoDiscoveryMethod auto discovery method
+// AutoDiscoveryMethod Method used to do auto discovery instance
 //
 // swagger:discriminator AutoDiscoveryMethod name
 type AutoDiscoveryMethod interface {
@@ -25,7 +25,7 @@ type AutoDiscoveryMethod interface {
 	runtime.ContextValidatable
 
 	// The auto discovery method name.
-	// The values can be ad_cim|ad_cloudwatch|ad_collector|ad_dummy|ad_ec2|ad_esx|ad_http|ad_ipmi|ad_jdbc|ad_jmx|ad_netapp|ad_pdh|ad_port|ad_script|ad_snmp|ad_wmi|ad_xen|ad_azurerediscache|ad_awsserviceregion|ad_awsec2reservedinstance|ad_awsecsservice|ad_awsec2scheduledevents|ad_azureserviceregion|ad_azuresubscription|ad_azurebackupjob|ad_azuresdk|ad_azurewebjob|ad_awsbillingreport|ad_awselasticache|ad_awsredshift|ad_azurebilling|ad_awslbtargetgroups|ad_gcpappengine|ad_gcpbilling|ad_awsvpntunnel|ad_gcpvpntunnel|ad_awsglobalwebacl|ad_gcplbbackendservice|ad_gcppubsubsubscription|ad_gcppubsubsnapshot|ad_azurereplicationjob|ad_azureexpressroutecircuitpeering|ad_awsapigatewaystage|ad_azureautomationaccountcertificate|ad_azurevngconnection|ad_azurewebappinstance|ad_azureappserviceenvironmentmultirolepool|ad_openmetrics|ad_awsmediaconnectoutput|ad_awsmediaconnectsource|ad_awswebaclwafv2|ad_saaso365sharepointsite|ad_awscognitoidentityproviders|ad_saaszoomplanusage|ad_saasstatus|ad_azuresynapse|ad_saasairbrake|ad_syntheticsselenium|ad_azurevirtualdesktopsessionhosts|ad_saaso365subscribedsku|ad_azuredimension|ad_azurecostmanagementdimensions|ad_saaso365servicehealth|ad_saaso365mailbox|ad_azurenetappvolumes|ad_azureloganalyticsworkspaces|ad_saaszoomstatus|ad_saassalesforcelicense|ad_saaszoomroom|ad_saaswebexlicenseusage|ad_azureloganalyticsreplicationjob|ad_paasjsonpath|ad_awsrabbitmqqueue|ad_awssagemakerendpointvariant|ad_awsroute53resolveripaddress
+	// The values can be ad_cim|ad_cloudwatch|ad_collector|ad_dummy|ad_ec2|ad_esx|ad_http|ad_ipmi|ad_jdbc|ad_jmx|ad_netapp|ad_pdh|ad_port|ad_script|ad_snmp|ad_wmi|ad_xen|ad_azurerediscache|ad_awsserviceregion|ad_awsec2reservedinstance|ad_awsecsservice|ad_awsec2scheduledevents|ad_azureserviceregion|ad_azuresubscription|ad_azurebackupjob|ad_azuresdk|ad_azurewebjob|ad_awsbillingreport|ad_awselasticache|ad_awsredshift|ad_azurebilling|ad_awslbtargetgroups|ad_gcpappengine|ad_gcpbilling|ad_awsvpntunnel|ad_gcpvpntunnel|ad_awsglobalwebacl|ad_gcplbbackendservice|ad_gcppubsubsubscription|ad_gcppubsubsnapshot|ad_azurereplicationjob|ad_azureexpressroutecircuitpeering|ad_awsapigatewaystage|ad_azureautomationaccountcertificate|ad_azurevngconnection|ad_azurewebappinstance|ad_azureappserviceenvironmentmultirolepool|ad_openmetrics|ad_awsmediaconnectoutput|ad_awsmediaconnectsource|ad_awswebaclwafv2|ad_saaso365sharepointsite|ad_awscognitoidentityproviders|ad_saaszoomplanusage|ad_saasstatus|ad_azuresynapse|ad_saasairbrake|ad_syntheticsselenium|ad_azurevirtualdesktopsessionhosts|ad_saaso365subscribedsku|ad_azuredimension|ad_azurecostmanagementdimensions|ad_saaso365servicehealth|ad_saaso365mailbox|ad_azurenetappvolumes|ad_azureloganalyticsworkspaces|ad_saaszoomstatus|ad_saassalesforcelicense|ad_saaszoomroom|ad_saaswebexlicenseusage|ad_azureloganalyticsreplicationjob|ad_paasjsonpath|ad_awsrabbitmqqueue|ad_awssagemakerendpointvariant|ad_awsroute53resolveripaddress|ad_saasopenaiusagecost|ad_saasopenaiusagecompletion|ad_saasopenaiusageimage
 	// Required: true
 	Name() string
 	SetName(string)
@@ -291,6 +291,12 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 			return nil, err
 		}
 		return &result, nil
+	case "AzureVwanVpnLinkConnectionMethod":
+		var result AzureVwanVpnLinkConnectionMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "AzureWebAppInstanceDiscoveryMethod":
 		var result AzureWebAppInstanceDiscoveryMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -417,6 +423,24 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 			return nil, err
 		}
 		return &result, nil
+	case "SaasOpenAIUsageCompletionDiscoveryMethod":
+		var result SaasOpenAIUsageCompletionDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasOpenAIUsageCostDiscoveryMethod":
+		var result SaasOpenAIUsageCostDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "SaasOpenAIUsageImageDiscoveryMethod":
+		var result SaasOpenAIUsageImageDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
 	case "SaasSalesforceLicenseDiscoveryMethod":
 		var result SaasSalesforceLicenseDiscoveryMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
@@ -431,6 +455,12 @@ func unmarshalAutoDiscoveryMethod(data []byte, consumer runtime.Consumer) (AutoD
 		return &result, nil
 	case "SaasZoomRoomDiscoveryMethod":
 		var result SaasZoomRoomDiscoveryMethod
+		if err := consumer.Consume(buf2, &result); err != nil {
+			return nil, err
+		}
+		return &result, nil
+	case "ServiceComponentDiscoveryMethod":
+		var result ServiceComponentDiscoveryMethod
 		if err := consumer.Consume(buf2, &result); err != nil {
 			return nil, err
 		}

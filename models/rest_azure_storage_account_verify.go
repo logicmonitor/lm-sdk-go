@@ -23,6 +23,9 @@ type RestAzureStorageAccountVerify struct {
 	// client Id
 	ClientID string `json:"clientId,omitempty"`
 
+	// export name
+	ExportName string `json:"exportName,omitempty"`
+
 	// group Id
 	GroupID int32 `json:"groupId,omitempty"`
 
@@ -31,6 +34,9 @@ type RestAzureStorageAccountVerify struct {
 
 	// secret key
 	SecretKey string `json:"secretKey,omitempty"`
+
+	// storage account container directory
+	StorageAccountContainerDirectory string `json:"storageAccountContainerDirectory,omitempty"`
 
 	// storage account container name
 	StorageAccountContainerName string `json:"storageAccountContainerName,omitempty"`

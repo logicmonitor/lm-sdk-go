@@ -74,8 +74,6 @@ type GetDatasourceListParams struct {
 	Filter *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// Offset.
@@ -109,8 +107,6 @@ func (o *GetDatasourceListParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
-		formatDefault = string("json")
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
@@ -118,7 +114,6 @@ func (o *GetDatasourceListParams) SetDefaults() {
 
 	val := GetDatasourceListParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 		Offset:    &offsetDefault,
 		Size:      &sizeDefault,
 	}

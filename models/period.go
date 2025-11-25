@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Period period
+// Period If type is timebased then effective time when recipient receive notification.
 //
 // swagger:model Period
 type Period struct {

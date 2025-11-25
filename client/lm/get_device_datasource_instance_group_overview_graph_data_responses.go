@@ -58,7 +58,7 @@ func NewGetDeviceDatasourceInstanceGroupOverviewGraphDataOK() *GetDeviceDatasour
 /*
 GetDeviceDatasourceInstanceGroupOverviewGraphDataOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the graph data
 */
 type GetDeviceDatasourceInstanceGroupOverviewGraphDataOK struct {
 	Payload *models.GraphPlot

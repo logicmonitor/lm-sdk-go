@@ -58,7 +58,7 @@ func NewGetAllLogPartitionsOK() *GetAllLogPartitionsOK {
 /*
 GetAllLogPartitionsOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetAllLogPartitionsOK struct {
 	Payload *models.Pagination

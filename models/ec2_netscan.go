@@ -57,7 +57,7 @@ type Ec2Netscan struct {
 	// Required: true
 	Accessibility *string `json:"accessibility"`
 
-	// The credentials to be used for the scan
+	// credentials
 	// Required: true
 	Credentials *EC2NetscanPolicyCredential `json:"credentials"`
 
@@ -250,7 +250,7 @@ func (m *Ec2Netscan) UnmarshalJSON(raw []byte) error {
 		// Required: true
 		Accessibility *string `json:"accessibility"`
 
-		// The credentials to be used for the scan
+		// credentials
 		// Required: true
 		Credentials *EC2NetscanPolicyCredential `json:"credentials"`
 
@@ -377,7 +377,7 @@ func (m Ec2Netscan) MarshalJSON() ([]byte, error) {
 		// Required: true
 		Accessibility *string `json:"accessibility"`
 
-		// The credentials to be used for the scan
+		// credentials
 		// Required: true
 		Credentials *EC2NetscanPolicyCredential `json:"credentials"`
 

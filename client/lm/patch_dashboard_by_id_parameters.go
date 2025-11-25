@@ -99,13 +99,10 @@ func (o *PatchDashboardByIDParams) WithDefaults() *PatchDashboardByIDParams {
 func (o *PatchDashboardByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		overwriteGroupFieldsDefault = bool(false)
 	)
 
 	val := PatchDashboardByIDParams{
-		UserAgent:            &userAgentDefault,
-		OverwriteGroupFields: &overwriteGroupFieldsDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

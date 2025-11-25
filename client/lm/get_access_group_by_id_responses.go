@@ -58,7 +58,7 @@ func NewGetAccessGroupByIDOK() *GetAccessGroupByIDOK {
 /*
 GetAccessGroupByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetAccessGroupByIDOK struct {
 	Payload *models.AccessGroup

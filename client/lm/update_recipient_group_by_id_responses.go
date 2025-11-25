@@ -58,7 +58,7 @@ func NewUpdateRecipientGroupByIDOK() *UpdateRecipientGroupByIDOK {
 /*
 UpdateRecipientGroupByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the recipient group
 */
 type UpdateRecipientGroupByIDOK struct {
 	Payload *models.RecipientGroup

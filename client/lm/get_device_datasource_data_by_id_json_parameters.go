@@ -69,9 +69,7 @@ type GetDeviceDatasourceDataByIDJSONParams struct {
 
 	/* Aggregate.
 
-	   the aggregate option
-
-	   Default: "none"
+	   The aggregate option
 	*/
 	Aggregate *string
 
@@ -89,8 +87,6 @@ type GetDeviceDatasourceDataByIDJSONParams struct {
 	End *int64
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -101,7 +97,6 @@ type GetDeviceDatasourceDataByIDJSONParams struct {
 	// Period.
 	//
 	// Format: double
-	// Default: 1
 	Period *float64
 
 	// Start.
@@ -128,25 +123,10 @@ func (o *GetDeviceDatasourceDataByIDJSONParams) WithDefaults() *GetDeviceDatasou
 func (o *GetDeviceDatasourceDataByIDJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		aggregateDefault = string("none")
-
-		endDefault = int64(0)
-
-		formatDefault = string("json")
-
-		periodDefault = float64(1)
-
-		startDefault = int64(0)
 	)
 
 	val := GetDeviceDatasourceDataByIDJSONParams{
 		UserAgent: &userAgentDefault,
-		Aggregate: &aggregateDefault,
-		End:       &endDefault,
-		Format:    &formatDefault,
-		Period:    &periodDefault,
-		Start:     &startDefault,
 	}
 
 	val.timeout = o.timeout

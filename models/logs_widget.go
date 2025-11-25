@@ -44,7 +44,7 @@ type LogsWidget struct {
 
 	userPermissionField string
 
-	// Logs widget configuration info
+	// logs info
 	// Required: true
 	LogsInfo *LogsInfo `json:"logsInfo"`
 }
@@ -182,7 +182,7 @@ func (m *LogsWidget) SetUserPermission(val string) {
 func (m *LogsWidget) UnmarshalJSON(raw []byte) error {
 	var data struct {
 
-		// Logs widget configuration info
+		// logs info
 		// Required: true
 		LogsInfo *LogsInfo `json:"logsInfo"`
 	}
@@ -274,7 +274,7 @@ func (m LogsWidget) MarshalJSON() ([]byte, error) {
 	var err error
 	b1, err = json.Marshal(struct {
 
-		// Logs widget configuration info
+		// logs info
 		// Required: true
 		LogsInfo *LogsInfo `json:"logsInfo"`
 	}{

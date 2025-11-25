@@ -58,7 +58,7 @@ func NewDeleteEventSourceByIDOK() *DeleteEventSourceByIDOK {
 /*
 DeleteEventSourceByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully deleted event source by ID
 */
 type DeleteEventSourceByIDOK struct {
 	Payload interface{}

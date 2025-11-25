@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// CustomFlexibleVirtualDataSourceEx custom flexible virtual data source ex
+// CustomFlexibleVirtualDataSourceEx The datapoints added to the widget (note that a datapoint must be referenced in a graph line to be displayed)
 //
 // swagger:model CustomFlexibleVirtualDataSourceEx
 type CustomFlexibleVirtualDataSourceEx struct {

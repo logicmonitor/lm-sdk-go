@@ -58,7 +58,7 @@ func NewAddDeviceGroupPropertyOK() *AddDeviceGroupPropertyOK {
 /*
 AddDeviceGroupPropertyOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully added the device group property
 */
 type AddDeviceGroupPropertyOK struct {
 	Payload *models.EntityProperty

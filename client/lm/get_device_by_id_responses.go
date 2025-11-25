@@ -58,10 +58,10 @@ func NewGetDeviceByIDOK() *GetDeviceByIDOK {
 /*
 GetDeviceByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetDeviceByIDOK struct {
-	Payload *models.Device
+	Payload models.Device
 }
 
 // IsSuccess returns true when this get device by Id o k response has a 2xx status code
@@ -104,18 +104,18 @@ func (o *GetDeviceByIDOK) String() string {
 	return fmt.Sprintf("[GET /device/devices/{id}][%d] getDeviceByIdOK %s", 200, payload)
 }
 
-func (o *GetDeviceByIDOK) GetPayload() *models.Device {
+func (o *GetDeviceByIDOK) GetPayload() models.Device {
 	return o.Payload
 }
 
 func (o *GetDeviceByIDOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Device)
-
-	// response payload
-	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
+	// response payload as interface type
+	payload, err := models.UnmarshalDevice(response.Body(), consumer)
+	if err != nil {
 		return err
 	}
+	o.Payload = payload
 
 	return nil
 }

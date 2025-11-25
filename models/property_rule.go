@@ -86,6 +86,13 @@ type PropertyRule struct {
 	// Read Only: true
 	Name string `json:"name,omitempty"`
 
+	// The Registry ID of the Exchange Integration this module is based from, including this field will set this as the module's import base and mark the ID's version as audited
+	// Read Only: true
+	OriginRegistryID string `json:"originRegistryId,omitempty"`
+
+	// params
+	Params []*PropertyRuleParam `json:"params,omitempty"`
+
 	// The property rule schedule option. The values can be onAP|onAPpropertyChanges
 	// Read Only: true
 	ScheduleOption string `json:"scheduleOption,omitempty"`
@@ -125,6 +132,10 @@ func (m *PropertyRule) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateInstallationMetadata(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateParams(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -191,6 +202,32 @@ func (m *PropertyRule) validateInstallationMetadata(formats strfmt.Registry) err
 	return nil
 }
 
+func (m *PropertyRule) validateParams(formats strfmt.Registry) error {
+	if swag.IsZero(m.Params) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Params); i++ {
+		if swag.IsZero(m.Params[i]) { // not required
+			continue
+		}
+
+		if m.Params[i] != nil {
+			if err := m.Params[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("params" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("params" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this property rule based on the context it is used
 func (m *PropertyRule) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -236,6 +273,14 @@ func (m *PropertyRule) ContextValidate(ctx context.Context, formats strfmt.Regis
 	}
 
 	if err := m.contextValidateName(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateOriginRegistryID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateParams(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -383,6 +428,40 @@ func (m *PropertyRule) contextValidateName(ctx context.Context, formats strfmt.R
 
 	if err := validate.ReadOnly(ctx, "name", "body", string(m.Name)); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *PropertyRule) contextValidateOriginRegistryID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "originRegistryId", "body", string(m.OriginRegistryID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *PropertyRule) contextValidateParams(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.Params); i++ {
+
+		if m.Params[i] != nil {
+
+			if swag.IsZero(m.Params[i]) { // not required
+				return nil
+			}
+
+			if err := m.Params[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("params" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("params" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

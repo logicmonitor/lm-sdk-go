@@ -58,7 +58,7 @@ func NewGetMetricsUsageJSONOK() *GetMetricsUsageJSONOK {
 /*
 GetMetricsUsageJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the metrics usage
 */
 type GetMetricsUsageJSONOK struct {
 	Payload interface{}

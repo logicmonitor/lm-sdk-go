@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -23,17 +24,78 @@ type Response struct {
 	// errmsg
 	Errmsg string `json:"errmsg,omitempty"`
 
+	// ok
+	Ok *Response `json:"ok,omitempty"`
+
 	// status
 	Status int32 `json:"status,omitempty"`
 }
 
 // Validate validates this response
 func (m *Response) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateOk(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this response based on context it is used
+func (m *Response) validateOk(formats strfmt.Registry) error {
+	if swag.IsZero(m.Ok) { // not required
+		return nil
+	}
+
+	if m.Ok != nil {
+		if err := m.Ok.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ok")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ok")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this response based on the context it is used
 func (m *Response) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateOk(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *Response) contextValidateOk(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.Ok != nil {
+
+		if swag.IsZero(m.Ok) { // not required
+			return nil
+		}
+
+		if err := m.Ok.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("ok")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("ok")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

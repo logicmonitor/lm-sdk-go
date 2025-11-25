@@ -58,7 +58,7 @@ func NewGetDeviceDatasourceDataByIDOK() *GetDeviceDatasourceDataByIDOK {
 /*
 GetDeviceDatasourceDataByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the device datasource data
 */
 type GetDeviceDatasourceDataByIDOK struct {
 	Payload *models.DeviceDataSourceData

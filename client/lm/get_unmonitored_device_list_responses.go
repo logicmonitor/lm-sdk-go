@@ -58,7 +58,7 @@ func NewGetUnmonitoredDeviceListOK() *GetUnmonitoredDeviceListOK {
 /*
 GetUnmonitoredDeviceListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the unmonitored device list
 */
 type GetUnmonitoredDeviceListOK struct {
 	Payload *models.UnmonitoredDevicePaginationResponse

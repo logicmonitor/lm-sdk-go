@@ -58,7 +58,7 @@ func NewGetDeviceGroupClusterAlertConfByIDOK() *GetDeviceGroupClusterAlertConfBy
 /*
 GetDeviceGroupClusterAlertConfByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetDeviceGroupClusterAlertConfByIDOK struct {
 	Payload *models.DeviceClusterAlertConfig

@@ -58,7 +58,7 @@ func NewFetchReportUsingTaskIDJSONOK() *FetchReportUsingTaskIDJSONOK {
 /*
 FetchReportUsingTaskIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the report for the task
 */
 type FetchReportUsingTaskIDJSONOK struct {
 	Payload interface{}

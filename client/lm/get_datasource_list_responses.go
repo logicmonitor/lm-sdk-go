@@ -58,7 +58,7 @@ func NewGetDatasourceListOK() *GetDatasourceListOK {
 /*
 GetDatasourceListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved datasource list
 */
 type GetDatasourceListOK struct {
 	Payload *models.DatasourcePaginationResponse

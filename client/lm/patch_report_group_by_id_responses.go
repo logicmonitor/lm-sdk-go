@@ -58,7 +58,7 @@ func NewPatchReportGroupByIDOK() *PatchReportGroupByIDOK {
 /*
 PatchReportGroupByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the report group
 */
 type PatchReportGroupByIDOK struct {
 	Payload *models.ReportGroup

@@ -58,7 +58,7 @@ func NewDeleteDeviceGroupPropertyByNameOK() *DeleteDeviceGroupPropertyByNameOK {
 /*
 DeleteDeviceGroupPropertyByNameOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully deleted the device group property
 */
 type DeleteDeviceGroupPropertyByNameOK struct {
 	Payload interface{}

@@ -91,8 +91,6 @@ type PatchDeviceDatasourceInstanceByIDParams struct {
 	ID int32
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	timeout    time.Duration
@@ -114,13 +112,10 @@ func (o *PatchDeviceDatasourceInstanceByIDParams) WithDefaults() *PatchDeviceDat
 func (o *PatchDeviceDatasourceInstanceByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := PatchDeviceDatasourceInstanceByIDParams{
 		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
 	}
 
 	val.timeout = o.timeout

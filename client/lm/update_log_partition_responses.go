@@ -58,7 +58,7 @@ func NewUpdateLogPartitionOK() *UpdateLogPartitionOK {
 /*
 UpdateLogPartitionOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type UpdateLogPartitionOK struct {
 	Payload *models.LogPartition

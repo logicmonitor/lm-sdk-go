@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WidgetTokenInheritance widget token inheritance
+// WidgetTokenInheritance The widget token inherit list
 //
 // swagger:model WidgetTokenInheritance
 type WidgetTokenInheritance struct {

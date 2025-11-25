@@ -58,7 +58,7 @@ func NewGetWebsiteCheckpointDataByIDOK() *GetWebsiteCheckpointDataByIDOK {
 /*
 GetWebsiteCheckpointDataByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetWebsiteCheckpointDataByIDOK struct {
 	Payload *models.WebsiteCheckpointRawData

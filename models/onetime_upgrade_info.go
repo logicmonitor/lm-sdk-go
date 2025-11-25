@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// OnetimeUpgradeInfo onetime upgrade info
+// OnetimeUpgradeInfo The details of the Collector's one time upgrade, if one has been scheduled
 //
 // swagger:model OnetimeUpgradeInfo
 type OnetimeUpgradeInfo struct {

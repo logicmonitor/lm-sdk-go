@@ -11,7 +11,6 @@ import (
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
 )
 
 // LabelValuePair label value pair
@@ -23,7 +22,6 @@ type LabelValuePair struct {
 	Label string `json:"label,omitempty"`
 
 	// value
-	// Read Only: true
 	Value string `json:"value,omitempty"`
 }
 
@@ -36,22 +34,9 @@ func (m *LabelValuePair) Validate(formats strfmt.Registry) error {
 func (m *LabelValuePair) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
 
-	if err := m.contextValidateValue(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
-	return nil
-}
-
-func (m *LabelValuePair) contextValidateValue(ctx context.Context, formats strfmt.Registry) error {
-
-	if err := validate.ReadOnly(ctx, "value", "body", string(m.Value)); err != nil {
-		return err
-	}
-
 	return nil
 }
 

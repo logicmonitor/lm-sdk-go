@@ -15,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// BigNumberInfo big number info
+// BigNumberInfo BigNumber widget configuration info
 //
 // swagger:model BigNumberInfo
 type BigNumberInfo struct {

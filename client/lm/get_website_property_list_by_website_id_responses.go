@@ -58,7 +58,7 @@ func NewGetWebsitePropertyListByWebsiteIDOK() *GetWebsitePropertyListByWebsiteID
 /*
 GetWebsitePropertyListByWebsiteIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetWebsitePropertyListByWebsiteIDOK struct {
 	Payload *models.PropertyPaginationResponse

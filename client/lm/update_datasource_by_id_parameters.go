@@ -105,13 +105,10 @@ func (o *UpdateDatasourceByIDParams) WithDefaults() *UpdateDatasourceByIDParams 
 func (o *UpdateDatasourceByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		forceUniqueIdentifierDefault = bool(false)
 	)
 
 	val := UpdateDatasourceByIDParams{
-		UserAgent:             &userAgentDefault,
-		ForceUniqueIdentifier: &forceUniqueIdentifierDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

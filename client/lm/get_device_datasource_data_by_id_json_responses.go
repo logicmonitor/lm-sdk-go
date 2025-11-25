@@ -58,7 +58,7 @@ func NewGetDeviceDatasourceDataByIDJSONOK() *GetDeviceDatasourceDataByIDJSONOK {
 /*
 GetDeviceDatasourceDataByIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the device datasource data
 */
 type GetDeviceDatasourceDataByIDJSONOK struct {
 	Payload interface{}

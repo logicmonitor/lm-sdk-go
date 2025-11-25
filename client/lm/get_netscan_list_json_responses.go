@@ -58,7 +58,7 @@ func NewGetNetscanListJSONOK() *GetNetscanListJSONOK {
 /*
 GetNetscanListJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the netscan list
 */
 type GetNetscanListJSONOK struct {
 	Payload interface{}

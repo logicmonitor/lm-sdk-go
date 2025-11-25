@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WebsiteCheckPoint website check point
+// WebsiteCheckPoint The checkpoints from the which the website is monitored. This object should reference each location specified in testLocation in addition to an 'Overall' checkpoint
 //
 // swagger:model WebsiteCheckPoint
 type WebsiteCheckPoint struct {

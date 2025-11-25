@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// JSONArray JSON array
+// JSONArray filters to be applied on the billing info
 //
 // swagger:model JSONArray
 type JSONArray struct {

@@ -58,7 +58,7 @@ func NewGetDataSourceOverviewGraphByIDJSONOK() *GetDataSourceOverviewGraphByIDJS
 /*
 GetDataSourceOverviewGraphByIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved datasource overview graph by ID
 */
 type GetDataSourceOverviewGraphByIDJSONOK struct {
 	Payload interface{}

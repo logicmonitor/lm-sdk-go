@@ -58,7 +58,7 @@ func NewAddOpsNoteOK() *AddOpsNoteOK {
 /*
 AddOpsNoteOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type AddOpsNoteOK struct {
 	Payload *models.OpsNote

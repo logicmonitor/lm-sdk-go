@@ -67,8 +67,6 @@ type GetLogSourceByIDJSONParams struct {
 	UserAgent *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -93,13 +91,10 @@ func (o *GetLogSourceByIDJSONParams) WithDefaults() *GetLogSourceByIDJSONParams 
 func (o *GetLogSourceByIDJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
 	)
 
 	val := GetLogSourceByIDJSONParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 	}
 
 	val.timeout = o.timeout

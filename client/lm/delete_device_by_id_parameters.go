@@ -68,8 +68,6 @@ type DeleteDeviceByIDParams struct {
 	UserAgent *string
 
 	// DeleteHard.
-	//
-	// Default: true
 	DeleteHard *bool
 
 	// End.
@@ -109,13 +107,10 @@ func (o *DeleteDeviceByIDParams) WithDefaults() *DeleteDeviceByIDParams {
 func (o *DeleteDeviceByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		deleteHardDefault = bool(true)
 	)
 
 	val := DeleteDeviceByIDParams{
-		UserAgent:  &userAgentDefault,
-		DeleteHard: &deleteHardDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout

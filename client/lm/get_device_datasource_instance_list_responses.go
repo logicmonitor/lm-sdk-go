@@ -58,7 +58,7 @@ func NewGetDeviceDatasourceInstanceListOK() *GetDeviceDatasourceInstanceListOK {
 /*
 GetDeviceDatasourceInstanceListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetDeviceDatasourceInstanceListOK struct {
 	Payload *models.DeviceDatasourceInstancePaginationResponse

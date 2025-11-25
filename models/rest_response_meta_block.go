@@ -8,6 +8,7 @@ package models
 import (
 	"context"
 
+	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 )
@@ -19,6 +20,15 @@ type RestResponseMetaBlock struct {
 
 	// filtered count
 	FilteredCount int64 `json:"filteredCount,omitempty"`
+
+	// from paging response info
+	FromPagingResponseInfo *RestResponseMetaBlock `json:"fromPagingResponseInfo,omitempty"`
+
+	// from sort info
+	FromSortInfo *RestResponseMetaBlock `json:"fromSortInfo,omitempty"`
+
+	// is total count exhaustive
+	IsTotalCountExhaustive bool `json:"isTotalCountExhaustive,omitempty"`
 
 	// page offset count
 	PageOffsetCount int32 `json:"pageOffsetCount,omitempty"`
@@ -35,11 +45,117 @@ type RestResponseMetaBlock struct {
 
 // Validate validates this rest response meta block
 func (m *RestResponseMetaBlock) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateFromPagingResponseInfo(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFromSortInfo(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
 	return nil
 }
 
-// ContextValidate validates this rest response meta block based on context it is used
+func (m *RestResponseMetaBlock) validateFromPagingResponseInfo(formats strfmt.Registry) error {
+	if swag.IsZero(m.FromPagingResponseInfo) { // not required
+		return nil
+	}
+
+	if m.FromPagingResponseInfo != nil {
+		if err := m.FromPagingResponseInfo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("fromPagingResponseInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("fromPagingResponseInfo")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *RestResponseMetaBlock) validateFromSortInfo(formats strfmt.Registry) error {
+	if swag.IsZero(m.FromSortInfo) { // not required
+		return nil
+	}
+
+	if m.FromSortInfo != nil {
+		if err := m.FromSortInfo.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("fromSortInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("fromSortInfo")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+// ContextValidate validate this rest response meta block based on the context it is used
 func (m *RestResponseMetaBlock) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.contextValidateFromPagingResponseInfo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateFromSortInfo(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *RestResponseMetaBlock) contextValidateFromPagingResponseInfo(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.FromPagingResponseInfo != nil {
+
+		if swag.IsZero(m.FromPagingResponseInfo) { // not required
+			return nil
+		}
+
+		if err := m.FromPagingResponseInfo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("fromPagingResponseInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("fromPagingResponseInfo")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *RestResponseMetaBlock) contextValidateFromSortInfo(ctx context.Context, formats strfmt.Registry) error {
+
+	if m.FromSortInfo != nil {
+
+		if swag.IsZero(m.FromSortInfo) { // not required
+			return nil
+		}
+
+		if err := m.FromSortInfo.ContextValidate(ctx, formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("fromSortInfo")
+			} else if ce, ok := err.(*errors.CompositeError); ok {
+				return ce.ValidateName("fromSortInfo")
+			}
+			return err
+		}
+	}
+
 	return nil
 }
 

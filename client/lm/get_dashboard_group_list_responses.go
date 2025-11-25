@@ -58,7 +58,7 @@ func NewGetDashboardGroupListOK() *GetDashboardGroupListOK {
 /*
 GetDashboardGroupListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetDashboardGroupListOK struct {
 	Payload *models.DashboardGroupPaginationResponse

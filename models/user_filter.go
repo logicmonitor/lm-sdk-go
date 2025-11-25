@@ -12,13 +12,16 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// UserFilter user filter
+// UserFilter The filter for the report
 //
 // swagger:model UserFilter
 type UserFilter struct {
 
 	// Filter for 2FA enabled property
 	Nr2FA string `json:"2FA,omitempty"`
+
+	// Filter for 2FA Passkey enabled property
+	Nr2FAPasskey string `json:"2FA Passkey,omitempty"`
 
 	// If the user is API only user. Acceptable values are: all, yes, no
 	APIOnlyUser string `json:"apiOnlyUser,omitempty"`

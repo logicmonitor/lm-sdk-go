@@ -68,8 +68,6 @@ type GetPropertyRulesByIDJSONParams struct {
 	UserAgent *string
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// ID.
@@ -96,13 +94,10 @@ func (o *GetPropertyRulesByIDJSONParams) WithDefaults() *GetPropertyRulesByIDJSO
 func (o *GetPropertyRulesByIDJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		formatDefault = string("json")
 	)
 
 	val := GetPropertyRulesByIDJSONParams{
 		UserAgent: &userAgentDefault,
-		Format:    &formatDefault,
 	}
 
 	val.timeout = o.timeout

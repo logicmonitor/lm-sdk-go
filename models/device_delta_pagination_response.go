@@ -24,7 +24,7 @@ type DeviceDeltaPaginationResponse struct {
 	DeltaID string `json:"deltaId,omitempty"`
 
 	// items
-	Items []*Device `json:"items,omitempty"`
+	Items []*RestDeviceDeltaV3 `json:"items,omitempty"`
 
 	// search Id
 	// Read Only: true

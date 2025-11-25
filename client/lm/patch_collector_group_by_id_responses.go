@@ -58,7 +58,7 @@ func NewPatchCollectorGroupByIDOK() *PatchCollectorGroupByIDOK {
 /*
 PatchCollectorGroupByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the collector group
 */
 type PatchCollectorGroupByIDOK struct {
 	Payload *models.CollectorGroup

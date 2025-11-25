@@ -58,7 +58,7 @@ func NewGetRecipientGroupByIDOK() *GetRecipientGroupByIDOK {
 /*
 GetRecipientGroupByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the recipient group by id
 */
 type GetRecipientGroupByIDOK struct {
 	Payload *models.RecipientGroup

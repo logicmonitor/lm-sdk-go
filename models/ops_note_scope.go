@@ -17,7 +17,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// OpsNoteScope ops note scope
+// OpsNoteScope The scopes associated with the note. Each scope has a type of device, service, deviceGroup or serviceGroup. A note with no scope will show up for everything in the account
 //
 // swagger:discriminator OpsNoteScope type
 type OpsNoteScope interface {

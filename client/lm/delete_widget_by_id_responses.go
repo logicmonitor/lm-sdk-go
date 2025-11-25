@@ -58,7 +58,7 @@ func NewDeleteWidgetByIDOK() *DeleteWidgetByIDOK {
 /*
 DeleteWidgetByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully deleted the widget
 */
 type DeleteWidgetByIDOK struct {
 	Payload interface{}

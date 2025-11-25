@@ -58,7 +58,7 @@ func NewPatchPropertyRuleOK() *PatchPropertyRuleOK {
 /*
 PatchPropertyRuleOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated property rule
 */
 type PatchPropertyRuleOK struct {
 	Payload *models.PropertyRule

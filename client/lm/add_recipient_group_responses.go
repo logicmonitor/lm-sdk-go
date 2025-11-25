@@ -58,7 +58,7 @@ func NewAddRecipientGroupOK() *AddRecipientGroupOK {
 /*
 AddRecipientGroupOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully added the recipient group
 */
 type AddRecipientGroupOK struct {
 	Payload *models.RecipientGroup

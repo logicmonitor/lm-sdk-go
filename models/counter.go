@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// Counter counter
+// Counter The counter is used for saving applyTo expression, it's mainly used for count device
 //
 // swagger:model Counter
 type Counter struct {

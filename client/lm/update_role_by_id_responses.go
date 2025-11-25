@@ -58,7 +58,7 @@ func NewUpdateRoleByIDOK() *UpdateRoleByIDOK {
 /*
 UpdateRoleByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the role
 */
 type UpdateRoleByIDOK struct {
 	Payload *models.Role

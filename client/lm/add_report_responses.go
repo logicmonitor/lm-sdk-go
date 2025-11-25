@@ -58,7 +58,7 @@ func NewAddReportOK() *AddReportOK {
 /*
 AddReportOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully added the report
 */
 type AddReportOK struct {
 	Payload models.ReportBase

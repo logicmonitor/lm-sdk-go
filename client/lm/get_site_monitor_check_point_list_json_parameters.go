@@ -84,6 +84,12 @@ type GetSiteMonitorCheckPointListJSONParams struct {
 	// Default: 50
 	Size *int32
 
+	/* Type.
+
+	   Type of checkpoint to filter. If not specified, returns website legacy checkpoints.
+	*/
+	Type *string
+
 	timeout    time.Duration
 	Context    context.Context
 	HTTPClient *http.Client
@@ -209,6 +215,17 @@ func (o *GetSiteMonitorCheckPointListJSONParams) SetSize(size *int32) {
 	o.Size = size
 }
 
+// WithType adds the typeVar to the get site monitor check point list Json params
+func (o *GetSiteMonitorCheckPointListJSONParams) WithType(typeVar *string) *GetSiteMonitorCheckPointListJSONParams {
+	o.SetType(typeVar)
+	return o
+}
+
+// SetType adds the type to the get site monitor check point list Json params
+func (o *GetSiteMonitorCheckPointListJSONParams) SetType(typeVar *string) {
+	o.Type = typeVar
+}
+
 // WriteToRequest writes these params to a swagger request
 func (o *GetSiteMonitorCheckPointListJSONParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
 
@@ -288,6 +305,23 @@ func (o *GetSiteMonitorCheckPointListJSONParams) WriteToRequest(r runtime.Client
 		if qSize != "" {
 
 			if err := r.SetQueryParam("size", qSize); err != nil {
+				return err
+			}
+		}
+	}
+
+	if o.Type != nil {
+
+		// query param type
+		var qrType string
+
+		if o.Type != nil {
+			qrType = *o.Type
+		}
+		qType := qrType
+		if qType != "" {
+
+			if err := r.SetQueryParam("type", qType); err != nil {
 				return err
 			}
 		}

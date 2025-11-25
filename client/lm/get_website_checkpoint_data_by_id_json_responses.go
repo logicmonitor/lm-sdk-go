@@ -58,7 +58,7 @@ func NewGetWebsiteCheckpointDataByIDJSONOK() *GetWebsiteCheckpointDataByIDJSONOK
 /*
 GetWebsiteCheckpointDataByIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetWebsiteCheckpointDataByIDJSONOK struct {
 	Payload interface{}

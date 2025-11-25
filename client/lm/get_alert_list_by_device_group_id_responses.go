@@ -58,7 +58,7 @@ func NewGetAlertListByDeviceGroupIDOK() *GetAlertListByDeviceGroupIDOK {
 /*
 GetAlertListByDeviceGroupIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetAlertListByDeviceGroupIDOK struct {
 	Payload *models.AlertPaginationResponse

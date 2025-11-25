@@ -58,7 +58,7 @@ func NewUpdateAccessGroupOK() *UpdateAccessGroupOK {
 /*
 UpdateAccessGroupOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type UpdateAccessGroupOK struct {
 	Payload *models.AccessGroup

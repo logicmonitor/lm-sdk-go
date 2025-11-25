@@ -58,7 +58,7 @@ func NewGetJobMonitorByIDOK() *GetJobMonitorByIDOK {
 /*
 GetJobMonitorByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the JobMonitor by ID
 */
 type GetJobMonitorByIDOK struct {
 	Payload *models.BatchJob

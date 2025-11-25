@@ -70,8 +70,6 @@ type GetWebsiteCheckpointDataByIDJSONParams struct {
 	/* Aggregate.
 
 	   the aggregate option
-
-	   Default: "none"
 	*/
 	Aggregate *string
 
@@ -89,14 +87,11 @@ type GetWebsiteCheckpointDataByIDJSONParams struct {
 	End *int64
 
 	// Format.
-	//
-	// Default: "json"
 	Format *string
 
 	// Period.
 	//
 	// Format: double
-	// Default: 1
 	Period *float64
 
 	// SrvID.
@@ -128,25 +123,10 @@ func (o *GetWebsiteCheckpointDataByIDJSONParams) WithDefaults() *GetWebsiteCheck
 func (o *GetWebsiteCheckpointDataByIDJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		aggregateDefault = string("none")
-
-		endDefault = int64(0)
-
-		formatDefault = string("json")
-
-		periodDefault = float64(1)
-
-		startDefault = int64(0)
 	)
 
 	val := GetWebsiteCheckpointDataByIDJSONParams{
 		UserAgent: &userAgentDefault,
-		Aggregate: &aggregateDefault,
-		End:       &endDefault,
-		Format:    &formatDefault,
-		Period:    &periodDefault,
-		Start:     &startDefault,
 	}
 
 	val.timeout = o.timeout

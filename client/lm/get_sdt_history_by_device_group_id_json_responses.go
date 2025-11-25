@@ -58,7 +58,7 @@ func NewGetSDTHistoryByDeviceGroupIDJSONOK() *GetSDTHistoryByDeviceGroupIDJSONOK
 /*
 GetSDTHistoryByDeviceGroupIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetSDTHistoryByDeviceGroupIDJSONOK struct {
 	Payload interface{}

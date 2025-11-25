@@ -58,7 +58,7 @@ func NewGetAlertByIDOK() *GetAlertByIDOK {
 /*
 GetAlertByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Get alert by id
 */
 type GetAlertByIDOK struct {
 	Payload *models.Alert

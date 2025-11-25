@@ -68,8 +68,6 @@ type GetAlertListByDeviceIDJSONParams struct {
 	UserAgent *string
 
 	// Bound.
-	//
-	// Default: "instances"
 	Bound *string
 
 	// CustomColumns.
@@ -133,21 +131,15 @@ func (o *GetAlertListByDeviceIDJSONParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
 
-		boundDefault = string("instances")
-
-		needMessageDefault = bool(false)
-
 		offsetDefault = int32(0)
 
 		sizeDefault = int32(50)
 	)
 
 	val := GetAlertListByDeviceIDJSONParams{
-		UserAgent:   &userAgentDefault,
-		Bound:       &boundDefault,
-		NeedMessage: &needMessageDefault,
-		Offset:      &offsetDefault,
-		Size:        &sizeDefault,
+		UserAgent: &userAgentDefault,
+		Offset:    &offsetDefault,
+		Size:      &sizeDefault,
 	}
 
 	val.timeout = o.timeout

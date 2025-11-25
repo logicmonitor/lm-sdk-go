@@ -58,7 +58,7 @@ func NewGetCollectorGroupListJSONOK() *GetCollectorGroupListJSONOK {
 /*
 GetCollectorGroupListJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the collector group list
 */
 type GetCollectorGroupListJSONOK struct {
 	Payload interface{}

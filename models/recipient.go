@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Recipient recipient
+// Recipient The chain's cc destinations
 //
 // swagger:model Recipient
 type Recipient struct {
@@ -22,10 +22,12 @@ type Recipient struct {
 	// The recipient address.
 	// The value will be user name if method = admin, or the email address if method = arbitrary
 	// Example: user@domain.com
-	Addr string `json:"addr,omitempty"`
+	// Required: true
+	Addr *string `json:"addr"`
 
 	// Contact details, email address or phone number
-	Contact string `json:"contact,omitempty"`
+	// Required: true
+	Contact *string `json:"contact"`
 
 	// Recipient method for each type.
 	// The values can be EMAIL|SMEMAIL|VOICE|SMS
@@ -48,6 +50,14 @@ type Recipient struct {
 func (m *Recipient) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAddr(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateContact(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateMethod(formats); err != nil {
 		res = append(res, err)
 	}
@@ -59,6 +69,24 @@ func (m *Recipient) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *Recipient) validateAddr(formats strfmt.Registry) error {
+
+	if err := validate.Required("addr", "body", m.Addr); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Recipient) validateContact(formats strfmt.Registry) error {
+
+	if err := validate.Required("contact", "body", m.Contact); err != nil {
+		return err
+	}
+
 	return nil
 }
 

@@ -46,6 +46,9 @@ type Viz struct {
 
 	// viz info
 	VizInfo *RestVizWidgetDataV3 `json:"vizInfo,omitempty"`
+
+	// widget config
+	WidgetConfig string `json:"widgetConfig,omitempty"`
 }
 
 // DashboardID gets the dashboard Id of this subtype
@@ -183,6 +186,9 @@ func (m *Viz) UnmarshalJSON(raw []byte) error {
 
 		// viz info
 		VizInfo *RestVizWidgetDataV3 `json:"vizInfo,omitempty"`
+
+		// widget config
+		WidgetConfig string `json:"widgetConfig,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -260,6 +266,7 @@ func (m *Viz) UnmarshalJSON(raw []byte) error {
 	result.userPermissionField = base.UserPermission
 
 	result.VizInfo = data.VizInfo
+	result.WidgetConfig = data.WidgetConfig
 
 	*m = result
 
@@ -274,9 +281,14 @@ func (m Viz) MarshalJSON() ([]byte, error) {
 
 		// viz info
 		VizInfo *RestVizWidgetDataV3 `json:"vizInfo,omitempty"`
+
+		// widget config
+		WidgetConfig string `json:"widgetConfig,omitempty"`
 	}{
 
 		VizInfo: m.VizInfo,
+
+		WidgetConfig: m.WidgetConfig,
 	})
 	if err != nil {
 		return nil, err

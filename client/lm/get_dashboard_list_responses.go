@@ -58,7 +58,7 @@ func NewGetDashboardListOK() *GetDashboardListOK {
 /*
 GetDashboardListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the dashboard list
 */
 type GetDashboardListOK struct {
 	Payload *models.DashboardPaginationResponse

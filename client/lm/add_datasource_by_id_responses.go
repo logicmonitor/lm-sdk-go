@@ -58,7 +58,7 @@ func NewAddDatasourceByIDOK() *AddDatasourceByIDOK {
 /*
 AddDatasourceByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully added new datasource
 */
 type AddDatasourceByIDOK struct {
 	Payload *models.DataSource

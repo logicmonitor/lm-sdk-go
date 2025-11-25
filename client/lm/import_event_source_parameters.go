@@ -66,8 +66,8 @@ type ImportEventSourceParams struct {
 	// Default: "Logicmonitor/GO-SDK"
 	UserAgent *string
 
-	// File.
-	File runtime.NamedReadCloser
+	// Body.
+	Body ImportEventSourceBody
 
 	timeout    time.Duration
 	Context    context.Context
@@ -144,15 +144,15 @@ func (o *ImportEventSourceParams) SetUserAgent(userAgent *string) {
 	o.UserAgent = userAgent
 }
 
-// WithFile adds the file to the import event source params
-func (o *ImportEventSourceParams) WithFile(file runtime.NamedReadCloser) *ImportEventSourceParams {
-	o.SetFile(file)
+// WithBody adds the body to the import event source params
+func (o *ImportEventSourceParams) WithBody(body ImportEventSourceBody) *ImportEventSourceParams {
+	o.SetBody(body)
 	return o
 }
 
-// SetFile adds the file to the import event source params
-func (o *ImportEventSourceParams) SetFile(file runtime.NamedReadCloser) {
-	o.File = file
+// SetBody adds the body to the import event source params
+func (o *ImportEventSourceParams) SetBody(body ImportEventSourceBody) {
+	o.Body = body
 }
 
 // WriteToRequest writes these params to a swagger request
@@ -170,8 +170,7 @@ func (o *ImportEventSourceParams) WriteToRequest(r runtime.ClientRequest, reg st
 			return err
 		}
 	}
-	// form file param file
-	if err := r.SetFileParam("file", o.File); err != nil {
+	if err := r.SetBodyParam(o.Body); err != nil {
 		return err
 	}
 

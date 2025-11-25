@@ -7,6 +7,7 @@ package models
 
 import (
 	"context"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -14,7 +15,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// DataPoint data point
+// DataPoint The data point list
 //
 // swagger:model DataPoint
 type DataPoint struct {
@@ -97,6 +98,9 @@ type DataPoint struct {
 	// The name of the raw data field name used to fetch value, e.g. avgrtt, output
 	RawDataFieldName string `json:"rawDataFieldName,omitempty"`
 
+	// The status display name list
+	StatusDisplayNames []*StatusDisplayName `json:"statusDisplayNames,omitempty"`
+
 	// The data metric type. The values can be 0-7 (0:unknown, 1:counter, 2:gauge, 3:derive, 5:status, 6:compute, 7:counter32, 8:counter64)
 	Type int32 `json:"type,omitempty"`
 
@@ -121,6 +125,10 @@ func (m *DataPoint) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateStatusDisplayNames(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -136,6 +144,32 @@ func (m *DataPoint) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *DataPoint) validateStatusDisplayNames(formats strfmt.Registry) error {
+	if swag.IsZero(m.StatusDisplayNames) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.StatusDisplayNames); i++ {
+		if swag.IsZero(m.StatusDisplayNames[i]) { // not required
+			continue
+		}
+
+		if m.StatusDisplayNames[i] != nil {
+			if err := m.StatusDisplayNames[i].Validate(formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("statusDisplayNames" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("statusDisplayNames" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
+	}
+
+	return nil
+}
+
 // ContextValidate validate this data point based on the context it is used
 func (m *DataPoint) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
 	var res []error
@@ -145,6 +179,10 @@ func (m *DataPoint) ContextValidate(ctx context.Context, formats strfmt.Registry
 	}
 
 	if err := m.contextValidateID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.contextValidateStatusDisplayNames(ctx, formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -167,6 +205,31 @@ func (m *DataPoint) contextValidateID(ctx context.Context, formats strfmt.Regist
 
 	if err := validate.ReadOnly(ctx, "id", "body", int32(m.ID)); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *DataPoint) contextValidateStatusDisplayNames(ctx context.Context, formats strfmt.Registry) error {
+
+	for i := 0; i < len(m.StatusDisplayNames); i++ {
+
+		if m.StatusDisplayNames[i] != nil {
+
+			if swag.IsZero(m.StatusDisplayNames[i]) { // not required
+				return nil
+			}
+
+			if err := m.StatusDisplayNames[i].ContextValidate(ctx, formats); err != nil {
+				if ve, ok := err.(*errors.Validation); ok {
+					return ve.ValidateName("statusDisplayNames" + "." + strconv.Itoa(i))
+				} else if ce, ok := err.(*errors.CompositeError); ok {
+					return ce.ValidateName("statusDisplayNames" + "." + strconv.Itoa(i))
+				}
+				return err
+			}
+		}
+
 	}
 
 	return nil

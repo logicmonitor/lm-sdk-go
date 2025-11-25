@@ -821,6 +821,14 @@ func (m *GraphPlot) contextValidateInstances(ctx context.Context, formats strfmt
 		return err
 	}
 
+	for i := 0; i < len(m.Instances); i++ {
+
+		if err := validate.ReadOnly(ctx, "instances"+"."+strconv.Itoa(i), "body", int32(m.Instances[i])); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 
@@ -857,6 +865,14 @@ func (m *GraphPlot) contextValidateMissinglines(ctx context.Context, formats str
 
 	if err := validate.ReadOnly(ctx, "missinglines", "body", []string(m.Missinglines)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Missinglines); i++ {
+
+		if err := validate.ReadOnly(ctx, "missinglines"+"."+strconv.Itoa(i), "body", string(m.Missinglines[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil
@@ -967,6 +983,14 @@ func (m *GraphPlot) contextValidateTimestamps(ctx context.Context, formats strfm
 
 	if err := validate.ReadOnly(ctx, "timestamps", "body", []int64(m.Timestamps)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.Timestamps); i++ {
+
+		if err := validate.ReadOnly(ctx, "timestamps"+"."+strconv.Itoa(i), "body", int64(m.Timestamps[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

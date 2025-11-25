@@ -58,7 +58,7 @@ func NewGetAPITokenListJSONOK() *GetAPITokenListJSONOK {
 /*
 GetAPITokenListJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the list of API tokens
 */
 type GetAPITokenListJSONOK struct {
 	Payload interface{}

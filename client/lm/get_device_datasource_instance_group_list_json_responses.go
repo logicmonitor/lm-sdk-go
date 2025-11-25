@@ -58,7 +58,7 @@ func NewGetDeviceDatasourceInstanceGroupListJSONOK() *GetDeviceDatasourceInstanc
 /*
 GetDeviceDatasourceInstanceGroupListJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the device datasource instance group list
 */
 type GetDeviceDatasourceInstanceGroupListJSONOK struct {
 	Payload interface{}

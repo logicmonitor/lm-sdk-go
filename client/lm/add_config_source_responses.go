@@ -58,7 +58,7 @@ func NewAddConfigSourceOK() *AddConfigSourceOK {
 /*
 AddConfigSourceOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully added the new config source
 */
 type AddConfigSourceOK struct {
 	Payload *models.ConfigSource

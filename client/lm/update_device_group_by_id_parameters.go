@@ -78,8 +78,6 @@ type UpdateDeviceGroupByIDParams struct {
 	ID int32
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	timeout    time.Duration
@@ -101,13 +99,10 @@ func (o *UpdateDeviceGroupByIDParams) WithDefaults() *UpdateDeviceGroupByIDParam
 func (o *UpdateDeviceGroupByIDParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := UpdateDeviceGroupByIDParams{
 		UserAgent: &userAgentDefault,
-		OpType:    &opTypeDefault,
 	}
 
 	val.timeout = o.timeout

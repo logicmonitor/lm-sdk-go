@@ -58,7 +58,7 @@ func NewPatchTopologySourceOK() *PatchTopologySourceOK {
 /*
 PatchTopologySourceOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type PatchTopologySourceOK struct {
 	Payload *models.TopologySource

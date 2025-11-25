@@ -58,7 +58,7 @@ func NewGetDashboardByIDOK() *GetDashboardByIDOK {
 /*
 GetDashboardByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetDashboardByIDOK struct {
 	Payload *models.Dashboard

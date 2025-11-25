@@ -70,7 +70,7 @@ type UpdateDeviceParams struct {
 	UserAgent *string
 
 	// Body.
-	Body *models.Device
+	Body models.Device
 
 	// End.
 	//
@@ -89,8 +89,6 @@ type UpdateDeviceParams struct {
 	NetflowFilter *string
 
 	// OpType.
-	//
-	// Default: "refresh"
 	OpType *string
 
 	// Start.
@@ -117,16 +115,10 @@ func (o *UpdateDeviceParams) WithDefaults() *UpdateDeviceParams {
 func (o *UpdateDeviceParams) SetDefaults() {
 	var (
 		userAgentDefault = string("Logicmonitor/GO-SDK")
-
-		needStcGrpAndSortedCPDefault = bool(false)
-
-		opTypeDefault = string("refresh")
 	)
 
 	val := UpdateDeviceParams{
-		UserAgent:             &userAgentDefault,
-		NeedStcGrpAndSortedCP: &needStcGrpAndSortedCPDefault,
-		OpType:                &opTypeDefault,
+		UserAgent: &userAgentDefault,
 	}
 
 	val.timeout = o.timeout
@@ -180,13 +172,13 @@ func (o *UpdateDeviceParams) SetUserAgent(userAgent *string) {
 }
 
 // WithBody adds the body to the update device params
-func (o *UpdateDeviceParams) WithBody(body *models.Device) *UpdateDeviceParams {
+func (o *UpdateDeviceParams) WithBody(body models.Device) *UpdateDeviceParams {
 	o.SetBody(body)
 	return o
 }
 
 // SetBody adds the body to the update device params
-func (o *UpdateDeviceParams) SetBody(body *models.Device) {
+func (o *UpdateDeviceParams) SetBody(body models.Device) {
 	o.Body = body
 }
 
@@ -271,10 +263,8 @@ func (o *UpdateDeviceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.
 			return err
 		}
 	}
-	if o.Body != nil {
-		if err := r.SetBodyParam(o.Body); err != nil {
-			return err
-		}
+	if err := r.SetBodyParam(o.Body); err != nil {
+		return err
 	}
 
 	if o.End != nil {

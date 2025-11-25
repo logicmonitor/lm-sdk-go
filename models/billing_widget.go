@@ -47,6 +47,9 @@ type BillingWidget struct {
 	// billing info
 	// Required: true
 	BillingInfo *BillingInfo `json:"billingInfo"`
+
+	// widget config
+	WidgetConfig string `json:"widgetConfig,omitempty"`
 }
 
 // DashboardID gets the dashboard Id of this subtype
@@ -185,6 +188,9 @@ func (m *BillingWidget) UnmarshalJSON(raw []byte) error {
 		// billing info
 		// Required: true
 		BillingInfo *BillingInfo `json:"billingInfo"`
+
+		// widget config
+		WidgetConfig string `json:"widgetConfig,omitempty"`
 	}
 	buf := bytes.NewBuffer(raw)
 	dec := json.NewDecoder(buf)
@@ -262,6 +268,7 @@ func (m *BillingWidget) UnmarshalJSON(raw []byte) error {
 	result.userPermissionField = base.UserPermission
 
 	result.BillingInfo = data.BillingInfo
+	result.WidgetConfig = data.WidgetConfig
 
 	*m = result
 
@@ -277,9 +284,14 @@ func (m BillingWidget) MarshalJSON() ([]byte, error) {
 		// billing info
 		// Required: true
 		BillingInfo *BillingInfo `json:"billingInfo"`
+
+		// widget config
+		WidgetConfig string `json:"widgetConfig,omitempty"`
 	}{
 
 		BillingInfo: m.BillingInfo,
+
+		WidgetConfig: m.WidgetConfig,
 	})
 	if err != nil {
 		return nil, err

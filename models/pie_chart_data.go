@@ -27,6 +27,18 @@ type PieChartData struct {
 	// Read Only: true
 	DataPointName string `json:"dataPointName,omitempty"`
 
+	// host Id
+	HostID int32 `json:"hostId,omitempty"`
+
+	// host name
+	HostName string `json:"hostName,omitempty"`
+
+	// instance Id
+	InstanceID int32 `json:"instanceId,omitempty"`
+
+	// instance name
+	InstanceName string `json:"instanceName,omitempty"`
+
 	// legend
 	// Read Only: true
 	Legend string `json:"legend,omitempty"`

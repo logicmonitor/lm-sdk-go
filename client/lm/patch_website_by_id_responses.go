@@ -58,7 +58,7 @@ func NewPatchWebsiteByIDOK() *PatchWebsiteByIDOK {
 /*
 PatchWebsiteByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type PatchWebsiteByIDOK struct {
 	Payload models.Website

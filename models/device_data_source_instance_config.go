@@ -399,6 +399,14 @@ func (m *DeviceDataSourceInstanceConfig) contextValidateExcludeLines(ctx context
 		return err
 	}
 
+	for i := 0; i < len(m.ExcludeLines); i++ {
+
+		if err := validate.ReadOnly(ctx, "excludeLines"+"."+strconv.Itoa(i), "body", int32(m.ExcludeLines[i])); err != nil {
+			return err
+		}
+
+	}
+
 	return nil
 }
 

@@ -55,6 +55,10 @@ type AppliesToFunction struct {
 	// The name of the AppliesTo Function
 	// Required: true
 	Name *string `json:"name"`
+
+	// The Registry ID of the Exchange Integration this module is based from, including this field will set this as the module's import base and mark the ID's version as audited
+	// Read Only: true
+	OriginRegistryID string `json:"originRegistryId,omitempty"`
 }
 
 // Validate validates this applies to function
@@ -202,6 +206,10 @@ func (m *AppliesToFunction) ContextValidate(ctx context.Context, formats strfmt.
 		res = append(res, err)
 	}
 
+	if err := m.contextValidateOriginRegistryID(ctx, formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -275,6 +283,15 @@ func (m *AppliesToFunction) contextValidateInstallationMetadata(ctx context.Cont
 func (m *AppliesToFunction) contextValidateLineageID(ctx context.Context, formats strfmt.Registry) error {
 
 	if err := validate.ReadOnly(ctx, "lineageId", "body", string(m.LineageID)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *AppliesToFunction) contextValidateOriginRegistryID(ctx context.Context, formats strfmt.Registry) error {
+
+	if err := validate.ReadOnly(ctx, "originRegistryId", "body", string(m.OriginRegistryID)); err != nil {
 		return err
 	}
 

@@ -58,7 +58,7 @@ func NewDeleteDeviceByIDOK() *DeleteDeviceByIDOK {
 /*
 DeleteDeviceByIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type DeleteDeviceByIDOK struct {
 	Payload interface{}

@@ -17,7 +17,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// Authentication authentication
+// Authentication Authorization Information
 //
 // swagger:discriminator Authentication type
 type Authentication interface {

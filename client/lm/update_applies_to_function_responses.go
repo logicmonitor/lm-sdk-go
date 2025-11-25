@@ -58,7 +58,7 @@ func NewUpdateAppliesToFunctionOK() *UpdateAppliesToFunctionOK {
 /*
 UpdateAppliesToFunctionOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the applies to function
 */
 type UpdateAppliesToFunctionOK struct {
 	Payload *models.AppliesToFunction

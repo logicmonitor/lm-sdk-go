@@ -48,7 +48,7 @@ type GaugeWidget struct {
 	// The threshold of Gauge color changes
 	ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
 
-	// The datapoint whose value is displayed in the gauge widget
+	// data point
 	// Required: true
 	DataPoint *GaugeDataPoint `json:"dataPoint"`
 
@@ -210,7 +210,7 @@ func (m *GaugeWidget) UnmarshalJSON(raw []byte) error {
 		// The threshold of Gauge color changes
 		ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
 
-		// The datapoint whose value is displayed in the gauge widget
+		// data point
 		// Required: true
 		DataPoint *GaugeDataPoint `json:"dataPoint"`
 
@@ -334,7 +334,7 @@ func (m GaugeWidget) MarshalJSON() ([]byte, error) {
 		// The threshold of Gauge color changes
 		ColorThresholds []*ColorThreshold `json:"colorThresholds,omitempty"`
 
-		// The datapoint whose value is displayed in the gauge widget
+		// data point
 		// Required: true
 		DataPoint *GaugeDataPoint `json:"dataPoint"`
 

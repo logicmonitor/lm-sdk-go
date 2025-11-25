@@ -58,7 +58,7 @@ func NewGetSDTListOK() *GetSDTListOK {
 /*
 GetSDTListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetSDTListOK struct {
 	Payload *models.SDTPaginationResponse

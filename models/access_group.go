@@ -14,7 +14,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// AccessGroup access group
+// AccessGroup Module's access groups
 //
 // swagger:model AccessGroup
 type AccessGroup struct {

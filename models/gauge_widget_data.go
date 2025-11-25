@@ -9,6 +9,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"strconv"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/strfmt"
@@ -391,6 +392,14 @@ func (m *GaugeWidgetData) contextValidateHistoryTimestamps(ctx context.Context, 
 
 	if err := validate.ReadOnly(ctx, "historyTimestamps", "body", []int64(m.HistoryTimestamps)); err != nil {
 		return err
+	}
+
+	for i := 0; i < len(m.HistoryTimestamps); i++ {
+
+		if err := validate.ReadOnly(ctx, "historyTimestamps"+"."+strconv.Itoa(i), "body", int64(m.HistoryTimestamps[i])); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

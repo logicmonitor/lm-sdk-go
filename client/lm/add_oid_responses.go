@@ -58,7 +58,7 @@ func NewAddOidOK() *AddOidOK {
 /*
 AddOidOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully added a new OID
 */
 type AddOidOK struct {
 	Payload *models.RestOidV3

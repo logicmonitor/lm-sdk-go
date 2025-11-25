@@ -58,7 +58,7 @@ func NewUpdateOIDOK() *UpdateOIDOK {
 /*
 UpdateOIDOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully updated the OID
 */
 type UpdateOIDOK struct {
 	Payload *models.RestOidV3

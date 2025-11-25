@@ -58,7 +58,7 @@ func NewGetDashboardByIDJSONOK() *GetDashboardByIDJSONOK {
 /*
 GetDashboardByIDJSONOK describes a response with status code 200, with default header values.
 
-successful operation
+Successful operation
 */
 type GetDashboardByIDJSONOK struct {
 	Payload interface{}

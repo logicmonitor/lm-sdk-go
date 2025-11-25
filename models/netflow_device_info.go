@@ -12,7 +12,7 @@ import (
 	"github.com/go-openapi/swag"
 )
 
-// NetflowDeviceInfo netflow device info
+// NetflowDeviceInfo Netlow filter netflowDevices expression
 //
 // swagger:model NetflowDeviceInfo
 type NetflowDeviceInfo struct {

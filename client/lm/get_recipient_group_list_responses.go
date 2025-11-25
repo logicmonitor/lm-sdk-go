@@ -58,7 +58,7 @@ func NewGetRecipientGroupListOK() *GetRecipientGroupListOK {
 /*
 GetRecipientGroupListOK describes a response with status code 200, with default header values.
 
-successful operation
+Successfully retrieved the recipient group list
 */
 type GetRecipientGroupListOK struct {
 	Payload *models.RecipientGroupPaginationResponse
