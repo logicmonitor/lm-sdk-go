@@ -30,7 +30,7 @@ type LogSourceLogField struct {
 	Key string `json:"key,omitempty"`
 
 	// The LogSource method
-	// Enum: ["INVALID","Invalid","STATIC","Static","TOKEN","Token","REGEX","Regex","ATTRIBUTE","Attribute","REGEX_GROUP","RegexGroup","IP","Ip"]
+	// Enum: ["Invalid","Static","Token","Regex","Attribute","RegexGroup","Ip"]
 	Method string `json:"method,omitempty"`
 
 	// The LogSource value
@@ -55,7 +55,7 @@ var logSourceLogFieldTypeMethodPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INVALID","Invalid","STATIC","Static","TOKEN","Token","REGEX","Regex","ATTRIBUTE","Attribute","REGEX_GROUP","RegexGroup","IP","Ip"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Invalid","Static","Token","Regex","Attribute","RegexGroup","Ip"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -65,44 +65,23 @@ func init() {
 
 const (
 
-	// LogSourceLogFieldMethodINVALID captures enum value "INVALID"
-	LogSourceLogFieldMethodINVALID string = "INVALID"
-
 	// LogSourceLogFieldMethodInvalid captures enum value "Invalid"
 	LogSourceLogFieldMethodInvalid string = "Invalid"
-
-	// LogSourceLogFieldMethodSTATIC captures enum value "STATIC"
-	LogSourceLogFieldMethodSTATIC string = "STATIC"
 
 	// LogSourceLogFieldMethodStatic captures enum value "Static"
 	LogSourceLogFieldMethodStatic string = "Static"
 
-	// LogSourceLogFieldMethodTOKEN captures enum value "TOKEN"
-	LogSourceLogFieldMethodTOKEN string = "TOKEN"
-
 	// LogSourceLogFieldMethodToken captures enum value "Token"
 	LogSourceLogFieldMethodToken string = "Token"
-
-	// LogSourceLogFieldMethodREGEX captures enum value "REGEX"
-	LogSourceLogFieldMethodREGEX string = "REGEX"
 
 	// LogSourceLogFieldMethodRegex captures enum value "Regex"
 	LogSourceLogFieldMethodRegex string = "Regex"
 
-	// LogSourceLogFieldMethodATTRIBUTE captures enum value "ATTRIBUTE"
-	LogSourceLogFieldMethodATTRIBUTE string = "ATTRIBUTE"
-
 	// LogSourceLogFieldMethodAttribute captures enum value "Attribute"
 	LogSourceLogFieldMethodAttribute string = "Attribute"
 
-	// LogSourceLogFieldMethodREGEXGROUP captures enum value "REGEX_GROUP"
-	LogSourceLogFieldMethodREGEXGROUP string = "REGEX_GROUP"
-
 	// LogSourceLogFieldMethodRegexGroup captures enum value "RegexGroup"
 	LogSourceLogFieldMethodRegexGroup string = "RegexGroup"
-
-	// LogSourceLogFieldMethodIP captures enum value "IP"
-	LogSourceLogFieldMethodIP string = "IP"
 
 	// LogSourceLogFieldMethodIP captures enum value "Ip"
 	LogSourceLogFieldMethodIP string = "Ip"

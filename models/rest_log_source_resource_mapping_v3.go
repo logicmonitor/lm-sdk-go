@@ -33,7 +33,7 @@ type RestLogSourceResourceMappingV3 struct {
 	Key string `json:"key,omitempty"`
 
 	// The LogSourceResourceMapping method
-	// Enum: ["INVALID","Invalid","STATIC","Static","TOKEN","Token","REGEX","Regex","ATTRIBUTE","Attribute","REGEX_GROUP","RegexGroup","IP","Ip","FQDN","HOSTNAME","HostName","HOST_WITHOUT_DNS","HostWithoutDNS"]
+	// Enum: ["Invalid","Static","Token","Regex","Attribute","RegexGroup","Ip","FQDN","HostName","HostWithoutDNS"]
 	Method string `json:"method,omitempty"`
 
 	// The LogSourceResourceMapping value
@@ -58,7 +58,7 @@ var restLogSourceResourceMappingV3TypeMethodPropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["INVALID","Invalid","STATIC","Static","TOKEN","Token","REGEX","Regex","ATTRIBUTE","Attribute","REGEX_GROUP","RegexGroup","IP","Ip","FQDN","HOSTNAME","HostName","HOST_WITHOUT_DNS","HostWithoutDNS"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["Invalid","Static","Token","Regex","Attribute","RegexGroup","Ip","FQDN","HostName","HostWithoutDNS"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -68,44 +68,23 @@ func init() {
 
 const (
 
-	// RestLogSourceResourceMappingV3MethodINVALID captures enum value "INVALID"
-	RestLogSourceResourceMappingV3MethodINVALID string = "INVALID"
-
 	// RestLogSourceResourceMappingV3MethodInvalid captures enum value "Invalid"
 	RestLogSourceResourceMappingV3MethodInvalid string = "Invalid"
-
-	// RestLogSourceResourceMappingV3MethodSTATIC captures enum value "STATIC"
-	RestLogSourceResourceMappingV3MethodSTATIC string = "STATIC"
 
 	// RestLogSourceResourceMappingV3MethodStatic captures enum value "Static"
 	RestLogSourceResourceMappingV3MethodStatic string = "Static"
 
-	// RestLogSourceResourceMappingV3MethodTOKEN captures enum value "TOKEN"
-	RestLogSourceResourceMappingV3MethodTOKEN string = "TOKEN"
-
 	// RestLogSourceResourceMappingV3MethodToken captures enum value "Token"
 	RestLogSourceResourceMappingV3MethodToken string = "Token"
-
-	// RestLogSourceResourceMappingV3MethodREGEX captures enum value "REGEX"
-	RestLogSourceResourceMappingV3MethodREGEX string = "REGEX"
 
 	// RestLogSourceResourceMappingV3MethodRegex captures enum value "Regex"
 	RestLogSourceResourceMappingV3MethodRegex string = "Regex"
 
-	// RestLogSourceResourceMappingV3MethodATTRIBUTE captures enum value "ATTRIBUTE"
-	RestLogSourceResourceMappingV3MethodATTRIBUTE string = "ATTRIBUTE"
-
 	// RestLogSourceResourceMappingV3MethodAttribute captures enum value "Attribute"
 	RestLogSourceResourceMappingV3MethodAttribute string = "Attribute"
 
-	// RestLogSourceResourceMappingV3MethodREGEXGROUP captures enum value "REGEX_GROUP"
-	RestLogSourceResourceMappingV3MethodREGEXGROUP string = "REGEX_GROUP"
-
 	// RestLogSourceResourceMappingV3MethodRegexGroup captures enum value "RegexGroup"
 	RestLogSourceResourceMappingV3MethodRegexGroup string = "RegexGroup"
-
-	// RestLogSourceResourceMappingV3MethodIP captures enum value "IP"
-	RestLogSourceResourceMappingV3MethodIP string = "IP"
 
 	// RestLogSourceResourceMappingV3MethodIP captures enum value "Ip"
 	RestLogSourceResourceMappingV3MethodIP string = "Ip"
@@ -113,14 +92,8 @@ const (
 	// RestLogSourceResourceMappingV3MethodFQDN captures enum value "FQDN"
 	RestLogSourceResourceMappingV3MethodFQDN string = "FQDN"
 
-	// RestLogSourceResourceMappingV3MethodHOSTNAME captures enum value "HOSTNAME"
-	RestLogSourceResourceMappingV3MethodHOSTNAME string = "HOSTNAME"
-
 	// RestLogSourceResourceMappingV3MethodHostName captures enum value "HostName"
 	RestLogSourceResourceMappingV3MethodHostName string = "HostName"
-
-	// RestLogSourceResourceMappingV3MethodHOSTWITHOUTDNS captures enum value "HOST_WITHOUT_DNS"
-	RestLogSourceResourceMappingV3MethodHOSTWITHOUTDNS string = "HOST_WITHOUT_DNS"
 
 	// RestLogSourceResourceMappingV3MethodHostWithoutDNS captures enum value "HostWithoutDNS"
 	RestLogSourceResourceMappingV3MethodHostWithoutDNS string = "HostWithoutDNS"
