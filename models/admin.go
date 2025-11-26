@@ -69,6 +69,9 @@ type Admin struct {
 	// Read Only: true
 	ImmediateForceLogout *bool `json:"immediateForceLogout,omitempty"`
 
+	// The time in seconds that the user session terminated if inactive
+	InactiveSessionTimeoutInSeconds int32 `json:"inactiveSessionTimeoutInSeconds,omitempty"`
+
 	// The time that the user last accessed the portal
 	// Read Only: true
 	LastAccessOn int64 `json:"lastAccessOn,omitempty"`
